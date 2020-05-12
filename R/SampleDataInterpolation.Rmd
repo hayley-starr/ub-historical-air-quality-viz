@@ -1,0 +1,107 @@
+---
+title: "Sensor Data Interpolation"
+author: "Hayley Garment"
+date: "5/12/2020"
+output: html_document
+---
+
+In this file:
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(readr)
+library(lubridate)
+library(tmap)
+library(sf)
+library(mapview)
+library(tmap)
+library(broom)
+library(gt)
+```
+
+GET STATIONS SF
+```{r}
+stations <- read.csv('data/stations.csv') %>% filter(name != 'Urgakh naran')
+
+sf_stations <- st_as_sf(stations, coords = c("lon", "lat"), crs = 4326) %>%
+  st_transform(3414)
+
+sf_stations <- st_transform(sf_stations, sf::st_crs("+proj=longlat +datum=WGS84"))
+
+#st_write(sf_stations,'data/stations.geojson')
+```
+
+GET SINGLE FRAME
+```{r}
+sample <- readRDS('sample_data/sensor_data.rds') %>% filter(name != 'Urgakh naran')
+
+# remove the seconds in the date
+#second(sample$date)  <- 0
+#saveRDS(sample, 'sample_data/sensor_data.rds')
+
+sample_frame_data <- sample %>% filter(date == '2020-03-28 01:00:00')
+
+sf_sample_data_frame <- left_join(sample_frame_data, sf_stations) %>%
+  dplyr::select(name, aqi, geometry) %>%
+  st_as_sf(crs=3414)
+
+```
+
+GET BOUNDING BOX OF UB
+```{r}
+
+sf_stations_clean <- sf_stations %>% select(-latlon, -start_drive_by_300m, -end_drive_by_300m, -ger_district) %>% st_as_sf(crs=3414) %>% st_transform(crs=3414)
+
+ub_polygon <- st_convex_hull(st_union(sf_stations_clean)) %>% st_buffer(1000)
+
+ub_polygon %>% 
+  tm_shape() + tm_polygons(alpha = 0.3)
+
+
+sp_ub_polygon <- as_Spatial(ub_polygon)
+
+
+sp_sample@bbox <- sp_ub_polygon@bbox
+
+#saveRDS(ub_polygon, 'data/geo_ub_polygon.rds')
+```
+
+
+Copied from online :)
+```{r}
+library(gstat) # Use gstat's idw routine
+library(sp)    # Used for the spsample function
+library(raster)
+
+sp_sample <- sf_sample_data_frame %>% as_Spatial()
+
+# Create an empty grid where n is the total number of cells
+grd              <- as.data.frame(spsample(sp_sample, "regular", n=100000))
+names(grd)       <- c("X", "Y")
+coordinates(grd) <- c("X", "Y")
+gridded(grd)     <- TRUE  # Create SpatialPixel object
+fullgrid(grd)    <- TRUE  # Create SpatialGrid object
+
+
+# Add P's projection information to the empty grid
+proj4string(grd) <- proj4string(sp_sample)
+
+# Interpolate the grid cells using a power value of 2 (idp=2.0)
+sp_sample.idw <- gstat::idw(aqi ~ 1, sp_sample, newdata=grd, idp=2.0)
+
+# Convert to raster object
+raster_layer       <- raster(sp_sample.idw)
+
+crs(raster_layer) <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0" 
+  tmap_mode("view")
+# Plot
+tm_shape(raster_layer) + 
+  tm_raster(n=10, palette = "YlGnBu", contrast = c(0.1, 1), alpha = 0.5) + 
+  tm_shape(sp_sample) + tm_dots(size=0.9)
+```
+
+
