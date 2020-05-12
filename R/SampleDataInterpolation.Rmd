@@ -20,7 +20,10 @@ library(sf)
 library(mapview)
 library(tmap)
 library(broom)
-library(gt)
+
+library(gstat) # Use gstat's idw routine
+library(sp)    # Used for the spsample function
+library(raster)
 ```
 
 GET STATIONS SF
@@ -35,73 +38,70 @@ sf_stations <- st_transform(sf_stations, sf::st_crs("+proj=longlat +datum=WGS84"
 #st_write(sf_stations,'data/stations.geojson')
 ```
 
-GET SINGLE FRAME
+GET RASTERS FROM FRAMES
 ```{r}
 sample <- readRDS('sample_data/sensor_data.rds') %>% filter(name != 'Urgakh naran')
 
-# remove the seconds in the date
-#second(sample$date)  <- 0
-#saveRDS(sample, 'sample_data/sensor_data.rds')
+date_frames <- sample %>% distinct(date)
 
-sample_frame_data <- sample %>% filter(date == '2020-03-28 01:00:00')
+rasters = list()
 
-sf_sample_data_frame <- left_join(sample_frame_data, sf_stations) %>%
-  dplyr::select(name, aqi, geometry) %>%
-  st_as_sf(crs=3414)
+for(i in 1:nrow(date_frames)) {
+  date_frame <- date_frames$date[i]
+  frame_data <- sample %>% filter(date == date_frame)
 
-```
-
-GET BOUNDING BOX OF UB
-```{r}
-
-sf_stations_clean <- sf_stations %>% select(-latlon, -start_drive_by_300m, -end_drive_by_300m, -ger_district) %>% st_as_sf(crs=3414) %>% st_transform(crs=3414)
-
-ub_polygon <- st_convex_hull(st_union(sf_stations_clean)) %>% st_buffer(1000)
-
-ub_polygon %>% 
-  tm_shape() + tm_polygons(alpha = 0.3)
+  sf_frame_data <- left_join(frame_data, sf_stations) %>%
+    dplyr::select(name, aqi, geometry) %>%
+    st_as_sf(crs=3414)
+  
+  raster <- createRasterFromFrame(sf_frame_data)
+  rasters[[i]] <- raster
+}
 
 
-sp_ub_polygon <- as_Spatial(ub_polygon)
-
-
-sp_sample@bbox <- sp_ub_polygon@bbox
-
-#saveRDS(ub_polygon, 'data/geo_ub_polygon.rds')
+all_rasters <- do.call(rbind, rasters)
 ```
 
 
-Copied from online :)
+CREATE RASTER FROM FRAME
 ```{r}
-library(gstat) # Use gstat's idw routine
-library(sp)    # Used for the spsample function
-library(raster)
+createRasterFromFrame <- function(data_frame) {
+  sp_sample <- data_frame %>% as_Spatial()
+  
+  # Create an empty grid where n is the total number of cells
+  grd              <- as.data.frame(spsample(sp_sample, "regular", n=100000))
+  names(grd)       <- c("X", "Y")
+  coordinates(grd) <- c("X", "Y")
+  gridded(grd)     <- TRUE  # Create SpatialPixel object
+  fullgrid(grd)    <- TRUE  # Create SpatialGrid object
+  
+  proj4string(grd) <- proj4string(sp_sample)
+  
+  # Interpolate the grid cells using a power value of 2 (idp=2.0) #arbitrary!!
+  sp_sample.idw <- gstat::idw(aqi ~ 1, sp_sample, newdata=grd, idp=2.0)
+  
+  # Convert to raster object
+  raster_layer <- raster(sp_sample.idw)
+  
+  crs(raster_layer) <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0" 
+  
+  raster_layer
+  # add time!!
+}
+```
 
-sp_sample <- sf_sample_data_frame %>% as_Spatial()
 
-# Create an empty grid where n is the total number of cells
-grd              <- as.data.frame(spsample(sp_sample, "regular", n=100000))
-names(grd)       <- c("X", "Y")
-coordinates(grd) <- c("X", "Y")
-gridded(grd)     <- TRUE  # Create SpatialPixel object
-fullgrid(grd)    <- TRUE  # Create SpatialGrid object
-
-
-# Add P's projection information to the empty grid
-proj4string(grd) <- proj4string(sp_sample)
-
-# Interpolate the grid cells using a power value of 2 (idp=2.0)
-sp_sample.idw <- gstat::idw(aqi ~ 1, sp_sample, newdata=grd, idp=2.0)
-
-# Convert to raster object
-raster_layer       <- raster(sp_sample.idw)
-
-crs(raster_layer) <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0" 
-  tmap_mode("view")
+```{r}
+tmap_mode("view")
+  
 # Plot
-tm_shape(raster_layer) + 
-  tm_raster(n=10, palette = "YlGnBu", contrast = c(0.1, 1), alpha = 0.5) + 
-  tm_shape(sp_sample) + tm_dots(size=0.9)
+tm_shape(rasters[[2]]) + 
+  tm_raster(n=10, palette = "YlGnBu", contrast = c(0.1, 1), alpha = 0.5)
+
+tm_shape(rasters[[3]]) + 
+  tm_raster(n=10, palette = "YlGnBu", contrast = c(0.1, 1), alpha = 0.5)
+
+
 ```
 
 
