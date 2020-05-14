@@ -1,13 +1,17 @@
 import { contours } from 'd3-contour';
-import { geoTransform, geoPath } from 'd3-geo';
+import { geoTransform } from 'd3-geo';
 import { geoProject } from 'd3-geo-projection';
-import proj4 from 'proj4';
 import * as gdal from 'gdal';
 import fs from 'fs';
 
 
-console.log('hello world');
+let inputFilename = 'sample_frame_raster.tif';
+let outputFilename = 'allcontours.json';
+let frameId = 0;
 
+console.log('rasterizing tif file...');
+
+// write geojson to file
 const writeJsonData = function(geojson, filename) {
     // convert JSON object to string
     const data = JSON.stringify(geojson);
@@ -21,15 +25,17 @@ const writeJsonData = function(geojson, filename) {
     });
 }
 
-let gdalDataset = gdal.open('sample_frame_raster.tif');
+let gdalDataset = gdal.open(inputFilename);
+
+// get the raster with the data
 let band = gdalDataset.bands.get(1);
 let width = band.size.x-1; 
 let height = band.size.y-1;
 
-//read data into an array
+//read data into an array of length widthxheight so that d3.contours can work
 let array = band.pixels.read(0, 0, width, height);
 
-// array of multipolygons that represent the contours of the image
+// generate array of multipolygons that represent the contours of the data
 var polygons = contours()
     .size([width, height]) // later can custom threshold, too
     (array);
@@ -44,8 +50,8 @@ polygons.forEach((polygon) => {
         type: 'Feature',
         properties: {
             value: polygon.value,
-            idx: 0
-        },
+            idx: frameId // this should change for each frame
+         },
         geometry: {
             type: 'MultiPolygon',
             coordinates: polygon.coordinates
@@ -67,7 +73,7 @@ let geoProjectionForRaster = geoTransform({
 let lonLatPolygons = geoProject(resultgeojson, geoProjectionForRaster);
 
 
-writeJsonData(lonLatPolygons, 'allcontours.json');
+writeJsonData(lonLatPolygons, outputFilename);
 
 
 

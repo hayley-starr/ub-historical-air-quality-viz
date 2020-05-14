@@ -343,7 +343,7 @@ var app = (function () {
     return mapboxgl;
 
     })));
-
+    //# sourceMappingURL=mapbox-gl.js.map
     });
 
     const stations = {
@@ -420,20 +420,20 @@ var app = (function () {
     			attr_dev(link, "href", "https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css");
     			attr_dev(link, "rel", "stylesheet");
     			add_location(link, file, 0, 0, 0);
-    			add_location(span, file, 57, 4, 1593);
+    			add_location(span, file, 78, 4, 2345);
     			attr_dev(div0, "class", "title svelte-1bn5ls5");
-    			add_location(div0, file, 56, 4, 1569);
+    			add_location(div0, file, 77, 4, 2321);
     			attr_dev(div1, "class", "header svelte-1bn5ls5");
-    			add_location(div1, file, 55, 2, 1544);
+    			add_location(div1, file, 76, 2, 2296);
     			attr_dev(div2, "id", "map");
     			attr_dev(div2, "class", "map svelte-1bn5ls5");
-    			add_location(div2, file, 61, 4, 1701);
+    			add_location(div2, file, 82, 4, 2453);
     			attr_dev(div3, "class", "map-legend");
-    			add_location(div3, file, 62, 4, 1738);
+    			add_location(div3, file, 83, 4, 2490);
     			attr_dev(div4, "class", "visualizations svelte-1bn5ls5");
-    			add_location(div4, file, 60, 2, 1668);
+    			add_location(div4, file, 81, 2, 2420);
     			attr_dev(div5, "class", "ub-ap-viz svelte-1bn5ls5");
-    			add_location(div5, file, 54, 0, 1518);
+    			add_location(div5, file, 75, 0, 2270);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -491,16 +491,53 @@ var app = (function () {
 
     		map.on("load", function () {
     			// what to do when the map is first loaded on the page
-    			map.addSource("single_contour", { "type": "geojson", "data": allcontours });
+    			map.addSource("three_contours", {
+    				type: "vector",
+    				url: "mapbox://hayleystarr.80jtx7ee"
+    			});
 
     			map.addLayer({
-    				"id": "single_contour",
+    				"id": "three_contours",
     				"type": "fill",
-    				"source": "single_contour",
-    				"layout": {},
-    				"paint": {
-    					"fill-color": "#e68429",
-    					"fill-opacity": 1
+    				"source": "three_contours",
+    				"source-layer": "allcontours",
+    				"filter": ["==", "idx", 0],
+    				"layout": { "visibility": "visible" },
+    				paint: {
+    					"fill-opacity": 0.2,
+    					"fill-color": [
+    						"step",
+    						["get", "value"],
+    						"hsl(0, 0%, 100%)",
+    						8,
+    						"hsl(202, 88%, 51%)",
+    						18,
+    						"hsl(194, 88%, 51%)",
+    						36,
+    						"hsl(185, 88%, 51%)",
+    						54,
+    						"hsl(177, 96%, 53%)",
+    						72,
+    						"hsl(157, 96%, 53%)",
+    						90,
+    						"hsl(101, 94%, 65%)",
+    						108,
+    						"hsl(60, 100%, 49%)",
+    						126,
+    						"hsl(43, 100%, 49%)",
+    						144,
+    						"hsl(26, 100%, 49%)",
+    						162,
+    						"hsl(10, 100%, 49%)",
+    						180,
+    						"hsl(0, 64%, 43%)",
+    						198,
+    						"hsl(326, 47%, 29%)",
+    						216,
+    						"hsl(274, 47%, 29%)",
+    						234,
+    						"hsl(246, 56%, 35%)"
+    					]
     				}
     			});
     		});

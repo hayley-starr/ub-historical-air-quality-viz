@@ -25,23 +25,44 @@
         center: UB_COORDINATES, // starting position
         zoom: 11 // starting zoom
       });
-
     
     
     map.on('load', function() { // what to do when the map is first loaded on the page
-      map.addSource('single_contour', {
-        'type': 'geojson',
-        'data': allcontours 
+      map.addSource('three_contours', {
+        type: 'vector',
+        url: 'mapbox://hayleystarr.80jtx7ee'
       });
 
       map.addLayer({
-        'id': 'single_contour',
-        'type': 'fill',
-        'source': 'single_contour',
-        'layout': {},
-        'paint': {
-          'fill-color': '#e68429',
-          'fill-opacity': 1
+        "id": "three_contours",
+        "type": "fill",
+        "source": "three_contours",
+        "source-layer": "allcontours",
+        "filter": ["==", "idx", 0],
+        'layout': {
+            "visibility": "visible"
+        },
+        paint: {
+          'fill-opacity': 0.2,
+          'fill-color': [
+            "step",
+            ["get", "value"],
+            "hsl(0, 0%, 100%)", 8,
+            "hsl(202, 88%, 51%)", 18,
+            "hsl(194, 88%, 51%)", 36,
+            "hsl(185, 88%, 51%)", 54,
+            "hsl(177, 96%, 53%)", 72,
+            "hsl(157, 96%, 53%)", 90,
+            "hsl(101, 94%, 65%)", 108,
+            "hsl(60, 100%, 49%)", 126,
+            "hsl(43, 100%, 49%)", 144,
+            "hsl(26, 100%, 49%)", 162,
+            "hsl(10, 100%, 49%)", 180,
+            "hsl(0, 64%, 43%)", 198,
+            "hsl(326, 47%, 29%)", 216,
+            "hsl(274, 47%, 29%)", 234,
+            "hsl(246, 56%, 35%)"
+        ]
         }
       });
     });

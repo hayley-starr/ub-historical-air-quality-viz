@@ -101,7 +101,7 @@ tmap_mode("view")
 tm_shape(rasters[[2]]) + 
   tm_raster(n=10, palette = "YlGnBu", contrast = c(0.1, 1), alpha = 0.5)
 
-tm_shape(rasters[[3]]) + 
+tm_shape(rasters[[5]]) + 
   tm_raster(n=10, palette = "YlGnBu", contrast = c(0.1, 1), alpha = 0.5)
 ```
 
@@ -112,13 +112,25 @@ writeRaster(rasters[[3]], "sample_data/sample_frame_raster.tif", format = "GTiff
 
 INSPECT RASTER LAYER
 ```{r}
-raster_sample <- rasters[[3]]
+raster_sample <- rasters[[5]]
 
 raster_sample <- as.integer(raster_sample) # should round this TODO
 
-writeRaster(raster_sample, "sample_data/sample_frame_raster.tif", format = "GTiff")
+writeRaster(raster_sample, "sample_data/sample_frame_raster_2.tif", format = "GTiff")
 
-ras %>% as.matrix() 
+#ras %>% as.matrix() 
 # all unique valeues! how can make bands like this O.O
 ```
+
+WRITE ALL RASTERS TO TIF FILES
+```{r}
+for(i in 1:nrow(date_frames)) {
+  sample_raster <- rasters[[i]]
+  sample_raster <- as.integer(sample_raster)
+  filename <- paste0("sample_data/sample_frame_tifs/sample_frame_raster_", i)
+  writeRaster(raster_sample, filename, format = "GTiff")
+}
+```
+
+
 
