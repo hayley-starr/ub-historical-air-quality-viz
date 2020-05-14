@@ -8,6 +8,7 @@
   import { onMount } from 'svelte';
   import mapboxgl from 'mapbox-gl';
   import { stations } from './stations.js';
+  import { contour } from './contour.js'
 
   const UB_COORDINATES = [106.900354, 47.917802];
   const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGF5bGV5c3RhcnIiLCJhIjoiY2s5MmhvYTU3MDBkaTNwcGI3cWJtMjdkcCJ9.tOfFfs9wWWcOfQ1sDMiwvQ';
@@ -15,8 +16,6 @@
 
   let map;
 
-
-  // TURF JS - https://docs.mapbox.com/help/tutorials/analysis-with-turf/#add-interactivity
 
   // After the DOM has been rendered set up the mapbox. (Won't work before map html is available.)
 	onMount(async () => {
@@ -26,20 +25,24 @@
         center: UB_COORDINATES, // starting position
         zoom: 11 // starting zoom
       });
+
+    
     
     map.on('load', function() { // what to do when the map is first loaded on the page
-      map.addLayer({ // SAMPLE! CAN USE ADD-LAYER TO ADD MORE LAYERS LATER ON USER INTERACTION
-        id: 'dormitories',
-        type: 'symbol',
-        source: {
-          type: 'geojson',
-          data: stations // USING THE SAMPLE DATA FOR NOW
-        },
-        layout: {
-          'icon-image': 'hospital-15', // TODO: change this to something nicer
-          'icon-allow-overlap': true
-        },
-        paint: { }
+      map.addSource('single_contour', {
+        'type': 'geojson',
+        'data': contour 
+      });
+
+      map.addLayer({
+        'id': 'single_contour',
+        'type': 'fill',
+        'source': 'single_contour',
+        'layout': {},
+        'paint': {
+          'fill-color': '#e68429',
+          'fill-opacity': 1
+        }
       });
     });
 
