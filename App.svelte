@@ -8,7 +8,7 @@
   import { onMount } from 'svelte';
   import mapboxgl from 'mapbox-gl';
   import { stations } from './stations.js';
-  import { contour } from './contour.js'
+  import { allcontours } from './allcontours.js'
 
   const UB_COORDINATES = [106.900354, 47.917802];
   const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGF5bGV5c3RhcnIiLCJhIjoiY2s5MmhvYTU3MDBkaTNwcGI3cWJtMjdkcCJ9.tOfFfs9wWWcOfQ1sDMiwvQ';
@@ -31,7 +31,7 @@
     map.on('load', function() { // what to do when the map is first loaded on the page
       map.addSource('single_contour', {
         'type': 'geojson',
-        'data': contour 
+        'data': allcontours 
       });
 
       map.addLayer({

@@ -8,6 +8,19 @@ import fs from 'fs';
 
 console.log('hello world');
 
+const writeJsonData = function(geojson, filename) {
+    // convert JSON object to string
+    const data = JSON.stringify(geojson);
+
+    // write JSON string to a file
+    fs.writeFile(filename, data, (err) => {
+        if (err) {
+            throw err;
+        }
+        console.log("JSON data is saved.");
+    });
+}
+
 let gdalDataset = gdal.open('sample_frame_raster.tif');
 let band = gdalDataset.bands.get(1);
 let width = band.size.x-1; 
@@ -20,20 +33,6 @@ let array = band.pixels.read(0, 0, width, height);
 var polygons = contours()
     .size([width, height]) // later can custom threshold, too
     (array);
-
-
-var geotransf = gdalDataset.geoTransform;
-
-let geoProjectionForRaster = geoTransform({
-    point: function(point) {
-        let x = point[0];
-        let y = point[1];
-        
-        var xGeo = geotransf[0] + x*geotransf[1] + y*geotransf[2];
-        var yGeo = geotransf[3] + x*geotransf[4] + y*geotransf[5];
-        this.stream.point(xGeo, yGeo);
-    }
-  });
 
 let resultgeojson = {
     type: 'FeatureCollection',
@@ -54,33 +53,21 @@ polygons.forEach((polygon) => {
     });
 });
 
+var geotransf = gdalDataset.geoTransform;
 
-const writeContourData = function(geojson) {
-    // convert JSON object to string
-    const allcontourdata = JSON.stringify(geojson);
+let geoProjectionForRaster = geoTransform({
+    point: function(x, y) {
+        var xGeo = geotransf[0] + x*geotransf[1] + y*geotransf[2];
+        var yGeo = geotransf[3] + x*geotransf[4] + y*geotransf[5];
 
-    // write JSON string to a file
-    fs.writeFile('allcontours.json', allcontourdata, (err) => {
-        if (err) {
-            throw err;
-        }
-        console.log("JSON data is saved.");
-    });
-}
+        this.stream.point(xGeo, yGeo);
+    }
+  });
 
 let lonLatPolygons = geoProject(resultgeojson, geoProjectionForRaster);
 
 
-// // convert JSON object to string
-// const data = JSON.stringify(lonLatPolygons);
-
-// // write JSON string to a file
-// fs.writeFile('contour.json', data, (err) => {
-//     if (err) {
-//         throw err;
-//     }
-//     console.log("JSON data is saved.");
-// });
+writeJsonData(lonLatPolygons, 'allcontours.json');
 
 
 
