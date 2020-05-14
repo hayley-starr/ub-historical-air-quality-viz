@@ -420,20 +420,20 @@ var app = (function () {
     			attr_dev(link, "href", "https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css");
     			attr_dev(link, "rel", "stylesheet");
     			add_location(link, file, 0, 0, 0);
-    			add_location(span, file, 78, 4, 2345);
+    			add_location(span, file, 82, 4, 2483);
     			attr_dev(div0, "class", "title svelte-1bn5ls5");
-    			add_location(div0, file, 77, 4, 2321);
+    			add_location(div0, file, 81, 4, 2459);
     			attr_dev(div1, "class", "header svelte-1bn5ls5");
-    			add_location(div1, file, 76, 2, 2296);
+    			add_location(div1, file, 80, 2, 2434);
     			attr_dev(div2, "id", "map");
     			attr_dev(div2, "class", "map svelte-1bn5ls5");
-    			add_location(div2, file, 82, 4, 2453);
+    			add_location(div2, file, 86, 4, 2591);
     			attr_dev(div3, "class", "map-legend");
-    			add_location(div3, file, 83, 4, 2490);
+    			add_location(div3, file, 87, 4, 2628);
     			attr_dev(div4, "class", "visualizations svelte-1bn5ls5");
-    			add_location(div4, file, 81, 2, 2420);
+    			add_location(div4, file, 85, 2, 2558);
     			attr_dev(div5, "class", "ub-ap-viz svelte-1bn5ls5");
-    			add_location(div5, file, 75, 0, 2270);
+    			add_location(div5, file, 79, 0, 2408);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -493,15 +493,15 @@ var app = (function () {
     			// what to do when the map is first loaded on the page
     			map.addSource("three_contours", {
     				type: "vector",
-    				url: "mapbox://hayleystarr.80jtx7ee"
+    				url: "mapbox://hayleystarr.2hcx8ln4"
     			});
 
     			map.addLayer({
     				"id": "three_contours",
     				"type": "fill",
     				"source": "three_contours",
-    				"source-layer": "allcontours",
-    				"filter": ["==", "idx", 0],
+    				"source-layer": "threecontours",
+    				"filter": ["==", "idx", 2],
     				"layout": { "visibility": "visible" },
     				paint: {
     					"fill-opacity": 0.2,
@@ -541,7 +541,9 @@ var app = (function () {
     				}
     			});
     		});
-    	});
+    	}); // let theinterval = setInterval(function() {
+    	//   map.setFilter('three_contours', ['==', 'idx', currentidx]);
+    	// }, 500);
 
     	const writable_props = [];
 

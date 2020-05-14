@@ -30,15 +30,15 @@
     map.on('load', function() { // what to do when the map is first loaded on the page
       map.addSource('three_contours', {
         type: 'vector',
-        url: 'mapbox://hayleystarr.80jtx7ee'
+        url: 'mapbox://hayleystarr.2hcx8ln4'
       });
 
       map.addLayer({
         "id": "three_contours",
         "type": "fill",
         "source": "three_contours",
-        "source-layer": "allcontours",
-        "filter": ["==", "idx", 0],
+        "source-layer": "threecontours",
+        "filter": ["==", "idx", 2],
         'layout': {
             "visibility": "visible"
         },
@@ -66,6 +66,10 @@
         }
       });
     });
+
+    // let theinterval = setInterval(function() {
+    //   map.setFilter('three_contours', ['==', 'idx', currentidx]);
+    // }, 500);
 
   });
 
