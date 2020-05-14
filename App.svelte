@@ -13,8 +13,20 @@
   const UB_COORDINATES = [106.900354, 47.917802];
   const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGF5bGV5c3RhcnIiLCJhIjoiY2s5MmhvYTU3MDBkaTNwcGI3cWJtMjdkcCJ9.tOfFfs9wWWcOfQ1sDMiwvQ';
   mapboxgl.accessToken = MAPBOX_TOKEN;
+  const FRAME_RATE = 1000; // wait ms before changing frames
 
   let map;
+  let nFrames = 3; // total number of frames in animation
+  let currentFrame = 0
+
+  let incrementFrame = function() {
+    if (currentFrame+1 == nFrames) {
+      currentFrame = 0;
+    } else {
+      currentFrame++;
+    }
+    map.setFilter('three_contours', ['==', 'idx', currentFrame]);
+  }
 
 
   // After the DOM has been rendered set up the mapbox. (Won't work before map html is available.)
@@ -38,7 +50,7 @@
         "type": "fill",
         "source": "three_contours",
         "source-layer": "threecontours",
-        "filter": ["==", "idx", 2],
+        "filter": ["==", "idx", 0],
         'layout': {
             "visibility": "visible"
         },
@@ -67,10 +79,7 @@
       });
     });
 
-    // let theinterval = setInterval(function() {
-    //   map.setFilter('three_contours', ['==', 'idx', currentidx]);
-    // }, 500);
-
+    var intervalTimer = setInterval(incrementFrame, FRAME_RATE);
   });
 
 
@@ -80,7 +89,7 @@
 <div class='ub-ap-viz'>
   <div class='header'>
     <div class='title'>
-    <span>Visualzing Air Pollution in Ulaanbaatar</span>
+    <span>Visualzing Air Pollution in Ulaanbaatar: {currentFrame} </span>
     </div>
   </div>
   <div class='visualizations'>

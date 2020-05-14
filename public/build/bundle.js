@@ -276,6 +276,13 @@ var app = (function () {
         else
             dispatch_dev("SvelteDOMSetAttribute", { node, attribute, value });
     }
+    function set_data_dev(text, data) {
+        data = '' + data;
+        if (text.data === data)
+            return;
+        dispatch_dev("SvelteDOMSetData", { node: text, data });
+        text.data = data;
+    }
     function validate_slots(name, slot, keys) {
         for (const slot_key of Object.keys(slot)) {
             if (!~keys.indexOf(slot_key)) {
@@ -343,7 +350,7 @@ var app = (function () {
     return mapboxgl;
 
     })));
-    //# sourceMappingURL=mapbox-gl.js.map
+
     });
 
     const stations = {
@@ -397,10 +404,12 @@ var app = (function () {
     	let div1;
     	let div0;
     	let span;
+    	let t1;
     	let t2;
+    	let t3;
     	let div4;
     	let div2;
-    	let t3;
+    	let t4;
     	let div3;
 
     	const block = {
@@ -411,29 +420,30 @@ var app = (function () {
     			div1 = element("div");
     			div0 = element("div");
     			span = element("span");
-    			span.textContent = "Visualzing Air Pollution in Ulaanbaatar";
-    			t2 = space();
+    			t1 = text("Visualzing Air Pollution in Ulaanbaatar: ");
+    			t2 = text(/*currentFrame*/ ctx[0]);
+    			t3 = space();
     			div4 = element("div");
     			div2 = element("div");
-    			t3 = space();
+    			t4 = space();
     			div3 = element("div");
     			attr_dev(link, "href", "https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css");
     			attr_dev(link, "rel", "stylesheet");
     			add_location(link, file, 0, 0, 0);
-    			add_location(span, file, 82, 4, 2483);
+    			add_location(span, file, 91, 4, 2763);
     			attr_dev(div0, "class", "title svelte-1bn5ls5");
-    			add_location(div0, file, 81, 4, 2459);
+    			add_location(div0, file, 90, 4, 2739);
     			attr_dev(div1, "class", "header svelte-1bn5ls5");
-    			add_location(div1, file, 80, 2, 2434);
+    			add_location(div1, file, 89, 2, 2714);
     			attr_dev(div2, "id", "map");
     			attr_dev(div2, "class", "map svelte-1bn5ls5");
-    			add_location(div2, file, 86, 4, 2591);
+    			add_location(div2, file, 95, 4, 2888);
     			attr_dev(div3, "class", "map-legend");
-    			add_location(div3, file, 87, 4, 2628);
+    			add_location(div3, file, 96, 4, 2925);
     			attr_dev(div4, "class", "visualizations svelte-1bn5ls5");
-    			add_location(div4, file, 85, 2, 2558);
+    			add_location(div4, file, 94, 2, 2855);
     			attr_dev(div5, "class", "ub-ap-viz svelte-1bn5ls5");
-    			add_location(div5, file, 79, 0, 2408);
+    			add_location(div5, file, 88, 0, 2688);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -445,13 +455,17 @@ var app = (function () {
     			append_dev(div5, div1);
     			append_dev(div1, div0);
     			append_dev(div0, span);
-    			append_dev(div5, t2);
+    			append_dev(span, t1);
+    			append_dev(span, t2);
+    			append_dev(div5, t3);
     			append_dev(div5, div4);
     			append_dev(div4, div2);
-    			append_dev(div4, t3);
+    			append_dev(div4, t4);
     			append_dev(div4, div3);
     		},
-    		p: noop,
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*currentFrame*/ 1) set_data_dev(t2, /*currentFrame*/ ctx[0]);
+    		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
@@ -473,11 +487,24 @@ var app = (function () {
     }
 
     const MAPBOX_TOKEN = "pk.eyJ1IjoiaGF5bGV5c3RhcnIiLCJhIjoiY2s5MmhvYTU3MDBkaTNwcGI3cWJtMjdkcCJ9.tOfFfs9wWWcOfQ1sDMiwvQ";
+    const FRAME_RATE = 1000; // wait ms before changing frames
 
     function instance($$self, $$props, $$invalidate) {
     	const UB_COORDINATES = [106.900354, 47.917802];
     	mapboxGl.accessToken = MAPBOX_TOKEN;
     	let map;
+    	let nFrames = 3; // total number of frames in animation
+    	let currentFrame = 0;
+
+    	let incrementFrame = function () {
+    		if (currentFrame + 1 == nFrames) {
+    			$$invalidate(0, currentFrame = 0);
+    		} else {
+    			$$invalidate(0, currentFrame++, currentFrame);
+    		}
+
+    		map.setFilter("three_contours", ["==", "idx", currentFrame]);
+    	};
 
     	// After the DOM has been rendered set up the mapbox. (Won't work before map html is available.)
     	onMount(async () => {
@@ -501,7 +528,7 @@ var app = (function () {
     				"type": "fill",
     				"source": "three_contours",
     				"source-layer": "threecontours",
-    				"filter": ["==", "idx", 2],
+    				"filter": ["==", "idx", 0],
     				"layout": { "visibility": "visible" },
     				paint: {
     					"fill-opacity": 0.2,
@@ -541,9 +568,9 @@ var app = (function () {
     				}
     			});
     		});
-    	}); // let theinterval = setInterval(function() {
-    	//   map.setFilter('three_contours', ['==', 'idx', currentidx]);
-    	// }, 500);
+
+    		var intervalTimer = setInterval(incrementFrame, FRAME_RATE);
+    	});
 
     	const writable_props = [];
 
@@ -561,18 +588,25 @@ var app = (function () {
     		allcontours,
     		UB_COORDINATES,
     		MAPBOX_TOKEN,
-    		map
+    		FRAME_RATE,
+    		map,
+    		nFrames,
+    		currentFrame,
+    		incrementFrame
     	});
 
     	$$self.$inject_state = $$props => {
     		if ("map" in $$props) map = $$props.map;
+    		if ("nFrames" in $$props) nFrames = $$props.nFrames;
+    		if ("currentFrame" in $$props) $$invalidate(0, currentFrame = $$props.currentFrame);
+    		if ("incrementFrame" in $$props) incrementFrame = $$props.incrementFrame;
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [];
+    	return [currentFrame];
     }
 
     class App extends SvelteComponentDev {
