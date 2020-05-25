@@ -112,11 +112,11 @@ writeRaster(rasters[[3]], "sample_data/sample_frame_raster.tif", format = "GTiff
 
 INSPECT RASTER LAYER
 ```{r}
-raster_sample <- rasters[[5]]
+raster_sample_5 <- rasters[[5]]
 
-raster_sample <- as.integer(raster_sample) # should round this TODO
+raster_sample_5 <- as.integer(raster_sample) # should round this TODO
 
-writeRaster(raster_sample, "sample_data/sample_frame_raster_2.tif", format = "GTiff")
+writeRaster(raster_sample_5, "sample_data/sample_frame_raster_2.tif", format = "GTiff")
 
 #ras %>% as.matrix() 
 # all unique valeues! how can make bands like this O.O
@@ -128,7 +128,7 @@ for(i in 1:nrow(date_frames)) {
   sample_raster <- rasters[[i]]
   sample_raster <- as.integer(sample_raster)
   filename <- paste0("sample_data/sample_frame_tifs/sample_frame_raster_", i)
-  writeRaster(raster_sample, filename, format = "GTiff")
+  writeRaster(sample_raster, filename, format = "GTiff")
 }
 ```
 

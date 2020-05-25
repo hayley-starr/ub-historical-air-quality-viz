@@ -350,7 +350,7 @@ var app = (function () {
     return mapboxgl;
 
     })));
-
+    //# sourceMappingURL=mapbox-gl.js.map
     });
 
     const stations = {
@@ -430,20 +430,20 @@ var app = (function () {
     			attr_dev(link, "href", "https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css");
     			attr_dev(link, "rel", "stylesheet");
     			add_location(link, file, 0, 0, 0);
-    			add_location(span, file, 91, 4, 2763);
+    			add_location(span, file, 91, 4, 2805);
     			attr_dev(div0, "class", "title svelte-1bn5ls5");
-    			add_location(div0, file, 90, 4, 2739);
+    			add_location(div0, file, 90, 4, 2781);
     			attr_dev(div1, "class", "header svelte-1bn5ls5");
-    			add_location(div1, file, 89, 2, 2714);
+    			add_location(div1, file, 89, 2, 2756);
     			attr_dev(div2, "id", "map");
     			attr_dev(div2, "class", "map svelte-1bn5ls5");
-    			add_location(div2, file, 95, 4, 2888);
+    			add_location(div2, file, 95, 4, 2930);
     			attr_dev(div3, "class", "map-legend");
-    			add_location(div3, file, 96, 4, 2925);
+    			add_location(div3, file, 96, 4, 2967);
     			attr_dev(div4, "class", "visualizations svelte-1bn5ls5");
-    			add_location(div4, file, 94, 2, 2855);
+    			add_location(div4, file, 94, 2, 2897);
     			attr_dev(div5, "class", "ub-ap-viz svelte-1bn5ls5");
-    			add_location(div5, file, 88, 0, 2688);
+    			add_location(div5, file, 88, 0, 2730);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -487,23 +487,23 @@ var app = (function () {
     }
 
     const MAPBOX_TOKEN = "pk.eyJ1IjoiaGF5bGV5c3RhcnIiLCJhIjoiY2s5MmhvYTU3MDBkaTNwcGI3cWJtMjdkcCJ9.tOfFfs9wWWcOfQ1sDMiwvQ";
-    const FRAME_RATE = 1000; // wait ms before changing frames
+    const FRAME_RATE = 100; // wait ms before changing frames
 
     function instance($$self, $$props, $$invalidate) {
     	const UB_COORDINATES = [106.900354, 47.917802];
     	mapboxGl.accessToken = MAPBOX_TOKEN;
     	let map;
-    	let nFrames = 3; // total number of frames in animation
-    	let currentFrame = 0;
+    	let nFrames = 431; // total number of frames in animation
+    	let currentFrame = 1;
 
     	let incrementFrame = function () {
     		if (currentFrame + 1 == nFrames) {
-    			$$invalidate(0, currentFrame = 0);
+    			$$invalidate(0, currentFrame = 1);
     		} else {
     			$$invalidate(0, currentFrame++, currentFrame);
     		}
 
-    		map.setFilter("three_contours", ["==", "idx", currentFrame]);
+    		map.setFilter("ap_contours", ["==", "idx", "" + currentFrame]); // frame id is a string
     	};
 
     	// After the DOM has been rendered set up the mapbox. (Won't work before map html is available.)
@@ -518,17 +518,17 @@ var app = (function () {
 
     		map.on("load", function () {
     			// what to do when the map is first loaded on the page
-    			map.addSource("three_contours", {
+    			map.addSource("ap_contours", {
     				type: "vector",
-    				url: "mapbox://hayleystarr.2hcx8ln4"
+    				url: "mapbox://hayleystarr.05bkeyzu"
     			});
 
     			map.addLayer({
-    				"id": "three_contours",
+    				"id": "ap_contours",
     				"type": "fill",
-    				"source": "three_contours",
-    				"source-layer": "threecontours",
-    				"filter": ["==", "idx", 0],
+    				"source": "ap_contours",
+    				"source-layer": "apcontours",
+    				"filter": ["==", "idx", "1"], // frameID is a string :(
     				"layout": { "visibility": "visible" },
     				paint: {
     					"fill-opacity": 0.2,

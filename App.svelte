@@ -13,19 +13,19 @@
   const UB_COORDINATES = [106.900354, 47.917802];
   const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGF5bGV5c3RhcnIiLCJhIjoiY2s5MmhvYTU3MDBkaTNwcGI3cWJtMjdkcCJ9.tOfFfs9wWWcOfQ1sDMiwvQ';
   mapboxgl.accessToken = MAPBOX_TOKEN;
-  const FRAME_RATE = 1000; // wait ms before changing frames
+  const FRAME_RATE = 100; // wait ms before changing frames
 
   let map;
-  let nFrames = 3; // total number of frames in animation
-  let currentFrame = 0
+  let nFrames = 431; // total number of frames in animation
+  let currentFrame = 1;
 
   let incrementFrame = function() {
     if (currentFrame+1 == nFrames) {
-      currentFrame = 0;
+      currentFrame = 1;
     } else {
       currentFrame++;
     }
-    map.setFilter('three_contours', ['==', 'idx', currentFrame]);
+    map.setFilter('ap_contours', ['==', 'idx', ""+currentFrame]); // frame id is a string
   }
 
 
@@ -40,17 +40,17 @@
     
     
     map.on('load', function() { // what to do when the map is first loaded on the page
-      map.addSource('three_contours', {
+      map.addSource('ap_contours', {
         type: 'vector',
-        url: 'mapbox://hayleystarr.2hcx8ln4'
+        url: 'mapbox://hayleystarr.05bkeyzu'
       });
 
       map.addLayer({
-        "id": "three_contours",
+        "id": "ap_contours",
         "type": "fill",
-        "source": "three_contours",
-        "source-layer": "threecontours",
-        "filter": ["==", "idx", 0],
+        "source": "ap_contours",
+        "source-layer": "apcontours",
+        "filter": ["==", "idx", "1"], // frameID is a string :(
         'layout': {
             "visibility": "visible"
         },

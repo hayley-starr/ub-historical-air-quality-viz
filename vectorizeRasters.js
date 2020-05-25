@@ -85,7 +85,7 @@ const main = () => {
         var frameId = res[0];
 
         let inputFilename = './R/sample_data/sample_frame_tifs/' + filename;
-        let outputFilename = 'vectorjson/samplecontours' + frameId + '.json';    
+        let outputFilename = 'vectorjson/samplecontours' + frameId + '.json';   
         vectorizeRasterFrame(inputFilename, outputFilename, frameId);
     });
 }
