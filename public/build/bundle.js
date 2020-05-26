@@ -410,6 +410,8 @@ var app = (function () {
         return Math.max(Math.min(v, max), min);
     }; };
     var sanitize = function (v) { return (v % 1 ? Number(v.toFixed(5)) : v); };
+    var floatRegex = /(-)?(\d[\d\.]*)/g;
+    var colorRegex = /(#[0-9a-f]{6}|#[0-9a-f]{3}|#(?:[0-9a-f]{2}){2,4}|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d\.]+%?\))/gi;
     var singleColorRegex = /^(#[0-9a-f]{3}|#(?:[0-9a-f]{2}){2,4}|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d\.]+%?\))$/i;
 
     var number = {
@@ -541,6 +543,74 @@ var app = (function () {
             return v;
         }
     };
+
+    var COLOR_TOKEN = '${c}';
+    var NUMBER_TOKEN = '${n}';
+    var convertNumbersToZero = function (v) {
+        return typeof v === 'number' ? 0 : v;
+    };
+    var complex = {
+        test: function (v) {
+            if (typeof v !== 'string' || !isNaN(v))
+                return false;
+            var numValues = 0;
+            var foundNumbers = v.match(floatRegex);
+            var foundColors = v.match(colorRegex);
+            if (foundNumbers)
+                numValues += foundNumbers.length;
+            if (foundColors)
+                numValues += foundColors.length;
+            return numValues > 0;
+        },
+        parse: function (v) {
+            var input = v;
+            var parsed = [];
+            var foundColors = input.match(colorRegex);
+            if (foundColors) {
+                input = input.replace(colorRegex, COLOR_TOKEN);
+                parsed.push.apply(parsed, foundColors.map(color.parse));
+            }
+            var foundNumbers = input.match(floatRegex);
+            if (foundNumbers) {
+                parsed.push.apply(parsed, foundNumbers.map(number.parse));
+            }
+            return parsed;
+        },
+        createTransformer: function (prop) {
+            var template = prop;
+            var token = 0;
+            var foundColors = prop.match(colorRegex);
+            var numColors = foundColors ? foundColors.length : 0;
+            if (foundColors) {
+                for (var i = 0; i < numColors; i++) {
+                    template = template.replace(foundColors[i], COLOR_TOKEN);
+                    token++;
+                }
+            }
+            var foundNumbers = template.match(floatRegex);
+            var numNumbers = foundNumbers ? foundNumbers.length : 0;
+            if (foundNumbers) {
+                for (var i = 0; i < numNumbers; i++) {
+                    template = template.replace(foundNumbers[i], NUMBER_TOKEN);
+                    token++;
+                }
+            }
+            return function (v) {
+                var output = template;
+                for (var i = 0; i < token; i++) {
+                    output = output.replace(i < numColors ? COLOR_TOKEN : NUMBER_TOKEN, i < numColors ? color.transform(v[i]) : sanitize(v[i]));
+                }
+                return output;
+            };
+        },
+        getAnimatableNone: function (target) {
+            var parsedTarget = complex.parse(target);
+            var targetTransformer = complex.createTransformer(target);
+            return targetTransformer(parsedTarget.map(convertNumbersToZero));
+        }
+    };
+
+    var invariant = function () { };
 
     var prevTime = 0;
     var onNextFrame = typeof window !== 'undefined' && window.requestAnimationFrame !== undefined
@@ -715,6 +785,10 @@ var app = (function () {
     };
     var clamp$1$1 = curryRange(clamp$1);
 
+    var conditional = (function (check, apply) { return function (v) {
+        return check(v) ? apply(v) : v;
+    }; });
+
     var isPoint = (function (point) {
         return point.hasOwnProperty('x') && point.hasOwnProperty('y');
     });
@@ -738,6 +812,69 @@ var app = (function () {
         return 0;
     });
 
+    var progress = (function (from, to, value) {
+        var toFromDifference = to - from;
+        return toFromDifference === 0 ? 1 : (value - from) / toFromDifference;
+    });
+
+    var mix = (function (from, to, progress) {
+        return -progress * from + progress * to + from;
+    });
+
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation. All rights reserved.
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+    this file except in compliance with the License. You may obtain a copy of the
+    License at http://www.apache.org/licenses/LICENSE-2.0
+
+    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+    MERCHANTABLITY OR NON-INFRINGEMENT.
+
+    See the Apache Version 2.0 License for specific language governing permissions
+    and limitations under the License.
+    ***************************************************************************** */
+
+    var __assign$2 = function() {
+        __assign$2 = Object.assign || function __assign(t) {
+            for (var s, i = 1, n = arguments.length; i < n; i++) {
+                s = arguments[i];
+                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+            }
+            return t;
+        };
+        return __assign$2.apply(this, arguments);
+    };
+
+    var mixLinearColor = function (from, to, v) {
+        var fromExpo = from * from;
+        var toExpo = to * to;
+        return Math.sqrt(Math.max(0, v * (toExpo - fromExpo) + fromExpo));
+    };
+    var colorTypes = [hex, rgba, hsla];
+    var getColorType = function (v) {
+        return colorTypes.find(function (type) { return type.test(v); });
+    };
+    var mixColor = (function (from, to) {
+        var fromColorType = getColorType(from);
+        var toColorType = getColorType(to);
+        invariant(fromColorType.transform === toColorType.transform);
+        var fromColor = fromColorType.parse(from);
+        var toColor = toColorType.parse(to);
+        var blended = __assign$2({}, fromColor);
+        var mixFunc = fromColorType === hsla ? mix : mixLinearColor;
+        return function (v) {
+            for (var key in blended) {
+                if (key !== 'alpha') {
+                    blended[key] = mixFunc(fromColor[key], toColor[key], v);
+                }
+            }
+            blended.alpha = mix(fromColor.alpha, toColor.alpha, v);
+            return fromColorType.transform(blended);
+        };
+    });
+
     var combineFunctions = function (a, b) { return function (v) { return b(a(v)); }; };
     var pipe = (function () {
         var transformers = [];
@@ -747,9 +884,231 @@ var app = (function () {
         return transformers.reduce(combineFunctions);
     });
 
+    function getMixer(origin, target) {
+        if (isNum(origin)) {
+            return function (v) { return mix(origin, target, v); };
+        }
+        else if (color.test(origin)) {
+            return mixColor(origin, target);
+        }
+        else {
+            return mixComplex(origin, target);
+        }
+    }
+    var mixArray = function (from, to) {
+        var output = from.slice();
+        var numValues = output.length;
+        var blendValue = from.map(function (fromThis, i) { return getMixer(fromThis, to[i]); });
+        return function (v) {
+            for (var i = 0; i < numValues; i++) {
+                output[i] = blendValue[i](v);
+            }
+            return output;
+        };
+    };
+    var mixObject = function (origin, target) {
+        var output = __assign$2({}, origin, target);
+        var blendValue = {};
+        for (var key in output) {
+            if (origin[key] !== undefined && target[key] !== undefined) {
+                blendValue[key] = getMixer(origin[key], target[key]);
+            }
+        }
+        return function (v) {
+            for (var key in blendValue) {
+                output[key] = blendValue[key](v);
+            }
+            return output;
+        };
+    };
+    function analyse(value) {
+        var parsed = complex.parse(value);
+        var numValues = parsed.length;
+        var numNumbers = 0;
+        var numRGB = 0;
+        var numHSL = 0;
+        for (var i = 0; i < numValues; i++) {
+            if (numNumbers || typeof parsed[i] === 'number') {
+                numNumbers++;
+            }
+            else {
+                if (parsed[i].hue !== undefined) {
+                    numHSL++;
+                }
+                else {
+                    numRGB++;
+                }
+            }
+        }
+        return { parsed: parsed, numNumbers: numNumbers, numRGB: numRGB, numHSL: numHSL };
+    }
+    var mixComplex = function (origin, target) {
+        var template = complex.createTransformer(target);
+        var originStats = analyse(origin);
+        var targetStats = analyse(target);
+        return pipe(mixArray(originStats.parsed, targetStats.parsed), template);
+    };
+
+    var mixNumber = function (from, to) { return function (p) { return mix(from, to, p); }; };
+    function detectMixerFactory(v) {
+        if (typeof v === 'number') {
+            return mixNumber;
+        }
+        else if (typeof v === 'string') {
+            if (color.test(v)) {
+                return mixColor;
+            }
+            else {
+                return mixComplex;
+            }
+        }
+        else if (Array.isArray(v)) {
+            return mixArray;
+        }
+        else if (typeof v === 'object') {
+            return mixObject;
+        }
+    }
+    function createMixers(output, ease, customMixer) {
+        var mixers = [];
+        var mixerFactory = customMixer || detectMixerFactory(output[0]);
+        var numMixers = output.length - 1;
+        for (var i = 0; i < numMixers; i++) {
+            var mixer = mixerFactory(output[i], output[i + 1]);
+            if (ease) {
+                var easingFunction = Array.isArray(ease) ? ease[i] : ease;
+                mixer = pipe(easingFunction, mixer);
+            }
+            mixers.push(mixer);
+        }
+        return mixers;
+    }
+    function fastInterpolate(_a, _b) {
+        var from = _a[0], to = _a[1];
+        var mixer = _b[0];
+        return function (v) { return mixer(progress(from, to, v)); };
+    }
+    function slowInterpolate(input, mixers) {
+        var inputLength = input.length;
+        var lastInputIndex = inputLength - 1;
+        return function (v) {
+            var mixerIndex = 0;
+            var foundMixerIndex = false;
+            if (v <= input[0]) {
+                foundMixerIndex = true;
+            }
+            else if (v >= input[lastInputIndex]) {
+                mixerIndex = lastInputIndex - 1;
+                foundMixerIndex = true;
+            }
+            if (!foundMixerIndex) {
+                var i = 1;
+                for (; i < inputLength; i++) {
+                    if (input[i] > v || i === lastInputIndex) {
+                        break;
+                    }
+                }
+                mixerIndex = i - 1;
+            }
+            var progressInRange = progress(input[mixerIndex], input[mixerIndex + 1], v);
+            return mixers[mixerIndex](progressInRange);
+        };
+    }
+    function interpolate(input, output, _a) {
+        var _b = _a === void 0 ? {} : _a, _c = _b.clamp, clamp = _c === void 0 ? true : _c, ease = _b.ease, mixer = _b.mixer;
+        var inputLength = input.length;
+        invariant(inputLength === output.length);
+        invariant(!ease || !Array.isArray(ease) || ease.length === inputLength - 1);
+        if (input[0] > input[inputLength - 1]) {
+            input = [].concat(input);
+            output = [].concat(output);
+            input.reverse();
+            output.reverse();
+        }
+        var mixers = createMixers(output, ease, mixer);
+        var interpolator = inputLength === 2
+            ? fastInterpolate(input, mixers)
+            : slowInterpolate(input, mixers);
+        return clamp
+            ? pipe(clamp$1$1(input[0], input[inputLength - 1]), interpolator)
+            : interpolator;
+    }
+
+    var toDecimal = (function (num, precision) {
+        if (precision === void 0) { precision = 2; }
+        precision = Math.pow(10, precision);
+        return Math.round(num * precision) / precision;
+    });
+
+    var smoothFrame = (function (prevValue, nextValue, duration, smoothing) {
+        if (smoothing === void 0) { smoothing = 0; }
+        return toDecimal(prevValue +
+            (duration * (nextValue - prevValue)) / Math.max(smoothing, duration));
+    });
+
+    var smooth = (function (strength) {
+        if (strength === void 0) { strength = 50; }
+        var previousValue = 0;
+        var lastUpdated = 0;
+        return function (v) {
+            var currentFramestamp = getFrameData().timestamp;
+            var timeDelta = currentFramestamp !== lastUpdated ? currentFramestamp - lastUpdated : 0;
+            var newValue = timeDelta
+                ? smoothFrame(previousValue, v, timeDelta, strength)
+                : previousValue;
+            lastUpdated = currentFramestamp;
+            previousValue = newValue;
+            return newValue;
+        };
+    });
+
+    var snap = (function (points) {
+        if (typeof points === 'number') {
+            return function (v) { return Math.round(v / points) * points; };
+        }
+        else {
+            var i_1 = 0;
+            var numPoints_1 = points.length;
+            return function (v) {
+                var lastDistance = Math.abs(points[0] - v);
+                for (i_1 = 1; i_1 < numPoints_1; i_1++) {
+                    var point = points[i_1];
+                    var distance = Math.abs(point - v);
+                    if (distance === 0)
+                        return point;
+                    if (distance > lastDistance)
+                        return points[i_1 - 1];
+                    if (i_1 === numPoints_1 - 1)
+                        return point;
+                    lastDistance = distance;
+                }
+            };
+        }
+    });
+
+    var identity = function (v) { return v; };
+    var springForce = function (alterDisplacement) {
+        if (alterDisplacement === void 0) { alterDisplacement = identity; }
+        return curryRange(function (constant, origin, v) {
+            var displacement = origin - v;
+            var springModifiedDisplacement = -(0 - constant + 1) * (0 - alterDisplacement(Math.abs(displacement)));
+            return displacement <= 0
+                ? origin + springModifiedDisplacement
+                : origin - springModifiedDisplacement;
+        });
+    };
+    var springForceLinear = springForce();
+    var springForceExpo = springForce(Math.sqrt);
+
     var velocityPerSecond = (function (velocity, frameDuration) {
         return frameDuration ? velocity * (1000 / frameDuration) : 0;
     });
+
+    var wrap = function (min, max, v) {
+        var rangeSize = max - min;
+        return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
+    };
+    var wrap$1 = curryRange(wrap);
 
     var clampProgress = clamp$1$1(0, 1);
 
@@ -1449,6 +1808,15 @@ var app = (function () {
         return BaseMulticast;
     }(Chainable);
 
+    var stepProgress = function (steps, progress) {
+        var segment = 1 / (steps - 1);
+        var subsegment = 1 / (2 * (steps - 1));
+        var percentProgressOfTarget = Math.min(progress, 1);
+        var subsegmentProgressOfTarget = percentProgressOfTarget / subsegment;
+        var segmentProgressOfTarget = Math.floor((subsegmentProgressOfTarget + 1) / 2);
+        return segmentProgressOfTarget * segment;
+    };
+
     var isValueList = function (v) {
         return Array.isArray(v);
     };
@@ -1726,6 +2094,56 @@ var app = (function () {
         }
     };
 
+    var appendUnit = function (unit) {
+        return function (v) {
+            return "" + v + unit;
+        };
+    };
+    var steps$1 = function (st, min, max) {
+        if (min === void 0) {
+            min = 0;
+        }
+        if (max === void 0) {
+            max = 1;
+        }
+        return function (v) {
+            var current = progress(min, max, v);
+            return mix(min, max, stepProgress(st, current));
+        };
+    };
+    var transformMap = function (childTransformers) {
+        return function (v) {
+            var output = __assign({}, v);
+            for (var key in childTransformers) {
+                if (childTransformers.hasOwnProperty(key)) {
+                    var childTransformer = childTransformers[key];
+                    output[key] = childTransformer(v[key]);
+                }
+            }
+            return output;
+        };
+    };
+
+    var transformers = /*#__PURE__*/Object.freeze({
+        __proto__: null,
+        applyOffset: applyOffset,
+        clamp: clamp$1$1,
+        conditional: conditional,
+        interpolate: interpolate,
+        blendArray: mixArray,
+        blendColor: mixColor,
+        pipe: pipe,
+        smooth: smooth,
+        snap: snap,
+        generateStaticSpring: springForce,
+        nonlinearSpring: springForceExpo,
+        linearSpring: springForceLinear,
+        wrap: wrap$1,
+        appendUnit: appendUnit,
+        steps: steps$1,
+        transformMap: transformMap
+    });
+
     /* Scrubber.svelte generated by Svelte v3.20.1 */
     const file = "Scrubber.svelte";
 
@@ -1752,19 +2170,19 @@ var app = (function () {
     			div4 = element("div");
     			div3 = element("div");
     			div2 = element("div");
-    			add_location(div0, file, 34, 4, 860);
+    			add_location(div0, file, 36, 4, 945);
     			attr_dev(div1, "class", "range svelte-1jo253e");
-    			add_location(div1, file, 36, 4, 909);
+    			add_location(div1, file, 38, 4, 994);
     			attr_dev(div2, "class", "handle svelte-1jo253e");
-    			add_location(div2, file, 39, 8, 1016);
+    			add_location(div2, file, 41, 8, 1101);
     			attr_dev(div3, "class", "handle-hit-area svelte-1jo253e");
-    			add_location(div3, file, 38, 8, 978);
+    			add_location(div3, file, 40, 8, 1063);
     			attr_dev(div4, "class", "handle-container svelte-1jo253e");
-    			add_location(div4, file, 37, 4, 939);
+    			add_location(div4, file, 39, 4, 1024);
     			attr_dev(div5, "class", "slider svelte-1jo253e");
-    			add_location(div5, file, 35, 4, 884);
+    			add_location(div5, file, 37, 4, 969);
     			attr_dev(div6, "class", "scrubber");
-    			add_location(div6, file, 33, 0, 833);
+    			add_location(div6, file, 35, 0, 918);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1799,6 +2217,8 @@ var app = (function () {
     	return block;
     }
 
+    const maxScrubberWidth = 300;
+
     function instance($$self, $$props, $$invalidate) {
     	onMount(async () => {
     		const handle = document.querySelector(".handle-hit-area");
@@ -1809,7 +2229,7 @@ var app = (function () {
     		});
 
     		// const range = document.querySelector('.range');
-    		const pointerX = x => index$1({ x }).pipe(xy => xy.x);
+    		const pointerX = x => index$1({ x }).pipe(xy => xy.x, transformers.clamp(0, maxScrubberWidth));
 
     		const startDrag = () => {
     			pointerX(handleX.get()).start(handleX);
@@ -1831,7 +2251,17 @@ var app = (function () {
 
     	let { $$slots = {}, $$scope } = $$props;
     	validate_slots("Scrubber", $$slots, []);
-    	$$self.$capture_state = () => ({ onMount, styler: index, value, pointer: index$1, listen });
+
+    	$$self.$capture_state = () => ({
+    		onMount,
+    		styler: index,
+    		value,
+    		pointer: index$1,
+    		listen,
+    		transform: transformers,
+    		maxScrubberWidth
+    	});
+
     	return [];
     }
 

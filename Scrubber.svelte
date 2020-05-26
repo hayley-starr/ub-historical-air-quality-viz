@@ -1,6 +1,8 @@
 <script>
     import { onMount } from 'svelte';
-    import { styler, value, pointer, listen } from 'popmotion'
+    import { styler, value, pointer, listen, transform } from 'popmotion';
+
+    const maxScrubberWidth = 300;
 
     onMount(async () => {
         const handle = document.querySelector('.handle-hit-area');
@@ -11,7 +13,7 @@
     
         // const range = document.querySelector('.range');
 
-        const pointerX = (x) => pointer({ x }).pipe(xy => xy.x);
+        const pointerX = (x) => pointer({ x }).pipe(xy => xy.x, transform.clamp(0, maxScrubberWidth));
 
         let pointerTracker;
 
