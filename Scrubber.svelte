@@ -1,12 +1,21 @@
 <script>
     import { onMount } from 'svelte';
-    import { styler, value, pointer, listen, transform } from 'popmotion';
+    import { styler, value, pointer, listen, transform, easing } from 'popmotion';
 
-    const maxScrubberWidth = 300;
+    export let currentFrame;
+    export let pauseAnimation;
+    export let startAnimation;
+
+    const maxScrubberWidth = 300;// width of scrubber in px
+    let handleStyler;
+
+    $: {
+       handleStyler && handleStyler.set('x', currentFrame);
+    }
 
     onMount(async () => {
         const handle = document.querySelector('.handle-hit-area');
-        const handleStyler = styler(handle);
+        handleStyler = styler(handle);
         const handleX = value(0, (newX) => {
             handleStyler.set('x', newX);
         });
@@ -18,30 +27,33 @@
         let pointerTracker;
 
         const startDrag = () => {
+            pauseAnimation();
             pointerX(handleX.get()).start(handleX);
         };
     
         const stopDrag = () => {
             handleX.stop();
+            //currentFrame = handleStyler.get('x');
+           startAnimation();
         };
 
         listen(handle, 'mousedown touchstart').start(startDrag);
         listen(document, 'mouseup touchend').start(stopDrag);
     });
 
- 
 </script> 
 
 
 <div class='scrubber'>
-    <div>SCRUBBER</div>
+    <button on:click={startAnimation}>Start</button>
+    <button on:click={pauseAnimation}>Pause</button>
     <div class="slider">
-    <div class="range"></div>
-    <div class="handle-container">
-        <div class="handle-hit-area">
-        <div class="handle"></div>
+        <div class="range"></div>
+        <div class="handle-container">
+            <div class="handle-hit-area">
+            <div class="handle"></div>
+            </div>
         </div>
-    </div>
     </div>
 </div>
 

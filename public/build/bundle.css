@@ -1,3 +1,4 @@
+.ub-ap-viz.svelte-bc3zl6.svelte-bc3zl6{border:4px solid aquamarine}.header.svelte-bc3zl6.svelte-bc3zl6{display:flex;flex-direction:column;border:2px solid red}.header.svelte-bc3zl6 .title.svelte-bc3zl6{border:1px solid pink}.visualizations.svelte-bc3zl6.svelte-bc3zl6{display:flex;height:500px}.visualizations.svelte-bc3zl6 .map.svelte-bc3zl6{width:70%;height:100%;flex-grow:3;border:1px solid orangered}
 .slider.svelte-1jo253e{width:300px;height:100px;position:relative}.range.svelte-1jo253e{border-radius:3px;height:6px;background:grey;position:absolute;top:50%;left:0;right:0;transform:translateY(-50%)}.handle-container.svelte-1jo253e{position:absolute;width:20 + (30 * 2);height:30 + (30 * 2);top:50%;left:0%;transform:translateY(-50%) translateX(-50%)}.handle-hit-area.svelte-1jo253e{padding:30px;width:20px;height:20px}.handle.svelte-1jo253e{background:red;border-radius:50%;width:20px;height:20px;cursor:pointer}
 
 /*# sourceMappingURL=bundle.css.map */

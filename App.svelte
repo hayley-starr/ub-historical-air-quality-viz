@@ -1,16 +1,11 @@
 <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
 
 <script>
-  // import { scaleLinear } from 'd3-scale'
-  // import {csvParse, autoType} from 'd3-dsv'
-  // import { Graphic, PointLayer, Line, XAxis, YAxis } from '@snlab/florence'
-  // import DataContainer from '@snlab/florence-datacontainer'
   import { onMount } from 'svelte';
   import mapboxgl from 'mapbox-gl';
   import { stations } from './stations.js';
   import { allcontours } from './allcontours.js'
-
-     import { tween } from 'popmotion'
+  import Scrubber from './Scrubber.svelte' 
 
   const UB_COORDINATES = [106.900354, 47.917802];
   const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGF5bGV5c3RhcnIiLCJhIjoiY2s5MmhvYTU3MDBkaTNwcGI3cWJtMjdkcCJ9.tOfFfs9wWWcOfQ1sDMiwvQ';
@@ -20,14 +15,28 @@
   let map;
   let nFrames = 431; // total number of frames in animation
   let currentFrame = 1;
+  let animationPaused = true;
 
   let incrementFrame = function() {
+    if (animationPaused) return;
     if (currentFrame+1 == nFrames) {
       currentFrame = 1;
     } else {
       currentFrame++;
     }
     map.setFilter('ap_contours', ['==', 'idx', ""+currentFrame]); // frame id is a string
+  }
+
+  const pauseAnimation = () => {
+    animationPaused = true;
+  }
+
+  const startAnimation = () => {
+    animationPaused = false;
+  }
+
+  const updateCurrentFrame = (frame) => {
+    currentFrame = frame;
   }
 
 
@@ -42,7 +51,14 @@
     
     
     map.on('load', function() { // what to do when the map is first loaded on the page
-      map.addSource('ap_contours', {
+      addInterpolationLayer();
+    });
+
+    var intervalTimer = setInterval(incrementFrame, FRAME_RATE);
+  });
+
+  const addInterpolationLayer = () => {
+    map.addSource('ap_contours', {
         type: 'vector',
         url: 'mapbox://hayleystarr.05bkeyzu'
       });
@@ -76,13 +92,9 @@
             "hsl(326, 47%, 29%)", 216,
             "hsl(274, 47%, 29%)", 234,
             "hsl(246, 56%, 35%)"
-        ]
-        }
+        ]}
       });
-    });
-
-    var intervalTimer = setInterval(incrementFrame, FRAME_RATE);
-  });
+  }
 
 
 </script>
@@ -99,6 +111,11 @@
     <div class='map-legend'>
     </div>
   </div>
+  <Scrubber 
+      currentFrame={currentFrame}
+      pauseAnimation={pauseAnimation} 
+      startAnimation={startAnimation} 
+      updateCurrentFrame={updateCurrentFrame}/>
 
 </div>
 
@@ -127,7 +144,7 @@
 
 .visualizations {
   display: flex;
-  height: 600px;
+  height: 500px;
 }
 
 .visualizations .map {
