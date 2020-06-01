@@ -5,8 +5,9 @@
     export let currentFrame;
     export let pauseAnimation;
     export let startAnimation;
+    export let updateCurrentFrame;
 
-    const maxScrubberWidth = 300;// width of scrubber in px
+    const maxScrubberWidth = 1000;// width of scrubber in px
     let handleStyler;
 
     $: {
@@ -17,24 +18,23 @@
         const handle = document.querySelector('.handle-hit-area');
         handleStyler = styler(handle);
         const handleX = value(0, (newX) => {
-            handleStyler.set('x', newX);
+            updateCurrentFrame(newX);
         });
     
         // const range = document.querySelector('.range');
 
         const pointerX = (x) => pointer({ x }).pipe(xy => xy.x, transform.clamp(0, maxScrubberWidth));
 
-        let pointerTracker;
-
         const startDrag = () => {
             pauseAnimation();
-            pointerX(handleX.get()).start(handleX);
+            //console.log('current handle X: ' + handleX.get());
+            pointerX(currentFrame).start(handleX);
         };
     
         const stopDrag = () => {
             handleX.stop();
-            //currentFrame = handleStyler.get('x');
-           startAnimation();
+            updateCurrentFrame(handleStyler.get('x'));
+            startAnimation();
         };
 
         listen(handle, 'mousedown touchstart').start(startDrag);
@@ -99,15 +99,14 @@
 
     .handle-hit-area {
         padding: 30px;
-        width: 20px;
-        height: 20px;
+        width: 5px;
+        height: 40px;
     }
 
     .handle {
         background: red;
-        border-radius: 50%;
-        width: 20px; 
-        height: 20px;
+        width: 5px; 
+        height: 40px;
         cursor: pointer;
     }
 

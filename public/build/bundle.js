@@ -2385,22 +2385,22 @@ var app = (function () {
     			div4 = element("div");
     			div3 = element("div");
     			div2 = element("div");
-    			add_location(button0, file, 48, 8, 1312);
-    			add_location(button1, file, 49, 8, 1369);
-    			attr_dev(div0, "class", "scrubber-controls svelte-1g02bjs");
-    			add_location(div0, file, 47, 4, 1272);
-    			attr_dev(div1, "class", "range svelte-1g02bjs");
-    			add_location(div1, file, 52, 8, 1462);
-    			attr_dev(div2, "class", "handle svelte-1g02bjs");
-    			add_location(div2, file, 55, 12, 1581);
-    			attr_dev(div3, "class", "handle-hit-area svelte-1g02bjs");
-    			add_location(div3, file, 54, 12, 1539);
-    			attr_dev(div4, "class", "handle-container svelte-1g02bjs");
-    			add_location(div4, file, 53, 8, 1496);
-    			attr_dev(div5, "class", "slider svelte-1g02bjs");
-    			add_location(div5, file, 51, 4, 1433);
-    			attr_dev(div6, "class", "scrubber svelte-1g02bjs");
-    			add_location(div6, file, 46, 0, 1245);
+    			add_location(button0, file, 48, 8, 1384);
+    			add_location(button1, file, 49, 8, 1441);
+    			attr_dev(div0, "class", "scrubber-controls svelte-1lmsv30");
+    			add_location(div0, file, 47, 4, 1344);
+    			attr_dev(div1, "class", "range svelte-1lmsv30");
+    			add_location(div1, file, 52, 8, 1534);
+    			attr_dev(div2, "class", "handle svelte-1lmsv30");
+    			add_location(div2, file, 55, 12, 1653);
+    			attr_dev(div3, "class", "handle-hit-area svelte-1lmsv30");
+    			add_location(div3, file, 54, 12, 1611);
+    			attr_dev(div4, "class", "handle-container svelte-1lmsv30");
+    			add_location(div4, file, 53, 8, 1568);
+    			attr_dev(div5, "class", "slider svelte-1lmsv30");
+    			add_location(div5, file, 51, 4, 1505);
+    			attr_dev(div6, "class", "scrubber svelte-1lmsv30");
+    			add_location(div6, file, 46, 0, 1317);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2465,20 +2465,21 @@ var app = (function () {
     	return block;
     }
 
-    const maxScrubberWidth = 300; // width of scrubber in px
+    const maxScrubberWidth = 1000; // width of scrubber in px
 
     function instance($$self, $$props, $$invalidate) {
     	let { currentFrame } = $$props;
     	let { pauseAnimation } = $$props;
     	let { startAnimation } = $$props;
+    	let { updateCurrentFrame } = $$props;
     	let handleStyler;
 
     	onMount(async () => {
     		const handle = document.querySelector(".handle-hit-area");
-    		$$invalidate(3, handleStyler = index(handle));
+    		$$invalidate(4, handleStyler = index(handle));
 
     		const handleX = value(0, newX => {
-    			handleStyler.set("x", newX);
+    			updateCurrentFrame(newX);
     		});
 
     		// const range = document.querySelector('.range');
@@ -2486,13 +2487,14 @@ var app = (function () {
 
     		const startDrag = () => {
     			pauseAnimation();
-    			pointerX(handleX.get()).start(handleX);
+
+    			//console.log('current handle X: ' + handleX.get());
+    			pointerX(currentFrame).start(handleX);
     		};
 
     		const stopDrag = () => {
     			handleX.stop();
-
-    			//currentFrame = handleStyler.get('x');
+    			updateCurrentFrame(handleStyler.get("x"));
     			startAnimation();
     		};
 
@@ -2500,7 +2502,7 @@ var app = (function () {
     		listen$1(document, "mouseup touchend").start(stopDrag);
     	});
 
-    	const writable_props = ["currentFrame", "pauseAnimation", "startAnimation"];
+    	const writable_props = ["currentFrame", "pauseAnimation", "startAnimation", "updateCurrentFrame"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Scrubber> was created with unknown prop '${key}'`);
@@ -2513,6 +2515,7 @@ var app = (function () {
     		if ("currentFrame" in $$props) $$invalidate(2, currentFrame = $$props.currentFrame);
     		if ("pauseAnimation" in $$props) $$invalidate(0, pauseAnimation = $$props.pauseAnimation);
     		if ("startAnimation" in $$props) $$invalidate(1, startAnimation = $$props.startAnimation);
+    		if ("updateCurrentFrame" in $$props) $$invalidate(3, updateCurrentFrame = $$props.updateCurrentFrame);
     	};
 
     	$$self.$capture_state = () => ({
@@ -2526,6 +2529,7 @@ var app = (function () {
     		currentFrame,
     		pauseAnimation,
     		startAnimation,
+    		updateCurrentFrame,
     		maxScrubberWidth,
     		handleStyler
     	});
@@ -2534,7 +2538,8 @@ var app = (function () {
     		if ("currentFrame" in $$props) $$invalidate(2, currentFrame = $$props.currentFrame);
     		if ("pauseAnimation" in $$props) $$invalidate(0, pauseAnimation = $$props.pauseAnimation);
     		if ("startAnimation" in $$props) $$invalidate(1, startAnimation = $$props.startAnimation);
-    		if ("handleStyler" in $$props) $$invalidate(3, handleStyler = $$props.handleStyler);
+    		if ("updateCurrentFrame" in $$props) $$invalidate(3, updateCurrentFrame = $$props.updateCurrentFrame);
+    		if ("handleStyler" in $$props) $$invalidate(4, handleStyler = $$props.handleStyler);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -2542,14 +2547,14 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*handleStyler, currentFrame*/ 12) {
+    		if ($$self.$$.dirty & /*handleStyler, currentFrame*/ 20) {
     			 {
     				handleStyler && handleStyler.set("x", currentFrame);
     			}
     		}
     	};
 
-    	return [pauseAnimation, startAnimation, currentFrame];
+    	return [pauseAnimation, startAnimation, currentFrame, updateCurrentFrame];
     }
 
     class Scrubber extends SvelteComponentDev {
@@ -2559,7 +2564,8 @@ var app = (function () {
     		init(this, options, instance, create_fragment, safe_not_equal, {
     			currentFrame: 2,
     			pauseAnimation: 0,
-    			startAnimation: 1
+    			startAnimation: 1,
+    			updateCurrentFrame: 3
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -2582,6 +2588,10 @@ var app = (function () {
 
     		if (/*startAnimation*/ ctx[1] === undefined && !("startAnimation" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'startAnimation'");
+    		}
+
+    		if (/*updateCurrentFrame*/ ctx[3] === undefined && !("updateCurrentFrame" in props)) {
+    			console.warn("<Scrubber> was created without expected prop 'updateCurrentFrame'");
     		}
     	}
 
@@ -2606,6 +2616,14 @@ var app = (function () {
     	}
 
     	set startAnimation(value) {
+    		throw new Error("<Scrubber>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get updateCurrentFrame() {
+    		throw new Error("<Scrubber>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set updateCurrentFrame(value) {
     		throw new Error("<Scrubber>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
