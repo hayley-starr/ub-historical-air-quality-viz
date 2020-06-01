@@ -7,6 +7,8 @@
     export let startAnimation;
     export let updateCurrentFrame;
 
+    var isUserRunning = false; // Whether or not the USER has paused the animation
+
     const maxScrubberWidth = 1000;// width of scrubber in px
     let handleStyler;
 
@@ -27,27 +29,36 @@
 
         const startDrag = () => {
             pauseAnimation();
-            //console.log('current handle X: ' + handleX.get());
             pointerX(currentFrame).start(handleX);
         };
     
         const stopDrag = () => {
             handleX.stop();
             updateCurrentFrame(handleStyler.get('x'));
-            startAnimation();
+            isUserRunning && startAnimation();
         };
 
         listen(handle, 'mousedown touchstart').start(startDrag);
         listen(document, 'mouseup touchend').start(stopDrag);
     });
 
+    const handlePauseAnimation = () => {
+        isUserRunning = false;
+        pauseAnimation();
+    }
+
+    const handleStartAnimation = () => {
+        isUserRunning = true;
+        startAnimation();
+    }
+
 </script> 
 
 
 <div class="scrubber">
     <div class='scrubber-controls'>
-        <button on:click={startAnimation}>Start</button>
-        <button on:click={pauseAnimation}>Pause</button>
+        <button on:click={handleStartAnimation}>Start</button>
+        <button on:click={handlePauseAnimation}>Pause</button>
     </div>
     <div class="slider">
         <div class="range"></div>

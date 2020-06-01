@@ -2385,22 +2385,22 @@ var app = (function () {
     			div4 = element("div");
     			div3 = element("div");
     			div2 = element("div");
-    			add_location(button0, file, 48, 8, 1384);
-    			add_location(button1, file, 49, 8, 1441);
+    			add_location(button0, file, 59, 8, 1629);
+    			add_location(button1, file, 60, 8, 1692);
     			attr_dev(div0, "class", "scrubber-controls svelte-1lmsv30");
-    			add_location(div0, file, 47, 4, 1344);
+    			add_location(div0, file, 58, 4, 1589);
     			attr_dev(div1, "class", "range svelte-1lmsv30");
-    			add_location(div1, file, 52, 8, 1534);
+    			add_location(div1, file, 63, 8, 1791);
     			attr_dev(div2, "class", "handle svelte-1lmsv30");
-    			add_location(div2, file, 55, 12, 1653);
+    			add_location(div2, file, 66, 12, 1910);
     			attr_dev(div3, "class", "handle-hit-area svelte-1lmsv30");
-    			add_location(div3, file, 54, 12, 1611);
+    			add_location(div3, file, 65, 12, 1868);
     			attr_dev(div4, "class", "handle-container svelte-1lmsv30");
-    			add_location(div4, file, 53, 8, 1568);
+    			add_location(div4, file, 64, 8, 1825);
     			attr_dev(div5, "class", "slider svelte-1lmsv30");
-    			add_location(div5, file, 51, 4, 1505);
+    			add_location(div5, file, 62, 4, 1762);
     			attr_dev(div6, "class", "scrubber svelte-1lmsv30");
-    			add_location(div6, file, 46, 0, 1317);
+    			add_location(div6, file, 57, 0, 1562);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2421,31 +2421,11 @@ var app = (function () {
     			if (remount) run_all(dispose);
 
     			dispose = [
-    				listen_dev(
-    					button0,
-    					"click",
-    					function () {
-    						if (is_function(/*startAnimation*/ ctx[1])) /*startAnimation*/ ctx[1].apply(this, arguments);
-    					},
-    					false,
-    					false,
-    					false
-    				),
-    				listen_dev(
-    					button1,
-    					"click",
-    					function () {
-    						if (is_function(/*pauseAnimation*/ ctx[0])) /*pauseAnimation*/ ctx[0].apply(this, arguments);
-    					},
-    					false,
-    					false,
-    					false
-    				)
+    				listen_dev(button0, "click", /*handleStartAnimation*/ ctx[1], false, false, false),
+    				listen_dev(button1, "click", /*handlePauseAnimation*/ ctx[0], false, false, false)
     			];
     		},
-    		p: function update(new_ctx, [dirty]) {
-    			ctx = new_ctx;
-    		},
+    		p: noop,
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
@@ -2472,11 +2452,12 @@ var app = (function () {
     	let { pauseAnimation } = $$props;
     	let { startAnimation } = $$props;
     	let { updateCurrentFrame } = $$props;
+    	var isUserRunning = false; // Whether or not the USER has paused the animation
     	let handleStyler;
 
     	onMount(async () => {
     		const handle = document.querySelector(".handle-hit-area");
-    		$$invalidate(4, handleStyler = index(handle));
+    		$$invalidate(7, handleStyler = index(handle));
 
     		const handleX = value(0, newX => {
     			updateCurrentFrame(newX);
@@ -2487,20 +2468,28 @@ var app = (function () {
 
     		const startDrag = () => {
     			pauseAnimation();
-
-    			//console.log('current handle X: ' + handleX.get());
     			pointerX(currentFrame).start(handleX);
     		};
 
     		const stopDrag = () => {
     			handleX.stop();
     			updateCurrentFrame(handleStyler.get("x"));
-    			startAnimation();
+    			isUserRunning && startAnimation();
     		};
 
     		listen$1(handle, "mousedown touchstart").start(startDrag);
     		listen$1(document, "mouseup touchend").start(stopDrag);
     	});
+
+    	const handlePauseAnimation = () => {
+    		isUserRunning = false;
+    		pauseAnimation();
+    	};
+
+    	const handleStartAnimation = () => {
+    		isUserRunning = true;
+    		startAnimation();
+    	};
 
     	const writable_props = ["currentFrame", "pauseAnimation", "startAnimation", "updateCurrentFrame"];
 
@@ -2513,9 +2502,9 @@ var app = (function () {
 
     	$$self.$set = $$props => {
     		if ("currentFrame" in $$props) $$invalidate(2, currentFrame = $$props.currentFrame);
-    		if ("pauseAnimation" in $$props) $$invalidate(0, pauseAnimation = $$props.pauseAnimation);
-    		if ("startAnimation" in $$props) $$invalidate(1, startAnimation = $$props.startAnimation);
-    		if ("updateCurrentFrame" in $$props) $$invalidate(3, updateCurrentFrame = $$props.updateCurrentFrame);
+    		if ("pauseAnimation" in $$props) $$invalidate(3, pauseAnimation = $$props.pauseAnimation);
+    		if ("startAnimation" in $$props) $$invalidate(4, startAnimation = $$props.startAnimation);
+    		if ("updateCurrentFrame" in $$props) $$invalidate(5, updateCurrentFrame = $$props.updateCurrentFrame);
     	};
 
     	$$self.$capture_state = () => ({
@@ -2530,16 +2519,20 @@ var app = (function () {
     		pauseAnimation,
     		startAnimation,
     		updateCurrentFrame,
+    		isUserRunning,
     		maxScrubberWidth,
-    		handleStyler
+    		handleStyler,
+    		handlePauseAnimation,
+    		handleStartAnimation
     	});
 
     	$$self.$inject_state = $$props => {
     		if ("currentFrame" in $$props) $$invalidate(2, currentFrame = $$props.currentFrame);
-    		if ("pauseAnimation" in $$props) $$invalidate(0, pauseAnimation = $$props.pauseAnimation);
-    		if ("startAnimation" in $$props) $$invalidate(1, startAnimation = $$props.startAnimation);
-    		if ("updateCurrentFrame" in $$props) $$invalidate(3, updateCurrentFrame = $$props.updateCurrentFrame);
-    		if ("handleStyler" in $$props) $$invalidate(4, handleStyler = $$props.handleStyler);
+    		if ("pauseAnimation" in $$props) $$invalidate(3, pauseAnimation = $$props.pauseAnimation);
+    		if ("startAnimation" in $$props) $$invalidate(4, startAnimation = $$props.startAnimation);
+    		if ("updateCurrentFrame" in $$props) $$invalidate(5, updateCurrentFrame = $$props.updateCurrentFrame);
+    		if ("isUserRunning" in $$props) isUserRunning = $$props.isUserRunning;
+    		if ("handleStyler" in $$props) $$invalidate(7, handleStyler = $$props.handleStyler);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -2547,14 +2540,21 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*handleStyler, currentFrame*/ 20) {
+    		if ($$self.$$.dirty & /*handleStyler, currentFrame*/ 132) {
     			 {
     				handleStyler && handleStyler.set("x", currentFrame);
     			}
     		}
     	};
 
-    	return [pauseAnimation, startAnimation, currentFrame, updateCurrentFrame];
+    	return [
+    		handlePauseAnimation,
+    		handleStartAnimation,
+    		currentFrame,
+    		pauseAnimation,
+    		startAnimation,
+    		updateCurrentFrame
+    	];
     }
 
     class Scrubber extends SvelteComponentDev {
@@ -2563,9 +2563,9 @@ var app = (function () {
 
     		init(this, options, instance, create_fragment, safe_not_equal, {
     			currentFrame: 2,
-    			pauseAnimation: 0,
-    			startAnimation: 1,
-    			updateCurrentFrame: 3
+    			pauseAnimation: 3,
+    			startAnimation: 4,
+    			updateCurrentFrame: 5
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -2582,15 +2582,15 @@ var app = (function () {
     			console.warn("<Scrubber> was created without expected prop 'currentFrame'");
     		}
 
-    		if (/*pauseAnimation*/ ctx[0] === undefined && !("pauseAnimation" in props)) {
+    		if (/*pauseAnimation*/ ctx[3] === undefined && !("pauseAnimation" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'pauseAnimation'");
     		}
 
-    		if (/*startAnimation*/ ctx[1] === undefined && !("startAnimation" in props)) {
+    		if (/*startAnimation*/ ctx[4] === undefined && !("startAnimation" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'startAnimation'");
     		}
 
-    		if (/*updateCurrentFrame*/ ctx[3] === undefined && !("updateCurrentFrame" in props)) {
+    		if (/*updateCurrentFrame*/ ctx[5] === undefined && !("updateCurrentFrame" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'updateCurrentFrame'");
     		}
     	}
