@@ -16,6 +16,7 @@
     const eventPosition = 50;
     const eventFadeBuffer = 10;
     let eventStyler;
+    let eventInfoStyler;
 
 
     let eventKeyFramesExpand =  keyframes({
@@ -25,6 +26,16 @@
         ],
         times: [0, 1],
         duration: 300,
+        easings: [easing.bounceOut]
+    });
+
+    let eventInfoKeyFramesExpand =  keyframes({
+        values: [ 
+            { scale: 0 , translateX: 0, translateY: 0},
+            { scale: 1 , translateX: 0, translateY: 60}
+        ],
+        times: [0, 1],
+        duration: 800,
         easings: [easing.bounceOut]
     });
 
@@ -38,6 +49,16 @@
         easings: [easing.bounceIn]
     });
 
+    let eventInfoKeyFramesContract =  keyframes({
+        values: [ 
+            { scale: 1 , translateX: 0, translateY: 60},
+            { scale: 0 , translateX: 0, translateY: 0}
+        ],
+        times: [0, 1],
+        duration: 400,
+        easings: [easing.linear]
+    });
+
     //END_TEST!!
 
     $: {
@@ -46,7 +67,7 @@
            highlightEvent();
        }
 
-       if (currentFrame == eventPosition + eventFadeBuffer*2) {
+       if (currentFrame == eventPosition + eventFadeBuffer*4) {
            reduceEvent();
        }
     }
@@ -55,17 +76,25 @@
         eventKeyFramesExpand.start(style => {
             eventStyler.set(style);
         });
+        eventInfoKeyFramesExpand.start(style => {
+            eventInfoStyler.set(style);
+        });   
     }
 
     const reduceEvent = () => {
         eventKeyFramesContract.start(style => {
             eventStyler.set(style);
         });
+        eventInfoKeyFramesContract.start(style => {
+            eventInfoStyler.set(style);
+        });
     }
 
     onMount(async () => {
         const event = document.querySelector('.event');
         eventStyler = styler(event);
+        const eventInfo = document.querySelector('.event-info-box');
+        eventInfoStyler = styler(eventInfo);
 
 
         const handle = document.querySelector('.handle-hit-area');
@@ -122,11 +151,17 @@
             </div>
         </div>
 
-        <div class="event-container">
-            <div class="event-hit-area">
-                <div class="event"></div>
+        <div class='policy-event'>
+            <div class="event-container">
+                <div class="event-hit-area">
+                    <div class="event"></div>
+                </div>
+            </div>
+            <div class='event-info-box'>
+                    <span>EVENT INFO</span>
             </div>
         </div>
+        
     </div>
 </div>
 
@@ -199,6 +234,19 @@
         border-radius: 5px;
         cursor: pointer;
         transition: all .2s ease-in-out; 
+    }
+
+    .policy-event {
+        width: 300px;
+    }
+
+    .event-info-box {
+        border: 1px solid sandybrown;
+        height: 200px;
+        width: 300px;
+        transform: translate(0px, 0px) scale(0);
+        background: white;
+        border-radius: 4px;
     }
 
 

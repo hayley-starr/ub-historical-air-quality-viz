@@ -2791,27 +2791,31 @@ var app = (function () {
     const file = "Scrubber.svelte";
 
     function create_fragment(ctx) {
-    	let div9;
+    	let div11;
     	let div0;
     	let button0;
     	let t1;
     	let button1;
     	let t3;
-    	let div8;
+    	let div10;
     	let div1;
     	let t4;
     	let div4;
     	let div3;
     	let div2;
     	let t5;
+    	let div9;
     	let div7;
     	let div6;
     	let div5;
+    	let t6;
+    	let div8;
+    	let span;
     	let dispose;
 
     	const block = {
     		c: function create() {
-    			div9 = element("div");
+    			div11 = element("div");
     			div0 = element("div");
     			button0 = element("button");
     			button0.textContent = "Start";
@@ -2819,59 +2823,73 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "Pause";
     			t3 = space();
-    			div8 = element("div");
+    			div10 = element("div");
     			div1 = element("div");
     			t4 = space();
     			div4 = element("div");
     			div3 = element("div");
     			div2 = element("div");
     			t5 = space();
+    			div9 = element("div");
     			div7 = element("div");
     			div6 = element("div");
     			div5 = element("div");
-    			add_location(button0, file, 111, 8, 2754);
-    			add_location(button1, file, 112, 8, 2817);
-    			attr_dev(div0, "class", "scrubber-controls svelte-1kvizn4");
-    			add_location(div0, file, 110, 4, 2714);
-    			attr_dev(div1, "class", "range svelte-1kvizn4");
-    			add_location(div1, file, 116, 8, 2917);
-    			attr_dev(div2, "class", "handle svelte-1kvizn4");
-    			add_location(div2, file, 120, 16, 3041);
-    			attr_dev(div3, "class", "handle-hit-area svelte-1kvizn4");
-    			add_location(div3, file, 119, 12, 2995);
-    			attr_dev(div4, "class", "handle-container svelte-1kvizn4");
-    			add_location(div4, file, 118, 8, 2952);
-    			attr_dev(div5, "class", "event svelte-1kvizn4");
-    			add_location(div5, file, 126, 16, 3198);
-    			attr_dev(div6, "class", "event-hit-area svelte-1kvizn4");
-    			add_location(div6, file, 125, 12, 3153);
-    			attr_dev(div7, "class", "event-container svelte-1kvizn4");
-    			add_location(div7, file, 124, 8, 3111);
-    			attr_dev(div8, "class", "slider svelte-1kvizn4");
-    			add_location(div8, file, 115, 4, 2888);
-    			attr_dev(div9, "class", "scrubber svelte-1kvizn4");
-    			add_location(div9, file, 108, 0, 2686);
+    			t6 = space();
+    			div8 = element("div");
+    			span = element("span");
+    			span.textContent = "EVENT INFO";
+    			add_location(button0, file, 140, 8, 3663);
+    			add_location(button1, file, 141, 8, 3726);
+    			attr_dev(div0, "class", "scrubber-controls svelte-anribh");
+    			add_location(div0, file, 139, 4, 3623);
+    			attr_dev(div1, "class", "range svelte-anribh");
+    			add_location(div1, file, 145, 8, 3826);
+    			attr_dev(div2, "class", "handle svelte-anribh");
+    			add_location(div2, file, 149, 16, 3950);
+    			attr_dev(div3, "class", "handle-hit-area svelte-anribh");
+    			add_location(div3, file, 148, 12, 3904);
+    			attr_dev(div4, "class", "handle-container svelte-anribh");
+    			add_location(div4, file, 147, 8, 3861);
+    			attr_dev(div5, "class", "event svelte-anribh");
+    			add_location(div5, file, 156, 20, 4154);
+    			attr_dev(div6, "class", "event-hit-area svelte-anribh");
+    			add_location(div6, file, 155, 16, 4105);
+    			attr_dev(div7, "class", "event-container svelte-anribh");
+    			add_location(div7, file, 154, 12, 4059);
+    			add_location(span, file, 160, 20, 4283);
+    			attr_dev(div8, "class", "event-info-box svelte-anribh");
+    			add_location(div8, file, 159, 12, 4234);
+    			attr_dev(div9, "class", "policy-event svelte-anribh");
+    			add_location(div9, file, 153, 8, 4020);
+    			attr_dev(div10, "class", "slider svelte-anribh");
+    			add_location(div10, file, 144, 4, 3797);
+    			attr_dev(div11, "class", "scrubber svelte-anribh");
+    			add_location(div11, file, 137, 0, 3595);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor, remount) {
-    			insert_dev(target, div9, anchor);
-    			append_dev(div9, div0);
+    			insert_dev(target, div11, anchor);
+    			append_dev(div11, div0);
     			append_dev(div0, button0);
     			append_dev(div0, t1);
     			append_dev(div0, button1);
-    			append_dev(div9, t3);
-    			append_dev(div9, div8);
-    			append_dev(div8, div1);
-    			append_dev(div8, t4);
-    			append_dev(div8, div4);
+    			append_dev(div11, t3);
+    			append_dev(div11, div10);
+    			append_dev(div10, div1);
+    			append_dev(div10, t4);
+    			append_dev(div10, div4);
     			append_dev(div4, div3);
     			append_dev(div3, div2);
-    			append_dev(div8, t5);
-    			append_dev(div8, div7);
+    			append_dev(div10, t5);
+    			append_dev(div10, div9);
+    			append_dev(div9, div7);
     			append_dev(div7, div6);
     			append_dev(div6, div5);
+    			append_dev(div9, t6);
+    			append_dev(div9, div8);
+    			append_dev(div8, span);
     			if (remount) run_all(dispose);
 
     			dispose = [
@@ -2883,7 +2901,7 @@ var app = (function () {
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div9);
+    			if (detaching) detach_dev(div11);
     			run_all(dispose);
     		}
     	};
@@ -2914,11 +2932,22 @@ var app = (function () {
     	var isUserRunning = false; // Whether or not the USER has paused the animation
     	let handleStyler;
     	let eventStyler;
+    	let eventInfoStyler;
 
     	let eventKeyFramesExpand = keyframes({
     		values: [{ scale: 1 }, { scale: 2 }],
     		times: [0, 1],
     		duration: 300,
+    		easings: [bounceOut]
+    	});
+
+    	let eventInfoKeyFramesExpand = keyframes({
+    		values: [
+    			{ scale: 0, translateX: 0, translateY: 0 },
+    			{ scale: 1, translateX: 0, translateY: 60 }
+    		],
+    		times: [0, 1],
+    		duration: 800,
     		easings: [bounceOut]
     	});
 
@@ -2929,9 +2958,23 @@ var app = (function () {
     		easings: [bounceIn]
     	});
 
+    	let eventInfoKeyFramesContract = keyframes({
+    		values: [
+    			{ scale: 1, translateX: 0, translateY: 60 },
+    			{ scale: 0, translateX: 0, translateY: 0 }
+    		],
+    		times: [0, 1],
+    		duration: 400,
+    		easings: [linear]
+    	});
+
     	const highlightEvent = () => {
     		eventKeyFramesExpand.start(style => {
     			eventStyler.set(style);
+    		});
+
+    		eventInfoKeyFramesExpand.start(style => {
+    			eventInfoStyler.set(style);
     		});
     	};
 
@@ -2939,11 +2982,17 @@ var app = (function () {
     		eventKeyFramesContract.start(style => {
     			eventStyler.set(style);
     		});
+
+    		eventInfoKeyFramesContract.start(style => {
+    			eventInfoStyler.set(style);
+    		});
     	};
 
     	onMount(async () => {
     		const event = document.querySelector(".event");
     		eventStyler = index(event);
+    		const eventInfo = document.querySelector(".event-info-box");
+    		eventInfoStyler = index(eventInfo);
     		const handle = document.querySelector(".handle-hit-area");
     		$$invalidate(7, handleStyler = index(handle));
 
@@ -3014,8 +3063,11 @@ var app = (function () {
     		eventPosition,
     		eventFadeBuffer,
     		eventStyler,
+    		eventInfoStyler,
     		eventKeyFramesExpand,
+    		eventInfoKeyFramesExpand,
     		eventKeyFramesContract,
+    		eventInfoKeyFramesContract,
     		highlightEvent,
     		reduceEvent,
     		handlePauseAnimation,
@@ -3030,8 +3082,11 @@ var app = (function () {
     		if ("isUserRunning" in $$props) isUserRunning = $$props.isUserRunning;
     		if ("handleStyler" in $$props) $$invalidate(7, handleStyler = $$props.handleStyler);
     		if ("eventStyler" in $$props) eventStyler = $$props.eventStyler;
+    		if ("eventInfoStyler" in $$props) eventInfoStyler = $$props.eventInfoStyler;
     		if ("eventKeyFramesExpand" in $$props) eventKeyFramesExpand = $$props.eventKeyFramesExpand;
+    		if ("eventInfoKeyFramesExpand" in $$props) eventInfoKeyFramesExpand = $$props.eventInfoKeyFramesExpand;
     		if ("eventKeyFramesContract" in $$props) eventKeyFramesContract = $$props.eventKeyFramesContract;
+    		if ("eventInfoKeyFramesContract" in $$props) eventInfoKeyFramesContract = $$props.eventInfoKeyFramesContract;
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -3048,7 +3103,7 @@ var app = (function () {
     					highlightEvent();
     				}
 
-    				if (currentFrame == eventPosition + eventFadeBuffer * 2) {
+    				if (currentFrame == eventPosition + eventFadeBuffer * 4) {
     					reduceEvent();
     				}
     			}
