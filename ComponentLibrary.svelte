@@ -8,7 +8,7 @@
 
   let incrementFrame = function() {
     if (animationPaused) return;
-    if (currentFrame+1 == nFrames) {
+    if (currentFrame+1 >= nFrames) {
       currentFrame = 1;
     } else {
       currentFrame++;

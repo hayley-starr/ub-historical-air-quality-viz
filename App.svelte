@@ -19,12 +19,12 @@
 
   let incrementFrame = function() {
     if (animationPaused) return;
-    if (currentFrame+1 == nFrames) {
+    if (currentFrame+1 >= nFrames) {
       currentFrame = 1;
     } else {
       currentFrame++;
     }
-    map.setFilter('ap_contours', ['==', 'idx', ""+currentFrame]); // frame id is a string
+    setMapFrame(currentFrame);  
   }
 
   const pauseAnimation = () => {
@@ -37,6 +37,12 @@
 
   const updateCurrentFrame = (frame) => {
     currentFrame = frame;
+    setMapFrame(frame);
+    
+  }
+
+  const setMapFrame = (frame) => {
+    map && map.setFilter('ap_contours', ['==', 'idx', ""+frame]); // frame id is a string
   }
 
 
