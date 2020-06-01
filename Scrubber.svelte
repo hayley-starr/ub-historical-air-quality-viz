@@ -44,9 +44,11 @@
 </script> 
 
 
-<div class='scrubber'>
-    <button on:click={startAnimation}>Start</button>
-    <button on:click={pauseAnimation}>Pause</button>
+<div class="scrubber">
+    <div class='scrubber-controls'>
+        <button on:click={startAnimation}>Start</button>
+        <button on:click={pauseAnimation}>Pause</button>
+    </div>
     <div class="slider">
         <div class="range"></div>
         <div class="handle-container">
@@ -58,16 +60,27 @@
 </div>
 
 <style>
+      .scrubber {
+        border: 5px solid blue;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .scrubber-controls {
+        width: 10%;
+    }
+    
+    
     .slider {
-    width: 300px;
-    height: 100px;
-    position: relative;
+        width: 85%;
+        height: 100px;
+        position: relative;
     }
 
     .range {
         border-radius: 3px;
         height: 6px;
-        background: grey;
+        background: lightgray;
         position: absolute;
         top: 50%;
         left: 0;
