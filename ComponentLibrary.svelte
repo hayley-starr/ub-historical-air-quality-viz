@@ -1,5 +1,6 @@
 <script>
-  import Scrubber from './Scrubber.svelte' 
+  import Scrubber from './Scrubber.svelte'; 
+  import PolicyEvent from './PolicyEvent.svelte'; 
 
   const FRAME_RATE = 30; //fps
   let nFrames = 431; // total number of frames in animation
@@ -44,6 +45,10 @@
             startAnimation={startAnimation} 
             updateCurrentFrame={updateCurrentFrame}/>
         </div>
+
+
+         <!-- next component -->
+ 
         
     </div>
 

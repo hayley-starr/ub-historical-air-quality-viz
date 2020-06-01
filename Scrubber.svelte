@@ -1,6 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import { styler, value, pointer, listen, transform, easing, keyframes } from 'popmotion';
+    import PolicyEvent from './PolicyEvent.svelte';
 
     export let currentFrame;
     export let pauseAnimation;
@@ -12,91 +13,13 @@
     const maxScrubberWidth = 1000;// width of scrubber in px
     let handleStyler;
 
-    //TEST!!
-    const eventPosition = 50;
-    const eventFadeBuffer = 10;
-    let eventStyler;
-    let eventInfoStyler;
-
-
-    let eventKeyFramesExpand =  keyframes({
-        values: [ 
-            { scale: 1 },
-            { scale: 2 }
-        ],
-        times: [0, 1],
-        duration: 300,
-        easings: [easing.bounceOut]
-    });
-
-    let eventInfoKeyFramesExpand =  keyframes({
-        values: [ 
-            { scale: 0 , translateX: 0, translateY: 0},
-            { scale: 1 , translateX: 0, translateY: 60}
-        ],
-        times: [0, 1],
-        duration: 800,
-        easings: [easing.bounceOut]
-    });
-
-    let eventKeyFramesContract =  keyframes({
-        values: [ 
-            { scale: 2 },
-            { scale: 1 }
-        ],
-        times: [0, 1],
-        duration: 600,
-        easings: [easing.bounceIn]
-    });
-
-    let eventInfoKeyFramesContract =  keyframes({
-        values: [ 
-            { scale: 1 , translateX: 0, translateY: 60},
-            { scale: 0 , translateX: 0, translateY: 0}
-        ],
-        times: [0, 1],
-        duration: 400,
-        easings: [easing.linear]
-    });
-
-    //END_TEST!!
-
     $: {
        handleStyler && handleStyler.set('x', currentFrame);
-       if (currentFrame == eventPosition-eventFadeBuffer) {
-           highlightEvent();
-       }
-
-       if (currentFrame == eventPosition + eventFadeBuffer*4) {
-           reduceEvent();
-       }
     }
 
-    const highlightEvent = () => {
-        eventKeyFramesExpand.start(style => {
-            eventStyler.set(style);
-        });
-        eventInfoKeyFramesExpand.start(style => {
-            eventInfoStyler.set(style);
-        });   
-    }
 
-    const reduceEvent = () => {
-        eventKeyFramesContract.start(style => {
-            eventStyler.set(style);
-        });
-        eventInfoKeyFramesContract.start(style => {
-            eventInfoStyler.set(style);
-        });
-    }
 
     onMount(async () => {
-        const event = document.querySelector('.event');
-        eventStyler = styler(event);
-        const eventInfo = document.querySelector('.event-info-box');
-        eventInfoStyler = styler(eventInfo);
-
-
         const handle = document.querySelector('.handle-hit-area');
         handleStyler = styler(handle);
         const handleX = value(0, (newX) => {
@@ -151,22 +74,15 @@
             </div>
         </div>
 
-        <div class='policy-event'>
-            <div class="event-container">
-                <div class="event-hit-area">
-                    <div class="event"></div>
-                </div>
-            </div>
-            <div class='event-info-box'>
-                    <span>EVENT INFO</span>
-            </div>
-        </div>
+        <PolicyEvent currentFrame={currentFrame} position={30}/>
+        <PolicyEvent currentFrame={currentFrame} position={130}/>
+        <PolicyEvent currentFrame={currentFrame} position={310}/>
         
     </div>
 </div>
 
 <style>
-      .scrubber {
+    .scrubber {
         border: 5px solid blue;
         display: flex;
         flex-direction: row;
@@ -213,42 +129,6 @@
         height: 40px;
         cursor: pointer;
     }
-
-     .event-container {
-        position: absolute;
-        top: 50%;
-        left: 50px; 
-        transform: translateY(-50%) translateX(-50%);
-    }
-
-    .event-hit-area {
-        padding: 30px;
-        width: 10px;
-        height: 10px;
-    }
-
-    .event {
-        background: darkslategrey;
-        width: 10px;
-        height: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: all .2s ease-in-out; 
-    }
-
-    .policy-event {
-        width: 300px;
-    }
-
-    .event-info-box {
-        border: 1px solid sandybrown;
-        height: 200px;
-        width: 300px;
-        transform: translate(0px, 0px) scale(0);
-        background: white;
-        border-radius: 4px;
-    }
-
 
 </style>
 
