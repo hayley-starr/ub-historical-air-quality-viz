@@ -73,6 +73,9 @@
 
 <style>
 
-.thermometer {}
+.thermometer {
+    max-width: 100px;
+    max-height: 200px;
+}
 
 </style>

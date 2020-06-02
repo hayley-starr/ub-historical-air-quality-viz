@@ -6,6 +6,7 @@
   import { stations } from './stations.js';
   import { allcontours } from './allcontours.js'
   import Scrubber from './Scrubber.svelte' 
+   import Thermometer from './Thermometer.svelte';
 
   const UB_COORDINATES = [106.900354, 47.917802];
   const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGF5bGV5c3RhcnIiLCJhIjoiY2s5MmhvYTU3MDBkaTNwcGI3cWJtMjdkcCJ9.tOfFfs9wWWcOfQ1sDMiwvQ';
@@ -16,6 +17,7 @@
   let nFrames = 431; // total number of frames in animation
   let currentFrame = 1;
   let animationPaused = true;
+  let temp = -40;
 
   let incrementFrame = function() {
     if (animationPaused) return;
@@ -25,6 +27,15 @@
       currentFrame++;
     }
     setMapFrame(currentFrame);  
+
+    if (currentFrame >= 40 && currentFrame <= 80) {
+      temp--;
+    } else if (currentFrame > 150 && currentFrame < 200) {
+      temp-=0.3
+    } else {
+      temp += 0.5
+    }
+    temp = Math.round(temp);
   }
 
   const pauseAnimation = () => {
@@ -115,6 +126,7 @@
   <div class='visualizations'>
     <div id='map' class='map'></div>
     <div class='map-legend'>
+      <Thermometer temp={temp}/>
     </div>
   </div>
   <Scrubber 
@@ -150,7 +162,7 @@
 
 .visualizations {
   display: flex;
-  height: 500px;
+  height: 300px;
 }
 
 .visualizations .map {
@@ -159,6 +171,10 @@
   flex-grow: 3;
 
   border: 1px solid orangered;
+}
+
+.map-legend {
+    width: 200px;
 }
 
 </style>

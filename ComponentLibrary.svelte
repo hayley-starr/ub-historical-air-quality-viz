@@ -8,6 +8,7 @@
   let nFrames = 431; // total number of frames in animation
   let currentFrame = 1;
   let animationPaused = true;
+  let temp = -40;
 
   let incrementFrame = function() {
     if (animationPaused) return;
@@ -16,6 +17,15 @@
     } else {
       currentFrame++;
     }
+
+    if (currentFrame >= 40 && currentFrame <= 80) {
+      temp--;
+    } else if (currentFrame > 150 && currentFrame < 200) {
+      temp-=0.3
+    } else {
+      temp += 0.5
+    }
+    temp = Math.round(temp);
   }
 
   const pauseAnimation = () => {
@@ -50,7 +60,7 @@
           <!-- Thermometer -->
          <div class='component thermometer'>
             <h2>Thermometer</h2>
-            <Thermometer temp={currentFrame-40} />
+            <Thermometer temp={temp} />
          </div>
         
 
@@ -86,9 +96,4 @@
   border-bottom: 1px solid blue;
 }
 
-
-.thermometer {
-  max-width: 100px;
-  max-height: 200px;
-}
 </style>
