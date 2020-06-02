@@ -1,6 +1,8 @@
 <script>
   import Scrubber from './Scrubber.svelte'; 
   import EventInfoBox from './EventInfoBox.svelte';
+  import Thermometer from './Thermometer.svelte';
+
 
   const FRAME_RATE = 30; //fps
   let nFrames = 431; // total number of frames in animation
@@ -62,6 +64,12 @@
             <h2>Policy Event Info Box</h2>
             <EventInfoBox classname={'event-info'} eventDetails={eventDetails}/>
          </div>
+
+         <!-- Event Info Box -->
+         <div class='component thermometer'>
+            <h2>Themometer</h2>
+            <Thermometer />
+         </div>
         
         
     </div>
@@ -75,5 +83,11 @@
   margin-bottom: 80px;
   padding-bottom: 80px;
   border-bottom: 1px solid green;
+}
+
+
+.thermometer {
+  max-width: 100px;
+  max-height: 200px;
 }
 </style>
