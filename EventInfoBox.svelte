@@ -12,23 +12,28 @@ export let eventDetails;
          <div class='policy-event-title'>
             <span>{eventDetails.title}</span>
         </div>
+        <div class='policy-event-photo'>
+            <img src={eventDetails.imgSource} alt={'Ban on Raw Coal'}>
+        </div>
+    </div>
+    <div class='policy-info-bottom'>
         <div class='policy-event-text'>
             <span>{eventDetails.text}</span>
         </div>
+        <div class='policy-event-source'>
+            <a href={eventDetails.source} target="_blank">Source</a>
+        </div>
     </div>
-    <div class='policy-event-source'>
-        <a href={eventDetails.source}>Source</a>
-    </div>
+     
 </div>
 
 <style>
     .policy-info-box {
-        border: 1px solid sandybrown;
-        height: 200px;
+        border: 1px solid #47B3F2;
+        max-height: 400px;
         width: 300px;
         background: white;
         border-radius: 4px;
-        padding: 5px;
         font-family: 'Trebuchet MS';
         display: flex;
         flex-direction: column;
@@ -36,7 +41,7 @@ export let eventDetails;
     }
 
     .policy-info-top {
-        border: 1px solid purple;
+        padding: 5px;
     }
 
     .policy-event-date {
@@ -55,16 +60,32 @@ export let eventDetails;
         font-size: 11px;
     }
 
+    .policy-event-photo {
+        display: flex;
+        justify-content: center;
+        margin: 5px 0;
+    }
+
+    .policy-event-photo img {
+        max-width: 250px;
+        max-height: 150px;
+        padding: 5px;
+    }
+
+    .policy-info-bottom {
+        background: #47B3F2;
+        color: white;
+        padding: 5px;
+    }
+
     .policy-event-source {
         font-size: 11px;
         font-style: italic;
-        color: #47B3F2;
         cursor: pointer;
         flex-grow: 2;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        border: 1px solid red;
     }
 
     .policy-event-source a {

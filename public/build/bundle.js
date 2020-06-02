@@ -2796,7 +2796,7 @@ var app = (function () {
     const file = "EventInfoBox.svelte";
 
     function create_fragment(ctx) {
-    	let div5;
+    	let div7;
     	let div3;
     	let div0;
     	let span0;
@@ -2809,18 +2809,24 @@ var app = (function () {
     	let t2;
     	let t3;
     	let div2;
-    	let span2;
-    	let t4_value = /*eventDetails*/ ctx[0].text + "";
+    	let img;
+    	let img_src_value;
+    	let img_alt_value;
     	let t4;
-    	let t5;
+    	let div6;
     	let div4;
-    	let a;
+    	let span2;
+    	let t5_value = /*eventDetails*/ ctx[0].text + "";
+    	let t5;
     	let t6;
+    	let div5;
+    	let a;
+    	let t7;
     	let a_href_value;
 
     	const block = {
     		c: function create() {
-    			div5 = element("div");
+    			div7 = element("div");
     			div3 = element("div");
     			div0 = element("div");
     			span0 = element("span");
@@ -2831,37 +2837,50 @@ var app = (function () {
     			t2 = text(t2_value);
     			t3 = space();
     			div2 = element("div");
-    			span2 = element("span");
-    			t4 = text(t4_value);
-    			t5 = space();
+    			img = element("img");
+    			t4 = space();
+    			div6 = element("div");
     			div4 = element("div");
+    			span2 = element("span");
+    			t5 = text(t5_value);
+    			t6 = space();
+    			div5 = element("div");
     			a = element("a");
-    			t6 = text("Source");
+    			t7 = text("Source");
     			add_location(span0, file, 9, 12, 163);
-    			attr_dev(div0, "class", "policy-event-date svelte-1p8mzo5");
+    			attr_dev(div0, "class", "policy-event-date svelte-fbqbnd");
     			add_location(div0, file, 8, 8, 119);
     			add_location(span1, file, 12, 12, 265);
-    			attr_dev(div1, "class", "policy-event-title svelte-1p8mzo5");
+    			attr_dev(div1, "class", "policy-event-title svelte-fbqbnd");
     			add_location(div1, file, 11, 9, 220);
-    			add_location(span2, file, 15, 12, 366);
-    			attr_dev(div2, "class", "policy-event-text svelte-1p8mzo5");
+    			if (img.src !== (img_src_value = /*eventDetails*/ ctx[0].imgSource)) attr_dev(img, "src", img_src_value);
+    			attr_dev(img, "alt", img_alt_value = "Ban on Raw Coal");
+    			attr_dev(img, "class", "svelte-fbqbnd");
+    			add_location(img, file, 15, 12, 367);
+    			attr_dev(div2, "class", "policy-event-photo svelte-fbqbnd");
     			add_location(div2, file, 14, 8, 322);
-    			attr_dev(div3, "class", "policy-info-top svelte-1p8mzo5");
+    			attr_dev(div3, "class", "policy-info-top svelte-fbqbnd");
     			add_location(div3, file, 7, 4, 81);
+    			add_location(span2, file, 20, 12, 541);
+    			attr_dev(div4, "class", "policy-event-text svelte-fbqbnd");
+    			add_location(div4, file, 19, 8, 497);
     			attr_dev(a, "href", a_href_value = /*eventDetails*/ ctx[0].source);
-    			attr_dev(a, "class", "svelte-1p8mzo5");
-    			add_location(a, file, 19, 8, 471);
-    			attr_dev(div4, "class", "policy-event-source svelte-1p8mzo5");
-    			add_location(div4, file, 18, 4, 429);
-    			attr_dev(div5, "class", "policy-info-box svelte-1p8mzo5");
-    			add_location(div5, file, 6, 0, 47);
+    			attr_dev(a, "target", "_blank");
+    			attr_dev(a, "class", "svelte-fbqbnd");
+    			add_location(a, file, 23, 12, 643);
+    			attr_dev(div5, "class", "policy-event-source svelte-fbqbnd");
+    			add_location(div5, file, 22, 8, 597);
+    			attr_dev(div6, "class", "policy-info-bottom svelte-fbqbnd");
+    			add_location(div6, file, 18, 4, 456);
+    			attr_dev(div7, "class", "policy-info-box svelte-fbqbnd");
+    			add_location(div7, file, 6, 0, 47);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div5, anchor);
-    			append_dev(div5, div3);
+    			insert_dev(target, div7, anchor);
+    			append_dev(div7, div3);
     			append_dev(div3, div0);
     			append_dev(div0, span0);
     			append_dev(span0, t0);
@@ -2871,17 +2890,26 @@ var app = (function () {
     			append_dev(span1, t2);
     			append_dev(div3, t3);
     			append_dev(div3, div2);
-    			append_dev(div2, span2);
-    			append_dev(span2, t4);
-    			append_dev(div5, t5);
-    			append_dev(div5, div4);
-    			append_dev(div4, a);
-    			append_dev(a, t6);
+    			append_dev(div2, img);
+    			append_dev(div7, t4);
+    			append_dev(div7, div6);
+    			append_dev(div6, div4);
+    			append_dev(div4, span2);
+    			append_dev(span2, t5);
+    			append_dev(div6, t6);
+    			append_dev(div6, div5);
+    			append_dev(div5, a);
+    			append_dev(a, t7);
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*eventDetails*/ 1 && t0_value !== (t0_value = /*eventDetails*/ ctx[0].date + "")) set_data_dev(t0, t0_value);
     			if (dirty & /*eventDetails*/ 1 && t2_value !== (t2_value = /*eventDetails*/ ctx[0].title + "")) set_data_dev(t2, t2_value);
-    			if (dirty & /*eventDetails*/ 1 && t4_value !== (t4_value = /*eventDetails*/ ctx[0].text + "")) set_data_dev(t4, t4_value);
+
+    			if (dirty & /*eventDetails*/ 1 && img.src !== (img_src_value = /*eventDetails*/ ctx[0].imgSource)) {
+    				attr_dev(img, "src", img_src_value);
+    			}
+
+    			if (dirty & /*eventDetails*/ 1 && t5_value !== (t5_value = /*eventDetails*/ ctx[0].text + "")) set_data_dev(t5, t5_value);
 
     			if (dirty & /*eventDetails*/ 1 && a_href_value !== (a_href_value = /*eventDetails*/ ctx[0].source)) {
     				attr_dev(a, "href", a_href_value);
@@ -2890,7 +2918,7 @@ var app = (function () {
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div5);
+    			if (detaching) detach_dev(div7);
     		}
     	};
 
@@ -2995,15 +3023,15 @@ var app = (function () {
     			div3 = element("div");
     			create_component(eventinfobox.$$.fragment);
     			attr_dev(div0, "class", div0_class_value = "" + (null_to_empty("policy-dot policy-dot" + /*position*/ ctx[1]) + " svelte-1k44pmg"));
-    			add_location(div0, file$1, 121, 12, 3715);
+    			add_location(div0, file$1, 123, 12, 3829);
     			attr_dev(div1, "class", div1_class_value = "" + (null_to_empty("policy-dot-hit-area policy-dot-hit-area" + /*position*/ ctx[1]) + " svelte-1k44pmg"));
-    			add_location(div1, file$1, 120, 8, 3638);
+    			add_location(div1, file$1, 122, 8, 3752);
     			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty("policy-dot-container policy-dot-container" + /*position*/ ctx[1]) + " svelte-1k44pmg"));
-    			add_location(div2, file$1, 119, 4, 3563);
+    			add_location(div2, file$1, 121, 4, 3677);
     			attr_dev(div3, "class", div3_class_value = "" + (null_to_empty("policy-info-container policy-info-container" + /*position*/ ctx[1]) + " svelte-1k44pmg"));
-    			add_location(div3, file$1, 124, 4, 3798);
+    			add_location(div3, file$1, 126, 4, 3912);
     			attr_dev(div4, "class", "policy-event");
-    			add_location(div4, file$1, 118, 0, 3532);
+    			add_location(div4, file$1, 120, 0, 3646);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3076,7 +3104,9 @@ var app = (function () {
     	eventDetails = {
     		date: "June 20th 2019",
     		title: "Government Bans Raw Coal",
-    		text: "The government bans the burning of raw coal within the city limits. The ban does not apply to power plants."
+    		text: "The government bans the burning of raw coal within the city limits. The ban does not apply to power plants.",
+    		source: "https://breathemongolia.org/",
+    		imgSource: "https://images.app.goo.gl/M4pn3oiVz8gek57u7"
     	};
 
     	let policyDotStyler;
@@ -3701,18 +3731,18 @@ var app = (function () {
     			h21.textContent = "Policy Event Info Box";
     			t9 = space();
     			create_component(eventinfobox.$$.fragment);
-    			add_location(h1, file$3, 43, 4, 1000);
-    			add_location(h20, file$3, 47, 10, 1133);
-    			add_location(span, file$3, 48, 10, 1161);
+    			add_location(h1, file$3, 45, 4, 1087);
+    			add_location(h20, file$3, 49, 10, 1220);
+    			add_location(span, file$3, 50, 10, 1248);
     			attr_dev(div0, "class", "component scrubber svelte-1burv5b");
-    			add_location(div0, file$3, 46, 8, 1090);
-    			add_location(h21, file$3, 59, 12, 1527);
+    			add_location(div0, file$3, 48, 8, 1177);
+    			add_location(h21, file$3, 61, 12, 1614);
     			attr_dev(div1, "class", "component policy-event-info-box svelte-1burv5b");
-    			add_location(div1, file$3, 58, 9, 1469);
+    			add_location(div1, file$3, 60, 9, 1556);
     			attr_dev(div2, "class", "components");
-    			add_location(div2, file$3, 44, 4, 1031);
+    			add_location(div2, file$3, 46, 4, 1118);
     			attr_dev(div3, "class", "component-library");
-    			add_location(div3, file$3, 42, 0, 964);
+    			add_location(div3, file$3, 44, 0, 1051);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3807,7 +3837,9 @@ var app = (function () {
     	let eventDetails = {
     		date: "June 20th 2019",
     		title: "Government Bans Raw Coal",
-    		text: "The government bans the burning of raw coal within the city limits. The ban does not apply to power plants."
+    		text: "The government bans the burning of raw coal within the city limits. The ban does not apply to power plants.",
+    		source: "https://breathemongolia.org/",
+    		imgSource: "./banRawCoal.jpg"
     	};
 
     	const writable_props = [];

@@ -36,7 +36,9 @@
     let eventDetails = {
         date: 'June 20th 2019',
         title: 'Government Bans Raw Coal',
-        text: 'The government bans the burning of raw coal within the city limits. The ban does not apply to power plants.'
+        text: 'The government bans the burning of raw coal within the city limits. The ban does not apply to power plants.',
+        source: 'https://breathemongolia.org/',
+        imgSource: './banRawCoal.jpg'
     }
 </script>
 
