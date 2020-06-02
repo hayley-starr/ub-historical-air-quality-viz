@@ -2796,64 +2796,101 @@ var app = (function () {
     const file = "EventInfoBox.svelte";
 
     function create_fragment(ctx) {
-    	let div;
+    	let div5;
+    	let div3;
+    	let div0;
     	let span0;
     	let t0_value = /*eventDetails*/ ctx[0].date + "";
     	let t0;
     	let t1;
+    	let div1;
     	let span1;
     	let t2_value = /*eventDetails*/ ctx[0].title + "";
     	let t2;
     	let t3;
+    	let div2;
     	let span2;
     	let t4_value = /*eventDetails*/ ctx[0].text + "";
     	let t4;
-    	let div_class_value;
+    	let t5;
+    	let div4;
+    	let a;
+    	let t6;
+    	let a_href_value;
 
     	const block = {
     		c: function create() {
-    			div = element("div");
+    			div5 = element("div");
+    			div3 = element("div");
+    			div0 = element("div");
     			span0 = element("span");
     			t0 = text(t0_value);
     			t1 = space();
+    			div1 = element("div");
     			span1 = element("span");
     			t2 = text(t2_value);
     			t3 = space();
+    			div2 = element("div");
     			span2 = element("span");
     			t4 = text(t4_value);
-    			add_location(span0, file, 8, 8, 119);
-    			add_location(span1, file, 9, 8, 160);
-    			add_location(span2, file, 10, 8, 202);
-    			attr_dev(div, "class", div_class_value = "" + (null_to_empty(/*classname*/ ctx[1] + " event-info-box") + " svelte-1kp5676"));
-    			add_location(div, file, 7, 0, 69);
+    			t5 = space();
+    			div4 = element("div");
+    			a = element("a");
+    			t6 = text("Source");
+    			add_location(span0, file, 9, 12, 163);
+    			attr_dev(div0, "class", "policy-event-date svelte-1p8mzo5");
+    			add_location(div0, file, 8, 8, 119);
+    			add_location(span1, file, 12, 12, 265);
+    			attr_dev(div1, "class", "policy-event-title svelte-1p8mzo5");
+    			add_location(div1, file, 11, 9, 220);
+    			add_location(span2, file, 15, 12, 366);
+    			attr_dev(div2, "class", "policy-event-text svelte-1p8mzo5");
+    			add_location(div2, file, 14, 8, 322);
+    			attr_dev(div3, "class", "policy-info-top svelte-1p8mzo5");
+    			add_location(div3, file, 7, 4, 81);
+    			attr_dev(a, "href", a_href_value = /*eventDetails*/ ctx[0].source);
+    			attr_dev(a, "class", "svelte-1p8mzo5");
+    			add_location(a, file, 19, 8, 471);
+    			attr_dev(div4, "class", "policy-event-source svelte-1p8mzo5");
+    			add_location(div4, file, 18, 4, 429);
+    			attr_dev(div5, "class", "policy-info-box svelte-1p8mzo5");
+    			add_location(div5, file, 6, 0, 47);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div, anchor);
-    			append_dev(div, span0);
+    			insert_dev(target, div5, anchor);
+    			append_dev(div5, div3);
+    			append_dev(div3, div0);
+    			append_dev(div0, span0);
     			append_dev(span0, t0);
-    			append_dev(div, t1);
-    			append_dev(div, span1);
+    			append_dev(div3, t1);
+    			append_dev(div3, div1);
+    			append_dev(div1, span1);
     			append_dev(span1, t2);
-    			append_dev(div, t3);
-    			append_dev(div, span2);
+    			append_dev(div3, t3);
+    			append_dev(div3, div2);
+    			append_dev(div2, span2);
     			append_dev(span2, t4);
+    			append_dev(div5, t5);
+    			append_dev(div5, div4);
+    			append_dev(div4, a);
+    			append_dev(a, t6);
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*eventDetails*/ 1 && t0_value !== (t0_value = /*eventDetails*/ ctx[0].date + "")) set_data_dev(t0, t0_value);
     			if (dirty & /*eventDetails*/ 1 && t2_value !== (t2_value = /*eventDetails*/ ctx[0].title + "")) set_data_dev(t2, t2_value);
     			if (dirty & /*eventDetails*/ 1 && t4_value !== (t4_value = /*eventDetails*/ ctx[0].text + "")) set_data_dev(t4, t4_value);
 
-    			if (dirty & /*classname*/ 2 && div_class_value !== (div_class_value = "" + (null_to_empty(/*classname*/ ctx[1] + " event-info-box") + " svelte-1kp5676"))) {
-    				attr_dev(div, "class", div_class_value);
+    			if (dirty & /*eventDetails*/ 1 && a_href_value !== (a_href_value = /*eventDetails*/ ctx[0].source)) {
+    				attr_dev(a, "href", a_href_value);
     			}
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div);
+    			if (detaching) detach_dev(div5);
     		}
     	};
 
@@ -2870,8 +2907,7 @@ var app = (function () {
 
     function instance($$self, $$props, $$invalidate) {
     	let { eventDetails } = $$props;
-    	let { classname } = $$props;
-    	const writable_props = ["eventDetails", "classname"];
+    	const writable_props = ["eventDetails"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<EventInfoBox> was created with unknown prop '${key}'`);
@@ -2882,27 +2918,25 @@ var app = (function () {
 
     	$$self.$set = $$props => {
     		if ("eventDetails" in $$props) $$invalidate(0, eventDetails = $$props.eventDetails);
-    		if ("classname" in $$props) $$invalidate(1, classname = $$props.classname);
     	};
 
-    	$$self.$capture_state = () => ({ eventDetails, classname });
+    	$$self.$capture_state = () => ({ eventDetails });
 
     	$$self.$inject_state = $$props => {
     		if ("eventDetails" in $$props) $$invalidate(0, eventDetails = $$props.eventDetails);
-    		if ("classname" in $$props) $$invalidate(1, classname = $$props.classname);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [eventDetails, classname];
+    	return [eventDetails];
     }
 
     class EventInfoBox extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance, create_fragment, safe_not_equal, { eventDetails: 0, classname: 1 });
+    		init(this, options, instance, create_fragment, safe_not_equal, { eventDetails: 0 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -2917,10 +2951,6 @@ var app = (function () {
     		if (/*eventDetails*/ ctx[0] === undefined && !("eventDetails" in props)) {
     			console.warn("<EventInfoBox> was created without expected prop 'eventDetails'");
     		}
-
-    		if (/*classname*/ ctx[1] === undefined && !("classname" in props)) {
-    			console.warn("<EventInfoBox> was created without expected prop 'classname'");
-    		}
     	}
 
     	get eventDetails() {
@@ -2928,14 +2958,6 @@ var app = (function () {
     	}
 
     	set eventDetails(value) {
-    		throw new Error("<EventInfoBox>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get classname() {
-    		throw new Error("<EventInfoBox>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set classname(value) {
     		throw new Error("<EventInfoBox>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
