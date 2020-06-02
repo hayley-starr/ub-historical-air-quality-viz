@@ -50,7 +50,7 @@
           <!-- Thermometer -->
          <div class='component thermometer'>
             <h2>Thermometer</h2>
-            <Thermometer temp={currentFrame} />
+            <Thermometer temp={currentFrame-40} />
          </div>
         
 
