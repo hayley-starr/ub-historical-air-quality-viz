@@ -1,6 +1,6 @@
 <script>
   import Scrubber from './Scrubber.svelte'; 
-  import PolicyEvent from './PolicyEvent.svelte'; 
+  import EventInfoBox from './EventInfoBox.svelte';
 
   const FRAME_RATE = 30; //fps
   let nFrames = 431; // total number of frames in animation
@@ -30,13 +30,21 @@
 
   var intervalTimer = setInterval(incrementFrame, FRAME_RATE);
   
+
+
+    // EventInfoBox
+    let eventDetails = {
+        date: 'June 20th 2019',
+        title: 'Government Bans Raw Coal',
+        text: 'The government bans the burning of raw coal within the city limits. The ban does not apply to power plants.'
+    }
 </script>
 
 <div class='component-library'>
     <h1>Component Library</h1>
     <div class='components'>
         <!-- scrubber -->
-        <div class='scrubber'>
+        <div class='component scrubber'>
           <h2>Scrubber</h2>
           <span> current frame: {currentFrame}</span>
           <Scrubber 
@@ -47,8 +55,12 @@
         </div>
 
 
-         <!-- next component -->
- 
+         <!-- Event Info Box -->
+         <div class='component policy-event-info-box'>
+            <h2>Policy Event Info Box</h2>
+            <EventInfoBox classname={'event-info'} eventDetails={eventDetails}/>
+         </div>
+        
         
     </div>
 
@@ -57,4 +69,9 @@
 
 <style>
 
+.component {
+  margin-bottom: 80px;
+  padding-bottom: 80px;
+  border-bottom: 1px solid green;
+}
 </style>

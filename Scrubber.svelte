@@ -83,7 +83,6 @@
 
 <style>
     .scrubber {
-        border: 5px solid blue;
         display: flex;
         flex-direction: row;
     }

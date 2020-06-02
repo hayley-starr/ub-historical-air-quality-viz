@@ -1,28 +1,41 @@
 <script>
-
     import { styler, value, pointer, listen, transform, easing, keyframes } from 'popmotion';
     import { onMount } from 'svelte';
+    import EventInfoBox from './EventInfoBox.svelte';
 
     export let currentFrame;
     export let position;
+    export let eventDetails;
+
+    // TODO: Remove
+    eventDetails = {
+        date: 'June 20th 2019',
+        title: 'Government Bans Raw Coal',
+        text: 'The government bans the burning of raw coal within the city limits. The ban does not apply to power plants.'
+    }
 
     const BUFFER = 10;
 
-    let eventStyler;
-    let eventInfoStyler;
+    let policyDotStyler;
+    let policyInfoContainerStyler;
 
-    $: {
+    const policyInfoContractedState = { scale: 0 , translateX: '-50%', translateY: '-25%'};
+    const policyInfoExpandedState = { scale: 1 , translateX: '-25%', translateY: '30%'};
+
+    console.log(policyInfoContractedState);
+
+    $: { // When the current frame passes certain positions, highlight or reduce event
         if (currentFrame == position-BUFFER) {
            highlightEvent();
        }
 
        if (currentFrame == position + BUFFER*4) {
-           reduceEvent();
+           diminishEvent();
        }
     }
 
 
-    let eventKeyFramesExpand =  keyframes({
+    let policyDotExpandKeyFrames =  keyframes({
         values: [ 
             { scale: 1 },
             { scale: 2 }
@@ -32,17 +45,17 @@
         easings: [easing.bounceOut]
     });
 
-    let eventInfoKeyFramesExpand =  keyframes({
+    let policyInfoExpandKeyFrames =  keyframes({
         values: [ 
-            { scale: 0 , translateX: 0, translateY: 0},
-            { scale: 1 , translateX: 0, translateY: 60}
+            policyInfoContractedState,
+            policyInfoExpandedState
         ],
         times: [0, 1],
-        duration: 800,
+        duration: 300,
         easings: [easing.bounceOut]
     });
 
-    let eventKeyFramesContract =  keyframes({
+    let policyDotContractKeyFrames =  keyframes({
         values: [ 
             { scale: 2 },
             { scale: 1 }
@@ -52,44 +65,51 @@
         easings: [easing.bounceIn]
     });
 
-    let eventInfoKeyFramesContract =  keyframes({
+    let policyInfoContractKeyFrames =  keyframes({
         values: [ 
-            { scale: 1 , translateX: 0, translateY: 60},
-            { scale: 0 , translateX: 0, translateY: 0}
+            policyInfoExpandedState,
+            policyInfoContractedState
         ],
         times: [0, 1],
-        duration: 400,
+        duration: 600,
         easings: [easing.linear]
     });
 
+
+    // To highlight the whole event, expand the dot and show the policy info box
     const highlightEvent = () => {
-        eventKeyFramesExpand.start(style => {
-            eventStyler.set(style);
+        policyDotExpandKeyFrames.start(style => {
+            policyDotStyler.set(style);
         });
-        eventInfoKeyFramesExpand.start(style => {
-            eventInfoStyler.set(style);
+        policyInfoExpandKeyFrames.start(style => {
+          policyInfoContainerStyler.set(style);
         });   
     }
 
-    const reduceEvent = () => {
-        eventKeyFramesContract.start(style => {
-            eventStyler.set(style);
+    // To diminish the whole event, contract the dot and hide the policy info box
+    const diminishEvent = () => {
+        policyDotContractKeyFrames.start(style => {
+            policyDotStyler.set(style);
         });
-        eventInfoKeyFramesContract.start(style => {
-            eventInfoStyler.set(style);
+        policyInfoContractKeyFrames.start(style => {
+          console.log(style);
+          policyInfoContainerStyler.set(style);
         });
     }
 
     onMount(async () => {
-        const event = document.querySelector(".event"+position);
-        eventStyler = styler(event);
-        const eventInfo = document.querySelector(".event-info-box"+position);
-        eventInfoStyler = styler(eventInfo);
-        eventInfoStyler.set('left', position);
+        // Create a styler to style the policy dot - to control the dot's animation
+        const policyDot = document.querySelector(".policy-dot"+position);
+        policyDotStyler = styler(policyDot);
 
-        const eventContainer = document.querySelector(".event-container"+position);
-        let eventContainerStyler = styler(eventContainer);
-        eventContainerStyler.set('left', position);
+        // Create a styler to style the dot container - to position the policy dot on the timeline
+        const policyDotContainer = document.querySelector(".policy-dot-container"+position);
+        let policyDotContainerStyler = styler(policyDotContainer);
+        policyDotContainerStyler.set('left', position);
+
+        const policyInfoContainer = document.querySelector(".policy-info-container"+position);
+        policyInfoContainerStyler = styler(policyInfoContainer);
+        policyInfoContainerStyler.set('left', position);
     });
 
 
@@ -97,32 +117,33 @@
 </script>
 
 <div class='policy-event'>
-    <div class={"event-container event-container"+position}>
-        <div class={"event-hit-area event-hit-area"+position}>
-            <div class={"event event"+position}></div>
+    <div class={"policy-dot-container policy-dot-container"+position}>
+        <div class={"policy-dot-hit-area policy-dot-hit-area"+position}>
+            <div class={"policy-dot policy-dot"+position}></div>
         </div>
     </div>
-    <div class={"event-info-box event-info-box"+position}>
-        <span>EVENT INFO</span>
+    <div class={"policy-info-container policy-info-container"+position}>
+        <EventInfoBox eventDetails={eventDetails} />
     </div>
+  
 </div>
 
 <style>
 
-    .event-container {
+    .policy-dot-container {
         position: absolute;
         top: 50%;
         left: 50px; 
         transform: translateY(-50%) translateX(-50%);
     }
 
-    .event-hit-area {
+    .policy-dot-hit-area {
         padding: 30px;
         width: 10px;
         height: 10px;
     }
 
-    .event {
+    .policy-dot {
         background: darkslategrey;
         width: 10px;
         height: 10px;
@@ -131,19 +152,14 @@
         transition: all .2s ease-in-out; 
     }
 
-    .policy-event {
-        width: 300px;
+    .policy-info-container {
+        height: 10;
+        width: 10;
+        border: 1px solid pink;
+        position: absolute;
+        transform: translateY(-25%) translateX(-50%) scale(0.2);
     }
 
-    .event-info-box {
-        border: 1px solid sandybrown;
-        height: 200px;
-        width: 300px;
-        transform: translate(0px, 0px) scale(0);
-        background: white;
-        border-radius: 4px;
-        position: absolute;
-    }
 
 
 </style>
