@@ -13,7 +13,7 @@
         title: 'Government Bans Raw Coal',
         text: 'The government bans the burning of raw coal within the city limits. The ban does not apply to power plants.',
         source: 'https://breathemongolia.org/',
-        imgSource: 'https://images.app.goo.gl/M4pn3oiVz8gek57u7'
+        imgSource: './banRawCoal.jpg'
     }
 
     const BUFFER = 10;
@@ -24,7 +24,9 @@
     const policyInfoContractedState = { scale: 0 , translateX: '-50%', translateY: '-25%'};
     const policyInfoExpandedState = { scale: 1 , translateX: '-25%', translateY: '30%'};
 
-    console.log(policyInfoContractedState);
+    const expandDuration = 400;
+    const contractDuration = 600;
+
 
     $: { // When the current frame passes certain positions, highlight or reduce event
         if (currentFrame == position-BUFFER) {
@@ -43,8 +45,8 @@
             { scale: 2 }
         ],
         times: [0, 1],
-        duration: 300,
-        easings: [easing.bounceOut]
+        duration: expandDuration,
+        easings: [easing.easeOut]
     });
 
     let policyInfoExpandKeyFrames =  keyframes({
@@ -53,8 +55,8 @@
             policyInfoExpandedState
         ],
         times: [0, 1],
-        duration: 300,
-        easings: [easing.bounceOut]
+        duration: expandDuration,
+        easings: [easing.easeOut]
     });
 
     let policyDotContractKeyFrames =  keyframes({
@@ -63,8 +65,8 @@
             { scale: 1 }
         ],
         times: [0, 1],
-        duration: 600,
-        easings: [easing.bounceIn]
+        duration: contractDuration,
+        easings: [easing.easeIn]
     });
 
     let policyInfoContractKeyFrames =  keyframes({
@@ -73,8 +75,8 @@
             policyInfoContractedState
         ],
         times: [0, 1],
-        duration: 600,
-        easings: [easing.linear]
+        duration: contractDuration,
+        easings: [easing.easeIn]
     });
 
 
@@ -94,7 +96,6 @@
             policyDotStyler.set(style);
         });
         policyInfoContractKeyFrames.start(style => {
-          console.log(style);
           policyInfoContainerStyler.set(style);
         });
     }
@@ -151,15 +152,13 @@
         height: 10px;
         border-radius: 5px;
         cursor: pointer;
-        transition: all .2s ease-in-out; 
     }
 
     .policy-info-container {
         height: 10;
         width: 10;
-        border: 1px solid pink;
         position: absolute;
-        transform: translateY(-25%) translateX(-50%) scale(0.2);
+        transform: translateY(-25%) translateX(-50%) scale(0);
     }
 
 
