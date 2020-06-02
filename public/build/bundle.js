@@ -3687,6 +3687,7 @@ var app = (function () {
     	let circle;
     	let text_1;
     	let t1;
+    	let t2;
 
     	const block = {
     		c: function create() {
@@ -3701,40 +3702,41 @@ var app = (function () {
     			rect = svg_element("rect");
     			circle = svg_element("circle");
     			text_1 = svg_element("text");
-    			t1 = text("-40C");
-    			add_location(style, file$3, 7, 4, 156);
-    			add_location(defs, file$3, 6, 2, 145);
+    			t1 = text(/*temp*/ ctx[0]);
+    			t2 = text("C");
+    			add_location(style, file$3, 27, 4, 839);
+    			add_location(defs, file$3, 26, 2, 828);
     			attr_dev(path0, "class", "cls-1");
     			attr_dev(path0, "d", "M694,689a91,91,0,0,1-59-160.28V137a59,59,0,1,1,118,0V528.72A91,91,0,0,1,694,689Z");
     			attr_dev(path0, "transform", "translate(-602 -77)");
-    			add_location(path0, file$3, 31, 4, 549);
+    			add_location(path0, file$3, 51, 4, 1232);
     			attr_dev(path1, "class", "cls-2");
     			attr_dev(path1, "d", "M694,689a91,91,0,0,1-59-160.28V137a59,59,0,1,1,118,0V528.72A91,91,0,0,1,694,689Z");
     			attr_dev(path1, "transform", "translate(-602 -77)");
-    			add_location(path1, file$3, 32, 4, 692);
-    			add_location(g, file$3, 30, 2, 541);
+    			add_location(path1, file$3, 52, 4, 1375);
+    			add_location(g, file$3, 50, 2, 1224);
     			attr_dev(rect, "class", "cls-3");
     			attr_dev(rect, "x", "49");
-    			attr_dev(rect, "y", "17");
+    			attr_dev(rect, "y", /*starting_y*/ ctx[2]);
     			attr_dev(rect, "width", "86");
-    			attr_dev(rect, "height", "534");
+    			attr_dev(rect, "height", /*height*/ ctx[1]);
     			attr_dev(rect, "rx", "43");
-    			add_location(rect, file$3, 34, 2, 840);
+    			add_location(rect, file$3, 54, 2, 1523);
     			attr_dev(circle, "class", "cls-3");
     			attr_dev(circle, "cx", "92");
     			attr_dev(circle, "cy", "521");
     			attr_dev(circle, "r", "75");
-    			add_location(circle, file$3, 35, 2, 910);
+    			add_location(circle, file$3, 57, 2, 1725);
     			attr_dev(text_1, "class", "cls-4");
     			attr_dev(text_1, "transform", "translate(53.42 532)");
-    			add_location(text_1, file$3, 36, 2, 960);
+    			add_location(text_1, file$3, 58, 2, 1775);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 184 613");
-    			add_location(svg, file$3, 5, 0, 47);
-    			attr_dev(div, "class", "thermometer svelte-dhu161");
-    			add_location(div, file$3, 4, 0, 21);
+    			add_location(svg, file$3, 25, 0, 730);
+    			attr_dev(div, "class", "thermometer svelte-1sayjul");
+    			add_location(div, file$3, 24, 0, 704);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3752,8 +3754,19 @@ var app = (function () {
     			append_dev(svg, circle);
     			append_dev(svg, text_1);
     			append_dev(text_1, t1);
+    			append_dev(text_1, t2);
     		},
-    		p: noop,
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*starting_y*/ 4) {
+    				attr_dev(rect, "y", /*starting_y*/ ctx[2]);
+    			}
+
+    			if (dirty & /*height*/ 2) {
+    				attr_dev(rect, "height", /*height*/ ctx[1]);
+    			}
+
+    			if (dirty & /*temp*/ 1) set_data_dev(t1, /*temp*/ ctx[0]);
+    		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
@@ -3772,8 +3785,21 @@ var app = (function () {
     	return block;
     }
 
-    function instance$3($$self, $$props) {
-    	const writable_props = [];
+    const MAX_HEIGHT = 534; // total height of mercury rect - DO NOT CHANGE
+    const MIN_HEIGHT = 105; // how far the mercury rect dips below the mercury circle -DO NOT CHANGE
+    const TOPMOST_Y = 17; // DO NOT CHANGE - mercury of thermometer starts at y=17px and moves down
+
+    function instance$3($$self, $$props, $$invalidate) {
+    	let { temp } = $$props;
+    	const HEIGHT_CHANGE = MAX_HEIGHT - MIN_HEIGHT; // 429
+    	const BOTTOMMOST_Y = TOPMOST_Y + HEIGHT_CHANGE;
+    	let pixelChangeFromBaseline = 0; // -40 C to start
+
+    	const scaleTempToPixels = temp => {
+    		return HEIGHT_CHANGE / 80 * (temp + 40);
+    	};
+
+    	const writable_props = ["temp"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Thermometer> was created with unknown prop '${key}'`);
@@ -3781,13 +3807,59 @@ var app = (function () {
 
     	let { $$slots = {}, $$scope } = $$props;
     	validate_slots("Thermometer", $$slots, []);
-    	return [];
+
+    	$$self.$set = $$props => {
+    		if ("temp" in $$props) $$invalidate(0, temp = $$props.temp);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		temp,
+    		MAX_HEIGHT,
+    		MIN_HEIGHT,
+    		HEIGHT_CHANGE,
+    		TOPMOST_Y,
+    		BOTTOMMOST_Y,
+    		pixelChangeFromBaseline,
+    		scaleTempToPixels,
+    		height,
+    		starting_y
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("temp" in $$props) $$invalidate(0, temp = $$props.temp);
+    		if ("pixelChangeFromBaseline" in $$props) $$invalidate(3, pixelChangeFromBaseline = $$props.pixelChangeFromBaseline);
+    		if ("height" in $$props) $$invalidate(1, height = $$props.height);
+    		if ("starting_y" in $$props) $$invalidate(2, starting_y = $$props.starting_y);
+    	};
+
+    	let height;
+    	let starting_y;
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*temp*/ 1) {
+    			 $$invalidate(3, pixelChangeFromBaseline = scaleTempToPixels(temp));
+    		}
+
+    		if ($$self.$$.dirty & /*pixelChangeFromBaseline*/ 8) {
+    			 $$invalidate(1, height = MIN_HEIGHT + pixelChangeFromBaseline);
+    		}
+
+    		if ($$self.$$.dirty & /*pixelChangeFromBaseline*/ 8) {
+    			 $$invalidate(2, starting_y = BOTTOMMOST_Y - pixelChangeFromBaseline);
+    		}
+    	};
+
+    	return [temp, height, starting_y];
     }
 
     class Thermometer extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$3, create_fragment$3, safe_not_equal, {});
+    		init(this, options, instance$3, create_fragment$3, safe_not_equal, { temp: 0 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -3795,6 +3867,21 @@ var app = (function () {
     			options,
     			id: create_fragment$3.name
     		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*temp*/ ctx[0] === undefined && !("temp" in props)) {
+    			console.warn("<Thermometer> was created without expected prop 'temp'");
+    		}
+    	}
+
+    	get temp() {
+    		throw new Error("<Thermometer>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set temp(value) {
+    		throw new Error("<Thermometer>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
 
@@ -3809,19 +3896,24 @@ var app = (function () {
     	let div0;
     	let h20;
     	let t3;
-    	let span;
     	let t4;
-    	let t5;
-    	let t6;
-    	let t7;
     	let div1;
     	let h21;
+    	let t6;
+    	let span;
+    	let t7;
+    	let t8;
     	let t9;
     	let t10;
     	let div2;
     	let h22;
     	let t12;
     	let current;
+
+    	const thermometer = new Thermometer({
+    			props: { temp: /*currentFrame*/ ctx[0] },
+    			$$inline: true
+    		});
 
     	const scrubber = new Scrubber({
     			props: {
@@ -3841,8 +3933,6 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const thermometer = new Thermometer({ $$inline: true });
-
     	const block = {
     		c: function create() {
     			div4 = element("div");
@@ -3852,36 +3942,36 @@ var app = (function () {
     			div3 = element("div");
     			div0 = element("div");
     			h20 = element("h2");
-    			h20.textContent = "Scrubber";
+    			h20.textContent = "Thermometer";
     			t3 = space();
-    			span = element("span");
-    			t4 = text("current frame: ");
-    			t5 = text(/*currentFrame*/ ctx[0]);
-    			t6 = space();
-    			create_component(scrubber.$$.fragment);
-    			t7 = space();
+    			create_component(thermometer.$$.fragment);
+    			t4 = space();
     			div1 = element("div");
     			h21 = element("h2");
-    			h21.textContent = "Policy Event Info Box";
+    			h21.textContent = "Scrubber";
+    			t6 = space();
+    			span = element("span");
+    			t7 = text("current frame: ");
+    			t8 = text(/*currentFrame*/ ctx[0]);
     			t9 = space();
-    			create_component(eventinfobox.$$.fragment);
+    			create_component(scrubber.$$.fragment);
     			t10 = space();
     			div2 = element("div");
     			h22 = element("h2");
-    			h22.textContent = "Themometer";
+    			h22.textContent = "Policy Event Info Box";
     			t12 = space();
-    			create_component(thermometer.$$.fragment);
+    			create_component(eventinfobox.$$.fragment);
     			add_location(h1, file$4, 47, 4, 1138);
-    			add_location(h20, file$4, 51, 10, 1271);
-    			add_location(span, file$4, 52, 10, 1299);
-    			attr_dev(div0, "class", "component scrubber svelte-1azfoz9");
-    			add_location(div0, file$4, 50, 8, 1228);
-    			add_location(h21, file$4, 63, 12, 1665);
-    			attr_dev(div1, "class", "component policy-event-info-box svelte-1azfoz9");
-    			add_location(div1, file$4, 62, 9, 1607);
-    			add_location(h22, file$4, 69, 12, 1884);
-    			attr_dev(div2, "class", "component thermometer svelte-1azfoz9");
-    			add_location(div2, file$4, 68, 9, 1836);
+    			add_location(h20, file$4, 51, 12, 1282);
+    			attr_dev(div0, "class", "component thermometer svelte-1gel058");
+    			add_location(div0, file$4, 50, 9, 1234);
+    			add_location(h21, file$4, 59, 10, 1455);
+    			add_location(span, file$4, 60, 10, 1483);
+    			attr_dev(div1, "class", "component scrubber svelte-1gel058");
+    			add_location(div1, file$4, 58, 8, 1412);
+    			add_location(h22, file$4, 71, 12, 1849);
+    			attr_dev(div2, "class", "component policy-event-info-box svelte-1gel058");
+    			add_location(div2, file$4, 70, 9, 1791);
     			attr_dev(div3, "class", "components");
     			add_location(div3, file$4, 48, 4, 1169);
     			attr_dev(div4, "class", "component-library");
@@ -3898,47 +3988,50 @@ var app = (function () {
     			append_dev(div3, div0);
     			append_dev(div0, h20);
     			append_dev(div0, t3);
-    			append_dev(div0, span);
-    			append_dev(span, t4);
-    			append_dev(span, t5);
-    			append_dev(div0, t6);
-    			mount_component(scrubber, div0, null);
-    			append_dev(div3, t7);
+    			mount_component(thermometer, div0, null);
+    			append_dev(div3, t4);
     			append_dev(div3, div1);
     			append_dev(div1, h21);
+    			append_dev(div1, t6);
+    			append_dev(div1, span);
+    			append_dev(span, t7);
+    			append_dev(span, t8);
     			append_dev(div1, t9);
-    			mount_component(eventinfobox, div1, null);
+    			mount_component(scrubber, div1, null);
     			append_dev(div3, t10);
     			append_dev(div3, div2);
     			append_dev(div2, h22);
     			append_dev(div2, t12);
-    			mount_component(thermometer, div2, null);
+    			mount_component(eventinfobox, div2, null);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
-    			if (!current || dirty & /*currentFrame*/ 1) set_data_dev(t5, /*currentFrame*/ ctx[0]);
+    			const thermometer_changes = {};
+    			if (dirty & /*currentFrame*/ 1) thermometer_changes.temp = /*currentFrame*/ ctx[0];
+    			thermometer.$set(thermometer_changes);
+    			if (!current || dirty & /*currentFrame*/ 1) set_data_dev(t8, /*currentFrame*/ ctx[0]);
     			const scrubber_changes = {};
     			if (dirty & /*currentFrame*/ 1) scrubber_changes.currentFrame = /*currentFrame*/ ctx[0];
     			scrubber.$set(scrubber_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
+    			transition_in(thermometer.$$.fragment, local);
     			transition_in(scrubber.$$.fragment, local);
     			transition_in(eventinfobox.$$.fragment, local);
-    			transition_in(thermometer.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
+    			transition_out(thermometer.$$.fragment, local);
     			transition_out(scrubber.$$.fragment, local);
     			transition_out(eventinfobox.$$.fragment, local);
-    			transition_out(thermometer.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div4);
+    			destroy_component(thermometer);
     			destroy_component(scrubber);
     			destroy_component(eventinfobox);
-    			destroy_component(thermometer);
     		}
     	};
 

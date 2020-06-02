@@ -47,6 +47,14 @@
 <div class='component-library'>
     <h1>Component Library</h1>
     <div class='components'>
+          <!-- Thermometer -->
+         <div class='component thermometer'>
+            <h2>Thermometer</h2>
+            <Thermometer temp={currentFrame} />
+         </div>
+        
+
+
         <!-- scrubber -->
         <div class='component scrubber'>
           <h2>Scrubber</h2>
@@ -64,13 +72,6 @@
             <h2>Policy Event Info Box</h2>
             <EventInfoBox classname={'event-info'} eventDetails={eventDetails}/>
          </div>
-
-         <!-- Event Info Box -->
-         <div class='component thermometer'>
-            <h2>Themometer</h2>
-            <Thermometer />
-         </div>
-        
         
     </div>
 
@@ -82,7 +83,7 @@
 .component {
   margin-bottom: 80px;
   padding-bottom: 80px;
-  border-bottom: 1px solid green;
+  border-bottom: 1px solid blue;
 }
 
 
