@@ -122,7 +122,7 @@
 <div class='ub-ap-viz'>
   <div class='header'>
     <div class='title'>
-    <span>Visualzing Air Pollution and Policy in Ulaanbaatar</span>
+    <h1>Visualzing Air Pollution and Policy in Ulaanbaatar</h1>
     </div>
   </div>
   <div class='visualizations'>
@@ -141,14 +141,12 @@
       pauseAnimation={pauseAnimation} 
       startAnimation={startAnimation} 
       updateCurrentFrame={updateCurrentFrame}/>
-  <div>Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-
 </div>
 
 <style>
 
 .ub-ap-viz {
-  border: 4px solid aquamarine;
+  /*border: 4px solid aquamarine;*/
 }
 
 
@@ -158,11 +156,11 @@
 .header {
   display: flex;
   flex-direction: column;
-  border: 2px solid red;
+  /* border: 2px solid red; */
 }
 
 .header .title {
-  border: 1px solid pink;
+  /* border: 1px solid pink; */
 }
 
 
@@ -178,7 +176,7 @@
   height: 100%;
   flex-grow: 3;
 
-  border: 1px solid orangered;
+  /* border: 1px solid orangered; */
 }
 
 .map-thermometer-container {

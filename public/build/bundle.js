@@ -3109,15 +3109,15 @@ var app = (function () {
     			div3 = element("div");
     			create_component(eventinfobox.$$.fragment);
     			attr_dev(div0, "class", div0_class_value = "" + (null_to_empty("policy-dot policy-dot" + /*position*/ ctx[1]) + " svelte-1ux17o6"));
-    			add_location(div0, file$1, 124, 12, 3837);
+    			add_location(div0, file$1, 124, 12, 3839);
     			attr_dev(div1, "class", div1_class_value = "" + (null_to_empty("policy-dot-hit-area policy-dot-hit-area" + /*position*/ ctx[1]) + " svelte-1ux17o6"));
-    			add_location(div1, file$1, 123, 8, 3760);
+    			add_location(div1, file$1, 123, 8, 3762);
     			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty("policy-dot-container policy-dot-container" + /*position*/ ctx[1]) + " svelte-1ux17o6"));
-    			add_location(div2, file$1, 122, 4, 3685);
+    			add_location(div2, file$1, 122, 4, 3687);
     			attr_dev(div3, "class", div3_class_value = "" + (null_to_empty("policy-info-container policy-info-container" + /*position*/ ctx[1]) + " svelte-1ux17o6"));
-    			add_location(div3, file$1, 127, 4, 3920);
+    			add_location(div3, file$1, 127, 4, 3922);
     			attr_dev(div4, "class", "policy-event");
-    			add_location(div4, file$1, 121, 0, 3654);
+    			add_location(div4, file$1, 121, 0, 3656);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3209,7 +3209,7 @@ var app = (function () {
     	const policyInfoExpandedState = {
     		scale: 1,
     		translateX: "-25%",
-    		translateY: "30%"
+    		translateY: "-102%"
     	};
 
     	let policyDotExpandKeyFrames = keyframes({
@@ -3525,9 +3525,9 @@ var app = (function () {
     			attr_dev(svg0, "data-name", "Layer 1");
     			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg0, "viewBox", "0 0 113.57 127.1");
-    			attr_dev(svg0, "class", "svelte-4vv9c4");
+    			attr_dev(svg0, "class", "svelte-ib2ffb");
     			add_location(svg0, file$2, 63, 12, 1783);
-    			attr_dev(button0, "class", "start-button control-button svelte-4vv9c4");
+    			attr_dev(button0, "class", "start-button control-button svelte-ib2ffb");
     			add_location(button0, file$2, 62, 8, 1694);
     			add_location(style1, file$2, 84, 20, 2805);
     			add_location(defs1, file$2, 83, 16, 2778);
@@ -3547,23 +3547,23 @@ var app = (function () {
     			attr_dev(svg1, "data-name", "Layer 1");
     			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg1, "viewBox", "0 0 71 135");
-    			attr_dev(svg1, "class", "svelte-4vv9c4");
+    			attr_dev(svg1, "class", "svelte-ib2ffb");
     			add_location(svg1, file$2, 82, 12, 2667);
-    			attr_dev(button1, "class", "pause-button control-button svelte-4vv9c4");
+    			attr_dev(button1, "class", "pause-button control-button svelte-ib2ffb");
     			add_location(button1, file$2, 81, 8, 2578);
-    			attr_dev(div0, "class", "scrubber-controls svelte-4vv9c4");
+    			attr_dev(div0, "class", "scrubber-controls svelte-ib2ffb");
     			add_location(div0, file$2, 61, 4, 1654);
-    			attr_dev(div1, "class", "range svelte-4vv9c4");
+    			attr_dev(div1, "class", "range svelte-ib2ffb");
     			add_location(div1, file$2, 102, 8, 3544);
-    			attr_dev(div2, "class", "handle svelte-4vv9c4");
+    			attr_dev(div2, "class", "handle svelte-ib2ffb");
     			add_location(div2, file$2, 106, 16, 3668);
-    			attr_dev(div3, "class", "handle-hit-area svelte-4vv9c4");
+    			attr_dev(div3, "class", "handle-hit-area svelte-ib2ffb");
     			add_location(div3, file$2, 105, 12, 3622);
-    			attr_dev(div4, "class", "handle-container svelte-4vv9c4");
+    			attr_dev(div4, "class", "handle-container svelte-ib2ffb");
     			add_location(div4, file$2, 104, 8, 3579);
-    			attr_dev(div5, "class", "slider svelte-4vv9c4");
+    			attr_dev(div5, "class", "slider svelte-ib2ffb");
     			add_location(div5, file$2, 101, 4, 3515);
-    			attr_dev(div6, "class", "scrubber svelte-4vv9c4");
+    			attr_dev(div6, "class", "scrubber svelte-ib2ffb");
     			add_location(div6, file$2, 60, 0, 1627);
     		},
     		l: function claim(nodes) {
@@ -5166,7 +5166,7 @@ var app = (function () {
     			svg = svg_element("svg");
     			defs = svg_element("defs");
     			style = svg_element("style");
-    			t0 = text(".cls-1 {\n        fill: rgba(255, 255, 255, 0.521);\n      }\n\n      .cls-2 {\n        fill: none;\n        stroke: #333;\n        stroke-miterlimit: 10;\n        stroke-width: 2px;\n      }\n\n      .cls-4 {\n        font-size: 40px;\n        font-family: MyriadPro-Regular, Myriad Pro;\n        letter-spacing: 0em;\n      }\n    ");
+    			t0 = text(".cls-1 {\n        fill: rgba(255, 255, 255, 0.521);\n      }\n\n      .cls-2 {\n        fill: none;\n        stroke: #333;\n        stroke-miterlimit: 10;\n        stroke-width: 2px;\n        \n      }\n\n      .cls-4 {\n        font-size: 35px;\n        font-family: 'Gill Sans';\n        font-weight: bold;\n        letter-spacing: 0em;\n        stroke-width: 1px;\n        stroke: #333;\n      }\n    ");
     			g = svg_element("g");
     			path0 = svg_element("path");
     			path1 = svg_element("path");
@@ -5175,17 +5175,17 @@ var app = (function () {
     			text_1 = svg_element("text");
     			t1 = text(/*temp*/ ctx[0]);
     			t2 = text("°C");
-    			add_location(style, file$3, 40, 4, 1311);
-    			add_location(defs, file$3, 39, 2, 1300);
+    			add_location(style, file$3, 46, 4, 1532);
+    			add_location(defs, file$3, 45, 2, 1521);
     			attr_dev(path0, "class", "cls-1");
     			attr_dev(path0, "d", "M694,689a91,91,0,0,1-59-160.28V137a59,59,0,1,1,118,0V528.72A91,91,0,0,1,694,689Z");
     			attr_dev(path0, "transform", "translate(-602 -77)");
-    			add_location(path0, file$3, 60, 4, 1671);
+    			add_location(path0, file$3, 70, 4, 1959);
     			attr_dev(path1, "class", "cls-2");
     			attr_dev(path1, "d", "M694,689a91,91,0,0,1-59-160.28V137a59,59,0,1,1,118,0V528.72A91,91,0,0,1,694,689Z");
     			attr_dev(path1, "transform", "translate(-602 -77)");
-    			add_location(path1, file$3, 61, 4, 1814);
-    			add_location(g, file$3, 59, 2, 1663);
+    			add_location(path1, file$3, 71, 4, 2102);
+    			add_location(g, file$3, 69, 2, 1951);
     			attr_dev(rect, "class", "cls-3");
     			attr_dev(rect, "fill", /*tempColor*/ ctx[3]);
     			attr_dev(rect, "x", "49");
@@ -5193,24 +5193,24 @@ var app = (function () {
     			attr_dev(rect, "width", "86");
     			attr_dev(rect, "height", /*height*/ ctx[1]);
     			attr_dev(rect, "rx", "43");
-    			add_location(rect, file$3, 63, 2, 1962);
+    			add_location(rect, file$3, 73, 2, 2250);
     			attr_dev(circle, "class", "cls-3");
     			attr_dev(circle, "fill", /*tempColor*/ ctx[3]);
     			attr_dev(circle, "cx", "92");
     			attr_dev(circle, "cy", "521");
     			attr_dev(circle, "r", "75");
-    			add_location(circle, file$3, 66, 2, 2181);
+    			add_location(circle, file$3, 76, 2, 2469);
     			attr_dev(text_1, "class", "cls-4");
     			attr_dev(text_1, "fill", text_1_fill_value = "#fff");
     			attr_dev(text_1, "transform", "translate(53.42 532)");
-    			add_location(text_1, file$3, 67, 2, 2248);
+    			add_location(text_1, file$3, 77, 2, 2536);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 184 613");
-    			add_location(svg, file$3, 38, 0, 1202);
+    			add_location(svg, file$3, 44, 0, 1423);
     			attr_dev(div, "class", "thermometer svelte-1wabr3v");
-    			add_location(div, file$3, 37, 0, 1176);
+    			add_location(div, file$3, 43, 0, 1397);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5270,15 +5270,20 @@ var app = (function () {
     const MAX_HEIGHT = 534; // total height of mercury rect - DO NOT CHANGE
     const MIN_HEIGHT = 105; // how far the mercury rect dips below the mercury circle -DO NOT CHANGE
     const TOPMOST_Y = 17; // DO NOT CHANGE - mercury of thermometer starts at y=17px and moves down
-    const red = "#cc2f10";
-    const yellow = "#ccb310";
-    const blue = "#1065cc";
+    const darkRed = "#cc2f10";
+    const lightRed = "#eb7963";
+    const yellow = "#ebc263";
+    const white = "#ffffff";
+    const darkBlue = "#1065cc";
+    const lightBlue = "#539ffc";
 
     function instance$3($$self, $$props, $$invalidate) {
     	let { temp } = $$props;
     	const HEIGHT_CHANGE = MAX_HEIGHT - MIN_HEIGHT; // 429
     	const BOTTOMMOST_Y = TOPMOST_Y + HEIGHT_CHANGE;
-    	var getColor = linear$2().domain([-40, 0, 40]).range([blue, yellow, red]);
+    	const tempScale = [-40, -20, 5, 15, 30, 40];
+    	const colorScale = [darkBlue, lightBlue, white, yellow, lightRed, darkRed];
+    	var getColor = linear$2().domain(tempScale).range(colorScale);
     	let pixelChangeFromBaseline = 0; // -40 C to start 
     	let height = MIN_HEIGHT;
     	let starting_y = BOTTOMMOST_Y;
@@ -5310,9 +5315,14 @@ var app = (function () {
     		HEIGHT_CHANGE,
     		TOPMOST_Y,
     		BOTTOMMOST_Y,
-    		red,
+    		darkRed,
+    		lightRed,
     		yellow,
-    		blue,
+    		white,
+    		darkBlue,
+    		lightBlue,
+    		tempScale,
+    		colorScale,
     		getColor,
     		pixelChangeFromBaseline,
     		height,
@@ -5323,7 +5333,7 @@ var app = (function () {
 
     	$$self.$inject_state = $$props => {
     		if ("temp" in $$props) $$invalidate(0, temp = $$props.temp);
-    		if ("getColor" in $$props) $$invalidate(7, getColor = $$props.getColor);
+    		if ("getColor" in $$props) $$invalidate(9, getColor = $$props.getColor);
     		if ("pixelChangeFromBaseline" in $$props) $$invalidate(4, pixelChangeFromBaseline = $$props.pixelChangeFromBaseline);
     		if ("height" in $$props) $$invalidate(1, height = $$props.height);
     		if ("starting_y" in $$props) $$invalidate(2, starting_y = $$props.starting_y);
@@ -5383,10 +5393,10 @@ var app = (function () {
     function create_fragment$4(ctx) {
     	let link;
     	let t0;
-    	let div8;
+    	let div7;
     	let div1;
     	let div0;
-    	let span;
+    	let h1;
     	let t2;
     	let div6;
     	let div4;
@@ -5396,12 +5406,6 @@ var app = (function () {
     	let t5;
     	let div5;
     	let t6;
-    	let t7;
-    	let div7;
-    	let t8;
-    	let a0;
-    	let t10;
-    	let a1;
     	let current;
 
     	const thermometer = new Thermometer({
@@ -5423,11 +5427,11 @@ var app = (function () {
     		c: function create() {
     			link = element("link");
     			t0 = space();
-    			div8 = element("div");
+    			div7 = element("div");
     			div1 = element("div");
     			div0 = element("div");
-    			span = element("span");
-    			span.textContent = "Visualzing Air Pollution and Policy in Ulaanbaatar";
+    			h1 = element("h1");
+    			h1.textContent = "Visualzing Air Pollution and Policy in Ulaanbaatar";
     			t2 = space();
     			div6 = element("div");
     			div4 = element("div");
@@ -5440,42 +5444,27 @@ var app = (function () {
     			div5 = element("div");
     			t6 = space();
     			create_component(scrubber.$$.fragment);
-    			t7 = space();
-    			div7 = element("div");
-    			t8 = text("Icons made by ");
-    			a0 = element("a");
-    			a0.textContent = "Roundicons";
-    			t10 = text(" from ");
-    			a1 = element("a");
-    			a1.textContent = "www.flaticon.com";
     			attr_dev(link, "href", "https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css");
     			attr_dev(link, "rel", "stylesheet");
     			add_location(link, file$4, 0, 0, 0);
-    			add_location(span, file$4, 124, 4, 3362);
-    			attr_dev(div0, "class", "title svelte-17s92lb");
+    			add_location(h1, file$4, 124, 4, 3362);
+    			attr_dev(div0, "class", "title svelte-x2na23");
     			add_location(div0, file$4, 123, 4, 3338);
-    			attr_dev(div1, "class", "header svelte-17s92lb");
+    			attr_dev(div1, "class", "header svelte-x2na23");
     			add_location(div1, file$4, 122, 2, 3313);
-    			attr_dev(div2, "class", "map-current-date svelte-17s92lb");
-    			add_location(div2, file$4, 130, 8, 3562);
-    			attr_dev(div3, "class", "map-thermometer-container svelte-17s92lb");
-    			add_location(div3, file$4, 129, 6, 3514);
+    			attr_dev(div2, "class", "map-current-date svelte-x2na23");
+    			add_location(div2, file$4, 130, 8, 3558);
+    			attr_dev(div3, "class", "map-thermometer-container svelte-x2na23");
+    			add_location(div3, file$4, 129, 6, 3510);
     			attr_dev(div4, "id", "map");
-    			attr_dev(div4, "class", "map svelte-17s92lb");
-    			add_location(div4, file$4, 128, 4, 3481);
+    			attr_dev(div4, "class", "map svelte-x2na23");
+    			add_location(div4, file$4, 128, 4, 3477);
     			attr_dev(div5, "class", "map-legend");
-    			add_location(div5, file$4, 135, 4, 3682);
-    			attr_dev(div6, "class", "visualizations svelte-17s92lb");
-    			add_location(div6, file$4, 127, 2, 3448);
-    			attr_dev(a0, "href", "https://www.flaticon.com/authors/roundicons");
-    			attr_dev(a0, "title", "Roundicons");
-    			add_location(a0, file$4, 143, 21, 3921);
-    			attr_dev(a1, "href", "https://www.flaticon.com/");
-    			attr_dev(a1, "title", "Flaticon");
-    			add_location(a1, file$4, 143, 114, 4014);
-    			add_location(div7, file$4, 143, 2, 3902);
-    			attr_dev(div8, "class", "ub-ap-viz svelte-17s92lb");
-    			add_location(div8, file$4, 121, 0, 3287);
+    			add_location(div5, file$4, 135, 4, 3678);
+    			attr_dev(div6, "class", "visualizations svelte-x2na23");
+    			add_location(div6, file$4, 127, 2, 3444);
+    			attr_dev(div7, "class", "ub-ap-viz svelte-x2na23");
+    			add_location(div7, file$4, 121, 0, 3287);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5483,12 +5472,12 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert_dev(target, link, anchor);
     			insert_dev(target, t0, anchor);
-    			insert_dev(target, div8, anchor);
-    			append_dev(div8, div1);
+    			insert_dev(target, div7, anchor);
+    			append_dev(div7, div1);
     			append_dev(div1, div0);
-    			append_dev(div0, span);
-    			append_dev(div8, t2);
-    			append_dev(div8, div6);
+    			append_dev(div0, h1);
+    			append_dev(div7, t2);
+    			append_dev(div7, div6);
     			append_dev(div6, div4);
     			append_dev(div4, div3);
     			append_dev(div3, div2);
@@ -5496,14 +5485,8 @@ var app = (function () {
     			mount_component(thermometer, div3, null);
     			append_dev(div6, t5);
     			append_dev(div6, div5);
-    			append_dev(div8, t6);
-    			mount_component(scrubber, div8, null);
-    			append_dev(div8, t7);
-    			append_dev(div8, div7);
-    			append_dev(div7, t8);
-    			append_dev(div7, a0);
-    			append_dev(div7, t10);
-    			append_dev(div7, a1);
+    			append_dev(div7, t6);
+    			mount_component(scrubber, div7, null);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
@@ -5528,7 +5511,7 @@ var app = (function () {
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(link);
     			if (detaching) detach_dev(t0);
-    			if (detaching) detach_dev(div8);
+    			if (detaching) detach_dev(div7);
     			destroy_component(thermometer);
     			destroy_component(scrubber);
     		}

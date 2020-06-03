@@ -22,7 +22,7 @@
     let policyInfoContainerStyler;
 
     const policyInfoContractedState = { scale: 0 , translateX: '-50%', translateY: '-25%'};
-    const policyInfoExpandedState = { scale: 1 , translateX: '-25%', translateY: '30%'};
+    const policyInfoExpandedState = { scale: 1 , translateX: '-25%', translateY: '-102%'};
 
     const expandDuration = 400;
     const contractDuration = 600;

@@ -117,8 +117,10 @@
 
 <style>
     .scrubber {
+        border: 1px solid red;
         display: flex;
         flex-direction: row;
+        justify-content: center;
     }
 
     .scrubber-controls {
@@ -155,7 +157,7 @@
     
     .slider {
         width: 85%;
-        height: 100px;
+        height: 80px;
         position: relative;
     }
 

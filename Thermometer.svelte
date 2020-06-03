@@ -10,11 +10,17 @@
     const TOPMOST_Y = 17; // DO NOT CHANGE - mercury of thermometer starts at y=17px and moves down
     const BOTTOMMOST_Y = TOPMOST_Y + HEIGHT_CHANGE;
 
-    const red = '#cc2f10';
-    const yellow = '#ccb310';
-    const blue = '#1065cc'
+    const darkRed = '#cc2f10';
+    const lightRed = '#eb7963';
+    const yellow = '#ebc263';
+    const white = '#ffffff';
+    const darkBlue = '#1065cc';
+    const lightBlue = '#539ffc';
+
+    const tempScale = [-40, -20, 5, 15, 30, 40];
+    const colorScale = [darkBlue, lightBlue, white, yellow, lightRed, darkRed];
  
-    var getColor = scaleLinear().domain([-40, 0, 40]).range([blue, yellow, red]);
+    var getColor = scaleLinear().domain(tempScale).range(colorScale);
 
 
     let pixelChangeFromBaseline = 0; // -40 C to start 
@@ -48,12 +54,16 @@
         stroke: #333;
         stroke-miterlimit: 10;
         stroke-width: 2px;
+        
       }
 
       .cls-4 {
-        font-size: 40px;
-        font-family: MyriadPro-Regular, Myriad Pro;
+        font-size: 35px;
+        font-family: 'Gill Sans';
+        font-weight: bold;
         letter-spacing: 0em;
+        stroke-width: 1px;
+        stroke: #333;
       }
     </style>
   </defs>
