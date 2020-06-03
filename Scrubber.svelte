@@ -117,7 +117,6 @@
 
 <style>
     .scrubber {
-        border: 1px solid red;
         display: flex;
         flex-direction: row;
         justify-content: center;

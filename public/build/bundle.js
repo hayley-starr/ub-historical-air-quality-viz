@@ -37,6 +37,12 @@ var app = (function () {
     function detach(node) {
         node.parentNode.removeChild(node);
     }
+    function destroy_each(iterations, detaching) {
+        for (let i = 0; i < iterations.length; i += 1) {
+            if (iterations[i])
+                iterations[i].d(detaching);
+        }
+    }
     function element(name) {
         return document.createElement(name);
     }
@@ -326,6 +332,15 @@ var app = (function () {
         dispatch_dev("SvelteDOMSetData", { node: text, data });
         text.data = data;
     }
+    function validate_each_argument(arg) {
+        if (typeof arg !== 'string' && !(arg && typeof arg === 'object' && 'length' in arg)) {
+            let msg = '{#each} only iterates over array-like objects.';
+            if (typeof Symbol === 'function' && arg && Symbol.iterator in arg) {
+                msg += ' You can use a spread to convert this iterable into an array.';
+            }
+            throw new Error(msg);
+        }
+    }
     function validate_slots(name, slot, keys) {
         for (const slot_key of Object.keys(slot)) {
             if (!~keys.indexOf(slot_key)) {
@@ -393,7 +408,7 @@ var app = (function () {
     return mapboxgl;
 
     })));
-
+    //# sourceMappingURL=mapbox-gl.js.map
     });
 
     const stations = {
@@ -3525,9 +3540,9 @@ var app = (function () {
     			attr_dev(svg0, "data-name", "Layer 1");
     			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg0, "viewBox", "0 0 113.57 127.1");
-    			attr_dev(svg0, "class", "svelte-ib2ffb");
+    			attr_dev(svg0, "class", "svelte-nrk165");
     			add_location(svg0, file$2, 63, 12, 1783);
-    			attr_dev(button0, "class", "start-button control-button svelte-ib2ffb");
+    			attr_dev(button0, "class", "start-button control-button svelte-nrk165");
     			add_location(button0, file$2, 62, 8, 1694);
     			add_location(style1, file$2, 84, 20, 2805);
     			add_location(defs1, file$2, 83, 16, 2778);
@@ -3547,23 +3562,23 @@ var app = (function () {
     			attr_dev(svg1, "data-name", "Layer 1");
     			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg1, "viewBox", "0 0 71 135");
-    			attr_dev(svg1, "class", "svelte-ib2ffb");
+    			attr_dev(svg1, "class", "svelte-nrk165");
     			add_location(svg1, file$2, 82, 12, 2667);
-    			attr_dev(button1, "class", "pause-button control-button svelte-ib2ffb");
+    			attr_dev(button1, "class", "pause-button control-button svelte-nrk165");
     			add_location(button1, file$2, 81, 8, 2578);
-    			attr_dev(div0, "class", "scrubber-controls svelte-ib2ffb");
+    			attr_dev(div0, "class", "scrubber-controls svelte-nrk165");
     			add_location(div0, file$2, 61, 4, 1654);
-    			attr_dev(div1, "class", "range svelte-ib2ffb");
+    			attr_dev(div1, "class", "range svelte-nrk165");
     			add_location(div1, file$2, 102, 8, 3544);
-    			attr_dev(div2, "class", "handle svelte-ib2ffb");
+    			attr_dev(div2, "class", "handle svelte-nrk165");
     			add_location(div2, file$2, 106, 16, 3668);
-    			attr_dev(div3, "class", "handle-hit-area svelte-ib2ffb");
+    			attr_dev(div3, "class", "handle-hit-area svelte-nrk165");
     			add_location(div3, file$2, 105, 12, 3622);
-    			attr_dev(div4, "class", "handle-container svelte-ib2ffb");
+    			attr_dev(div4, "class", "handle-container svelte-nrk165");
     			add_location(div4, file$2, 104, 8, 3579);
-    			attr_dev(div5, "class", "slider svelte-ib2ffb");
+    			attr_dev(div5, "class", "slider svelte-nrk165");
     			add_location(div5, file$2, 101, 4, 3515);
-    			attr_dev(div6, "class", "scrubber svelte-ib2ffb");
+    			attr_dev(div6, "class", "scrubber svelte-nrk165");
     			add_location(div6, file$2, 60, 0, 1627);
     		},
     		l: function claim(nodes) {
@@ -5175,17 +5190,17 @@ var app = (function () {
     			text_1 = svg_element("text");
     			t1 = text(/*temp*/ ctx[0]);
     			t2 = text("°C");
-    			add_location(style, file$3, 46, 4, 1532);
-    			add_location(defs, file$3, 45, 2, 1521);
+    			add_location(style, file$3, 44, 4, 1574);
+    			add_location(defs, file$3, 43, 2, 1563);
     			attr_dev(path0, "class", "cls-1");
     			attr_dev(path0, "d", "M694,689a91,91,0,0,1-59-160.28V137a59,59,0,1,1,118,0V528.72A91,91,0,0,1,694,689Z");
     			attr_dev(path0, "transform", "translate(-602 -77)");
-    			add_location(path0, file$3, 70, 4, 1959);
+    			add_location(path0, file$3, 68, 4, 2001);
     			attr_dev(path1, "class", "cls-2");
     			attr_dev(path1, "d", "M694,689a91,91,0,0,1-59-160.28V137a59,59,0,1,1,118,0V528.72A91,91,0,0,1,694,689Z");
     			attr_dev(path1, "transform", "translate(-602 -77)");
-    			add_location(path1, file$3, 71, 4, 2102);
-    			add_location(g, file$3, 69, 2, 1951);
+    			add_location(path1, file$3, 69, 4, 2144);
+    			add_location(g, file$3, 67, 2, 1993);
     			attr_dev(rect, "class", "cls-3");
     			attr_dev(rect, "fill", /*tempColor*/ ctx[3]);
     			attr_dev(rect, "x", "49");
@@ -5193,24 +5208,24 @@ var app = (function () {
     			attr_dev(rect, "width", "86");
     			attr_dev(rect, "height", /*height*/ ctx[1]);
     			attr_dev(rect, "rx", "43");
-    			add_location(rect, file$3, 73, 2, 2250);
+    			add_location(rect, file$3, 71, 2, 2292);
     			attr_dev(circle, "class", "cls-3");
     			attr_dev(circle, "fill", /*tempColor*/ ctx[3]);
     			attr_dev(circle, "cx", "92");
     			attr_dev(circle, "cy", "521");
     			attr_dev(circle, "r", "75");
-    			add_location(circle, file$3, 76, 2, 2469);
+    			add_location(circle, file$3, 74, 2, 2511);
     			attr_dev(text_1, "class", "cls-4");
     			attr_dev(text_1, "fill", text_1_fill_value = "#fff");
     			attr_dev(text_1, "transform", "translate(53.42 532)");
-    			add_location(text_1, file$3, 77, 2, 2536);
+    			add_location(text_1, file$3, 75, 2, 2578);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 184 613");
-    			add_location(svg, file$3, 44, 0, 1423);
+    			add_location(svg, file$3, 42, 0, 1465);
     			attr_dev(div, "class", "thermometer svelte-1wabr3v");
-    			add_location(div, file$3, 43, 0, 1397);
+    			add_location(div, file$3, 41, 0, 1439);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5283,16 +5298,13 @@ var app = (function () {
     	const BOTTOMMOST_Y = TOPMOST_Y + HEIGHT_CHANGE;
     	const tempScale = [-40, -20, 5, 15, 30, 40];
     	const colorScale = [darkBlue, lightBlue, white, yellow, lightRed, darkRed];
-    	var getColor = linear$2().domain(tempScale).range(colorScale);
+    	var scaleTempToColor = linear$2().domain(tempScale).range(colorScale);
+    	var scaleTempToPixels = linear$2().domain([-40, 40]).range([0, HEIGHT_CHANGE]);
+    	scaleTempToPixels.clamp(true);
     	let pixelChangeFromBaseline = 0; // -40 C to start 
     	let height = MIN_HEIGHT;
     	let starting_y = BOTTOMMOST_Y;
     	let tempColor = "#c1272d";
-
-    	const scaleTempToPixels = temp => {
-    		return HEIGHT_CHANGE / 80 * (temp + 40);
-    	};
-
     	const writable_props = ["temp"];
 
     	Object.keys($$props).forEach(key => {
@@ -5323,17 +5335,18 @@ var app = (function () {
     		lightBlue,
     		tempScale,
     		colorScale,
-    		getColor,
+    		scaleTempToColor,
+    		scaleTempToPixels,
     		pixelChangeFromBaseline,
     		height,
     		starting_y,
-    		tempColor,
-    		scaleTempToPixels
+    		tempColor
     	});
 
     	$$self.$inject_state = $$props => {
     		if ("temp" in $$props) $$invalidate(0, temp = $$props.temp);
-    		if ("getColor" in $$props) $$invalidate(9, getColor = $$props.getColor);
+    		if ("scaleTempToColor" in $$props) $$invalidate(9, scaleTempToColor = $$props.scaleTempToColor);
+    		if ("scaleTempToPixels" in $$props) $$invalidate(10, scaleTempToPixels = $$props.scaleTempToPixels);
     		if ("pixelChangeFromBaseline" in $$props) $$invalidate(4, pixelChangeFromBaseline = $$props.pixelChangeFromBaseline);
     		if ("height" in $$props) $$invalidate(1, height = $$props.height);
     		if ("starting_y" in $$props) $$invalidate(2, starting_y = $$props.starting_y);
@@ -5350,7 +5363,7 @@ var app = (function () {
     				$$invalidate(4, pixelChangeFromBaseline = scaleTempToPixels(temp));
     				$$invalidate(1, height = MIN_HEIGHT + pixelChangeFromBaseline);
     				$$invalidate(2, starting_y = BOTTOMMOST_Y - pixelChangeFromBaseline);
-    				$$invalidate(3, tempColor = getColor(temp));
+    				$$invalidate(3, tempColor = scaleTempToColor(temp));
     			}
     		}
     	};
@@ -5387,31 +5400,331 @@ var app = (function () {
     	}
     }
 
-    /* App.svelte generated by Svelte v3.20.1 */
-    const file$4 = "App.svelte";
+    /* AQILegend.svelte generated by Svelte v3.20.1 */
+
+    const file$4 = "AQILegend.svelte";
+
+    function get_each_context(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[1] = list[i];
+    	return child_ctx;
+    }
+
+    // (22:16) {:else}
+    function create_else_block(ctx) {
+    	let t0_value = /*level*/ ctx[1].range_low + "";
+    	let t0;
+    	let t1;
+
+    	const block = {
+    		c: function create() {
+    			t0 = text(t0_value);
+    			t1 = text("+");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, t1, anchor);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(t1);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block.name,
+    		type: "else",
+    		source: "(22:16) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (20:16) {#if level.range_high}
+    function create_if_block(ctx) {
+    	let t0_value = /*level*/ ctx[1].range_low + "";
+    	let t0;
+    	let t1;
+    	let t2_value = /*level*/ ctx[1].range_high + "";
+    	let t2;
+
+    	const block = {
+    		c: function create() {
+    			t0 = text(t0_value);
+    			t1 = text(" - ");
+    			t2 = text(t2_value);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, t1, anchor);
+    			insert_dev(target, t2, anchor);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(t2);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block.name,
+    		type: "if",
+    		source: "(20:16) {#if level.range_high}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (16:4) {#each AQI_LEGEND_INFO as level}
+    function create_each_block(ctx) {
+    	let div2;
+    	let div0;
+    	let div0_class_value;
+    	let t0;
+    	let div1;
+    	let t1;
+
+    	function select_block_type(ctx, dirty) {
+    		if (/*level*/ ctx[1].range_high) return create_if_block;
+    		return create_else_block;
+    	}
+
+    	let current_block_type = select_block_type(ctx);
+    	let if_block = current_block_type(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div2 = element("div");
+    			div0 = element("div");
+    			t0 = space();
+    			div1 = element("div");
+    			if_block.c();
+    			t1 = space();
+    			attr_dev(div0, "class", div0_class_value = "" + (null_to_empty("aqi-level-color aqi-" + /*level*/ ctx[1].id) + " svelte-1rigflz"));
+    			add_location(div0, file$4, 17, 12, 744);
+    			attr_dev(div1, "class", "aqi-level-range");
+    			add_location(div1, file$4, 18, 12, 808);
+    			attr_dev(div2, "class", "aqi-level svelte-1rigflz");
+    			add_location(div2, file$4, 16, 8, 708);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div2, anchor);
+    			append_dev(div2, div0);
+    			append_dev(div2, t0);
+    			append_dev(div2, div1);
+    			if_block.m(div1, null);
+    			append_dev(div2, t1);
+    		},
+    		p: function update(ctx, dirty) {
+    			if_block.p(ctx, dirty);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div2);
+    			if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block.name,
+    		type: "each",
+    		source: "(16:4) {#each AQI_LEGEND_INFO as level}",
+    		ctx
+    	});
+
+    	return block;
+    }
 
     function create_fragment$4(ctx) {
+    	let div1;
+    	let div0;
+    	let t1;
+    	let each_value = /*AQI_LEGEND_INFO*/ ctx[0];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			div1 = element("div");
+    			div0 = element("div");
+    			div0.textContent = "AQI Legend";
+    			t1 = space();
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			attr_dev(div0, "class", "aqi-legend-title svelte-1rigflz");
+    			add_location(div0, file$4, 14, 4, 616);
+    			attr_dev(div1, "class", "aqi-legend svelte-1rigflz");
+    			add_location(div1, file$4, 13, 0, 587);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, div0);
+    			append_dev(div1, t1);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div1, null);
+    			}
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*AQI_LEGEND_INFO*/ 1) {
+    				each_value = /*AQI_LEGEND_INFO*/ ctx[0];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(div1, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div1);
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$4.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$4($$self, $$props, $$invalidate) {
+    	const AQI_LEGEND_INFO = [
+    		{
+    			id: 1,
+    			color: "#3ec41f",
+    			description: "Good",
+    			range_low: 0,
+    			range_high: 49
+    		},
+    		{
+    			id: 2,
+    			color: "#f2d00f",
+    			description: "Moderate",
+    			range_low: 50,
+    			range_high: 99
+    		},
+    		{
+    			id: 3,
+    			color: "#e6a40b",
+    			description: "Unhealthy For Sensitive Groups",
+    			range_low: 100,
+    			range_high: 149
+    		},
+    		{
+    			id: 4,
+    			color: "#bd2211",
+    			description: "Unhealthy",
+    			range_low: 150,
+    			range_high: 199
+    		},
+    		{
+    			id: 5,
+    			color: "#9421a3",
+    			description: "Very Unhealthy",
+    			range_low: 200,
+    			range_high: 299
+    		},
+    		{
+    			id: 6,
+    			color: "#6e4c65",
+    			description: "Unsafe",
+    			range_low: 300
+    		}
+    	];
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<AQILegend> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("AQILegend", $$slots, []);
+    	$$self.$capture_state = () => ({ AQI_LEGEND_INFO });
+    	return [AQI_LEGEND_INFO];
+    }
+
+    class AQILegend extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$4, create_fragment$4, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "AQILegend",
+    			options,
+    			id: create_fragment$4.name
+    		});
+    	}
+    }
+
+    /* App.svelte generated by Svelte v3.20.1 */
+    const file$5 = "App.svelte";
+
+    function create_fragment$5(ctx) {
     	let link;
     	let t0;
-    	let div7;
+    	let div8;
     	let div1;
     	let div0;
     	let h1;
     	let t2;
-    	let div6;
-    	let div4;
+    	let div7;
+    	let div5;
     	let div3;
     	let div2;
     	let t4;
     	let t5;
-    	let div5;
+    	let div4;
     	let t6;
+    	let div6;
+    	let t7;
     	let current;
 
     	const thermometer = new Thermometer({
     			props: { temp: /*temp*/ ctx[1] },
     			$$inline: true
     		});
+
+    	const aqilegend = new AQILegend({ $$inline: true });
 
     	const scrubber = new Scrubber({
     			props: {
@@ -5427,44 +5740,49 @@ var app = (function () {
     		c: function create() {
     			link = element("link");
     			t0 = space();
-    			div7 = element("div");
+    			div8 = element("div");
     			div1 = element("div");
     			div0 = element("div");
     			h1 = element("h1");
     			h1.textContent = "Visualzing Air Pollution and Policy in Ulaanbaatar";
     			t2 = space();
-    			div6 = element("div");
-    			div4 = element("div");
+    			div7 = element("div");
+    			div5 = element("div");
     			div3 = element("div");
     			div2 = element("div");
     			div2.textContent = `${/*currentDate*/ ctx[2]}`;
     			t4 = space();
     			create_component(thermometer.$$.fragment);
     			t5 = space();
-    			div5 = element("div");
+    			div4 = element("div");
+    			create_component(aqilegend.$$.fragment);
     			t6 = space();
+    			div6 = element("div");
+    			t7 = space();
     			create_component(scrubber.$$.fragment);
     			attr_dev(link, "href", "https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css");
     			attr_dev(link, "rel", "stylesheet");
-    			add_location(link, file$4, 0, 0, 0);
-    			add_location(h1, file$4, 124, 4, 3362);
-    			attr_dev(div0, "class", "title svelte-x2na23");
-    			add_location(div0, file$4, 123, 4, 3338);
-    			attr_dev(div1, "class", "header svelte-x2na23");
-    			add_location(div1, file$4, 122, 2, 3313);
-    			attr_dev(div2, "class", "map-current-date svelte-x2na23");
-    			add_location(div2, file$4, 130, 8, 3558);
-    			attr_dev(div3, "class", "map-thermometer-container svelte-x2na23");
-    			add_location(div3, file$4, 129, 6, 3510);
-    			attr_dev(div4, "id", "map");
-    			attr_dev(div4, "class", "map svelte-x2na23");
-    			add_location(div4, file$4, 128, 4, 3477);
-    			attr_dev(div5, "class", "map-legend");
-    			add_location(div5, file$4, 135, 4, 3678);
-    			attr_dev(div6, "class", "visualizations svelte-x2na23");
-    			add_location(div6, file$4, 127, 2, 3444);
-    			attr_dev(div7, "class", "ub-ap-viz svelte-x2na23");
-    			add_location(div7, file$4, 121, 0, 3287);
+    			add_location(link, file$5, 0, 0, 0);
+    			add_location(h1, file$5, 125, 4, 3407);
+    			attr_dev(div0, "class", "title svelte-hpbo3o");
+    			add_location(div0, file$5, 124, 4, 3383);
+    			attr_dev(div1, "class", "header svelte-hpbo3o");
+    			add_location(div1, file$5, 123, 2, 3358);
+    			attr_dev(div2, "class", "map-current-date svelte-hpbo3o");
+    			add_location(div2, file$5, 131, 8, 3603);
+    			attr_dev(div3, "class", "map-thermometer-container svelte-hpbo3o");
+    			add_location(div3, file$5, 130, 6, 3555);
+    			attr_dev(div4, "class", "map-aqi-legend svelte-hpbo3o");
+    			add_location(div4, file$5, 134, 6, 3707);
+    			attr_dev(div5, "id", "map");
+    			attr_dev(div5, "class", "map svelte-hpbo3o");
+    			add_location(div5, file$5, 129, 4, 3522);
+    			attr_dev(div6, "class", "map-legend");
+    			add_location(div6, file$5, 139, 4, 3792);
+    			attr_dev(div7, "class", "visualizations svelte-hpbo3o");
+    			add_location(div7, file$5, 128, 2, 3489);
+    			attr_dev(div8, "class", "ub-ap-viz svelte-hpbo3o");
+    			add_location(div8, file$5, 122, 0, 3332);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5472,21 +5790,24 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert_dev(target, link, anchor);
     			insert_dev(target, t0, anchor);
-    			insert_dev(target, div7, anchor);
-    			append_dev(div7, div1);
+    			insert_dev(target, div8, anchor);
+    			append_dev(div8, div1);
     			append_dev(div1, div0);
     			append_dev(div0, h1);
-    			append_dev(div7, t2);
-    			append_dev(div7, div6);
-    			append_dev(div6, div4);
-    			append_dev(div4, div3);
+    			append_dev(div8, t2);
+    			append_dev(div8, div7);
+    			append_dev(div7, div5);
+    			append_dev(div5, div3);
     			append_dev(div3, div2);
     			append_dev(div3, t4);
     			mount_component(thermometer, div3, null);
-    			append_dev(div6, t5);
-    			append_dev(div6, div5);
+    			append_dev(div5, t5);
+    			append_dev(div5, div4);
+    			mount_component(aqilegend, div4, null);
     			append_dev(div7, t6);
-    			mount_component(scrubber, div7, null);
+    			append_dev(div7, div6);
+    			append_dev(div8, t7);
+    			mount_component(scrubber, div8, null);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
@@ -5500,26 +5821,29 @@ var app = (function () {
     		i: function intro(local) {
     			if (current) return;
     			transition_in(thermometer.$$.fragment, local);
+    			transition_in(aqilegend.$$.fragment, local);
     			transition_in(scrubber.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(thermometer.$$.fragment, local);
+    			transition_out(aqilegend.$$.fragment, local);
     			transition_out(scrubber.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(link);
     			if (detaching) detach_dev(t0);
-    			if (detaching) detach_dev(div7);
+    			if (detaching) detach_dev(div8);
     			destroy_component(thermometer);
+    			destroy_component(aqilegend);
     			destroy_component(scrubber);
     		}
     	};
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_fragment$4.name,
+    		id: create_fragment$5.name,
     		type: "component",
     		source: "",
     		ctx
@@ -5531,7 +5855,7 @@ var app = (function () {
     const MAPBOX_TOKEN = "pk.eyJ1IjoiaGF5bGV5c3RhcnIiLCJhIjoiY2s5MmhvYTU3MDBkaTNwcGI3cWJtMjdkcCJ9.tOfFfs9wWWcOfQ1sDMiwvQ";
     const FRAME_RATE = 30; // wait ms before changing frames
 
-    function instance$4($$self, $$props, $$invalidate) {
+    function instance$5($$self, $$props, $$invalidate) {
     	const UB_COORDINATES = [106.900354, 47.917802];
     	mapboxGl.accessToken = MAPBOX_TOKEN;
     	let map;
@@ -5666,6 +5990,7 @@ var app = (function () {
     		allcontours,
     		Scrubber,
     		Thermometer,
+    		AQILegend,
     		UB_COORDINATES,
     		MAPBOX_TOKEN,
     		FRAME_RATE,
@@ -5710,13 +6035,13 @@ var app = (function () {
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$4, create_fragment$4, safe_not_equal, {});
+    		init(this, options, instance$5, create_fragment$5, safe_not_equal, {});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
     			tagName: "App",
     			options,
-    			id: create_fragment$4.name
+    			id: create_fragment$5.name
     		});
     	}
     }

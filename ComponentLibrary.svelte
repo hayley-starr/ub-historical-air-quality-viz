@@ -2,6 +2,7 @@
   import Scrubber from './Scrubber.svelte'; 
   import EventInfoBox from './EventInfoBox.svelte';
   import Thermometer from './Thermometer.svelte';
+  import AQILegend from './AQILegend.svelte';
 
 
   const FRAME_RATE = 30; //fps
@@ -57,6 +58,13 @@
 <div class='component-library'>
     <h1>Component Library</h1>
     <div class='components'>
+         <!-- AQI Legend -->
+         <div class='component thermometer'>
+            <h2>AQI Legend</h2>
+            <AQILegend />
+         </div>
+
+
           <!-- Thermometer -->
          <div class='component thermometer'>
             <h2>Thermometer</h2>

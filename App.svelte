@@ -6,7 +6,8 @@
   import { stations } from './stations.js';
   import { allcontours } from './allcontours.js'
   import Scrubber from './Scrubber.svelte' 
-   import Thermometer from './Thermometer.svelte';
+  import Thermometer from './Thermometer.svelte';
+  import AQILegend from './AQILegend.svelte';
 
   const UB_COORDINATES = [106.900354, 47.917802];
   const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGF5bGV5c3RhcnIiLCJhIjoiY2s5MmhvYTU3MDBkaTNwcGI3cWJtMjdkcCJ9.tOfFfs9wWWcOfQ1sDMiwvQ';
@@ -131,6 +132,9 @@
         <div class='map-current-date'>{currentDate}</div>
         <Thermometer temp={temp}/>
       </div>
+      <div class='map-aqi-legend'>
+        <AQILegend/>
+      </div>
       
     </div>
     <div class='map-legend'>
@@ -193,5 +197,14 @@
     font-size: 14px;
     font-weight: bold;
     padding: 4px;
+}
+
+.map-aqi-legend {
+  width: 50px;
+  height: 100px;
+  position: absolute;
+  z-index: 100;
+  top: 15px;
+  left: 89vw;
 }
 </style>

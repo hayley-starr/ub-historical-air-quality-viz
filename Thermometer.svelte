@@ -20,7 +20,9 @@
     const tempScale = [-40, -20, 5, 15, 30, 40];
     const colorScale = [darkBlue, lightBlue, white, yellow, lightRed, darkRed];
  
-    var getColor = scaleLinear().domain(tempScale).range(colorScale);
+    var scaleTempToColor = scaleLinear().domain(tempScale).range(colorScale);
+    var scaleTempToPixels = scaleLinear().domain([-40, 40]).range([0, HEIGHT_CHANGE]);
+    scaleTempToPixels.clamp(true);
 
 
     let pixelChangeFromBaseline = 0; // -40 C to start 
@@ -32,11 +34,7 @@
         pixelChangeFromBaseline = scaleTempToPixels(temp);
         height = MIN_HEIGHT + pixelChangeFromBaseline;
         starting_y = BOTTOMMOST_Y - pixelChangeFromBaseline;
-        tempColor = getColor(temp);
-    }
-
-    const scaleTempToPixels = (temp) => {
-        return (HEIGHT_CHANGE/80)*(temp + 40);
+        tempColor = scaleTempToColor(temp);
     }
 
 </script>
