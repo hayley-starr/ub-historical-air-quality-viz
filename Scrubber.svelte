@@ -59,10 +59,44 @@
 
 
 <div class="scrubber">
-
     <div class='scrubber-controls'>
-        <button on:click={handleStartAnimation}>Start</button>
-        <button on:click={handlePauseAnimation}>Pause</button>
+        <button class='start-button control-button' on:click={handleStartAnimation}>
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 113.57 127.1">
+                <defs>
+                    <style>
+                    .cls-play-1 {
+                        stroke: #000;
+                        fill: #000;
+                        stroke-miterlimit: 10;
+                    }
+                    </style>
+                </defs>
+                <g id="Layer_2" data-name="Layer 2">
+                    <g id="Layer_1-2" data-name="Layer 1-2">
+                    <path class="cls-play-1" d="M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z" transform="translate(0 -0.01)"/>
+                    </g>
+                </g>
+            </svg>
+
+        </button>
+        <button class='pause-button control-button' on:click={handlePauseAnimation}>
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71 135">
+                <defs>
+                    <style>
+                    .cls-pause-1 {
+                        stroke: #000;
+                        stroke-miterlimit: 10;
+                    }
+                    </style>
+                </defs>
+                <g id="Layer_2" data-name="Layer 2">
+                    <g id="Layer_1-2" data-name="Layer 1-2">
+                    <path class="cls-pause-1" d="M10.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,10.5.5Z"/>
+                    <path class="cls-pause-1" d="M60.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,60.5.5Z"/>
+                    </g>
+                </g>
+            </svg>
+        </button>
     </div>
 
     <div class="slider">
@@ -88,7 +122,35 @@
     }
 
     .scrubber-controls {
-        width: 10%;
+        width: 100px;
+        display: flex;
+        align-items: center;
+        border: 1px solid pink;
+    }
+
+    .control-button svg {
+        height: 20px;
+    }
+
+    .control-button {
+        border: none;
+        background: none;
+        cursor: pointer;
+        height: 20px;
+        width: 40px;
+    }
+
+    .control-button:hover {
+        transform: scale(1.1);
+    }
+
+    .control-button:focus {
+        outline: none;
+    }
+
+    .control-button:active {
+        outline: none;
+        transform: scale(1.3);
     }
     
     

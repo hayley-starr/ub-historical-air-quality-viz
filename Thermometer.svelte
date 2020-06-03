@@ -27,8 +27,6 @@
         height = MIN_HEIGHT + pixelChangeFromBaseline;
         starting_y = BOTTOMMOST_Y - pixelChangeFromBaseline;
         tempColor = getColor(temp);
-        console.log(tempColor);
-
     }
 
     const scaleTempToPixels = (temp) => {
@@ -41,8 +39,8 @@
 <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 613">
   <defs>
     <style>
-      .cls-1, .cls-4 {
-        fill: #fff;
+      .cls-1 {
+        fill: rgba(255, 255, 255, 0.521);
       }
 
       .cls-2 {
@@ -67,7 +65,7 @@
   <!-- Full Thermometer DO NOT CHANGE -->
   <!-- <rect class="cls-3" x="49" y="17" width="86" height="534" rx="43"/> -->
   <circle class="cls-3" fill={tempColor} cx="92" cy="521" r="75"/>
-  <text class="cls-4" transform="translate(53.42 532)">{temp}C</text>
+  <text class="cls-4"  fill={'#fff'} transform="translate(53.42 532)">{temp}°C</text>
 </svg>
 </div>
 

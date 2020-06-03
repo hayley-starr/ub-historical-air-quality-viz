@@ -19,6 +19,8 @@
   let animationPaused = true;
   let temp = -40;
 
+  let currentDate = 'June 2019';
+
   let incrementFrame = function() {
     if (animationPaused) return;
     if (currentFrame+1 >= nFrames) {
@@ -120,13 +122,18 @@
 <div class='ub-ap-viz'>
   <div class='header'>
     <div class='title'>
-    <span>Visualzing Air Pollution in Ulaanbaatar: {currentFrame} </span>
+    <span>Visualzing Air Pollution and Policy in Ulaanbaatar</span>
     </div>
   </div>
   <div class='visualizations'>
-    <div id='map' class='map'></div>
+    <div id='map' class='map'>
+      <div class='map-thermometer-container'>
+        <div class='map-current-date'>{currentDate}</div>
+        <Thermometer temp={temp}/>
+      </div>
+      
+    </div>
     <div class='map-legend'>
-      <Thermometer temp={temp}/>
     </div>
   </div>
   <Scrubber 
@@ -134,6 +141,7 @@
       pauseAnimation={pauseAnimation} 
       startAnimation={startAnimation} 
       updateCurrentFrame={updateCurrentFrame}/>
+  <div>Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
 </div>
 
@@ -162,7 +170,7 @@
 
 .visualizations {
   display: flex;
-  height: 300px;
+  height: 500px;
 }
 
 .visualizations .map {
@@ -173,8 +181,19 @@
   border: 1px solid orangered;
 }
 
-.map-legend {
-    width: 200px;
+.map-thermometer-container {
+  width: 50px;
+  height: 100px;
+  position: absolute;
+  z-index: 100;
+  top: 15px;
+  left: 15px;
 }
 
+.map-current-date {
+    width: max-content;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 4px;
+}
 </style>
