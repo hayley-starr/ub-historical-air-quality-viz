@@ -125,7 +125,6 @@
         width: 100px;
         display: flex;
         align-items: center;
-        border: 1px solid pink;
     }
 
     .control-button svg {
@@ -137,7 +136,7 @@
         background: none;
         cursor: pointer;
         height: 20px;
-        width: 40px;
+        width: 30px;
     }
 
     .control-button:hover {
