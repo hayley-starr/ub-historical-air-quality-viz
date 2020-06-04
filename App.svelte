@@ -8,11 +8,12 @@
   import Scrubber from './Scrubber.svelte' 
   import Thermometer from './Thermometer.svelte';
   import AQILegend from './AQILegend.svelte';
+  import moment from 'moment';
 
   const UB_COORDINATES = [106.900354, 47.917802];
   const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGF5bGV5c3RhcnIiLCJhIjoiY2s5MmhvYTU3MDBkaTNwcGI3cWJtMjdkcCJ9.tOfFfs9wWWcOfQ1sDMiwvQ';
   mapboxgl.accessToken = MAPBOX_TOKEN;
-  const FRAME_RATE = 30; // wait ms before changing frames
+  const FRAME_RATE = 20; // wait ms before changing frames
 
   let map;
   let nFrames = 431; // total number of frames in animation
@@ -20,7 +21,19 @@
   let animationPaused = true;
   let temp = -40;
 
-  let currentDate = 'June 2019';
+  let dateStrings = new Array(nFrames+1);
+  let startDate = moment('2019-01-10');
+
+  for (let i = 1; i <= nFrames; i++) {
+    var dateString = startDate.format("YYYY[\, Week of ]MMMM[ ]Do");  
+    if (i%7 ==0) {
+      startDate = startDate.add(7, 'days');
+      dateString = startDate.format("YYYY[\, Week of ]MMMM[ ]Do"); 
+    }
+    dateStrings[i] = dateString;
+  }
+
+  let currentDate = dateStrings[currentFrame];
 
   let incrementFrame = function() {
     if (animationPaused) return;
@@ -29,7 +42,8 @@
     } else {
       currentFrame++;
     }
-    setMapFrame(currentFrame);  
+    setMapFrame(currentFrame); 
+    currentDate = dateStrings[currentFrame];
 
     if (currentFrame >= 40 && currentFrame <= 80) {
       temp--;
@@ -184,7 +198,7 @@
 }
 
 .map-thermometer-container {
-  width: 50px;
+  width: 750px;
   height: 100px;
   position: absolute;
   z-index: 100;
@@ -194,9 +208,10 @@
 
 .map-current-date {
     width: max-content;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: bold;
     padding: 4px;
+    margin-bottom: 20px;
 }
 
 .map-aqi-legend {

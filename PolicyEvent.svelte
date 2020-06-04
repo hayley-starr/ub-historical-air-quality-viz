@@ -2,6 +2,7 @@
     import { styler, value, pointer, listen, transform, easing, keyframes } from 'popmotion';
     import { onMount } from 'svelte';
     import EventInfoBox from './EventInfoBox.svelte';
+    import moment from 'moment';
 
     export let currentFrame;
     export let position;
@@ -9,7 +10,7 @@
 
     // TODO: Remove
     eventDetails = {
-        date: 'June 20th 2019',
+        date: '2019-03-21',
         title: 'Government Bans Raw Coal',
         text: 'The government bans the burning of raw coal within the city limits. The ban does not apply to power plants.',
         source: 'https://breathemongolia.org/',
@@ -113,6 +114,10 @@
         const policyInfoContainer = document.querySelector(".policy-info-container"+position);
         policyInfoContainerStyler = styler(policyInfoContainer);
         policyInfoContainerStyler.set('left', position);
+
+        const policyDate = document.querySelector(".policy-event-date"+position);
+        var policyDateStyler = styler(policyDate);
+        policyDateStyler.set('left', position);
     });
 
 
@@ -120,6 +125,7 @@
 </script>
 
 <div class='policy-event'>
+    <div class={'policy-event-date policy-event-date'+position}>{moment(eventDetails.date).format("MMMM YYYY")}</div>
     <div class={"policy-dot-container policy-dot-container"+position}>
         <div class={"policy-dot-hit-area policy-dot-hit-area"+position}>
             <div class={"policy-dot policy-dot"+position}></div>
@@ -132,6 +138,15 @@
 </div>
 
 <style>
+
+
+    .policy-event-date {
+        position: absolute;
+        font-size: 13px;
+        top: 20%;
+        left: 50px; 
+        transform: translateY(-50%) translateX(-50%);   
+    }
 
     .policy-dot-container {
         position: absolute;
