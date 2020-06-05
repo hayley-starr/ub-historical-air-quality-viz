@@ -8,8 +8,8 @@ import replace from 'rollup-plugin-replace'
 const production = !process.env.ROLLUP_WATCH
 
 export default {
-  // input: 'index.js',
-  input: 'componentLibrary.js', // for testing components
+  input: 'index.js',
+  // input: 'componentLibrary.js', // for testing components
   output: {
     sourcemap: true,
     format: 'iife',

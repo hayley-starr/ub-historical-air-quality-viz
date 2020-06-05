@@ -19,11 +19,15 @@
   let nFrames = 431; // total number of frames in animation
   let currentFrame = 1;
   let animationPaused = true;
-  let temp = -40;
+  let currentTemp = -40;
 
   let dateStrings = new Array(nFrames+1);
-  let startDate = moment('2019-01-10');
+  let temps = new Array(nFrames+1);
 
+  let startDate = moment('2019-01-10');
+  let temp = currentTemp;
+  
+  // DUMMY DATA
   for (let i = 1; i <= nFrames; i++) {
     var dateString = startDate.format("YYYY[\, Week of ]MMMM[ ]Do");  
     if (i%7 ==0) {
@@ -31,7 +35,21 @@
       dateString = startDate.format("YYYY[\, Week of ]MMMM[ ]Do"); 
     }
     dateStrings[i] = dateString;
+
+    if (i >= 40 && i <= 80) {
+      temp--;
+    } else if (i > 150 && i < 200) {
+      temp-=0.5
+    } else if (i > 250 && i < 300){
+      temp--;
+    } else {
+      temp += 1
+    }
+    console.log(temp);
+    temps[i] = Math.round(temp);
   }
+
+  // END DUMMY DATA
 
   let currentDate = dateStrings[currentFrame];
 
@@ -44,15 +62,7 @@
     }
     setMapFrame(currentFrame); 
     currentDate = dateStrings[currentFrame];
-
-    if (currentFrame >= 40 && currentFrame <= 80) {
-      temp--;
-    } else if (currentFrame > 150 && currentFrame < 200) {
-      temp-=0.3
-    } else {
-      temp += 0.5
-    }
-    temp = Math.round(temp);
+    currentTemp = temps[currentFrame];
   }
 
   const pauseAnimation = () => {
@@ -144,7 +154,7 @@
     <div id='map' class='map'>
       <div class='map-thermometer-container'>
         <div class='map-current-date'>{currentDate}</div>
-        <Thermometer temp={temp}/>
+        <Thermometer temp={currentTemp}/>
       </div>
       <div class='map-aqi-legend'>
         <AQILegend/>

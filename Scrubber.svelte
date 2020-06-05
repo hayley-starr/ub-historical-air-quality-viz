@@ -2,24 +2,30 @@
     import { onMount } from 'svelte';
     import { styler, value, pointer, listen, transform, easing, keyframes } from 'popmotion';
     import PolicyEvent from './PolicyEvent.svelte';
+    import moment from 'moment';
 
     export let currentFrame;
+    export let nFrames;
     export let pauseAnimation;
     export let startAnimation;
     export let updateCurrentFrame;
 
+    nFrames = 431;// FOR NOW
+
     var isUserRunning = false; // Whether or not the USER has paused the animation
 
-    const maxScrubberWidth = 1000;// width of scrubber in px
+    let maxScrubberWidth = 1000;// width of scrubber in px
+    $: maxScrubberWidth = sliderWidth;
     let handleStyler;
 
     $: {
+        //Math.round(maxScrubberWidth*currentFrame/nFrames)
        handleStyler && handleStyler.set('x', currentFrame);
     }
 
-
-
+    let sliderWidth = 0;
     onMount(async () => {
+        sliderWidth = document.getElementById("slider").getBoundingClientRect().width;
         const handle = document.querySelector('.handle-hit-area');
         handleStyler = styler(handle);
         const handleX = value(0, (newX) => {
@@ -54,6 +60,39 @@
         isUserRunning = true;
         startAnimation();
     }
+
+    let startDate = moment('2019-01-10');
+    let endDate = moment('2020-01-10');
+    let totalDays = endDate-startDate;
+    const getPolicyEventPosition = (policyDate) => {
+        let policyDays = endDate-moment(policyDate);
+        
+        return policyDays/totalDays;
+    }
+
+    const policyEvents = [
+        {
+            date: '2019-03-21',
+            title: 'Government Bans Raw Coal',
+            text: 'The government bans the burning of raw coal within the city limits. The ban does not apply to power plants.',
+            source: 'https://breathemongolia.org/',
+            imgSource: './banRawCoal.jpg'
+        },
+        {
+            date: '2019-06-29',
+            title: 'Government Bans Raw Coal',
+            text: 'The government bans the burning of raw coal within the city limits. The ban does not apply to power plants.',
+            source: 'https://breathemongolia.org/',
+            imgSource: './banRawCoal.jpg'
+        },
+        {
+            date: '2019-11-30',
+            title: 'Government Bans Raw Coal',
+            text: 'The government bans the burning of raw coal within the city limits. The ban does not apply to power plants.',
+            source: 'https://breathemongolia.org/',
+            imgSource: './banRawCoal.jpg'
+        }
+    ]
 
 </script> 
 
@@ -99,7 +138,7 @@
         </button>
     </div>
 
-    <div class="slider">
+    <div class="slider" id="slider">
         <div class="range"></div>
 
         <div class="handle-container">
@@ -108,9 +147,13 @@
             </div>
         </div>
 
-        <PolicyEvent currentFrame={currentFrame} position={30}/>
-        <PolicyEvent currentFrame={currentFrame} position={130}/>
-        <PolicyEvent currentFrame={currentFrame} position={310}/>
+        {#each policyEvents as policyEvent, i}
+            <PolicyEvent currentFrame={currentFrame} 
+                        position={Math.round(sliderWidth * getPolicyEventPosition(policyEvent.date))}
+                        eventDetails={policyEvent}
+                        id={i}/>
+    
+        {/each}
         
     </div>
 </div>

@@ -7,20 +7,15 @@
     export let currentFrame;
     export let position;
     export let eventDetails;
-
-    // TODO: Remove
-    eventDetails = {
-        date: '2019-03-21',
-        title: 'Government Bans Raw Coal',
-        text: 'The government bans the burning of raw coal within the city limits. The ban does not apply to power plants.',
-        source: 'https://breathemongolia.org/',
-        imgSource: './banRawCoal.jpg'
-    }
+    export let id;
 
     const BUFFER = 10;
 
     let policyDotStyler;
+    let policyDotContainerStyler
     let policyInfoContainerStyler;
+    var policyDateStyler;
+    position = 0;
 
     const policyInfoContractedState = { scale: 0 , translateX: '-50%', translateY: '-25%'};
     const policyInfoExpandedState = { scale: 1 , translateX: '-25%', translateY: '-102%'};
@@ -103,35 +98,44 @@
 
     onMount(async () => {
         // Create a styler to style the policy dot - to control the dot's animation
-        const policyDot = document.querySelector(".policy-dot"+position);
+        const policyDot = document.querySelector(".policy-dot"+id);
         policyDotStyler = styler(policyDot);
 
         // Create a styler to style the dot container - to position the policy dot on the timeline
-        const policyDotContainer = document.querySelector(".policy-dot-container"+position);
-        let policyDotContainerStyler = styler(policyDotContainer);
-        policyDotContainerStyler.set('left', position);
+        const policyDotContainer = document.querySelector(".policy-dot-container"+id);
+        policyDotContainerStyler = styler(policyDotContainer);
+       
 
-        const policyInfoContainer = document.querySelector(".policy-info-container"+position);
+        const policyInfoContainer = document.querySelector(".policy-info-container"+id);
         policyInfoContainerStyler = styler(policyInfoContainer);
-        policyInfoContainerStyler.set('left', position);
+        
 
-        const policyDate = document.querySelector(".policy-event-date"+position);
-        var policyDateStyler = styler(policyDate);
-        policyDateStyler.set('left', position);
+        const policyDate = document.querySelector(".policy-event-date"+id);
+        policyDateStyler = styler(policyDate);
+        
     });
+
+    $: {
+        if (policyDateStyler && position > 0) {
+            policyDotContainerStyler.set('left', position);
+            policyInfoContainerStyler.set('left', position);
+            policyDateStyler.set('left', position);
+            console.log(position);
+        }
+    }
 
 
 
 </script>
 
 <div class='policy-event'>
-    <div class={'policy-event-date policy-event-date'+position}>{moment(eventDetails.date).format("MMMM YYYY")}</div>
-    <div class={"policy-dot-container policy-dot-container"+position}>
-        <div class={"policy-dot-hit-area policy-dot-hit-area"+position}>
-            <div class={"policy-dot policy-dot"+position}></div>
+    <div class={'policy-event-date policy-event-date'+id}>{moment(eventDetails.date).format("MMMM YYYY")}</div>
+    <div class={"policy-dot-container policy-dot-container"+id}>
+        <div class={"policy-dot-hit-area policy-dot-hit-area"+id}>
+            <div class={"policy-dot policy-dot"+id}></div>
         </div>
     </div>
-    <div class={"policy-info-container policy-info-container"+position}>
+    <div class={"policy-info-container policy-info-container"+id}>
         <EventInfoBox eventDetails={eventDetails} />
     </div>
   
