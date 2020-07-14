@@ -29,13 +29,17 @@ const vectorizeRasterFrame = function(inputFilename, outputFilename, frameId) {
     let band = gdalDataset.bands.get(1);
     let width = band.size.x-1; 
     let height = band.size.y-1;
+    console.log("with", width);
+    console.log("height", height);
 
     //read data into an array of length widthxheight so that d3.contours can work
     let array = band.pixels.read(0, 0, width, height);
+    let bandThresholds = [0,10,25,50,75,100,125,150,175,200,225,250,300,350];
 
     // generate array of multipolygons that represent the contours of the data
     var polygons = contours()
-        .size([width, height]) // later can custom threshold, too
+        .size([width, height])
+        .thresholds(bandThresholds)
         (array);
 
     let resultgeojson = {
@@ -76,16 +80,17 @@ const vectorizeRasterFrame = function(inputFilename, outputFilename, frameId) {
 const main = () => {
 
     // get tif filenames from data directory
-    var files = fs.readdirSync('./R/sample_data/sample_frame_tifs');
+    var files = fs.readdirSync('./R/data/frame_tifs');
 
     // for each file, vectorize and save
     files.forEach(filename => {
         var patt = new RegExp(/\d+/);
         var res = patt.exec(filename);
-        var frameId = res[0];
+        var frameId = 1; //res[0]; TODO PUT BACK
+        
 
-        let inputFilename = './R/sample_data/sample_frame_tifs/' + filename;
-        let outputFilename = 'vectorjson/samplecontours' + frameId + '.json';   
+        let inputFilename = './R/data/frame_tifs/' + filename;
+        let outputFilename = 'vectorjson/contours/contours' + frameId + '.json';   
         vectorizeRasterFrame(inputFilename, outputFilename, frameId);
     });
 }

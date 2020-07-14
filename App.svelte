@@ -45,7 +45,6 @@
     } else {
       temp += 1
     }
-    console.log(temp);
     temps[i] = Math.round(temp);
   }
 
@@ -80,8 +79,14 @@
   }
 
   const setMapFrame = (frame) => {
-    map && map.setFilter('ap_contours', ['==', 'idx', ""+frame]); // frame id is a string
+    //map && map.setFilter('ap_contours', ['==', 'idx', ""+frame]); // frame id is a string
   }
+
+  let max_color = '#87e32b'; //green
+  let secondary_color = '#5f0a8a'; //purple
+  let tertiatry_color = '#f0004c'; //red
+  let yellow = '#ebc505'; //red
+  let blue_color = '#027ef2';
 
 
   // After the DOM has been rendered set up the mapbox. (Won't work before map html is available.)
@@ -104,7 +109,7 @@
   const addInterpolationLayer = () => {
     map.addSource('ap_contours', {
         type: 'vector',
-        url: 'mapbox://hayleystarr.05bkeyzu'
+        url: 'mapbox://hayleystarr.bahryplq'
       });
 
       map.addLayer({
@@ -112,31 +117,28 @@
         "type": "fill",
         "source": "ap_contours",
         "source-layer": "apcontours",
-        "filter": ["==", "idx", "1"], // frameID is a string :(
+        "filter": ["==", "idx", 1], // frameID is a string
         'layout': {
             "visibility": "visible"
         },
         paint: {
-          'fill-opacity': 0.2,
-          'fill-color': [
-            "step",
-            ["get", "value"],
-            "hsl(0, 0%, 100%)", 8,
-            "hsl(202, 88%, 51%)", 18,
-            "hsl(194, 88%, 51%)", 36,
-            "hsl(185, 88%, 51%)", 54,
-            "hsl(177, 96%, 53%)", 72,
-            "hsl(157, 96%, 53%)", 90,
-            "hsl(101, 94%, 65%)", 108,
-            "hsl(60, 100%, 49%)", 126,
-            "hsl(43, 100%, 49%)", 144,
-            "hsl(26, 100%, 49%)", 162,
-            "hsl(10, 100%, 49%)", 180,
-            "hsl(0, 64%, 43%)", 198,
-            "hsl(326, 47%, 29%)", 216,
-            "hsl(274, 47%, 29%)", 234,
-            "hsl(246, 56%, 35%)"
-        ]}
+          'fill-opacity': 0.7,
+          'fill-color': {
+            property: 'value',
+            stops: [
+              [0, blue_color],
+              [25, blue_color],
+              [50, yellow],
+              [150, tertiatry_color],
+              [200, tertiatry_color],
+              [250, tertiatry_color],
+              [300, tertiatry_color],
+              [325, secondary_color],
+              [350, max_color],
+              [400, '#0a8a0e'],
+            ]
+          }
+        }
       });
   }
 
