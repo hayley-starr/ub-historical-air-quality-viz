@@ -11828,7 +11828,7 @@ var app = (function () {
     		map.addSource("ap_contours", {
     			type: "vector",
     			url: "mapbox://hayleystarr.d2lraqka"
-    		}); //url: 'mapbox://hayleystarr.05bkeyzu'
+    		}); //url: 'mapbox://hayleystarr.b2psgnqo'
 
     		map.addLayer({
     			"id": "ap_contours",
@@ -11841,7 +11841,7 @@ var app = (function () {
     				"fill-sort-key": ["get", "value"]
     			},
     			paint: {
-    				"fill-opacity": 0.8,
+    				"fill-opacity": 0.3,
     				"fill-color": {
     					property: "value",
     					stops: [
@@ -11855,7 +11855,7 @@ var app = (function () {
     						[8, white_color],
     						[9, white_color],
     						[10, white_color],
-    						[11, white_color],
+    						[11, blue_color],
     						[12, yellow_color],
     						[13, yellow_color],
     						[14, red_color]
