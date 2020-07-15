@@ -24,17 +24,14 @@ const vectorizeRasterFrame = function(inputFilename, outputFilename, frameId) {
     console.log('vectorizing tif file: ' + inputFilename + '...');
 
     let gdalDataset = gdal.open(inputFilename);
-    
-    // get the raster with the data
     let band = gdalDataset.bands.get(1);
+
     let width = band.size.x-1; 
     let height = band.size.y-1;
-    console.log("with", width);
-    console.log("height", height);
 
     //read data into an array of length widthxheight so that d3.contours can work
     let array = band.pixels.read(0, 0, width, height);
-    let bandThresholds = [0,10,25,50,75,100,125,150,175,200,225,250,300,350];
+    let bandThresholds = [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
     // generate array of multipolygons that represent the contours of the data
     var polygons = contours()
@@ -84,6 +81,7 @@ const main = () => {
 
     // for each file, vectorize and save
     files.forEach(filename => {
+        console.log(filename);
         var patt = new RegExp(/\d+/);
         var res = patt.exec(filename);
         var frameId = 1; //res[0]; TODO PUT BACK
@@ -96,10 +94,3 @@ const main = () => {
 }
 
 main();
-
-
-
-
-
-
-

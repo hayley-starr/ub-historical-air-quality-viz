@@ -11638,26 +11638,26 @@ var app = (function () {
     			attr_dev(link, "href", "https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css");
     			attr_dev(link, "rel", "stylesheet");
     			add_location(link, file$5, 0, 0, 0);
-    			add_location(h1, file$5, 151, 4, 4006);
+    			add_location(h1, file$5, 177, 4, 4907);
     			attr_dev(div0, "class", "title svelte-1sksttb");
-    			add_location(div0, file$5, 150, 4, 3982);
+    			add_location(div0, file$5, 176, 4, 4883);
     			attr_dev(div1, "class", "header svelte-1sksttb");
-    			add_location(div1, file$5, 149, 2, 3957);
+    			add_location(div1, file$5, 175, 2, 4858);
     			attr_dev(div2, "class", "map-current-date svelte-1sksttb");
-    			add_location(div2, file$5, 157, 8, 4202);
+    			add_location(div2, file$5, 183, 8, 5103);
     			attr_dev(div3, "class", "map-thermometer-container svelte-1sksttb");
-    			add_location(div3, file$5, 156, 6, 4154);
+    			add_location(div3, file$5, 182, 6, 5055);
     			attr_dev(div4, "class", "map-aqi-legend svelte-1sksttb");
-    			add_location(div4, file$5, 160, 6, 4313);
+    			add_location(div4, file$5, 186, 6, 5214);
     			attr_dev(div5, "id", "map");
     			attr_dev(div5, "class", "map svelte-1sksttb");
-    			add_location(div5, file$5, 155, 4, 4121);
+    			add_location(div5, file$5, 181, 4, 5022);
     			attr_dev(div6, "class", "map-legend");
-    			add_location(div6, file$5, 165, 4, 4398);
+    			add_location(div6, file$5, 191, 4, 5299);
     			attr_dev(div7, "class", "visualizations svelte-1sksttb");
-    			add_location(div7, file$5, 154, 2, 4088);
+    			add_location(div7, file$5, 180, 2, 4989);
     			attr_dev(div8, "class", "ub-ap-viz svelte-1sksttb");
-    			add_location(div8, file$5, 148, 0, 3931);
+    			add_location(div8, file$5, 174, 0, 4832);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -11800,11 +11800,11 @@ var app = (function () {
     		
     	}; //map && map.setFilter('ap_contours', ['==', 'idx', ""+frame]); // frame id is a string
 
-    	let max_color = "#87e32b"; //green
-    	let secondary_color = "#5f0a8a"; //purple
-    	let tertiatry_color = "#f0004c"; //red
-    	let yellow = "#ebc505"; //red
+    	let green_color = "#87e32b"; //green
+    	let red_color = "#f0004c"; //red
+    	let yellow_color = "#ebc505";
     	let blue_color = "#027ef2";
+    	let white_color = "#ffffff";
 
     	// After the DOM has been rendered set up the mapbox. (Won't work before map html is available.)
     	onMount(async () => {
@@ -11827,8 +11827,8 @@ var app = (function () {
     	const addInterpolationLayer = () => {
     		map.addSource("ap_contours", {
     			type: "vector",
-    			url: "mapbox://hayleystarr.bahryplq"
-    		});
+    			url: "mapbox://hayleystarr.d2lraqka"
+    		}); //url: 'mapbox://hayleystarr.05bkeyzu'
 
     		map.addLayer({
     			"id": "ap_contours",
@@ -11836,27 +11836,39 @@ var app = (function () {
     			"source": "ap_contours",
     			"source-layer": "apcontours",
     			"filter": ["==", "idx", 1], // frameID is a string
-    			"layout": { "visibility": "visible" },
+    			"layout": {
+    				"visibility": "visible",
+    				"fill-sort-key": ["get", "value"]
+    			},
     			paint: {
-    				"fill-opacity": 0.7,
+    				"fill-opacity": 0.8,
     				"fill-color": {
     					property: "value",
     					stops: [
-    						[0, blue_color],
-    						[25, blue_color],
-    						[50, yellow],
-    						[150, tertiatry_color],
-    						[200, tertiatry_color],
-    						[250, tertiatry_color],
-    						[300, tertiatry_color],
-    						[325, secondary_color],
-    						[350, max_color],
-    						[400, "#0a8a0e"]
+    						[1, blue_color],
+    						[2, blue_color],
+    						[3, blue_color],
+    						[4, blue_color],
+    						[5, white_color],
+    						[6, white_color],
+    						[7, white_color],
+    						[8, white_color],
+    						[9, white_color],
+    						[10, white_color],
+    						[11, white_color],
+    						[12, yellow_color],
+    						[13, yellow_color],
+    						[14, red_color]
     					]
     				}
     			}
-    		});
-    	};
+    		}); //   'fill-opacity': 0.7,
+    		//   'fill-color': [
+    		//     "step",
+    	}; //     ["get", "value"],
+    	//     "hsl(0, 0%, 100%)", 1,
+    	//     "hsl(202, 88%, 51%)", 2,
+    	//     "hsl(194, 88%, 51%)", 3,
 
     	const writable_props = [];
 
@@ -11895,11 +11907,11 @@ var app = (function () {
     		startAnimation,
     		updateCurrentFrame,
     		setMapFrame,
-    		max_color,
-    		secondary_color,
-    		tertiatry_color,
-    		yellow,
+    		green_color,
+    		red_color,
+    		yellow_color,
     		blue_color,
+    		white_color,
     		addInterpolationLayer
     	});
 
@@ -11916,11 +11928,11 @@ var app = (function () {
     		if ("dateString" in $$props) dateString = $$props.dateString;
     		if ("currentDate" in $$props) $$invalidate(2, currentDate = $$props.currentDate);
     		if ("incrementFrame" in $$props) incrementFrame = $$props.incrementFrame;
-    		if ("max_color" in $$props) max_color = $$props.max_color;
-    		if ("secondary_color" in $$props) secondary_color = $$props.secondary_color;
-    		if ("tertiatry_color" in $$props) tertiatry_color = $$props.tertiatry_color;
-    		if ("yellow" in $$props) yellow = $$props.yellow;
+    		if ("green_color" in $$props) green_color = $$props.green_color;
+    		if ("red_color" in $$props) red_color = $$props.red_color;
+    		if ("yellow_color" in $$props) yellow_color = $$props.yellow_color;
     		if ("blue_color" in $$props) blue_color = $$props.blue_color;
+    		if ("white_color" in $$props) white_color = $$props.white_color;
     	};
 
     	if ($$props && "$$inject" in $$props) {

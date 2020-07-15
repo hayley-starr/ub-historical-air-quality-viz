@@ -82,11 +82,11 @@
     //map && map.setFilter('ap_contours', ['==', 'idx', ""+frame]); // frame id is a string
   }
 
-  let max_color = '#87e32b'; //green
-  let secondary_color = '#5f0a8a'; //purple
-  let tertiatry_color = '#f0004c'; //red
-  let yellow = '#ebc505'; //red
+  let green_color = '#87e32b'; //green
+  let red_color = '#f0004c'; //red
+  let yellow_color = '#ebc505'; 
   let blue_color = '#027ef2';
+  let white_color = '#ffffff';
 
 
   // After the DOM has been rendered set up the mapbox. (Won't work before map html is available.)
@@ -107,10 +107,12 @@
   });
 
   const addInterpolationLayer = () => {
-    map.addSource('ap_contours', {
+      map.addSource('ap_contours', {
         type: 'vector',
-        url: 'mapbox://hayleystarr.bahryplq'
+        url: 'mapbox://hayleystarr.d2lraqka'
+        //url: 'mapbox://hayleystarr.05bkeyzu'
       });
+
 
       map.addLayer({
         "id": "ap_contours",
@@ -119,26 +121,50 @@
         "source-layer": "apcontours",
         "filter": ["==", "idx", 1], // frameID is a string
         'layout': {
-            "visibility": "visible"
+            "visibility": "visible",
+            'fill-sort-key': ['get', 'value']
         },
         paint: {
-          'fill-opacity': 0.7,
+          'fill-opacity': .8,
           'fill-color': {
             property: 'value',
             stops: [
-              [0, blue_color],
-              [25, blue_color],
-              [50, yellow],
-              [150, tertiatry_color],
-              [200, tertiatry_color],
-              [250, tertiatry_color],
-              [300, tertiatry_color],
-              [325, secondary_color],
-              [350, max_color],
-              [400, '#0a8a0e'],
-            ]
-          }
+              [1, blue_color],
+              [2, blue_color],
+              [3, blue_color],
+              [4, blue_color],
+              [5, white_color],
+              [6, white_color],
+              [7, white_color],
+              [8, white_color],
+              [9, white_color],
+              [10, white_color],
+              [11, white_color],
+              [12, yellow_color],
+              [13, yellow_color],
+              [14, red_color]
+            ]}
         }
+        //   'fill-opacity': 0.7,
+        //   'fill-color': [
+        //     "step",
+        //     ["get", "value"],
+        //     "hsl(0, 0%, 100%)", 1,
+        //     "hsl(202, 88%, 51%)", 2,
+        //     "hsl(194, 88%, 51%)", 3,
+        //     "hsl(185, 88%, 51%)", 4,
+        //     "hsl(177, 96%, 53%)", 5,
+        //     "hsl(157, 96%, 53%)", 6,
+        //     "hsl(101, 94%, 65%)", 7,
+        //     "hsl(60, 100%, 49%)", 8,
+        //     "hsl(43, 100%, 49%)", 9,
+        //     "hsl(26, 100%, 49%)", 10,
+        //     "hsl(10, 100%, 49%)", 11,
+        //     "hsl(0, 64%, 43%)", 12,
+        //     "hsl(326, 47%, 29%)", 13,
+        //     "hsl(274, 47%, 29%)", 14,
+        //     "hsl(246, 56%, 35%)"
+        // ]
       });
   }
 
