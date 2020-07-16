@@ -4,7 +4,6 @@
   import { onMount } from 'svelte';
   import mapboxgl from 'mapbox-gl';
   import { stations } from './stations.js';
-  import { allcontours } from './allcontours.js'
   import Scrubber from './Scrubber.svelte' 
   import Thermometer from './Thermometer.svelte';
   import AQILegend from './AQILegend.svelte';
@@ -87,6 +86,10 @@
   let yellow_color = '#ebc505'; 
   let blue_color = '#027ef2';
   let white_color = '#ffffff';
+  let orange_color = '#fc9d03';
+  let purple_color = '#5e03fc';
+  let dark_purple_color = '#4b1f7a';
+  let black_color = '#050505';
 
 
   // After the DOM has been rendered set up the mapbox. (Won't work before map html is available.)
@@ -109,8 +112,8 @@
   const addInterpolationLayer = () => {
       map.addSource('ap_contours', {
         type: 'vector',
-        url: 'mapbox://hayleystarr.d2lraqka'
-        //url: 'mapbox://hayleystarr.b2psgnqo'
+        //url: 'mapbox://hayleystarr.9xq0wd8h' // with bins attempt
+        url: 'mapbox://hayleystarr.4tgsg3y7' // isobands
       });
 
 
@@ -129,42 +132,23 @@
           'fill-color': {
             property: 'value',
             stops: [
-              [1, blue_color],
-              [2, blue_color],
+              [1, white_color],
+              [2, white_color],
               [3, blue_color],
-              [4, blue_color],
-              [5, white_color],
-              [6, white_color],
-              [7, white_color],
-              [8, white_color],
-              [9, white_color],
-              [10, white_color],
-              [11, blue_color],
-              [12, yellow_color],
-              [13, yellow_color],
-              [14, red_color]
+              [4, green_color],
+              [5, green_color],
+              [6, yellow_color],
+              [7, yellow_color],
+              [8, orange_color],
+              [9, orange_color],
+              [10, red_color],
+              [11, red_color],
+              [12, purple_color],
+              [13, dark_purple_color],
+              [14, dark_purple_color],
+              [15, dark_purple_color]
             ]}
         }
-        //   'fill-opacity': 0.7,
-        //   'fill-color': [
-        //     "step",
-        //     ["get", "value"],
-        //     "hsl(0, 0%, 100%)", 1,
-        //     "hsl(202, 88%, 51%)", 2,
-        //     "hsl(194, 88%, 51%)", 3,
-        //     "hsl(185, 88%, 51%)", 4,
-        //     "hsl(177, 96%, 53%)", 5,
-        //     "hsl(157, 96%, 53%)", 6,
-        //     "hsl(101, 94%, 65%)", 7,
-        //     "hsl(60, 100%, 49%)", 8,
-        //     "hsl(43, 100%, 49%)", 9,
-        //     "hsl(26, 100%, 49%)", 10,
-        //     "hsl(10, 100%, 49%)", 11,
-        //     "hsl(0, 64%, 43%)", 12,
-        //     "hsl(326, 47%, 29%)", 13,
-        //     "hsl(274, 47%, 29%)", 14,
-        //     "hsl(246, 56%, 35%)"
-        // ]
       });
   }
 
