@@ -1,102 +1,31 @@
 <script>
     import { onMount } from 'svelte';
     import { styler, value, pointer, listen, transform, easing, keyframes } from 'popmotion';
+    import PolicyEvent from './PolicyEvent.svelte';
+    import moment from 'moment';
 
     export let currentFrame;
+    export let nFrames;
     export let pauseAnimation;
     export let startAnimation;
     export let updateCurrentFrame;
 
+    nFrames = 431;// FOR NOW
+
     var isUserRunning = false; // Whether or not the USER has paused the animation
 
-    const maxScrubberWidth = 1000;// width of scrubber in px
+    let maxScrubberWidth = 1000;// width of scrubber in px
+    $: maxScrubberWidth = sliderWidth;
     let handleStyler;
 
-    //TEST!!
-    const eventPosition = 50;
-    const eventFadeBuffer = 10;
-    let eventStyler;
-    let eventInfoStyler;
-
-
-    let eventKeyFramesExpand =  keyframes({
-        values: [ 
-            { scale: 1 },
-            { scale: 2 }
-        ],
-        times: [0, 1],
-        duration: 300,
-        easings: [easing.bounceOut]
-    });
-
-    let eventInfoKeyFramesExpand =  keyframes({
-        values: [ 
-            { scale: 0 , translateX: 0, translateY: 0},
-            { scale: 1 , translateX: 0, translateY: 60}
-        ],
-        times: [0, 1],
-        duration: 800,
-        easings: [easing.bounceOut]
-    });
-
-    let eventKeyFramesContract =  keyframes({
-        values: [ 
-            { scale: 2 },
-            { scale: 1 }
-        ],
-        times: [0, 1],
-        duration: 600,
-        easings: [easing.bounceIn]
-    });
-
-    let eventInfoKeyFramesContract =  keyframes({
-        values: [ 
-            { scale: 1 , translateX: 0, translateY: 60},
-            { scale: 0 , translateX: 0, translateY: 0}
-        ],
-        times: [0, 1],
-        duration: 400,
-        easings: [easing.linear]
-    });
-
-    //END_TEST!!
-
     $: {
+        //Math.round(maxScrubberWidth*currentFrame/nFrames)
        handleStyler && handleStyler.set('x', currentFrame);
-       if (currentFrame == eventPosition-eventFadeBuffer) {
-           highlightEvent();
-       }
-
-       if (currentFrame == eventPosition + eventFadeBuffer*4) {
-           reduceEvent();
-       }
     }
 
-    const highlightEvent = () => {
-        eventKeyFramesExpand.start(style => {
-            eventStyler.set(style);
-        });
-        eventInfoKeyFramesExpand.start(style => {
-            eventInfoStyler.set(style);
-        });   
-    }
-
-    const reduceEvent = () => {
-        eventKeyFramesContract.start(style => {
-            eventStyler.set(style);
-        });
-        eventInfoKeyFramesContract.start(style => {
-            eventInfoStyler.set(style);
-        });
-    }
-
+    let sliderWidth = 0;
     onMount(async () => {
-        const event = document.querySelector('.event');
-        eventStyler = styler(event);
-        const eventInfo = document.querySelector('.event-info-box');
-        eventInfoStyler = styler(eventInfo);
-
-
+        sliderWidth = document.getElementById("slider").getBoundingClientRect().width;
         const handle = document.querySelector('.handle-hit-area');
         handleStyler = styler(handle);
         const handleX = value(0, (newX) => {
@@ -132,17 +61,84 @@
         startAnimation();
     }
 
+    let startDate = moment('2019-01-10');
+    let endDate = moment('2020-01-10');
+    let totalDays = endDate-startDate;
+    const getPolicyEventPosition = (policyDate) => {
+        let policyDays = endDate-moment(policyDate);
+        
+        return policyDays/totalDays;
+    }
+
+    const policyEvents = [
+        {
+            date: '2019-03-21',
+            title: 'Government Bans Raw Coal',
+            text: 'The government bans the burning of raw coal within the city limits. The ban does not apply to power plants.',
+            source: 'https://breathemongolia.org/',
+            imgSource: './banRawCoal.jpg'
+        },
+        {
+            date: '2019-06-29',
+            title: 'Government Bans Raw Coal',
+            text: 'The government bans the burning of raw coal within the city limits. The ban does not apply to power plants.',
+            source: 'https://breathemongolia.org/',
+            imgSource: './banRawCoal.jpg'
+        },
+        {
+            date: '2019-11-30',
+            title: 'Government Bans Raw Coal',
+            text: 'The government bans the burning of raw coal within the city limits. The ban does not apply to power plants.',
+            source: 'https://breathemongolia.org/',
+            imgSource: './banRawCoal.jpg'
+        }
+    ]
+
 </script> 
 
 
 <div class="scrubber">
-
     <div class='scrubber-controls'>
-        <button on:click={handleStartAnimation}>Start</button>
-        <button on:click={handlePauseAnimation}>Pause</button>
+        <button class='start-button control-button' on:click={handleStartAnimation}>
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 113.57 127.1">
+                <defs>
+                    <style>
+                    .cls-play-1 {
+                        stroke: #000;
+                        fill: #000;
+                        stroke-miterlimit: 10;
+                    }
+                    </style>
+                </defs>
+                <g id="Layer_2" data-name="Layer 2">
+                    <g id="Layer_1-2" data-name="Layer 1-2">
+                    <path class="cls-play-1" d="M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z" transform="translate(0 -0.01)"/>
+                    </g>
+                </g>
+            </svg>
+
+        </button>
+        <button class='pause-button control-button' on:click={handlePauseAnimation}>
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71 135">
+                <defs>
+                    <style>
+                    .cls-pause-1 {
+                        stroke: #000;
+                        stroke-miterlimit: 10;
+                    }
+                    </style>
+                </defs>
+                <g id="Layer_2" data-name="Layer 2">
+                    <g id="Layer_1-2" data-name="Layer 1-2">
+                    <path class="cls-pause-1" d="M10.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,10.5.5Z"/>
+                    <path class="cls-pause-1" d="M60.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,60.5.5Z"/>
+                    </g>
+                </g>
+            </svg>
+        </button>
     </div>
 
-    <div class="slider">
+    <div class="slider" id="slider">
         <div class="range"></div>
 
         <div class="handle-container">
@@ -151,35 +147,59 @@
             </div>
         </div>
 
-        <div class='policy-event'>
-            <div class="event-container">
-                <div class="event-hit-area">
-                    <div class="event"></div>
-                </div>
-            </div>
-            <div class='event-info-box'>
-                    <span>EVENT INFO</span>
-            </div>
-        </div>
+        {#each policyEvents as policyEvent, i}
+            <PolicyEvent currentFrame={currentFrame} 
+                        position={Math.round(sliderWidth * getPolicyEventPosition(policyEvent.date))}
+                        eventDetails={policyEvent}
+                        id={i}/>
+    
+        {/each}
         
     </div>
 </div>
 
 <style>
-      .scrubber {
-        border: 5px solid blue;
+    .scrubber {
         display: flex;
         flex-direction: row;
+        justify-content: center;
     }
 
     .scrubber-controls {
-        width: 10%;
+        width: 100px;
+        display: flex;
+        align-items: center;
+    }
+
+    .control-button svg {
+        height: 20px;
+    }
+
+    .control-button {
+        border: none;
+        background: none;
+        cursor: pointer;
+        height: 20px;
+        width: 30px;
+    }
+
+    .control-button:hover {
+        transform: scale(1.1);
+    }
+
+    .control-button:focus {
+        outline: none;
+    }
+
+    .control-button:active {
+        outline: none;
+        transform: scale(1.3);
     }
     
     
     .slider {
         width: 85%;
-        height: 100px;
+        height: 80px;
         position: relative;
     }
 
@@ -213,42 +233,6 @@
         height: 40px;
         cursor: pointer;
     }
-
-     .event-container {
-        position: absolute;
-        top: 50%;
-        left: 50px; 
-        transform: translateY(-50%) translateX(-50%);
-    }
-
-    .event-hit-area {
-        padding: 30px;
-        width: 10px;
-        height: 10px;
-    }
-
-    .event {
-        background: darkslategrey;
-        width: 10px;
-        height: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: all .2s ease-in-out; 
-    }
-
-    .policy-event {
-        width: 300px;
-    }
-
-    .event-info-box {
-        border: 1px solid sandybrown;
-        height: 200px;
-        width: 300px;
-        transform: translate(0px, 0px) scale(0);
-        background: white;
-        border-radius: 4px;
-    }
-
 
 </style>
 

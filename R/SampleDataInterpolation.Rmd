@@ -8,7 +8,6 @@ output: html_document
 In this file:
 
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
@@ -46,7 +45,7 @@ date_frames <- sample %>% distinct(date)
 
 rasters = list()
 
-for(i in 1:nrow(date_frames)) {
+for(i in 1:5) {
   date_frame <- date_frames$date[i]
   frame_data <- sample %>% filter(date == date_frame)
 
