@@ -2,7 +2,7 @@
 import * as gdal from 'gdal';
 import fs from 'fs';
 import { PNG } from 'pngjs';
-import hexRgb from 'hex-rgb';
+import convert from 'color-convert'
 import { scaleLinear} from 'd3-scale'
 
 const NUM_INTERMEDIARY_FRAMES = 7;
@@ -77,7 +77,7 @@ const writePNG = function(colorArray, width, height, filename) {
     console.log('made a png!');
 }
 
-const getPixelColor = function(pixelValue) {
+const getPixelColor = function(pixelValue, opacityPixelValue) {
     // if want to do bands
     // let pixelColor = pixelValue < 0 | pixelValue >= COLOR_ARRAY.length ? black_color : COLOR_ARRAY[pixelValue];
     // let rgbPixelColor = hexRgb(pixelColor, {format: 'array'});
@@ -94,6 +94,10 @@ const getPixelColor = function(pixelValue) {
         parseInt(rgbPixelColors[1]), 
         parseInt(rgbPixelColors[2])
     ]
+
+    // var hsvColor = convert.rgb.hsv(rgbPixelColor);
+    // hsvColor[1] = Math.round(hsvColor[1]* opacityPixelValue);
+    // rgbPixelColor = convert.hsv.rgb(hsvColor);
     return rgbPixelColor;
 
 }
@@ -113,6 +117,7 @@ const createPNGFromFrame = function(inputFilename, outputFilename, frameId, prev
 
     //read data into an array of length widthxheight so that d3.contours can work
     let array = band.pixels.read(0, 0, width, height);
+    //let opacityArray = opacityBand.pixels.read(0, 0, width, height);
 
     let prevArray = prevBand ? prevBand.pixels.read(0, 0, width, height) : undefined;
     let resultingFrames = []
@@ -125,6 +130,7 @@ const createPNGFromFrame = function(inputFilename, outputFilename, frameId, prev
         let currValue = array[i];
         let prevValue = prevArray ? prevArray[i] : currValue;
         let stepAmt = (currValue - prevValue) / (NUM_CALCULATED_FRAMES);
+        let opacityPixelValue = opacityArray[i];
 
         // calculate a value for each interpolated frame
         for (let frm = 0; frm < NUM_CALCULATED_FRAMES; frm++) {
@@ -151,6 +157,9 @@ const main = () => {
     var frameId = 1;
     var prevBand;
 
+    // var opacityBandData =  gdal.open('opacity_filter.tif');
+    // var opacityBand = opacityBandData.bands.get(1);
+
 
    //for each file, vectorize and save
     files.forEach(filename => {
@@ -162,6 +171,10 @@ const main = () => {
         frameId++;
         return;
     });
+
+    // let sampleFilename = '../ub-historical-air-quality-interpolation/R/frames/air_quality_bands_2019-02-14.tif'
+    // let sampleOutputFilename = 'opacityImg';
+    // createPNGFromFrame(sampleFilename, sampleOutputFilename, frameId, prevBand, opacityBand);
 }
 
 main();

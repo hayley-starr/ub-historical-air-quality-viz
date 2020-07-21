@@ -64,16 +64,18 @@
   }
 
   // set the currentTime to what the video is showing so that the scrubber is up to date
-  const reportCurrentTime = () => {
-    if (!animationPaused) {
+  const reportCurrentTime = (updateWhilePaused) => {
+    if (!animationPaused | updateWhilePaused) {
       currentTime = map && map.getSource('ap_video') && map.getSource('ap_video').video.currentTime;
-      console.log('report current time', currentTime);
     }
   }
 
   const updateCurrentTime = (time) => {
-    console.log('trying to update the currentTime', time);
-    map && map.getSource('ap_video').seek(time);
+    if (map && map.getSource('ap_video')) {
+      map.getSource('ap_video').seek(time);
+      reportCurrentTime(true);
+      map.triggerRepaint();
+    }
   }
 
   let green_color = '#87e32b'; //green
@@ -137,6 +139,11 @@
        paint: {
           'raster-opacity': 0.3
        }
+    });
+
+    map.on("click", function() {
+      map.getSource("ap_video").seek(3.0);
+      map.update;
     });
   }
 

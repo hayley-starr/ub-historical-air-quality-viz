@@ -24,8 +24,6 @@
         handleStyler && handleStyler.set('x', convertTimeToXPosition(currentTime));
     }
 
-    
-
     const convertTimeToXPosition =  (time) => {
         return time * maxScrubberWidth / maxTime;
     }
