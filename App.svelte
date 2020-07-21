@@ -103,11 +103,47 @@
     
     
     map.on('load', function() { // what to do when the map is first loaded on the page
-      addInterpolationLayer();
+      //addInterpolationLayer();
+      addVideoLayer();
     });
 
     var intervalTimer = setInterval(incrementFrame, FRAME_RATE);
   });
+
+  var playingVideo = true;
+
+  const addVideoLayer = () => {
+    map.addSource('ap_video', {
+       "type": "video",
+       "urls": [
+        "videos/testVideo.mp4",
+       ],
+      "coordinates": [
+          [106.6907, 48.03644],
+          [107.1107, 48.03644],
+          [107.1107, 47.82644],
+          [106.6907, 47.82644]
+      ]
+    });
+
+    map.addLayer({
+      id: 'ap_video',
+      type: 'raster',
+      source: 'ap_video',
+       paint: {
+          'raster-opacity': 0.3
+       }
+    });
+
+    var playingVideo = true;
+ 
+    map.on('click', function() {
+      playingVideo = !playingVideo;
+      
+      if (playingVideo) map.getSource('ap_video').play();
+      else map.getSource('ap_video').pause();
+    });
+  }
 
   const addInterpolationLayer = () => {
       map.addSource('ap_contours', {

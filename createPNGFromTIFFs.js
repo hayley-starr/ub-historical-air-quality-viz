@@ -1,19 +1,14 @@
-import { contours } from 'd3-contour';
-import { geoTransform } from 'd3-geo';
-import { geoProject } from 'd3-geo-projection';
+
 import * as gdal from 'gdal';
 import fs from 'fs';
 import { PNG } from 'pngjs';
 import hexRgb from 'hex-rgb';
-import zeros from 'zeros'
-import savePixels from 'save-pixels'
-import * as turf  from 'turf';
-import { interpolateGreys } from 'd3-scale-chromatic';
+import { scaleLinear} from 'd3-scale'
 
-const NUM_INTERMEDIARY_FRAMES = 3;
+const NUM_INTERMEDIARY_FRAMES = 7;
 const NUM_CALCULATED_FRAMES = NUM_INTERMEDIARY_FRAMES + 1;
 
-let green_color = '#87e32b'; //green
+let green_color = '#93c947'; //green
 let red_color = '#f0004c'; //red
 let yellow_color = '#ebc505'; 
 let blue_color = '#027ef2';
@@ -40,6 +35,12 @@ let COLOR_ARRAY = [
     dark_purple_color, // 13
     dark_purple_color // 14
 ]
+
+const airQualityScale = [0, 15, 100, 250, 300, 350];
+const colorScale = [blue_color, green_color, orange_color,red_color, purple_color, dark_purple_color];
+
+var scaleAirQualityToColor = scaleLinear().domain(airQualityScale).range(colorScale);
+scaleAirQualityToColor.clamp(true);
 
 
 // write geojson to file
@@ -77,9 +78,24 @@ const writePNG = function(colorArray, width, height, filename) {
 }
 
 const getPixelColor = function(pixelValue) {
-    let pixelColor = pixelValue < 0 | pixelValue >= COLOR_ARRAY.length ? black_color : COLOR_ARRAY[pixelValue];
-    let rgbPixelColor = hexRgb(pixelColor, {format: 'array'});
+    // if want to do bands
+    // let pixelColor = pixelValue < 0 | pixelValue >= COLOR_ARRAY.length ? black_color : COLOR_ARRAY[pixelValue];
+    // let rgbPixelColor = hexRgb(pixelColor, {format: 'array'});
+    // return rgbPixelColor;
+
+    let rgbColorString = scaleAirQualityToColor(pixelValue);
+   
+    let rgbPixelColors = rgbColorString.substring(4, rgbColorString.length-1)
+         .replace(/ /g, '')
+         .split(',');
+
+    var rgbPixelColor = [
+        parseInt(rgbPixelColors[0]), 
+        parseInt(rgbPixelColors[1]), 
+        parseInt(rgbPixelColors[2])
+    ]
     return rgbPixelColor;
+
 }
 
 
@@ -112,14 +128,14 @@ const createPNGFromFrame = function(inputFilename, outputFilename, frameId, prev
 
         // calculate a value for each interpolated frame
         for (let frm = 0; frm < NUM_CALCULATED_FRAMES; frm++) {
-            let interpolatedValue = Math.round(prevValue + (frm * stepAmt));
+            let interpolatedValue = prevValue + (frm * stepAmt);
            
             let pixelColor = getPixelColor(interpolatedValue);
             resultingFrames[frm].colorArray[i] = pixelColor;
         }
     }
 
-    // write each fresulting frame to a png file
+    //write each fresulting frame to a png file
     for (let frm = 0; frm < NUM_CALCULATED_FRAMES; frm++) {
         let pngFrame = resultingFrames[frm];
         writePNG(pngFrame.colorArray, width, height, '' + outputFilename + '_' + frm + '.png');   
