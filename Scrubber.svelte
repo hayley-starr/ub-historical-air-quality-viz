@@ -4,32 +4,43 @@
     import PolicyEvent from './PolicyEvent.svelte';
     import moment from 'moment';
 
-    export let currentFrame;
-    export let nFrames;
+    export let currentTime;
+    export let maxTime;
     export let pauseAnimation;
     export let startAnimation;
-    export let updateCurrentFrame;
-
-    nFrames = 431;// FOR NOW
+    export let updateCurrentTime;
 
     var isUserRunning = false; // Whether or not the USER has paused the animation
 
     let maxScrubberWidth = 1000;// width of scrubber in px
     $: maxScrubberWidth = sliderWidth;
+
     let handleStyler;
+    let currentXPos = 0;
+    let sliderWidth = 0;
 
     $: {
-        //Math.round(maxScrubberWidth*currentFrame/nFrames)
-       handleStyler && handleStyler.set('x', currentFrame);
+        console.log('scrubber currentTime: ', currentTime);
+        handleStyler && handleStyler.set('x', convertTimeToXPosition(currentTime));
     }
 
-    let sliderWidth = 0;
+    
+
+    const convertTimeToXPosition =  (time) => {
+        return time * maxScrubberWidth / maxTime;
+    }
+
+    const convertXPositionToTime = (xPos) => {
+        return xPos * maxTime / maxScrubberWidth;
+    }
+
     onMount(async () => {
-        sliderWidth = document.getElementById("slider").getBoundingClientRect().width;
+        const slider = document.getElementById("slider");
+        sliderWidth = slider.getBoundingClientRect().width;
         const handle = document.querySelector('.handle-hit-area');
         handleStyler = styler(handle);
         const handleX = value(0, (newX) => {
-            updateCurrentFrame(newX);
+            updateCurrentTime(convertXPositionToTime(newX));
         });
     
         // const range = document.querySelector('.range');
@@ -38,17 +49,18 @@
 
         const startDrag = () => {
             pauseAnimation();
-            pointerX(currentFrame).start(handleX);
+            pointerX(convertTimeToXPosition(currentTime)).start(handleX);
         };
     
         const stopDrag = () => {
             handleX.stop();
-            updateCurrentFrame(handleStyler.get('x'));
+            // convert from poistion to time
+            updateCurrentTime(convertXPositionToTime(handleStyler.get('x')));
             isUserRunning && startAnimation();
         };
 
         listen(handle, 'mousedown touchstart').start(startDrag);
-        listen(document, 'mouseup touchend').start(stopDrag);
+        listen(slider, 'mouseup touchend').start(stopDrag);
     });
 
     const handlePauseAnimation = () => {
@@ -64,6 +76,7 @@
     let startDate = moment('2019-01-10');
     let endDate = moment('2020-01-10');
     let totalDays = endDate-startDate;
+
     const getPolicyEventPosition = (policyDate) => {
         let policyDays = endDate-moment(policyDate);
         
@@ -148,7 +161,7 @@
         </div>
 
         {#each policyEvents as policyEvent, i}
-            <PolicyEvent currentFrame={currentFrame} 
+            <PolicyEvent currentFrame={currentXPos} 
                         position={Math.round(sliderWidth * getPolicyEventPosition(policyEvent.date))}
                         eventDetails={policyEvent}
                         id={i}/>

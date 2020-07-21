@@ -12,12 +12,14 @@
   const UB_COORDINATES = [106.900354, 47.917802];
   const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGF5bGV5c3RhcnIiLCJhIjoiY2s5MmhvYTU3MDBkaTNwcGI3cWJtMjdkcCJ9.tOfFfs9wWWcOfQ1sDMiwvQ';
   mapboxgl.accessToken = MAPBOX_TOKEN;
-  const FRAME_RATE = 20; // wait ms before changing frames
+  const FRAME_CHECKING_RATE = 33; // check every x ms what the current time is in the video
 
   let map;
   let nFrames = 431; // total number of frames in animation
-  let currentFrame = 1;
+
+  let currentTime = 0;
   let animationPaused = true;
+  let maxTime;
   let currentTemp = -40;
 
   let dateStrings = new Array(nFrames+1);
@@ -25,7 +27,7 @@
 
   let startDate = moment('2019-01-10');
   let temp = currentTemp;
-  
+
   // DUMMY DATA
   for (let i = 1; i <= nFrames; i++) {
     var dateString = startDate.format("YYYY[\, Week of ]MMMM[ ]Do");  
@@ -49,36 +51,29 @@
 
   // END DUMMY DATA
 
-  let currentDate = dateStrings[currentFrame];
-
-  let incrementFrame = function() {
-    if (animationPaused) return;
-    if (currentFrame+1 >= nFrames) {
-      currentFrame = 1;
-    } else {
-      currentFrame++;
-    }
-    setMapFrame(currentFrame); 
-    currentDate = dateStrings[currentFrame];
-    currentTemp = temps[currentFrame];
-  }
+   let currentDate = dateStrings[0];
 
   const pauseAnimation = () => {
     animationPaused = true;
+    map.getSource('ap_video').pause();
   }
 
   const startAnimation = () => {
     animationPaused = false;
+    map.getSource('ap_video').play();
   }
 
-  const updateCurrentFrame = (frame) => {
-    currentFrame = frame;
-    setMapFrame(frame);
-    
+  // set the currentTime to what the video is showing so that the scrubber is up to date
+  const reportCurrentTime = () => {
+    if (!animationPaused) {
+      currentTime = map && map.getSource('ap_video') && map.getSource('ap_video').video.currentTime;
+      console.log('report current time', currentTime);
+    }
   }
 
-  const setMapFrame = (frame) => {
-    //map && map.setFilter('ap_contours', ['==', 'idx', ""+frame]); // frame id is a string
+  const updateCurrentTime = (time) => {
+    console.log('trying to update the currentTime', time);
+    map && map.getSource('ap_video').seek(time);
   }
 
   let green_color = '#87e32b'; //green
@@ -103,14 +98,23 @@
     
     
     map.on('load', function() { // what to do when the map is first loaded on the page
-      //addInterpolationLayer();
       addVideoLayer();
+
+      // cannot access the video right away due to some mapbox strangeness
+      const waiting = () => {
+        if (!map.isStyleLoaded()) {
+          setTimeout(waiting, 200);
+        } else {
+          map.getSource('ap_video').pause();
+          let videoSource = map.getSource('ap_video');
+          maxTime = videoSource.video.duration;
+          var intervalTimer = setInterval(reportCurrentTime, FRAME_CHECKING_RATE);
+        }
+      };
+      waiting();
+        
     });
-
-    var intervalTimer = setInterval(incrementFrame, FRAME_RATE);
   });
-
-  var playingVideo = true;
 
   const addVideoLayer = () => {
     map.addSource('ap_video', {
@@ -118,7 +122,7 @@
        "urls": [
         "videos/testVideo.mp4",
        ],
-      "coordinates": [
+      "coordinates": [ // these must be exactly the extent of the raster frames in R!!
           [106.6907, 48.03644],
           [107.1107, 48.03644],
           [107.1107, 47.82644],
@@ -134,60 +138,7 @@
           'raster-opacity': 0.3
        }
     });
-
-    var playingVideo = true;
- 
-    map.on('click', function() {
-      playingVideo = !playingVideo;
-      
-      if (playingVideo) map.getSource('ap_video').play();
-      else map.getSource('ap_video').pause();
-    });
   }
-
-  const addInterpolationLayer = () => {
-      map.addSource('ap_contours', {
-        type: 'vector',
-        //url: 'mapbox://hayleystarr.9xq0wd8h' // with bins attempt
-        url: 'mapbox://hayleystarr.4tgsg3y7' // isobands
-      });
-
-
-      map.addLayer({
-        "id": "ap_contours",
-        "type": "fill",
-        "source": "ap_contours",
-        "source-layer": "apcontours",
-        "filter": ["==", "idx", 1], // frameID is a string
-        'layout': {
-            "visibility": "visible",
-            'fill-sort-key': ['get', 'value']
-        },
-        paint: {
-          'fill-opacity': 0.3,
-          'fill-color': {
-            property: 'value',
-            stops: [
-              [1, white_color],
-              [2, white_color],
-              [3, blue_color],
-              [4, green_color],
-              [5, green_color],
-              [6, yellow_color],
-              [7, yellow_color],
-              [8, orange_color],
-              [9, orange_color],
-              [10, red_color],
-              [11, red_color],
-              [12, purple_color],
-              [13, dark_purple_color],
-              [14, dark_purple_color],
-              [15, dark_purple_color]
-            ]}
-        }
-      });
-  }
-
 
 </script>
 
@@ -213,10 +164,11 @@
     </div>
   </div>
   <Scrubber 
-      currentFrame={currentFrame}
+      currentTime={currentTime}
+      maxTime={maxTime}
       pauseAnimation={pauseAnimation} 
       startAnimation={startAnimation} 
-      updateCurrentFrame={updateCurrentFrame}/>
+      updateCurrentTime={updateCurrentTime}/>
 </div>
 
 <style>
