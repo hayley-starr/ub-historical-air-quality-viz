@@ -62,6 +62,7 @@
 
   const startAnimation = () => {
     animationPaused = false;
+    isAnimationEnded = false;
     map.getSource('ap_video').play();
   }
 

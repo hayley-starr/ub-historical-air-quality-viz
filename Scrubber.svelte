@@ -25,7 +25,9 @@
     }
 
     $: {
-        isUserRunning = !(isAnimationEnded || !isUserRunning); // when animation ends the user is not running
+        if (isAnimationEnded) {
+            isUserRunning = false;
+        }
     }
 
     const convertTimeToXPosition =  (time) => {

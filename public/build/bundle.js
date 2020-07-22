@@ -9164,7 +9164,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (136:8) {:else}
+    // (138:8) {:else}
     function create_else_block(ctx) {
     	let button;
     	let svg;
@@ -9186,26 +9186,26 @@ var app = (function () {
     			g1 = svg_element("g");
     			g0 = svg_element("g");
     			path = svg_element("path");
-    			add_location(style, file$2, 139, 20, 5049);
-    			add_location(defs, file$2, 138, 16, 5022);
+    			add_location(style, file$2, 141, 20, 5016);
+    			add_location(defs, file$2, 140, 16, 4989);
     			attr_dev(path, "class", "cls-play-1");
     			attr_dev(path, "d", "M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z");
     			attr_dev(path, "transform", "translate(0 -0.01)");
-    			add_location(path, file$2, 149, 20, 5421);
+    			add_location(path, file$2, 151, 20, 5388);
     			attr_dev(g0, "id", "Layer_1-2");
     			attr_dev(g0, "data-name", "Layer 1-2");
-    			add_location(g0, file$2, 148, 20, 5360);
+    			add_location(g0, file$2, 150, 20, 5327);
     			attr_dev(g1, "id", "Layer_2");
     			attr_dev(g1, "data-name", "Layer 2");
-    			add_location(g1, file$2, 147, 16, 5303);
+    			add_location(g1, file$2, 149, 16, 5270);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 113.57 127.1");
     			attr_dev(svg, "class", "svelte-1ewu64p");
-    			add_location(svg, file$2, 137, 12, 4905);
+    			add_location(svg, file$2, 139, 12, 4872);
     			attr_dev(button, "class", "start-button control-button svelte-1ewu64p");
-    			add_location(button, file$2, 136, 8, 4816);
+    			add_location(button, file$2, 138, 8, 4783);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, button, anchor);
@@ -9230,14 +9230,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(136:8) {:else}",
+    		source: "(138:8) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (117:8) {#if isUserRunning}
+    // (119:8) {#if isUserRunning}
     function create_if_block(ctx) {
     	let button;
     	let svg;
@@ -9261,28 +9261,28 @@ var app = (function () {
     			g0 = svg_element("g");
     			path0 = svg_element("path");
     			path1 = svg_element("path");
-    			add_location(style, file$2, 120, 20, 4098);
-    			add_location(defs, file$2, 119, 16, 4071);
+    			add_location(style, file$2, 122, 20, 4065);
+    			add_location(defs, file$2, 121, 16, 4038);
     			attr_dev(path0, "class", "cls-pause-1");
     			attr_dev(path0, "d", "M10.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,10.5.5Z");
-    			add_location(path0, file$2, 129, 20, 4435);
+    			add_location(path0, file$2, 131, 20, 4402);
     			attr_dev(path1, "class", "cls-pause-1");
     			attr_dev(path1, "d", "M60.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,60.5.5Z");
-    			add_location(path1, file$2, 130, 20, 4582);
+    			add_location(path1, file$2, 132, 20, 4549);
     			attr_dev(g0, "id", "Layer_1-2");
     			attr_dev(g0, "data-name", "Layer 1-2");
-    			add_location(g0, file$2, 128, 20, 4374);
+    			add_location(g0, file$2, 130, 20, 4341);
     			attr_dev(g1, "id", "Layer_2");
     			attr_dev(g1, "data-name", "Layer 2");
-    			add_location(g1, file$2, 127, 16, 4317);
+    			add_location(g1, file$2, 129, 16, 4284);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 71 135");
     			attr_dev(svg, "class", "svelte-1ewu64p");
-    			add_location(svg, file$2, 118, 12, 3960);
+    			add_location(svg, file$2, 120, 12, 3927);
     			attr_dev(button, "class", "pause-button control-button svelte-1ewu64p");
-    			add_location(button, file$2, 117, 8, 3871);
+    			add_location(button, file$2, 119, 8, 3838);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, button, anchor);
@@ -9308,14 +9308,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(117:8) {#if isUserRunning}",
+    		source: "(119:8) {#if isUserRunning}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (167:8) {#each policyEvents as policyEvent, i}
+    // (169:8) {#each policyEvents as policyEvent, i}
     function create_each_block(ctx) {
     	let current;
 
@@ -9360,7 +9360,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(167:8) {#each policyEvents as policyEvent, i}",
+    		source: "(169:8) {#each policyEvents as policyEvent, i}",
     		ctx
     	});
 
@@ -9418,20 +9418,20 @@ var app = (function () {
     			}
 
     			attr_dev(div0, "class", "scrubber-controls svelte-1ewu64p");
-    			add_location(div0, file$2, 115, 4, 3802);
+    			add_location(div0, file$2, 117, 4, 3769);
     			attr_dev(div1, "class", "range svelte-1ewu64p");
-    			add_location(div1, file$2, 158, 8, 5762);
+    			add_location(div1, file$2, 160, 8, 5729);
     			attr_dev(div2, "class", "handle svelte-1ewu64p");
-    			add_location(div2, file$2, 162, 16, 5886);
+    			add_location(div2, file$2, 164, 16, 5853);
     			attr_dev(div3, "class", "handle-hit-area svelte-1ewu64p");
-    			add_location(div3, file$2, 161, 12, 5840);
+    			add_location(div3, file$2, 163, 12, 5807);
     			attr_dev(div4, "class", "handle-container svelte-1ewu64p");
-    			add_location(div4, file$2, 160, 8, 5797);
+    			add_location(div4, file$2, 162, 8, 5764);
     			attr_dev(div5, "class", "slider svelte-1ewu64p");
     			attr_dev(div5, "id", "slider");
-    			add_location(div5, file$2, 157, 4, 5721);
+    			add_location(div5, file$2, 159, 4, 5688);
     			attr_dev(div6, "class", "scrubber svelte-1ewu64p");
-    			add_location(div6, file$2, 114, 0, 3775);
+    			add_location(div6, file$2, 116, 0, 3742);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -9720,9 +9720,11 @@ var app = (function () {
     			}
     		}
 
-    		if ($$self.$$.dirty & /*isAnimationEnded, isUserRunning*/ 4097) {
+    		if ($$self.$$.dirty & /*isAnimationEnded*/ 4096) {
     			 {
-    				$$invalidate(0, isUserRunning = !(isAnimationEnded || !isUserRunning)); // when animation ends the user is not running
+    				if (isAnimationEnded) {
+    					$$invalidate(0, isUserRunning = false);
+    				}
     			}
     		}
     	};
@@ -11751,26 +11753,26 @@ var app = (function () {
     			attr_dev(link, "href", "https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css");
     			attr_dev(link, "rel", "stylesheet");
     			add_location(link, file$5, 0, 0, 0);
-    			add_location(h1, file$5, 160, 4, 4409);
+    			add_location(h1, file$5, 161, 4, 4439);
     			attr_dev(div0, "class", "title svelte-1sksttb");
-    			add_location(div0, file$5, 159, 4, 4385);
+    			add_location(div0, file$5, 160, 4, 4415);
     			attr_dev(div1, "class", "header svelte-1sksttb");
-    			add_location(div1, file$5, 158, 2, 4360);
+    			add_location(div1, file$5, 159, 2, 4390);
     			attr_dev(div2, "class", "map-current-date svelte-1sksttb");
-    			add_location(div2, file$5, 166, 8, 4605);
+    			add_location(div2, file$5, 167, 8, 4635);
     			attr_dev(div3, "class", "map-thermometer-container svelte-1sksttb");
-    			add_location(div3, file$5, 165, 6, 4557);
+    			add_location(div3, file$5, 166, 6, 4587);
     			attr_dev(div4, "class", "map-aqi-legend svelte-1sksttb");
-    			add_location(div4, file$5, 169, 6, 4716);
+    			add_location(div4, file$5, 170, 6, 4746);
     			attr_dev(div5, "id", "map");
     			attr_dev(div5, "class", "map svelte-1sksttb");
-    			add_location(div5, file$5, 164, 4, 4524);
+    			add_location(div5, file$5, 165, 4, 4554);
     			attr_dev(div6, "class", "map-legend");
-    			add_location(div6, file$5, 174, 4, 4801);
+    			add_location(div6, file$5, 175, 4, 4831);
     			attr_dev(div7, "class", "visualizations svelte-1sksttb");
-    			add_location(div7, file$5, 163, 2, 4491);
+    			add_location(div7, file$5, 164, 2, 4521);
     			attr_dev(div8, "class", "ub-ap-viz svelte-1sksttb");
-    			add_location(div8, file$5, 157, 0, 4334);
+    			add_location(div8, file$5, 158, 0, 4364);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -11891,6 +11893,7 @@ var app = (function () {
 
     	const startAnimation = () => {
     		animationPaused = false;
+    		$$invalidate(2, isAnimationEnded = false);
     		map.getSource("ap_video").play();
     	};
 
