@@ -7,6 +7,7 @@
   import Scrubber from './Scrubber.svelte' 
   import Thermometer from './Thermometer.svelte';
   import AQILegend from './AQILegend.svelte';
+  import AnimationDate from './AnimationDate.svelte';
   import moment from 'moment';
 
   const UB_COORDINATES = [106.900354, 47.917802];
@@ -165,7 +166,12 @@
   <div class='visualizations'>
     <div id='map' class='map'>
       <div class='map-thermometer-container'>
-        <div class='map-current-date'>{currentDate}</div>
+        <div class='map-current-date'>
+          <AnimationDate
+            currentTime={currentTime}
+            maxTime={maxTime}
+          />
+        </div>
         <Thermometer temp={currentTemp}/>
       </div>
       <div class='map-aqi-legend'>
