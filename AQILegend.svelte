@@ -12,7 +12,7 @@ const AQI_LEGEND_INFO = [
 </script>
 
 <div class='aqi-legend'>
-    <div class='aqi-legend-title'>AQI Legend</div>
+    <div class='aqi-legend-title'>PM2.5 Legend</div>
     {#each AQI_LEGEND_INFO as level}
         <div class='aqi-level'>
             <div class={'aqi-level-color aqi-'+level.id}></div>

@@ -1,7 +1,6 @@
 <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
 
 <script>
-  //import 'customStyles.css';
   import { onMount } from 'svelte';
   import mapboxgl from 'mapbox-gl';
   import { stations } from './stations_geojson.js';
@@ -10,6 +9,8 @@
   import AQILegend from './AQILegend.svelte';
   import AnimationDate from './AnimationDate.svelte';
   import moment from 'moment';
+  import { dateTempFrames } from './dateTempFrames.js';
+
 
   const UB_COORDINATES = [106.900354, 47.917802];
   const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGF5bGV5c3RhcnIiLCJhIjoiY2s5MmhvYTU3MDBkaTNwcGI3cWJtMjdkcCJ9.tOfFfs9wWWcOfQ1sDMiwvQ';
@@ -19,7 +20,18 @@
   let map;
 
   let currentTime = 0;
+  let currentFrame = 0;
+
+//---------- Translate current time in video to the number of the current frame ----
+
   let maxTime = 0; // will reset when video loads
+  let maxFrame = dateTempFrames.length-1; 
+  let timeToFrameMultiplier = 0;
+  $: timeToFrameMultiplier = maxTime > 0 ? maxFrame / maxTime : 0;
+  $: currentFrame = Math.round(timeToFrameMultiplier * currentTime);
+
+
+//----------- Logic for playing and pausing the animation -------------------------
   let animationPaused = true;
   let isAnimationEnded = false;
 
@@ -51,6 +63,7 @@
     }
   }
 
+
   let green_color = '#87e32b'; //green
   let red_color = '#f0004c'; //red
   let yellow_color = '#ebc505'; 
@@ -61,6 +74,7 @@
   let dark_purple_color = '#4b1f7a';
   let black_color = '#050505';
 
+//------ Setting up Mapbox layers ---------------------------------
 
   // After the DOM has been rendered set up the mapbox. (Won't work before map html is available.)
 	onMount(async () => {
@@ -128,7 +142,7 @@
       const lon = station.geometry.coordinates[0];
       const lat = station.geometry.coordinates[1];
       const el = document.createElement('div');
-      
+
       // this is a hack! have to update the style in AQILegend for the aqi-station-marker if you change this
       el.className = 'station-marker';
       el.style.height = '7px';
@@ -154,12 +168,9 @@
     <div id='map' class='map'>
       <div class='map-thermometer-container'>
         <div class='map-current-date'>
-          <AnimationDate
-            currentTime={currentTime}
-            maxTime={maxTime}
-          />
+          <AnimationDate currentFrame={currentFrame} />
         </div>
-        <Thermometer temp={0}/>
+        <Thermometer currentFrame={currentFrame} />
       </div>
       <div class='map-aqi-legend'>
         <AQILegend/>

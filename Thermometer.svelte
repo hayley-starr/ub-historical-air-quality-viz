@@ -1,7 +1,9 @@
 <script>
     import { scaleLinear} from 'd3-scale'
     import { interpolateRdYlBu } from 'd3-scale-chromatic';
-    export let temp;
+    import { dateTempFrames } from './dateTempFrames.js';
+
+    export let currentFrame;
 
     const MAX_HEIGHT = 534; // total height of mercury rect - DO NOT CHANGE
     const MIN_HEIGHT = 105; // how far the mercury rect dips below the mercury circle -DO NOT CHANGE
@@ -24,17 +26,18 @@
     var scaleTempToPixels = scaleLinear().domain([-40, 40]).range([0, HEIGHT_CHANGE]);
     scaleTempToPixels.clamp(true);
 
-
     let pixelChangeFromBaseline = 0; // -40 C to start 
     let height = MIN_HEIGHT;
     let starting_y = BOTTOMMOST_Y;
     let tempColor = '#c1272d';
+    let currentTemp = 0;
 
     $: {
-        pixelChangeFromBaseline = scaleTempToPixels(temp);
+        currentTemp = Math.round(dateTempFrames[currentFrame].temp);
+        pixelChangeFromBaseline = scaleTempToPixels(currentTemp);
         height = MIN_HEIGHT + pixelChangeFromBaseline;
         starting_y = BOTTOMMOST_Y - pixelChangeFromBaseline;
-        tempColor = scaleTempToColor(temp);
+        tempColor = scaleTempToColor(currentTemp);
     }
 
 </script>
@@ -73,7 +76,7 @@
   <!-- Full Thermometer DO NOT CHANGE -->
   <!-- <rect class="cls-3" x="49" y="17" width="86" height="534" rx="43"/> -->
   <circle class="cls-3" fill={tempColor} cx="92" cy="521" r="75"/>
-  <text class="cls-4"  fill={'#fff'} transform="translate(53.42 532)">{temp}°C</text>
+  <text class="cls-4"  fill={'#fff'} transform="translate(53.42 532)">{currentTemp}°C</text>
 </svg>
 </div>
 

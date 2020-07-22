@@ -1,26 +1,12 @@
  <script>
- 
-import { dateFrames } from './dateFrames.js';
-import moment from 'moment';
+    import { dateTempFrames } from './dateTempFrames.js';
+    import moment from 'moment';
 
-export let currentTime;
-export let maxTime;
+    export let currentFrame;
 
-let multiplier = 0;
-let currentDate;
-let maxFrame = dateFrames.length-1; 
+    let currentDate;
 
-$: multiplier = maxTime > 0 ? maxFrame / maxTime : 0;
-
-$: currentDate = getDateFromVideoTime(currentTime);
-
-const getDateFromVideoTime = (time) => {
-    if (multiplier == 0) {
-        return moment(dateFrames[0]);
-    }
-    let currentFrame = Math.round(multiplier * time);
-    return moment(dateFrames[currentFrame]);
-}
+    $: currentDate = moment(dateTempFrames[currentFrame].date);
 
  </script>
 
