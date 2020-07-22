@@ -1,9 +1,10 @@
 <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
 
 <script>
+  //import 'customStyles.css';
   import { onMount } from 'svelte';
   import mapboxgl from 'mapbox-gl';
-  import { stations } from './stations.js';
+  import { stations } from './stations_geojson.js';
   import Scrubber from './Scrubber.svelte' 
   import Thermometer from './Thermometer.svelte';
   import AQILegend from './AQILegend.svelte';
@@ -16,45 +17,11 @@
   const FRAME_CHECKING_RATE = 33; // check every x ms what the current time is in the video
 
   let map;
-  let nFrames = 431; // total number of frames in animation
 
   let currentTime = 0;
-    let maxTime = 0; // will reset when video loads
+  let maxTime = 0; // will reset when video loads
   let animationPaused = true;
   let isAnimationEnded = false;
-
-  let currentTemp = -40;
-
-  let dateStrings = new Array(nFrames+1);
-  let temps = new Array(nFrames+1);
-
-  let startDate = moment('2019-01-10');
-  let temp = currentTemp;
-
-  // DUMMY DATA
-  for (let i = 1; i <= nFrames; i++) {
-    var dateString = startDate.format("YYYY[\, Week of ]MMMM[ ]Do");  
-    if (i%7 ==0) {
-      startDate = startDate.add(7, 'days');
-      dateString = startDate.format("YYYY[\, Week of ]MMMM[ ]Do"); 
-    }
-    dateStrings[i] = dateString;
-
-    if (i >= 40 && i <= 80) {
-      temp--;
-    } else if (i > 150 && i < 200) {
-      temp-=0.5
-    } else if (i > 250 && i < 300){
-      temp--;
-    } else {
-      temp += 1
-    }
-    temps[i] = Math.round(temp);
-  }
-
-  // END DUMMY DATA
-
-   let currentDate = dateStrings[0];
 
   const pauseAnimation = () => {
     animationPaused = true;
@@ -67,7 +34,7 @@
     map.getSource('ap_video').play();
   }
 
-  // set the currentTime to what the video is showing so that the scrubber is up to date
+  // set the currentTime to what the video is showing so that the dependent components stay up to date
   const reportCurrentTime = (updateWhilePaused) => {
     if (!animationPaused | updateWhilePaused) {
       currentTime = map && map.getSource('ap_video') && map.getSource('ap_video').video.currentTime;
@@ -106,21 +73,22 @@
     
     
     map.on('load', function() { // what to do when the map is first loaded on the page
-      addVideoLayer();
+     // addVideoLayer();
+      addStationLayer();
 
       // cannot access the video right away due to some mapbox strangeness
-      const waiting = () => {
-        if (!map.isStyleLoaded()) {
-          setTimeout(waiting, 200);
-        } else {
-          map.getSource('ap_video').pause();
-          let videoSource = map.getSource('ap_video');
-          videoSource.video.loop = false;
-          maxTime = videoSource.video.duration;
-          var intervalTimer = setInterval(reportCurrentTime, FRAME_CHECKING_RATE);
-        }
-      };
-      waiting();
+      // const waiting = () => {
+      //   if (!map.isStyleLoaded()) {
+      //     setTimeout(waiting, 200);
+      //   } else {
+      //     map.getSource('ap_video').pause();
+      //     let videoSource = map.getSource('ap_video');
+      //     videoSource.video.loop = false;
+      //     maxTime = videoSource.video.duration;
+      //     var intervalTimer = setInterval(reportCurrentTime, FRAME_CHECKING_RATE);
+      //   }
+      // };
+      // waiting();
         
     });
   });
@@ -154,6 +122,19 @@
     });
   }
 
+
+  const addStationLayer = () => {
+    stations.features.forEach(station => {
+      const lon = station.geometry.coordinates[0];
+      const lat = station.geometry.coordinates[1];
+      const el = document.createElement('div');
+      el.className = 'station-marker';
+      const stationMarker = new mapboxgl.Marker(el)
+                  .setLngLat([lon, lat])
+                  .addTo(map);
+    });            
+  }
+
 </script>
 
 
@@ -172,7 +153,7 @@
             maxTime={maxTime}
           />
         </div>
-        <Thermometer temp={currentTemp}/>
+        <Thermometer temp={0}/>
       </div>
       <div class='map-aqi-legend'>
         <AQILegend/>
@@ -191,14 +172,13 @@
       updateCurrentTime={updateCurrentTime}
   />
 </div>
+<div class='station-marker'></div>
 
 <style>
 
 .ub-ap-viz {
   /*border: 4px solid aquamarine;*/
 }
-
-
 
 /* HEADER STYLES */
 
@@ -227,7 +207,6 @@
 
   /* border: 1px solid orangered; */
 }
-
 .map-thermometer-container {
   width: 750px;
   height: 100px;
