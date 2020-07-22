@@ -9,27 +9,33 @@
     export let pauseAnimation;
     export let startAnimation;
     export let updateCurrentTime;
+    export let isAnimationEnded;
 
     var isUserRunning = false; // Whether or not the USER has paused the animation
-
+    let sliderWidth = 0;
     let maxScrubberWidth = 1000;// width of scrubber in px
-    $: maxScrubberWidth = sliderWidth;
-
     let handleStyler;
     let currentXPos = 0;
-    let sliderWidth = 0;
+
+    $: maxScrubberWidth = sliderWidth;
+
+
+    $: { // continuoslu check currentTime for where to place the scrubber handle
+        handleStyler && handleStyler.set('x', convertTimeToXPosition(currentTime));
+    }
 
     $: {
-        console.log('scrubber currentTime: ', currentTime);
-        handleStyler && handleStyler.set('x', convertTimeToXPosition(currentTime));
+        if (isAnimationEnded) {
+            isUserRunning = false;
+        }
     }
 
     const convertTimeToXPosition =  (time) => {
         return time * maxScrubberWidth / maxTime;
     }
 
-    const convertXPositionToTime = (xPos) => {
-        return xPos * maxTime / maxScrubberWidth;
+    const convertXPositionToTime = (xPos) => {      
+        return !maxScrubberWidth ? 0 : xPos * maxTime / maxScrubberWidth;
     }
 
     onMount(async () => {
@@ -110,25 +116,7 @@
 
 <div class="scrubber">
     <div class='scrubber-controls'>
-        <button class='start-button control-button' on:click={handleStartAnimation}>
-            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 113.57 127.1">
-                <defs>
-                    <style>
-                    .cls-play-1 {
-                        stroke: #000;
-                        fill: #000;
-                        stroke-miterlimit: 10;
-                    }
-                    </style>
-                </defs>
-                <g id="Layer_2" data-name="Layer 2">
-                    <g id="Layer_1-2" data-name="Layer 1-2">
-                    <path class="cls-play-1" d="M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z" transform="translate(0 -0.01)"/>
-                    </g>
-                </g>
-            </svg>
-
-        </button>
+        {#if isUserRunning} 
         <button class='pause-button control-button' on:click={handlePauseAnimation}>
             <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71 135">
                 <defs>
@@ -147,6 +135,26 @@
                 </g>
             </svg>
         </button>
+        {:else}
+        <button class='start-button control-button' on:click={handleStartAnimation}>
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 113.57 127.1">
+                <defs>
+                    <style>
+                    .cls-play-1 {
+                        stroke: #000;
+                        fill: #000;
+                        stroke-miterlimit: 10;
+                    }
+                    </style>
+                </defs>
+                <g id="Layer_2" data-name="Layer 2">
+                    <g id="Layer_1-2" data-name="Layer 1-2">
+                    <path class="cls-play-1" d="M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z" transform="translate(0 -0.01)"/>
+                    </g>
+                </g>
+            </svg>
+        </button>
+        {/if}
     </div>
 
     <div class="slider" id="slider">
@@ -177,7 +185,7 @@
     }
 
     .scrubber-controls {
-        width: 100px;
+        width: 50px;
         display: flex;
         align-items: center;
     }

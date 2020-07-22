@@ -4,6 +4,7 @@ import fs from 'fs';
 import { PNG } from 'pngjs';
 import convert from 'color-convert'
 import { scaleLinear} from 'd3-scale'
+import { temps } from './ub_7_day_avg_temp'
 
 const NUM_INTERMEDIARY_FRAMES = 7;
 const NUM_CALCULATED_FRAMES = NUM_INTERMEDIARY_FRAMES + 1;
@@ -111,6 +112,10 @@ const createPNGFromFrame = function(inputFilename, outputFilename, frameId, prev
     let gdalDataset = gdal.open(inputFilename);
     let band = gdalDataset.bands.get(1);
 
+    if (!prevBand) {
+        return band;
+    }
+
     let width = band.size.x-1; 
     let height = band.size.y-1;
     
@@ -119,7 +124,7 @@ const createPNGFromFrame = function(inputFilename, outputFilename, frameId, prev
     let array = band.pixels.read(0, 0, width, height);
     //let opacityArray = opacityBand.pixels.read(0, 0, width, height);
 
-    let prevArray = prevBand ? prevBand.pixels.read(0, 0, width, height) : undefined;
+    let prevArray = prevBand.pixels.read(0, 0, width, height);
     let resultingFrames = []
 
     for (let frm = 0; frm < NUM_CALCULATED_FRAMES; frm++) {
@@ -130,7 +135,7 @@ const createPNGFromFrame = function(inputFilename, outputFilename, frameId, prev
         let currValue = array[i];
         let prevValue = prevArray ? prevArray[i] : currValue;
         let stepAmt = (currValue - prevValue) / (NUM_CALCULATED_FRAMES);
-        let opacityPixelValue = opacityArray[i];
+       // let opacityPixelValue = opacityArray[i];
 
         // calculate a value for each interpolated frame
         for (let frm = 0; frm < NUM_CALCULATED_FRAMES; frm++) {
@@ -156,25 +161,93 @@ const main = () => {
     var files = fs.readdirSync('../ub-historical-air-quality-interpolation/R/frames');
     var frameId = 1;
     var prevBand;
+    
 
     // var opacityBandData =  gdal.open('opacity_filter.tif');
     // var opacityBand = opacityBandData.bands.get(1);
 
+    let dateArray = [];
+    let tempsArray = [];
+    let prevTemp;
+    var tempArrayIndex = 0;
 
-   //for each file, vectorize and save
+   //for each file, png-ize and save
     files.forEach(filename => {
-        console.log(filename);
-
         let inputFilename = '../ub-historical-air-quality-interpolation/R/frames/' + filename;
-        let outputFilename = 'pngs/img' + frameId;   
-        prevBand = createPNGFromFrame(inputFilename, outputFilename, frameId, prevBand);
-        frameId++;
-        return;
+        // let outputFilename = 'pngs/img' + frameId;   
+        // prevBand = createPNGFromFrame(inputFilename, outputFilename, frameId, prevBand);
+        // frameId++;
+
+        // get date array
+        let dateString = filename.substring(18, 28);
+        let date = new Date(dateString);
+        dateArray.push(date);
+
+
+        let currTemp = temps[tempArrayIndex].mov_daily_avg;
+
+        if (prevTemp) {     
+            let stepAmt = (currTemp - prevTemp) / (NUM_CALCULATED_FRAMES);
+            for (let frm = 0; frm < NUM_CALCULATED_FRAMES; frm++) {
+                let interpolatedTempValue = prevTemp + (frm * stepAmt);
+                tempsArray.push(interpolatedTempValue);
+            }
+        }
+
+        prevTemp = currTemp;
+        tempArrayIndex++;
     });
 
+    writeDatestoFrameArray(dateArray, tempsArray);
+
+    // SEEING IF CAN APPLY OPACITY RASTER
     // let sampleFilename = '../ub-historical-air-quality-interpolation/R/frames/air_quality_bands_2019-02-14.tif'
     // let sampleOutputFilename = 'opacityImg';
     // createPNGFromFrame(sampleFilename, sampleOutputFilename, frameId, prevBand, opacityBand);
 }
 
+const writeDatestoFrameArray = (dateArray, tempsArray) => {
+    let prevDate = dateArray[0];
+    let tempArrayIndex = 0;
+    let dateTempFrameArray = [];
+
+    for (let i = 1; i < dateArray.length; i++) {
+        let currDate = dateArray[i];
+
+        let firstHalf = NUM_CALCULATED_FRAMES/2;
+        let secondHalf = NUM_CALCULATED_FRAMES - firstHalf;
+
+        for (let frm = 0; frm < firstHalf; frm++) {
+            dateTempFrameArray.push({
+                date: prevDate,
+                temp: tempsArray[tempArrayIndex]
+            });
+            tempArrayIndex++;
+        }
+
+        for (let frm = 0; frm < secondHalf; frm++) {
+            dateTempFrameArray.push({
+                date: currDate,
+                temp: tempsArray[tempArrayIndex]
+            });
+            tempArrayIndex++;
+        }
+        prevDate = currDate;
+    };
+
+    // convert JSON object to string
+    let dateTempArrayFrameJson = JSON.stringify(dateTempFrameArray);
+
+   // write JSON string to a file
+    fs.writeFile('dateTempFrames.json', dateTempArrayFrameJson, (err) => {
+        if (err) {
+            throw err;
+        }
+        console.log("JSON data is saved.");
+    });
+    
+}
+
 main();
+
+

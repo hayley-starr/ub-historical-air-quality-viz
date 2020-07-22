@@ -427,45 +427,35 @@ var app = (function () {
     return mapboxgl;
 
     })));
-
+    //# sourceMappingURL=mapbox-gl.js.map
     });
 
-    const stations = {
+    let stations = {
     "type": "FeatureCollection",
-    "name": "stations",
+    "name": "serial_number",
     "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
     "features": [
-    { "type": "Feature", "properties": { "name": "Amgalan" }, "geometry": { "type": "Point", "coordinates": [ 106.997907000026103, 47.913428999907488 ] } },
-    { "type": "Feature", "properties": { "name": "Arvaikheer Sumiin Zakhirgaa" }, "geometry": { "type": "Point", "coordinates": [ 102.777318999999864, 46.259495999999871 ] } },
-    { "type": "Feature", "properties": { "name": "Baruun 4 zam" }, "geometry": { "type": "Point", "coordinates": [ 106.89419440002294, 47.915383299924223 ] } },
-    { "type": "Feature", "properties": { "name": "Bayankhoshuu" }, "geometry": { "type": "Point", "coordinates": [ 106.822752000020699, 47.957559999934176 ] } },
-    { "type": "Feature", "properties": { "name": "Bayanzrukh 27r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.931421000023974, 47.939126999918507 ] } },
-    { "type": "Feature", "properties": { "name": "Bayanzurkh 24r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.987388000025732, 47.925952999909299 ] } },
-    { "type": "Feature", "properties": { "name": "Bayanzurkh 2r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.935634000024109, 47.933671999917848 ] } },
-    { "type": "Feature", "properties": { "name": "Bayanzurkh 9r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 107.006293000026261, 47.935862999905972 ] } },
-    { "type": "Feature", "properties": { "name": "Bukhiin urguu" }, "geometry": { "type": "Point", "coordinates": [ 106.937361100024233, 47.917605599917593 ] } },
-    { "type": "Feature", "properties": { "name": "ChD 10r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.906028000023213, 47.93693099992241 ] } },
-    { "type": "Feature", "properties": { "name": "Khan-Uul 16r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.770765000019509, 47.85791599994085 ] } },
-    { "type": "Feature", "properties": { "name": "Khan-Uul 7r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.80391300002043, 47.866313999936729 ] } },
-    { "type": "Feature", "properties": { "name": "Misheel expo" }, "geometry": { "type": "Point", "coordinates": [ 106.882472200022647, 47.894338899925991 ] } },
-    { "type": "Feature", "properties": { "name": "Mongol gazar" }, "geometry": { "type": "Point", "coordinates": [ 106.85070830002168, 47.903538899930467 ] } },
-    { "type": "Feature", "properties": { "name": "Nisekh" }, "geometry": { "type": "Point", "coordinates": [ 106.779094000019754, 47.863942999939837 ] } },
-    { "type": "Feature", "properties": { "name": "SBD 12r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.91905900002358, 47.942935999920422 ] } },
-    { "type": "Feature", "properties": { "name": "SKhD Emneleg" }, "geometry": { "type": "Point", "coordinates": [ 106.846383000021532, 47.915243999931043 ] } },
-    { "type": "Feature", "properties": { "name": "Songinoikhairkhan 26r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.793034000019929, 47.937127999938021 ] } },
-    { "type": "Feature", "properties": { "name": "Songinoikhairkhan 67r Surguuli" }, "geometry": { "type": "Point", "coordinates": [ 106.826962000020842, 47.953245999933621 ] } },
-    { "type": "Feature", "properties": { "name": "Songinoikhairkhan 9r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.836971000021123, 47.957137999932279 ] } },
-    { "type": "Feature", "properties": { "name": "Songinokhairkhan" }, "geometry": { "type": "Point", "coordinates": [ 106.848061000021559, 47.917980999930805 ] } },
-    { "type": "Feature", "properties": { "name": "Songinokhairkhan 3r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.794645000020012, 47.922825999937828 ] } },
-    { "type": "Feature", "properties": { "name": "Songinokhairkhan 5r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.817432000020631, 47.932848999934897 ] } },
-    { "type": "Feature", "properties": { "name": "Sukhbaatar 16r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.929907000023817, 47.968354999918695 ] } },
-    { "type": "Feature", "properties": { "name": "Sukhbaatar 9r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.913833000023473, 47.929506999921244 ] } },
-    { "type": "Feature", "properties": { "name": "Televiz" }, "geometry": { "type": "Point", "coordinates": [ 106.888629000022718, 47.929731999925025 ] } },
-    { "type": "Feature", "properties": { "name": "Tolgoit" }, "geometry": { "type": "Point", "coordinates": [ 106.79480500002002, 47.922494999937818 ] } },
-    { "type": "Feature", "properties": { "name": "Tuv Nomiin San" }, "geometry": { "type": "Point", "coordinates": [ 106.917010000023623, 47.914648999920779 ] } },
-    { "type": "Feature", "properties": { "name": "US Embassy in Ulaanbaatar" }, "geometry": { "type": "Point", "coordinates": [ 106.929470000023954, 47.928386999918821 ] } },
-    { "type": "Feature", "properties": { "name": "Urgakh naran" }, "geometry": { "type": "Point", "coordinates": [ 107.118019400030079, 47.866461099884475 ] } },
-    { "type": "Feature", "properties": { "name": "Zaisan Buddha Garden" }, "geometry": { "type": "Point", "coordinates": [ 106.911610000023572, 47.885563999921665 ] } }
+    { "type": "Feature", "id": 1, "properties": { "serial_number": "HMA6KRK" }, "geometry": { "type": "Point", "coordinates": [ 106.865684, 47.924417 ] } },
+    { "type": "Feature", "id": 2, "properties": { "serial_number": "KT4KJ47" }, "geometry": { "type": "Point", "coordinates": [ 106.893736, 47.915527 ] } },
+    { "type": "Feature", "id": 3, "properties": { "serial_number": "LUAKYUG" }, "geometry": { "type": "Point", "coordinates": [ 106.953814, 47.91212 ] } },
+    { "type": "Feature", "id": 4, "properties": { "serial_number": "HGSSMAW" }, "geometry": { "type": "Point", "coordinates": [ 106.943219, 47.953734 ] } },
+    { "type": "Feature", "id": 5, "properties": { "serial_number": "Y7KL6KJ" }, "geometry": { "type": "Point", "coordinates": [ 106.987388, 47.925953 ] } },
+    { "type": "Feature", "id": 6, "properties": { "serial_number": "MUPH4JJ" }, "geometry": { "type": "Point", "coordinates": [ 106.931421, 47.939127 ] } },
+    { "type": "Feature", "id": 7, "properties": { "serial_number": "TTVPJAP" }, "geometry": { "type": "Point", "coordinates": [ 106.935634, 47.933672 ] } },
+    { "type": "Feature", "id": 8, "properties": { "serial_number": "TMSSCRY" }, "geometry": { "type": "Point", "coordinates": [ 107.006293, 47.935863 ] } },
+    { "type": "Feature", "id": 9, "properties": { "serial_number": "TVUM769" }, "geometry": { "type": "Point", "coordinates": [ 106.919059, 47.942936 ] } },
+    { "type": "Feature", "id": 10, "properties": { "serial_number": "PCMSTGG" }, "geometry": { "type": "Point", "coordinates": [ 106.929907, 47.968355 ] } },
+    { "type": "Feature", "id": 11, "properties": { "serial_number": "RR9M4V9" }, "geometry": { "type": "Point", "coordinates": [ 106.913833, 47.929507 ] } },
+    { "type": "Feature", "id": 12, "properties": { "serial_number": "7zxpmnr6" }, "geometry": { "type": "Point", "coordinates": [ 106.91701, 47.914649 ] } },
+    { "type": "Feature", "id": 13, "properties": { "serial_number": "KW6XH4J" }, "geometry": { "type": "Point", "coordinates": [ 106.793034, 47.937128 ] } },
+    { "type": "Feature", "id": 14, "properties": { "serial_number": "CUVCV9Y" }, "geometry": { "type": "Point", "coordinates": [ 106.794645, 47.922826 ] } },
+    { "type": "Feature", "id": 15, "properties": { "serial_number": "GCWJPX9" }, "geometry": { "type": "Point", "coordinates": [ 106.817432, 47.932849 ] } },
+    { "type": "Feature", "id": 16, "properties": { "serial_number": "CVWU6VT" }, "geometry": { "type": "Point", "coordinates": [ 106.826962, 47.953246 ] } },
+    { "type": "Feature", "id": 17, "properties": { "serial_number": "SMCAMHK" }, "geometry": { "type": "Point", "coordinates": [ 106.836971, 47.957138 ] } },
+    { "type": "Feature", "id": 18, "properties": { "serial_number": "GJCXCYS" }, "geometry": { "type": "Point", "coordinates": [ 106.770765, 47.857916 ] } },
+    { "type": "Feature", "id": 19, "properties": { "serial_number": "WHSSK9M" }, "geometry": { "type": "Point", "coordinates": [ 106.803913, 47.866314 ] } },
+    { "type": "Feature", "id": 20, "properties": { "serial_number": "JAHP4HS" }, "geometry": { "type": "Point", "coordinates": [ 106.91161, 47.885564 ] } },
+    { "type": "Feature", "id": 21, "properties": { "serial_number": "PTM4JAM" }, "geometry": { "type": "Point", "coordinates": [ 106.905946, 47.936933 ] } }
     ]
     };
 
@@ -9155,27 +9145,176 @@ var app = (function () {
     }
 
     /* Scrubber.svelte generated by Svelte v3.20.1 */
-
-    const { console: console_1$1 } = globals;
     const file$2 = "Scrubber.svelte";
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[19] = list[i];
-    	child_ctx[21] = i;
+    	child_ctx[20] = list[i];
+    	child_ctx[22] = i;
     	return child_ctx;
     }
 
-    // (161:8) {#each policyEvents as policyEvent, i}
+    // (138:8) {:else}
+    function create_else_block(ctx) {
+    	let button;
+    	let svg;
+    	let defs;
+    	let style;
+    	let t;
+    	let g1;
+    	let g0;
+    	let path;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			button = element("button");
+    			svg = svg_element("svg");
+    			defs = svg_element("defs");
+    			style = svg_element("style");
+    			t = text(".cls-play-1 {\n                        stroke: #000;\n                        fill: #000;\n                        stroke-miterlimit: 10;\n                    }\n                    ");
+    			g1 = svg_element("g");
+    			g0 = svg_element("g");
+    			path = svg_element("path");
+    			add_location(style, file$2, 141, 20, 5016);
+    			add_location(defs, file$2, 140, 16, 4989);
+    			attr_dev(path, "class", "cls-play-1");
+    			attr_dev(path, "d", "M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z");
+    			attr_dev(path, "transform", "translate(0 -0.01)");
+    			add_location(path, file$2, 151, 20, 5388);
+    			attr_dev(g0, "id", "Layer_1-2");
+    			attr_dev(g0, "data-name", "Layer 1-2");
+    			add_location(g0, file$2, 150, 20, 5327);
+    			attr_dev(g1, "id", "Layer_2");
+    			attr_dev(g1, "data-name", "Layer 2");
+    			add_location(g1, file$2, 149, 16, 5270);
+    			attr_dev(svg, "id", "Layer_1");
+    			attr_dev(svg, "data-name", "Layer 1");
+    			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
+    			attr_dev(svg, "viewBox", "0 0 113.57 127.1");
+    			attr_dev(svg, "class", "svelte-1ewu64p");
+    			add_location(svg, file$2, 139, 12, 4872);
+    			attr_dev(button, "class", "start-button control-button svelte-1ewu64p");
+    			add_location(button, file$2, 138, 8, 4783);
+    		},
+    		m: function mount(target, anchor, remount) {
+    			insert_dev(target, button, anchor);
+    			append_dev(button, svg);
+    			append_dev(svg, defs);
+    			append_dev(defs, style);
+    			append_dev(style, t);
+    			append_dev(svg, g1);
+    			append_dev(g1, g0);
+    			append_dev(g0, path);
+    			if (remount) dispose();
+    			dispose = listen_dev(button, "click", /*handleStartAnimation*/ ctx[4], false, false, false);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(button);
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block.name,
+    		type: "else",
+    		source: "(138:8) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (119:8) {#if isUserRunning}
+    function create_if_block(ctx) {
+    	let button;
+    	let svg;
+    	let defs;
+    	let style;
+    	let t;
+    	let g1;
+    	let g0;
+    	let path0;
+    	let path1;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			button = element("button");
+    			svg = svg_element("svg");
+    			defs = svg_element("defs");
+    			style = svg_element("style");
+    			t = text(".cls-pause-1 {\n                        stroke: #000;\n                        stroke-miterlimit: 10;\n                    }\n                    ");
+    			g1 = svg_element("g");
+    			g0 = svg_element("g");
+    			path0 = svg_element("path");
+    			path1 = svg_element("path");
+    			add_location(style, file$2, 122, 20, 4065);
+    			add_location(defs, file$2, 121, 16, 4038);
+    			attr_dev(path0, "class", "cls-pause-1");
+    			attr_dev(path0, "d", "M10.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,10.5.5Z");
+    			add_location(path0, file$2, 131, 20, 4402);
+    			attr_dev(path1, "class", "cls-pause-1");
+    			attr_dev(path1, "d", "M60.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,60.5.5Z");
+    			add_location(path1, file$2, 132, 20, 4549);
+    			attr_dev(g0, "id", "Layer_1-2");
+    			attr_dev(g0, "data-name", "Layer 1-2");
+    			add_location(g0, file$2, 130, 20, 4341);
+    			attr_dev(g1, "id", "Layer_2");
+    			attr_dev(g1, "data-name", "Layer 2");
+    			add_location(g1, file$2, 129, 16, 4284);
+    			attr_dev(svg, "id", "Layer_1");
+    			attr_dev(svg, "data-name", "Layer 1");
+    			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
+    			attr_dev(svg, "viewBox", "0 0 71 135");
+    			attr_dev(svg, "class", "svelte-1ewu64p");
+    			add_location(svg, file$2, 120, 12, 3927);
+    			attr_dev(button, "class", "pause-button control-button svelte-1ewu64p");
+    			add_location(button, file$2, 119, 8, 3838);
+    		},
+    		m: function mount(target, anchor, remount) {
+    			insert_dev(target, button, anchor);
+    			append_dev(button, svg);
+    			append_dev(svg, defs);
+    			append_dev(defs, style);
+    			append_dev(style, t);
+    			append_dev(svg, g1);
+    			append_dev(g1, g0);
+    			append_dev(g0, path0);
+    			append_dev(g0, path1);
+    			if (remount) dispose();
+    			dispose = listen_dev(button, "click", /*handlePauseAnimation*/ ctx[3], false, false, false);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(button);
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block.name,
+    		type: "if",
+    		source: "(119:8) {#if isUserRunning}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (169:8) {#each policyEvents as policyEvent, i}
     function create_each_block(ctx) {
     	let current;
 
     	const policyevent = new PolicyEvent({
     			props: {
-    				currentFrame: /*currentXPos*/ ctx[1],
-    				position: Math.round(/*sliderWidth*/ ctx[0] * /*getPolicyEventPosition*/ ctx[4](/*policyEvent*/ ctx[19].date)),
-    				eventDetails: /*policyEvent*/ ctx[19],
-    				id: /*i*/ ctx[21]
+    				currentFrame: /*currentXPos*/ ctx[2],
+    				position: Math.round(/*sliderWidth*/ ctx[1] * /*getPolicyEventPosition*/ ctx[5](/*policyEvent*/ ctx[20].date)),
+    				eventDetails: /*policyEvent*/ ctx[20],
+    				id: /*i*/ ctx[22]
     			},
     			$$inline: true
     		});
@@ -9190,7 +9329,7 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const policyevent_changes = {};
-    			if (dirty & /*sliderWidth*/ 1) policyevent_changes.position = Math.round(/*sliderWidth*/ ctx[0] * /*getPolicyEventPosition*/ ctx[4](/*policyEvent*/ ctx[19].date));
+    			if (dirty & /*sliderWidth*/ 2) policyevent_changes.position = Math.round(/*sliderWidth*/ ctx[1] * /*getPolicyEventPosition*/ ctx[5](/*policyEvent*/ ctx[20].date));
     			policyevent.$set(policyevent_changes);
     		},
     		i: function intro(local) {
@@ -9211,7 +9350,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(161:8) {#each policyEvents as policyEvent, i}",
+    		source: "(169:8) {#each policyEvents as policyEvent, i}",
     		ctx
     	});
 
@@ -9221,35 +9360,24 @@ var app = (function () {
     function create_fragment$2(ctx) {
     	let div6;
     	let div0;
-    	let button0;
-    	let svg0;
-    	let defs0;
-    	let style0;
     	let t0;
-    	let g1;
-    	let g0;
-    	let path0;
-    	let t1;
-    	let button1;
-    	let svg1;
-    	let defs1;
-    	let style1;
-    	let t2;
-    	let g3;
-    	let g2;
-    	let path1;
-    	let path2;
-    	let t3;
     	let div5;
     	let div1;
-    	let t4;
+    	let t1;
     	let div4;
     	let div3;
     	let div2;
-    	let t5;
+    	let t2;
     	let current;
-    	let dispose;
-    	let each_value = /*policyEvents*/ ctx[5];
+
+    	function select_block_type(ctx, dirty) {
+    		if (/*isUserRunning*/ ctx[0]) return create_if_block;
+    		return create_else_block;
+    	}
+
+    	let current_block_type = select_block_type(ctx);
+    	let if_block = current_block_type(ctx);
+    	let each_value = /*policyEvents*/ ctx[6];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -9265,143 +9393,73 @@ var app = (function () {
     		c: function create() {
     			div6 = element("div");
     			div0 = element("div");
-    			button0 = element("button");
-    			svg0 = svg_element("svg");
-    			defs0 = svg_element("defs");
-    			style0 = svg_element("style");
-    			t0 = text(".cls-play-1 {\n                        stroke: #000;\n                        fill: #000;\n                        stroke-miterlimit: 10;\n                    }\n                    ");
-    			g1 = svg_element("g");
-    			g0 = svg_element("g");
-    			path0 = svg_element("path");
-    			t1 = space();
-    			button1 = element("button");
-    			svg1 = svg_element("svg");
-    			defs1 = svg_element("defs");
-    			style1 = svg_element("style");
-    			t2 = text(".cls-pause-1 {\n                        stroke: #000;\n                        stroke-miterlimit: 10;\n                    }\n                    ");
-    			g3 = svg_element("g");
-    			g2 = svg_element("g");
-    			path1 = svg_element("path");
-    			path2 = svg_element("path");
-    			t3 = space();
+    			if_block.c();
+    			t0 = space();
     			div5 = element("div");
     			div1 = element("div");
-    			t4 = space();
+    			t1 = space();
     			div4 = element("div");
     			div3 = element("div");
     			div2 = element("div");
-    			t5 = space();
+    			t2 = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			add_location(style0, file$2, 115, 20, 3874);
-    			add_location(defs0, file$2, 114, 16, 3847);
-    			attr_dev(path0, "class", "cls-play-1");
-    			attr_dev(path0, "d", "M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z");
-    			attr_dev(path0, "transform", "translate(0 -0.01)");
-    			add_location(path0, file$2, 125, 20, 4246);
-    			attr_dev(g0, "id", "Layer_1-2");
-    			attr_dev(g0, "data-name", "Layer 1-2");
-    			add_location(g0, file$2, 124, 20, 4185);
-    			attr_dev(g1, "id", "Layer_2");
-    			attr_dev(g1, "data-name", "Layer 2");
-    			add_location(g1, file$2, 123, 16, 4128);
-    			attr_dev(svg0, "id", "Layer_1");
-    			attr_dev(svg0, "data-name", "Layer 1");
-    			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
-    			attr_dev(svg0, "viewBox", "0 0 113.57 127.1");
-    			attr_dev(svg0, "class", "svelte-nrk165");
-    			add_location(svg0, file$2, 113, 12, 3730);
-    			attr_dev(button0, "class", "start-button control-button svelte-nrk165");
-    			add_location(button0, file$2, 112, 8, 3641);
-    			add_location(style1, file$2, 134, 20, 4752);
-    			add_location(defs1, file$2, 133, 16, 4725);
-    			attr_dev(path1, "class", "cls-pause-1");
-    			attr_dev(path1, "d", "M10.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,10.5.5Z");
-    			add_location(path1, file$2, 143, 20, 5089);
-    			attr_dev(path2, "class", "cls-pause-1");
-    			attr_dev(path2, "d", "M60.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,60.5.5Z");
-    			add_location(path2, file$2, 144, 20, 5236);
-    			attr_dev(g2, "id", "Layer_1-2");
-    			attr_dev(g2, "data-name", "Layer 1-2");
-    			add_location(g2, file$2, 142, 20, 5028);
-    			attr_dev(g3, "id", "Layer_2");
-    			attr_dev(g3, "data-name", "Layer 2");
-    			add_location(g3, file$2, 141, 16, 4971);
-    			attr_dev(svg1, "id", "Layer_1");
-    			attr_dev(svg1, "data-name", "Layer 1");
-    			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
-    			attr_dev(svg1, "viewBox", "0 0 71 135");
-    			attr_dev(svg1, "class", "svelte-nrk165");
-    			add_location(svg1, file$2, 132, 12, 4614);
-    			attr_dev(button1, "class", "pause-button control-button svelte-nrk165");
-    			add_location(button1, file$2, 131, 8, 4525);
-    			attr_dev(div0, "class", "scrubber-controls svelte-nrk165");
-    			add_location(div0, file$2, 111, 4, 3601);
-    			attr_dev(div1, "class", "range svelte-nrk165");
-    			add_location(div1, file$2, 152, 8, 5503);
-    			attr_dev(div2, "class", "handle svelte-nrk165");
-    			add_location(div2, file$2, 156, 16, 5627);
-    			attr_dev(div3, "class", "handle-hit-area svelte-nrk165");
-    			add_location(div3, file$2, 155, 12, 5581);
-    			attr_dev(div4, "class", "handle-container svelte-nrk165");
-    			add_location(div4, file$2, 154, 8, 5538);
-    			attr_dev(div5, "class", "slider svelte-nrk165");
+    			attr_dev(div0, "class", "scrubber-controls svelte-1ewu64p");
+    			add_location(div0, file$2, 117, 4, 3769);
+    			attr_dev(div1, "class", "range svelte-1ewu64p");
+    			add_location(div1, file$2, 160, 8, 5729);
+    			attr_dev(div2, "class", "handle svelte-1ewu64p");
+    			add_location(div2, file$2, 164, 16, 5853);
+    			attr_dev(div3, "class", "handle-hit-area svelte-1ewu64p");
+    			add_location(div3, file$2, 163, 12, 5807);
+    			attr_dev(div4, "class", "handle-container svelte-1ewu64p");
+    			add_location(div4, file$2, 162, 8, 5764);
+    			attr_dev(div5, "class", "slider svelte-1ewu64p");
     			attr_dev(div5, "id", "slider");
-    			add_location(div5, file$2, 151, 4, 5462);
-    			attr_dev(div6, "class", "scrubber svelte-nrk165");
-    			add_location(div6, file$2, 110, 0, 3574);
+    			add_location(div5, file$2, 159, 4, 5688);
+    			attr_dev(div6, "class", "scrubber svelte-1ewu64p");
+    			add_location(div6, file$2, 116, 0, 3742);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
-    		m: function mount(target, anchor, remount) {
+    		m: function mount(target, anchor) {
     			insert_dev(target, div6, anchor);
     			append_dev(div6, div0);
-    			append_dev(div0, button0);
-    			append_dev(button0, svg0);
-    			append_dev(svg0, defs0);
-    			append_dev(defs0, style0);
-    			append_dev(style0, t0);
-    			append_dev(svg0, g1);
-    			append_dev(g1, g0);
-    			append_dev(g0, path0);
-    			append_dev(div0, t1);
-    			append_dev(div0, button1);
-    			append_dev(button1, svg1);
-    			append_dev(svg1, defs1);
-    			append_dev(defs1, style1);
-    			append_dev(style1, t2);
-    			append_dev(svg1, g3);
-    			append_dev(g3, g2);
-    			append_dev(g2, path1);
-    			append_dev(g2, path2);
-    			append_dev(div6, t3);
+    			if_block.m(div0, null);
+    			append_dev(div6, t0);
     			append_dev(div6, div5);
     			append_dev(div5, div1);
-    			append_dev(div5, t4);
+    			append_dev(div5, t1);
     			append_dev(div5, div4);
     			append_dev(div4, div3);
     			append_dev(div3, div2);
-    			append_dev(div5, t5);
+    			append_dev(div5, t2);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(div5, null);
     			}
 
     			current = true;
-    			if (remount) run_all(dispose);
-
-    			dispose = [
-    				listen_dev(button0, "click", /*handleStartAnimation*/ ctx[3], false, false, false),
-    				listen_dev(button1, "click", /*handlePauseAnimation*/ ctx[2], false, false, false)
-    			];
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*currentXPos, Math, sliderWidth, getPolicyEventPosition, policyEvents*/ 51) {
-    				each_value = /*policyEvents*/ ctx[5];
+    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
+    				if_block.p(ctx, dirty);
+    			} else {
+    				if_block.d(1);
+    				if_block = current_block_type(ctx);
+
+    				if (if_block) {
+    					if_block.c();
+    					if_block.m(div0, null);
+    				}
+    			}
+
+    			if (dirty & /*currentXPos, Math, sliderWidth, getPolicyEventPosition, policyEvents*/ 102) {
+    				each_value = /*policyEvents*/ ctx[6];
     				validate_each_argument(each_value);
     				let i;
 
@@ -9448,8 +9506,8 @@ var app = (function () {
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div6);
+    			if_block.d();
     			destroy_each(each_blocks, detaching);
-    			run_all(dispose);
     		}
     	};
 
@@ -9470,25 +9528,28 @@ var app = (function () {
     	let { pauseAnimation } = $$props;
     	let { startAnimation } = $$props;
     	let { updateCurrentTime } = $$props;
+    	let { isAnimationEnded } = $$props;
     	var isUserRunning = false; // Whether or not the USER has paused the animation
+    	let sliderWidth = 0;
     	let maxScrubberWidth = 1000; // width of scrubber in px
     	let handleStyler;
     	let currentXPos = 0;
-    	let sliderWidth = 0;
 
     	const convertTimeToXPosition = time => {
     		return time * maxScrubberWidth / maxTime;
     	};
 
     	const convertXPositionToTime = xPos => {
-    		return xPos * maxTime / maxScrubberWidth;
+    		return !maxScrubberWidth
+    		? 0
+    		: xPos * maxTime / maxScrubberWidth;
     	};
 
     	onMount(async () => {
     		const slider = document.getElementById("slider");
-    		$$invalidate(0, sliderWidth = slider.getBoundingClientRect().width);
+    		$$invalidate(1, sliderWidth = slider.getBoundingClientRect().width);
     		const handle = document.querySelector(".handle-hit-area");
-    		$$invalidate(13, handleStyler = index(handle));
+    		$$invalidate(14, handleStyler = index(handle));
 
     		const handleX = value(0, newX => {
     			updateCurrentTime(convertXPositionToTime(newX));
@@ -9516,12 +9577,12 @@ var app = (function () {
     	});
 
     	const handlePauseAnimation = () => {
-    		isUserRunning = false;
+    		$$invalidate(0, isUserRunning = false);
     		pauseAnimation();
     	};
 
     	const handleStartAnimation = () => {
-    		isUserRunning = true;
+    		$$invalidate(0, isUserRunning = true);
     		startAnimation();
     	};
 
@@ -9563,22 +9624,24 @@ var app = (function () {
     		"maxTime",
     		"pauseAnimation",
     		"startAnimation",
-    		"updateCurrentTime"
+    		"updateCurrentTime",
+    		"isAnimationEnded"
     	];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1$1.warn(`<Scrubber> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Scrubber> was created with unknown prop '${key}'`);
     	});
 
     	let { $$slots = {}, $$scope } = $$props;
     	validate_slots("Scrubber", $$slots, []);
 
     	$$self.$set = $$props => {
-    		if ("currentTime" in $$props) $$invalidate(6, currentTime = $$props.currentTime);
-    		if ("maxTime" in $$props) $$invalidate(7, maxTime = $$props.maxTime);
-    		if ("pauseAnimation" in $$props) $$invalidate(8, pauseAnimation = $$props.pauseAnimation);
-    		if ("startAnimation" in $$props) $$invalidate(9, startAnimation = $$props.startAnimation);
-    		if ("updateCurrentTime" in $$props) $$invalidate(10, updateCurrentTime = $$props.updateCurrentTime);
+    		if ("currentTime" in $$props) $$invalidate(7, currentTime = $$props.currentTime);
+    		if ("maxTime" in $$props) $$invalidate(8, maxTime = $$props.maxTime);
+    		if ("pauseAnimation" in $$props) $$invalidate(9, pauseAnimation = $$props.pauseAnimation);
+    		if ("startAnimation" in $$props) $$invalidate(10, startAnimation = $$props.startAnimation);
+    		if ("updateCurrentTime" in $$props) $$invalidate(11, updateCurrentTime = $$props.updateCurrentTime);
+    		if ("isAnimationEnded" in $$props) $$invalidate(12, isAnimationEnded = $$props.isAnimationEnded);
     	};
 
     	$$self.$capture_state = () => ({
@@ -9597,11 +9660,12 @@ var app = (function () {
     		pauseAnimation,
     		startAnimation,
     		updateCurrentTime,
+    		isAnimationEnded,
     		isUserRunning,
+    		sliderWidth,
     		maxScrubberWidth,
     		handleStyler,
     		currentXPos,
-    		sliderWidth,
     		convertTimeToXPosition,
     		convertXPositionToTime,
     		handlePauseAnimation,
@@ -9614,16 +9678,17 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("currentTime" in $$props) $$invalidate(6, currentTime = $$props.currentTime);
-    		if ("maxTime" in $$props) $$invalidate(7, maxTime = $$props.maxTime);
-    		if ("pauseAnimation" in $$props) $$invalidate(8, pauseAnimation = $$props.pauseAnimation);
-    		if ("startAnimation" in $$props) $$invalidate(9, startAnimation = $$props.startAnimation);
-    		if ("updateCurrentTime" in $$props) $$invalidate(10, updateCurrentTime = $$props.updateCurrentTime);
-    		if ("isUserRunning" in $$props) isUserRunning = $$props.isUserRunning;
+    		if ("currentTime" in $$props) $$invalidate(7, currentTime = $$props.currentTime);
+    		if ("maxTime" in $$props) $$invalidate(8, maxTime = $$props.maxTime);
+    		if ("pauseAnimation" in $$props) $$invalidate(9, pauseAnimation = $$props.pauseAnimation);
+    		if ("startAnimation" in $$props) $$invalidate(10, startAnimation = $$props.startAnimation);
+    		if ("updateCurrentTime" in $$props) $$invalidate(11, updateCurrentTime = $$props.updateCurrentTime);
+    		if ("isAnimationEnded" in $$props) $$invalidate(12, isAnimationEnded = $$props.isAnimationEnded);
+    		if ("isUserRunning" in $$props) $$invalidate(0, isUserRunning = $$props.isUserRunning);
+    		if ("sliderWidth" in $$props) $$invalidate(1, sliderWidth = $$props.sliderWidth);
     		if ("maxScrubberWidth" in $$props) maxScrubberWidth = $$props.maxScrubberWidth;
-    		if ("handleStyler" in $$props) $$invalidate(13, handleStyler = $$props.handleStyler);
-    		if ("currentXPos" in $$props) $$invalidate(1, currentXPos = $$props.currentXPos);
-    		if ("sliderWidth" in $$props) $$invalidate(0, sliderWidth = $$props.sliderWidth);
+    		if ("handleStyler" in $$props) $$invalidate(14, handleStyler = $$props.handleStyler);
+    		if ("currentXPos" in $$props) $$invalidate(2, currentXPos = $$props.currentXPos);
     		if ("startDate" in $$props) startDate = $$props.startDate;
     		if ("endDate" in $$props) endDate = $$props.endDate;
     		if ("totalDays" in $$props) totalDays = $$props.totalDays;
@@ -9634,19 +9699,28 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*sliderWidth*/ 1) {
+    		if ($$self.$$.dirty & /*sliderWidth*/ 2) {
     			 maxScrubberWidth = sliderWidth;
     		}
 
-    		if ($$self.$$.dirty & /*currentTime, handleStyler*/ 8256) {
+    		if ($$self.$$.dirty & /*handleStyler, currentTime*/ 16512) {
     			 {
-    				console.log("scrubber currentTime: ", currentTime);
+    				// continuoslu check currentTime for where to place the scrubber handle
     				handleStyler && handleStyler.set("x", convertTimeToXPosition(currentTime));
+    			}
+    		}
+
+    		if ($$self.$$.dirty & /*isAnimationEnded*/ 4096) {
+    			 {
+    				if (isAnimationEnded) {
+    					$$invalidate(0, isUserRunning = false);
+    				}
     			}
     		}
     	};
 
     	return [
+    		isUserRunning,
     		sliderWidth,
     		currentXPos,
     		handlePauseAnimation,
@@ -9657,7 +9731,8 @@ var app = (function () {
     		maxTime,
     		pauseAnimation,
     		startAnimation,
-    		updateCurrentTime
+    		updateCurrentTime,
+    		isAnimationEnded
     	];
     }
 
@@ -9666,11 +9741,12 @@ var app = (function () {
     		super(options);
 
     		init(this, options, instance$2, create_fragment$2, safe_not_equal, {
-    			currentTime: 6,
-    			maxTime: 7,
-    			pauseAnimation: 8,
-    			startAnimation: 9,
-    			updateCurrentTime: 10
+    			currentTime: 7,
+    			maxTime: 8,
+    			pauseAnimation: 9,
+    			startAnimation: 10,
+    			updateCurrentTime: 11,
+    			isAnimationEnded: 12
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -9683,24 +9759,28 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*currentTime*/ ctx[6] === undefined && !("currentTime" in props)) {
-    			console_1$1.warn("<Scrubber> was created without expected prop 'currentTime'");
+    		if (/*currentTime*/ ctx[7] === undefined && !("currentTime" in props)) {
+    			console.warn("<Scrubber> was created without expected prop 'currentTime'");
     		}
 
-    		if (/*maxTime*/ ctx[7] === undefined && !("maxTime" in props)) {
-    			console_1$1.warn("<Scrubber> was created without expected prop 'maxTime'");
+    		if (/*maxTime*/ ctx[8] === undefined && !("maxTime" in props)) {
+    			console.warn("<Scrubber> was created without expected prop 'maxTime'");
     		}
 
-    		if (/*pauseAnimation*/ ctx[8] === undefined && !("pauseAnimation" in props)) {
-    			console_1$1.warn("<Scrubber> was created without expected prop 'pauseAnimation'");
+    		if (/*pauseAnimation*/ ctx[9] === undefined && !("pauseAnimation" in props)) {
+    			console.warn("<Scrubber> was created without expected prop 'pauseAnimation'");
     		}
 
-    		if (/*startAnimation*/ ctx[9] === undefined && !("startAnimation" in props)) {
-    			console_1$1.warn("<Scrubber> was created without expected prop 'startAnimation'");
+    		if (/*startAnimation*/ ctx[10] === undefined && !("startAnimation" in props)) {
+    			console.warn("<Scrubber> was created without expected prop 'startAnimation'");
     		}
 
-    		if (/*updateCurrentTime*/ ctx[10] === undefined && !("updateCurrentTime" in props)) {
-    			console_1$1.warn("<Scrubber> was created without expected prop 'updateCurrentTime'");
+    		if (/*updateCurrentTime*/ ctx[11] === undefined && !("updateCurrentTime" in props)) {
+    			console.warn("<Scrubber> was created without expected prop 'updateCurrentTime'");
+    		}
+
+    		if (/*isAnimationEnded*/ ctx[12] === undefined && !("isAnimationEnded" in props)) {
+    			console.warn("<Scrubber> was created without expected prop 'isAnimationEnded'");
     		}
     	}
 
@@ -9741,6 +9821,14 @@ var app = (function () {
     	}
 
     	set updateCurrentTime(value) {
+    		throw new Error("<Scrubber>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isAnimationEnded() {
+    		throw new Error("<Scrubber>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isAnimationEnded(value) {
     		throw new Error("<Scrubber>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -11046,6 +11134,8 @@ var app = (function () {
 
     var interpolateRdYlBu = ramp(scheme);
 
+    let dateTempFrames = [{"date":"2019-02-14T00:00:00.000Z","temp":-25.823214285714286},{"date":"2019-02-14T00:00:00.000Z","temp":-25.29862351190476},{"date":"2019-02-14T00:00:00.000Z","temp":-24.774032738095237},{"date":"2019-02-14T00:00:00.000Z","temp":-24.249441964285715},{"date":"2019-02-18T00:00:00.000Z","temp":-23.72485119047619},{"date":"2019-02-18T00:00:00.000Z","temp":-23.200260416666666},{"date":"2019-02-18T00:00:00.000Z","temp":-22.675669642857144},{"date":"2019-02-18T00:00:00.000Z","temp":-22.15107886904762},{"date":"2019-02-18T00:00:00.000Z","temp":-21.626488095238095},{"date":"2019-02-18T00:00:00.000Z","temp":-20.948013392857142},{"date":"2019-02-18T00:00:00.000Z","temp":-20.26953869047619},{"date":"2019-02-18T00:00:00.000Z","temp":-19.59106398809524},{"date":"2019-02-22T00:00:00.000Z","temp":-18.912589285714287},{"date":"2019-02-22T00:00:00.000Z","temp":-18.234114583333334},{"date":"2019-02-22T00:00:00.000Z","temp":-17.555639880952384},{"date":"2019-02-22T00:00:00.000Z","temp":-16.87716517857143},{"date":"2019-02-22T00:00:00.000Z","temp":-16.198690476190478},{"date":"2019-02-22T00:00:00.000Z","temp":-15.746495535714288},{"date":"2019-02-22T00:00:00.000Z","temp":-15.294300595238097},{"date":"2019-02-22T00:00:00.000Z","temp":-14.842105654761905},{"date":"2019-02-26T00:00:00.000Z","temp":-14.389910714285715},{"date":"2019-02-26T00:00:00.000Z","temp":-13.937715773809526},{"date":"2019-02-26T00:00:00.000Z","temp":-13.485520833333334},{"date":"2019-02-26T00:00:00.000Z","temp":-13.033325892857142},{"date":"2019-02-26T00:00:00.000Z","temp":-12.581130952380953},{"date":"2019-02-26T00:00:00.000Z","temp":-12.324434523809524},{"date":"2019-02-26T00:00:00.000Z","temp":-12.067738095238095},{"date":"2019-02-26T00:00:00.000Z","temp":-11.811041666666666},{"date":"2019-03-02T00:00:00.000Z","temp":-11.554345238095237},{"date":"2019-03-02T00:00:00.000Z","temp":-11.29764880952381},{"date":"2019-03-02T00:00:00.000Z","temp":-11.040952380952382},{"date":"2019-03-02T00:00:00.000Z","temp":-10.784255952380953},{"date":"2019-03-02T00:00:00.000Z","temp":-10.527559523809524},{"date":"2019-03-02T00:00:00.000Z","temp":-10.158556547619048},{"date":"2019-03-02T00:00:00.000Z","temp":-9.789553571428572},{"date":"2019-03-02T00:00:00.000Z","temp":-9.420550595238096},{"date":"2019-03-06T00:00:00.000Z","temp":-9.05154761904762},{"date":"2019-03-06T00:00:00.000Z","temp":-8.682544642857144},{"date":"2019-03-06T00:00:00.000Z","temp":-8.313541666666666},{"date":"2019-03-06T00:00:00.000Z","temp":-7.9445386904761905},{"date":"2019-03-06T00:00:00.000Z","temp":-7.5755357142857145},{"date":"2019-03-06T00:00:00.000Z","temp":-7.290729166666667},{"date":"2019-03-06T00:00:00.000Z","temp":-7.005922619047619},{"date":"2019-03-06T00:00:00.000Z","temp":-6.721116071428572},{"date":"2019-03-10T00:00:00.000Z","temp":-6.436309523809523},{"date":"2019-03-10T00:00:00.000Z","temp":-6.151502976190477},{"date":"2019-03-10T00:00:00.000Z","temp":-5.866696428571428},{"date":"2019-03-10T00:00:00.000Z","temp":-5.581889880952381},{"date":"2019-03-10T00:00:00.000Z","temp":-5.297083333333333},{"date":"2019-03-10T00:00:00.000Z","temp":-5.464002976190476},{"date":"2019-03-10T00:00:00.000Z","temp":-5.6309226190476185},{"date":"2019-03-10T00:00:00.000Z","temp":-5.797842261904762},{"date":"2019-03-14T00:00:00.000Z","temp":-5.964761904761905},{"date":"2019-03-14T00:00:00.000Z","temp":-6.131681547619047},{"date":"2019-03-14T00:00:00.000Z","temp":-6.298601190476191},{"date":"2019-03-14T00:00:00.000Z","temp":-6.465520833333334},{"date":"2019-03-14T00:00:00.000Z","temp":-6.632440476190476},{"date":"2019-03-14T00:00:00.000Z","temp":-6.257440476190476},{"date":"2019-03-14T00:00:00.000Z","temp":-5.882440476190476},{"date":"2019-03-14T00:00:00.000Z","temp":-5.507440476190476},{"date":"2019-03-18T00:00:00.000Z","temp":-5.132440476190476},{"date":"2019-03-18T00:00:00.000Z","temp":-4.757440476190476},{"date":"2019-03-18T00:00:00.000Z","temp":-4.382440476190476},{"date":"2019-03-18T00:00:00.000Z","temp":-4.007440476190476},{"date":"2019-03-18T00:00:00.000Z","temp":-3.6324404761904763},{"date":"2019-03-18T00:00:00.000Z","temp":-3.8395312500000003},{"date":"2019-03-18T00:00:00.000Z","temp":-4.046622023809524},{"date":"2019-03-18T00:00:00.000Z","temp":-4.253712797619047},{"date":"2019-03-22T00:00:00.000Z","temp":-4.460803571428571},{"date":"2019-03-22T00:00:00.000Z","temp":-4.667894345238095},{"date":"2019-03-22T00:00:00.000Z","temp":-4.8749851190476186},{"date":"2019-03-22T00:00:00.000Z","temp":-5.082075892857143}];
+
     /* Thermometer.svelte generated by Svelte v3.20.1 */
     const file$3 = "Thermometer.svelte";
 
@@ -11078,44 +11168,44 @@ var app = (function () {
     			rect = svg_element("rect");
     			circle = svg_element("circle");
     			text_1 = svg_element("text");
-    			t1 = text(/*temp*/ ctx[0]);
+    			t1 = text(/*currentTemp*/ ctx[3]);
     			t2 = text("°C");
-    			add_location(style, file$3, 44, 4, 1574);
-    			add_location(defs, file$3, 43, 2, 1563);
+    			add_location(style, file$3, 47, 4, 1748);
+    			add_location(defs, file$3, 46, 2, 1737);
     			attr_dev(path0, "class", "cls-1");
     			attr_dev(path0, "d", "M694,689a91,91,0,0,1-59-160.28V137a59,59,0,1,1,118,0V528.72A91,91,0,0,1,694,689Z");
     			attr_dev(path0, "transform", "translate(-602 -77)");
-    			add_location(path0, file$3, 68, 4, 2001);
+    			add_location(path0, file$3, 71, 4, 2175);
     			attr_dev(path1, "class", "cls-2");
     			attr_dev(path1, "d", "M694,689a91,91,0,0,1-59-160.28V137a59,59,0,1,1,118,0V528.72A91,91,0,0,1,694,689Z");
     			attr_dev(path1, "transform", "translate(-602 -77)");
-    			add_location(path1, file$3, 69, 4, 2144);
-    			add_location(g, file$3, 67, 2, 1993);
+    			add_location(path1, file$3, 72, 4, 2318);
+    			add_location(g, file$3, 70, 2, 2167);
     			attr_dev(rect, "class", "cls-3");
-    			attr_dev(rect, "fill", /*tempColor*/ ctx[3]);
+    			attr_dev(rect, "fill", /*tempColor*/ ctx[2]);
     			attr_dev(rect, "x", "49");
-    			attr_dev(rect, "y", /*starting_y*/ ctx[2]);
+    			attr_dev(rect, "y", /*starting_y*/ ctx[1]);
     			attr_dev(rect, "width", "86");
-    			attr_dev(rect, "height", /*height*/ ctx[1]);
+    			attr_dev(rect, "height", /*height*/ ctx[0]);
     			attr_dev(rect, "rx", "43");
-    			add_location(rect, file$3, 71, 2, 2292);
+    			add_location(rect, file$3, 74, 2, 2466);
     			attr_dev(circle, "class", "cls-3");
-    			attr_dev(circle, "fill", /*tempColor*/ ctx[3]);
+    			attr_dev(circle, "fill", /*tempColor*/ ctx[2]);
     			attr_dev(circle, "cx", "92");
     			attr_dev(circle, "cy", "521");
     			attr_dev(circle, "r", "75");
-    			add_location(circle, file$3, 74, 2, 2511);
+    			add_location(circle, file$3, 77, 2, 2685);
     			attr_dev(text_1, "class", "cls-4");
     			attr_dev(text_1, "fill", text_1_fill_value = "#fff");
     			attr_dev(text_1, "transform", "translate(53.42 532)");
-    			add_location(text_1, file$3, 75, 2, 2578);
+    			add_location(text_1, file$3, 78, 2, 2752);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 184 613");
-    			add_location(svg, file$3, 42, 0, 1465);
+    			add_location(svg, file$3, 45, 0, 1639);
     			attr_dev(div, "class", "thermometer svelte-1wabr3v");
-    			add_location(div, file$3, 41, 0, 1439);
+    			add_location(div, file$3, 44, 0, 1613);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -11136,23 +11226,23 @@ var app = (function () {
     			append_dev(text_1, t2);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*tempColor*/ 8) {
-    				attr_dev(rect, "fill", /*tempColor*/ ctx[3]);
+    			if (dirty & /*tempColor*/ 4) {
+    				attr_dev(rect, "fill", /*tempColor*/ ctx[2]);
     			}
 
-    			if (dirty & /*starting_y*/ 4) {
-    				attr_dev(rect, "y", /*starting_y*/ ctx[2]);
+    			if (dirty & /*starting_y*/ 2) {
+    				attr_dev(rect, "y", /*starting_y*/ ctx[1]);
     			}
 
-    			if (dirty & /*height*/ 2) {
-    				attr_dev(rect, "height", /*height*/ ctx[1]);
+    			if (dirty & /*height*/ 1) {
+    				attr_dev(rect, "height", /*height*/ ctx[0]);
     			}
 
-    			if (dirty & /*tempColor*/ 8) {
-    				attr_dev(circle, "fill", /*tempColor*/ ctx[3]);
+    			if (dirty & /*tempColor*/ 4) {
+    				attr_dev(circle, "fill", /*tempColor*/ ctx[2]);
     			}
 
-    			if (dirty & /*temp*/ 1) set_data_dev(t1, /*temp*/ ctx[0]);
+    			if (dirty & /*currentTemp*/ 8) set_data_dev(t1, /*currentTemp*/ ctx[3]);
     		},
     		i: noop,
     		o: noop,
@@ -11183,7 +11273,7 @@ var app = (function () {
     const lightBlue = "#539ffc";
 
     function instance$3($$self, $$props, $$invalidate) {
-    	let { temp } = $$props;
+    	let { currentFrame } = $$props;
     	const HEIGHT_CHANGE = MAX_HEIGHT - MIN_HEIGHT; // 429
     	const BOTTOMMOST_Y = TOPMOST_Y + HEIGHT_CHANGE;
     	const tempScale = [-40, -20, 5, 15, 30, 40];
@@ -11195,7 +11285,8 @@ var app = (function () {
     	let height = MIN_HEIGHT;
     	let starting_y = BOTTOMMOST_Y;
     	let tempColor = "#c1272d";
-    	const writable_props = ["temp"];
+    	let currentTemp = 0;
+    	const writable_props = ["currentFrame"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Thermometer> was created with unknown prop '${key}'`);
@@ -11205,13 +11296,14 @@ var app = (function () {
     	validate_slots("Thermometer", $$slots, []);
 
     	$$self.$set = $$props => {
-    		if ("temp" in $$props) $$invalidate(0, temp = $$props.temp);
+    		if ("currentFrame" in $$props) $$invalidate(4, currentFrame = $$props.currentFrame);
     	};
 
     	$$self.$capture_state = () => ({
     		scaleLinear: linear$2,
     		interpolateRdYlBu,
-    		temp,
+    		dateTempFrames,
+    		currentFrame,
     		MAX_HEIGHT,
     		MIN_HEIGHT,
     		HEIGHT_CHANGE,
@@ -11230,17 +11322,19 @@ var app = (function () {
     		pixelChangeFromBaseline,
     		height,
     		starting_y,
-    		tempColor
+    		tempColor,
+    		currentTemp
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("temp" in $$props) $$invalidate(0, temp = $$props.temp);
-    		if ("scaleTempToColor" in $$props) $$invalidate(9, scaleTempToColor = $$props.scaleTempToColor);
-    		if ("scaleTempToPixels" in $$props) $$invalidate(10, scaleTempToPixels = $$props.scaleTempToPixels);
-    		if ("pixelChangeFromBaseline" in $$props) $$invalidate(4, pixelChangeFromBaseline = $$props.pixelChangeFromBaseline);
-    		if ("height" in $$props) $$invalidate(1, height = $$props.height);
-    		if ("starting_y" in $$props) $$invalidate(2, starting_y = $$props.starting_y);
-    		if ("tempColor" in $$props) $$invalidate(3, tempColor = $$props.tempColor);
+    		if ("currentFrame" in $$props) $$invalidate(4, currentFrame = $$props.currentFrame);
+    		if ("scaleTempToColor" in $$props) $$invalidate(10, scaleTempToColor = $$props.scaleTempToColor);
+    		if ("scaleTempToPixels" in $$props) $$invalidate(11, scaleTempToPixels = $$props.scaleTempToPixels);
+    		if ("pixelChangeFromBaseline" in $$props) $$invalidate(5, pixelChangeFromBaseline = $$props.pixelChangeFromBaseline);
+    		if ("height" in $$props) $$invalidate(0, height = $$props.height);
+    		if ("starting_y" in $$props) $$invalidate(1, starting_y = $$props.starting_y);
+    		if ("tempColor" in $$props) $$invalidate(2, tempColor = $$props.tempColor);
+    		if ("currentTemp" in $$props) $$invalidate(3, currentTemp = $$props.currentTemp);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -11248,23 +11342,24 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*temp, pixelChangeFromBaseline*/ 17) {
+    		if ($$self.$$.dirty & /*currentFrame, currentTemp, pixelChangeFromBaseline*/ 56) {
     			 {
-    				$$invalidate(4, pixelChangeFromBaseline = scaleTempToPixels(temp));
-    				$$invalidate(1, height = MIN_HEIGHT + pixelChangeFromBaseline);
-    				$$invalidate(2, starting_y = BOTTOMMOST_Y - pixelChangeFromBaseline);
-    				$$invalidate(3, tempColor = scaleTempToColor(temp));
+    				$$invalidate(3, currentTemp = Math.round(dateTempFrames[currentFrame].temp));
+    				$$invalidate(5, pixelChangeFromBaseline = scaleTempToPixels(currentTemp));
+    				$$invalidate(0, height = MIN_HEIGHT + pixelChangeFromBaseline);
+    				$$invalidate(1, starting_y = BOTTOMMOST_Y - pixelChangeFromBaseline);
+    				$$invalidate(2, tempColor = scaleTempToColor(currentTemp));
     			}
     		}
     	};
 
-    	return [temp, height, starting_y, tempColor];
+    	return [height, starting_y, tempColor, currentTemp, currentFrame];
     }
 
     class Thermometer extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$3, create_fragment$3, safe_not_equal, { temp: 0 });
+    		init(this, options, instance$3, create_fragment$3, safe_not_equal, { currentFrame: 4 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -11276,16 +11371,16 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*temp*/ ctx[0] === undefined && !("temp" in props)) {
-    			console.warn("<Thermometer> was created without expected prop 'temp'");
+    		if (/*currentFrame*/ ctx[4] === undefined && !("currentFrame" in props)) {
+    			console.warn("<Thermometer> was created without expected prop 'currentFrame'");
     		}
     	}
 
-    	get temp() {
+    	get currentFrame() {
     		throw new Error("<Thermometer>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set temp(value) {
+    	set currentFrame(value) {
     		throw new Error("<Thermometer>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -11301,7 +11396,7 @@ var app = (function () {
     }
 
     // (22:16) {:else}
-    function create_else_block(ctx) {
+    function create_else_block$1(ctx) {
     	let t0_value = /*level*/ ctx[1].range_low + "";
     	let t0;
     	let t1;
@@ -11324,7 +11419,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_else_block.name,
+    		id: create_else_block$1.name,
     		type: "else",
     		source: "(22:16) {:else}",
     		ctx
@@ -11334,7 +11429,7 @@ var app = (function () {
     }
 
     // (20:16) {#if level.range_high}
-    function create_if_block(ctx) {
+    function create_if_block$1(ctx) {
     	let t0_value = /*level*/ ctx[1].range_low + "";
     	let t0;
     	let t1;
@@ -11362,7 +11457,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block.name,
+    		id: create_if_block$1.name,
     		type: "if",
     		source: "(20:16) {#if level.range_high}",
     		ctx
@@ -11376,13 +11471,12 @@ var app = (function () {
     	let div2;
     	let div0;
     	let div0_class_value;
-    	let t0;
+    	let t;
     	let div1;
-    	let t1;
 
     	function select_block_type(ctx, dirty) {
-    		if (/*level*/ ctx[1].range_high) return create_if_block;
-    		return create_else_block;
+    		if (/*level*/ ctx[1].range_high) return create_if_block$1;
+    		return create_else_block$1;
     	}
 
     	let current_block_type = select_block_type(ctx);
@@ -11392,24 +11486,22 @@ var app = (function () {
     		c: function create() {
     			div2 = element("div");
     			div0 = element("div");
-    			t0 = space();
+    			t = space();
     			div1 = element("div");
     			if_block.c();
-    			t1 = space();
-    			attr_dev(div0, "class", div0_class_value = "" + (null_to_empty("aqi-level-color aqi-" + /*level*/ ctx[1].id) + " svelte-1rigflz"));
-    			add_location(div0, file$4, 17, 12, 744);
+    			attr_dev(div0, "class", div0_class_value = "" + (null_to_empty("aqi-level-color aqi-" + /*level*/ ctx[1].id) + " svelte-e0i607"));
+    			add_location(div0, file$4, 17, 12, 746);
     			attr_dev(div1, "class", "aqi-level-range");
-    			add_location(div1, file$4, 18, 12, 808);
-    			attr_dev(div2, "class", "aqi-level svelte-1rigflz");
-    			add_location(div2, file$4, 16, 8, 708);
+    			add_location(div1, file$4, 18, 12, 810);
+    			attr_dev(div2, "class", "aqi-level svelte-e0i607");
+    			add_location(div2, file$4, 16, 8, 710);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
     			append_dev(div2, div0);
-    			append_dev(div2, t0);
+    			append_dev(div2, t);
     			append_dev(div2, div1);
     			if_block.m(div1, null);
-    			append_dev(div2, t1);
     		},
     		p: function update(ctx, dirty) {
     			if_block.p(ctx, dirty);
@@ -11432,9 +11524,15 @@ var app = (function () {
     }
 
     function create_fragment$4(ctx) {
-    	let div1;
+    	let div5;
     	let div0;
     	let t1;
+    	let t2;
+    	let div4;
+    	let div2;
+    	let div1;
+    	let t3;
+    	let div3;
     	let each_value = /*AQI_LEGEND_INFO*/ ctx[0];
     	validate_each_argument(each_value);
     	let each_blocks = [];
@@ -11445,31 +11543,52 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div1 = element("div");
+    			div5 = element("div");
     			div0 = element("div");
-    			div0.textContent = "AQI Legend";
+    			div0.textContent = "PM2.5 Legend";
     			t1 = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(div0, "class", "aqi-legend-title svelte-1rigflz");
+    			t2 = space();
+    			div4 = element("div");
+    			div2 = element("div");
+    			div1 = element("div");
+    			t3 = space();
+    			div3 = element("div");
+    			div3.textContent = `${"Air Quality Sensor Location"}`;
+    			attr_dev(div0, "class", "aqi-legend-title svelte-e0i607");
     			add_location(div0, file$4, 14, 4, 616);
-    			attr_dev(div1, "class", "aqi-legend svelte-1rigflz");
-    			add_location(div1, file$4, 13, 0, 587);
+    			attr_dev(div1, "class", "aqi-station-marker svelte-e0i607");
+    			add_location(div1, file$4, 32, 12, 1276);
+    			attr_dev(div2, "class", "aqi-station-container svelte-e0i607");
+    			add_location(div2, file$4, 31, 8, 1228);
+    			add_location(div3, file$4, 34, 8, 1338);
+    			attr_dev(div4, "class", "aqi-legend-stations svelte-e0i607");
+    			add_location(div4, file$4, 30, 4, 1186);
+    			attr_dev(div5, "class", "aqi-legend svelte-e0i607");
+    			add_location(div5, file$4, 13, 0, 587);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div1, anchor);
-    			append_dev(div1, div0);
-    			append_dev(div1, t1);
+    			insert_dev(target, div5, anchor);
+    			append_dev(div5, div0);
+    			append_dev(div5, t1);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(div1, null);
+    				each_blocks[i].m(div5, null);
     			}
+
+    			append_dev(div5, t2);
+    			append_dev(div5, div4);
+    			append_dev(div4, div2);
+    			append_dev(div2, div1);
+    			append_dev(div4, t3);
+    			append_dev(div4, div3);
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*AQI_LEGEND_INFO*/ 1) {
@@ -11485,7 +11604,7 @@ var app = (function () {
     					} else {
     						each_blocks[i] = create_each_block$1(child_ctx);
     						each_blocks[i].c();
-    						each_blocks[i].m(div1, null);
+    						each_blocks[i].m(div5, t2);
     					}
     				}
 
@@ -11499,7 +11618,7 @@ var app = (function () {
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div1);
+    			if (detaching) detach_dev(div5);
     			destroy_each(each_blocks, detaching);
     		}
     	};
@@ -11586,10 +11705,168 @@ var app = (function () {
     	}
     }
 
-    /* App.svelte generated by Svelte v3.20.1 */
-    const file$5 = "App.svelte";
+    /* AnimationDate.svelte generated by Svelte v3.20.1 */
+    const file$5 = "AnimationDate.svelte";
+
+    // (14:4) {#if currentDate}
+    function create_if_block$2(ctx) {
+    	let t0;
+    	let t1_value = /*currentDate*/ ctx[0].format("YYYY-MM-DD") + "";
+    	let t1;
+
+    	const block = {
+    		c: function create() {
+    			t0 = text("Week of: ");
+    			t1 = text(t1_value);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, t1, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*currentDate*/ 1 && t1_value !== (t1_value = /*currentDate*/ ctx[0].format("YYYY-MM-DD") + "")) set_data_dev(t1, t1_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(t1);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$2.name,
+    		type: "if",
+    		source: "(14:4) {#if currentDate}",
+    		ctx
+    	});
+
+    	return block;
+    }
 
     function create_fragment$5(ctx) {
+    	let span;
+    	let if_block = /*currentDate*/ ctx[0] && create_if_block$2(ctx);
+
+    	const block = {
+    		c: function create() {
+    			span = element("span");
+    			if (if_block) if_block.c();
+    			add_location(span, file$5, 12, 1, 232);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, span, anchor);
+    			if (if_block) if_block.m(span, null);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*currentDate*/ ctx[0]) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$2(ctx);
+    					if_block.c();
+    					if_block.m(span, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(span);
+    			if (if_block) if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$5.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$5($$self, $$props, $$invalidate) {
+    	let { currentFrame } = $$props;
+    	let currentDate;
+    	const writable_props = ["currentFrame"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<AnimationDate> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("AnimationDate", $$slots, []);
+
+    	$$self.$set = $$props => {
+    		if ("currentFrame" in $$props) $$invalidate(1, currentFrame = $$props.currentFrame);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		dateTempFrames,
+    		moment,
+    		currentFrame,
+    		currentDate
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("currentFrame" in $$props) $$invalidate(1, currentFrame = $$props.currentFrame);
+    		if ("currentDate" in $$props) $$invalidate(0, currentDate = $$props.currentDate);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*currentFrame*/ 2) {
+    			 $$invalidate(0, currentDate = moment(dateTempFrames[currentFrame].date));
+    		}
+    	};
+
+    	return [currentDate, currentFrame];
+    }
+
+    class AnimationDate extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$5, create_fragment$5, safe_not_equal, { currentFrame: 1 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "AnimationDate",
+    			options,
+    			id: create_fragment$5.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*currentFrame*/ ctx[1] === undefined && !("currentFrame" in props)) {
+    			console.warn("<AnimationDate> was created without expected prop 'currentFrame'");
+    		}
+    	}
+
+    	get currentFrame() {
+    		throw new Error("<AnimationDate>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set currentFrame(value) {
+    		throw new Error("<AnimationDate>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* App.svelte generated by Svelte v3.20.1 */
+    const file$6 = "App.svelte";
+
+    function create_fragment$6(ctx) {
     	let link;
     	let t0;
     	let div8;
@@ -11601,16 +11878,23 @@ var app = (function () {
     	let div5;
     	let div3;
     	let div2;
+    	let t3;
     	let t4;
-    	let t5;
     	let div4;
-    	let t6;
+    	let t5;
     	let div6;
+    	let t6;
     	let t7;
+    	let div9;
     	let current;
 
+    	const animationdate = new AnimationDate({
+    			props: { currentFrame: /*currentFrame*/ ctx[1] },
+    			$$inline: true
+    		});
+
     	const thermometer = new Thermometer({
-    			props: { temp: /*currentTemp*/ ctx[2] },
+    			props: { currentFrame: /*currentFrame*/ ctx[1] },
     			$$inline: true
     		});
 
@@ -11619,7 +11903,8 @@ var app = (function () {
     	const scrubber = new Scrubber({
     			props: {
     				currentTime: /*currentTime*/ ctx[0],
-    				maxTime: /*maxTime*/ ctx[1],
+    				maxTime: /*maxTime*/ ctx[2],
+    				isAnimationEnded: /*isAnimationEnded*/ ctx[3],
     				pauseAnimation: /*pauseAnimation*/ ctx[4],
     				startAnimation: /*startAnimation*/ ctx[5],
     				updateCurrentTime: /*updateCurrentTime*/ ctx[6]
@@ -11641,39 +11926,43 @@ var app = (function () {
     			div5 = element("div");
     			div3 = element("div");
     			div2 = element("div");
-    			div2.textContent = `${/*currentDate*/ ctx[3]}`;
-    			t4 = space();
+    			create_component(animationdate.$$.fragment);
+    			t3 = space();
     			create_component(thermometer.$$.fragment);
-    			t5 = space();
+    			t4 = space();
     			div4 = element("div");
     			create_component(aqilegend.$$.fragment);
-    			t6 = space();
+    			t5 = space();
     			div6 = element("div");
-    			t7 = space();
+    			t6 = space();
     			create_component(scrubber.$$.fragment);
+    			t7 = space();
+    			div9 = element("div");
     			attr_dev(link, "href", "https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css");
     			attr_dev(link, "rel", "stylesheet");
-    			add_location(link, file$5, 0, 0, 0);
-    			add_location(h1, file$5, 155, 4, 4248);
-    			attr_dev(div0, "class", "title svelte-1sksttb");
-    			add_location(div0, file$5, 154, 4, 4224);
-    			attr_dev(div1, "class", "header svelte-1sksttb");
-    			add_location(div1, file$5, 153, 2, 4199);
-    			attr_dev(div2, "class", "map-current-date svelte-1sksttb");
-    			add_location(div2, file$5, 161, 8, 4444);
-    			attr_dev(div3, "class", "map-thermometer-container svelte-1sksttb");
-    			add_location(div3, file$5, 160, 6, 4396);
-    			attr_dev(div4, "class", "map-aqi-legend svelte-1sksttb");
-    			add_location(div4, file$5, 164, 6, 4555);
+    			add_location(link, file$6, 0, 0, 0);
+    			add_location(h1, file$6, 163, 4, 4931);
+    			attr_dev(div0, "class", "title svelte-rle3jd");
+    			add_location(div0, file$6, 162, 4, 4907);
+    			attr_dev(div1, "class", "header svelte-rle3jd");
+    			add_location(div1, file$6, 161, 2, 4882);
+    			attr_dev(div2, "class", "map-current-date svelte-rle3jd");
+    			add_location(div2, file$6, 169, 8, 5127);
+    			attr_dev(div3, "class", "map-thermometer-container svelte-rle3jd");
+    			add_location(div3, file$6, 168, 6, 5079);
+    			attr_dev(div4, "class", "map-aqi-legend svelte-rle3jd");
+    			add_location(div4, file$6, 174, 6, 5300);
     			attr_dev(div5, "id", "map");
-    			attr_dev(div5, "class", "map svelte-1sksttb");
-    			add_location(div5, file$5, 159, 4, 4363);
+    			attr_dev(div5, "class", "map svelte-rle3jd");
+    			add_location(div5, file$6, 167, 4, 5046);
     			attr_dev(div6, "class", "map-legend");
-    			add_location(div6, file$5, 169, 4, 4640);
-    			attr_dev(div7, "class", "visualizations svelte-1sksttb");
-    			add_location(div7, file$5, 158, 2, 4330);
-    			attr_dev(div8, "class", "ub-ap-viz svelte-1sksttb");
-    			add_location(div8, file$5, 152, 0, 4173);
+    			add_location(div6, file$6, 179, 4, 5385);
+    			attr_dev(div7, "class", "visualizations svelte-rle3jd");
+    			add_location(div7, file$6, 166, 2, 5013);
+    			attr_dev(div8, "class", "ub-ap-viz svelte-rle3jd");
+    			add_location(div8, file$6, 160, 0, 4856);
+    			attr_dev(div9, "class", "station-marker");
+    			add_location(div9, file$6, 191, 0, 5675);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -11690,31 +11979,43 @@ var app = (function () {
     			append_dev(div7, div5);
     			append_dev(div5, div3);
     			append_dev(div3, div2);
-    			append_dev(div3, t4);
+    			mount_component(animationdate, div2, null);
+    			append_dev(div3, t3);
     			mount_component(thermometer, div3, null);
-    			append_dev(div5, t5);
+    			append_dev(div5, t4);
     			append_dev(div5, div4);
     			mount_component(aqilegend, div4, null);
-    			append_dev(div7, t6);
+    			append_dev(div7, t5);
     			append_dev(div7, div6);
-    			append_dev(div8, t7);
+    			append_dev(div8, t6);
     			mount_component(scrubber, div8, null);
+    			insert_dev(target, t7, anchor);
+    			insert_dev(target, div9, anchor);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
+    			const animationdate_changes = {};
+    			if (dirty & /*currentFrame*/ 2) animationdate_changes.currentFrame = /*currentFrame*/ ctx[1];
+    			animationdate.$set(animationdate_changes);
+    			const thermometer_changes = {};
+    			if (dirty & /*currentFrame*/ 2) thermometer_changes.currentFrame = /*currentFrame*/ ctx[1];
+    			thermometer.$set(thermometer_changes);
     			const scrubber_changes = {};
     			if (dirty & /*currentTime*/ 1) scrubber_changes.currentTime = /*currentTime*/ ctx[0];
-    			if (dirty & /*maxTime*/ 2) scrubber_changes.maxTime = /*maxTime*/ ctx[1];
+    			if (dirty & /*maxTime*/ 4) scrubber_changes.maxTime = /*maxTime*/ ctx[2];
+    			if (dirty & /*isAnimationEnded*/ 8) scrubber_changes.isAnimationEnded = /*isAnimationEnded*/ ctx[3];
     			scrubber.$set(scrubber_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
+    			transition_in(animationdate.$$.fragment, local);
     			transition_in(thermometer.$$.fragment, local);
     			transition_in(aqilegend.$$.fragment, local);
     			transition_in(scrubber.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
+    			transition_out(animationdate.$$.fragment, local);
     			transition_out(thermometer.$$.fragment, local);
     			transition_out(aqilegend.$$.fragment, local);
     			transition_out(scrubber.$$.fragment, local);
@@ -11724,15 +12025,18 @@ var app = (function () {
     			if (detaching) detach_dev(link);
     			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(div8);
+    			destroy_component(animationdate);
     			destroy_component(thermometer);
     			destroy_component(aqilegend);
     			destroy_component(scrubber);
+    			if (detaching) detach_dev(t7);
+    			if (detaching) detach_dev(div9);
     		}
     	};
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_fragment$5.name,
+    		id: create_fragment$6.name,
     		type: "component",
     		source: "",
     		ctx
@@ -11744,46 +12048,23 @@ var app = (function () {
     const MAPBOX_TOKEN = "pk.eyJ1IjoiaGF5bGV5c3RhcnIiLCJhIjoiY2s5MmhvYTU3MDBkaTNwcGI3cWJtMjdkcCJ9.tOfFfs9wWWcOfQ1sDMiwvQ";
     const FRAME_CHECKING_RATE = 33; // check every x ms what the current time is in the video
 
-    function instance$5($$self, $$props, $$invalidate) {
+    function instance$6($$self, $$props, $$invalidate) {
     	const UB_COORDINATES = [106.900354, 47.917802];
     	mapboxGl.accessToken = MAPBOX_TOKEN;
     	let map;
-    	let nFrames = 431; // total number of frames in animation
     	let currentTime = 0;
+    	let currentFrame = 0;
+
+    	//---------- Translate current time in video to the number of the current frame ----
+    	let maxTime = 0; // will reset when video loads
+
+    	let maxFrame = dateTempFrames.length - 1;
+    	let timeToFrameMultiplier = 0;
+
+    	//----------- Logic for playing and pausing the animation -------------------------
     	let animationPaused = true;
-    	let maxTime;
-    	let currentTemp = -40;
-    	let dateStrings = new Array(nFrames + 1);
-    	let temps = new Array(nFrames + 1);
-    	let startDate = moment("2019-01-10");
-    	let temp = currentTemp;
 
-    	// DUMMY DATA
-    	for (let i = 1; i <= nFrames; i++) {
-    		var dateString = startDate.format("YYYY[, Week of ]MMMM[ ]Do");
-
-    		if (i % 7 == 0) {
-    			startDate = startDate.add(7, "days");
-    			dateString = startDate.format("YYYY[, Week of ]MMMM[ ]Do");
-    		}
-
-    		dateStrings[i] = dateString;
-
-    		if (i >= 40 && i <= 80) {
-    			temp--;
-    		} else if (i > 150 && i < 200) {
-    			temp -= 0.5;
-    		} else if (i > 250 && i < 300) {
-    			temp--;
-    		} else {
-    			temp += 1;
-    		}
-
-    		temps[i] = Math.round(temp);
-    	}
-
-    	// END DUMMY DATA
-    	let currentDate = dateStrings[0];
+    	let isAnimationEnded = false;
 
     	const pauseAnimation = () => {
     		animationPaused = true;
@@ -11792,13 +12073,18 @@ var app = (function () {
 
     	const startAnimation = () => {
     		animationPaused = false;
+    		$$invalidate(3, isAnimationEnded = false);
     		map.getSource("ap_video").play();
     	};
 
-    	// set the currentTime to what the video is showing so that the scrubber is up to date
+    	// set the currentTime to what the video is showing so that the dependent components stay up to date
     	const reportCurrentTime = updateWhilePaused => {
     		if (!animationPaused | updateWhilePaused) {
     			$$invalidate(0, currentTime = map && map.getSource("ap_video") && map.getSource("ap_video").video.currentTime);
+
+    			if (currentTime >= maxTime) {
+    				$$invalidate(3, isAnimationEnded = true);
+    			}
     		}
     	};
 
@@ -11806,7 +12092,6 @@ var app = (function () {
     		if (map && map.getSource("ap_video")) {
     			map.getSource("ap_video").seek(time);
     			reportCurrentTime(true);
-    			map.triggerRepaint();
     		}
     	};
 
@@ -11820,6 +12105,7 @@ var app = (function () {
     	let dark_purple_color = "#4b1f7a";
     	let black_color = "#050505";
 
+    	//------ Setting up Mapbox layers ---------------------------------
     	// After the DOM has been rendered set up the mapbox. (Won't work before map html is available.)
     	onMount(async () => {
     		map = new mapboxGl.Map({
@@ -11834,14 +12120,17 @@ var app = (function () {
     			// what to do when the map is first loaded on the page
     			addVideoLayer();
 
-    			// cannot access the video right away due to some mapbox strangeness
+    			addStationLayer();
+
+    			//cannot access the video right away due to some mapbox strangeness
     			const waiting = () => {
     				if (!map.isStyleLoaded()) {
     					setTimeout(waiting, 200);
     				} else {
     					map.getSource("ap_video").pause();
     					let videoSource = map.getSource("ap_video");
-    					$$invalidate(1, maxTime = videoSource.video.duration);
+    					videoSource.video.loop = false;
+    					$$invalidate(2, maxTime = videoSource.video.duration);
     					var intervalTimer = setInterval(reportCurrentTime, FRAME_CHECKING_RATE);
     				}
     			};
@@ -11876,6 +12165,23 @@ var app = (function () {
     		});
     	};
 
+    	const addStationLayer = () => {
+    		stations.features.forEach(station => {
+    			const lon = station.geometry.coordinates[0];
+    			const lat = station.geometry.coordinates[1];
+    			const el = document.createElement("div");
+
+    			// this is a hack! have to update the style in AQILegend for the aqi-station-marker if you change this
+    			el.className = "station-marker";
+
+    			el.style.height = "7px";
+    			el.style.width = "7px";
+    			el.style.backgroundColor = "black";
+    			el.style.borderRadius = "3.5px";
+    			const stationMarker = new mapboxGl.Marker(el).setLngLat([lon, lat]).addTo(map);
+    		});
+    	};
+
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
@@ -11892,22 +12198,20 @@ var app = (function () {
     		Scrubber,
     		Thermometer,
     		AQILegend,
+    		AnimationDate,
     		moment,
+    		dateTempFrames,
     		UB_COORDINATES,
     		MAPBOX_TOKEN,
     		FRAME_CHECKING_RATE,
     		map,
-    		nFrames,
     		currentTime,
-    		animationPaused,
+    		currentFrame,
     		maxTime,
-    		currentTemp,
-    		dateStrings,
-    		temps,
-    		startDate,
-    		temp,
-    		dateString,
-    		currentDate,
+    		maxFrame,
+    		timeToFrameMultiplier,
+    		animationPaused,
+    		isAnimationEnded,
     		pauseAnimation,
     		startAnimation,
     		reportCurrentTime,
@@ -11921,22 +12225,19 @@ var app = (function () {
     		purple_color,
     		dark_purple_color,
     		black_color,
-    		addVideoLayer
+    		addVideoLayer,
+    		addStationLayer
     	});
 
     	$$self.$inject_state = $$props => {
     		if ("map" in $$props) map = $$props.map;
-    		if ("nFrames" in $$props) nFrames = $$props.nFrames;
     		if ("currentTime" in $$props) $$invalidate(0, currentTime = $$props.currentTime);
+    		if ("currentFrame" in $$props) $$invalidate(1, currentFrame = $$props.currentFrame);
+    		if ("maxTime" in $$props) $$invalidate(2, maxTime = $$props.maxTime);
+    		if ("maxFrame" in $$props) $$invalidate(11, maxFrame = $$props.maxFrame);
+    		if ("timeToFrameMultiplier" in $$props) $$invalidate(8, timeToFrameMultiplier = $$props.timeToFrameMultiplier);
     		if ("animationPaused" in $$props) animationPaused = $$props.animationPaused;
-    		if ("maxTime" in $$props) $$invalidate(1, maxTime = $$props.maxTime);
-    		if ("currentTemp" in $$props) $$invalidate(2, currentTemp = $$props.currentTemp);
-    		if ("dateStrings" in $$props) dateStrings = $$props.dateStrings;
-    		if ("temps" in $$props) temps = $$props.temps;
-    		if ("startDate" in $$props) startDate = $$props.startDate;
-    		if ("temp" in $$props) temp = $$props.temp;
-    		if ("dateString" in $$props) dateString = $$props.dateString;
-    		if ("currentDate" in $$props) $$invalidate(3, currentDate = $$props.currentDate);
+    		if ("isAnimationEnded" in $$props) $$invalidate(3, isAnimationEnded = $$props.isAnimationEnded);
     		if ("green_color" in $$props) green_color = $$props.green_color;
     		if ("red_color" in $$props) red_color = $$props.red_color;
     		if ("yellow_color" in $$props) yellow_color = $$props.yellow_color;
@@ -11952,11 +12253,21 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*maxTime*/ 4) {
+    			 $$invalidate(8, timeToFrameMultiplier = maxTime > 0 ? maxFrame / maxTime : 0);
+    		}
+
+    		if ($$self.$$.dirty & /*timeToFrameMultiplier, currentTime*/ 257) {
+    			 $$invalidate(1, currentFrame = Math.round(timeToFrameMultiplier * currentTime));
+    		}
+    	};
+
     	return [
     		currentTime,
+    		currentFrame,
     		maxTime,
-    		currentTemp,
-    		currentDate,
+    		isAnimationEnded,
     		pauseAnimation,
     		startAnimation,
     		updateCurrentTime
@@ -11966,13 +12277,13 @@ var app = (function () {
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$5, create_fragment$5, safe_not_equal, {});
+    		init(this, options, instance$6, create_fragment$6, safe_not_equal, {});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
     			tagName: "App",
     			options,
-    			id: create_fragment$5.name
+    			id: create_fragment$6.name
     		});
     	}
     }

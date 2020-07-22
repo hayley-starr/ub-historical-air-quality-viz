@@ -5,29 +5,13 @@
   import AQILegend from './AQILegend.svelte';
 
 
-  const FRAME_RATE = 30; //fps
-  let nFrames = 431; // total number of frames in animation
-  let currentFrame = 1;
+  const FRAME_CHECKING_RATE = 33; // check every x ms what the current time is in the video
+  const FRAME_STEP_SECONDS = .001 * FRAME_CHECKING_RATE; // advance x seconds at each check;
+
+  let maxTime = 4.0;
+  let currTime = 0;
   let animationPaused = true;
   let temp = -40;
-
-  let incrementFrame = function() {
-    if (animationPaused) return;
-    if (currentFrame+1 >= nFrames) {
-      currentFrame = 1;
-    } else {
-      currentFrame++;
-    }
-
-    if (currentFrame >= 40 && currentFrame <= 80) {
-      temp--;
-    } else if (currentFrame > 150 && currentFrame < 200) {
-      temp-=0.3
-    } else {
-      temp += 0.5
-    }
-    temp = Math.round(temp);
-  }
 
   const pauseAnimation = () => {
     animationPaused = true;
@@ -37,12 +21,24 @@
     animationPaused = false;
   }
 
-  const updateCurrentFrame = (frame) => {
-    currentFrame = frame;
+  const updateCurrentTime = (time) => {
+    currTime = time;
+    reportCurrentTime(true);
   }
 
-  var intervalTimer = setInterval(incrementFrame, FRAME_RATE);
-  
+  // mock out the fetching of the time from the video by stepping the time manually
+  const reportCurrentTime = (updateWhilePaused) => {
+    if (!animationPaused) {
+      if (currTime >= maxTime) {
+        currTime = 0;
+        animationPaused = true;
+      } else {
+         currTime = currTime + FRAME_STEP_SECONDS; // frame rate
+      }
+    }
+  }
+
+  var intervalTimer = setInterval(reportCurrentTime, FRAME_CHECKING_RATE);
 
 
     // EventInfoBox
@@ -73,23 +69,25 @@
         
 
 
-        <!-- scrubber -->
+        <!-- Scrubber -->
         <div class='component scrubber'>
           <h2>Scrubber</h2>
-          <span> current frame: {currentFrame}</span>
-          <Scrubber 
-            currentFrame={currentFrame}
-            pauseAnimation={pauseAnimation} 
-            startAnimation={startAnimation} 
-            updateCurrentFrame={updateCurrentFrame}/>
+          <span> current time: {currTime}</span>
+           <Scrubber 
+              currentTime={currTime}
+              maxTime={maxTime}
+              pauseAnimation={pauseAnimation} 
+              startAnimation={startAnimation} 
+              updateCurrentTime={updateCurrentTime}
+          />
         </div>
 
 
-         <!-- Event Info Box -->
-         <div class='component policy-event-info-box'>
-            <h2>Policy Event Info Box</h2>
-            <EventInfoBox classname={'event-info'} eventDetails={eventDetails}/>
-         </div>
+        <!-- Event Info Box -->
+        <div class='component policy-event-info-box'>
+          <h2>Policy Event Info Box</h2>
+          <EventInfoBox classname={'event-info'} eventDetails={eventDetails}/>
+        </div>
         
     </div>
 

@@ -3,11 +3,14 @@
 <script>
   import { onMount } from 'svelte';
   import mapboxgl from 'mapbox-gl';
-  import { stations } from './stations.js';
+  import { stations } from './stations_geojson.js';
   import Scrubber from './Scrubber.svelte' 
   import Thermometer from './Thermometer.svelte';
   import AQILegend from './AQILegend.svelte';
+  import AnimationDate from './AnimationDate.svelte';
   import moment from 'moment';
+  import { dateTempFrames } from './dateTempFrames.js';
+
 
   const UB_COORDINATES = [106.900354, 47.917802];
   const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGF5bGV5c3RhcnIiLCJhIjoiY2s5MmhvYTU3MDBkaTNwcGI3cWJtMjdkcCJ9.tOfFfs9wWWcOfQ1sDMiwvQ';
@@ -15,43 +18,22 @@
   const FRAME_CHECKING_RATE = 33; // check every x ms what the current time is in the video
 
   let map;
-  let nFrames = 431; // total number of frames in animation
 
   let currentTime = 0;
+  let currentFrame = 0;
+
+//---------- Translate current time in video to the number of the current frame ----
+
+  let maxTime = 0; // will reset when video loads
+  let maxFrame = dateTempFrames.length-1; 
+  let timeToFrameMultiplier = 0;
+  $: timeToFrameMultiplier = maxTime > 0 ? maxFrame / maxTime : 0;
+  $: currentFrame = Math.round(timeToFrameMultiplier * currentTime);
+
+
+//----------- Logic for playing and pausing the animation -------------------------
   let animationPaused = true;
-  let maxTime;
-  let currentTemp = -40;
-
-  let dateStrings = new Array(nFrames+1);
-  let temps = new Array(nFrames+1);
-
-  let startDate = moment('2019-01-10');
-  let temp = currentTemp;
-
-  // DUMMY DATA
-  for (let i = 1; i <= nFrames; i++) {
-    var dateString = startDate.format("YYYY[\, Week of ]MMMM[ ]Do");  
-    if (i%7 ==0) {
-      startDate = startDate.add(7, 'days');
-      dateString = startDate.format("YYYY[\, Week of ]MMMM[ ]Do"); 
-    }
-    dateStrings[i] = dateString;
-
-    if (i >= 40 && i <= 80) {
-      temp--;
-    } else if (i > 150 && i < 200) {
-      temp-=0.5
-    } else if (i > 250 && i < 300){
-      temp--;
-    } else {
-      temp += 1
-    }
-    temps[i] = Math.round(temp);
-  }
-
-  // END DUMMY DATA
-
-   let currentDate = dateStrings[0];
+  let isAnimationEnded = false;
 
   const pauseAnimation = () => {
     animationPaused = true;
@@ -60,13 +42,17 @@
 
   const startAnimation = () => {
     animationPaused = false;
+    isAnimationEnded = false;
     map.getSource('ap_video').play();
   }
 
-  // set the currentTime to what the video is showing so that the scrubber is up to date
+  // set the currentTime to what the video is showing so that the dependent components stay up to date
   const reportCurrentTime = (updateWhilePaused) => {
     if (!animationPaused | updateWhilePaused) {
       currentTime = map && map.getSource('ap_video') && map.getSource('ap_video').video.currentTime;
+      if (currentTime >= maxTime) {
+        isAnimationEnded = true;
+      }
     }
   }
 
@@ -74,9 +60,9 @@
     if (map && map.getSource('ap_video')) {
       map.getSource('ap_video').seek(time);
       reportCurrentTime(true);
-      map.triggerRepaint();
     }
   }
+
 
   let green_color = '#87e32b'; //green
   let red_color = '#f0004c'; //red
@@ -88,6 +74,7 @@
   let dark_purple_color = '#4b1f7a';
   let black_color = '#050505';
 
+//------ Setting up Mapbox layers ---------------------------------
 
   // After the DOM has been rendered set up the mapbox. (Won't work before map html is available.)
 	onMount(async () => {
@@ -101,14 +88,16 @@
     
     map.on('load', function() { // what to do when the map is first loaded on the page
       addVideoLayer();
+      addStationLayer();
 
-      // cannot access the video right away due to some mapbox strangeness
+      //cannot access the video right away due to some mapbox strangeness
       const waiting = () => {
         if (!map.isStyleLoaded()) {
           setTimeout(waiting, 200);
         } else {
           map.getSource('ap_video').pause();
           let videoSource = map.getSource('ap_video');
+          videoSource.video.loop = false;
           maxTime = videoSource.video.duration;
           var intervalTimer = setInterval(reportCurrentTime, FRAME_CHECKING_RATE);
         }
@@ -147,6 +136,25 @@
     });
   }
 
+
+  const addStationLayer = () => {
+    stations.features.forEach(station => {
+      const lon = station.geometry.coordinates[0];
+      const lat = station.geometry.coordinates[1];
+      const el = document.createElement('div');
+
+      // this is a hack! have to update the style in AQILegend for the aqi-station-marker if you change this
+      el.className = 'station-marker';
+      el.style.height = '7px';
+      el.style.width = '7px';
+      el.style.backgroundColor = 'black';
+      el.style.borderRadius= '3.5px';
+      const stationMarker = new mapboxgl.Marker(el)
+                  .setLngLat([lon, lat])
+                  .addTo(map);
+    });            
+  }
+
 </script>
 
 
@@ -159,8 +167,10 @@
   <div class='visualizations'>
     <div id='map' class='map'>
       <div class='map-thermometer-container'>
-        <div class='map-current-date'>{currentDate}</div>
-        <Thermometer temp={currentTemp}/>
+        <div class='map-current-date'>
+          <AnimationDate currentFrame={currentFrame} />
+        </div>
+        <Thermometer currentFrame={currentFrame} />
       </div>
       <div class='map-aqi-legend'>
         <AQILegend/>
@@ -173,18 +183,19 @@
   <Scrubber 
       currentTime={currentTime}
       maxTime={maxTime}
+      isAnimationEnded={isAnimationEnded}
       pauseAnimation={pauseAnimation} 
       startAnimation={startAnimation} 
-      updateCurrentTime={updateCurrentTime}/>
+      updateCurrentTime={updateCurrentTime}
+  />
 </div>
+<div class='station-marker'></div>
 
 <style>
 
 .ub-ap-viz {
   /*border: 4px solid aquamarine;*/
 }
-
-
 
 /* HEADER STYLES */
 
@@ -213,7 +224,6 @@
 
   /* border: 1px solid orangered; */
 }
-
 .map-thermometer-container {
   width: 750px;
   height: 100px;
