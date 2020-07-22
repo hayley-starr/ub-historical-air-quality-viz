@@ -128,6 +128,8 @@
       const lon = station.geometry.coordinates[0];
       const lat = station.geometry.coordinates[1];
       const el = document.createElement('div');
+      
+      // this is a hack! have to update the style in AQILegend for the aqi-station-marker if you change this
       el.className = 'station-marker';
       el.style.height = '7px';
       el.style.width = '7px';

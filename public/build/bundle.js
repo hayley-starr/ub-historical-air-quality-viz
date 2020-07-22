@@ -11464,9 +11464,8 @@ var app = (function () {
     	let div2;
     	let div0;
     	let div0_class_value;
-    	let t0;
+    	let t;
     	let div1;
-    	let t1;
 
     	function select_block_type(ctx, dirty) {
     		if (/*level*/ ctx[1].range_high) return create_if_block$1;
@@ -11480,24 +11479,22 @@ var app = (function () {
     		c: function create() {
     			div2 = element("div");
     			div0 = element("div");
-    			t0 = space();
+    			t = space();
     			div1 = element("div");
     			if_block.c();
-    			t1 = space();
-    			attr_dev(div0, "class", div0_class_value = "" + (null_to_empty("aqi-level-color aqi-" + /*level*/ ctx[1].id) + " svelte-1rigflz"));
+    			attr_dev(div0, "class", div0_class_value = "" + (null_to_empty("aqi-level-color aqi-" + /*level*/ ctx[1].id) + " svelte-e0i607"));
     			add_location(div0, file$4, 17, 12, 744);
     			attr_dev(div1, "class", "aqi-level-range");
     			add_location(div1, file$4, 18, 12, 808);
-    			attr_dev(div2, "class", "aqi-level svelte-1rigflz");
+    			attr_dev(div2, "class", "aqi-level svelte-e0i607");
     			add_location(div2, file$4, 16, 8, 708);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
     			append_dev(div2, div0);
-    			append_dev(div2, t0);
+    			append_dev(div2, t);
     			append_dev(div2, div1);
     			if_block.m(div1, null);
-    			append_dev(div2, t1);
     		},
     		p: function update(ctx, dirty) {
     			if_block.p(ctx, dirty);
@@ -11520,9 +11517,15 @@ var app = (function () {
     }
 
     function create_fragment$4(ctx) {
-    	let div1;
+    	let div5;
     	let div0;
     	let t1;
+    	let t2;
+    	let div4;
+    	let div2;
+    	let div1;
+    	let t3;
+    	let div3;
     	let each_value = /*AQI_LEGEND_INFO*/ ctx[0];
     	validate_each_argument(each_value);
     	let each_blocks = [];
@@ -11533,7 +11536,7 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div1 = element("div");
+    			div5 = element("div");
     			div0 = element("div");
     			div0.textContent = "AQI Legend";
     			t1 = space();
@@ -11542,22 +11545,43 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(div0, "class", "aqi-legend-title svelte-1rigflz");
+    			t2 = space();
+    			div4 = element("div");
+    			div2 = element("div");
+    			div1 = element("div");
+    			t3 = space();
+    			div3 = element("div");
+    			div3.textContent = `${"Air Quality Sensor Location"}`;
+    			attr_dev(div0, "class", "aqi-legend-title svelte-e0i607");
     			add_location(div0, file$4, 14, 4, 616);
-    			attr_dev(div1, "class", "aqi-legend svelte-1rigflz");
-    			add_location(div1, file$4, 13, 0, 587);
+    			attr_dev(div1, "class", "aqi-station-marker svelte-e0i607");
+    			add_location(div1, file$4, 32, 12, 1274);
+    			attr_dev(div2, "class", "aqi-station-container svelte-e0i607");
+    			add_location(div2, file$4, 31, 8, 1226);
+    			add_location(div3, file$4, 34, 8, 1336);
+    			attr_dev(div4, "class", "aqi-legend-stations svelte-e0i607");
+    			add_location(div4, file$4, 30, 4, 1184);
+    			attr_dev(div5, "class", "aqi-legend svelte-e0i607");
+    			add_location(div5, file$4, 13, 0, 587);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div1, anchor);
-    			append_dev(div1, div0);
-    			append_dev(div1, t1);
+    			insert_dev(target, div5, anchor);
+    			append_dev(div5, div0);
+    			append_dev(div5, t1);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(div1, null);
+    				each_blocks[i].m(div5, null);
     			}
+
+    			append_dev(div5, t2);
+    			append_dev(div5, div4);
+    			append_dev(div4, div2);
+    			append_dev(div2, div1);
+    			append_dev(div4, t3);
+    			append_dev(div4, div3);
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*AQI_LEGEND_INFO*/ 1) {
@@ -11573,7 +11597,7 @@ var app = (function () {
     					} else {
     						each_blocks[i] = create_each_block$1(child_ctx);
     						each_blocks[i].c();
-    						each_blocks[i].m(div1, null);
+    						each_blocks[i].m(div5, t2);
     					}
     				}
 
@@ -11587,7 +11611,7 @@ var app = (function () {
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div1);
+    			if (detaching) detach_dev(div5);
     			destroy_each(each_blocks, detaching);
     		}
     	};
@@ -11948,28 +11972,28 @@ var app = (function () {
     			attr_dev(link, "href", "https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css");
     			attr_dev(link, "rel", "stylesheet");
     			add_location(link, file$6, 0, 0, 0);
-    			add_location(h1, file$6, 147, 4, 4317);
+    			add_location(h1, file$6, 149, 4, 4433);
     			attr_dev(div0, "class", "title svelte-rle3jd");
-    			add_location(div0, file$6, 146, 4, 4293);
+    			add_location(div0, file$6, 148, 4, 4409);
     			attr_dev(div1, "class", "header svelte-rle3jd");
-    			add_location(div1, file$6, 145, 2, 4268);
+    			add_location(div1, file$6, 147, 2, 4384);
     			attr_dev(div2, "class", "map-current-date svelte-rle3jd");
-    			add_location(div2, file$6, 153, 8, 4513);
+    			add_location(div2, file$6, 155, 8, 4629);
     			attr_dev(div3, "class", "map-thermometer-container svelte-rle3jd");
-    			add_location(div3, file$6, 152, 6, 4465);
+    			add_location(div3, file$6, 154, 6, 4581);
     			attr_dev(div4, "class", "map-aqi-legend svelte-rle3jd");
-    			add_location(div4, file$6, 161, 6, 4716);
+    			add_location(div4, file$6, 163, 6, 4832);
     			attr_dev(div5, "id", "map");
     			attr_dev(div5, "class", "map svelte-rle3jd");
-    			add_location(div5, file$6, 151, 4, 4432);
+    			add_location(div5, file$6, 153, 4, 4548);
     			attr_dev(div6, "class", "map-legend");
-    			add_location(div6, file$6, 166, 4, 4801);
+    			add_location(div6, file$6, 168, 4, 4917);
     			attr_dev(div7, "class", "visualizations svelte-rle3jd");
-    			add_location(div7, file$6, 150, 2, 4399);
+    			add_location(div7, file$6, 152, 2, 4515);
     			attr_dev(div8, "class", "ub-ap-viz svelte-rle3jd");
-    			add_location(div8, file$6, 144, 0, 4242);
+    			add_location(div8, file$6, 146, 0, 4358);
     			attr_dev(div9, "class", "station-marker");
-    			add_location(div9, file$6, 178, 0, 5091);
+    			add_location(div9, file$6, 180, 0, 5207);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -12165,7 +12189,10 @@ var app = (function () {
     			const lon = station.geometry.coordinates[0];
     			const lat = station.geometry.coordinates[1];
     			const el = document.createElement("div");
+
+    			// this is a hack! have to update the style in AQILegend for the aqi-station-marker if you change this
     			el.className = "station-marker";
+
     			el.style.height = "7px";
     			el.style.width = "7px";
     			el.style.backgroundColor = "black";

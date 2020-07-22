@@ -28,6 +28,12 @@ const AQI_LEGEND_INFO = [
             </div> -->
         </div>
     {/each}
+    <div class='aqi-legend-stations'>
+        <div class='aqi-station-container'>
+            <div class='aqi-station-marker'></div>
+        </div>
+        <div>{'Air Quality Sensor Location'}</div>
+    </div>
     
 </div>
 
@@ -84,6 +90,24 @@ const AQI_LEGEND_INFO = [
 
 .aqi-6 {
     background-color: #6e4c65;
+}
+
+
+.aqi-legend-stations {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.aqi-station-container {
+    padding: 4px;
+}
+
+.aqi-station-marker {
+    height: 7px;
+    width: 7px;
+    background-color: black;
+    border-radius: 3.5px;
 }
 
 </style>
