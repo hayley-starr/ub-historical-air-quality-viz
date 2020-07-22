@@ -430,42 +430,32 @@ var app = (function () {
     //# sourceMappingURL=mapbox-gl.js.map
     });
 
-    const stations = {
+    let stations = {
     "type": "FeatureCollection",
-    "name": "stations",
+    "name": "serial_number",
     "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
     "features": [
-    { "type": "Feature", "properties": { "name": "Amgalan" }, "geometry": { "type": "Point", "coordinates": [ 106.997907000026103, 47.913428999907488 ] } },
-    { "type": "Feature", "properties": { "name": "Arvaikheer Sumiin Zakhirgaa" }, "geometry": { "type": "Point", "coordinates": [ 102.777318999999864, 46.259495999999871 ] } },
-    { "type": "Feature", "properties": { "name": "Baruun 4 zam" }, "geometry": { "type": "Point", "coordinates": [ 106.89419440002294, 47.915383299924223 ] } },
-    { "type": "Feature", "properties": { "name": "Bayankhoshuu" }, "geometry": { "type": "Point", "coordinates": [ 106.822752000020699, 47.957559999934176 ] } },
-    { "type": "Feature", "properties": { "name": "Bayanzrukh 27r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.931421000023974, 47.939126999918507 ] } },
-    { "type": "Feature", "properties": { "name": "Bayanzurkh 24r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.987388000025732, 47.925952999909299 ] } },
-    { "type": "Feature", "properties": { "name": "Bayanzurkh 2r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.935634000024109, 47.933671999917848 ] } },
-    { "type": "Feature", "properties": { "name": "Bayanzurkh 9r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 107.006293000026261, 47.935862999905972 ] } },
-    { "type": "Feature", "properties": { "name": "Bukhiin urguu" }, "geometry": { "type": "Point", "coordinates": [ 106.937361100024233, 47.917605599917593 ] } },
-    { "type": "Feature", "properties": { "name": "ChD 10r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.906028000023213, 47.93693099992241 ] } },
-    { "type": "Feature", "properties": { "name": "Khan-Uul 16r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.770765000019509, 47.85791599994085 ] } },
-    { "type": "Feature", "properties": { "name": "Khan-Uul 7r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.80391300002043, 47.866313999936729 ] } },
-    { "type": "Feature", "properties": { "name": "Misheel expo" }, "geometry": { "type": "Point", "coordinates": [ 106.882472200022647, 47.894338899925991 ] } },
-    { "type": "Feature", "properties": { "name": "Mongol gazar" }, "geometry": { "type": "Point", "coordinates": [ 106.85070830002168, 47.903538899930467 ] } },
-    { "type": "Feature", "properties": { "name": "Nisekh" }, "geometry": { "type": "Point", "coordinates": [ 106.779094000019754, 47.863942999939837 ] } },
-    { "type": "Feature", "properties": { "name": "SBD 12r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.91905900002358, 47.942935999920422 ] } },
-    { "type": "Feature", "properties": { "name": "SKhD Emneleg" }, "geometry": { "type": "Point", "coordinates": [ 106.846383000021532, 47.915243999931043 ] } },
-    { "type": "Feature", "properties": { "name": "Songinoikhairkhan 26r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.793034000019929, 47.937127999938021 ] } },
-    { "type": "Feature", "properties": { "name": "Songinoikhairkhan 67r Surguuli" }, "geometry": { "type": "Point", "coordinates": [ 106.826962000020842, 47.953245999933621 ] } },
-    { "type": "Feature", "properties": { "name": "Songinoikhairkhan 9r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.836971000021123, 47.957137999932279 ] } },
-    { "type": "Feature", "properties": { "name": "Songinokhairkhan" }, "geometry": { "type": "Point", "coordinates": [ 106.848061000021559, 47.917980999930805 ] } },
-    { "type": "Feature", "properties": { "name": "Songinokhairkhan 3r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.794645000020012, 47.922825999937828 ] } },
-    { "type": "Feature", "properties": { "name": "Songinokhairkhan 5r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.817432000020631, 47.932848999934897 ] } },
-    { "type": "Feature", "properties": { "name": "Sukhbaatar 16r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.929907000023817, 47.968354999918695 ] } },
-    { "type": "Feature", "properties": { "name": "Sukhbaatar 9r khoroo" }, "geometry": { "type": "Point", "coordinates": [ 106.913833000023473, 47.929506999921244 ] } },
-    { "type": "Feature", "properties": { "name": "Televiz" }, "geometry": { "type": "Point", "coordinates": [ 106.888629000022718, 47.929731999925025 ] } },
-    { "type": "Feature", "properties": { "name": "Tolgoit" }, "geometry": { "type": "Point", "coordinates": [ 106.79480500002002, 47.922494999937818 ] } },
-    { "type": "Feature", "properties": { "name": "Tuv Nomiin San" }, "geometry": { "type": "Point", "coordinates": [ 106.917010000023623, 47.914648999920779 ] } },
-    { "type": "Feature", "properties": { "name": "US Embassy in Ulaanbaatar" }, "geometry": { "type": "Point", "coordinates": [ 106.929470000023954, 47.928386999918821 ] } },
-    { "type": "Feature", "properties": { "name": "Urgakh naran" }, "geometry": { "type": "Point", "coordinates": [ 107.118019400030079, 47.866461099884475 ] } },
-    { "type": "Feature", "properties": { "name": "Zaisan Buddha Garden" }, "geometry": { "type": "Point", "coordinates": [ 106.911610000023572, 47.885563999921665 ] } }
+    { "type": "Feature", "id": 1, "properties": { "serial_number": "HMA6KRK" }, "geometry": { "type": "Point", "coordinates": [ 106.865684, 47.924417 ] } },
+    { "type": "Feature", "id": 2, "properties": { "serial_number": "KT4KJ47" }, "geometry": { "type": "Point", "coordinates": [ 106.893736, 47.915527 ] } },
+    { "type": "Feature", "id": 3, "properties": { "serial_number": "LUAKYUG" }, "geometry": { "type": "Point", "coordinates": [ 106.953814, 47.91212 ] } },
+    { "type": "Feature", "id": 4, "properties": { "serial_number": "HGSSMAW" }, "geometry": { "type": "Point", "coordinates": [ 106.943219, 47.953734 ] } },
+    { "type": "Feature", "id": 5, "properties": { "serial_number": "Y7KL6KJ" }, "geometry": { "type": "Point", "coordinates": [ 106.987388, 47.925953 ] } },
+    { "type": "Feature", "id": 6, "properties": { "serial_number": "MUPH4JJ" }, "geometry": { "type": "Point", "coordinates": [ 106.931421, 47.939127 ] } },
+    { "type": "Feature", "id": 7, "properties": { "serial_number": "TTVPJAP" }, "geometry": { "type": "Point", "coordinates": [ 106.935634, 47.933672 ] } },
+    { "type": "Feature", "id": 8, "properties": { "serial_number": "TMSSCRY" }, "geometry": { "type": "Point", "coordinates": [ 107.006293, 47.935863 ] } },
+    { "type": "Feature", "id": 9, "properties": { "serial_number": "TVUM769" }, "geometry": { "type": "Point", "coordinates": [ 106.919059, 47.942936 ] } },
+    { "type": "Feature", "id": 10, "properties": { "serial_number": "PCMSTGG" }, "geometry": { "type": "Point", "coordinates": [ 106.929907, 47.968355 ] } },
+    { "type": "Feature", "id": 11, "properties": { "serial_number": "RR9M4V9" }, "geometry": { "type": "Point", "coordinates": [ 106.913833, 47.929507 ] } },
+    { "type": "Feature", "id": 12, "properties": { "serial_number": "7zxpmnr6" }, "geometry": { "type": "Point", "coordinates": [ 106.91701, 47.914649 ] } },
+    { "type": "Feature", "id": 13, "properties": { "serial_number": "KW6XH4J" }, "geometry": { "type": "Point", "coordinates": [ 106.793034, 47.937128 ] } },
+    { "type": "Feature", "id": 14, "properties": { "serial_number": "CUVCV9Y" }, "geometry": { "type": "Point", "coordinates": [ 106.794645, 47.922826 ] } },
+    { "type": "Feature", "id": 15, "properties": { "serial_number": "GCWJPX9" }, "geometry": { "type": "Point", "coordinates": [ 106.817432, 47.932849 ] } },
+    { "type": "Feature", "id": 16, "properties": { "serial_number": "CVWU6VT" }, "geometry": { "type": "Point", "coordinates": [ 106.826962, 47.953246 ] } },
+    { "type": "Feature", "id": 17, "properties": { "serial_number": "SMCAMHK" }, "geometry": { "type": "Point", "coordinates": [ 106.836971, 47.957138 ] } },
+    { "type": "Feature", "id": 18, "properties": { "serial_number": "GJCXCYS" }, "geometry": { "type": "Point", "coordinates": [ 106.770765, 47.857916 ] } },
+    { "type": "Feature", "id": 19, "properties": { "serial_number": "WHSSK9M" }, "geometry": { "type": "Point", "coordinates": [ 106.803913, 47.866314 ] } },
+    { "type": "Feature", "id": 20, "properties": { "serial_number": "JAHP4HS" }, "geometry": { "type": "Point", "coordinates": [ 106.91161, 47.885564 ] } },
+    { "type": "Feature", "id": 21, "properties": { "serial_number": "PTM4JAM" }, "geometry": { "type": "Point", "coordinates": [ 106.905946, 47.936933 ] } }
     ]
     };
 
@@ -11902,6 +11892,8 @@ var app = (function () {
     	let t5;
     	let div6;
     	let t6;
+    	let t7;
+    	let div9;
     	let current;
 
     	const animationdate = new AnimationDate({
@@ -11912,11 +11904,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const thermometer = new Thermometer({
-    			props: { temp: /*currentTemp*/ ctx[3] },
-    			$$inline: true
-    		});
-
+    	const thermometer = new Thermometer({ props: { temp: 0 }, $$inline: true });
     	const aqilegend = new AQILegend({ $$inline: true });
 
     	const scrubber = new Scrubber({
@@ -11924,9 +11912,9 @@ var app = (function () {
     				currentTime: /*currentTime*/ ctx[0],
     				maxTime: /*maxTime*/ ctx[1],
     				isAnimationEnded: /*isAnimationEnded*/ ctx[2],
-    				pauseAnimation: /*pauseAnimation*/ ctx[4],
-    				startAnimation: /*startAnimation*/ ctx[5],
-    				updateCurrentTime: /*updateCurrentTime*/ ctx[6]
+    				pauseAnimation: /*pauseAnimation*/ ctx[3],
+    				startAnimation: /*startAnimation*/ ctx[4],
+    				updateCurrentTime: /*updateCurrentTime*/ ctx[5]
     			},
     			$$inline: true
     		});
@@ -11955,29 +11943,33 @@ var app = (function () {
     			div6 = element("div");
     			t6 = space();
     			create_component(scrubber.$$.fragment);
+    			t7 = space();
+    			div9 = element("div");
     			attr_dev(link, "href", "https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css");
     			attr_dev(link, "rel", "stylesheet");
     			add_location(link, file$6, 0, 0, 0);
-    			add_location(h1, file$6, 162, 4, 4493);
-    			attr_dev(div0, "class", "title svelte-1sksttb");
-    			add_location(div0, file$6, 161, 4, 4469);
-    			attr_dev(div1, "class", "header svelte-1sksttb");
-    			add_location(div1, file$6, 160, 2, 4444);
-    			attr_dev(div2, "class", "map-current-date svelte-1sksttb");
-    			add_location(div2, file$6, 168, 8, 4689);
-    			attr_dev(div3, "class", "map-thermometer-container svelte-1sksttb");
-    			add_location(div3, file$6, 167, 6, 4641);
-    			attr_dev(div4, "class", "map-aqi-legend svelte-1sksttb");
-    			add_location(div4, file$6, 176, 6, 4902);
+    			add_location(h1, file$6, 147, 4, 4317);
+    			attr_dev(div0, "class", "title svelte-rle3jd");
+    			add_location(div0, file$6, 146, 4, 4293);
+    			attr_dev(div1, "class", "header svelte-rle3jd");
+    			add_location(div1, file$6, 145, 2, 4268);
+    			attr_dev(div2, "class", "map-current-date svelte-rle3jd");
+    			add_location(div2, file$6, 153, 8, 4513);
+    			attr_dev(div3, "class", "map-thermometer-container svelte-rle3jd");
+    			add_location(div3, file$6, 152, 6, 4465);
+    			attr_dev(div4, "class", "map-aqi-legend svelte-rle3jd");
+    			add_location(div4, file$6, 161, 6, 4716);
     			attr_dev(div5, "id", "map");
-    			attr_dev(div5, "class", "map svelte-1sksttb");
-    			add_location(div5, file$6, 166, 4, 4608);
+    			attr_dev(div5, "class", "map svelte-rle3jd");
+    			add_location(div5, file$6, 151, 4, 4432);
     			attr_dev(div6, "class", "map-legend");
-    			add_location(div6, file$6, 181, 4, 4987);
-    			attr_dev(div7, "class", "visualizations svelte-1sksttb");
-    			add_location(div7, file$6, 165, 2, 4575);
-    			attr_dev(div8, "class", "ub-ap-viz svelte-1sksttb");
-    			add_location(div8, file$6, 159, 0, 4418);
+    			add_location(div6, file$6, 166, 4, 4801);
+    			attr_dev(div7, "class", "visualizations svelte-rle3jd");
+    			add_location(div7, file$6, 150, 2, 4399);
+    			attr_dev(div8, "class", "ub-ap-viz svelte-rle3jd");
+    			add_location(div8, file$6, 144, 0, 4242);
+    			attr_dev(div9, "class", "station-marker");
+    			add_location(div9, file$6, 178, 0, 5091);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -12004,6 +11996,8 @@ var app = (function () {
     			append_dev(div7, div6);
     			append_dev(div8, t6);
     			mount_component(scrubber, div8, null);
+    			insert_dev(target, t7, anchor);
+    			insert_dev(target, div9, anchor);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
@@ -12040,6 +12034,8 @@ var app = (function () {
     			destroy_component(thermometer);
     			destroy_component(aqilegend);
     			destroy_component(scrubber);
+    			if (detaching) detach_dev(t7);
+    			if (detaching) detach_dev(div9);
     		}
     	};
 
@@ -12061,43 +12057,10 @@ var app = (function () {
     	const UB_COORDINATES = [106.900354, 47.917802];
     	mapboxGl.accessToken = MAPBOX_TOKEN;
     	let map;
-    	let nFrames = 431; // total number of frames in animation
     	let currentTime = 0;
     	let maxTime = 0; // will reset when video loads
     	let animationPaused = true;
     	let isAnimationEnded = false;
-    	let currentTemp = -40;
-    	let dateStrings = new Array(nFrames + 1);
-    	let temps = new Array(nFrames + 1);
-    	let startDate = moment("2019-01-10");
-    	let temp = currentTemp;
-
-    	// DUMMY DATA
-    	for (let i = 1; i <= nFrames; i++) {
-    		var dateString = startDate.format("YYYY[, Week of ]MMMM[ ]Do");
-
-    		if (i % 7 == 0) {
-    			startDate = startDate.add(7, "days");
-    			dateString = startDate.format("YYYY[, Week of ]MMMM[ ]Do");
-    		}
-
-    		dateStrings[i] = dateString;
-
-    		if (i >= 40 && i <= 80) {
-    			temp--;
-    		} else if (i > 150 && i < 200) {
-    			temp -= 0.5;
-    		} else if (i > 250 && i < 300) {
-    			temp--;
-    		} else {
-    			temp += 1;
-    		}
-
-    		temps[i] = Math.round(temp);
-    	}
-
-    	// END DUMMY DATA
-    	let currentDate = dateStrings[0];
 
     	const pauseAnimation = () => {
     		animationPaused = true;
@@ -12110,7 +12073,7 @@ var app = (function () {
     		map.getSource("ap_video").play();
     	};
 
-    	// set the currentTime to what the video is showing so that the scrubber is up to date
+    	// set the currentTime to what the video is showing so that the dependent components stay up to date
     	const reportCurrentTime = updateWhilePaused => {
     		if (!animationPaused | updateWhilePaused) {
     			$$invalidate(0, currentTime = map && map.getSource("ap_video") && map.getSource("ap_video").video.currentTime);
@@ -12152,7 +12115,9 @@ var app = (function () {
     			// what to do when the map is first loaded on the page
     			addVideoLayer();
 
-    			// cannot access the video right away due to some mapbox strangeness
+    			addStationLayer();
+
+    			//cannot access the video right away due to some mapbox strangeness
     			const waiting = () => {
     				if (!map.isStyleLoaded()) {
     					setTimeout(waiting, 200);
@@ -12195,6 +12160,20 @@ var app = (function () {
     		});
     	};
 
+    	const addStationLayer = () => {
+    		stations.features.forEach(station => {
+    			const lon = station.geometry.coordinates[0];
+    			const lat = station.geometry.coordinates[1];
+    			const el = document.createElement("div");
+    			el.className = "station-marker";
+    			el.style.height = "7px";
+    			el.style.width = "7px";
+    			el.style.backgroundColor = "black";
+    			el.style.borderRadius = "3.5px";
+    			const stationMarker = new mapboxGl.Marker(el).setLngLat([lon, lat]).addTo(map);
+    		});
+    	};
+
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
@@ -12217,18 +12196,10 @@ var app = (function () {
     		MAPBOX_TOKEN,
     		FRAME_CHECKING_RATE,
     		map,
-    		nFrames,
     		currentTime,
     		maxTime,
     		animationPaused,
     		isAnimationEnded,
-    		currentTemp,
-    		dateStrings,
-    		temps,
-    		startDate,
-    		temp,
-    		dateString,
-    		currentDate,
     		pauseAnimation,
     		startAnimation,
     		reportCurrentTime,
@@ -12242,23 +12213,16 @@ var app = (function () {
     		purple_color,
     		dark_purple_color,
     		black_color,
-    		addVideoLayer
+    		addVideoLayer,
+    		addStationLayer
     	});
 
     	$$self.$inject_state = $$props => {
     		if ("map" in $$props) map = $$props.map;
-    		if ("nFrames" in $$props) nFrames = $$props.nFrames;
     		if ("currentTime" in $$props) $$invalidate(0, currentTime = $$props.currentTime);
     		if ("maxTime" in $$props) $$invalidate(1, maxTime = $$props.maxTime);
     		if ("animationPaused" in $$props) animationPaused = $$props.animationPaused;
     		if ("isAnimationEnded" in $$props) $$invalidate(2, isAnimationEnded = $$props.isAnimationEnded);
-    		if ("currentTemp" in $$props) $$invalidate(3, currentTemp = $$props.currentTemp);
-    		if ("dateStrings" in $$props) dateStrings = $$props.dateStrings;
-    		if ("temps" in $$props) temps = $$props.temps;
-    		if ("startDate" in $$props) startDate = $$props.startDate;
-    		if ("temp" in $$props) temp = $$props.temp;
-    		if ("dateString" in $$props) dateString = $$props.dateString;
-    		if ("currentDate" in $$props) currentDate = $$props.currentDate;
     		if ("green_color" in $$props) green_color = $$props.green_color;
     		if ("red_color" in $$props) red_color = $$props.red_color;
     		if ("yellow_color" in $$props) yellow_color = $$props.yellow_color;
@@ -12278,7 +12242,6 @@ var app = (function () {
     		currentTime,
     		maxTime,
     		isAnimationEnded,
-    		currentTemp,
     		pauseAnimation,
     		startAnimation,
     		updateCurrentTime

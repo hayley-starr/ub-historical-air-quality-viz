@@ -73,22 +73,22 @@
     
     
     map.on('load', function() { // what to do when the map is first loaded on the page
-     // addVideoLayer();
+      addVideoLayer();
       addStationLayer();
 
-      // cannot access the video right away due to some mapbox strangeness
-      // const waiting = () => {
-      //   if (!map.isStyleLoaded()) {
-      //     setTimeout(waiting, 200);
-      //   } else {
-      //     map.getSource('ap_video').pause();
-      //     let videoSource = map.getSource('ap_video');
-      //     videoSource.video.loop = false;
-      //     maxTime = videoSource.video.duration;
-      //     var intervalTimer = setInterval(reportCurrentTime, FRAME_CHECKING_RATE);
-      //   }
-      // };
-      // waiting();
+      //cannot access the video right away due to some mapbox strangeness
+      const waiting = () => {
+        if (!map.isStyleLoaded()) {
+          setTimeout(waiting, 200);
+        } else {
+          map.getSource('ap_video').pause();
+          let videoSource = map.getSource('ap_video');
+          videoSource.video.loop = false;
+          maxTime = videoSource.video.duration;
+          var intervalTimer = setInterval(reportCurrentTime, FRAME_CHECKING_RATE);
+        }
+      };
+      waiting();
         
     });
   });
@@ -129,6 +129,10 @@
       const lat = station.geometry.coordinates[1];
       const el = document.createElement('div');
       el.className = 'station-marker';
+      el.style.height = '7px';
+      el.style.width = '7px';
+      el.style.backgroundColor = 'black';
+      el.style.borderRadius= '3.5px';
       const stationMarker = new mapboxgl.Marker(el)
                   .setLngLat([lon, lat])
                   .addTo(map);
