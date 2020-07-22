@@ -18,8 +18,10 @@
   let nFrames = 431; // total number of frames in animation
 
   let currentTime = 0;
+    let maxTime = 0; // will reset when video loads
   let animationPaused = true;
-  let maxTime;
+  let isAnimationEnded = false;
+
   let currentTemp = -40;
 
   let dateStrings = new Array(nFrames+1);
@@ -67,6 +69,9 @@
   const reportCurrentTime = (updateWhilePaused) => {
     if (!animationPaused | updateWhilePaused) {
       currentTime = map && map.getSource('ap_video') && map.getSource('ap_video').video.currentTime;
+      if (currentTime >= maxTime) {
+        isAnimationEnded = true;
+      }
     }
   }
 
@@ -74,7 +79,6 @@
     if (map && map.getSource('ap_video')) {
       map.getSource('ap_video').seek(time);
       reportCurrentTime(true);
-      map.triggerRepaint();
     }
   }
 
@@ -109,6 +113,7 @@
         } else {
           map.getSource('ap_video').pause();
           let videoSource = map.getSource('ap_video');
+          videoSource.video.loop = false;
           maxTime = videoSource.video.duration;
           var intervalTimer = setInterval(reportCurrentTime, FRAME_CHECKING_RATE);
         }
@@ -173,9 +178,11 @@
   <Scrubber 
       currentTime={currentTime}
       maxTime={maxTime}
+      isAnimationEnded={isAnimationEnded}
       pauseAnimation={pauseAnimation} 
       startAnimation={startAnimation} 
-      updateCurrentTime={updateCurrentTime}/>
+      updateCurrentTime={updateCurrentTime}
+  />
 </div>
 
 <style>
