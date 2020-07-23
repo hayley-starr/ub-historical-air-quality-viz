@@ -179,10 +179,10 @@ const main = () => {
         dateArray.push(date);
         console.log(filename);
 
-        let inputFilename = '../ub-historical-air-quality-interpolation/R/frames/' + filename;
-        let outputFilename = 'pngs/img_' + dateString + '_';   
-        prevBand = createPNGFromFrame(inputFilename, outputFilename, frameId, prevBand);
-        frameId++;
+        // let inputFilename = '../ub-historical-air-quality-interpolation/R/frames/' + filename;
+        // let outputFilename = 'pngs/img_' + dateString + '_';   
+        // prevBand = createPNGFromFrame(inputFilename, outputFilename, frameId, prevBand);
+        // frameId++;
 
 
         let currTemp = temps[tempArrayIndex].mov_daily_avg;
@@ -198,6 +198,7 @@ const main = () => {
         prevTemp = currTemp;
         tempArrayIndex++;
     });
+
 
     writeDatestoFrameArray(dateArray, tempsArray);
 

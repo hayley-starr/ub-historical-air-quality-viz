@@ -111,7 +111,8 @@
     map.addSource('ap_video', {
        "type": "video",
        "urls": [
-        "videos/testVideo.mp4",
+        //"videos/testVideo.mp4",
+        "videos/full_video_v1.mov"
        ],
       "coordinates": [ // these must be exactly the extent of the raster frames in R!!
           [106.6907, 48.03644],

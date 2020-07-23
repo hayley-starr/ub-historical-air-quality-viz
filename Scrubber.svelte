@@ -3,6 +3,7 @@
     import { styler, value, pointer, listen, transform, easing, keyframes } from 'popmotion';
     import PolicyEvent from './PolicyEvent.svelte';
     import moment from 'moment';
+    import { dateTempFrames } from './dateTempFrames.js';
 
     export let currentTime;
     export let maxTime;
@@ -11,13 +12,16 @@
     export let updateCurrentTime;
     export let isAnimationEnded;
 
+    const EVENT_BUFFER_TIME = 0.5; // how much time in seconds before and after to start showing an event
+
     var isUserRunning = false; // Whether or not the USER has paused the animation
+    let isDragging = false; // is the user dragging the scrubber
     let sliderWidth = 0;
     let maxScrubberWidth = 1000;// width of scrubber in px
     let handleStyler;
-    let currentXPos = 0;
 
     $: maxScrubberWidth = sliderWidth;
+    
 
 
     $: { // continuoslu check currentTime for where to place the scrubber handle
@@ -52,19 +56,22 @@
         const pointerX = (x) => pointer({ x }).pipe(xy => xy.x, transform.clamp(0, maxScrubberWidth));
 
         const startDrag = () => {
+            isDragging = true;
             pauseAnimation();
             pointerX(convertTimeToXPosition(currentTime)).start(handleX);
         };
     
         const stopDrag = () => {
+            if (!isDragging) return;
             handleX.stop();
             // convert from poistion to time
             updateCurrentTime(convertXPositionToTime(handleStyler.get('x')));
             isUserRunning && startAnimation();
+            isDragging = false;
         };
 
         listen(handle, 'mousedown touchstart').start(startDrag);
-        listen(slider, 'mouseup touchend').start(stopDrag);
+        listen(document, 'mouseup touchend').start(stopDrag);
         document.addEventListener('keyup', event => {
             if (event.code === 'Space') {
                 isUserRunning ? handlePauseAnimation() : handleStartAnimation();
@@ -83,13 +90,12 @@
         startAnimation();
     }
 
-    let startDate = moment('2019-01-10');
-    let endDate = moment('2020-01-10');
+    let startDate = moment(dateTempFrames[0].date);
+    let endDate = moment(dateTempFrames[dateTempFrames.length-1].date);
     let totalDays = endDate-startDate;
 
     const getPolicyEventPosition = (policyDate) => {
         let policyDays = endDate-moment(policyDate);
-        
         return policyDays/totalDays;
     }
 
@@ -116,7 +122,6 @@
             imgSource: './banRawCoal.jpg'
         }
     ]
-
 </script> 
 
 
@@ -173,10 +178,13 @@
         </div>
 
         {#each policyEvents as policyEvent, i}
-            <PolicyEvent currentFrame={currentXPos} 
-                        position={Math.round(sliderWidth * getPolicyEventPosition(policyEvent.date))}
-                        eventDetails={policyEvent}
-                        id={i}/>
+            <PolicyEvent 
+                currentScrubberPosition={convertTimeToXPosition(currentTime)} 
+                eventPosition={Math.round(sliderWidth * getPolicyEventPosition(policyEvent.date))}
+                eventDetails={policyEvent}
+                bufferRadius={EVENT_BUFFER_TIME * maxScrubberWidth / maxTime}
+                id={i}
+            />
     
         {/each}
         

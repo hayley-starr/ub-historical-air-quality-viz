@@ -11,6 +11,7 @@
   let maxTime = 4.0;
   let currTime = 0;
   let animationPaused = true;
+  let isAnimationEnded = false;
   let temp = -40;
 
   const pauseAnimation = () => {
@@ -31,9 +32,11 @@
     if (!animationPaused) {
       if (currTime >= maxTime) {
         currTime = 0;
+        isAnimationEnded = true;
         animationPaused = true;
       } else {
          currTime = currTime + FRAME_STEP_SECONDS; // frame rate
+         isAnimationEnded = false;
       }
     }
   }
@@ -55,17 +58,17 @@
     <h1>Component Library</h1>
     <div class='components'>
          <!-- AQI Legend -->
-         <div class='component thermometer'>
+         <div class='component'>
             <h2>AQI Legend</h2>
             <AQILegend />
          </div>
 
 
-          <!-- Thermometer -->
-         <div class='component thermometer'>
+          <!-- Thermometer MIGHT REPLACE WITH CHART -->
+         <!-- <div class='component thermometer'>
             <h2>Thermometer</h2>
-            <Thermometer temp={temp} />
-         </div>
+            <Thermometer currentFrame={currentFrame} />
+         </div> -->
         
 
 
