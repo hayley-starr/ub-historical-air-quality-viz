@@ -65,6 +65,12 @@
 
         listen(handle, 'mousedown touchstart').start(startDrag);
         listen(slider, 'mouseup touchend').start(stopDrag);
+        document.addEventListener('keyup', event => {
+            if (event.code === 'Space') {
+                isUserRunning ? handlePauseAnimation() : handleStartAnimation();
+            }
+        });
+
     });
 
     const handlePauseAnimation = () => {
