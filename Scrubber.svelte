@@ -95,7 +95,7 @@
     let totalDays = endDate-startDate;
 
     const getPolicyEventPosition = (policyDate) => {
-        let policyDays = endDate-moment(policyDate);
+        let policyDays = moment(policyDate)-startDate;
         return policyDays/totalDays;
     }
 
