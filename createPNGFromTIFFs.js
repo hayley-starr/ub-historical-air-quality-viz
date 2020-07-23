@@ -2,11 +2,10 @@
 import * as gdal from 'gdal';
 import fs from 'fs';
 import { PNG } from 'pngjs';
-import convert from 'color-convert'
 import { scaleLinear} from 'd3-scale'
 import { temps } from './ub_7_day_avg_temp'
 
-const NUM_INTERMEDIARY_FRAMES = 7;
+const NUM_INTERMEDIARY_FRAMES = 11;
 const NUM_CALCULATED_FRAMES = NUM_INTERMEDIARY_FRAMES + 1;
 
 let green_color = '#93c947'; //green
@@ -37,7 +36,7 @@ let COLOR_ARRAY = [
     dark_purple_color // 14
 ]
 
-const airQualityScale = [0, 15, 100, 250, 300, 350];
+const airQualityScale = [0, 15, 100, 250, 300, 350]; // this is up for changing!
 const colorScale = [blue_color, green_color, orange_color,red_color, purple_color, dark_purple_color];
 
 var scaleAirQualityToColor = scaleLinear().domain(airQualityScale).range(colorScale);
@@ -173,15 +172,17 @@ const main = () => {
 
    //for each file, png-ize and save
     files.forEach(filename => {
-        let inputFilename = '../ub-historical-air-quality-interpolation/R/frames/' + filename;
-        // let outputFilename = 'pngs/img' + frameId;   
-        // prevBand = createPNGFromFrame(inputFilename, outputFilename, frameId, prevBand);
-        // frameId++;
 
         // get date array
         let dateString = filename.substring(18, 28);
         let date = new Date(dateString);
         dateArray.push(date);
+        console.log(filename);
+
+        let inputFilename = '../ub-historical-air-quality-interpolation/R/frames/' + filename;
+        let outputFilename = 'pngs/img_' + dateString + '_';   
+        prevBand = createPNGFromFrame(inputFilename, outputFilename, frameId, prevBand);
+        frameId++;
 
 
         let currTemp = temps[tempArrayIndex].mov_daily_avg;
@@ -243,7 +244,7 @@ const writeDatestoFrameArray = (dateArray, tempsArray) => {
         if (err) {
             throw err;
         }
-        console.log("JSON data is saved.");
+        console.log("date temp JSON data is saved.");
     });
     
 }
