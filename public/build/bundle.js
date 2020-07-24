@@ -12027,28 +12027,28 @@ var app = (function () {
     			attr_dev(link, "href", "https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css");
     			attr_dev(link, "rel", "stylesheet");
     			add_location(link, file$6, 0, 0, 0);
-    			add_location(h1, file$6, 164, 4, 4968);
+    			add_location(h1, file$6, 166, 4, 5056);
     			attr_dev(div0, "class", "title svelte-rle3jd");
-    			add_location(div0, file$6, 163, 4, 4944);
+    			add_location(div0, file$6, 165, 4, 5032);
     			attr_dev(div1, "class", "header svelte-rle3jd");
-    			add_location(div1, file$6, 162, 2, 4919);
+    			add_location(div1, file$6, 164, 2, 5007);
     			attr_dev(div2, "class", "map-current-date svelte-rle3jd");
-    			add_location(div2, file$6, 170, 8, 5164);
+    			add_location(div2, file$6, 172, 8, 5252);
     			attr_dev(div3, "class", "map-thermometer-container svelte-rle3jd");
-    			add_location(div3, file$6, 169, 6, 5116);
+    			add_location(div3, file$6, 171, 6, 5204);
     			attr_dev(div4, "class", "map-aqi-legend svelte-rle3jd");
-    			add_location(div4, file$6, 175, 6, 5337);
+    			add_location(div4, file$6, 177, 6, 5425);
     			attr_dev(div5, "id", "map");
     			attr_dev(div5, "class", "map svelte-rle3jd");
-    			add_location(div5, file$6, 168, 4, 5083);
+    			add_location(div5, file$6, 170, 4, 5171);
     			attr_dev(div6, "class", "map-legend");
-    			add_location(div6, file$6, 180, 4, 5422);
+    			add_location(div6, file$6, 182, 4, 5510);
     			attr_dev(div7, "class", "visualizations svelte-rle3jd");
-    			add_location(div7, file$6, 167, 2, 5050);
+    			add_location(div7, file$6, 169, 2, 5138);
     			attr_dev(div8, "class", "ub-ap-viz svelte-rle3jd");
-    			add_location(div8, file$6, 161, 0, 4893);
+    			add_location(div8, file$6, 163, 0, 4981);
     			attr_dev(div9, "class", "station-marker");
-    			add_location(div9, file$6, 192, 0, 5712);
+    			add_location(div9, file$6, 194, 0, 5800);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -12229,9 +12229,10 @@ var app = (function () {
     		map.addSource("ap_video", {
     			"type": "video",
     			"urls": [
-    				//"videos/testVideo.mp4",
-    				"videos/full_video_v1.mp4"
-    			],
+    				//  "videos/full_video_v1.mp4",
+    				"videos/sample_smooth.mov"
+    			], //  "videos/sample_band.mov",
+    			//  "videos/sample_band_smoother.mov",
     			"coordinates": [
     				// these must be exactly the extent of the raster frames in R!!
     				[106.6907, 48.03644],

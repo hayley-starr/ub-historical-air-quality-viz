@@ -1,8 +1,9 @@
 
-import * as gdal from 'gdal';
+import * as gdal from 'gdal-next';
 import fs from 'fs';
 import { PNG } from 'pngjs';
-import { scaleLinear} from 'd3-scale'
+import convert from 'color-convert';
+import { scaleLinear, scaleOrdinal, scaleQuantize, scaleThreshold} from 'd3-scale'
 import { temps } from './ub_7_day_avg_temp'
 
 const NUM_INTERMEDIARY_FRAMES = 11;
@@ -10,38 +11,33 @@ const NUM_CALCULATED_FRAMES = NUM_INTERMEDIARY_FRAMES + 1;
 
 let green_color = '#93c947'; //green
 let red_color = '#f0004c'; //red
-let yellow_color = '#ebc505'; 
-let blue_color = '#027ef2';
-let white_color = '#ffffff';
+let orange_red_color = '#fc6203';
+let yellow_color = '#ebc505';
+let green_yellow_color = '#d7e01d'
 let orange_color = '#fc9d03';
+let red_purple_color = '#d921d0';
 let purple_color = '#5e03fc';
 let dark_purple_color = '#4b1f7a';
 let black_color = '#050505';
 
-let COLOR_ARRAY = [
-    white_color, // 0
-    blue_color, // 1
-    blue_color, // 2
-    green_color, // 3
-    green_color, // 4
-    yellow_color, // 5
-    yellow_color, // 6
-    orange_color, // 7
-    orange_color, // 8
-    red_color, // 9
-    red_color, // 10
-    purple_color, // 11
-    purple_color, // 12
-    dark_purple_color, // 13
-    dark_purple_color // 14
-]
+const airQualityScale = [12, 22, 35, 55, 100, 150, 200, 250, 500]; // this is up for changing!
+const colorScale = [green_color, // <12
+        green_yellow_color, // <22
+        yellow_color, // <35
+        orange_color, // <55
+        orange_red_color, // < 100
+        red_color, // <150
+        red_purple_color, // < 200
+        purple_color, // < 250
+        dark_purple_color, // < 500
+        black_color]; //> 500
 
-const airQualityScale = [0, 15, 100, 250, 300, 350]; // this is up for changing!
-const colorScale = [blue_color, green_color, orange_color,red_color, purple_color, dark_purple_color];
+// SMOOTH 
+// var scaleAirQualityToColor = scaleLinear().domain(airQualityScale).range(colorScale);
+// scaleAirQualityToColor.clamp(true);
 
-var scaleAirQualityToColor = scaleLinear().domain(airQualityScale).range(colorScale);
-scaleAirQualityToColor.clamp(true);
-
+// BANDS
+var scaleAirQualityToColor = scaleThreshold().domain(airQualityScale).range(colorScale);
 
 // write geojson to file
 const writePNG = function(colorArray, width, height, filename) {
@@ -83,11 +79,15 @@ const getPixelColor = function(pixelValue, opacityPixelValue) {
     // let rgbPixelColor = hexRgb(pixelColor, {format: 'array'});
     // return rgbPixelColor;
 
-    let rgbColorString = scaleAirQualityToColor(pixelValue);
-   
-    let rgbPixelColors = rgbColorString.substring(4, rgbColorString.length-1)
-         .replace(/ /g, '')
-         .split(',');
+    // BANDS
+    let rgbPixelColors = convert.hex.rgb(scaleAirQualityToColor(pixelValue));
+
+
+    // SMOOTH
+    // let rgbColorString = scaleAirQualityToColor(pixelValue);
+    // let rgbPixelColors = rgbColorString.substring(4, rgbColorString.length-1)
+    //      .replace(/ /g, '')
+    //      .split(',');
 
     var rgbPixelColor = [
         parseInt(rgbPixelColors[0]), 
@@ -145,6 +145,8 @@ const createPNGFromFrame = function(inputFilename, outputFilename, frameId, prev
         }
     }
 
+    console.log('created frames');
+
     //write each fresulting frame to a png file
     for (let frm = 0; frm < NUM_CALCULATED_FRAMES; frm++) {
         let pngFrame = resultingFrames[frm];
@@ -172,17 +174,17 @@ const main = () => {
 
    //for each file, png-ize and save
     files.forEach(filename => {
+        if (frameId > 30) return false;
 
         // get date array
         let dateString = filename.substring(18, 28);
         let date = new Date(dateString);
         dateArray.push(date);
-        console.log(filename);
 
-        // let inputFilename = '../ub-historical-air-quality-interpolation/R/frames/' + filename;
-        // let outputFilename = 'pngs/img_' + dateString + '_';   
-        // prevBand = createPNGFromFrame(inputFilename, outputFilename, frameId, prevBand);
-        // frameId++;
+        let inputFilename = '../ub-historical-air-quality-interpolation/R/frames/' + filename;
+        let outputFilename = 'pngs_bands_smoother/img_' + dateString + '_';   
+        prevBand = createPNGFromFrame(inputFilename, outputFilename, frameId, prevBand);
+        frameId++;
 
 
         let currTemp = temps[tempArrayIndex].mov_daily_avg;
@@ -250,6 +252,19 @@ const writeDatestoFrameArray = (dateArray, tempsArray) => {
     
 }
 
+const createSingleFrame = () => {
+    let prevBand;
+    let inputFilename1 = '../ub-historical-air-quality-interpolation/R/frames/air_quality_bands_2019-02-14.tif' ;
+    let inputFilename2 = '../ub-historical-air-quality-interpolation/R/frames/air_quality_bands_2019-02-18.tif' ;
+    let outputFilename = 'sample_img_withBands_2019-02-14.tif' ;
+    prevBand = createPNGFromFrame(inputFilename1, outputFilename, 1, prevBand);
+    createPNGFromFrame(inputFilename2, outputFilename, 1, prevBand);
+}
+
+//createSingleFrame();
 main();
+
+
+
 
 
