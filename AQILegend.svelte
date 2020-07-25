@@ -16,7 +16,8 @@ const AQI_LEGEND_INFO = [
 
 <div class='ap-legend'>
     <div class='ap-legend-title'>PM2.5 Legend</div>
-    {#each AQI_LEGEND_INFO as level}
+    <div class='ap-legend-pm25-scale-container'>{'scale goes here'}</div>
+    <!-- {#each AQI_LEGEND_INFO as level}
         <div class='ap-level'>
             <div class={'ap-level-color ap-'+level.id}></div>
             <div class='ap-level-range'>
@@ -26,11 +27,11 @@ const AQI_LEGEND_INFO = [
                     {level.range_low}+
                 {/if}
             </div>
-             <!-- <div class='aqi-level-description'>
+             <div class='aqi-level-description'>
                 {level.description}
-            </div> -->
+            </div>
         </div>
-    {/each}
+    {/each} -->
     <div class='ap-legend-stations'>
         <div class='ap-station-container'>
             <div class='ap-station-marker'></div>
@@ -56,9 +57,15 @@ const AQI_LEGEND_INFO = [
 .ap-legend-title {
     padding: 5px;
     font-size: 20px;
+    border: 1px solid purple;
 }
 
-.ap-level {
+.ap-legend-pm25-scale-container {
+    height: 45px;
+    border: 1px solid green;
+}
+
+/* .ap-level {
     display: flex;
     justify-content: flex-start;
     margin: 0 0 5px 5px;
@@ -73,13 +80,14 @@ const AQI_LEGEND_INFO = [
 
 .ap-color-range {
     width: 50px;
-}
+} */
 
 
 .ap-legend-stations {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    border: 1px solid red;
 }
 
 .ap-station-container {

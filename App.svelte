@@ -87,8 +87,8 @@
     
     
     map.on('load', function() { // what to do when the map is first loaded on the page
-      addVideoLayer();
-      addStationLayer();
+      //addVideoLayer();
+      //addStationLayer();
 
       //cannot access the video right away due to some mapbox strangeness
       const waiting = () => {
@@ -165,37 +165,48 @@
 
 
 <div class='ub-ap-viz'>
+
   <div class='header'>
     <div class='title'>
     <h1>Visualzing Air Pollution and Policy in Ulaanbaatar</h1>
     </div>
   </div>
-  <div class='visualizations'>
-    <div id='map' class='map'>
-        <div class='map-current-date'>
+  <div class='visualization'>
+    <div class='map-container'>
+
+      <div class='map' id='map'>
+        <div class='map-animation-date-container'>
           <AnimationDate currentFrame={currentFrame} />
         </div>
+      </div>
+
+      <div class='map-scrubber-container'>
+          <Scrubber 
+              currentTime={currentTime}
+              maxTime={maxTime}
+              isAnimationEnded={isAnimationEnded}
+              pauseAnimation={pauseAnimation} 
+              startAnimation={startAnimation} 
+              updateCurrentTime={updateCurrentTime}
+          />
+      </div>
+
     </div>
+   
+
     <div class='map-aqi-legend'>
       <AQILegend  currentFrame={currentFrame} />
       <button on:click={setBaseLayer}>Switch to Satellite View</button>
     </div>
   </div>
-  <Scrubber 
-      currentTime={currentTime}
-      maxTime={maxTime}
-      isAnimationEnded={isAnimationEnded}
-      pauseAnimation={pauseAnimation} 
-      startAnimation={startAnimation} 
-      updateCurrentTime={updateCurrentTime}
-  />
+
 </div>
 <div class='station-marker'></div>
 
 <style>
 
 .ub-ap-viz {
-  /*border: 4px solid aquamarine;*/
+  /* border: 4px solid aquamarine; */
 }
 
 /* HEADER STYLES */
@@ -213,20 +224,31 @@
 
 /* VISUALIZATION STYLES */
 
-.visualizations {
+.visualization {
   display: flex;
-  flex-direction: row;
-  height: 500px;
-  border: 1px solid green;
-}
+  flex-direction: row; /* in desktop */
+  height: 700px;
+  /* border: 1px solid green; */
+} 
 
-.visualizations .map {
-  width: 85%;
+.visualization .map-container {
+  width: 85%; /* in desktop */
   height: 100%;
-  border: 1px solid orangered;
+  /* border: 1px solid orangered; */
+  display: flex;
+  flex-direction: column;
 }
 
-.map-current-date {
+.map-container .map {
+  /* border: 2px solid red; */
+  height: 500px; /*desktop*/
+}
+
+.map-container .map .map-scrubber-container {
+  /* border: 1px solid pink; */
+}
+
+.map-container .map .map-animation-date-container {
     width: max-content;
     font-size: 20px;
     font-weight: bold;
@@ -234,11 +256,8 @@
     margin-bottom: 20px;
 }
 
-.map-aqi-legend {
-  width: 15%;
+.visualization .map-aqi-legend {
+  width: 15%; /* in desktop */
   height: 100%;
-  /* z-index: 100; */
-  /* top: 15px;
-  left: 89vw; */
 }
 </style>
