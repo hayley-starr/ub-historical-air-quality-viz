@@ -1,7 +1,4 @@
 <script>
-import Thermometer from './Thermometer.svelte';
-
-export let currentFrame;
 
 const AQI_LEGEND_INFO = [
     {id: 1, color: '#3ec41f', description: 'Good', range_low: 0, range_high: 49},
@@ -14,12 +11,12 @@ const AQI_LEGEND_INFO = [
 
 </script>
 
-<div class='ap-legend'>
-    <div class='ap-legend-title'>PM2.5 Legend</div>
+<div class='aqi-legend'>
+    <div class='aqi-legend-title'>PM2.5 Legend</div>
     {#each AQI_LEGEND_INFO as level}
-        <div class='ap-level'>
-            <div class={'ap-level-color ap-'+level.id}></div>
-            <div class='ap-level-range'>
+        <div class='aqi-level'>
+            <div class={'aqi-level-color aqi-'+level.id}></div>
+            <div class='aqi-level-range'>
                 {#if level.range_high}
                     {level.range_low} - {level.range_high}
                 {:else}
@@ -31,62 +28,82 @@ const AQI_LEGEND_INFO = [
             </div> -->
         </div>
     {/each}
-    <div class='ap-legend-stations'>
-        <div class='ap-station-container'>
-            <div class='ap-station-marker'></div>
+    <div class='aqi-legend-stations'>
+        <div class='aqi-station-container'>
+            <div class='aqi-station-marker'></div>
         </div>
         <div>{'Air Quality Sensor Location'}</div>
-    </div>
-    <div>
-        <Thermometer currentFrame={currentFrame} />
     </div>
     
 </div>
 
 <style>
-.ap-legend {
+.aqi-legend {
     border-radius: 4px;
     display: flex;
     flex-direction: column;
-    min-width: 75px;
+    width: 125px;
     background-color: white;
-    border: 1px solid red;
 }
 
-.ap-legend-title {
+.aqi-legend-title {
     padding: 5px;
     font-size: 20px;
 }
 
-.ap-level {
+.aqi-level {
     display: flex;
     justify-content: flex-start;
     margin: 0 0 5px 5px;
 }
 
-.ap-level-color {
+.aqi-level-color {
     height: 15px;
     width: 15px;
     border-radius: 2px;
     margin-right: 10px;
 }
 
-.ap-color-range {
+.aqi-color-range {
     width: 50px;
 }
 
+.aqi-1 {
+    background-color: #3ec41f;
+}
 
-.ap-legend-stations {
+.aqi-2 {
+    background-color: #f2d00f;
+}
+
+.aqi-3 {
+    background-color: #e6a40b;
+}
+
+.aqi-4 {
+    background-color: #bd2211;
+}
+
+.aqi-5 {
+    background-color: #9421a3;
+}
+
+.aqi-6 {
+    background-color: #6e4c65;
+}
+
+
+.aqi-legend-stations {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-.ap-station-container {
+.aqi-station-container {
     padding: 4px;
 }
 
-.ap-station-marker {
+.aqi-station-marker {
     height: 7px;
     width: 7px;
     background-color: black;

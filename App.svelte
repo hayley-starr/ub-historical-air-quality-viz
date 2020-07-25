@@ -5,6 +5,7 @@
   import mapboxgl from 'mapbox-gl';
   import { stations } from './stations_geojson.js';
   import Scrubber from './Scrubber.svelte' 
+  import Thermometer from './Thermometer.svelte';
   import AQILegend from './AQILegend.svelte';
   import AnimationDate from './AnimationDate.svelte';
   import moment from 'moment';
@@ -80,7 +81,6 @@
 		map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v9',
-        // style: 'mapbox://styles/mapbox/satellite-v9',
         center: UB_COORDINATES, // starting position
         zoom: 11 // starting zoom
       });
@@ -111,8 +111,8 @@
     map.addSource('ap_video', {
        "type": "video",
        "urls": [
-      //  "videos/full_video_v1.mp4",
-        "videos/sample_smooth.mov",
+        //"videos/testVideo.mp4",
+        "videos/full_video_v1.mp4"
        ],
       "coordinates": [ // these must be exactly the extent of the raster frames in R!!
           [106.6907, 48.03644],
@@ -156,11 +156,6 @@
     });            
   }
 
-  const setBaseLayer = () => {
-    console.log('setting satellite view');
-    map.setStyle('mapbox://styles/mapbox/satellite-v9');
-  }
-
 </script>
 
 
@@ -172,13 +167,18 @@
   </div>
   <div class='visualizations'>
     <div id='map' class='map'>
+      <div class='map-thermometer-container'>
         <div class='map-current-date'>
           <AnimationDate currentFrame={currentFrame} />
         </div>
+        <Thermometer currentFrame={currentFrame} />
+      </div>
+      <div class='map-aqi-legend'>
+        <AQILegend/>
+      </div>
+      
     </div>
-    <div class='map-aqi-legend'>
-      <AQILegend  currentFrame={currentFrame} />
-      <button on:click={setBaseLayer}>Switch to Satellite View</button>
+    <div class='map-legend'>
     </div>
   </div>
   <Scrubber 
@@ -215,15 +215,23 @@
 
 .visualizations {
   display: flex;
-  flex-direction: row;
   height: 500px;
-  border: 1px solid green;
 }
 
 .visualizations .map {
-  width: 85%;
+  width: 70%;
   height: 100%;
-  border: 1px solid orangered;
+  flex-grow: 3;
+
+  /* border: 1px solid orangered; */
+}
+.map-thermometer-container {
+  width: 750px;
+  height: 100px;
+  position: absolute;
+  z-index: 100;
+  top: 15px;
+  left: 15px;
 }
 
 .map-current-date {
@@ -235,10 +243,11 @@
 }
 
 .map-aqi-legend {
-  width: 15%;
-  height: 100%;
-  /* z-index: 100; */
-  /* top: 15px;
-  left: 89vw; */
+  width: 50px;
+  height: 100px;
+  position: absolute;
+  z-index: 100;
+  top: 15px;
+  left: 89vw;
 }
 </style>
