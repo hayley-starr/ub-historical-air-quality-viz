@@ -11738,25 +11738,21 @@ var app = (function () {
 
     // (14:4) {#if currentDate}
     function create_if_block$1(ctx) {
-    	let t0;
-    	let t1_value = /*currentDate*/ ctx[0].format("YYYY-MM-DD") + "";
-    	let t1;
+    	let t_value = /*currentDate*/ ctx[0].format("YYYY-MM-DD") + "";
+    	let t;
 
     	const block = {
     		c: function create() {
-    			t0 = text("Week of: ");
-    			t1 = text(t1_value);
+    			t = text(t_value);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, t0, anchor);
-    			insert_dev(target, t1, anchor);
+    			insert_dev(target, t, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*currentDate*/ 1 && t1_value !== (t1_value = /*currentDate*/ ctx[0].format("YYYY-MM-DD") + "")) set_data_dev(t1, t1_value);
+    			if (dirty & /*currentDate*/ 1 && t_value !== (t_value = /*currentDate*/ ctx[0].format("YYYY-MM-DD") + "")) set_data_dev(t, t_value);
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(t0);
-    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(t);
     		}
     	};
 
@@ -11779,6 +11775,7 @@ var app = (function () {
     		c: function create() {
     			span = element("span");
     			if (if_block) if_block.c();
+    			attr_dev(span, "class", "animation-date");
     			add_location(span, file$5, 12, 1, 232);
     		},
     		l: function claim(nodes) {
@@ -11897,24 +11894,26 @@ var app = (function () {
     const file$6 = "App.svelte";
 
     function create_fragment$6(ctx) {
-    	let link;
+    	let link0;
     	let t0;
+    	let link1;
+    	let t1;
     	let div8;
     	let div1;
     	let div0;
     	let h1;
-    	let t2;
+    	let t3;
     	let div7;
     	let div5;
     	let div3;
     	let div2;
-    	let t3;
-    	let div4;
     	let t4;
-    	let div6;
+    	let div4;
     	let t5;
+    	let div6;
+    	let t6;
     	let button;
-    	let t7;
+    	let t8;
     	let div9;
     	let current;
     	let dispose;
@@ -11943,82 +11942,89 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			link = element("link");
+    			link0 = element("link");
     			t0 = space();
+    			link1 = element("link");
+    			t1 = space();
     			div8 = element("div");
     			div1 = element("div");
     			div0 = element("div");
     			h1 = element("h1");
     			h1.textContent = "Visualzing Air Pollution and Policy in Ulaanbaatar";
-    			t2 = space();
+    			t3 = space();
     			div7 = element("div");
     			div5 = element("div");
     			div3 = element("div");
     			div2 = element("div");
     			create_component(animationdate.$$.fragment);
-    			t3 = space();
+    			t4 = space();
     			div4 = element("div");
     			create_component(scrubber.$$.fragment);
-    			t4 = space();
+    			t5 = space();
     			div6 = element("div");
     			create_component(aqilegend.$$.fragment);
-    			t5 = space();
+    			t6 = space();
     			button = element("button");
     			button.textContent = "Switch to Satellite View";
-    			t7 = space();
+    			t8 = space();
     			div9 = element("div");
-    			attr_dev(link, "href", "https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css");
-    			attr_dev(link, "rel", "stylesheet");
-    			add_location(link, file$6, 0, 0, 0);
-    			add_location(h1, file$6, 170, 4, 5121);
-    			attr_dev(div0, "class", "title svelte-3cdibe");
-    			add_location(div0, file$6, 169, 4, 5097);
-    			attr_dev(div1, "class", "header svelte-3cdibe");
-    			add_location(div1, file$6, 168, 2, 5072);
-    			attr_dev(div2, "class", "map-animation-date-container svelte-3cdibe");
-    			add_location(div2, file$6, 177, 8, 5305);
-    			attr_dev(div3, "class", "map svelte-3cdibe");
+    			attr_dev(link0, "href", "https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css");
+    			attr_dev(link0, "rel", "stylesheet");
+    			add_location(link0, file$6, 0, 0, 0);
+    			attr_dev(link1, "href", "https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
+    			attr_dev(link1, "rel", "stylesheet");
+    			add_location(link1, file$6, 1, 0, 90);
+    			add_location(h1, file$6, 171, 4, 5237);
+    			attr_dev(div0, "class", "title svelte-i2qj2t");
+    			add_location(div0, file$6, 170, 4, 5213);
+    			attr_dev(div1, "class", "header svelte-i2qj2t");
+    			add_location(div1, file$6, 169, 2, 5188);
+    			attr_dev(div2, "class", "map-animation-date-container svelte-i2qj2t");
+    			add_location(div2, file$6, 178, 8, 5421);
+    			attr_dev(div3, "class", "map svelte-i2qj2t");
     			attr_dev(div3, "id", "map");
-    			add_location(div3, file$6, 176, 6, 5270);
-    			attr_dev(div4, "class", "map-scrubber-container svelte-3cdibe");
-    			add_location(div4, file$6, 182, 6, 5439);
-    			attr_dev(div5, "class", "map-container svelte-3cdibe");
-    			add_location(div5, file$6, 174, 4, 5235);
-    			add_location(button, file$6, 198, 6, 5896);
-    			attr_dev(div6, "class", "map-aqi-legend svelte-3cdibe");
-    			add_location(div6, file$6, 196, 4, 5812);
-    			attr_dev(div7, "class", "visualization svelte-3cdibe");
-    			add_location(div7, file$6, 173, 2, 5203);
-    			attr_dev(div8, "class", "ub-ap-viz svelte-3cdibe");
-    			add_location(div8, file$6, 166, 0, 5045);
+    			add_location(div3, file$6, 177, 6, 5386);
+    			attr_dev(div4, "class", "map-scrubber-container svelte-i2qj2t");
+    			add_location(div4, file$6, 183, 6, 5567);
+    			attr_dev(div5, "class", "map-container svelte-i2qj2t");
+    			add_location(div5, file$6, 175, 4, 5351);
+    			add_location(button, file$6, 199, 6, 6024);
+    			attr_dev(div6, "class", "map-aqi-legend svelte-i2qj2t");
+    			add_location(div6, file$6, 197, 4, 5940);
+    			attr_dev(div7, "class", "visualization svelte-i2qj2t");
+    			add_location(div7, file$6, 174, 2, 5319);
+    			attr_dev(div8, "class", "ub-ap-viz svelte-i2qj2t");
+    			add_location(div8, file$6, 167, 0, 5161);
     			attr_dev(div9, "class", "station-marker");
-    			add_location(div9, file$6, 203, 0, 5990);
+    			add_location(div9, file$6, 204, 0, 6118);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor, remount) {
-    			insert_dev(target, link, anchor);
+    			insert_dev(target, link0, anchor);
     			insert_dev(target, t0, anchor);
+    			insert_dev(target, link1, anchor);
+    			insert_dev(target, t1, anchor);
     			insert_dev(target, div8, anchor);
     			append_dev(div8, div1);
     			append_dev(div1, div0);
     			append_dev(div0, h1);
-    			append_dev(div8, t2);
+    			append_dev(div8, t3);
     			append_dev(div8, div7);
     			append_dev(div7, div5);
     			append_dev(div5, div3);
     			append_dev(div3, div2);
     			mount_component(animationdate, div2, null);
-    			append_dev(div5, t3);
+    			append_dev(div5, t4);
     			append_dev(div5, div4);
     			mount_component(scrubber, div4, null);
-    			append_dev(div7, t4);
+    			append_dev(div7, t5);
     			append_dev(div7, div6);
     			mount_component(aqilegend, div6, null);
-    			append_dev(div6, t5);
+    			append_dev(div6, t6);
     			append_dev(div6, button);
-    			insert_dev(target, t7, anchor);
+    			insert_dev(target, t8, anchor);
     			insert_dev(target, div9, anchor);
     			current = true;
     			if (remount) dispose();
@@ -12051,13 +12057,15 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(link);
+    			if (detaching) detach_dev(link0);
     			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(link1);
+    			if (detaching) detach_dev(t1);
     			if (detaching) detach_dev(div8);
     			destroy_component(animationdate);
     			destroy_component(scrubber);
     			destroy_component(aqilegend);
-    			if (detaching) detach_dev(t7);
+    			if (detaching) detach_dev(t8);
     			if (detaching) detach_dev(div9);
     			dispose();
     		}
@@ -12148,8 +12156,10 @@ var app = (function () {
 
     		map.on("load", function () {
     			// what to do when the map is first loaded on the page
-    			//addVideoLayer();
-    			//addStationLayer();
+    			addVideoLayer();
+
+    			addStationLayer();
+
     			//cannot access the video right away due to some mapbox strangeness
     			const waiting = () => {
     				if (!map.isStyleLoaded()) {

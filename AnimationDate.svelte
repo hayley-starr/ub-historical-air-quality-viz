@@ -10,9 +10,9 @@
 
  </script>
 
- <span>
+ <span class='animation-date'>
     {#if currentDate}
-        Week of: {currentDate.format('YYYY-MM-DD')}
+        {currentDate.format('YYYY-MM-DD')}
     {/if}
  </span>
   

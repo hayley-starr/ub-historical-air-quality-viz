@@ -1,4 +1,5 @@
 <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <script>
   import { onMount } from 'svelte';
@@ -87,8 +88,8 @@
     
     
     map.on('load', function() { // what to do when the map is first loaded on the page
-      //addVideoLayer();
-      //addStationLayer();
+      addVideoLayer();
+      addStationLayer();
 
       //cannot access the video right away due to some mapbox strangeness
       const waiting = () => {
@@ -176,7 +177,7 @@
 
       <div class='map' id='map'>
         <div class='map-animation-date-container'>
-          <AnimationDate currentFrame={currentFrame} />
+            <AnimationDate currentFrame={currentFrame} />          
         </div>
       </div>
 
@@ -207,6 +208,7 @@
 
 .ub-ap-viz {
   /* border: 4px solid aquamarine; */
+  font-family: 'Open Sans', sans-serif;
 }
 
 /* HEADER STYLES */
@@ -249,11 +251,21 @@
 }
 
 .map-container .map .map-animation-date-container {
-    width: max-content;
+    position: absolute; 
+    left: 0; 
+    right: 0; 
+    bottom: 0;
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 200px;
+    z-index: 100;
+    
     font-size: 20px;
     font-weight: bold;
     padding: 4px;
     margin-bottom: 20px;
+
+
 }
 
 .visualization .map-aqi-legend {
