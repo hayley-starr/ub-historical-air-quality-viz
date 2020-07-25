@@ -18,14 +18,15 @@
     let dark_purple_color = '#4b1f7a';
     let black_color = '#050505';
 
-    const airQualityScale = [0, 12, 35, 55, 150, 250, 500]; // this is up for changing!
+    const airQualityScale = [0, 12, 35, 55, 150, 250, 450, 500]; // this is up for changing!
     const colorScale = [green_color, // <12
             yellow_color, // <35
             orange_color, // <55
             red_color, // <150
             purple_color, // < 250
             dark_purple_color, // < 500
-            black_color]; //> 500
+            dark_purple_color, // < 550
+            black_color]; //> 550
 
     var color = scaleLinear().domain(airQualityScale).range(colorScale);
     color.clamp(true);
@@ -37,12 +38,13 @@
     let marginBottom = 0;
     let marginLeft = 0;
 
-    function ramp(color, n = 256) {
+    function ramp(color, n = 150) {
+        console.log(n);
         const canvas = document.getElementById("pm25-scale");
         const context = canvas.getContext("2d");
         for (let i = 0; i < n; ++i) {
-            context.fillStyle = color(i / (n - 1));
-            context.fillRect(i, 0, 1, 1);
+            context.fillStyle = color((n-1-i) / (n - 1));
+            context.fillRect(0, i, width, height);
         }
         return canvas;
     }
@@ -66,7 +68,7 @@
         .attr("width", width - marginLeft - marginRight)
         .attr("height", height - marginTop - marginBottom)
         .attr("preserveAspectRatio", "none")
-        .attr("xlink:href", ramp(color.copy().domain(quantize(interpolate(0, 1), n))).toDataURL());
+        .attr("xlink:href", ramp(color.copy().domain(quantize(interpolate(0, 1), n))).toDataURL(), n);
     });
 
   
