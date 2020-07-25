@@ -3,7 +3,8 @@
     import { onMount } from 'svelte';
     import { scaleLinear } from 'd3-scale'
     import { quantize, interpolate } from 'd3-interpolate'
-    import * as d3 from 'd3-selection';
+    import { create } from 'd3-selection';
+    import { axisRight } from 'd3-axis';
 
     export let currentFrame;
 
@@ -19,6 +20,7 @@
     let black_color = '#050505';
 
     const airQualityScale = [0, 12, 35, 55, 150, 250, 450, 500]; // this is up for changing!
+    let airQualityScaleTicks = [12, 35, 55, 150, 250, 500]; // this is up for changing!
     const colorScale = [green_color, // <12
             yellow_color, // <35
             orange_color, // <55
@@ -28,38 +30,42 @@
             dark_purple_color, // < 550
             black_color]; //> 550
 
+//---- Create Color Scale ----------------------
+
     var color = scaleLinear().domain(airQualityScale).range(colorScale);
     color.clamp(true);
 
-    let width = 20;
-    let height = 150;
+    let width = 30;
+    let height = 200;
     let marginTop = 0;
     let marginRight = 0;
     let marginBottom = 0;
-    let marginLeft = 0;
+    let marginLeft = 0;    
 
-    function ramp(color, n = 150) {
-        console.log(n);
+    function ramp(color) {
+        let n = height;
         const canvas = document.getElementById("pm25-scale");
+        canvas.height = height;
+        canvas.width = width;
         const context = canvas.getContext("2d");
+        
         for (let i = 0; i < n; ++i) {
             context.fillStyle = color((n-1-i) / (n - 1));
             context.fillRect(0, i, width, height);
         }
+        
         return canvas;
     }
 
-     const svg = d3.create("svg")
+    // Create the svg that will display the legend
+    const svg = create("svg")
       .attr("width", width)
       .attr("height", height)
-      .attr("viewBox", [0, 0, width, height])
-      .style("overflow", "visible")
-      .style("display", "block");
+      .attr("viewBox", [0, 0, width, height]);
 
+    // Get the length over which to quantize
     const n = Math.min(color.domain().length, color.range().length);
-
     let x = color.copy().rangeRound(quantize(interpolate(marginLeft, width - marginRight), n));
-
    
     onMount(async () => {
         svg.append("image")
@@ -68,15 +74,8 @@
         .attr("width", width - marginLeft - marginRight)
         .attr("height", height - marginTop - marginBottom)
         .attr("preserveAspectRatio", "none")
-        .attr("xlink:href", ramp(color.copy().domain(quantize(interpolate(0, 1), n))).toDataURL(), n);
+        .attr("xlink:href", ramp(color.copy().domain(quantize(interpolate(0, 1), n))).toDataURL());
     });
-
-  
-
-    
-
-
-
 
 
 
@@ -84,31 +83,30 @@
 
 <div class='ap-legend'>
     <div class='ap-legend-title'>PM2.5 Legend</div>
-    <div class='ap-legend-pm25-scale-container'>{'scale goes here'}
-        <canvas id='pm25-scale'></canvas>
-    </div>
-    <!-- {#each AQI_LEGEND_INFO as level}
-        <div class='ap-level'>
-            <div class={'ap-level-color ap-'+level.id}></div>
-            <div class='ap-level-range'>
-                {#if level.range_high}
-                    {level.range_low} - {level.range_high}
-                {:else}
-                    {level.range_low}+
-                {/if}
-            </div>
-             <div class='aqi-level-description'>
-                {level.description}
-            </div>
+
+    <div class='legend-tile ap-legend-pm25-scale-container'>
+        <canvas class='pm25-scale' id='pm25-scale'></canvas>
+        <div class='pm25-scale-ticks'>
+            {#each airQualityScaleTicks as tick}
+                <div>{'-' + tick + ' μg/m3'} </div>
+            {/each}
+
+
         </div>
-    {/each} -->
-    <div class='ap-legend-stations'>
-        <div class='ap-station-container'>
-            <div class='ap-station-marker'></div>
-        </div>
-        <div>{'Air Quality Sensor Location'}</div>
     </div>
-    <div>
+
+    
+     <div class='legend-tile basemap-options'>
+        <div class='ap-legend-stations'>
+            <div class='ap-station-container'>
+                <div class='ap-station-marker'></div>
+            </div>
+            <div>{'Air Quality Sensor Location'}</div>
+        </div>
+
+         <button class='button-switch-basemap'>Switch to Satellite View</button>
+    </div>
+     <div class='legend-tile thermometer-container'>
         <Thermometer currentFrame={currentFrame} />
     </div>
     
@@ -116,48 +114,49 @@
 
 <style>
 .ap-legend {
-    border-radius: 4px;
     display: flex;
     flex-direction: column;
+    height: 100%;
     min-width: 75px;
+    padding: 0 10px 5px 10px;
+    background-color: #2B2D42;
+    color: white;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.legend-tile {
     background-color: white;
-    border: 1px solid red;
+    color: #2B2D42;
+    border-radius: 4px;
+    margin: 5px 0;
+    padding: 5px 5px;
 }
 
 .ap-legend-title {
     padding: 5px;
     font-size: 20px;
-    border: 1px solid purple;
+    /* border: 1px solid purple; */
 }
 
 .ap-legend-pm25-scale-container {
-    height: 45px;
-    border: 1px solid green;
-}
-
-/* .ap-level {
     display: flex;
-    justify-content: flex-start;
-    margin: 0 0 5px 5px;
 }
 
-.ap-level-color {
-    height: 15px;
-    width: 15px;
-    border-radius: 2px;
-    margin-right: 10px;
+.pm25-scale-ticks {
+    height: 200px;
+    font-size: 10px;
+    padding-left: 5px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
 }
-
-.ap-color-range {
-    width: 50px;
-} */
-
 
 .ap-legend-stations {
     display: flex;
+    font-size: 14px;
     flex-direction: row;
     justify-content: space-around;
-    border: 1px solid red;
 }
 
 .ap-station-container {
@@ -169,6 +168,14 @@
     width: 7px;
     background-color: black;
     border-radius: 3.5px;
+}
+
+.button-switch-basemap {
+    margin: 5px 0;
+}
+
+.thermometer-container {
+    height: 200px;
 }
 
 </style>

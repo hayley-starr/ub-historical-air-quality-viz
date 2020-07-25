@@ -191,9 +191,9 @@
                 {/if}
             </div>
             <div class='speed-buttons-container'>
-                <button>{'fast'}</button>
-                <button>{'medium'}</button>
-                <button>{'slow'}</button>
+                <button class='speed-button'>{'0.5x'}</button>
+                <button class='speed-button'>{'1x'}</button>
+                <button class='speed-button'>{'1.5x'}</button>
             </div>
          </div>
          <div class='current-time-display'>
@@ -218,6 +218,10 @@
         /* border: 2px solid blue; */
     }
 
+    .play-button-container {
+        margin-right: 10px;
+    }
+
     .control-button-container {
         display: flex;
         /* border: 1px solid green; */
@@ -225,7 +229,20 @@
 
     .speed-buttons-container {
         display: flex;
-        width: 50px;
+        width: auto;
+        justify-content: space-between;
+    }
+
+    .speed-button {
+        width: 45px;
+        margin-right: 5px;
+        
+        background-color: #47B3F2;
+        color: white;
+        border-radius: 15px;
+
+        border: none;
+        height: 20px;
     }
 
     .current-time-display {

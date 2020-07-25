@@ -197,7 +197,6 @@
 
     <div class='map-aqi-legend'>
       <AQILegend  currentFrame={currentFrame} />
-      <button on:click={setBaseLayer}>Switch to Satellite View</button>
     </div>
   </div>
 
@@ -229,25 +228,29 @@
 .visualization {
   display: flex;
   flex-direction: row; /* in desktop */
-  height: 700px;
+  height: 600px;
   /* border: 1px solid green; */
 } 
 
 .visualization .map-container {
-  width: 85%; /* in desktop */
-  height: 100%;
+  width: 80%; /* in desktop */
+  height: 605px;
   /* border: 1px solid orangered; */
   display: flex;
   flex-direction: column;
+
+  background-color: #2B2D42;
+  color: white;
+  padding: 10px 0 0 10px;
 }
 
 .map-container .map {
   /* border: 2px solid red; */
-  height: 500px; /*desktop*/
+  height: 490px; /*desktop*/
 }
 
-.map-container .map .map-scrubber-container {
-  /* border: 1px solid pink; */
+.map-scrubber-container {
+    
 }
 
 .map-container .map .map-animation-date-container {
@@ -269,7 +272,7 @@
 }
 
 .visualization .map-aqi-legend {
-  width: 15%; /* in desktop */
+  width: 20%; /* in desktop */
   height: 100%;
 }
 </style>

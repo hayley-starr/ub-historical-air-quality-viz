@@ -9318,9 +9318,9 @@ var app = (function () {
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 113.57 127.1");
-    			attr_dev(svg, "class", "svelte-l3mvoh");
+    			attr_dev(svg, "class", "svelte-tjcmnq");
     			add_location(svg, file$2, 173, 20, 6375);
-    			attr_dev(button, "class", "start-button control-button svelte-l3mvoh");
+    			attr_dev(button, "class", "start-button control-button svelte-tjcmnq");
     			add_location(button, file$2, 172, 16, 6278);
     		},
     		m: function mount(target, anchor, remount) {
@@ -9395,9 +9395,9 @@ var app = (function () {
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 71 135");
-    			attr_dev(svg, "class", "svelte-l3mvoh");
+    			attr_dev(svg, "class", "svelte-tjcmnq");
     			add_location(svg, file$2, 154, 20, 5278);
-    			attr_dev(button, "class", "pause-button control-button svelte-l3mvoh");
+    			attr_dev(button, "class", "pause-button control-button svelte-tjcmnq");
     			add_location(button, file$2, 153, 16, 5181);
     		},
     		m: function mount(target, anchor, remount) {
@@ -9497,41 +9497,44 @@ var app = (function () {
     			t3 = space();
     			div6 = element("div");
     			button0 = element("button");
-    			button0.textContent = `${"fast"}`;
+    			button0.textContent = `${"0.5x"}`;
     			t5 = space();
     			button1 = element("button");
-    			button1.textContent = `${"medium"}`;
+    			button1.textContent = `${"1x"}`;
     			t7 = space();
     			button2 = element("button");
-    			button2.textContent = `${"slow"}`;
+    			button2.textContent = `${"1.5x"}`;
     			t9 = space();
     			div8 = element("div");
     			div8.textContent = `${"0:55"}`;
-    			attr_dev(div0, "class", "range svelte-l3mvoh");
+    			attr_dev(div0, "class", "range svelte-tjcmnq");
     			add_location(div0, file$2, 129, 8, 4360);
-    			attr_dev(div1, "class", "handle svelte-l3mvoh");
+    			attr_dev(div1, "class", "handle svelte-tjcmnq");
     			add_location(div1, file$2, 133, 16, 4484);
-    			attr_dev(div2, "class", "handle-hit-area svelte-l3mvoh");
+    			attr_dev(div2, "class", "handle-hit-area svelte-tjcmnq");
     			add_location(div2, file$2, 132, 12, 4438);
-    			attr_dev(div3, "class", "handle-container svelte-l3mvoh");
+    			attr_dev(div3, "class", "handle-container svelte-tjcmnq");
     			add_location(div3, file$2, 131, 8, 4395);
-    			attr_dev(div4, "class", "slider svelte-l3mvoh");
+    			attr_dev(div4, "class", "slider svelte-tjcmnq");
     			attr_dev(div4, "id", "slider");
     			add_location(div4, file$2, 128, 4, 4319);
-    			attr_dev(div5, "class", "play-button-container");
+    			attr_dev(div5, "class", "play-button-container svelte-tjcmnq");
     			add_location(div5, file$2, 151, 12, 5092);
+    			attr_dev(button0, "class", "speed-button svelte-tjcmnq");
     			add_location(button0, file$2, 193, 16, 7396);
-    			add_location(button1, file$2, 194, 16, 7438);
-    			add_location(button2, file$2, 195, 16, 7482);
-    			attr_dev(div6, "class", "speed-buttons-container svelte-l3mvoh");
+    			attr_dev(button1, "class", "speed-button svelte-tjcmnq");
+    			add_location(button1, file$2, 194, 16, 7459);
+    			attr_dev(button2, "class", "speed-button svelte-tjcmnq");
+    			add_location(button2, file$2, 195, 16, 7520);
+    			attr_dev(div6, "class", "speed-buttons-container svelte-tjcmnq");
     			add_location(div6, file$2, 192, 12, 7342);
-    			attr_dev(div7, "class", "control-button-container svelte-l3mvoh");
+    			attr_dev(div7, "class", "control-button-container svelte-tjcmnq");
     			add_location(div7, file$2, 150, 8, 5041);
-    			attr_dev(div8, "class", "current-time-display svelte-l3mvoh");
-    			add_location(div8, file$2, 198, 9, 7552);
-    			attr_dev(div9, "class", "scrubber-controls svelte-l3mvoh");
+    			attr_dev(div8, "class", "current-time-display svelte-tjcmnq");
+    			add_location(div8, file$2, 198, 9, 7611);
+    			attr_dev(div9, "class", "scrubber-controls svelte-tjcmnq");
     			add_location(div9, file$2, 149, 4, 5001);
-    			attr_dev(div10, "class", "scrubber svelte-l3mvoh");
+    			attr_dev(div10, "class", "scrubber svelte-tjcmnq");
     			add_location(div10, file$2, 127, 0, 4292);
     		},
     		l: function claim(nodes) {
@@ -12210,8 +12213,6 @@ var app = (function () {
 
     var filterEvents = {};
 
-    var event = null;
-
     if (typeof document !== "undefined") {
       var element$1 = document.documentElement;
       if (!("onmouseenter" in element$1)) {
@@ -12231,12 +12232,9 @@ var app = (function () {
 
     function contextListener(listener, index, group) {
       return function(event1) {
-        var event0 = event; // Events can be reentrant (e.g., focus).
-        event = event1;
         try {
           listener.call(this, this.__data__, index, group);
         } finally {
-          event = event0;
         }
       };
     }
@@ -12303,17 +12301,6 @@ var app = (function () {
       if (capture == null) capture = false;
       for (i = 0; i < n; ++i) this.each(on(typenames[i], value, capture));
       return this;
-    }
-
-    function customEvent(event1, listener, that, args) {
-      var event0 = event;
-      event1.sourceEvent = event;
-      event = event1;
-      try {
-        return listener.apply(that, args);
-      } finally {
-        event = event0;
-      }
     }
 
     function dispatchEvent(node, type, params) {
@@ -12405,136 +12392,244 @@ var app = (function () {
       return select(creator(name).call(document.documentElement));
     }
 
-    var nextId = 0;
+    var slice = Array.prototype.slice;
 
-    function local() {
-      return new Local;
+    function identity$3(x) {
+      return x;
     }
 
-    function Local() {
-      this._ = "@" + (++nextId).toString(36);
+    var top = 1,
+        right = 2,
+        bottom = 3,
+        left = 4,
+        epsilon = 1e-6;
+
+    function translateX(x) {
+      return "translate(" + (x + 0.5) + ",0)";
     }
 
-    Local.prototype = local.prototype = {
-      constructor: Local,
-      get: function(node) {
-        var id = this._;
-        while (!(id in node)) if (!(node = node.parentNode)) return;
-        return node[id];
-      },
-      set: function(node, value) {
-        return node[this._] = value;
-      },
-      remove: function(node) {
-        return this._ in node && delete node[this._];
-      },
-      toString: function() {
-        return this._;
-      }
-    };
-
-    function sourceEvent() {
-      var current = event, source;
-      while (source = current.sourceEvent) current = source;
-      return current;
+    function translateY(y) {
+      return "translate(0," + (y + 0.5) + ")";
     }
 
-    function point$1(node, event) {
-      var svg = node.ownerSVGElement || node;
-
-      if (svg.createSVGPoint) {
-        var point = svg.createSVGPoint();
-        point.x = event.clientX, point.y = event.clientY;
-        point = point.matrixTransform(node.getScreenCTM().inverse());
-        return [point.x, point.y];
-      }
-
-      var rect = node.getBoundingClientRect();
-      return [event.clientX - rect.left - node.clientLeft, event.clientY - rect.top - node.clientTop];
+    function number$2(scale) {
+      return function(d) {
+        return +scale(d);
+      };
     }
 
-    function mouse$1(node) {
-      var event = sourceEvent();
-      if (event.changedTouches) event = event.changedTouches[0];
-      return point$1(node, event);
+    function center(scale) {
+      var offset = Math.max(0, scale.bandwidth() - 1) / 2; // Adjust for 0.5px offset.
+      if (scale.round()) offset = Math.round(offset);
+      return function(d) {
+        return +scale(d) + offset;
+      };
     }
 
-    function selectAll(selector) {
-      return typeof selector === "string"
-          ? new Selection([document.querySelectorAll(selector)], [document.documentElement])
-          : new Selection([selector == null ? [] : selector], root);
+    function entering() {
+      return !this.__axis;
     }
 
-    function touch(node, touches, identifier) {
-      if (arguments.length < 3) identifier = touches, touches = sourceEvent().changedTouches;
+    function axis(orient, scale) {
+      var tickArguments = [],
+          tickValues = null,
+          tickFormat = null,
+          tickSizeInner = 6,
+          tickSizeOuter = 6,
+          tickPadding = 3,
+          k = orient === top || orient === left ? -1 : 1,
+          x = orient === left || orient === right ? "x" : "y",
+          transform = orient === top || orient === bottom ? translateX : translateY;
 
-      for (var i = 0, n = touches ? touches.length : 0, touch; i < n; ++i) {
-        if ((touch = touches[i]).identifier === identifier) {
-          return point$1(node, touch);
+      function axis(context) {
+        var values = tickValues == null ? (scale.ticks ? scale.ticks.apply(scale, tickArguments) : scale.domain()) : tickValues,
+            format = tickFormat == null ? (scale.tickFormat ? scale.tickFormat.apply(scale, tickArguments) : identity$3) : tickFormat,
+            spacing = Math.max(tickSizeInner, 0) + tickPadding,
+            range = scale.range(),
+            range0 = +range[0] + 0.5,
+            range1 = +range[range.length - 1] + 0.5,
+            position = (scale.bandwidth ? center : number$2)(scale.copy()),
+            selection = context.selection ? context.selection() : context,
+            path = selection.selectAll(".domain").data([null]),
+            tick = selection.selectAll(".tick").data(values, scale).order(),
+            tickExit = tick.exit(),
+            tickEnter = tick.enter().append("g").attr("class", "tick"),
+            line = tick.select("line"),
+            text = tick.select("text");
+
+        path = path.merge(path.enter().insert("path", ".tick")
+            .attr("class", "domain")
+            .attr("stroke", "currentColor"));
+
+        tick = tick.merge(tickEnter);
+
+        line = line.merge(tickEnter.append("line")
+            .attr("stroke", "currentColor")
+            .attr(x + "2", k * tickSizeInner));
+
+        text = text.merge(tickEnter.append("text")
+            .attr("fill", "currentColor")
+            .attr(x, k * spacing)
+            .attr("dy", orient === top ? "0em" : orient === bottom ? "0.71em" : "0.32em"));
+
+        if (context !== selection) {
+          path = path.transition(context);
+          tick = tick.transition(context);
+          line = line.transition(context);
+          text = text.transition(context);
+
+          tickExit = tickExit.transition(context)
+              .attr("opacity", epsilon)
+              .attr("transform", function(d) { return isFinite(d = position(d)) ? transform(d) : this.getAttribute("transform"); });
+
+          tickEnter
+              .attr("opacity", epsilon)
+              .attr("transform", function(d) { var p = this.parentNode.__axis; return transform(p && isFinite(p = p(d)) ? p : position(d)); });
         }
+
+        tickExit.remove();
+
+        path
+            .attr("d", orient === left || orient == right
+                ? (tickSizeOuter ? "M" + k * tickSizeOuter + "," + range0 + "H0.5V" + range1 + "H" + k * tickSizeOuter : "M0.5," + range0 + "V" + range1)
+                : (tickSizeOuter ? "M" + range0 + "," + k * tickSizeOuter + "V0.5H" + range1 + "V" + k * tickSizeOuter : "M" + range0 + ",0.5H" + range1));
+
+        tick
+            .attr("opacity", 1)
+            .attr("transform", function(d) { return transform(position(d)); });
+
+        line
+            .attr(x + "2", k * tickSizeInner);
+
+        text
+            .attr(x, k * spacing)
+            .text(format);
+
+        selection.filter(entering)
+            .attr("fill", "none")
+            .attr("font-size", 10)
+            .attr("font-family", "sans-serif")
+            .attr("text-anchor", orient === right ? "start" : orient === left ? "end" : "middle");
+
+        selection
+            .each(function() { this.__axis = position; });
       }
 
-      return null;
+      axis.scale = function(_) {
+        return arguments.length ? (scale = _, axis) : scale;
+      };
+
+      axis.ticks = function() {
+        return tickArguments = slice.call(arguments), axis;
+      };
+
+      axis.tickArguments = function(_) {
+        return arguments.length ? (tickArguments = _ == null ? [] : slice.call(_), axis) : tickArguments.slice();
+      };
+
+      axis.tickValues = function(_) {
+        return arguments.length ? (tickValues = _ == null ? null : slice.call(_), axis) : tickValues && tickValues.slice();
+      };
+
+      axis.tickFormat = function(_) {
+        return arguments.length ? (tickFormat = _, axis) : tickFormat;
+      };
+
+      axis.tickSize = function(_) {
+        return arguments.length ? (tickSizeInner = tickSizeOuter = +_, axis) : tickSizeInner;
+      };
+
+      axis.tickSizeInner = function(_) {
+        return arguments.length ? (tickSizeInner = +_, axis) : tickSizeInner;
+      };
+
+      axis.tickSizeOuter = function(_) {
+        return arguments.length ? (tickSizeOuter = +_, axis) : tickSizeOuter;
+      };
+
+      axis.tickPadding = function(_) {
+        return arguments.length ? (tickPadding = +_, axis) : tickPadding;
+      };
+
+      return axis;
     }
 
-    function touches(node, touches) {
-      if (touches == null) touches = sourceEvent().touches;
-
-      for (var i = 0, n = touches ? touches.length : 0, points = new Array(n); i < n; ++i) {
-        points[i] = point$1(node, touches[i]);
-      }
-
-      return points;
+    function axisRight(scale) {
+      return axis(right, scale);
     }
-
-
-
-    var d3 = /*#__PURE__*/Object.freeze({
-        __proto__: null,
-        create: create,
-        creator: creator,
-        local: local,
-        matcher: matcher,
-        mouse: mouse$1,
-        namespace: namespace,
-        namespaces: namespaces,
-        clientPoint: point$1,
-        select: select,
-        selectAll: selectAll,
-        selection: selection,
-        selector: selector,
-        selectorAll: selectorAll,
-        style: styleValue,
-        touch: touch,
-        touches: touches,
-        window: defaultView,
-        get event () { return event; },
-        customEvent: customEvent
-    });
 
     /* AQILegend.svelte generated by Svelte v3.20.1 */
-
-    const { console: console_1 } = globals;
     const file$4 = "AQILegend.svelte";
 
+    function get_each_context$1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[25] = list[i];
+    	return child_ctx;
+    }
+
+    // (90:12) {#each airQualityScaleTicks as tick}
+    function create_each_block$1(ctx) {
+    	let div;
+    	let t0_value = "-" + /*tick*/ ctx[25] + " μg/m3" + "";
+    	let t0;
+    	let t1;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			add_location(div, file$4, 90, 16, 2979);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, t0);
+    			append_dev(div, t1);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$1.name,
+    		type: "each",
+    		source: "(90:12) {#each airQualityScaleTicks as tick}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
     function create_fragment$4(ctx) {
-    	let div7;
+    	let div9;
     	let div0;
     	let t1;
-    	let div1;
-    	let t2_value = "scale goes here" + "";
-    	let t2;
-    	let t3;
+    	let div2;
     	let canvas;
+    	let t2;
+    	let div1;
+    	let t3;
+    	let div7;
+    	let div6;
+    	let div4;
+    	let div3;
     	let t4;
     	let div5;
-    	let div3;
-    	let div2;
-    	let t5;
-    	let div4;
-    	let t7;
-    	let div6;
+    	let t6;
+    	let button;
+    	let t8;
+    	let div8;
     	let current;
+    	let each_value = /*airQualityScaleTicks*/ ctx[1];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$1(get_each_context$1(ctx, each_value, i));
+    	}
 
     	const thermometer = new Thermometer({
     			props: { currentFrame: /*currentFrame*/ ctx[0] },
@@ -12543,64 +12638,113 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div7 = element("div");
+    			div9 = element("div");
     			div0 = element("div");
     			div0.textContent = "PM2.5 Legend";
     			t1 = space();
-    			div1 = element("div");
-    			t2 = text(t2_value);
-    			t3 = space();
+    			div2 = element("div");
     			canvas = element("canvas");
+    			t2 = space();
+    			div1 = element("div");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			t3 = space();
+    			div7 = element("div");
+    			div6 = element("div");
+    			div4 = element("div");
+    			div3 = element("div");
     			t4 = space();
     			div5 = element("div");
-    			div3 = element("div");
-    			div2 = element("div");
-    			t5 = space();
-    			div4 = element("div");
-    			div4.textContent = `${"Air Quality Sensor Location"}`;
-    			t7 = space();
-    			div6 = element("div");
+    			div5.textContent = `${"Air Quality Sensor Location"}`;
+    			t6 = space();
+    			button = element("button");
+    			button.textContent = "Switch to Satellite View";
+    			t8 = space();
+    			div8 = element("div");
     			create_component(thermometer.$$.fragment);
-    			attr_dev(div0, "class", "ap-legend-title svelte-xtewqh");
-    			add_location(div0, file$4, 85, 4, 2442);
+    			attr_dev(div0, "class", "ap-legend-title svelte-1b0pr00");
+    			add_location(div0, file$4, 84, 4, 2704);
+    			attr_dev(canvas, "class", "pm25-scale");
     			attr_dev(canvas, "id", "pm25-scale");
-    			add_location(canvas, file$4, 87, 8, 2566);
-    			attr_dev(div1, "class", "ap-legend-pm25-scale-container svelte-xtewqh");
-    			add_location(div1, file$4, 86, 4, 2494);
-    			attr_dev(div2, "class", "ap-station-marker svelte-xtewqh");
-    			add_location(div2, file$4, 106, 12, 3216);
-    			attr_dev(div3, "class", "ap-station-container svelte-xtewqh");
-    			add_location(div3, file$4, 105, 8, 3169);
-    			add_location(div4, file$4, 108, 8, 3277);
-    			attr_dev(div5, "class", "ap-legend-stations svelte-xtewqh");
-    			add_location(div5, file$4, 104, 4, 3128);
-    			add_location(div6, file$4, 110, 4, 3335);
-    			attr_dev(div7, "class", "ap-legend svelte-xtewqh");
-    			add_location(div7, file$4, 84, 0, 2414);
+    			add_location(canvas, file$4, 87, 8, 2822);
+    			attr_dev(div1, "class", "pm25-scale-ticks svelte-1b0pr00");
+    			add_location(div1, file$4, 88, 8, 2883);
+    			attr_dev(div2, "class", "legend-tile ap-legend-pm25-scale-container svelte-1b0pr00");
+    			add_location(div2, file$4, 86, 4, 2757);
+    			attr_dev(div3, "class", "ap-station-marker svelte-1b0pr00");
+    			add_location(div3, file$4, 101, 16, 3220);
+    			attr_dev(div4, "class", "ap-station-container svelte-1b0pr00");
+    			add_location(div4, file$4, 100, 12, 3169);
+    			add_location(div5, file$4, 103, 12, 3289);
+    			attr_dev(div6, "class", "ap-legend-stations svelte-1b0pr00");
+    			add_location(div6, file$4, 99, 8, 3124);
+    			attr_dev(button, "class", "button-switch-basemap svelte-1b0pr00");
+    			add_location(button, file$4, 106, 9, 3357);
+    			attr_dev(div7, "class", "legend-tile basemap-options svelte-1b0pr00");
+    			add_location(div7, file$4, 98, 5, 3074);
+    			attr_dev(div8, "class", "legend-tile thermometer-container svelte-1b0pr00");
+    			add_location(div8, file$4, 108, 5, 3445);
+    			attr_dev(div9, "class", "ap-legend svelte-1b0pr00");
+    			add_location(div9, file$4, 83, 0, 2676);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div7, anchor);
-    			append_dev(div7, div0);
-    			append_dev(div7, t1);
-    			append_dev(div7, div1);
-    			append_dev(div1, t2);
-    			append_dev(div1, t3);
-    			append_dev(div1, canvas);
-    			append_dev(div7, t4);
-    			append_dev(div7, div5);
-    			append_dev(div5, div3);
-    			append_dev(div3, div2);
-    			append_dev(div5, t5);
-    			append_dev(div5, div4);
-    			append_dev(div7, t7);
+    			insert_dev(target, div9, anchor);
+    			append_dev(div9, div0);
+    			append_dev(div9, t1);
+    			append_dev(div9, div2);
+    			append_dev(div2, canvas);
+    			append_dev(div2, t2);
+    			append_dev(div2, div1);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div1, null);
+    			}
+
+    			append_dev(div9, t3);
+    			append_dev(div9, div7);
     			append_dev(div7, div6);
-    			mount_component(thermometer, div6, null);
+    			append_dev(div6, div4);
+    			append_dev(div4, div3);
+    			append_dev(div6, t4);
+    			append_dev(div6, div5);
+    			append_dev(div7, t6);
+    			append_dev(div7, button);
+    			append_dev(div9, t8);
+    			append_dev(div9, div8);
+    			mount_component(thermometer, div8, null);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
+    			if (dirty & /*airQualityScaleTicks*/ 2) {
+    				each_value = /*airQualityScaleTicks*/ ctx[1];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$1(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$1(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(div1, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+
     			const thermometer_changes = {};
     			if (dirty & /*currentFrame*/ 1) thermometer_changes.currentFrame = /*currentFrame*/ ctx[0];
     			thermometer.$set(thermometer_changes);
@@ -12615,7 +12759,8 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div7);
+    			if (detaching) detach_dev(div9);
+    			destroy_each(each_blocks, detaching);
     			destroy_component(thermometer);
     		}
     	};
@@ -12644,6 +12789,7 @@ var app = (function () {
     	let dark_purple_color = "#4b1f7a";
     	let black_color = "#050505";
     	const airQualityScale = [0, 12, 35, 55, 150, 250, 450, 500]; // this is up for changing!
+    	let airQualityScaleTicks = [12, 35, 55, 150, 250, 500]; // this is up for changing!
 
     	const colorScale = [
     		green_color,
@@ -12663,18 +12809,22 @@ var app = (function () {
     	// < 550
     	//> 550
 
+    	//---- Create Color Scale ----------------------
     	var color = linear$2().domain(airQualityScale).range(colorScale);
+
     	color.clamp(true);
-    	let width = 20;
-    	let height = 150;
+    	let width = 30;
+    	let height = 200;
     	let marginTop = 0;
     	let marginRight = 0;
     	let marginBottom = 0;
     	let marginLeft = 0;
 
-    	function ramp(color, n = 150) {
-    		console.log(n);
+    	function ramp(color) {
+    		let n = height;
     		const canvas = document.getElementById("pm25-scale");
+    		canvas.height = height;
+    		canvas.width = width;
     		const context = canvas.getContext("2d");
 
     		for (let i = 0; i < n; ++i) {
@@ -12685,18 +12835,22 @@ var app = (function () {
     		return canvas;
     	}
 
-    	const svg = create("svg").attr("width", width).attr("height", height).attr("viewBox", [0, 0, width, height]).style("overflow", "visible").style("display", "block");
+    	// Create the svg that will display the legend
+    	const svg = create("svg").attr("width", width).attr("height", height).attr("viewBox", [0, 0, width, height]);
+
+    	// Get the length over which to quantize
     	const n = Math.min(color.domain().length, color.range().length);
+
     	let x = color.copy().rangeRound(quantize(interpolate$1(marginLeft, width - marginRight), n));
 
     	onMount(async () => {
-    		svg.append("image").attr("x", marginLeft).attr("y", marginTop).attr("width", width - marginLeft - marginRight).attr("height", height - marginTop - marginBottom).attr("preserveAspectRatio", "none").attr("xlink:href", ramp(color.copy().domain(quantize(interpolate$1(0, 1), n))).toDataURL(), n);
+    		svg.append("image").attr("x", marginLeft).attr("y", marginTop).attr("width", width - marginLeft - marginRight).attr("height", height - marginTop - marginBottom).attr("preserveAspectRatio", "none").attr("xlink:href", ramp(color.copy().domain(quantize(interpolate$1(0, 1), n))).toDataURL());
     	});
 
     	const writable_props = ["currentFrame"];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn(`<AQILegend> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<AQILegend> was created with unknown prop '${key}'`);
     	});
 
     	let { $$slots = {}, $$scope } = $$props;
@@ -12712,7 +12866,8 @@ var app = (function () {
     		scaleLinear: linear$2,
     		quantize,
     		interpolate: interpolate$1,
-    		d3,
+    		create,
+    		axisRight,
     		currentFrame,
     		green_color,
     		red_color,
@@ -12725,6 +12880,7 @@ var app = (function () {
     		dark_purple_color,
     		black_color,
     		airQualityScale,
+    		airQualityScaleTicks,
     		colorScale,
     		color,
     		width,
@@ -12751,6 +12907,7 @@ var app = (function () {
     		if ("purple_color" in $$props) purple_color = $$props.purple_color;
     		if ("dark_purple_color" in $$props) dark_purple_color = $$props.dark_purple_color;
     		if ("black_color" in $$props) black_color = $$props.black_color;
+    		if ("airQualityScaleTicks" in $$props) $$invalidate(1, airQualityScaleTicks = $$props.airQualityScaleTicks);
     		if ("color" in $$props) color = $$props.color;
     		if ("width" in $$props) width = $$props.width;
     		if ("height" in $$props) height = $$props.height;
@@ -12765,7 +12922,7 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [currentFrame];
+    	return [currentFrame, airQualityScaleTicks];
     }
 
     class AQILegend extends SvelteComponentDev {
@@ -12784,7 +12941,7 @@ var app = (function () {
     		const props = options.props || {};
 
     		if (/*currentFrame*/ ctx[0] === undefined && !("currentFrame" in props)) {
-    			console_1.warn("<AQILegend> was created without expected prop 'currentFrame'");
+    			console.warn("<AQILegend> was created without expected prop 'currentFrame'");
     		}
     	}
 
@@ -12954,7 +13111,7 @@ var app = (function () {
 
     /* App.svelte generated by Svelte v3.20.1 */
 
-    const { console: console_1$1 } = globals;
+    const { console: console_1 } = globals;
     const file$6 = "App.svelte";
 
     function create_fragment$6(ctx) {
@@ -12976,11 +13133,8 @@ var app = (function () {
     	let t5;
     	let div6;
     	let t6;
-    	let button;
-    	let t8;
     	let div9;
     	let current;
-    	let dispose;
 
     	const animationdate = new AnimationDate({
     			props: { currentFrame: /*currentFrame*/ ctx[1] },
@@ -13028,9 +13182,6 @@ var app = (function () {
     			div6 = element("div");
     			create_component(aqilegend.$$.fragment);
     			t6 = space();
-    			button = element("button");
-    			button.textContent = "Switch to Satellite View";
-    			t8 = space();
     			div9 = element("div");
     			attr_dev(link0, "href", "https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css");
     			attr_dev(link0, "rel", "stylesheet");
@@ -13039,33 +13190,32 @@ var app = (function () {
     			attr_dev(link1, "rel", "stylesheet");
     			add_location(link1, file$6, 1, 0, 90);
     			add_location(h1, file$6, 171, 4, 5237);
-    			attr_dev(div0, "class", "title svelte-i2qj2t");
+    			attr_dev(div0, "class", "title svelte-1xjqxfw");
     			add_location(div0, file$6, 170, 4, 5213);
-    			attr_dev(div1, "class", "header svelte-i2qj2t");
+    			attr_dev(div1, "class", "header svelte-1xjqxfw");
     			add_location(div1, file$6, 169, 2, 5188);
-    			attr_dev(div2, "class", "map-animation-date-container svelte-i2qj2t");
+    			attr_dev(div2, "class", "map-animation-date-container svelte-1xjqxfw");
     			add_location(div2, file$6, 178, 8, 5421);
-    			attr_dev(div3, "class", "map svelte-i2qj2t");
+    			attr_dev(div3, "class", "map svelte-1xjqxfw");
     			attr_dev(div3, "id", "map");
     			add_location(div3, file$6, 177, 6, 5386);
-    			attr_dev(div4, "class", "map-scrubber-container svelte-i2qj2t");
+    			attr_dev(div4, "class", "map-scrubber-container svelte-1xjqxfw");
     			add_location(div4, file$6, 183, 6, 5567);
-    			attr_dev(div5, "class", "map-container svelte-i2qj2t");
+    			attr_dev(div5, "class", "map-container svelte-1xjqxfw");
     			add_location(div5, file$6, 175, 4, 5351);
-    			add_location(button, file$6, 199, 6, 6024);
-    			attr_dev(div6, "class", "map-aqi-legend svelte-i2qj2t");
+    			attr_dev(div6, "class", "map-aqi-legend svelte-1xjqxfw");
     			add_location(div6, file$6, 197, 4, 5940);
-    			attr_dev(div7, "class", "visualization svelte-i2qj2t");
+    			attr_dev(div7, "class", "visualization svelte-1xjqxfw");
     			add_location(div7, file$6, 174, 2, 5319);
-    			attr_dev(div8, "class", "ub-ap-viz svelte-i2qj2t");
+    			attr_dev(div8, "class", "ub-ap-viz svelte-1xjqxfw");
     			add_location(div8, file$6, 167, 0, 5161);
     			attr_dev(div9, "class", "station-marker");
-    			add_location(div9, file$6, 204, 0, 6118);
+    			add_location(div9, file$6, 203, 0, 6046);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
-    		m: function mount(target, anchor, remount) {
+    		m: function mount(target, anchor) {
     			insert_dev(target, link0, anchor);
     			insert_dev(target, t0, anchor);
     			insert_dev(target, link1, anchor);
@@ -13086,13 +13236,9 @@ var app = (function () {
     			append_dev(div7, t5);
     			append_dev(div7, div6);
     			mount_component(aqilegend, div6, null);
-    			append_dev(div6, t6);
-    			append_dev(div6, button);
-    			insert_dev(target, t8, anchor);
+    			insert_dev(target, t6, anchor);
     			insert_dev(target, div9, anchor);
     			current = true;
-    			if (remount) dispose();
-    			dispose = listen_dev(button, "click", /*setBaseLayer*/ ctx[7], false, false, false);
     		},
     		p: function update(ctx, [dirty]) {
     			const animationdate_changes = {};
@@ -13129,9 +13275,8 @@ var app = (function () {
     			destroy_component(animationdate);
     			destroy_component(scrubber);
     			destroy_component(aqilegend);
-    			if (detaching) detach_dev(t8);
+    			if (detaching) detach_dev(t6);
     			if (detaching) detach_dev(div9);
-    			dispose();
     		}
     	};
 
@@ -13295,7 +13440,7 @@ var app = (function () {
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1$1.warn(`<App> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
     	let { $$slots = {}, $$scope } = $$props;
@@ -13344,8 +13489,8 @@ var app = (function () {
     		if ("currentTime" in $$props) $$invalidate(0, currentTime = $$props.currentTime);
     		if ("currentFrame" in $$props) $$invalidate(1, currentFrame = $$props.currentFrame);
     		if ("maxTime" in $$props) $$invalidate(2, maxTime = $$props.maxTime);
-    		if ("maxFrame" in $$props) $$invalidate(12, maxFrame = $$props.maxFrame);
-    		if ("timeToFrameMultiplier" in $$props) $$invalidate(9, timeToFrameMultiplier = $$props.timeToFrameMultiplier);
+    		if ("maxFrame" in $$props) $$invalidate(11, maxFrame = $$props.maxFrame);
+    		if ("timeToFrameMultiplier" in $$props) $$invalidate(8, timeToFrameMultiplier = $$props.timeToFrameMultiplier);
     		if ("animationPaused" in $$props) animationPaused = $$props.animationPaused;
     		if ("isAnimationEnded" in $$props) $$invalidate(3, isAnimationEnded = $$props.isAnimationEnded);
     		if ("green_color" in $$props) green_color = $$props.green_color;
@@ -13365,10 +13510,10 @@ var app = (function () {
 
     	$$self.$$.update = () => {
     		if ($$self.$$.dirty & /*maxTime*/ 4) {
-    			 $$invalidate(9, timeToFrameMultiplier = maxTime > 0 ? maxFrame / maxTime : 0);
+    			 $$invalidate(8, timeToFrameMultiplier = maxTime > 0 ? maxFrame / maxTime : 0);
     		}
 
-    		if ($$self.$$.dirty & /*timeToFrameMultiplier, currentTime*/ 513) {
+    		if ($$self.$$.dirty & /*timeToFrameMultiplier, currentTime*/ 257) {
     			 $$invalidate(1, currentFrame = Math.round(timeToFrameMultiplier * currentTime));
     		}
     	};
@@ -13380,8 +13525,7 @@ var app = (function () {
     		isAnimationEnded,
     		pauseAnimation,
     		startAnimation,
-    		updateCurrentTime,
-    		setBaseLayer
+    		updateCurrentTime
     	];
     }
 
