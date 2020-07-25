@@ -3,7 +3,7 @@ import * as gdal from 'gdal-next';
 import fs from 'fs';
 import { PNG } from 'pngjs';
 import convert from 'color-convert';
-import { scaleLinear, scaleOrdinal, scaleQuantize, scaleThreshold} from 'd3-scale'
+import { scaleLinear} from 'd3-scale'
 import { temps } from './ub_7_day_avg_temp'
 
 const NUM_INTERMEDIARY_FRAMES = 11;
