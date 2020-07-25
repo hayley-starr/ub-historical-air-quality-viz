@@ -83,8 +83,8 @@
 <style>
 
 .thermometer {
-    max-width: 100px;
-    max-height: 200px;
+    max-width: 50px;
+    max-height: 100px;
 }
 
 </style>
