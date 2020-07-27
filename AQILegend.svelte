@@ -82,8 +82,6 @@
 </script>
 
 <div class='ap-legend'>
-    <div class='ap-legend-title'>PM2.5 Legend</div>
-
     <div class='legend-tile ap-legend-pm25-scale-container'>
         <canvas class='pm25-scale' id='pm25-scale'></canvas>
         <div class='pm25-scale-ticks'>
@@ -118,25 +116,15 @@
     flex-direction: column;
     height: 100%;
     min-width: 75px;
-    padding: 0 10px 5px 10px;
-    background-color: #2B2D42;
-    color: white;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    padding-left: 10px;
 }
 
 .legend-tile {
     background-color: white;
     color: #2B2D42;
     border-radius: 4px;
-    margin: 5px 0;
+    margin-bottom: 10px;
     padding: 5px 5px;
-}
-
-.ap-legend-title {
-    padding: 5px;
-    font-size: 20px;
-    /* border: 1px solid purple; */
 }
 
 .ap-legend-pm25-scale-container {

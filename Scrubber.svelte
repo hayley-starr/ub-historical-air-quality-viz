@@ -149,47 +149,45 @@
     </div>
     <div class='scrubber-controls'>
         <div class='control-button-container'>
-            <div class='play-button-container'>
-                {#if isUserRunning} 
-                <button class='pause-button control-button' on:click={handlePauseAnimation}>
-                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71 135">
-                        <defs>
-                            <style>
-                            .cls-pause-1 {
-                                stroke: #000;
-                                stroke-miterlimit: 10;
-                            }
-                            </style>
-                        </defs>
-                        <g id="Layer_2" data-name="Layer 2">
-                            <g id="Layer_1-2" data-name="Layer 1-2">
-                            <path class="cls-pause-1" d="M10.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,10.5.5Z"/>
-                            <path class="cls-pause-1" d="M60.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,60.5.5Z"/>
-                            </g>
+            {#if isUserRunning} 
+            <button class='pause-button play-button' on:click={handlePauseAnimation}>
+                <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71 135">
+                    <defs>
+                        <style>
+                        .cls-pause-1 {
+                            stroke: #000;
+                            stroke-miterlimit: 10;
+                        }
+                        </style>
+                    </defs>
+                    <g id="Layer_2" data-name="Layer 2">
+                        <g id="Layer_1-2" data-name="Layer 1-2">
+                        <path class="cls-pause-1" d="M10.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,10.5.5Z"/>
+                        <path class="cls-pause-1" d="M60.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,60.5.5Z"/>
                         </g>
-                    </svg>
-                </button>
-                {:else}
-                <button class='start-button control-button' on:click={handleStartAnimation}>
-                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 113.57 127.1">
-                        <defs>
-                            <style>
-                            .cls-play-1 {
-                                stroke: #000;
-                                fill: #000;
-                                stroke-miterlimit: 10;
-                            }
-                            </style>
-                        </defs>
-                        <g id="Layer_2" data-name="Layer 2">
-                            <g id="Layer_1-2" data-name="Layer 1-2">
-                            <path class="cls-play-1" d="M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z" transform="translate(0 -0.01)"/>
-                            </g>
+                    </g>
+                </svg>
+            </button>
+            {:else}
+            <button class='start-button play-button' on:click={handleStartAnimation}>
+                <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 113.57 127.1">
+                    <defs>
+                        <style>
+                        .cls-play-1 {
+                            stroke: #000;
+                            fill: #000;
+                            stroke-miterlimit: 10;
+                        }
+                        </style>
+                    </defs>
+                    <g id="Layer_2" data-name="Layer 2">
+                        <g id="Layer_1-2" data-name="Layer 1-2">
+                        <path class="cls-play-1" d="M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z" transform="translate(0 -0.01)"/>
                         </g>
-                    </svg>
-                </button>
-                {/if}
-            </div>
+                    </g>
+                </svg>
+            </button>
+            {/if}
             <div class='speed-buttons-container'>
                 <button class='speed-button'>{'0.5x'}</button>
                 <button class='speed-button'>{'1x'}</button>
@@ -207,7 +205,6 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 0 10px;
     }
 
     /* CONTROLS SECTION */
@@ -215,15 +212,14 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        height: 50px;
         /* border: 2px solid blue; */
-    }
-
-    .play-button-container {
-        margin-right: 10px;
     }
 
     .control-button-container {
         display: flex;
+        height: 100%;
+        align-items: center;
         /* border: 1px solid green; */
     }
 
@@ -249,28 +245,29 @@
 
     }
 
-    .control-button svg {
+    .play-button svg {
         height: 20px;
     }
 
     /* CONTROL BUTTON STYLING */
-    .control-button {
+    .play-button {
         border: none;
         background: none;
         cursor: pointer;
-        height: 20px;
+        height: 100%;
         width: 30px;
+        margin-right: 10px;
     }
 
-    .control-button:hover {
+    .play-button:hover {
         transform: scale(1.1);
     }
 
-    .control-button:focus {
+    .play-button:focus {
         outline: none;
     }
 
-    .control-button:active {
+    .play-button:active {
         outline: none;
         transform: scale(1.3);
     }

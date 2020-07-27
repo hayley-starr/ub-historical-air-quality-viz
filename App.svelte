@@ -177,7 +177,6 @@
   }
 
   const setBaseLayer = () => {
-    console.log('setting satellite view');
     map.setStyle('mapbox://styles/mapbox/satellite-v9');
   }
 
@@ -188,12 +187,13 @@
 
   <div class='header'>
     <div class='title'>
-    <h1>Visualzing Air Pollution and Policy in Ulaanbaatar</h1>
+      <h1>Visualzing Air Pollution and Policy in Ulaanbaatar</h1>
     </div>
   </div>
-  <div class='visualization'>
-    <div class='map-container'>
 
+  <div class='visualization'>
+
+    <div class='map-container'>
       <div class='map' id='map'>
         <div class='map-animation-date-container'>
             <AnimationDate currentFrame={currentFrame} />          
@@ -225,7 +225,6 @@
 <style>
 
 .ub-ap-viz {
-  /* border: 4px solid aquamarine; */
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -248,7 +247,10 @@
   display: flex;
   flex-direction: row; /* in desktop */
   height: 600px;
-  /* border: 1px solid green; */
+  background-color: #2B2D42;
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
 } 
 
 .visualization .map-container {
@@ -257,10 +259,6 @@
   /* border: 1px solid orangered; */
   display: flex;
   flex-direction: column;
-
-  background-color: #2B2D42;
-  color: white;
-  padding: 10px 0 0 10px;
 }
 
 .map-container .map {

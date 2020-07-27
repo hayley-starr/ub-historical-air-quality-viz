@@ -186,8 +186,6 @@ var app = (function () {
             block.o(local);
         }
     }
-
-    const globals = (typeof window !== 'undefined' ? window : global);
     function create_component(block) {
         block && block.c();
     }
@@ -9280,7 +9278,7 @@ var app = (function () {
     	return block;
     }
 
-    // (172:16) {:else}
+    // (171:12) {:else}
     function create_else_block(ctx) {
     	let button;
     	let svg;
@@ -9298,30 +9296,30 @@ var app = (function () {
     			svg = svg_element("svg");
     			defs = svg_element("defs");
     			style = svg_element("style");
-    			t = text(".cls-play-1 {\n                                stroke: #000;\n                                fill: #000;\n                                stroke-miterlimit: 10;\n                            }\n                            ");
+    			t = text(".cls-play-1 {\n                            stroke: #000;\n                            fill: #000;\n                            stroke-miterlimit: 10;\n                        }\n                        ");
     			g1 = svg_element("g");
     			g0 = svg_element("g");
     			path = svg_element("path");
-    			add_location(style, file$2, 175, 28, 6535);
-    			add_location(defs, file$2, 174, 24, 6500);
+    			add_location(style, file$2, 174, 24, 6385);
+    			add_location(defs, file$2, 173, 20, 6354);
     			attr_dev(path, "class", "cls-play-1");
     			attr_dev(path, "d", "M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z");
     			attr_dev(path, "transform", "translate(0 -0.01)");
-    			add_location(path, file$2, 185, 28, 6987);
+    			add_location(path, file$2, 184, 24, 6797);
     			attr_dev(g0, "id", "Layer_1-2");
     			attr_dev(g0, "data-name", "Layer 1-2");
-    			add_location(g0, file$2, 184, 28, 6918);
+    			add_location(g0, file$2, 183, 24, 6732);
     			attr_dev(g1, "id", "Layer_2");
     			attr_dev(g1, "data-name", "Layer 2");
-    			add_location(g1, file$2, 183, 24, 6853);
+    			add_location(g1, file$2, 182, 20, 6671);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 113.57 127.1");
-    			attr_dev(svg, "class", "svelte-tjcmnq");
-    			add_location(svg, file$2, 173, 20, 6375);
-    			attr_dev(button, "class", "start-button control-button svelte-tjcmnq");
-    			add_location(button, file$2, 172, 16, 6278);
+    			attr_dev(svg, "class", "svelte-18bvmhk");
+    			add_location(svg, file$2, 172, 16, 6233);
+    			attr_dev(button, "class", "start-button play-button svelte-18bvmhk");
+    			add_location(button, file$2, 171, 12, 6143);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, button, anchor);
@@ -9346,14 +9344,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(172:16) {:else}",
+    		source: "(171:12) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (153:16) {#if isUserRunning}
+    // (152:12) {#if isUserRunning}
     function create_if_block(ctx) {
     	let button;
     	let svg;
@@ -9372,33 +9370,33 @@ var app = (function () {
     			svg = svg_element("svg");
     			defs = svg_element("defs");
     			style = svg_element("style");
-    			t = text(".cls-pause-1 {\n                                stroke: #000;\n                                stroke-miterlimit: 10;\n                            }\n                            ");
+    			t = text(".cls-pause-1 {\n                            stroke: #000;\n                            stroke-miterlimit: 10;\n                        }\n                        ");
     			g1 = svg_element("g");
     			g0 = svg_element("g");
     			path0 = svg_element("path");
     			path1 = svg_element("path");
-    			add_location(style, file$2, 156, 28, 5432);
-    			add_location(defs, file$2, 155, 24, 5397);
+    			add_location(style, file$2, 155, 24, 5361);
+    			add_location(defs, file$2, 154, 20, 5330);
     			attr_dev(path0, "class", "cls-pause-1");
     			attr_dev(path0, "d", "M10.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,10.5.5Z");
-    			add_location(path0, file$2, 165, 28, 5841);
+    			add_location(path0, file$2, 164, 24, 5734);
     			attr_dev(path1, "class", "cls-pause-1");
     			attr_dev(path1, "d", "M60.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,60.5.5Z");
-    			add_location(path1, file$2, 166, 28, 5996);
+    			add_location(path1, file$2, 165, 24, 5885);
     			attr_dev(g0, "id", "Layer_1-2");
     			attr_dev(g0, "data-name", "Layer 1-2");
-    			add_location(g0, file$2, 164, 28, 5772);
+    			add_location(g0, file$2, 163, 24, 5669);
     			attr_dev(g1, "id", "Layer_2");
     			attr_dev(g1, "data-name", "Layer 2");
-    			add_location(g1, file$2, 163, 24, 5707);
+    			add_location(g1, file$2, 162, 20, 5608);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 71 135");
-    			attr_dev(svg, "class", "svelte-tjcmnq");
-    			add_location(svg, file$2, 154, 20, 5278);
-    			attr_dev(button, "class", "pause-button control-button svelte-tjcmnq");
-    			add_location(button, file$2, 153, 16, 5181);
+    			attr_dev(svg, "class", "svelte-18bvmhk");
+    			add_location(svg, file$2, 153, 16, 5215);
+    			attr_dev(button, "class", "pause-button play-button svelte-18bvmhk");
+    			add_location(button, file$2, 152, 12, 5125);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, button, anchor);
@@ -9424,7 +9422,7 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(153:16) {#if isUserRunning}",
+    		source: "(152:12) {#if isUserRunning}",
     		ctx
     	});
 
@@ -9432,7 +9430,7 @@ var app = (function () {
     }
 
     function create_fragment$2(ctx) {
-    	let div10;
+    	let div9;
     	let div4;
     	let div0;
     	let t0;
@@ -9441,18 +9439,17 @@ var app = (function () {
     	let div1;
     	let t1;
     	let t2;
-    	let div9;
-    	let div7;
-    	let div5;
-    	let t3;
+    	let div8;
     	let div6;
+    	let t3;
+    	let div5;
     	let button0;
     	let t5;
     	let button1;
     	let t7;
     	let button2;
     	let t9;
-    	let div8;
+    	let div7;
     	let current;
     	let each_value = /*policyEvents*/ ctx[9];
     	validate_each_argument(each_value);
@@ -9476,7 +9473,7 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div10 = element("div");
+    			div9 = element("div");
     			div4 = element("div");
     			div0 = element("div");
     			t0 = space();
@@ -9490,12 +9487,11 @@ var app = (function () {
     			}
 
     			t2 = space();
-    			div9 = element("div");
-    			div7 = element("div");
-    			div5 = element("div");
+    			div8 = element("div");
+    			div6 = element("div");
     			if_block.c();
     			t3 = space();
-    			div6 = element("div");
+    			div5 = element("div");
     			button0 = element("button");
     			button0.textContent = `${"0.5x"}`;
     			t5 = space();
@@ -9505,44 +9501,42 @@ var app = (function () {
     			button2 = element("button");
     			button2.textContent = `${"1.5x"}`;
     			t9 = space();
-    			div8 = element("div");
-    			div8.textContent = `${"0:55"}`;
-    			attr_dev(div0, "class", "range svelte-tjcmnq");
+    			div7 = element("div");
+    			div7.textContent = `${"0:55"}`;
+    			attr_dev(div0, "class", "range svelte-18bvmhk");
     			add_location(div0, file$2, 129, 8, 4360);
-    			attr_dev(div1, "class", "handle svelte-tjcmnq");
+    			attr_dev(div1, "class", "handle svelte-18bvmhk");
     			add_location(div1, file$2, 133, 16, 4484);
-    			attr_dev(div2, "class", "handle-hit-area svelte-tjcmnq");
+    			attr_dev(div2, "class", "handle-hit-area svelte-18bvmhk");
     			add_location(div2, file$2, 132, 12, 4438);
-    			attr_dev(div3, "class", "handle-container svelte-tjcmnq");
+    			attr_dev(div3, "class", "handle-container svelte-18bvmhk");
     			add_location(div3, file$2, 131, 8, 4395);
-    			attr_dev(div4, "class", "slider svelte-tjcmnq");
+    			attr_dev(div4, "class", "slider svelte-18bvmhk");
     			attr_dev(div4, "id", "slider");
     			add_location(div4, file$2, 128, 4, 4319);
-    			attr_dev(div5, "class", "play-button-container svelte-tjcmnq");
-    			add_location(div5, file$2, 151, 12, 5092);
-    			attr_dev(button0, "class", "speed-button svelte-tjcmnq");
-    			add_location(button0, file$2, 193, 16, 7396);
-    			attr_dev(button1, "class", "speed-button svelte-tjcmnq");
-    			add_location(button1, file$2, 194, 16, 7459);
-    			attr_dev(button2, "class", "speed-button svelte-tjcmnq");
-    			add_location(button2, file$2, 195, 16, 7520);
-    			attr_dev(div6, "class", "speed-buttons-container svelte-tjcmnq");
-    			add_location(div6, file$2, 192, 12, 7342);
-    			attr_dev(div7, "class", "control-button-container svelte-tjcmnq");
-    			add_location(div7, file$2, 150, 8, 5041);
-    			attr_dev(div8, "class", "current-time-display svelte-tjcmnq");
-    			add_location(div8, file$2, 198, 9, 7611);
-    			attr_dev(div9, "class", "scrubber-controls svelte-tjcmnq");
-    			add_location(div9, file$2, 149, 4, 5001);
-    			attr_dev(div10, "class", "scrubber svelte-tjcmnq");
-    			add_location(div10, file$2, 127, 0, 4292);
+    			attr_dev(button0, "class", "speed-button svelte-18bvmhk");
+    			add_location(button0, file$2, 191, 16, 7167);
+    			attr_dev(button1, "class", "speed-button svelte-18bvmhk");
+    			add_location(button1, file$2, 192, 16, 7230);
+    			attr_dev(button2, "class", "speed-button svelte-18bvmhk");
+    			add_location(button2, file$2, 193, 16, 7291);
+    			attr_dev(div5, "class", "speed-buttons-container svelte-18bvmhk");
+    			add_location(div5, file$2, 190, 12, 7113);
+    			attr_dev(div6, "class", "control-button-container svelte-18bvmhk");
+    			add_location(div6, file$2, 150, 8, 5041);
+    			attr_dev(div7, "class", "current-time-display svelte-18bvmhk");
+    			add_location(div7, file$2, 196, 9, 7382);
+    			attr_dev(div8, "class", "scrubber-controls svelte-18bvmhk");
+    			add_location(div8, file$2, 149, 4, 5001);
+    			attr_dev(div9, "class", "scrubber svelte-18bvmhk");
+    			add_location(div9, file$2, 127, 0, 4292);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div10, anchor);
-    			append_dev(div10, div4);
+    			insert_dev(target, div9, anchor);
+    			append_dev(div9, div4);
     			append_dev(div4, div0);
     			append_dev(div4, t0);
     			append_dev(div4, div3);
@@ -9554,20 +9548,19 @@ var app = (function () {
     				each_blocks[i].m(div4, null);
     			}
 
-    			append_dev(div10, t2);
-    			append_dev(div10, div9);
-    			append_dev(div9, div7);
-    			append_dev(div7, div5);
-    			if_block.m(div5, null);
-    			append_dev(div7, t3);
-    			append_dev(div7, div6);
-    			append_dev(div6, button0);
-    			append_dev(div6, t5);
-    			append_dev(div6, button1);
-    			append_dev(div6, t7);
-    			append_dev(div6, button2);
-    			append_dev(div9, t9);
+    			append_dev(div9, t2);
     			append_dev(div9, div8);
+    			append_dev(div8, div6);
+    			if_block.m(div6, null);
+    			append_dev(div6, t3);
+    			append_dev(div6, div5);
+    			append_dev(div5, button0);
+    			append_dev(div5, t5);
+    			append_dev(div5, button1);
+    			append_dev(div5, t7);
+    			append_dev(div5, button2);
+    			append_dev(div8, t9);
+    			append_dev(div8, div7);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
@@ -9607,7 +9600,7 @@ var app = (function () {
 
     				if (if_block) {
     					if_block.c();
-    					if_block.m(div5, null);
+    					if_block.m(div6, t3);
     				}
     			}
     		},
@@ -9630,7 +9623,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div10);
+    			if (detaching) detach_dev(div9);
     			destroy_each(each_blocks, detaching);
     			if_block.d();
     		}
@@ -12567,7 +12560,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (90:12) {#each airQualityScaleTicks as tick}
+    // (88:12) {#each airQualityScaleTicks as tick}
     function create_each_block$1(ctx) {
     	let div;
     	let t0_value = "-" + /*tick*/ ctx[25] + " μg/m3" + "";
@@ -12579,7 +12572,7 @@ var app = (function () {
     			div = element("div");
     			t0 = text(t0_value);
     			t1 = space();
-    			add_location(div, file$4, 90, 16, 2979);
+    			add_location(div, file$4, 88, 16, 2926);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -12596,7 +12589,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(90:12) {#each airQualityScaleTicks as tick}",
+    		source: "(88:12) {#each airQualityScaleTicks as tick}",
     		ctx
     	});
 
@@ -12604,24 +12597,22 @@ var app = (function () {
     }
 
     function create_fragment$4(ctx) {
-    	let div9;
+    	let div8;
+    	let div1;
+    	let canvas;
+    	let t0;
     	let div0;
     	let t1;
-    	let div2;
-    	let canvas;
-    	let t2;
-    	let div1;
-    	let t3;
-    	let div7;
     	let div6;
-    	let div4;
-    	let div3;
-    	let t4;
     	let div5;
-    	let t6;
+    	let div3;
+    	let div2;
+    	let t2;
+    	let div4;
+    	let t4;
     	let button;
-    	let t8;
-    	let div8;
+    	let t6;
+    	let div7;
     	let current;
     	let each_value = /*airQualityScaleTicks*/ ctx[1];
     	validate_each_argument(each_value);
@@ -12638,86 +12629,79 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div9 = element("div");
-    			div0 = element("div");
-    			div0.textContent = "PM2.5 Legend";
-    			t1 = space();
-    			div2 = element("div");
-    			canvas = element("canvas");
-    			t2 = space();
+    			div8 = element("div");
     			div1 = element("div");
+    			canvas = element("canvas");
+    			t0 = space();
+    			div0 = element("div");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			t3 = space();
-    			div7 = element("div");
+    			t1 = space();
     			div6 = element("div");
-    			div4 = element("div");
-    			div3 = element("div");
-    			t4 = space();
     			div5 = element("div");
-    			div5.textContent = `${"Air Quality Sensor Location"}`;
-    			t6 = space();
+    			div3 = element("div");
+    			div2 = element("div");
+    			t2 = space();
+    			div4 = element("div");
+    			div4.textContent = `${"Air Quality Sensor Location"}`;
+    			t4 = space();
     			button = element("button");
     			button.textContent = "Switch to Satellite View";
-    			t8 = space();
-    			div8 = element("div");
+    			t6 = space();
+    			div7 = element("div");
     			create_component(thermometer.$$.fragment);
-    			attr_dev(div0, "class", "ap-legend-title svelte-1b0pr00");
-    			add_location(div0, file$4, 84, 4, 2704);
     			attr_dev(canvas, "class", "pm25-scale");
     			attr_dev(canvas, "id", "pm25-scale");
-    			add_location(canvas, file$4, 87, 8, 2822);
-    			attr_dev(div1, "class", "pm25-scale-ticks svelte-1b0pr00");
-    			add_location(div1, file$4, 88, 8, 2883);
-    			attr_dev(div2, "class", "legend-tile ap-legend-pm25-scale-container svelte-1b0pr00");
-    			add_location(div2, file$4, 86, 4, 2757);
-    			attr_dev(div3, "class", "ap-station-marker svelte-1b0pr00");
-    			add_location(div3, file$4, 101, 16, 3220);
-    			attr_dev(div4, "class", "ap-station-container svelte-1b0pr00");
-    			add_location(div4, file$4, 100, 12, 3169);
-    			add_location(div5, file$4, 103, 12, 3289);
-    			attr_dev(div6, "class", "ap-legend-stations svelte-1b0pr00");
-    			add_location(div6, file$4, 99, 8, 3124);
-    			attr_dev(button, "class", "button-switch-basemap svelte-1b0pr00");
-    			add_location(button, file$4, 106, 9, 3357);
-    			attr_dev(div7, "class", "legend-tile basemap-options svelte-1b0pr00");
-    			add_location(div7, file$4, 98, 5, 3074);
-    			attr_dev(div8, "class", "legend-tile thermometer-container svelte-1b0pr00");
-    			add_location(div8, file$4, 108, 5, 3445);
-    			attr_dev(div9, "class", "ap-legend svelte-1b0pr00");
-    			add_location(div9, file$4, 83, 0, 2676);
+    			add_location(canvas, file$4, 85, 8, 2769);
+    			attr_dev(div0, "class", "pm25-scale-ticks svelte-m6fpcf");
+    			add_location(div0, file$4, 86, 8, 2830);
+    			attr_dev(div1, "class", "legend-tile ap-legend-pm25-scale-container svelte-m6fpcf");
+    			add_location(div1, file$4, 84, 4, 2704);
+    			attr_dev(div2, "class", "ap-station-marker svelte-m6fpcf");
+    			add_location(div2, file$4, 99, 16, 3167);
+    			attr_dev(div3, "class", "ap-station-container svelte-m6fpcf");
+    			add_location(div3, file$4, 98, 12, 3116);
+    			add_location(div4, file$4, 101, 12, 3236);
+    			attr_dev(div5, "class", "ap-legend-stations svelte-m6fpcf");
+    			add_location(div5, file$4, 97, 8, 3071);
+    			attr_dev(button, "class", "button-switch-basemap svelte-m6fpcf");
+    			add_location(button, file$4, 104, 9, 3304);
+    			attr_dev(div6, "class", "legend-tile basemap-options svelte-m6fpcf");
+    			add_location(div6, file$4, 96, 5, 3021);
+    			attr_dev(div7, "class", "legend-tile thermometer-container svelte-m6fpcf");
+    			add_location(div7, file$4, 106, 5, 3392);
+    			attr_dev(div8, "class", "ap-legend svelte-m6fpcf");
+    			add_location(div8, file$4, 83, 0, 2676);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div9, anchor);
-    			append_dev(div9, div0);
-    			append_dev(div9, t1);
-    			append_dev(div9, div2);
-    			append_dev(div2, canvas);
-    			append_dev(div2, t2);
-    			append_dev(div2, div1);
+    			insert_dev(target, div8, anchor);
+    			append_dev(div8, div1);
+    			append_dev(div1, canvas);
+    			append_dev(div1, t0);
+    			append_dev(div1, div0);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(div1, null);
+    				each_blocks[i].m(div0, null);
     			}
 
-    			append_dev(div9, t3);
-    			append_dev(div9, div7);
-    			append_dev(div7, div6);
-    			append_dev(div6, div4);
-    			append_dev(div4, div3);
-    			append_dev(div6, t4);
+    			append_dev(div8, t1);
+    			append_dev(div8, div6);
     			append_dev(div6, div5);
-    			append_dev(div7, t6);
-    			append_dev(div7, button);
-    			append_dev(div9, t8);
-    			append_dev(div9, div8);
-    			mount_component(thermometer, div8, null);
+    			append_dev(div5, div3);
+    			append_dev(div3, div2);
+    			append_dev(div5, t2);
+    			append_dev(div5, div4);
+    			append_dev(div6, t4);
+    			append_dev(div6, button);
+    			append_dev(div8, t6);
+    			append_dev(div8, div7);
+    			mount_component(thermometer, div7, null);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
@@ -12734,7 +12718,7 @@ var app = (function () {
     					} else {
     						each_blocks[i] = create_each_block$1(child_ctx);
     						each_blocks[i].c();
-    						each_blocks[i].m(div1, null);
+    						each_blocks[i].m(div0, null);
     					}
     				}
 
@@ -12759,7 +12743,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div9);
+    			if (detaching) detach_dev(div8);
     			destroy_each(each_blocks, detaching);
     			destroy_component(thermometer);
     		}
@@ -13110,8 +13094,6 @@ var app = (function () {
     }
 
     /* App.svelte generated by Svelte v3.20.1 */
-
-    const { console: console_1 } = globals;
     const file$6 = "App.svelte";
 
     function create_fragment$6(ctx) {
@@ -13189,28 +13171,28 @@ var app = (function () {
     			attr_dev(link1, "href", "https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
     			attr_dev(link1, "rel", "stylesheet");
     			add_location(link1, file$6, 1, 0, 90);
-    			add_location(h1, file$6, 190, 4, 5780);
-    			attr_dev(div0, "class", "title svelte-1xjqxfw");
-    			add_location(div0, file$6, 189, 4, 5756);
-    			attr_dev(div1, "class", "header svelte-1xjqxfw");
-    			add_location(div1, file$6, 188, 2, 5731);
-    			attr_dev(div2, "class", "map-animation-date-container svelte-1xjqxfw");
-    			add_location(div2, file$6, 197, 8, 5964);
-    			attr_dev(div3, "class", "map svelte-1xjqxfw");
+    			add_location(h1, file$6, 189, 6, 5739);
+    			attr_dev(div0, "class", "title svelte-1q4dn73");
+    			add_location(div0, file$6, 188, 4, 5713);
+    			attr_dev(div1, "class", "header svelte-1q4dn73");
+    			add_location(div1, file$6, 187, 2, 5688);
+    			attr_dev(div2, "class", "map-animation-date-container svelte-1q4dn73");
+    			add_location(div2, file$6, 197, 8, 5924);
+    			attr_dev(div3, "class", "map svelte-1q4dn73");
     			attr_dev(div3, "id", "map");
-    			add_location(div3, file$6, 196, 6, 5929);
-    			attr_dev(div4, "class", "map-scrubber-container svelte-1xjqxfw");
-    			add_location(div4, file$6, 202, 6, 6110);
-    			attr_dev(div5, "class", "map-container svelte-1xjqxfw");
-    			add_location(div5, file$6, 194, 4, 5894);
-    			attr_dev(div6, "class", "map-aqi-legend svelte-1xjqxfw");
-    			add_location(div6, file$6, 216, 4, 6483);
-    			attr_dev(div7, "class", "visualization svelte-1xjqxfw");
-    			add_location(div7, file$6, 193, 2, 5862);
-    			attr_dev(div8, "class", "ub-ap-viz svelte-1xjqxfw");
-    			add_location(div8, file$6, 186, 0, 5704);
+    			add_location(div3, file$6, 196, 6, 5889);
+    			attr_dev(div4, "class", "map-scrubber-container svelte-1q4dn73");
+    			add_location(div4, file$6, 202, 6, 6070);
+    			attr_dev(div5, "class", "map-container svelte-1q4dn73");
+    			add_location(div5, file$6, 195, 4, 5855);
+    			attr_dev(div6, "class", "map-aqi-legend svelte-1q4dn73");
+    			add_location(div6, file$6, 216, 4, 6443);
+    			attr_dev(div7, "class", "visualization svelte-1q4dn73");
+    			add_location(div7, file$6, 193, 2, 5822);
+    			attr_dev(div8, "class", "ub-ap-viz svelte-1q4dn73");
+    			add_location(div8, file$6, 185, 0, 5661);
     			attr_dev(div9, "class", "station-marker");
-    			add_location(div9, file$6, 222, 0, 6589);
+    			add_location(div9, file$6, 222, 0, 6549);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -13451,14 +13433,13 @@ var app = (function () {
     	};
 
     	const setBaseLayer = () => {
-    		console.log("setting satellite view");
     		map.setStyle("mapbox://styles/mapbox/satellite-v9");
     	};
 
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn(`<App> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
     	let { $$slots = {}, $$scope } = $$props;
