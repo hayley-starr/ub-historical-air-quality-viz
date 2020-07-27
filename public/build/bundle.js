@@ -13189,28 +13189,28 @@ var app = (function () {
     			attr_dev(link1, "href", "https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
     			attr_dev(link1, "rel", "stylesheet");
     			add_location(link1, file$6, 1, 0, 90);
-    			add_location(h1, file$6, 171, 4, 5237);
+    			add_location(h1, file$6, 190, 4, 5780);
     			attr_dev(div0, "class", "title svelte-1xjqxfw");
-    			add_location(div0, file$6, 170, 4, 5213);
+    			add_location(div0, file$6, 189, 4, 5756);
     			attr_dev(div1, "class", "header svelte-1xjqxfw");
-    			add_location(div1, file$6, 169, 2, 5188);
+    			add_location(div1, file$6, 188, 2, 5731);
     			attr_dev(div2, "class", "map-animation-date-container svelte-1xjqxfw");
-    			add_location(div2, file$6, 178, 8, 5421);
+    			add_location(div2, file$6, 197, 8, 5964);
     			attr_dev(div3, "class", "map svelte-1xjqxfw");
     			attr_dev(div3, "id", "map");
-    			add_location(div3, file$6, 177, 6, 5386);
+    			add_location(div3, file$6, 196, 6, 5929);
     			attr_dev(div4, "class", "map-scrubber-container svelte-1xjqxfw");
-    			add_location(div4, file$6, 183, 6, 5567);
+    			add_location(div4, file$6, 202, 6, 6110);
     			attr_dev(div5, "class", "map-container svelte-1xjqxfw");
-    			add_location(div5, file$6, 175, 4, 5351);
+    			add_location(div5, file$6, 194, 4, 5894);
     			attr_dev(div6, "class", "map-aqi-legend svelte-1xjqxfw");
-    			add_location(div6, file$6, 197, 4, 5940);
+    			add_location(div6, file$6, 216, 4, 6483);
     			attr_dev(div7, "class", "visualization svelte-1xjqxfw");
-    			add_location(div7, file$6, 174, 2, 5319);
+    			add_location(div7, file$6, 193, 2, 5862);
     			attr_dev(div8, "class", "ub-ap-viz svelte-1xjqxfw");
-    			add_location(div8, file$6, 167, 0, 5161);
+    			add_location(div8, file$6, 186, 0, 5704);
     			attr_dev(div9, "class", "station-marker");
-    			add_location(div9, file$6, 203, 0, 6046);
+    			add_location(div9, file$6, 222, 0, 6589);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -13367,6 +13367,7 @@ var app = (function () {
     			// what to do when the map is first loaded on the page
     			addVideoLayer();
 
+    			addUncertaintyMaskLayer();
     			addStationLayer();
 
     			//cannot access the video right away due to some mapbox strangeness
@@ -13389,10 +13390,7 @@ var app = (function () {
     	const addVideoLayer = () => {
     		map.addSource("ap_video", {
     			"type": "video",
-    			"urls": [
-    				//  "videos/full_video_v1.mp4",
-    				"videos/sample_smooth.mov"
-    			],
+    			"urls": ["videos/pm25_over_ub.mp4"],
     			"coordinates": [
     				// these must be exactly the extent of the raster frames in R!!
     				[106.6907, 48.03644],
@@ -13412,6 +13410,26 @@ var app = (function () {
     		map.on("click", function () {
     			map.getSource("ap_video").seek(3);
     			map.update;
+    		});
+    	};
+
+    	const addUncertaintyMaskLayer = () => {
+    		map.addSource("ap_uncertainty", {
+    			"type": "image",
+    			"url": "imgs/uncertainty_mask_img.png",
+    			"coordinates": [
+    				// these must be exactly the extent of the raster frames in R!!
+    				[106.6907, 48.03644],
+    				[107.1107, 48.03644],
+    				[107.1107, 47.82644],
+    				[106.6907, 47.82644]
+    			]
+    		});
+
+    		map.addLayer({
+    			id: "ap_uncertainty",
+    			type: "raster",
+    			source: "ap_uncertainty"
     		});
     	};
 
@@ -13480,6 +13498,7 @@ var app = (function () {
     		dark_purple_color,
     		black_color,
     		addVideoLayer,
+    		addUncertaintyMaskLayer,
     		addStationLayer,
     		setBaseLayer
     	});

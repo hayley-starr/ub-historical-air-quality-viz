@@ -20,14 +20,11 @@ let purple_color = '#5e03fc';
 let dark_purple_color = '#4b1f7a';
 let black_color = '#050505';
 
-const airQualityScale = [12, 22, 35, 55, 100, 150, 200, 250, 500]; // this is up for changing!
+const airQualityScale = [12, 35, 55, 150, 250, 500]; // this is up for changing!
 const colorScale = [green_color, // <12
-        green_yellow_color, // <22
         yellow_color, // <35
         orange_color, // <55
-        orange_red_color, // < 100
         red_color, // <150
-        red_purple_color, // < 200
         purple_color, // < 250
         dark_purple_color, // < 500
         black_color]; //> 500
@@ -73,7 +70,7 @@ const writePNG = function(colorArray, width, height, filename) {
     console.log('made a png!');
 }
 
-const getPixelColor = function(pixelValue, opacityPixelValue) {
+const getPixelColor = function(pixelValue) { //opacityPixelValue
     // if want to do bands
     // let pixelColor = pixelValue < 0 | pixelValue >= COLOR_ARRAY.length ? black_color : COLOR_ARRAY[pixelValue];
     // let rgbPixelColor = hexRgb(pixelColor, {format: 'array'});
@@ -95,15 +92,11 @@ const getPixelColor = function(pixelValue, opacityPixelValue) {
         parseInt(rgbPixelColors[2])
     ]
 
-    var hsvColor = convert.rgb.hsv(rgbPixelColor);
-    hsvColor[1] = Math.round(hsvColor[1]* opacityPixelValue);
-    rgbPixelColor = convert.hsv.rgb(hsvColor);
     return rgbPixelColor;
-
 }
 
 
-const createPNGFromFrame = function(inputFilename, outputFilename, frameId, prevBand, opacityBand) {
+const createPNGFromFrame = function(inputFilename, outputFilename, frameId, prevBand) {
     console.log('png-izing tif file: ' + inputFilename + '...');
 
     let frameIdStart = (frameId - 1) * NUM_CALCULATED_FRAMES;
@@ -118,12 +111,10 @@ const createPNGFromFrame = function(inputFilename, outputFilename, frameId, prev
     let width = band.size.x-1; 
     let height = band.size.y-1;
 
-    console.log(opacityBand);
     
 
     //read data into an array of length widthxheight so that d3.contours can work
     let array = band.pixels.read(0, 0, width, height);
-    let opacityArray = opacityBand.pixels.read(0, 0, width, height);
 
     let prevArray = prevBand.pixels.read(0, 0, width, height);
     let resultingFrames = []
@@ -136,18 +127,15 @@ const createPNGFromFrame = function(inputFilename, outputFilename, frameId, prev
         let currValue = array[i];
         let prevValue = prevArray ? prevArray[i] : currValue;
         let stepAmt = (currValue - prevValue) / (NUM_CALCULATED_FRAMES);
-        let opacityPixelValue = opacityArray[i];
 
         // calculate a value for each interpolated frame
         for (let frm = 0; frm < NUM_CALCULATED_FRAMES; frm++) {
             let interpolatedValue = prevValue + (frm * stepAmt);
            
-            let pixelColor = getPixelColor(interpolatedValue, opacityPixelValue);
+            let pixelColor = getPixelColor(interpolatedValue);
             resultingFrames[frm].colorArray[i] = pixelColor;
         }
     }
-
-    console.log('created frames');
 
     //write each fresulting frame to a png file
     for (let frm = 0; frm < NUM_CALCULATED_FRAMES; frm++) {
@@ -164,10 +152,6 @@ const main = () => {
     var files = fs.readdirSync('../ub-historical-air-quality-interpolation/R/frames');
     var frameId = 1;
     var prevBand;
-    
-
-    var opacityBandData =  gdal.open('opacity_filter.tif');
-    var opacityBand = opacityBandData.bands.get(1);
 
     let dateArray = [];
     let tempsArray = [];
@@ -176,16 +160,14 @@ const main = () => {
 
    //for each file, png-ize and save
     files.forEach(filename => {
-        if (frameId > 30) return false;
-
         // get date array
         let dateString = filename.substring(18, 28);
         let date = new Date(dateString);
         dateArray.push(date);
 
         let inputFilename = '../ub-historical-air-quality-interpolation/R/frames/' + filename;
-        let outputFilename = 'pngs_bands_smoother/img_' + dateString + '_';   
-        prevBand = createPNGFromFrame(inputFilename, outputFilename, frameId, prevBand, opacityBand);
+        let outputFilename = 'pngs/img_' + dateString + '_';   
+        prevBand = createPNGFromFrame(inputFilename, outputFilename, frameId, prevBand);
         frameId++;
 
 
@@ -205,11 +187,6 @@ const main = () => {
 
 
     writeDatestoFrameArray(dateArray, tempsArray);
-
-    // SEEING IF CAN APPLY OPACITY RASTER
-    // let sampleFilename = '../ub-historical-air-quality-interpolation/R/frames/air_quality_bands_2019-02-14.tif'
-    // let sampleOutputFilename = 'opacityImg';
-    // createPNGFromFrame(sampleFilename, sampleOutputFilename, frameId, prevBand, opacityBand);
 }
 
 const writeDatestoFrameArray = (dateArray, tempsArray) => {
@@ -267,8 +244,8 @@ const createSingleFrame = () => {
     createPNGFromFrame(inputFilename2, outputFilename, 1, prevBand);
 }
 
-createSingleFrame();
-//main();
+//createSingleFrame();
+main();
 
 
 

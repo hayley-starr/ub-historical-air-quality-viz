@@ -89,6 +89,7 @@
     
     map.on('load', function() { // what to do when the map is first loaded on the page
       addVideoLayer();
+      addUncertaintyMaskLayer();
       addStationLayer();
 
       //cannot access the video right away due to some mapbox strangeness
@@ -112,8 +113,7 @@
     map.addSource('ap_video', {
        "type": "video",
        "urls": [
-      //  "videos/full_video_v1.mp4",
-        "videos/sample_smooth.mov",
+        "videos/pm25_over_ub.mp4",
        ],
       "coordinates": [ // these must be exactly the extent of the raster frames in R!!
           [106.6907, 48.03644],
@@ -136,6 +136,25 @@
       map.getSource("ap_video").seek(3.0);
       map.update;
     });
+  }
+
+  const addUncertaintyMaskLayer = () => {
+    map.addSource('ap_uncertainty', {
+          "type": "image",
+          "url": "imgs/uncertainty_mask_img.png",
+          "coordinates": [ // these must be exactly the extent of the raster frames in R!!
+              [106.6907, 48.03644],
+              [107.1107, 48.03644],
+              [107.1107, 47.82644],
+              [106.6907, 47.82644]
+          ]
+        });
+
+        map.addLayer({
+          id: 'ap_uncertainty',
+          type: 'raster',
+          source: 'ap_uncertainty'
+        });
   }
 
 
