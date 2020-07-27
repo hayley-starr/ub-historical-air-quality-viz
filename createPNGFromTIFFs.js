@@ -4,7 +4,9 @@ import fs from 'fs';
 import { PNG } from 'pngjs';
 import convert from 'color-convert';
 import { scaleLinear} from 'd3-scale'
-import { temps } from './ub_7_day_avg_temp'
+import { temps } from './ub_7_day_avg_temp'; // every 4 days
+import { movAvgPm25 } from './ub_mov_avg_pm25'; // every 4 days
+
 
 const NUM_INTERMEDIARY_FRAMES = 11;
 const NUM_CALCULATED_FRAMES = NUM_INTERMEDIARY_FRAMES + 1;
@@ -155,8 +157,10 @@ const main = () => {
 
     let dateArray = [];
     let tempsArray = [];
+    let pm25Array = [];
     let prevTemp;
-    var tempArrayIndex = 0;
+    let prevPm25;
+    var tempArrayIndex = 0; // same for both
 
    //for each file, png-ize and save
     files.forEach(filename => {
@@ -165,10 +169,10 @@ const main = () => {
         let date = new Date(dateString);
         dateArray.push(date);
 
-        let inputFilename = '../ub-historical-air-quality-interpolation/R/frames/' + filename;
-        let outputFilename = 'pngs/img_' + dateString + '_';   
-        prevBand = createPNGFromFrame(inputFilename, outputFilename, frameId, prevBand);
-        frameId++;
+        // let inputFilename = '../ub-historical-air-quality-interpolation/R/frames/' + filename;
+        // let outputFilename = 'pngs/img_' + dateString + '_';   
+        // prevBand = createPNGFromFrame(inputFilename, outputFilename, frameId, prevBand);
+        // frameId++;
 
 
         let currTemp = temps[tempArrayIndex].mov_daily_avg;
@@ -182,14 +186,28 @@ const main = () => {
         }
 
         prevTemp = currTemp;
+
+        // for pm25
+
+        let currpm25 = movAvgPm25[tempArrayIndex].mov_avg_pm25;
+
+        if (prevPm25) {     
+            let stepAmt = (currpm25 - prevPm25) / (NUM_CALCULATED_FRAMES);
+            for (let frm = 0; frm < NUM_CALCULATED_FRAMES; frm++) {
+                let interpolatedPm25Value = prevPm25 + (frm * stepAmt);
+                pm25Array.push(interpolatedPm25Value);
+            }
+        }
+
+        prevPm25 = currpm25;
         tempArrayIndex++;
     });
 
 
-    writeDatestoFrameArray(dateArray, tempsArray);
+    writeDatestoFrameArray(dateArray, tempsArray, pm25Array);
 }
 
-const writeDatestoFrameArray = (dateArray, tempsArray) => {
+const writeDatestoFrameArray = (dateArray, tempsArray, pm25Array) => {
     let prevDate = dateArray[0];
     let tempArrayIndex = 0;
     let dateTempFrameArray = [];
@@ -203,7 +221,8 @@ const writeDatestoFrameArray = (dateArray, tempsArray) => {
         for (let frm = 0; frm < firstHalf; frm++) {
             dateTempFrameArray.push({
                 date: prevDate,
-                temp: tempsArray[tempArrayIndex]
+                temp: tempsArray[tempArrayIndex],
+                pm25: pm25Array[tempArrayIndex]
             });
             tempArrayIndex++;
         }
@@ -211,7 +230,8 @@ const writeDatestoFrameArray = (dateArray, tempsArray) => {
         for (let frm = 0; frm < secondHalf; frm++) {
             dateTempFrameArray.push({
                 date: currDate,
-                temp: tempsArray[tempArrayIndex]
+                temp: tempsArray[tempArrayIndex],
+                pm25: pm25Array[tempArrayIndex]
             });
             tempArrayIndex++;
         }
@@ -222,7 +242,7 @@ const writeDatestoFrameArray = (dateArray, tempsArray) => {
     let dateTempArrayFrameJson = JSON.stringify(dateTempFrameArray);
 
    // write JSON string to a file
-    fs.writeFile('dateTempFrames.json', dateTempArrayFrameJson, (err) => {
+    fs.writeFile('frameData.json', dateTempArrayFrameJson, (err) => {
         if (err) {
             throw err;
         }

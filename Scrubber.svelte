@@ -3,8 +3,8 @@
     import { styler, value, pointer, listen, transform, easing, keyframes } from 'popmotion';
     import PolicyEvent from './PolicyEvent.svelte';
     import moment from 'moment';
-    import { dateTempFrames } from './dateTempFrames.js';
 
+    export let frameData;
     export let currentTime;
     export let maxTime;
     export let pauseAnimation;
@@ -90,8 +90,8 @@
         startAnimation();
     }
 
-    let startDate = moment(dateTempFrames[0].date);
-    let endDate = moment(dateTempFrames[dateTempFrames.length-1].date);
+    let startDate = moment(frameData[0].date);
+    let endDate = moment(frameData[frameData.length-1].date);
     let totalDays = endDate-startDate;
 
     const getPolicyEventPosition = (policyDate) => {

@@ -1,12 +1,14 @@
  <script>
-    import { dateTempFrames } from './dateTempFrames.js';
     import moment from 'moment';
 
     export let currentFrame;
+    export let frameData;
 
     let currentDate;
 
-    $: currentDate = moment(dateTempFrames[currentFrame].date);
+    $: {
+       currentDate = moment(frameData[currentFrame].date);
+    }
 
  </script>
 

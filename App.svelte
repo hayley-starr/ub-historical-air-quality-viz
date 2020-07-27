@@ -9,7 +9,7 @@
   import AQILegend from './AQILegend.svelte';
   import AnimationDate from './AnimationDate.svelte';
   import moment from 'moment';
-  import { dateTempFrames } from './dateTempFrames.js';
+  import { frameData } from './frameData.js';
 
 
   const UB_COORDINATES = [106.900354, 47.917802];
@@ -25,7 +25,7 @@
 //---------- Translate current time in video to the number of the current frame ----
 
   let maxTime = 0; // will reset when video loads
-  let maxFrame = dateTempFrames.length-1; 
+  let maxFrame = frameData.length-1; 
   let timeToFrameMultiplier = 0;
   $: timeToFrameMultiplier = maxTime > 0 ? maxFrame / maxTime : 0;
   $: currentFrame = Math.round(timeToFrameMultiplier * currentTime);
@@ -196,7 +196,10 @@
     <div class='map-container'>
       <div class='map' id='map'>
         <div class='map-animation-date-container'>
-            <AnimationDate currentFrame={currentFrame} />          
+            <AnimationDate
+              currentFrame={currentFrame} 
+              frameData={frameData} 
+            />          
         </div>
       </div>
 
@@ -208,6 +211,7 @@
               pauseAnimation={pauseAnimation} 
               startAnimation={startAnimation} 
               updateCurrentTime={updateCurrentTime}
+              frameData={frameData}
           />
       </div>
 
@@ -215,7 +219,9 @@
    
 
     <div class='map-aqi-legend'>
-      <AQILegend  currentFrame={currentFrame} />
+      <AQILegend  
+       currentFrame={currentFrame} 
+       />
     </div>
   </div>
 
