@@ -1,9 +1,9 @@
 <script>
     import { scaleLinear} from 'd3-scale'
     import { interpolateRdYlBu } from 'd3-scale-chromatic';
-    import { dateTempFrames } from './dateTempFrames.js';
 
     export let currentFrame;
+    export let frameData;
 
     const MAX_HEIGHT = 534; // total height of mercury rect - DO NOT CHANGE
     const MIN_HEIGHT = 105; // how far the mercury rect dips below the mercury circle -DO NOT CHANGE
@@ -33,7 +33,7 @@
     let currentTemp = 0;
 
     $: {
-        currentTemp = Math.round(dateTempFrames[currentFrame].temp);
+        currentTemp = Math.round(frameData[currentFrame].temp);
         pixelChangeFromBaseline = scaleTempToPixels(currentTemp);
         height = MIN_HEIGHT + pixelChangeFromBaseline;
         starting_y = BOTTOMMOST_Y - pixelChangeFromBaseline;

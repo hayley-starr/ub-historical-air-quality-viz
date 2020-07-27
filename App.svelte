@@ -220,8 +220,9 @@
 
     <div class='map-aqi-legend'>
       <AQILegend  
-       currentFrame={currentFrame} 
-       />
+        currentFrame={currentFrame} 
+        frameData={frameData} 
+      />
     </div>
   </div>
 

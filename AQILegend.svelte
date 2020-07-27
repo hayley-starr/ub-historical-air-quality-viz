@@ -7,6 +7,7 @@
     import { axisRight } from 'd3-axis';
 
     export let currentFrame;
+    export let frameData;
 
     let green_color = '#93c947'; //green
     let red_color = '#f0004c'; //red
@@ -105,7 +106,10 @@
          <button class='button-switch-basemap'>Switch to Satellite View</button>
     </div>
      <div class='legend-tile thermometer-container'>
-        <Thermometer currentFrame={currentFrame} />
+        <Thermometer 
+            currentFrame={currentFrame} 
+            frameData={frameData}
+        />
     </div>
     
 </div>
