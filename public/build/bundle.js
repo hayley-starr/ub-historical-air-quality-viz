@@ -186,6 +186,8 @@ var app = (function () {
             block.o(local);
         }
     }
+
+    const globals = (typeof window !== 'undefined' ? window : global);
     function create_component(block) {
         block && block.c();
     }
@@ -9194,6 +9196,14 @@ var app = (function () {
     	}
     }
 
+    let classnames = (...args) => {
+        let result = '';
+        for (var i = 0; i < args.length; i++) {
+            result += args[i] + ' ';
+          }
+        return result;
+    };
+
     var xhtml = "http://www.w3.org/1999/xhtml";
 
     var namespaces = {
@@ -11761,22 +11771,22 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[23] = list[i];
-    	child_ctx[25] = i;
+    	child_ctx[30] = list[i];
+    	child_ctx[32] = i;
     	return child_ctx;
     }
 
-    // (203:8) {#each policyEvents as policyEvent, i}
+    // (217:8) {#each policyEvents as policyEvent, i}
     function create_each_block(ctx) {
     	let current;
 
     	const policyevent = new PolicyEvent({
     			props: {
-    				currentScrubberPosition: /*convertTimeToXPosition*/ ctx[5](/*currentTime*/ ctx[0]),
-    				eventPosition: Math.round(/*sliderWidth*/ ctx[3] * /*getPolicyEventPosition*/ ctx[8](/*policyEvent*/ ctx[23].date)),
-    				eventDetails: /*policyEvent*/ ctx[23],
+    				currentScrubberPosition: /*convertTimeToXPosition*/ ctx[6](/*currentTime*/ ctx[0]),
+    				eventPosition: Math.round(/*sliderWidth*/ ctx[3] * /*getPolicyEventPosition*/ ctx[10](/*policyEvent*/ ctx[30].date)),
+    				eventDetails: /*policyEvent*/ ctx[30],
     				bufferRadius: EVENT_BUFFER_TIME * /*maxScrubberWidth*/ ctx[4] / /*maxTime*/ ctx[1],
-    				id: /*i*/ ctx[25]
+    				id: /*i*/ ctx[32]
     			},
     			$$inline: true
     		});
@@ -11791,9 +11801,9 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const policyevent_changes = {};
-    			if (dirty & /*currentTime*/ 1) policyevent_changes.currentScrubberPosition = /*convertTimeToXPosition*/ ctx[5](/*currentTime*/ ctx[0]);
-    			if (dirty & /*sliderWidth*/ 8) policyevent_changes.eventPosition = Math.round(/*sliderWidth*/ ctx[3] * /*getPolicyEventPosition*/ ctx[8](/*policyEvent*/ ctx[23].date));
-    			if (dirty & /*maxScrubberWidth, maxTime*/ 18) policyevent_changes.bufferRadius = EVENT_BUFFER_TIME * /*maxScrubberWidth*/ ctx[4] / /*maxTime*/ ctx[1];
+    			if (dirty[0] & /*currentTime*/ 1) policyevent_changes.currentScrubberPosition = /*convertTimeToXPosition*/ ctx[6](/*currentTime*/ ctx[0]);
+    			if (dirty[0] & /*sliderWidth*/ 8) policyevent_changes.eventPosition = Math.round(/*sliderWidth*/ ctx[3] * /*getPolicyEventPosition*/ ctx[10](/*policyEvent*/ ctx[30].date));
+    			if (dirty[0] & /*maxScrubberWidth, maxTime*/ 18) policyevent_changes.bufferRadius = EVENT_BUFFER_TIME * /*maxScrubberWidth*/ ctx[4] / /*maxTime*/ ctx[1];
     			policyevent.$set(policyevent_changes);
     		},
     		i: function intro(local) {
@@ -11814,14 +11824,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(203:8) {#each policyEvents as policyEvent, i}",
+    		source: "(217:8) {#each policyEvents as policyEvent, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (236:12) {:else}
+    // (250:12) {:else}
     function create_else_block(ctx) {
     	let button;
     	let svg;
@@ -11843,26 +11853,26 @@ var app = (function () {
     			g1 = svg_element("g");
     			g0 = svg_element("g");
     			path = svg_element("path");
-    			add_location(style, file$2, 239, 24, 8681);
-    			add_location(defs, file$2, 238, 20, 8650);
+    			add_location(style, file$2, 253, 24, 9148);
+    			add_location(defs, file$2, 252, 20, 9117);
     			attr_dev(path, "class", "cls-play-1");
     			attr_dev(path, "d", "M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z");
     			attr_dev(path, "transform", "translate(0 -0.01)");
-    			add_location(path, file$2, 249, 24, 9093);
+    			add_location(path, file$2, 263, 24, 9560);
     			attr_dev(g0, "id", "Layer_1-2");
     			attr_dev(g0, "data-name", "Layer 1-2");
-    			add_location(g0, file$2, 248, 24, 9028);
+    			add_location(g0, file$2, 262, 24, 9495);
     			attr_dev(g1, "id", "Layer_2");
     			attr_dev(g1, "data-name", "Layer 2");
-    			add_location(g1, file$2, 247, 20, 8967);
+    			add_location(g1, file$2, 261, 20, 9434);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 113.57 127.1");
-    			attr_dev(svg, "class", "svelte-1xl36i6");
-    			add_location(svg, file$2, 237, 16, 8529);
-    			attr_dev(button, "class", "start-button play-button svelte-1xl36i6");
-    			add_location(button, file$2, 236, 12, 8439);
+    			attr_dev(svg, "class", "svelte-y1ruhw");
+    			add_location(svg, file$2, 251, 16, 8996);
+    			attr_dev(button, "class", "start-button play-button svelte-y1ruhw");
+    			add_location(button, file$2, 250, 12, 8906);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, button, anchor);
@@ -11874,7 +11884,7 @@ var app = (function () {
     			append_dev(g1, g0);
     			append_dev(g0, path);
     			if (remount) dispose();
-    			dispose = listen_dev(button, "click", /*handleStartAnimation*/ ctx[7], false, false, false);
+    			dispose = listen_dev(button, "click", /*handleStartAnimation*/ ctx[8], false, false, false);
     		},
     		p: noop,
     		d: function destroy(detaching) {
@@ -11887,14 +11897,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(236:12) {:else}",
+    		source: "(250:12) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (217:12) {#if isUserRunning}
+    // (231:12) {#if isUserRunning}
     function create_if_block(ctx) {
     	let button;
     	let svg;
@@ -11918,28 +11928,28 @@ var app = (function () {
     			g0 = svg_element("g");
     			path0 = svg_element("path");
     			path1 = svg_element("path");
-    			add_location(style, file$2, 220, 24, 7657);
-    			add_location(defs, file$2, 219, 20, 7626);
+    			add_location(style, file$2, 234, 24, 8124);
+    			add_location(defs, file$2, 233, 20, 8093);
     			attr_dev(path0, "class", "cls-pause-1");
     			attr_dev(path0, "d", "M10.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,10.5.5Z");
-    			add_location(path0, file$2, 229, 24, 8030);
+    			add_location(path0, file$2, 243, 24, 8497);
     			attr_dev(path1, "class", "cls-pause-1");
     			attr_dev(path1, "d", "M60.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,60.5.5Z");
-    			add_location(path1, file$2, 230, 24, 8181);
+    			add_location(path1, file$2, 244, 24, 8648);
     			attr_dev(g0, "id", "Layer_1-2");
     			attr_dev(g0, "data-name", "Layer 1-2");
-    			add_location(g0, file$2, 228, 24, 7965);
+    			add_location(g0, file$2, 242, 24, 8432);
     			attr_dev(g1, "id", "Layer_2");
     			attr_dev(g1, "data-name", "Layer 2");
-    			add_location(g1, file$2, 227, 20, 7904);
+    			add_location(g1, file$2, 241, 20, 8371);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 71 135");
-    			attr_dev(svg, "class", "svelte-1xl36i6");
-    			add_location(svg, file$2, 218, 16, 7511);
-    			attr_dev(button, "class", "pause-button play-button svelte-1xl36i6");
-    			add_location(button, file$2, 217, 12, 7421);
+    			attr_dev(svg, "class", "svelte-y1ruhw");
+    			add_location(svg, file$2, 232, 16, 7978);
+    			attr_dev(button, "class", "pause-button play-button svelte-y1ruhw");
+    			add_location(button, file$2, 231, 12, 7888);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, button, anchor);
@@ -11952,7 +11962,7 @@ var app = (function () {
     			append_dev(g0, path0);
     			append_dev(g0, path1);
     			if (remount) dispose();
-    			dispose = listen_dev(button, "click", /*handlePauseAnimation*/ ctx[6], false, false, false);
+    			dispose = listen_dev(button, "click", /*handlePauseAnimation*/ ctx[7], false, false, false);
     		},
     		p: noop,
     		d: function destroy(detaching) {
@@ -11965,7 +11975,7 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(217:12) {#if isUserRunning}",
+    		source: "(231:12) {#if isUserRunning}",
     		ctx
     	});
 
@@ -11989,14 +11999,26 @@ var app = (function () {
     	let t4;
     	let div6;
     	let button0;
+    	let t5_value = "0.5x" + "";
+    	let t5;
+    	let button0_class_value;
     	let t6;
     	let button1;
+    	let t7_value = "1x" + "";
+    	let t7;
+    	let button1_class_value;
     	let t8;
     	let button2;
+    	let t9_value = "2x" + "";
+    	let t9;
+    	let button2_class_value;
     	let t10;
     	let div8;
+    	let t11_value = `${/*displayTime*/ ctx[12](/*currentTime*/ ctx[0])} / ${/*displayTime*/ ctx[12](/*maxTime*/ ctx[1])}` + "";
+    	let t11;
     	let current;
-    	let each_value = /*policyEvents*/ ctx[9];
+    	let dispose;
+    	let each_value = /*policyEvents*/ ctx[11];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -12040,51 +12062,63 @@ var app = (function () {
     			t4 = space();
     			div6 = element("div");
     			button0 = element("button");
-    			button0.textContent = `${"0.5x"}`;
+    			t5 = text(t5_value);
     			t6 = space();
     			button1 = element("button");
-    			button1.textContent = `${"1x"}`;
+    			t7 = text(t7_value);
     			t8 = space();
     			button2 = element("button");
-    			button2.textContent = `${"1.5x"}`;
+    			t9 = text(t9_value);
     			t10 = space();
     			div8 = element("div");
-    			div8.textContent = `${"0:55"}`;
-    			attr_dev(div0, "class", "pm25-chart svelte-1xl36i6");
+    			t11 = text(t11_value);
+    			attr_dev(div0, "class", "pm25-chart svelte-y1ruhw");
     			attr_dev(div0, "id", "pm25-timeseries");
-    			add_location(div0, file$2, 190, 4, 6553);
-    			attr_dev(div1, "class", "range svelte-1xl36i6");
-    			add_location(div1, file$2, 194, 8, 6656);
-    			attr_dev(div2, "class", "handle svelte-1xl36i6");
-    			add_location(div2, file$2, 198, 16, 6780);
-    			attr_dev(div3, "class", "handle-hit-area svelte-1xl36i6");
-    			add_location(div3, file$2, 197, 12, 6734);
-    			attr_dev(div4, "class", "handle-container svelte-1xl36i6");
-    			add_location(div4, file$2, 196, 8, 6691);
-    			attr_dev(div5, "class", "slider svelte-1xl36i6");
+    			add_location(div0, file$2, 204, 4, 7020);
+    			attr_dev(div1, "class", "range svelte-y1ruhw");
+    			add_location(div1, file$2, 208, 8, 7123);
+    			attr_dev(div2, "class", "handle svelte-y1ruhw");
+    			add_location(div2, file$2, 212, 16, 7247);
+    			attr_dev(div3, "class", "handle-hit-area svelte-y1ruhw");
+    			add_location(div3, file$2, 211, 12, 7201);
+    			attr_dev(div4, "class", "handle-container svelte-y1ruhw");
+    			add_location(div4, file$2, 210, 8, 7158);
+    			attr_dev(div5, "class", "slider svelte-y1ruhw");
     			attr_dev(div5, "id", "slider");
-    			add_location(div5, file$2, 193, 4, 6615);
-    			attr_dev(button0, "class", "speed-button svelte-1xl36i6");
-    			add_location(button0, file$2, 256, 16, 9463);
-    			attr_dev(button1, "class", "speed-button svelte-1xl36i6");
-    			add_location(button1, file$2, 257, 16, 9526);
-    			attr_dev(button2, "class", "speed-button svelte-1xl36i6");
-    			add_location(button2, file$2, 258, 16, 9587);
-    			attr_dev(div6, "class", "speed-buttons-container svelte-1xl36i6");
-    			add_location(div6, file$2, 255, 12, 9409);
-    			attr_dev(div7, "class", "control-button-container svelte-1xl36i6");
-    			add_location(div7, file$2, 215, 8, 7337);
-    			attr_dev(div8, "class", "current-time-display svelte-1xl36i6");
-    			add_location(div8, file$2, 261, 9, 9678);
-    			attr_dev(div9, "class", "scrubber-controls svelte-1xl36i6");
-    			add_location(div9, file$2, 214, 4, 7297);
-    			attr_dev(div10, "class", "scrubber svelte-1xl36i6");
-    			add_location(div10, file$2, 189, 0, 6526);
+    			add_location(div5, file$2, 207, 4, 7082);
+
+    			attr_dev(button0, "class", button0_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[5] == 0.5
+    			? "speed-button-selected"
+    			: "")) + " svelte-y1ruhw"));
+
+    			add_location(button0, file$2, 270, 16, 9930);
+
+    			attr_dev(button1, "class", button1_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[5] == 1
+    			? "speed-button-selected"
+    			: "")) + " svelte-y1ruhw"));
+
+    			add_location(button1, file$2, 271, 16, 10106);
+
+    			attr_dev(button2, "class", button2_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[5] == 2
+    			? "speed-button-selected"
+    			: "")) + " svelte-y1ruhw"));
+
+    			add_location(button2, file$2, 272, 16, 10276);
+    			attr_dev(div6, "class", "speed-buttons-container svelte-y1ruhw");
+    			add_location(div6, file$2, 269, 12, 9876);
+    			attr_dev(div7, "class", "control-button-container svelte-y1ruhw");
+    			add_location(div7, file$2, 229, 8, 7804);
+    			attr_dev(div8, "class", "current-time-display svelte-y1ruhw");
+    			add_location(div8, file$2, 275, 9, 10474);
+    			attr_dev(div9, "class", "scrubber-controls svelte-y1ruhw");
+    			add_location(div9, file$2, 228, 4, 7764);
+    			attr_dev(div10, "class", "scrubber svelte-y1ruhw");
+    			add_location(div10, file$2, 203, 0, 6993);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
-    		m: function mount(target, anchor) {
+    		m: function mount(target, anchor, remount) {
     			insert_dev(target, div10, anchor);
     			append_dev(div10, div0);
     			append_dev(div10, t0);
@@ -12107,17 +12141,28 @@ var app = (function () {
     			append_dev(div7, t4);
     			append_dev(div7, div6);
     			append_dev(div6, button0);
+    			append_dev(button0, t5);
     			append_dev(div6, t6);
     			append_dev(div6, button1);
+    			append_dev(button1, t7);
     			append_dev(div6, t8);
     			append_dev(div6, button2);
+    			append_dev(button2, t9);
     			append_dev(div9, t10);
     			append_dev(div9, div8);
+    			append_dev(div8, t11);
     			current = true;
+    			if (remount) run_all(dispose);
+
+    			dispose = [
+    				listen_dev(button0, "click", /*click_handler*/ ctx[27], false, false, false),
+    				listen_dev(button1, "click", /*click_handler_1*/ ctx[28], false, false, false),
+    				listen_dev(button2, "click", /*click_handler_2*/ ctx[29], false, false, false)
+    			];
     		},
-    		p: function update(ctx, [dirty]) {
-    			if (dirty & /*convertTimeToXPosition, currentTime, Math, sliderWidth, getPolicyEventPosition, policyEvents, EVENT_BUFFER_TIME, maxScrubberWidth, maxTime*/ 827) {
-    				each_value = /*policyEvents*/ ctx[9];
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*convertTimeToXPosition, currentTime, sliderWidth, getPolicyEventPosition, policyEvents, maxScrubberWidth, maxTime*/ 3163) {
+    				each_value = /*policyEvents*/ ctx[11];
     				validate_each_argument(each_value);
     				let i;
 
@@ -12155,6 +12200,26 @@ var app = (function () {
     					if_block.m(div7, t4);
     				}
     			}
+
+    			if (!current || dirty[0] & /*currPlayRate*/ 32 && button0_class_value !== (button0_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[5] == 0.5
+    			? "speed-button-selected"
+    			: "")) + " svelte-y1ruhw"))) {
+    				attr_dev(button0, "class", button0_class_value);
+    			}
+
+    			if (!current || dirty[0] & /*currPlayRate*/ 32 && button1_class_value !== (button1_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[5] == 1
+    			? "speed-button-selected"
+    			: "")) + " svelte-y1ruhw"))) {
+    				attr_dev(button1, "class", button1_class_value);
+    			}
+
+    			if (!current || dirty[0] & /*currPlayRate*/ 32 && button2_class_value !== (button2_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[5] == 2
+    			? "speed-button-selected"
+    			: "")) + " svelte-y1ruhw"))) {
+    				attr_dev(button2, "class", button2_class_value);
+    			}
+
+    			if ((!current || dirty[0] & /*currentTime, maxTime*/ 3) && t11_value !== (t11_value = `${/*displayTime*/ ctx[12](/*currentTime*/ ctx[0])} / ${/*displayTime*/ ctx[12](/*maxTime*/ ctx[1])}` + "")) set_data_dev(t11, t11_value);
     		},
     		i: function intro(local) {
     			if (current) return;
@@ -12178,6 +12243,7 @@ var app = (function () {
     			if (detaching) detach_dev(div10);
     			destroy_each(each_blocks, detaching);
     			if_block.d();
+    			run_all(dispose);
     		}
     	};
 
@@ -12202,12 +12268,14 @@ var app = (function () {
     	let { startAnimation } = $$props;
     	let { updateCurrentTime } = $$props;
     	let { isAnimationEnded } = $$props;
+    	let { changePlaybackRate } = $$props;
     	var isUserRunning = false; // Whether or not the USER has paused the animation
     	let isDragging = false; // is the user dragging the scrubber
     	let sliderWidth = 0;
     	let chartHeight = 0;
     	let maxScrubberWidth = 1000; // width of scrubber in px
     	let handleStyler;
+    	let currPlayRate = 1;
 
     	const convertTimeToXPosition = time => {
     		return time * maxScrubberWidth / maxTime;
@@ -12224,7 +12292,7 @@ var app = (function () {
     		$$invalidate(3, sliderWidth = slider.getBoundingClientRect().width);
     		chartHeight = document.getElementById("pm25-timeseries").getBoundingClientRect().height;
     		const handle = document.querySelector(".handle-hit-area");
-    		$$invalidate(17, handleStyler = index(handle));
+    		$$invalidate(21, handleStyler = index(handle));
 
     		const handleX = value(0, newX => {
     			updateCurrentTime(convertXPositionToTime(newX));
@@ -12270,6 +12338,11 @@ var app = (function () {
     	const handleStartAnimation = () => {
     		$$invalidate(2, isUserRunning = true);
     		startAnimation();
+    	};
+
+    	const handleChangePlaybackRate = playRate => {
+    		$$invalidate(5, currPlayRate = playRate);
+    		changePlaybackRate(playRate);
     	};
 
     	let startDate = moment(frameData[0].date);
@@ -12341,6 +12414,12 @@ var app = (function () {
     		}));
     	};
 
+    	const displayTime = (timeNow, timeTotal) => {
+    		const duration = moment.duration(timeNow, "seconds");
+    		const formatted = moment.utc(duration.asMilliseconds()).format("m:ss");
+    		return formatted;
+    	};
+
     	const writable_props = [
     		"frameData",
     		"currentTime",
@@ -12348,7 +12427,8 @@ var app = (function () {
     		"pauseAnimation",
     		"startAnimation",
     		"updateCurrentTime",
-    		"isAnimationEnded"
+    		"isAnimationEnded",
+    		"changePlaybackRate"
     	];
 
     	Object.keys($$props).forEach(key => {
@@ -12357,15 +12437,19 @@ var app = (function () {
 
     	let { $$slots = {}, $$scope } = $$props;
     	validate_slots("Scrubber", $$slots, []);
+    	const click_handler = () => handleChangePlaybackRate(0.5);
+    	const click_handler_1 = () => handleChangePlaybackRate(1);
+    	const click_handler_2 = () => handleChangePlaybackRate(2);
 
     	$$self.$set = $$props => {
-    		if ("frameData" in $$props) $$invalidate(10, frameData = $$props.frameData);
+    		if ("frameData" in $$props) $$invalidate(13, frameData = $$props.frameData);
     		if ("currentTime" in $$props) $$invalidate(0, currentTime = $$props.currentTime);
     		if ("maxTime" in $$props) $$invalidate(1, maxTime = $$props.maxTime);
-    		if ("pauseAnimation" in $$props) $$invalidate(11, pauseAnimation = $$props.pauseAnimation);
-    		if ("startAnimation" in $$props) $$invalidate(12, startAnimation = $$props.startAnimation);
-    		if ("updateCurrentTime" in $$props) $$invalidate(13, updateCurrentTime = $$props.updateCurrentTime);
-    		if ("isAnimationEnded" in $$props) $$invalidate(14, isAnimationEnded = $$props.isAnimationEnded);
+    		if ("pauseAnimation" in $$props) $$invalidate(14, pauseAnimation = $$props.pauseAnimation);
+    		if ("startAnimation" in $$props) $$invalidate(15, startAnimation = $$props.startAnimation);
+    		if ("updateCurrentTime" in $$props) $$invalidate(16, updateCurrentTime = $$props.updateCurrentTime);
+    		if ("isAnimationEnded" in $$props) $$invalidate(17, isAnimationEnded = $$props.isAnimationEnded);
+    		if ("changePlaybackRate" in $$props) $$invalidate(18, changePlaybackRate = $$props.changePlaybackRate);
     	};
 
     	$$self.$capture_state = () => ({
@@ -12379,6 +12463,7 @@ var app = (function () {
     		keyframes,
     		PolicyEvent,
     		moment,
+    		classnames,
     		select,
     		scaleLinear: linear$2,
     		axisBottom,
@@ -12392,6 +12477,7 @@ var app = (function () {
     		startAnimation,
     		updateCurrentTime,
     		isAnimationEnded,
+    		changePlaybackRate,
     		EVENT_BUFFER_TIME,
     		isUserRunning,
     		isDragging,
@@ -12399,32 +12485,37 @@ var app = (function () {
     		chartHeight,
     		maxScrubberWidth,
     		handleStyler,
+    		currPlayRate,
     		convertTimeToXPosition,
     		convertXPositionToTime,
     		handlePauseAnimation,
     		handleStartAnimation,
+    		handleChangePlaybackRate,
     		startDate,
     		endDate,
     		totalDays,
     		getPolicyEventPosition,
     		policyEvents,
-    		addPm25TimeseriesChart
+    		addPm25TimeseriesChart,
+    		displayTime
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("frameData" in $$props) $$invalidate(10, frameData = $$props.frameData);
+    		if ("frameData" in $$props) $$invalidate(13, frameData = $$props.frameData);
     		if ("currentTime" in $$props) $$invalidate(0, currentTime = $$props.currentTime);
     		if ("maxTime" in $$props) $$invalidate(1, maxTime = $$props.maxTime);
-    		if ("pauseAnimation" in $$props) $$invalidate(11, pauseAnimation = $$props.pauseAnimation);
-    		if ("startAnimation" in $$props) $$invalidate(12, startAnimation = $$props.startAnimation);
-    		if ("updateCurrentTime" in $$props) $$invalidate(13, updateCurrentTime = $$props.updateCurrentTime);
-    		if ("isAnimationEnded" in $$props) $$invalidate(14, isAnimationEnded = $$props.isAnimationEnded);
+    		if ("pauseAnimation" in $$props) $$invalidate(14, pauseAnimation = $$props.pauseAnimation);
+    		if ("startAnimation" in $$props) $$invalidate(15, startAnimation = $$props.startAnimation);
+    		if ("updateCurrentTime" in $$props) $$invalidate(16, updateCurrentTime = $$props.updateCurrentTime);
+    		if ("isAnimationEnded" in $$props) $$invalidate(17, isAnimationEnded = $$props.isAnimationEnded);
+    		if ("changePlaybackRate" in $$props) $$invalidate(18, changePlaybackRate = $$props.changePlaybackRate);
     		if ("isUserRunning" in $$props) $$invalidate(2, isUserRunning = $$props.isUserRunning);
     		if ("isDragging" in $$props) isDragging = $$props.isDragging;
     		if ("sliderWidth" in $$props) $$invalidate(3, sliderWidth = $$props.sliderWidth);
     		if ("chartHeight" in $$props) chartHeight = $$props.chartHeight;
     		if ("maxScrubberWidth" in $$props) $$invalidate(4, maxScrubberWidth = $$props.maxScrubberWidth);
-    		if ("handleStyler" in $$props) $$invalidate(17, handleStyler = $$props.handleStyler);
+    		if ("handleStyler" in $$props) $$invalidate(21, handleStyler = $$props.handleStyler);
+    		if ("currPlayRate" in $$props) $$invalidate(5, currPlayRate = $$props.currPlayRate);
     		if ("startDate" in $$props) startDate = $$props.startDate;
     		if ("endDate" in $$props) endDate = $$props.endDate;
     		if ("totalDays" in $$props) totalDays = $$props.totalDays;
@@ -12435,21 +12526,21 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*sliderWidth*/ 8) {
+    		if ($$self.$$.dirty[0] & /*sliderWidth*/ 8) {
     			 {
     				$$invalidate(4, maxScrubberWidth = sliderWidth);
     				addPm25TimeseriesChart();
     			}
     		}
 
-    		if ($$self.$$.dirty & /*handleStyler, currentTime*/ 131073) {
+    		if ($$self.$$.dirty[0] & /*handleStyler, currentTime*/ 2097153) {
     			 {
     				// continuoslu check currentTime for where to place the scrubber handle
     				handleStyler && handleStyler.set("x", convertTimeToXPosition(currentTime));
     			}
     		}
 
-    		if ($$self.$$.dirty & /*isAnimationEnded*/ 16384) {
+    		if ($$self.$$.dirty[0] & /*isAnimationEnded*/ 131072) {
     			 {
     				if (isAnimationEnded) {
     					$$invalidate(2, isUserRunning = false);
@@ -12464,16 +12555,31 @@ var app = (function () {
     		isUserRunning,
     		sliderWidth,
     		maxScrubberWidth,
+    		currPlayRate,
     		convertTimeToXPosition,
     		handlePauseAnimation,
     		handleStartAnimation,
+    		handleChangePlaybackRate,
     		getPolicyEventPosition,
     		policyEvents,
+    		displayTime,
     		frameData,
     		pauseAnimation,
     		startAnimation,
     		updateCurrentTime,
-    		isAnimationEnded
+    		isAnimationEnded,
+    		changePlaybackRate,
+    		isDragging,
+    		chartHeight,
+    		handleStyler,
+    		convertXPositionToTime,
+    		startDate,
+    		endDate,
+    		totalDays,
+    		addPm25TimeseriesChart,
+    		click_handler,
+    		click_handler_1,
+    		click_handler_2
     	];
     }
 
@@ -12481,15 +12587,24 @@ var app = (function () {
     	constructor(options) {
     		super(options);
 
-    		init(this, options, instance$2, create_fragment$2, safe_not_equal, {
-    			frameData: 10,
-    			currentTime: 0,
-    			maxTime: 1,
-    			pauseAnimation: 11,
-    			startAnimation: 12,
-    			updateCurrentTime: 13,
-    			isAnimationEnded: 14
-    		});
+    		init(
+    			this,
+    			options,
+    			instance$2,
+    			create_fragment$2,
+    			safe_not_equal,
+    			{
+    				frameData: 13,
+    				currentTime: 0,
+    				maxTime: 1,
+    				pauseAnimation: 14,
+    				startAnimation: 15,
+    				updateCurrentTime: 16,
+    				isAnimationEnded: 17,
+    				changePlaybackRate: 18
+    			},
+    			[-1, -1]
+    		);
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -12501,7 +12616,7 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*frameData*/ ctx[10] === undefined && !("frameData" in props)) {
+    		if (/*frameData*/ ctx[13] === undefined && !("frameData" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'frameData'");
     		}
 
@@ -12513,20 +12628,24 @@ var app = (function () {
     			console.warn("<Scrubber> was created without expected prop 'maxTime'");
     		}
 
-    		if (/*pauseAnimation*/ ctx[11] === undefined && !("pauseAnimation" in props)) {
+    		if (/*pauseAnimation*/ ctx[14] === undefined && !("pauseAnimation" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'pauseAnimation'");
     		}
 
-    		if (/*startAnimation*/ ctx[12] === undefined && !("startAnimation" in props)) {
+    		if (/*startAnimation*/ ctx[15] === undefined && !("startAnimation" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'startAnimation'");
     		}
 
-    		if (/*updateCurrentTime*/ ctx[13] === undefined && !("updateCurrentTime" in props)) {
+    		if (/*updateCurrentTime*/ ctx[16] === undefined && !("updateCurrentTime" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'updateCurrentTime'");
     		}
 
-    		if (/*isAnimationEnded*/ ctx[14] === undefined && !("isAnimationEnded" in props)) {
+    		if (/*isAnimationEnded*/ ctx[17] === undefined && !("isAnimationEnded" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'isAnimationEnded'");
+    		}
+
+    		if (/*changePlaybackRate*/ ctx[18] === undefined && !("changePlaybackRate" in props)) {
+    			console.warn("<Scrubber> was created without expected prop 'changePlaybackRate'");
     		}
     	}
 
@@ -12583,6 +12702,14 @@ var app = (function () {
     	}
 
     	set isAnimationEnded(value) {
+    		throw new Error("<Scrubber>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get changePlaybackRate() {
+    		throw new Error("<Scrubber>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set changePlaybackRate(value) {
     		throw new Error("<Scrubber>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -13459,6 +13586,8 @@ var app = (function () {
     {"date":"2019-02-14T00:00:00.000Z","temp":-25.473487103174605,"pm25":232.56199838054476},{"date":"2019-02-14T00:00:00.000Z","temp":-25.12375992063492,"pm25":234.55581494290752},{"date":"2019-02-14T00:00:00.000Z","temp":-24.774032738095237,"pm25":236.54963150527027},{"date":"2019-02-14T00:00:00.000Z","temp":-24.424305555555556,"pm25":238.543448067633},{"date":"2019-02-14T00:00:00.000Z","temp":-24.074578373015875,"pm25":240.53726462999575},{"date":"2019-02-18T00:00:00.000Z","temp":-23.72485119047619,"pm25":242.5310811923585},{"date":"2019-02-18T00:00:00.000Z","temp":-23.375124007936506,"pm25":244.52489775472125},{"date":"2019-02-18T00:00:00.000Z","temp":-23.025396825396825,"pm25":246.518714317084},{"date":"2019-02-18T00:00:00.000Z","temp":-22.675669642857144,"pm25":248.51253087944673},{"date":"2019-02-18T00:00:00.000Z","temp":-22.32594246031746,"pm25":250.50634744180948},{"date":"2019-02-18T00:00:00.000Z","temp":-21.976215277777776,"pm25":252.50016400417223},{"date":"2019-02-18T00:00:00.000Z","temp":-21.626488095238095,"pm25":254.493980566535},{"date":"2019-02-18T00:00:00.000Z","temp":-21.174171626984126,"pm25":256.87016186058315},{"date":"2019-02-18T00:00:00.000Z","temp":-20.721855158730158,"pm25":259.24634315463135},{"date":"2019-02-18T00:00:00.000Z","temp":-20.26953869047619,"pm25":261.6225244486795},{"date":"2019-02-18T00:00:00.000Z","temp":-19.817222222222224,"pm25":263.9987057427277},{"date":"2019-02-18T00:00:00.000Z","temp":-19.364905753968255,"pm25":266.3748870367758},{"date":"2019-02-22T00:00:00.000Z","temp":-18.912589285714287,"pm25":268.751068330824},{"date":"2019-02-22T00:00:00.000Z","temp":-18.460272817460318,"pm25":271.12724962487215},{"date":"2019-02-22T00:00:00.000Z","temp":-18.00795634920635,"pm25":273.50343091892034},{"date":"2019-02-22T00:00:00.000Z","temp":-17.555639880952384,"pm25":275.8796122129685},{"date":"2019-02-22T00:00:00.000Z","temp":-17.103323412698415,"pm25":278.2557935070167},{"date":"2019-02-22T00:00:00.000Z","temp":-16.651006944444447,"pm25":280.6319748010648},{"date":"2019-02-22T00:00:00.000Z","temp":-16.198690476190478,"pm25":283.008156095113},{"date":"2019-02-22T00:00:00.000Z","temp":-15.897227182539684,"pm25":278.87350226514667},{"date":"2019-02-22T00:00:00.000Z","temp":-15.595763888888891,"pm25":274.73884843518033},{"date":"2019-02-22T00:00:00.000Z","temp":-15.294300595238097,"pm25":270.604194605214},{"date":"2019-02-22T00:00:00.000Z","temp":-14.992837301587302,"pm25":266.46954077524765},{"date":"2019-02-22T00:00:00.000Z","temp":-14.69137400793651,"pm25":262.3348869452813},{"date":"2019-02-26T00:00:00.000Z","temp":-14.389910714285715,"pm25":258.200233115315},{"date":"2019-02-26T00:00:00.000Z","temp":-14.088447420634921,"pm25":254.06557928534866},{"date":"2019-02-26T00:00:00.000Z","temp":-13.786984126984128,"pm25":249.93092545538232},{"date":"2019-02-26T00:00:00.000Z","temp":-13.485520833333334,"pm25":245.796271625416},{"date":"2019-02-26T00:00:00.000Z","temp":-13.184057539682541,"pm25":241.66161779544967},{"date":"2019-02-26T00:00:00.000Z","temp":-12.882594246031747,"pm25":237.52696396548333},{"date":"2019-02-26T00:00:00.000Z","temp":-12.581130952380953,"pm25":233.392310135517},{"date":"2019-02-26T00:00:00.000Z","temp":-12.41,"pm25":229.28925251479632},{"date":"2019-02-26T00:00:00.000Z","temp":-12.238869047619048,"pm25":225.18619489407567},{"date":"2019-02-26T00:00:00.000Z","temp":-12.067738095238095,"pm25":221.083137273355},{"date":"2019-02-26T00:00:00.000Z","temp":-11.896607142857142,"pm25":216.98007965263432},{"date":"2019-02-26T00:00:00.000Z","temp":-11.72547619047619,"pm25":212.87702203191367},{"date":"2019-03-02T00:00:00.000Z","temp":-11.554345238095237,"pm25":208.773964411193},{"date":"2019-03-02T00:00:00.000Z","temp":-11.383214285714285,"pm25":204.67090679047232},{"date":"2019-03-02T00:00:00.000Z","temp":-11.212083333333334,"pm25":200.56784916975167},{"date":"2019-03-02T00:00:00.000Z","temp":-11.040952380952382,"pm25":196.464791549031},{"date":"2019-03-02T00:00:00.000Z","temp":-10.869821428571429,"pm25":192.36173392831034},{"date":"2019-03-02T00:00:00.000Z","temp":-10.698690476190476,"pm25":188.25867630758967},{"date":"2019-03-02T00:00:00.000Z","temp":-10.527559523809524,"pm25":184.155618686869},{"date":"2019-03-02T00:00:00.000Z","temp":-10.28155753968254,"pm25":180.96750992063517},{"date":"2019-03-02T00:00:00.000Z","temp":-10.035555555555556,"pm25":177.77940115440134},{"date":"2019-03-02T00:00:00.000Z","temp":-9.789553571428572,"pm25":174.5912923881675},{"date":"2019-03-02T00:00:00.000Z","temp":-9.543551587301588,"pm25":171.40318362193366},{"date":"2019-03-02T00:00:00.000Z","temp":-9.297549603174604,"pm25":168.21507485569984},{"date":"2019-03-06T00:00:00.000Z","temp":-9.05154761904762,"pm25":165.026966089466},{"date":"2019-03-06T00:00:00.000Z","temp":-8.805545634920636,"pm25":161.83885732323216},{"date":"2019-03-06T00:00:00.000Z","temp":-8.559543650793652,"pm25":158.65074855699834},{"date":"2019-03-06T00:00:00.000Z","temp":-8.313541666666666,"pm25":155.4626397907645},{"date":"2019-03-06T00:00:00.000Z","temp":-8.067539682539682,"pm25":152.2745310245307},{"date":"2019-03-06T00:00:00.000Z","temp":-7.8215376984126985,"pm25":149.08642225829684},{"date":"2019-03-06T00:00:00.000Z","temp":-7.5755357142857145,"pm25":145.898313492063},{"date":"2019-03-06T00:00:00.000Z","temp":-7.385664682539683,"pm25":142.4861111111107},{"date":"2019-03-06T00:00:00.000Z","temp":-7.195793650793651,"pm25":139.07390873015834},{"date":"2019-03-06T00:00:00.000Z","temp":-7.005922619047619,"pm25":135.661706349206},{"date":"2019-03-06T00:00:00.000Z","temp":-6.816051587301588,"pm25":132.24950396825366},{"date":"2019-03-06T00:00:00.000Z","temp":-6.626180555555555,"pm25":128.83730158730134},{"date":"2019-03-10T00:00:00.000Z","temp":-6.436309523809523,"pm25":125.425099206349},{"date":"2019-03-10T00:00:00.000Z","temp":-6.246438492063492,"pm25":122.01289682539667},{"date":"2019-03-10T00:00:00.000Z","temp":-6.05656746031746,"pm25":118.60069444444433},{"date":"2019-03-10T00:00:00.000Z","temp":-5.866696428571428,"pm25":115.18849206349199},{"date":"2019-03-10T00:00:00.000Z","temp":-5.6768253968253966,"pm25":111.77628968253967},{"date":"2019-03-10T00:00:00.000Z","temp":-5.486954365079365,"pm25":108.36408730158732},{"date":"2019-03-10T00:00:00.000Z","temp":-5.297083333333333,"pm25":104.951884920635},{"date":"2019-03-10T00:00:00.000Z","temp":-5.408363095238095,"pm25":102.83073952516895},{"date":"2019-03-10T00:00:00.000Z","temp":-5.519642857142857,"pm25":100.7095941297029},{"date":"2019-03-10T00:00:00.000Z","temp":-5.6309226190476185,"pm25":98.58844873423685},{"date":"2019-03-10T00:00:00.000Z","temp":-5.742202380952381,"pm25":96.46730333877079},{"date":"2019-03-10T00:00:00.000Z","temp":-5.853482142857143,"pm25":94.34615794330475},{"date":"2019-03-14T00:00:00.000Z","temp":-5.964761904761905,"pm25":92.2250125478387},{"date":"2019-03-14T00:00:00.000Z","temp":-6.076041666666667,"pm25":90.10386715237264},{"date":"2019-03-14T00:00:00.000Z","temp":-6.187321428571429,"pm25":87.9827217569066},{"date":"2019-03-14T00:00:00.000Z","temp":-6.298601190476191,"pm25":85.86157636144054},{"date":"2019-03-14T00:00:00.000Z","temp":-6.409880952380952,"pm25":83.7404309659745},{"date":"2019-03-14T00:00:00.000Z","temp":-6.521160714285714,"pm25":81.61928557050845},{"date":"2019-03-14T00:00:00.000Z","temp":-6.632440476190476,"pm25":79.4981401750424},{"date":"2019-03-14T00:00:00.000Z","temp":-6.382440476190476,"pm25":81.25786770049478},{"date":"2019-03-14T00:00:00.000Z","temp":-6.132440476190476,"pm25":83.01759522594716},{"date":"2019-03-14T00:00:00.000Z","temp":-5.882440476190476,"pm25":84.77732275139954},{"date":"2019-03-14T00:00:00.000Z","temp":-5.632440476190476,"pm25":86.53705027685193},{"date":"2019-03-14T00:00:00.000Z","temp":-5.382440476190476,"pm25":88.29677780230432},{"date":"2019-03-18T00:00:00.000Z","temp":-5.132440476190476,"pm25":90.0565053277567},{"date":"2019-03-18T00:00:00.000Z","temp":-4.882440476190476,"pm25":91.81623285320907},{"date":"2019-03-18T00:00:00.000Z","temp":-4.632440476190476,"pm25":93.57596037866146},{"date":"2019-03-18T00:00:00.000Z","temp":-4.382440476190476,"pm25":95.33568790411385},{"date":"2019-03-18T00:00:00.000Z","temp":-4.132440476190476,"pm25":97.09541542956623},{"date":"2019-03-18T00:00:00.000Z","temp":-3.8824404761904763,"pm25":98.85514295501861},{"date":"2019-03-18T00:00:00.000Z","temp":-3.6324404761904763,"pm25":100.614870480471},{"date":"2019-03-18T00:00:00.000Z","temp":-3.770500992063492,"pm25":98.64782642525563},{"date":"2019-03-18T00:00:00.000Z","temp":-3.908561507936508,"pm25":96.68078237004026},{"date":"2019-03-18T00:00:00.000Z","temp":-4.046622023809524,"pm25":94.7137383148249},{"date":"2019-03-18T00:00:00.000Z","temp":-4.18468253968254,"pm25":92.74669425960953},{"date":"2019-03-18T00:00:00.000Z","temp":-4.322743055555556,"pm25":90.77965020439416},{"date":"2019-03-22T00:00:00.000Z","temp":-4.460803571428571,"pm25":88.8126061491788},{"date":"2019-03-22T00:00:00.000Z","temp":-4.598864087301587,"pm25":86.84556209396342},{"date":"2019-03-22T00:00:00.000Z","temp":-4.736924603174603,"pm25":84.87851803874807},{"date":"2019-03-22T00:00:00.000Z","temp":-4.8749851190476186,"pm25":82.9114739835327},{"date":"2019-03-22T00:00:00.000Z","temp":-5.013045634920635,"pm25":80.94442992831733},{"date":"2019-03-22T00:00:00.000Z","temp":-5.151106150793651,"pm25":78.97738587310197},{"date":"2019-03-22T00:00:00.000Z","temp":-5.289166666666667,"pm25":77.0103418178866},{"date":"2019-03-22T00:00:00.000Z","temp":-5.394002976190476,"pm25":77.91863317388149},{"date":"2019-03-22T00:00:00.000Z","temp":-5.498839285714285,"pm25":78.82692452987638},{"date":"2019-03-22T00:00:00.000Z","temp":-5.603675595238095,"pm25":79.73521588587127},{"date":"2019-03-22T00:00:00.000Z","temp":-5.708511904761905,"pm25":80.64350724186616},{"date":"2019-03-22T00:00:00.000Z","temp":-5.813348214285714,"pm25":81.55179859786105},{"date":"2019-03-26T00:00:00.000Z","temp":-5.918184523809524,"pm25":82.46008995385594},{"date":"2019-03-26T00:00:00.000Z","temp":-6.023020833333334,"pm25":83.36838130985085},{"date":"2019-03-26T00:00:00.000Z","temp":-6.127857142857143,"pm25":84.27667266584574},{"date":"2019-03-26T00:00:00.000Z","temp":-6.2326934523809525,"pm25":85.18496402184063},{"date":"2019-03-26T00:00:00.000Z","temp":-6.337529761904762,"pm25":86.09325537783552},{"date":"2019-03-26T00:00:00.000Z","temp":-6.442366071428571,"pm25":87.00154673383041},{"date":"2019-03-26T00:00:00.000Z","temp":-6.547202380952381,"pm25":87.9098380898253},{"date":"2019-03-26T00:00:00.000Z","temp":-6.504012896825397,"pm25":86.90373986123234},{"date":"2019-03-26T00:00:00.000Z","temp":-6.460823412698413,"pm25":85.89764163263936},{"date":"2019-03-26T00:00:00.000Z","temp":-6.417633928571429,"pm25":84.8915434040464},{"date":"2019-03-26T00:00:00.000Z","temp":-6.374444444444444,"pm25":83.88544517545343},{"date":"2019-03-26T00:00:00.000Z","temp":-6.331254960317461,"pm25":82.87934694686047},{"date":"2019-03-30T00:00:00.000Z","temp":-6.288065476190477,"pm25":81.87324871826749},{"date":"2019-03-30T00:00:00.000Z","temp":-6.244875992063492,"pm25":80.86715048967453},{"date":"2019-03-30T00:00:00.000Z","temp":-6.201686507936508,"pm25":79.86105226108157},{"date":"2019-03-30T00:00:00.000Z","temp":-6.158497023809524,"pm25":78.85495403248859},{"date":"2019-03-30T00:00:00.000Z","temp":-6.11530753968254,"pm25":77.84885580389563},{"date":"2019-03-30T00:00:00.000Z","temp":-6.072118055555555,"pm25":76.84275757530266},{"date":"2019-03-30T00:00:00.000Z","temp":-6.028928571428572,"pm25":75.8366593467097},{"date":"2019-03-30T00:00:00.000Z","temp":-5.771056547619048,"pm25":75.07595251768178},{"date":"2019-03-30T00:00:00.000Z","temp":-5.513184523809524,"pm25":74.31524568865387},{"date":"2019-03-30T00:00:00.000Z","temp":-5.2553125000000005,"pm25":73.55453885962598},{"date":"2019-03-30T00:00:00.000Z","temp":-4.9974404761904765,"pm25":72.79383203059807},{"date":"2019-03-30T00:00:00.000Z","temp":-4.7395684523809525,"pm25":72.03312520157016},{"date":"2019-04-03T00:00:00.000Z","temp":-4.4816964285714285,"pm25":71.27241837254225},{"date":"2019-04-03T00:00:00.000Z","temp":-4.2238244047619045,"pm25":70.51171154351434},{"date":"2019-04-03T00:00:00.000Z","temp":-3.965952380952381,"pm25":69.75100471448643},{"date":"2019-04-03T00:00:00.000Z","temp":-3.708080357142857,"pm25":68.99029788545852},{"date":"2019-04-03T00:00:00.000Z","temp":-3.4502083333333333,"pm25":68.22959105643062},{"date":"2019-04-03T00:00:00.000Z","temp":-3.1923363095238093,"pm25":67.46888422740271},{"date":"2019-04-03T00:00:00.000Z","temp":-2.9344642857142857,"pm25":66.7081773983748},{"date":"2019-04-03T00:00:00.000Z","temp":-2.6937549603174604,"pm25":65.67722082920325},{"date":"2019-04-03T00:00:00.000Z","temp":-2.453045634920635,"pm25":64.6462642600317},{"date":"2019-04-03T00:00:00.000Z","temp":-2.2123363095238098,"pm25":63.61530769086015},{"date":"2019-04-03T00:00:00.000Z","temp":-1.971626984126984,"pm25":62.5843511216886},{"date":"2019-04-03T00:00:00.000Z","temp":-1.7309176587301587,"pm25":61.55339455251705},{"date":"2019-04-07T00:00:00.000Z","temp":-1.4902083333333334,"pm25":60.5224379833455},{"date":"2019-04-07T00:00:00.000Z","temp":-1.2494990079365078,"pm25":59.491481414173954},{"date":"2019-04-07T00:00:00.000Z","temp":-1.0087896825396825,"pm25":58.4605248450024},{"date":"2019-04-07T00:00:00.000Z","temp":-0.7680803571428569,"pm25":57.42956827583085},{"date":"2019-04-07T00:00:00.000Z","temp":-0.5273710317460316,"pm25":56.3986117066593},{"date":"2019-04-07T00:00:00.000Z","temp":-0.2866617063492063,"pm25":55.36765513748775},{"date":"2019-04-07T00:00:00.000Z","temp":-0.045952380952380904,"pm25":54.3366985683162},{"date":"2019-04-07T00:00:00.000Z","temp":-0.19325892857142854,"pm25":54.019152545587154},{"date":"2019-04-07T00:00:00.000Z","temp":-0.34056547619047617,"pm25":53.7016065228581},{"date":"2019-04-07T00:00:00.000Z","temp":-0.4878720238095238,"pm25":53.38406050012905},{"date":"2019-04-07T00:00:00.000Z","temp":-0.6351785714285714,"pm25":53.0665144774},{"date":"2019-04-07T00:00:00.000Z","temp":-0.782485119047619,"pm25":52.74896845467095},{"date":"2019-04-11T00:00:00.000Z","temp":-0.9297916666666667,"pm25":52.4314224319419},{"date":"2019-04-11T00:00:00.000Z","temp":-1.0770982142857144,"pm25":52.11387640921285},{"date":"2019-04-11T00:00:00.000Z","temp":-1.224404761904762,"pm25":51.7963303864838},{"date":"2019-04-11T00:00:00.000Z","temp":-1.3717113095238096,"pm25":51.47878436375475},{"date":"2019-04-11T00:00:00.000Z","temp":-1.5190178571428572,"pm25":51.1612383410257},{"date":"2019-04-11T00:00:00.000Z","temp":-1.6663244047619048,"pm25":50.84369231829665},{"date":"2019-04-11T00:00:00.000Z","temp":-1.8136309523809524,"pm25":50.5261462955676},{"date":"2019-04-11T00:00:00.000Z","temp":-1.5448065476190476,"pm25":50.46923702792768},{"date":"2019-04-11T00:00:00.000Z","temp":-1.275982142857143,"pm25":50.412327760287766},{"date":"2019-04-11T00:00:00.000Z","temp":-1.0071577380952381,"pm25":50.35541849264785},{"date":"2019-04-11T00:00:00.000Z","temp":-0.7383333333333333,"pm25":50.29850922500793},{"date":"2019-04-11T00:00:00.000Z","temp":-0.46950892857142845,"pm25":50.24159995736802},{"date":"2019-04-15T00:00:00.000Z","temp":-0.20068452380952384,"pm25":50.1846906897281},{"date":"2019-04-15T00:00:00.000Z","temp":0.068139880952381,"pm25":50.127781422088184},{"date":"2019-04-15T00:00:00.000Z","temp":0.3369642857142858,"pm25":50.07087215444827},{"date":"2019-04-15T00:00:00.000Z","temp":0.6057886904761907,"pm25":50.01396288680835},{"date":"2019-04-15T00:00:00.000Z","temp":0.8746130952380955,"pm25":49.957053619168434},{"date":"2019-04-15T00:00:00.000Z","temp":1.1434375000000003,"pm25":49.90014435152852},{"date":"2019-04-15T00:00:00.000Z","temp":1.4122619047619047,"pm25":49.8432350838886},{"date":"2019-04-15T00:00:00.000Z","temp":1.736750992063492,"pm25":48.84275836693371},{"date":"2019-04-15T00:00:00.000Z","temp":2.0612400793650796,"pm25":47.842281649978815},{"date":"2019-04-15T00:00:00.000Z","temp":2.3857291666666667,"pm25":46.84180493302392},{"date":"2019-04-15T00:00:00.000Z","temp":2.7102182539682538,"pm25":45.84132821606904},{"date":"2019-04-15T00:00:00.000Z","temp":3.0347073412698413,"pm25":44.840851499114144},{"date":"2019-04-19T00:00:00.000Z","temp":3.359196428571429,"pm25":43.84037478215925},{"date":"2019-04-19T00:00:00.000Z","temp":3.683685515873016,"pm25":42.83989806520436},{"date":"2019-04-19T00:00:00.000Z","temp":4.008174603174603,"pm25":41.839421348249466},{"date":"2019-04-19T00:00:00.000Z","temp":4.33266369047619,"pm25":40.83894463129458},{"date":"2019-04-19T00:00:00.000Z","temp":4.657152777777778,"pm25":39.83846791433969},{"date":"2019-04-19T00:00:00.000Z","temp":4.981641865079365,"pm25":38.837991197384795},{"date":"2019-04-19T00:00:00.000Z","temp":5.306130952380952,"pm25":37.8375144804299},{"date":"2019-04-19T00:00:00.000Z","temp":5.182534722222222,"pm25":36.92815148326848},{"date":"2019-04-19T00:00:00.000Z","temp":5.058938492063492,"pm25":36.018788486107056},{"date":"2019-04-19T00:00:00.000Z","temp":4.935342261904762,"pm25":35.109425488945625},{"date":"2019-04-19T00:00:00.000Z","temp":4.811746031746032,"pm25":34.2000624917842},{"date":"2019-04-19T00:00:00.000Z","temp":4.6881498015873015,"pm25":33.29069949462278},{"date":"2019-04-23T00:00:00.000Z","temp":4.564553571428571,"pm25":32.38133649746135},{"date":"2019-04-23T00:00:00.000Z","temp":4.440957341269841,"pm25":31.471973500299924},{"date":"2019-04-23T00:00:00.000Z","temp":4.317361111111111,"pm25":30.5626105031385},{"date":"2019-04-23T00:00:00.000Z","temp":4.193764880952381,"pm25":29.653247505977077},{"date":"2019-04-23T00:00:00.000Z","temp":4.070168650793651,"pm25":28.74388450881565},{"date":"2019-04-23T00:00:00.000Z","temp":3.9465724206349204,"pm25":27.834521511654224},{"date":"2019-04-23T00:00:00.000Z","temp":3.8229761904761905,"pm25":26.9251585144928},{"date":"2019-04-23T00:00:00.000Z","temp":3.8736904761904762,"pm25":27.152891092276324},{"date":"2019-04-23T00:00:00.000Z","temp":3.924404761904762,"pm25":27.38062367005985},{"date":"2019-04-23T00:00:00.000Z","temp":3.9751190476190477,"pm25":27.608356247843375},{"date":"2019-04-23T00:00:00.000Z","temp":4.025833333333333,"pm25":27.8360888256269},{"date":"2019-04-23T00:00:00.000Z","temp":4.076547619047619,"pm25":28.063821403410426},{"date":"2019-04-27T00:00:00.000Z","temp":4.127261904761904,"pm25":28.29155398119395},{"date":"2019-04-27T00:00:00.000Z","temp":4.1779761904761905,"pm25":28.519286558977473},{"date":"2019-04-27T00:00:00.000Z","temp":4.228690476190476,"pm25":28.747019136761},{"date":"2019-04-27T00:00:00.000Z","temp":4.279404761904762,"pm25":28.974751714544524},{"date":"2019-04-27T00:00:00.000Z","temp":4.330119047619047,"pm25":29.202484292328048},{"date":"2019-04-27T00:00:00.000Z","temp":4.380833333333333,"pm25":29.430216870111575},{"date":"2019-04-27T00:00:00.000Z","temp":4.431547619047619,"pm25":29.6579494478951},{"date":"2019-04-27T00:00:00.000Z","temp":4.567261904761905,"pm25":29.913384641296133},{"date":"2019-04-27T00:00:00.000Z","temp":4.70297619047619,"pm25":30.168819834697167},{"date":"2019-04-27T00:00:00.000Z","temp":4.838690476190476,"pm25":30.4242550280982},{"date":"2019-04-27T00:00:00.000Z","temp":4.974404761904761,"pm25":30.679690221499232},{"date":"2019-04-27T00:00:00.000Z","temp":5.1101190476190474,"pm25":30.935125414900266},{"date":"2019-05-01T00:00:00.000Z","temp":5.245833333333334,"pm25":31.1905606083013},{"date":"2019-05-01T00:00:00.000Z","temp":5.381547619047619,"pm25":31.445995801702335},{"date":"2019-05-01T00:00:00.000Z","temp":5.517261904761905,"pm25":31.70143099510337},{"date":"2019-05-01T00:00:00.000Z","temp":5.65297619047619,"pm25":31.9568661885044},{"date":"2019-05-01T00:00:00.000Z","temp":5.788690476190476,"pm25":32.212301381905434},{"date":"2019-05-01T00:00:00.000Z","temp":5.924404761904762,"pm25":32.46773657530647},{"date":"2019-05-01T00:00:00.000Z","temp":6.060119047619048,"pm25":32.7231717687075},{"date":"2019-05-01T00:00:00.000Z","temp":6.06968253968254,"pm25":32.37033375850342},{"date":"2019-05-01T00:00:00.000Z","temp":6.079246031746032,"pm25":32.01749574829933},{"date":"2019-05-01T00:00:00.000Z","temp":6.088809523809524,"pm25":31.66465773809525},{"date":"2019-05-01T00:00:00.000Z","temp":6.098373015873016,"pm25":31.31181972789117},{"date":"2019-05-01T00:00:00.000Z","temp":6.107936507936508,"pm25":30.958981717687085},{"date":"2019-05-05T00:00:00.000Z","temp":6.1175,"pm25":30.606143707483},{"date":"2019-05-05T00:00:00.000Z","temp":6.127063492063492,"pm25":30.25330569727892},{"date":"2019-05-05T00:00:00.000Z","temp":6.136626984126984,"pm25":29.900467687074833},{"date":"2019-05-05T00:00:00.000Z","temp":6.146190476190476,"pm25":29.547629676870752},{"date":"2019-05-05T00:00:00.000Z","temp":6.155753968253968,"pm25":29.194791666666667},{"date":"2019-05-05T00:00:00.000Z","temp":6.1653174603174605,"pm25":28.841953656462586},{"date":"2019-05-05T00:00:00.000Z","temp":6.174880952380953,"pm25":28.4891156462585},{"date":"2019-05-05T00:00:00.000Z","temp":6.254583333333334,"pm25":28.294257328535277},{"date":"2019-05-05T00:00:00.000Z","temp":6.3342857142857145,"pm25":28.09939901081205},{"date":"2019-05-05T00:00:00.000Z","temp":6.413988095238095,"pm25":27.904540693088826},{"date":"2019-05-05T00:00:00.000Z","temp":6.493690476190476,"pm25":27.7096823753656},{"date":"2019-05-05T00:00:00.000Z","temp":6.573392857142857,"pm25":27.514824057642375},{"date":"2019-05-09T00:00:00.000Z","temp":6.653095238095238,"pm25":27.319965739919148},{"date":"2019-05-09T00:00:00.000Z","temp":6.732797619047619,"pm25":27.125107422195924},{"date":"2019-05-09T00:00:00.000Z","temp":6.8125,"pm25":26.9302491044727},{"date":"2019-05-09T00:00:00.000Z","temp":6.892202380952381,"pm25":26.735390786749473},{"date":"2019-05-09T00:00:00.000Z","temp":6.971904761904762,"pm25":26.54053246902625},{"date":"2019-05-09T00:00:00.000Z","temp":7.051607142857143,"pm25":26.345674151303022},{"date":"2019-05-09T00:00:00.000Z","temp":7.131309523809524,"pm25":26.1508158335798},{"date":"2019-05-09T00:00:00.000Z","temp":7.060625,"pm25":25.887676024516075},{"date":"2019-05-09T00:00:00.000Z","temp":6.989940476190476,"pm25":25.62453621545235},{"date":"2019-05-09T00:00:00.000Z","temp":6.9192559523809525,"pm25":25.361396406388625},{"date":"2019-05-09T00:00:00.000Z","temp":6.848571428571429,"pm25":25.098256597324898},{"date":"2019-05-09T00:00:00.000Z","temp":6.777886904761905,"pm25":24.835116788261175},{"date":"2019-05-13T00:00:00.000Z","temp":6.707202380952381,"pm25":24.57197697919745},{"date":"2019-05-13T00:00:00.000Z","temp":6.636517857142857,"pm25":24.308837170133724},{"date":"2019-05-13T00:00:00.000Z","temp":6.565833333333333,"pm25":24.04569736107},{"date":"2019-05-13T00:00:00.000Z","temp":6.495148809523809,"pm25":23.782557552006274},{"date":"2019-05-13T00:00:00.000Z","temp":6.4244642857142855,"pm25":23.51941774294255},{"date":"2019-05-13T00:00:00.000Z","temp":6.353779761904762,"pm25":23.256277933878824},{"date":"2019-05-13T00:00:00.000Z","temp":6.283095238095238,"pm25":22.9931381248151},{"date":"2019-05-13T00:00:00.000Z","temp":6.116121031746031,"pm25":22.70060006490515},{"date":"2019-05-13T00:00:00.000Z","temp":5.949146825396825,"pm25":22.4080620049952},{"date":"2019-05-13T00:00:00.000Z","temp":5.7821726190476195,"pm25":22.11552394508525},{"date":"2019-05-13T00:00:00.000Z","temp":5.615198412698413,"pm25":21.8229858851753},{"date":"2019-05-13T00:00:00.000Z","temp":5.448224206349206,"pm25":21.53044782526535},{"date":"2019-05-17T00:00:00.000Z","temp":5.28125,"pm25":21.2379097653554},{"date":"2019-05-17T00:00:00.000Z","temp":5.114275793650794,"pm25":20.94537170544545},{"date":"2019-05-17T00:00:00.000Z","temp":4.947301587301587,"pm25":20.6528336455355},{"date":"2019-05-17T00:00:00.000Z","temp":4.7803273809523805,"pm25":20.36029558562555},{"date":"2019-05-17T00:00:00.000Z","temp":4.613353174603175,"pm25":20.0677575257156},{"date":"2019-05-17T00:00:00.000Z","temp":4.446378968253969,"pm25":19.77521946580565},{"date":"2019-05-17T00:00:00.000Z","temp":4.279404761904762,"pm25":19.4826814058957},{"date":"2019-05-17T00:00:00.000Z","temp":4.353660714285715,"pm25":19.5872835766251},{"date":"2019-05-17T00:00:00.000Z","temp":4.4279166666666665,"pm25":19.6918857473545},{"date":"2019-05-17T00:00:00.000Z","temp":4.502172619047619,"pm25":19.7964879180839},{"date":"2019-05-17T00:00:00.000Z","temp":4.576428571428571,"pm25":19.9010900888133},{"date":"2019-05-17T00:00:00.000Z","temp":4.650684523809524,"pm25":20.005692259542702},{"date":"2019-05-21T00:00:00.000Z","temp":4.724940476190476,"pm25":20.1102944302721},{"date":"2019-05-21T00:00:00.000Z","temp":4.799196428571428,"pm25":20.2148966010015},{"date":"2019-05-21T00:00:00.000Z","temp":4.873452380952381,"pm25":20.3194987717309},{"date":"2019-05-21T00:00:00.000Z","temp":4.947708333333333,"pm25":20.4241009424603},{"date":"2019-05-21T00:00:00.000Z","temp":5.021964285714286,"pm25":20.5287031131897},{"date":"2019-05-21T00:00:00.000Z","temp":5.0962202380952375,"pm25":20.6333052839191},{"date":"2019-05-21T00:00:00.000Z","temp":5.17047619047619,"pm25":20.7379074546485},{"date":"2019-05-21T00:00:00.000Z","temp":5.678010912698412,"pm25":20.531200699633693},{"date":"2019-05-21T00:00:00.000Z","temp":6.185545634920635,"pm25":20.324493944618883},{"date":"2019-05-21T00:00:00.000Z","temp":6.693080357142857,"pm25":20.117787189604076},{"date":"2019-05-21T00:00:00.000Z","temp":7.200615079365079,"pm25":19.911080434589266},{"date":"2019-05-21T00:00:00.000Z","temp":7.708149801587301,"pm25":19.70437367957446},{"date":"2019-05-25T00:00:00.000Z","temp":8.215684523809523,"pm25":19.497666924559653},{"date":"2019-05-25T00:00:00.000Z","temp":8.723219246031746,"pm25":19.290960169544842},{"date":"2019-05-25T00:00:00.000Z","temp":9.230753968253968,"pm25":19.084253414530036},{"date":"2019-05-25T00:00:00.000Z","temp":9.738288690476189,"pm25":18.877546659515225},{"date":"2019-05-25T00:00:00.000Z","temp":10.245823412698412,"pm25":18.67083990450042},{"date":"2019-05-25T00:00:00.000Z","temp":10.753358134920635,"pm25":18.464133149485612},{"date":"2019-05-25T00:00:00.000Z","temp":11.260892857142856,"pm25":18.2574263944708},{"date":"2019-05-25T00:00:00.000Z","temp":11.244151785714285,"pm25":17.750075616750294},{"date":"2019-05-25T00:00:00.000Z","temp":11.227410714285714,"pm25":17.242724839029783},{"date":"2019-05-25T00:00:00.000Z","temp":11.210669642857143,"pm25":16.735374061309276},{"date":"2019-05-25T00:00:00.000Z","temp":11.193928571428572,"pm25":16.22802328358877},{"date":"2019-05-25T00:00:00.000Z","temp":11.1771875,"pm25":15.720672505868258},{"date":"2019-05-29T00:00:00.000Z","temp":11.16044642857143,"pm25":15.21332172814775},{"date":"2019-05-29T00:00:00.000Z","temp":11.143705357142856,"pm25":14.705970950427242},{"date":"2019-05-29T00:00:00.000Z","temp":11.126964285714285,"pm25":14.198620172706732},{"date":"2019-05-29T00:00:00.000Z","temp":11.110223214285714,"pm25":13.691269394986225},{"date":"2019-05-29T00:00:00.000Z","temp":11.093482142857143,"pm25":13.183918617265716},{"date":"2019-05-29T00:00:00.000Z","temp":11.076741071428572,"pm25":12.676567839545207},{"date":"2019-05-29T00:00:00.000Z","temp":11.06,"pm25":12.1692170618247},{"date":"2019-05-29T00:00:00.000Z","temp":11.063377976190477,"pm25":12.198331054190975},{"date":"2019-05-29T00:00:00.000Z","temp":11.066755952380953,"pm25":12.22744504655725},{"date":"2019-05-29T00:00:00.000Z","temp":11.07013392857143,"pm25":12.256559038923525},{"date":"2019-05-29T00:00:00.000Z","temp":11.073511904761904,"pm25":12.2856730312898},{"date":"2019-05-29T00:00:00.000Z","temp":11.07688988095238,"pm25":12.314787023656075},{"date":"2019-06-02T00:00:00.000Z","temp":11.080267857142857,"pm25":12.34390101602235},{"date":"2019-06-02T00:00:00.000Z","temp":11.083645833333334,"pm25":12.373015008388624},{"date":"2019-06-02T00:00:00.000Z","temp":11.08702380952381,"pm25":12.402129000754899},{"date":"2019-06-02T00:00:00.000Z","temp":11.090401785714285,"pm25":12.431242993121174},{"date":"2019-06-02T00:00:00.000Z","temp":11.093779761904761,"pm25":12.460356985487449},{"date":"2019-06-02T00:00:00.000Z","temp":11.097157738095238,"pm25":12.489470977853724},{"date":"2019-06-02T00:00:00.000Z","temp":11.100535714285714,"pm25":12.51858497022},{"date":"2019-06-02T00:00:00.000Z","temp":11.137172619047618,"pm25":12.348747901938575},{"date":"2019-06-02T00:00:00.000Z","temp":11.173809523809524,"pm25":12.178910833657149},{"date":"2019-06-02T00:00:00.000Z","temp":11.210446428571428,"pm25":12.009073765375724},{"date":"2019-06-02T00:00:00.000Z","temp":11.247083333333332,"pm25":11.8392366970943},{"date":"2019-06-02T00:00:00.000Z","temp":11.283720238095238,"pm25":11.669399628812874},{"date":"2019-06-06T00:00:00.000Z","temp":11.320357142857143,"pm25":11.49956256053145},{"date":"2019-06-06T00:00:00.000Z","temp":11.356994047619047,"pm25":11.329725492250025},{"date":"2019-06-06T00:00:00.000Z","temp":11.393630952380953,"pm25":11.1598884239686},{"date":"2019-06-06T00:00:00.000Z","temp":11.430267857142857,"pm25":10.990051355687175},{"date":"2019-06-06T00:00:00.000Z","temp":11.466904761904761,"pm25":10.82021428740575},{"date":"2019-06-06T00:00:00.000Z","temp":11.503541666666667,"pm25":10.650377219124325},{"date":"2019-06-06T00:00:00.000Z","temp":11.540178571428571,"pm25":10.4805401508429},{"date":"2019-06-06T00:00:00.000Z","temp":11.730049603174603,"pm25":10.44719048851421},{"date":"2019-06-06T00:00:00.000Z","temp":11.919920634920635,"pm25":10.413840826185517},{"date":"2019-06-06T00:00:00.000Z","temp":12.109791666666666,"pm25":10.380491163856824},{"date":"2019-06-06T00:00:00.000Z","temp":12.299662698412698,"pm25":10.347141501528133},{"date":"2019-06-06T00:00:00.000Z","temp":12.48953373015873,"pm25":10.313791839199443},{"date":"2019-06-10T00:00:00.000Z","temp":12.679404761904763,"pm25":10.28044217687075},{"date":"2019-06-10T00:00:00.000Z","temp":12.869275793650793,"pm25":10.247092514542057},{"date":"2019-06-10T00:00:00.000Z","temp":13.059146825396827,"pm25":10.213742852213366},{"date":"2019-06-10T00:00:00.000Z","temp":13.249017857142858,"pm25":10.180393189884676},{"date":"2019-06-10T00:00:00.000Z","temp":13.43888888888889,"pm25":10.147043527555983},{"date":"2019-06-10T00:00:00.000Z","temp":13.628759920634922,"pm25":10.11369386522729},{"date":"2019-06-10T00:00:00.000Z","temp":13.818630952380953,"pm25":10.0803442028986},{"date":"2019-06-10T00:00:00.000Z","temp":14.227147817460319,"pm25":9.943386168628123},{"date":"2019-06-10T00:00:00.000Z","temp":14.635664682539684,"pm25":9.806428134357647},{"date":"2019-06-10T00:00:00.000Z","temp":15.044181547619049,"pm25":9.669470100087171},{"date":"2019-06-10T00:00:00.000Z","temp":15.452698412698414,"pm25":9.532512065816697},{"date":"2019-06-10T00:00:00.000Z","temp":15.861215277777779,"pm25":9.39555403154622},{"date":"2019-06-14T00:00:00.000Z","temp":16.269732142857144,"pm25":9.258595997275744},{"date":"2019-06-14T00:00:00.000Z","temp":16.678249007936508,"pm25":9.121637963005268},{"date":"2019-06-14T00:00:00.000Z","temp":17.086765873015874,"pm25":8.984679928734792},{"date":"2019-06-14T00:00:00.000Z","temp":17.49528273809524,"pm25":8.847721894464318},{"date":"2019-06-14T00:00:00.000Z","temp":17.903799603174605,"pm25":8.710763860193842},{"date":"2019-06-14T00:00:00.000Z","temp":18.312316468253968,"pm25":8.573805825923365},{"date":"2019-06-14T00:00:00.000Z","temp":18.720833333333335,"pm25":8.43684779165289},{"date":"2019-06-14T00:00:00.000Z","temp":18.599131944444444,"pm25":8.359294438638978},{"date":"2019-06-14T00:00:00.000Z","temp":18.477430555555557,"pm25":8.281741085625068},{"date":"2019-06-14T00:00:00.000Z","temp":18.35572916666667,"pm25":8.204187732611157},{"date":"2019-06-14T00:00:00.000Z","temp":18.23402777777778,"pm25":8.126634379597245},{"date":"2019-06-14T00:00:00.000Z","temp":18.11232638888889,"pm25":8.049081026583336},{"date":"2019-06-18T00:00:00.000Z","temp":17.990625,"pm25":7.971527673569424},{"date":"2019-06-18T00:00:00.000Z","temp":17.868923611111114,"pm25":7.893974320555514},{"date":"2019-06-18T00:00:00.000Z","temp":17.747222222222224,"pm25":7.816420967541603},{"date":"2019-06-18T00:00:00.000Z","temp":17.625520833333333,"pm25":7.738867614527693},{"date":"2019-06-18T00:00:00.000Z","temp":17.503819444444446,"pm25":7.661314261513782},{"date":"2019-06-18T00:00:00.000Z","temp":17.38211805555556,"pm25":7.583760908499871},{"date":"2019-06-18T00:00:00.000Z","temp":17.260416666666668,"pm25":7.50620755548596},{"date":"2019-06-18T00:00:00.000Z","temp":17.418492063492064,"pm25":7.630975250154408},{"date":"2019-06-18T00:00:00.000Z","temp":17.576567460317463,"pm25":7.755742944822855},{"date":"2019-06-18T00:00:00.000Z","temp":17.73464285714286,"pm25":7.880510639491303},{"date":"2019-06-18T00:00:00.000Z","temp":17.892718253968255,"pm25":8.00527833415975},{"date":"2019-06-18T00:00:00.000Z","temp":18.05079365079365,"pm25":8.130046028828197},{"date":"2019-06-22T00:00:00.000Z","temp":18.208869047619046,"pm25":8.254813723496644},{"date":"2019-06-22T00:00:00.000Z","temp":18.366944444444446,"pm25":8.379581418165092},{"date":"2019-06-22T00:00:00.000Z","temp":18.52501984126984,"pm25":8.50434911283354},{"date":"2019-06-22T00:00:00.000Z","temp":18.683095238095238,"pm25":8.629116807501987},{"date":"2019-06-22T00:00:00.000Z","temp":18.841170634920637,"pm25":8.753884502170434},{"date":"2019-06-22T00:00:00.000Z","temp":18.999246031746033,"pm25":8.878652196838882},{"date":"2019-06-22T00:00:00.000Z","temp":19.15732142857143,"pm25":9.00341989150733},{"date":"2019-06-22T00:00:00.000Z","temp":19.29500992063492,"pm25":9.078340005235187},{"date":"2019-06-22T00:00:00.000Z","temp":19.432698412698414,"pm25":9.153260118963047},{"date":"2019-06-22T00:00:00.000Z","temp":19.570386904761904,"pm25":9.228180232690905},{"date":"2019-06-22T00:00:00.000Z","temp":19.708075396825397,"pm25":9.303100346418763},{"date":"2019-06-22T00:00:00.000Z","temp":19.84576388888889,"pm25":9.37802046014662},{"date":"2019-06-26T00:00:00.000Z","temp":19.98345238095238,"pm25":9.452940573874479},{"date":"2019-06-26T00:00:00.000Z","temp":20.12114087301587,"pm25":9.527860687602338},{"date":"2019-06-26T00:00:00.000Z","temp":20.258829365079364,"pm25":9.602780801330196},{"date":"2019-06-26T00:00:00.000Z","temp":20.396517857142857,"pm25":9.677700915058054},{"date":"2019-06-26T00:00:00.000Z","temp":20.53420634920635,"pm25":9.752621028785914},{"date":"2019-06-26T00:00:00.000Z","temp":20.67189484126984,"pm25":9.827541142513772},{"date":"2019-06-26T00:00:00.000Z","temp":20.809583333333332,"pm25":9.90246125624163},{"date":"2019-06-26T00:00:00.000Z","temp":20.355451388888888,"pm25":9.674511913007958},{"date":"2019-06-26T00:00:00.000Z","temp":19.901319444444443,"pm25":9.446562569774288},{"date":"2019-06-26T00:00:00.000Z","temp":19.4471875,"pm25":9.218613226540617},{"date":"2019-06-26T00:00:00.000Z","temp":18.993055555555557,"pm25":8.990663883306947},{"date":"2019-06-26T00:00:00.000Z","temp":18.538923611111112,"pm25":8.762714540073276},{"date":"2019-06-30T00:00:00.000Z","temp":18.084791666666668,"pm25":8.534765196839604},{"date":"2019-06-30T00:00:00.000Z","temp":17.630659722222223,"pm25":8.306815853605935},{"date":"2019-06-30T00:00:00.000Z","temp":17.17652777777778,"pm25":8.078866510372263},{"date":"2019-06-30T00:00:00.000Z","temp":16.722395833333334,"pm25":7.850917167138593},{"date":"2019-06-30T00:00:00.000Z","temp":16.26826388888889,"pm25":7.622967823904922},{"date":"2019-06-30T00:00:00.000Z","temp":15.814131944444446,"pm25":7.395018480671251},{"date":"2019-06-30T00:00:00.000Z","temp":15.360000000000001,"pm25":7.16706913743758},{"date":"2019-06-30T00:00:00.000Z","temp":15.394012896825398,"pm25":7.195586628371152},{"date":"2019-06-30T00:00:00.000Z","temp":15.428025793650795,"pm25":7.224104119304723},{"date":"2019-06-30T00:00:00.000Z","temp":15.462038690476192,"pm25":7.252621610238295},{"date":"2019-06-30T00:00:00.000Z","temp":15.496051587301588,"pm25":7.281139101171867},{"date":"2019-06-30T00:00:00.000Z","temp":15.530064484126985,"pm25":7.309656592105438},{"date":"2019-07-04T00:00:00.000Z","temp":15.564077380952382,"pm25":7.33817408303901},{"date":"2019-07-04T00:00:00.000Z","temp":15.598090277777779,"pm25":7.366691573972582},{"date":"2019-07-04T00:00:00.000Z","temp":15.632103174603175,"pm25":7.395209064906153},{"date":"2019-07-04T00:00:00.000Z","temp":15.666116071428572,"pm25":7.423726555839725},{"date":"2019-07-04T00:00:00.000Z","temp":15.700128968253969,"pm25":7.452244046773297},{"date":"2019-07-04T00:00:00.000Z","temp":15.734141865079366,"pm25":7.480761537706868},{"date":"2019-07-04T00:00:00.000Z","temp":15.768154761904762,"pm25":7.50927902864044},{"date":"2019-07-04T00:00:00.000Z","temp":15.97485119047619,"pm25":7.861899771986086},{"date":"2019-07-04T00:00:00.000Z","temp":16.18154761904762,"pm25":8.214520515331733},{"date":"2019-07-04T00:00:00.000Z","temp":16.388244047619047,"pm25":8.56714125867738},{"date":"2019-07-04T00:00:00.000Z","temp":16.594940476190477,"pm25":8.919762002023026},{"date":"2019-07-04T00:00:00.000Z","temp":16.801636904761907,"pm25":9.272382745368674},{"date":"2019-07-08T00:00:00.000Z","temp":17.008333333333333,"pm25":9.62500348871432},{"date":"2019-07-08T00:00:00.000Z","temp":17.215029761904763,"pm25":9.977624232059966},{"date":"2019-07-08T00:00:00.000Z","temp":17.421726190476193,"pm25":10.330244975405613},{"date":"2019-07-08T00:00:00.000Z","temp":17.62842261904762,"pm25":10.682865718751259},{"date":"2019-07-08T00:00:00.000Z","temp":17.83511904761905,"pm25":11.035486462096907},{"date":"2019-07-08T00:00:00.000Z","temp":18.041815476190475,"pm25":11.388107205442553},{"date":"2019-07-08T00:00:00.000Z","temp":18.248511904761905,"pm25":11.7407279487882},{"date":"2019-07-08T00:00:00.000Z","temp":18.358829365079366,"pm25":11.736830261996092},{"date":"2019-07-08T00:00:00.000Z","temp":18.469146825396827,"pm25":11.732932575203982},{"date":"2019-07-08T00:00:00.000Z","temp":18.579464285714288,"pm25":11.729034888411874},{"date":"2019-07-08T00:00:00.000Z","temp":18.689781746031745,"pm25":11.725137201619766},{"date":"2019-07-08T00:00:00.000Z","temp":18.800099206349206,"pm25":11.721239514827658},{"date":"2019-07-12T00:00:00.000Z","temp":18.910416666666666,"pm25":11.71734182803555},{"date":"2019-07-12T00:00:00.000Z","temp":19.020734126984127,"pm25":11.713444141243441},{"date":"2019-07-12T00:00:00.000Z","temp":19.131051587301588,"pm25":11.709546454451333},{"date":"2019-07-12T00:00:00.000Z","temp":19.241369047619045,"pm25":11.705648767659225},{"date":"2019-07-12T00:00:00.000Z","temp":19.351686507936506,"pm25":11.701751080867115},{"date":"2019-07-12T00:00:00.000Z","temp":19.462003968253967,"pm25":11.697853394075008},{"date":"2019-07-12T00:00:00.000Z","temp":19.572321428571428,"pm25":11.6939557072829},{"date":"2019-07-12T00:00:00.000Z","temp":19.749022817460318,"pm25":11.558155044173459},{"date":"2019-07-12T00:00:00.000Z","temp":19.925724206349205,"pm25":11.422354381064016},{"date":"2019-07-12T00:00:00.000Z","temp":20.102425595238095,"pm25":11.286553717954575},{"date":"2019-07-12T00:00:00.000Z","temp":20.279126984126982,"pm25":11.150753054845133},{"date":"2019-07-12T00:00:00.000Z","temp":20.455828373015873,"pm25":11.014952391735692},{"date":"2019-07-16T00:00:00.000Z","temp":20.632529761904763,"pm25":10.879151728626251},{"date":"2019-07-16T00:00:00.000Z","temp":20.80923115079365,"pm25":10.743351065516809},{"date":"2019-07-16T00:00:00.000Z","temp":20.98593253968254,"pm25":10.607550402407368},{"date":"2019-07-16T00:00:00.000Z","temp":21.162633928571427,"pm25":10.471749739297925},{"date":"2019-07-16T00:00:00.000Z","temp":21.339335317460318,"pm25":10.335949076188484},{"date":"2019-07-16T00:00:00.000Z","temp":21.516036706349205,"pm25":10.200148413079042},{"date":"2019-07-16T00:00:00.000Z","temp":21.692738095238095,"pm25":10.0643477499696},{"date":"2019-07-16T00:00:00.000Z","temp":21.63073908730159,"pm25":10.06921323783141},{"date":"2019-07-16T00:00:00.000Z","temp":21.568740079365078,"pm25":10.074078725693218},{"date":"2019-07-16T00:00:00.000Z","temp":21.50674107142857,"pm25":10.078944213555026},{"date":"2019-07-16T00:00:00.000Z","temp":21.444742063492065,"pm25":10.083809701416834},{"date":"2019-07-16T00:00:00.000Z","temp":21.382743055555554,"pm25":10.088675189278643},{"date":"2019-07-20T00:00:00.000Z","temp":21.320744047619048,"pm25":10.09354067714045},{"date":"2019-07-20T00:00:00.000Z","temp":21.25874503968254,"pm25":10.098406165002258},{"date":"2019-07-20T00:00:00.000Z","temp":21.19674603174603,"pm25":10.103271652864066},{"date":"2019-07-20T00:00:00.000Z","temp":21.134747023809524,"pm25":10.108137140725875},{"date":"2019-07-20T00:00:00.000Z","temp":21.072748015873017,"pm25":10.113002628587683},{"date":"2019-07-20T00:00:00.000Z","temp":21.010749007936507,"pm25":10.117868116449491},{"date":"2019-07-20T00:00:00.000Z","temp":20.94875,"pm25":10.1227336043113},{"date":"2019-07-20T00:00:00.000Z","temp":20.71658234126984,"pm25":9.984536556923503},{"date":"2019-07-20T00:00:00.000Z","temp":20.484414682539683,"pm25":9.846339509535706},{"date":"2019-07-20T00:00:00.000Z","temp":20.252247023809524,"pm25":9.70814246214791},{"date":"2019-07-20T00:00:00.000Z","temp":20.020079365079365,"pm25":9.569945414760113},{"date":"2019-07-20T00:00:00.000Z","temp":19.787911706349206,"pm25":9.431748367372316},{"date":"2019-07-24T00:00:00.000Z","temp":19.555744047619047,"pm25":9.29355131998452},{"date":"2019-07-24T00:00:00.000Z","temp":19.32357638888889,"pm25":9.155354272596723},{"date":"2019-07-24T00:00:00.000Z","temp":19.09140873015873,"pm25":9.017157225208926},{"date":"2019-07-24T00:00:00.000Z","temp":18.85924107142857,"pm25":8.87896017782113},{"date":"2019-07-24T00:00:00.000Z","temp":18.62707341269841,"pm25":8.740763130433333},{"date":"2019-07-24T00:00:00.000Z","temp":18.394905753968253,"pm25":8.602566083045536},{"date":"2019-07-24T00:00:00.000Z","temp":18.162738095238094,"pm25":8.46436903565774},{"date":"2019-07-24T00:00:00.000Z","temp":18.04626984126984,"pm25":8.265401670934072},{"date":"2019-07-24T00:00:00.000Z","temp":17.929801587301586,"pm25":8.066434306210404},{"date":"2019-07-24T00:00:00.000Z","temp":17.813333333333333,"pm25":7.867466941486737},{"date":"2019-07-24T00:00:00.000Z","temp":17.69686507936508,"pm25":7.66849957676307},{"date":"2019-07-24T00:00:00.000Z","temp":17.580396825396825,"pm25":7.469532212039402},{"date":"2019-07-28T00:00:00.000Z","temp":17.46392857142857,"pm25":7.270564847315734},{"date":"2019-07-28T00:00:00.000Z","temp":17.347460317460317,"pm25":7.071597482592067},{"date":"2019-07-28T00:00:00.000Z","temp":17.230992063492064,"pm25":6.8726301178683995},{"date":"2019-07-28T00:00:00.000Z","temp":17.11452380952381,"pm25":6.673662753144733},{"date":"2019-07-28T00:00:00.000Z","temp":16.998055555555556,"pm25":6.474695388421065},{"date":"2019-07-28T00:00:00.000Z","temp":16.881587301587302,"pm25":6.275728023697397},{"date":"2019-07-28T00:00:00.000Z","temp":16.76511904761905,"pm25":6.07676065897373},{"date":"2019-07-28T00:00:00.000Z","temp":16.649270833333333,"pm25":8.730537902812086},{"date":"2019-07-28T00:00:00.000Z","temp":16.53342261904762,"pm25":11.384315146650442},{"date":"2019-07-28T00:00:00.000Z","temp":16.417574404761904,"pm25":14.0380923904888},{"date":"2019-07-28T00:00:00.000Z","temp":16.30172619047619,"pm25":16.691869634327155},{"date":"2019-07-28T00:00:00.000Z","temp":16.185877976190476,"pm25":19.34564687816551},{"date":"2019-08-01T00:00:00.000Z","temp":16.070029761904763,"pm25":21.999424122003866},{"date":"2019-08-01T00:00:00.000Z","temp":15.954181547619047,"pm25":24.65320136584222},{"date":"2019-08-01T00:00:00.000Z","temp":15.838333333333333,"pm25":27.306978609680577},{"date":"2019-08-01T00:00:00.000Z","temp":15.722485119047619,"pm25":29.960755853518933},{"date":"2019-08-01T00:00:00.000Z","temp":15.606636904761904,"pm25":32.61453309735729},{"date":"2019-08-01T00:00:00.000Z","temp":15.49078869047619,"pm25":35.268310341195644},{"date":"2019-08-01T00:00:00.000Z","temp":15.374940476190476,"pm25":37.922087585034},{"date":"2019-08-01T00:00:00.000Z","temp":15.59797619047619,"pm25":39.00041809673748},{"date":"2019-08-01T00:00:00.000Z","temp":15.821011904761905,"pm25":40.07874860844095},{"date":"2019-08-01T00:00:00.000Z","temp":16.044047619047618,"pm25":41.157079120144424},{"date":"2019-08-01T00:00:00.000Z","temp":16.267083333333332,"pm25":42.2354096318479},{"date":"2019-08-01T00:00:00.000Z","temp":16.490119047619046,"pm25":43.31374014355137},{"date":"2019-08-05T00:00:00.000Z","temp":16.71315476190476,"pm25":44.39207065525485},{"date":"2019-08-05T00:00:00.000Z","temp":16.936190476190475,"pm25":45.470401166958325},{"date":"2019-08-05T00:00:00.000Z","temp":17.15922619047619,"pm25":46.548731678661795},{"date":"2019-08-05T00:00:00.000Z","temp":17.382261904761904,"pm25":47.62706219036527},{"date":"2019-08-05T00:00:00.000Z","temp":17.60529761904762,"pm25":48.70539270206875},{"date":"2019-08-05T00:00:00.000Z","temp":17.828333333333333,"pm25":49.78372321377222},{"date":"2019-08-05T00:00:00.000Z","temp":18.051369047619048,"pm25":50.8620537254757},{"date":"2019-08-05T00:00:00.000Z","temp":17.970272817460316,"pm25":48.33030988396381},{"date":"2019-08-05T00:00:00.000Z","temp":17.889176587301588,"pm25":45.79856604245192},{"date":"2019-08-05T00:00:00.000Z","temp":17.808080357142856,"pm25":43.26682220094003},{"date":"2019-08-05T00:00:00.000Z","temp":17.726984126984128,"pm25":40.73507835942813},{"date":"2019-08-05T00:00:00.000Z","temp":17.645887896825396,"pm25":38.20333451791624},{"date":"2019-08-09T00:00:00.000Z","temp":17.564791666666665,"pm25":35.67159067640435},{"date":"2019-08-09T00:00:00.000Z","temp":17.483695436507936,"pm25":33.13984683489245},{"date":"2019-08-09T00:00:00.000Z","temp":17.402599206349205,"pm25":30.608102993380566},{"date":"2019-08-09T00:00:00.000Z","temp":17.321502976190477,"pm25":28.076359151868676},{"date":"2019-08-09T00:00:00.000Z","temp":17.240406746031745,"pm25":25.544615310356782},{"date":"2019-08-09T00:00:00.000Z","temp":17.159310515873017,"pm25":23.012871468844892},{"date":"2019-08-09T00:00:00.000Z","temp":17.078214285714285,"pm25":20.481127627333},{"date":"2019-08-09T00:00:00.000Z","temp":16.926150793650795,"pm25":20.218370861385722},{"date":"2019-08-09T00:00:00.000Z","temp":16.7740873015873,"pm25":19.95561409543845},{"date":"2019-08-09T00:00:00.000Z","temp":16.62202380952381,"pm25":19.692857329491176},{"date":"2019-08-09T00:00:00.000Z","temp":16.469960317460316,"pm25":19.4301005635439},{"date":"2019-08-09T00:00:00.000Z","temp":16.317896825396826,"pm25":19.167343797596622},{"date":"2019-08-13T00:00:00.000Z","temp":16.16583333333333,"pm25":18.90458703164935},{"date":"2019-08-13T00:00:00.000Z","temp":16.01376984126984,"pm25":18.641830265702076},{"date":"2019-08-13T00:00:00.000Z","temp":15.861706349206349,"pm25":18.3790734997548},{"date":"2019-08-13T00:00:00.000Z","temp":15.709642857142857,"pm25":18.116316733807523},{"date":"2019-08-13T00:00:00.000Z","temp":15.557579365079366,"pm25":17.85355996786025},{"date":"2019-08-13T00:00:00.000Z","temp":15.405515873015874,"pm25":17.590803201912976},{"date":"2019-08-13T00:00:00.000Z","temp":15.253452380952382,"pm25":17.3280464359657},{"date":"2019-08-13T00:00:00.000Z","temp":15.120352182539683,"pm25":16.864029687962148},{"date":"2019-08-13T00:00:00.000Z","temp":14.987251984126985,"pm25":16.4000129399586},{"date":"2019-08-13T00:00:00.000Z","temp":14.854151785714286,"pm25":15.93599619195505},{"date":"2019-08-13T00:00:00.000Z","temp":14.721051587301588,"pm25":15.4719794439515},{"date":"2019-08-13T00:00:00.000Z","temp":14.58795138888889,"pm25":15.007962695947949},{"date":"2019-08-17T00:00:00.000Z","temp":14.454851190476191,"pm25":14.543945947944401},{"date":"2019-08-17T00:00:00.000Z","temp":14.321750992063492,"pm25":14.07992919994085},{"date":"2019-08-17T00:00:00.000Z","temp":14.188650793650794,"pm25":13.6159124519373},{"date":"2019-08-17T00:00:00.000Z","temp":14.055550595238095,"pm25":13.15189570393375},{"date":"2019-08-17T00:00:00.000Z","temp":13.922450396825397,"pm25":12.6878789559302},{"date":"2019-08-17T00:00:00.000Z","temp":13.789350198412698,"pm25":12.22386220792665},{"date":"2019-08-17T00:00:00.000Z","temp":13.65625,"pm25":11.7598454599231},{"date":"2019-08-17T00:00:00.000Z","temp":13.532802579365079,"pm25":12.267855733779017},{"date":"2019-08-17T00:00:00.000Z","temp":13.40935515873016,"pm25":12.775866007634935},{"date":"2019-08-17T00:00:00.000Z","temp":13.285907738095238,"pm25":13.283876281490851},{"date":"2019-08-17T00:00:00.000Z","temp":13.162460317460317,"pm25":13.791886555346768},{"date":"2019-08-17T00:00:00.000Z","temp":13.039012896825398,"pm25":14.299896829202684},{"date":"2019-08-21T00:00:00.000Z","temp":12.915565476190476,"pm25":14.8079071030586},{"date":"2019-08-21T00:00:00.000Z","temp":12.792118055555555,"pm25":15.315917376914518},{"date":"2019-08-21T00:00:00.000Z","temp":12.668670634920636,"pm25":15.823927650770434},{"date":"2019-08-21T00:00:00.000Z","temp":12.545223214285715,"pm25":16.331937924626352},{"date":"2019-08-21T00:00:00.000Z","temp":12.421775793650793,"pm25":16.83994819848227},{"date":"2019-08-21T00:00:00.000Z","temp":12.298328373015874,"pm25":17.347958472338185},{"date":"2019-08-21T00:00:00.000Z","temp":12.174880952380953,"pm25":17.8559687461941},{"date":"2019-08-21T00:00:00.000Z","temp":12.292053571428571,"pm25":17.84025253745819},{"date":"2019-08-21T00:00:00.000Z","temp":12.40922619047619,"pm25":17.824536328722285},{"date":"2019-08-21T00:00:00.000Z","temp":12.52639880952381,"pm25":17.808820119986375},{"date":"2019-08-21T00:00:00.000Z","temp":12.643571428571429,"pm25":17.793103911250466},{"date":"2019-08-21T00:00:00.000Z","temp":12.760744047619047,"pm25":17.77738770251456},{"date":"2019-08-25T00:00:00.000Z","temp":12.877916666666668,"pm25":17.76167149377865},{"date":"2019-08-25T00:00:00.000Z","temp":12.995089285714286,"pm25":17.74595528504274},{"date":"2019-08-25T00:00:00.000Z","temp":13.112261904761905,"pm25":17.730239076306834},{"date":"2019-08-25T00:00:00.000Z","temp":13.229434523809523,"pm25":17.714522867570924},{"date":"2019-08-25T00:00:00.000Z","temp":13.346607142857142,"pm25":17.698806658835014},{"date":"2019-08-25T00:00:00.000Z","temp":13.463779761904762,"pm25":17.683090450099108},{"date":"2019-08-25T00:00:00.000Z","temp":13.58095238095238,"pm25":17.6673742413632},{"date":"2019-08-25T00:00:00.000Z","temp":13.557058531746032,"pm25":17.279875393696116},{"date":"2019-08-25T00:00:00.000Z","temp":13.533164682539683,"pm25":16.89237654602903},{"date":"2019-08-25T00:00:00.000Z","temp":13.509270833333334,"pm25":16.50487769836195},{"date":"2019-08-25T00:00:00.000Z","temp":13.485376984126985,"pm25":16.117378850694866},{"date":"2019-08-25T00:00:00.000Z","temp":13.461483134920636,"pm25":15.729880003027782},{"date":"2019-08-29T00:00:00.000Z","temp":13.437589285714285,"pm25":15.342381155360698},{"date":"2019-08-29T00:00:00.000Z","temp":13.413695436507936,"pm25":14.954882307693616},{"date":"2019-08-29T00:00:00.000Z","temp":13.389801587301587,"pm25":14.567383460026532},{"date":"2019-08-29T00:00:00.000Z","temp":13.365907738095238,"pm25":14.17988461235945},{"date":"2019-08-29T00:00:00.000Z","temp":13.34201388888889,"pm25":13.792385764692366},{"date":"2019-08-29T00:00:00.000Z","temp":13.31812003968254,"pm25":13.404886917025284},{"date":"2019-08-29T00:00:00.000Z","temp":13.294226190476191,"pm25":13.0173880693582},{"date":"2019-08-29T00:00:00.000Z","temp":13.364925595238097,"pm25":13.292735291580417},{"date":"2019-08-29T00:00:00.000Z","temp":13.435625000000002,"pm25":13.568082513802633},{"date":"2019-08-29T00:00:00.000Z","temp":13.506324404761905,"pm25":13.84342973602485},{"date":"2019-08-29T00:00:00.000Z","temp":13.57702380952381,"pm25":14.118776958247066},{"date":"2019-08-29T00:00:00.000Z","temp":13.647723214285715,"pm25":14.394124180469284},{"date":"2019-09-02T00:00:00.000Z","temp":13.718422619047619,"pm25":14.6694714026915},{"date":"2019-09-02T00:00:00.000Z","temp":13.789122023809524,"pm25":14.944818624913717},{"date":"2019-09-02T00:00:00.000Z","temp":13.85982142857143,"pm25":15.220165847135934},{"date":"2019-09-02T00:00:00.000Z","temp":13.930520833333334,"pm25":15.49551306935815},{"date":"2019-09-02T00:00:00.000Z","temp":14.00122023809524,"pm25":15.770860291580368},{"date":"2019-09-02T00:00:00.000Z","temp":14.071919642857143,"pm25":16.046207513802585},{"date":"2019-09-02T00:00:00.000Z","temp":14.142619047619048,"pm25":16.3215547360248},{"date":"2019-09-02T00:00:00.000Z","temp":14.34202876984127,"pm25":16.30502429836665},{"date":"2019-09-02T00:00:00.000Z","temp":14.541438492063492,"pm25":16.2884938607085},{"date":"2019-09-02T00:00:00.000Z","temp":14.740848214285714,"pm25":16.27196342305035},{"date":"2019-09-02T00:00:00.000Z","temp":14.940257936507937,"pm25":16.2554329853922},{"date":"2019-09-02T00:00:00.000Z","temp":15.13966765873016,"pm25":16.23890254773405},{"date":"2019-09-06T00:00:00.000Z","temp":15.339077380952382,"pm25":16.222372110075902},{"date":"2019-09-06T00:00:00.000Z","temp":15.538487103174603,"pm25":16.20584167241775},{"date":"2019-09-06T00:00:00.000Z","temp":15.737896825396826,"pm25":16.1893112347596},{"date":"2019-09-06T00:00:00.000Z","temp":15.937306547619048,"pm25":16.17278079710145},{"date":"2019-09-06T00:00:00.000Z","temp":16.13671626984127,"pm25":16.1562503594433},{"date":"2019-09-06T00:00:00.000Z","temp":16.336125992063494,"pm25":16.13971992178515},{"date":"2019-09-06T00:00:00.000Z","temp":16.535535714285714,"pm25":16.123189484127},{"date":"2019-09-06T00:00:00.000Z","temp":16.181929563492062,"pm25":15.930016121031759},{"date":"2019-09-06T00:00:00.000Z","temp":15.828323412698413,"pm25":15.736842757936516},{"date":"2019-09-06T00:00:00.000Z","temp":15.474717261904761,"pm25":15.543669394841274},{"date":"2019-09-06T00:00:00.000Z","temp":15.12111111111111,"pm25":15.350496031746033},{"date":"2019-09-06T00:00:00.000Z","temp":14.76750496031746,"pm25":15.157322668650792},{"date":"2019-09-10T00:00:00.000Z","temp":14.41389880952381,"pm25":14.96414930555555},{"date":"2019-09-10T00:00:00.000Z","temp":14.060292658730159,"pm25":14.770975942460307},{"date":"2019-09-10T00:00:00.000Z","temp":13.706686507936508,"pm25":14.577802579365066},{"date":"2019-09-10T00:00:00.000Z","temp":13.353080357142858,"pm25":14.384629216269825},{"date":"2019-09-10T00:00:00.000Z","temp":12.999474206349205,"pm25":14.191455853174583},{"date":"2019-09-10T00:00:00.000Z","temp":12.645868055555555,"pm25":13.99828249007934},{"date":"2019-09-10T00:00:00.000Z","temp":12.292261904761904,"pm25":13.8051091269841},{"date":"2019-09-10T00:00:00.000Z","temp":12.079305555555555,"pm25":13.92539889219574},{"date":"2019-09-10T00:00:00.000Z","temp":11.866349206349206,"pm25":14.045688657407382},{"date":"2019-09-10T00:00:00.000Z","temp":11.653392857142856,"pm25":14.165978422619025},{"date":"2019-09-10T00:00:00.000Z","temp":11.440436507936507,"pm25":14.286268187830666},{"date":"2019-09-10T00:00:00.000Z","temp":11.227480158730158,"pm25":14.406557953042308},{"date":"2019-09-14T00:00:00.000Z","temp":11.014523809523808,"pm25":14.52684771825395},{"date":"2019-09-14T00:00:00.000Z","temp":10.801567460317461,"pm25":14.647137483465592},{"date":"2019-09-14T00:00:00.000Z","temp":10.588611111111112,"pm25":14.767427248677233},{"date":"2019-09-14T00:00:00.000Z","temp":10.375654761904762,"pm25":14.887717013888874},{"date":"2019-09-14T00:00:00.000Z","temp":10.162698412698413,"pm25":15.008006779100516},{"date":"2019-09-14T00:00:00.000Z","temp":9.949742063492064,"pm25":15.128296544312159},{"date":"2019-09-14T00:00:00.000Z","temp":9.736785714285714,"pm25":15.2485863095238},{"date":"2019-09-14T00:00:00.000Z","temp":9.556512896825398,"pm25":15.610989760487517},{"date":"2019-09-14T00:00:00.000Z","temp":9.376240079365079,"pm25":15.973393211451233},{"date":"2019-09-14T00:00:00.000Z","temp":9.195967261904762,"pm25":16.33579666241495},{"date":"2019-09-14T00:00:00.000Z","temp":9.015694444444444,"pm25":16.698200113378668},{"date":"2019-09-14T00:00:00.000Z","temp":8.835421626984127,"pm25":17.060603564342383},{"date":"2019-09-18T00:00:00.000Z","temp":8.655148809523808,"pm25":17.4230070153061},{"date":"2019-09-18T00:00:00.000Z","temp":8.474875992063492,"pm25":17.785410466269816},{"date":"2019-09-18T00:00:00.000Z","temp":8.294603174603175,"pm25":18.147813917233535},{"date":"2019-09-18T00:00:00.000Z","temp":8.114330357142856,"pm25":18.51021736819725},{"date":"2019-09-18T00:00:00.000Z","temp":7.93405753968254,"pm25":18.872620819160968},{"date":"2019-09-18T00:00:00.000Z","temp":7.753784722222222,"pm25":19.235024270124683},{"date":"2019-09-18T00:00:00.000Z","temp":7.573511904761904,"pm25":19.5974277210884},{"date":"2019-09-18T00:00:00.000Z","temp":7.704077380952381,"pm25":19.831239961262252},{"date":"2019-09-18T00:00:00.000Z","temp":7.834642857142857,"pm25":20.065052201436103},{"date":"2019-09-18T00:00:00.000Z","temp":7.965208333333333,"pm25":20.29886444160995},{"date":"2019-09-18T00:00:00.000Z","temp":8.09577380952381,"pm25":20.5326766817838},{"date":"2019-09-18T00:00:00.000Z","temp":8.226339285714285,"pm25":20.766488921957652},{"date":"2019-09-22T00:00:00.000Z","temp":8.356904761904762,"pm25":21.0003011621315},{"date":"2019-09-22T00:00:00.000Z","temp":8.487470238095238,"pm25":21.23411340230535},{"date":"2019-09-22T00:00:00.000Z","temp":8.618035714285714,"pm25":21.4679256424792},{"date":"2019-09-22T00:00:00.000Z","temp":8.74860119047619,"pm25":21.701737882653052},{"date":"2019-09-22T00:00:00.000Z","temp":8.879166666666666,"pm25":21.935550122826903},{"date":"2019-09-22T00:00:00.000Z","temp":9.009732142857143,"pm25":22.16936236300075},{"date":"2019-09-22T00:00:00.000Z","temp":9.140297619047619,"pm25":22.4031746031746},{"date":"2019-09-22T00:00:00.000Z","temp":9.338422619047618,"pm25":22.665013227513228},{"date":"2019-09-22T00:00:00.000Z","temp":9.536547619047619,"pm25":22.92685185185185},{"date":"2019-09-22T00:00:00.000Z","temp":9.734672619047618,"pm25":23.188690476190477},{"date":"2019-09-22T00:00:00.000Z","temp":9.93279761904762,"pm25":23.450529100529103},{"date":"2019-09-22T00:00:00.000Z","temp":10.130922619047618,"pm25":23.712367724867725},{"date":"2019-09-26T00:00:00.000Z","temp":10.329047619047618,"pm25":23.97420634920635},{"date":"2019-09-26T00:00:00.000Z","temp":10.527172619047619,"pm25":24.236044973544978},{"date":"2019-09-26T00:00:00.000Z","temp":10.725297619047618,"pm25":24.4978835978836},{"date":"2019-09-26T00:00:00.000Z","temp":10.923422619047619,"pm25":24.759722222222226},{"date":"2019-09-26T00:00:00.000Z","temp":11.121547619047618,"pm25":25.021560846560853},{"date":"2019-09-26T00:00:00.000Z","temp":11.31967261904762,"pm25":25.283399470899475},{"date":"2019-09-26T00:00:00.000Z","temp":11.517797619047618,"pm25":25.5452380952381},{"date":"2019-09-26T00:00:00.000Z","temp":11.550004960317459,"pm25":25.3999007936508},{"date":"2019-09-26T00:00:00.000Z","temp":11.582212301587301,"pm25":25.2545634920635},{"date":"2019-09-26T00:00:00.000Z","temp":11.614419642857143,"pm25":25.1092261904762},{"date":"2019-09-26T00:00:00.000Z","temp":11.646626984126984,"pm25":24.9638888888889},{"date":"2019-09-26T00:00:00.000Z","temp":11.678834325396824,"pm25":24.8185515873016},{"date":"2019-09-30T00:00:00.000Z","temp":11.711041666666667,"pm25":24.6732142857143},{"date":"2019-09-30T00:00:00.000Z","temp":11.743249007936509,"pm25":24.527876984127},{"date":"2019-09-30T00:00:00.000Z","temp":11.77545634920635,"pm25":24.3825396825397},{"date":"2019-09-30T00:00:00.000Z","temp":11.80766369047619,"pm25":24.2372023809524},{"date":"2019-09-30T00:00:00.000Z","temp":11.839871031746032,"pm25":24.0918650793651},{"date":"2019-09-30T00:00:00.000Z","temp":11.872078373015874,"pm25":23.9465277777778},{"date":"2019-09-30T00:00:00.000Z","temp":11.904285714285715,"pm25":23.8011904761905},{"date":"2019-09-30T00:00:00.000Z","temp":11.397152777777778,"pm25":23.713305602283206},{"date":"2019-09-30T00:00:00.000Z","temp":10.890019841269842,"pm25":23.625420728375914},{"date":"2019-09-30T00:00:00.000Z","temp":10.382886904761905,"pm25":23.537535854468622},{"date":"2019-09-30T00:00:00.000Z","temp":9.875753968253969,"pm25":23.449650980561334},{"date":"2019-09-30T00:00:00.000Z","temp":9.368621031746033,"pm25":23.36176610665404},{"date":"2019-10-04T00:00:00.000Z","temp":8.861488095238094,"pm25":23.27388123274675},{"date":"2019-10-04T00:00:00.000Z","temp":8.354355158730158,"pm25":23.185996358839457},{"date":"2019-10-04T00:00:00.000Z","temp":7.847222222222222,"pm25":23.098111484932165},{"date":"2019-10-04T00:00:00.000Z","temp":7.340089285714286,"pm25":23.010226611024876},{"date":"2019-10-04T00:00:00.000Z","temp":6.832956349206349,"pm25":22.922341737117584},{"date":"2019-10-04T00:00:00.000Z","temp":6.325823412698413,"pm25":22.834456863210292},{"date":"2019-10-04T00:00:00.000Z","temp":5.8186904761904765,"pm25":22.746571989303},{"date":"2019-10-04T00:00:00.000Z","temp":5.463204365079365,"pm25":24.208260295123676},{"date":"2019-10-04T00:00:00.000Z","temp":5.107718253968255,"pm25":25.66994860094435},{"date":"2019-10-04T00:00:00.000Z","temp":4.752232142857143,"pm25":27.131636906765024},{"date":"2019-10-04T00:00:00.000Z","temp":4.396746031746032,"pm25":28.5933252125857},{"date":"2019-10-04T00:00:00.000Z","temp":4.0412599206349205,"pm25":30.055013518406376},{"date":"2019-10-08T00:00:00.000Z","temp":3.6857738095238095,"pm25":31.51670182422705},{"date":"2019-10-08T00:00:00.000Z","temp":3.3302876984126986,"pm25":32.97839013004773},{"date":"2019-10-08T00:00:00.000Z","temp":2.974801587301587,"pm25":34.4400784358684},{"date":"2019-10-08T00:00:00.000Z","temp":2.6193154761904758,"pm25":35.90176674168907},{"date":"2019-10-08T00:00:00.000Z","temp":2.263829365079365,"pm25":37.363455047509746},{"date":"2019-10-08T00:00:00.000Z","temp":1.9083432539682539,"pm25":38.825143353330425},{"date":"2019-10-08T00:00:00.000Z","temp":1.5528571428571427,"pm25":40.2868316591511},{"date":"2019-10-08T00:00:00.000Z","temp":1.435332341269841,"pm25":40.145137939925235},{"date":"2019-10-08T00:00:00.000Z","temp":1.3178075396825395,"pm25":40.003444220699365},{"date":"2019-10-08T00:00:00.000Z","temp":1.2002827380952379,"pm25":39.861750501473495},{"date":"2019-10-08T00:00:00.000Z","temp":1.0827579365079365,"pm25":39.72005678224763},{"date":"2019-10-08T00:00:00.000Z","temp":0.9652331349206349,"pm25":39.57836306302177},{"date":"2019-10-12T00:00:00.000Z","temp":0.8477083333333333,"pm25":39.4366693437959},{"date":"2019-10-12T00:00:00.000Z","temp":0.7301835317460318,"pm25":39.29497562457003},{"date":"2019-10-12T00:00:00.000Z","temp":0.6126587301587302,"pm25":39.153281905344166},{"date":"2019-10-12T00:00:00.000Z","temp":0.4951339285714287,"pm25":39.0115881861183},{"date":"2019-10-12T00:00:00.000Z","temp":0.3776091269841271,"pm25":38.86989446689243},{"date":"2019-10-12T00:00:00.000Z","temp":0.26008432539682547,"pm25":38.72820074766656},{"date":"2019-10-12T00:00:00.000Z","temp":0.1425595238095238,"pm25":38.5865070284407},{"date":"2019-10-12T00:00:00.000Z","temp":-0.19035218253968256,"pm25":39.76905047094642},{"date":"2019-10-12T00:00:00.000Z","temp":-0.523263888888889,"pm25":40.95159391345213},{"date":"2019-10-12T00:00:00.000Z","temp":-0.8561755952380952,"pm25":42.13413735595785},{"date":"2019-10-12T00:00:00.000Z","temp":-1.1890873015873016,"pm25":43.316680798463565},{"date":"2019-10-12T00:00:00.000Z","temp":-1.521999007936508,"pm25":44.49922424096928},{"date":"2019-10-16T00:00:00.000Z","temp":-1.8549107142857142,"pm25":45.681767683475},{"date":"2019-10-16T00:00:00.000Z","temp":-2.187822420634921,"pm25":46.86431112598071},{"date":"2019-10-16T00:00:00.000Z","temp":-2.5207341269841272,"pm25":48.04685456848643},{"date":"2019-10-16T00:00:00.000Z","temp":-2.8536458333333337,"pm25":49.22939801099215},{"date":"2019-10-16T00:00:00.000Z","temp":-3.18655753968254,"pm25":50.41194145349786},{"date":"2019-10-16T00:00:00.000Z","temp":-3.5194692460317465,"pm25":51.59448489600358},{"date":"2019-10-16T00:00:00.000Z","temp":-3.8523809523809525,"pm25":52.7770283385093},{"date":"2019-10-16T00:00:00.000Z","temp":-3.5872321428571428,"pm25":52.893669822978296},{"date":"2019-10-16T00:00:00.000Z","temp":-3.3220833333333335,"pm25":53.010311307447296},{"date":"2019-10-16T00:00:00.000Z","temp":-3.056934523809524,"pm25":53.126952791916295},{"date":"2019-10-16T00:00:00.000Z","temp":-2.791785714285714,"pm25":53.243594276385295},{"date":"2019-10-16T00:00:00.000Z","temp":-2.526636904761905,"pm25":53.360235760854295},{"date":"2019-10-20T00:00:00.000Z","temp":-2.261488095238095,"pm25":53.476877245323294},{"date":"2019-10-20T00:00:00.000Z","temp":-1.9963392857142856,"pm25":53.5935187297923},{"date":"2019-10-20T00:00:00.000Z","temp":-1.7311904761904762,"pm25":53.7101602142613},{"date":"2019-10-20T00:00:00.000Z","temp":-1.4660416666666665,"pm25":53.8268016987303},{"date":"2019-10-20T00:00:00.000Z","temp":-1.2008928571428572,"pm25":53.9434431831993},{"date":"2019-10-20T00:00:00.000Z","temp":-0.9357440476190475,"pm25":54.0600846676683},{"date":"2019-10-20T00:00:00.000Z","temp":-0.6705952380952381,"pm25":54.1767261521373},{"date":"2019-10-20T00:00:00.000Z","temp":-0.8292063492063493,"pm25":52.91179073363501},{"date":"2019-10-20T00:00:00.000Z","temp":-0.9878174603174603,"pm25":51.64685531513271},{"date":"2019-10-20T00:00:00.000Z","temp":-1.1464285714285714,"pm25":50.38191989663042},{"date":"2019-10-20T00:00:00.000Z","temp":-1.3050396825396826,"pm25":49.11698447812813},{"date":"2019-10-20T00:00:00.000Z","temp":-1.4636507936507939,"pm25":47.85204905962584},{"date":"2019-10-24T00:00:00.000Z","temp":-1.622261904761905,"pm25":46.58711364112355},{"date":"2019-10-24T00:00:00.000Z","temp":-1.780873015873016,"pm25":45.322178222621254},{"date":"2019-10-24T00:00:00.000Z","temp":-1.939484126984127,"pm25":44.057242804118964},{"date":"2019-10-24T00:00:00.000Z","temp":-2.098095238095238,"pm25":42.792307385616674},{"date":"2019-10-24T00:00:00.000Z","temp":-2.2567063492063495,"pm25":41.52737196711438},{"date":"2019-10-24T00:00:00.000Z","temp":-2.4153174603174605,"pm25":40.26243654861209},{"date":"2019-10-24T00:00:00.000Z","temp":-2.5739285714285716,"pm25":38.9975011301098},{"date":"2019-10-24T00:00:00.000Z","temp":-2.8117559523809526,"pm25":40.40125176540158},{"date":"2019-10-24T00:00:00.000Z","temp":-3.0495833333333335,"pm25":41.80500240069336},{"date":"2019-10-24T00:00:00.000Z","temp":-3.2874107142857145,"pm25":43.20875303598515},{"date":"2019-10-24T00:00:00.000Z","temp":-3.5252380952380955,"pm25":44.61250367127693},{"date":"2019-10-24T00:00:00.000Z","temp":-3.7630654761904765,"pm25":46.01625430656871},{"date":"2019-10-28T00:00:00.000Z","temp":-4.0008928571428575,"pm25":47.4200049418605},{"date":"2019-10-28T00:00:00.000Z","temp":-4.2387202380952385,"pm25":48.82375557715228},{"date":"2019-10-28T00:00:00.000Z","temp":-4.476547619047619,"pm25":50.22750621244406},{"date":"2019-10-28T00:00:00.000Z","temp":-4.714375,"pm25":51.63125684773585},{"date":"2019-10-28T00:00:00.000Z","temp":-4.952202380952381,"pm25":53.03500748302763},{"date":"2019-10-28T00:00:00.000Z","temp":-5.190029761904762,"pm25":54.43875811831941},{"date":"2019-10-28T00:00:00.000Z","temp":-5.427857142857143,"pm25":55.8425087536112},{"date":"2019-10-28T00:00:00.000Z","temp":-5.089905753968255,"pm25":56.57416583792421},{"date":"2019-10-28T00:00:00.000Z","temp":-4.751954365079365,"pm25":57.30582292223723},{"date":"2019-10-28T00:00:00.000Z","temp":-4.414002976190477,"pm25":58.037480006550254},{"date":"2019-10-28T00:00:00.000Z","temp":-4.0760515873015875,"pm25":58.76913709086327},{"date":"2019-10-28T00:00:00.000Z","temp":-3.738100198412699,"pm25":59.50079417517628},{"date":"2019-11-01T00:00:00.000Z","temp":-3.40014880952381,"pm25":60.2324512594893},{"date":"2019-11-01T00:00:00.000Z","temp":-3.062197420634921,"pm25":60.96410834380232},{"date":"2019-11-01T00:00:00.000Z","temp":-2.724246031746032,"pm25":61.69576542811534},{"date":"2019-11-01T00:00:00.000Z","temp":-2.386294642857143,"pm25":62.42742251242835},{"date":"2019-11-01T00:00:00.000Z","temp":-2.048343253968254,"pm25":63.15907959674137},{"date":"2019-11-01T00:00:00.000Z","temp":-1.710391865079365,"pm25":63.89073668105439},{"date":"2019-11-01T00:00:00.000Z","temp":-1.3724404761904763,"pm25":64.6223937653674},{"date":"2019-11-01T00:00:00.000Z","temp":-1.2658234126984127,"pm25":64.7110375990326},{"date":"2019-11-01T00:00:00.000Z","temp":-1.1592063492063494,"pm25":64.79968143269777},{"date":"2019-11-01T00:00:00.000Z","temp":-1.0525892857142858,"pm25":64.88832526636295},{"date":"2019-11-01T00:00:00.000Z","temp":-0.9459722222222222,"pm25":64.97696910002814},{"date":"2019-11-01T00:00:00.000Z","temp":-0.8393551587301588,"pm25":65.06561293369332},{"date":"2019-11-05T00:00:00.000Z","temp":-0.7327380952380953,"pm25":65.1542567673585},{"date":"2019-11-05T00:00:00.000Z","temp":-0.6261210317460317,"pm25":65.24290060102369},{"date":"2019-11-05T00:00:00.000Z","temp":-0.5195039682539683,"pm25":65.33154443468887},{"date":"2019-11-05T00:00:00.000Z","temp":-0.4128869047619048,"pm25":65.42018826835405},{"date":"2019-11-05T00:00:00.000Z","temp":-0.30626984126984125,"pm25":65.50883210201924},{"date":"2019-11-05T00:00:00.000Z","temp":-0.19965277777777768,"pm25":65.59747593568441},{"date":"2019-11-05T00:00:00.000Z","temp":-0.09303571428571433,"pm25":65.6861197693496},{"date":"2019-11-05T00:00:00.000Z","temp":-0.2998065476190477,"pm25":66.06296817997777},{"date":"2019-11-05T00:00:00.000Z","temp":-0.506577380952381,"pm25":66.43981659060594},{"date":"2019-11-05T00:00:00.000Z","temp":-0.7133482142857144,"pm25":66.8166650012341},{"date":"2019-11-05T00:00:00.000Z","temp":-0.9201190476190477,"pm25":67.19351341186227},{"date":"2019-11-05T00:00:00.000Z","temp":-1.126889880952381,"pm25":67.57036182249044},{"date":"2019-11-09T00:00:00.000Z","temp":-1.3336607142857144,"pm25":67.9472102331186},{"date":"2019-11-09T00:00:00.000Z","temp":-1.5404315476190478,"pm25":68.32405864374677},{"date":"2019-11-09T00:00:00.000Z","temp":-1.7472023809523811,"pm25":68.70090705437494},{"date":"2019-11-09T00:00:00.000Z","temp":-1.9539732142857145,"pm25":69.07775546500311},{"date":"2019-11-09T00:00:00.000Z","temp":-2.1607440476190476,"pm25":69.45460387563128},{"date":"2019-11-09T00:00:00.000Z","temp":-2.367514880952381,"pm25":69.83145228625943},{"date":"2019-11-09T00:00:00.000Z","temp":-2.5742857142857143,"pm25":70.2083006968876},{"date":"2019-11-09T00:00:00.000Z","temp":-3.000828373015873,"pm25":70.36545231891695},{"date":"2019-11-09T00:00:00.000Z","temp":-3.4273710317460315,"pm25":70.52260394094628},{"date":"2019-11-09T00:00:00.000Z","temp":-3.8539136904761904,"pm25":70.67975556297563},{"date":"2019-11-09T00:00:00.000Z","temp":-4.280456349206349,"pm25":70.83690718500497},{"date":"2019-11-09T00:00:00.000Z","temp":-4.706999007936508,"pm25":70.9940588070343},{"date":"2019-11-13T00:00:00.000Z","temp":-5.133541666666666,"pm25":71.15121042906365},{"date":"2019-11-13T00:00:00.000Z","temp":-5.560084325396825,"pm25":71.308362051093},{"date":"2019-11-13T00:00:00.000Z","temp":-5.986626984126984,"pm25":71.46551367312233},{"date":"2019-11-13T00:00:00.000Z","temp":-6.4131696428571425,"pm25":71.62266529515168},{"date":"2019-11-13T00:00:00.000Z","temp":-6.839712301587301,"pm25":71.77981691718102},{"date":"2019-11-13T00:00:00.000Z","temp":-7.266254960317459,"pm25":71.93696853921035},{"date":"2019-11-13T00:00:00.000Z","temp":-7.692797619047619,"pm25":72.0941201612397},{"date":"2019-11-13T00:00:00.000Z","temp":-8.27327876984127,"pm25":72.23070189503939},{"date":"2019-11-13T00:00:00.000Z","temp":-8.853759920634921,"pm25":72.36728362883909},{"date":"2019-11-13T00:00:00.000Z","temp":-9.434241071428572,"pm25":72.50386536263878},{"date":"2019-11-13T00:00:00.000Z","temp":-10.014722222222222,"pm25":72.64044709643846},{"date":"2019-11-13T00:00:00.000Z","temp":-10.595203373015874,"pm25":72.77702883023817},{"date":"2019-11-17T00:00:00.000Z","temp":-11.175684523809524,"pm25":72.91361056403785},{"date":"2019-11-17T00:00:00.000Z","temp":-11.756165674603174,"pm25":73.05019229783754},{"date":"2019-11-17T00:00:00.000Z","temp":-12.336646825396826,"pm25":73.18677403163724},{"date":"2019-11-17T00:00:00.000Z","temp":-12.917127976190477,"pm25":73.32335576543693},{"date":"2019-11-17T00:00:00.000Z","temp":-13.497609126984127,"pm25":73.45993749923662},{"date":"2019-11-17T00:00:00.000Z","temp":-14.078090277777779,"pm25":73.59651923303632},{"date":"2019-11-17T00:00:00.000Z","temp":-14.65857142857143,"pm25":73.733100966836},{"date":"2019-11-17T00:00:00.000Z","temp":-14.879285714285714,"pm25":76.00069185207292},{"date":"2019-11-17T00:00:00.000Z","temp":-15.100000000000001,"pm25":78.26828273730983},{"date":"2019-11-17T00:00:00.000Z","temp":-15.320714285714287,"pm25":80.53587362254675},{"date":"2019-11-17T00:00:00.000Z","temp":-15.541428571428572,"pm25":82.80346450778367},{"date":"2019-11-17T00:00:00.000Z","temp":-15.762142857142857,"pm25":85.07105539302059},{"date":"2019-11-21T00:00:00.000Z","temp":-15.982857142857142,"pm25":87.3386462782575},{"date":"2019-11-21T00:00:00.000Z","temp":-16.20357142857143,"pm25":89.60623716349441},{"date":"2019-11-21T00:00:00.000Z","temp":-16.424285714285716,"pm25":91.87382804873133},{"date":"2019-11-21T00:00:00.000Z","temp":-16.645,"pm25":94.14141893396825},{"date":"2019-11-21T00:00:00.000Z","temp":-16.865714285714287,"pm25":96.40900981920515},{"date":"2019-11-21T00:00:00.000Z","temp":-17.08642857142857,"pm25":98.67660070444208},{"date":"2019-11-21T00:00:00.000Z","temp":-17.307142857142857,"pm25":100.944191589679},{"date":"2019-11-21T00:00:00.000Z","temp":-17.37034722222222,"pm25":102.59246963742733},{"date":"2019-11-21T00:00:00.000Z","temp":-17.433551587301586,"pm25":104.24074768517566},{"date":"2019-11-21T00:00:00.000Z","temp":-17.49675595238095,"pm25":105.889025732924},{"date":"2019-11-21T00:00:00.000Z","temp":-17.559960317460316,"pm25":107.53730378067233},{"date":"2019-11-21T00:00:00.000Z","temp":-17.62316468253968,"pm25":109.18558182842067},{"date":"2019-11-25T00:00:00.000Z","temp":-17.686369047619046,"pm25":110.83385987616899},{"date":"2019-11-25T00:00:00.000Z","temp":-17.749573412698414,"pm25":112.48213792391732},{"date":"2019-11-25T00:00:00.000Z","temp":-17.81277777777778,"pm25":114.13041597166566},{"date":"2019-11-25T00:00:00.000Z","temp":-17.875982142857143,"pm25":115.77869401941399},{"date":"2019-11-25T00:00:00.000Z","temp":-17.93918650793651,"pm25":117.42697206716232},{"date":"2019-11-25T00:00:00.000Z","temp":-18.002390873015873,"pm25":119.07525011491066},{"date":"2019-11-25T00:00:00.000Z","temp":-18.065595238095238,"pm25":120.723528162659},{"date":"2019-11-25T00:00:00.000Z","temp":-18.217693452380953,"pm25":120.71793611669666},{"date":"2019-11-25T00:00:00.000Z","temp":-18.369791666666668,"pm25":120.71234407073433},{"date":"2019-11-25T00:00:00.000Z","temp":-18.52188988095238,"pm25":120.70675202477199},{"date":"2019-11-25T00:00:00.000Z","temp":-18.673988095238094,"pm25":120.70115997880966},{"date":"2019-11-25T00:00:00.000Z","temp":-18.82608630952381,"pm25":120.69556793284733},{"date":"2019-11-29T00:00:00.000Z","temp":-18.978184523809524,"pm25":120.689975886885},{"date":"2019-11-29T00:00:00.000Z","temp":-19.13028273809524,"pm25":120.68438384092266},{"date":"2019-11-29T00:00:00.000Z","temp":-19.282380952380954,"pm25":120.67879179496033},{"date":"2019-11-29T00:00:00.000Z","temp":-19.43447916666667,"pm25":120.673199748998},{"date":"2019-11-29T00:00:00.000Z","temp":-19.58657738095238,"pm25":120.66760770303566},{"date":"2019-11-29T00:00:00.000Z","temp":-19.738675595238096,"pm25":120.66201565707333},{"date":"2019-11-29T00:00:00.000Z","temp":-19.89077380952381,"pm25":120.656423611111},{"date":"2019-11-29T00:00:00.000Z","temp":-19.785500992063493,"pm25":121.1924338666625},{"date":"2019-11-29T00:00:00.000Z","temp":-19.680228174603176,"pm25":121.728444122214},{"date":"2019-11-29T00:00:00.000Z","temp":-19.57495535714286,"pm25":122.2644543777655},{"date":"2019-11-29T00:00:00.000Z","temp":-19.46968253968254,"pm25":122.80046463331699},{"date":"2019-11-29T00:00:00.000Z","temp":-19.364409722222224,"pm25":123.3364748888685},{"date":"2019-12-03T00:00:00.000Z","temp":-19.259136904761903,"pm25":123.87248514442},{"date":"2019-12-03T00:00:00.000Z","temp":-19.153864087301585,"pm25":124.4084953999715},{"date":"2019-12-03T00:00:00.000Z","temp":-19.048591269841268,"pm25":124.944505655523},{"date":"2019-12-03T00:00:00.000Z","temp":-18.94331845238095,"pm25":125.48051591107449},{"date":"2019-12-03T00:00:00.000Z","temp":-18.838045634920633,"pm25":126.016526166626},{"date":"2019-12-03T00:00:00.000Z","temp":-18.732772817460315,"pm25":126.5525364221775},{"date":"2019-12-03T00:00:00.000Z","temp":-18.627499999999998,"pm25":127.088546677729},{"date":"2019-12-03T00:00:00.000Z","temp":-18.60175595238095,"pm25":130.81790823666415},{"date":"2019-12-03T00:00:00.000Z","temp":-18.576011904761902,"pm25":134.54726979559933},{"date":"2019-12-03T00:00:00.000Z","temp":-18.550267857142856,"pm25":138.27663135453452},{"date":"2019-12-03T00:00:00.000Z","temp":-18.524523809523807,"pm25":142.00599291346967},{"date":"2019-12-03T00:00:00.000Z","temp":-18.49877976190476,"pm25":145.73535447240482},{"date":"2019-12-07T00:00:00.000Z","temp":-18.473035714285714,"pm25":149.46471603134},{"date":"2019-12-07T00:00:00.000Z","temp":-18.447291666666665,"pm25":153.19407759027519},{"date":"2019-12-07T00:00:00.000Z","temp":-18.42154761904762,"pm25":156.92343914921034},{"date":"2019-12-07T00:00:00.000Z","temp":-18.39580357142857,"pm25":160.6528007081455},{"date":"2019-12-07T00:00:00.000Z","temp":-18.370059523809523,"pm25":164.38216226708067},{"date":"2019-12-07T00:00:00.000Z","temp":-18.344315476190474,"pm25":168.11152382601585},{"date":"2019-12-07T00:00:00.000Z","temp":-18.318571428571428,"pm25":171.840885384951},{"date":"2019-12-07T00:00:00.000Z","temp":-18.317733134920633,"pm25":172.74980025524692},{"date":"2019-12-07T00:00:00.000Z","temp":-18.31689484126984,"pm25":173.65871512554284},{"date":"2019-12-07T00:00:00.000Z","temp":-18.31605654761905,"pm25":174.56762999583876},{"date":"2019-12-07T00:00:00.000Z","temp":-18.315218253968254,"pm25":175.47654486613467},{"date":"2019-12-07T00:00:00.000Z","temp":-18.31437996031746,"pm25":176.3854597364306},{"date":"2019-12-11T00:00:00.000Z","temp":-18.313541666666666,"pm25":177.2943746067265},{"date":"2019-12-11T00:00:00.000Z","temp":-18.31270337301587,"pm25":178.20328947702242},{"date":"2019-12-11T00:00:00.000Z","temp":-18.311865079365077,"pm25":179.11220434731834},{"date":"2019-12-11T00:00:00.000Z","temp":-18.311026785714283,"pm25":180.02111921761426},{"date":"2019-12-11T00:00:00.000Z","temp":-18.310188492063492,"pm25":180.93003408791017},{"date":"2019-12-11T00:00:00.000Z","temp":-18.309350198412698,"pm25":181.8389489582061},{"date":"2019-12-11T00:00:00.000Z","temp":-18.308511904761904,"pm25":182.747863828502},{"date":"2019-12-11T00:00:00.000Z","temp":-18.21594742063492,"pm25":181.56619989254725},{"date":"2019-12-11T00:00:00.000Z","temp":-18.123382936507937,"pm25":180.38453595659252},{"date":"2019-12-11T00:00:00.000Z","temp":-18.030818452380952,"pm25":179.20287202063776},{"date":"2019-12-11T00:00:00.000Z","temp":-17.938253968253967,"pm25":178.021208084683},{"date":"2019-12-11T00:00:00.000Z","temp":-17.845689484126982,"pm25":176.83954414872827},{"date":"2019-12-15T00:00:00.000Z","temp":-17.753124999999997,"pm25":175.6578802127735},{"date":"2019-12-15T00:00:00.000Z","temp":-17.660560515873016,"pm25":174.47621627681875},{"date":"2019-12-15T00:00:00.000Z","temp":-17.56799603174603,"pm25":173.29455234086402},{"date":"2019-12-15T00:00:00.000Z","temp":-17.475431547619046,"pm25":172.11288840490926},{"date":"2019-12-15T00:00:00.000Z","temp":-17.382867063492064,"pm25":170.9312244689545},{"date":"2019-12-15T00:00:00.000Z","temp":-17.29030257936508,"pm25":169.74956053299977},{"date":"2019-12-15T00:00:00.000Z","temp":-17.197738095238094,"pm25":168.567896597045},{"date":"2019-12-15T00:00:00.000Z","temp":-17.395625,"pm25":168.59707351841743},{"date":"2019-12-15T00:00:00.000Z","temp":-17.593511904761904,"pm25":168.62625043978983},{"date":"2019-12-15T00:00:00.000Z","temp":-17.79139880952381,"pm25":168.65542736116225},{"date":"2019-12-15T00:00:00.000Z","temp":-17.989285714285714,"pm25":168.68460428253468},{"date":"2019-12-15T00:00:00.000Z","temp":-18.18717261904762,"pm25":168.71378120390708},{"date":"2019-12-19T00:00:00.000Z","temp":-18.385059523809524,"pm25":168.7429581252795},{"date":"2019-12-19T00:00:00.000Z","temp":-18.58294642857143,"pm25":168.77213504665193},{"date":"2019-12-19T00:00:00.000Z","temp":-18.780833333333334,"pm25":168.80131196802432},{"date":"2019-12-19T00:00:00.000Z","temp":-18.97872023809524,"pm25":168.83048888939675},{"date":"2019-12-19T00:00:00.000Z","temp":-19.176607142857144,"pm25":168.85966581076917},{"date":"2019-12-19T00:00:00.000Z","temp":-19.37449404761905,"pm25":168.88884273214157},{"date":"2019-12-19T00:00:00.000Z","temp":-19.572380952380954,"pm25":168.918019653514},{"date":"2019-12-19T00:00:00.000Z","temp":-19.89264384920635,"pm25":170.6348186693159},{"date":"2019-12-19T00:00:00.000Z","temp":-20.21290674603175,"pm25":172.35161768511784},{"date":"2019-12-19T00:00:00.000Z","temp":-20.533169642857143,"pm25":174.06841670091976},{"date":"2019-12-19T00:00:00.000Z","temp":-20.85343253968254,"pm25":175.78521571672167},{"date":"2019-12-19T00:00:00.000Z","temp":-21.173695436507938,"pm25":177.50201473252358},{"date":"2019-12-23T00:00:00.000Z","temp":-21.49395833333333,"pm25":179.2188137483255},{"date":"2019-12-23T00:00:00.000Z","temp":-21.81422123015873,"pm25":180.93561276412743},{"date":"2019-12-23T00:00:00.000Z","temp":-22.134484126984127,"pm25":182.65241177992934},{"date":"2019-12-23T00:00:00.000Z","temp":-22.454747023809524,"pm25":184.36921079573125},{"date":"2019-12-23T00:00:00.000Z","temp":-22.775009920634922,"pm25":186.0860098115332},{"date":"2019-12-23T00:00:00.000Z","temp":-23.095272817460316,"pm25":187.8028088273351},{"date":"2019-12-23T00:00:00.000Z","temp":-23.415535714285713,"pm25":189.519607843137},{"date":"2019-12-23T00:00:00.000Z","temp":-23.341304563492063,"pm25":188.78640218089026},{"date":"2019-12-23T00:00:00.000Z","temp":-23.267073412698412,"pm25":188.05319651864352},{"date":"2019-12-23T00:00:00.000Z","temp":-23.19284226190476,"pm25":187.31999085639677},{"date":"2019-12-23T00:00:00.000Z","temp":-23.11861111111111,"pm25":186.58678519415},{"date":"2019-12-23T00:00:00.000Z","temp":-23.04437996031746,"pm25":185.85357953190325},{"date":"2019-12-27T00:00:00.000Z","temp":-22.97014880952381,"pm25":185.1203738696565},{"date":"2019-12-27T00:00:00.000Z","temp":-22.89591765873016,"pm25":184.38716820740976},{"date":"2019-12-27T00:00:00.000Z","temp":-22.82168650793651,"pm25":183.653962545163},{"date":"2019-12-27T00:00:00.000Z","temp":-22.747455357142858,"pm25":182.92075688291624},{"date":"2019-12-27T00:00:00.000Z","temp":-22.673224206349207,"pm25":182.1875512206695},{"date":"2019-12-27T00:00:00.000Z","temp":-22.598993055555557,"pm25":181.45434555842274},{"date":"2019-12-27T00:00:00.000Z","temp":-22.524761904761906,"pm25":180.721139896176},{"date":"2019-12-27T00:00:00.000Z","temp":-22.8124751984127,"pm25":180.48543114653035},{"date":"2019-12-27T00:00:00.000Z","temp":-23.100188492063495,"pm25":180.24972239688466},{"date":"2019-12-27T00:00:00.000Z","temp":-23.387901785714288,"pm25":180.01401364723898},{"date":"2019-12-27T00:00:00.000Z","temp":-23.67561507936508,"pm25":179.77830489759333},{"date":"2019-12-27T00:00:00.000Z","temp":-23.963328373015873,"pm25":179.54259614794768},{"date":"2019-12-31T00:00:00.000Z","temp":-24.251041666666666,"pm25":179.306887398302},{"date":"2019-12-31T00:00:00.000Z","temp":-24.538754960317462,"pm25":179.0711786486563},{"date":"2019-12-31T00:00:00.000Z","temp":-24.826468253968255,"pm25":178.83546989901066},{"date":"2019-12-31T00:00:00.000Z","temp":-25.114181547619047,"pm25":178.599761149365},{"date":"2019-12-31T00:00:00.000Z","temp":-25.401894841269844,"pm25":178.36405239971933},{"date":"2019-12-31T00:00:00.000Z","temp":-25.689608134920636,"pm25":178.12834365007365},{"date":"2019-12-31T00:00:00.000Z","temp":-25.97732142857143,"pm25":177.892634900428},{"date":"2019-12-31T00:00:00.000Z","temp":-25.81187003968254,"pm25":182.21521975300826},{"date":"2019-12-31T00:00:00.000Z","temp":-25.646418650793652,"pm25":186.5378046055885},{"date":"2019-12-31T00:00:00.000Z","temp":-25.480967261904762,"pm25":190.86038945816875},{"date":"2019-12-31T00:00:00.000Z","temp":-25.315515873015872,"pm25":195.182974310749},{"date":"2019-12-31T00:00:00.000Z","temp":-25.150064484126986,"pm25":199.50555916332925},{"date":"2020-01-04T00:00:00.000Z","temp":-24.984613095238096,"pm25":203.82814401590952},{"date":"2020-01-04T00:00:00.000Z","temp":-24.819161706349206,"pm25":208.15072886848975},{"date":"2020-01-04T00:00:00.000Z","temp":-24.65371031746032,"pm25":212.47331372107},{"date":"2020-01-04T00:00:00.000Z","temp":-24.48825892857143,"pm25":216.79589857365025},{"date":"2020-01-04T00:00:00.000Z","temp":-24.32280753968254,"pm25":221.1184834262305},{"date":"2020-01-04T00:00:00.000Z","temp":-24.157356150793653,"pm25":225.44106827881075},{"date":"2020-01-04T00:00:00.000Z","temp":-23.991904761904763,"pm25":229.763653131391},{"date":"2020-01-04T00:00:00.000Z","temp":-23.662043650793652,"pm25":229.9577663523526},{"date":"2020-01-04T00:00:00.000Z","temp":-23.33218253968254,"pm25":230.15187957331418},{"date":"2020-01-04T00:00:00.000Z","temp":-23.002321428571427,"pm25":230.34599279427576},{"date":"2020-01-04T00:00:00.000Z","temp":-22.672460317460317,"pm25":230.54010601523734},{"date":"2020-01-04T00:00:00.000Z","temp":-22.342599206349206,"pm25":230.73421923619892},{"date":"2020-01-08T00:00:00.000Z","temp":-22.012738095238095,"pm25":230.9283324571605},{"date":"2020-01-08T00:00:00.000Z","temp":-21.682876984126985,"pm25":231.1224456781221},{"date":"2020-01-08T00:00:00.000Z","temp":-21.353015873015874,"pm25":231.31655889908367},{"date":"2020-01-08T00:00:00.000Z","temp":-21.023154761904763,"pm25":231.51067212004526},{"date":"2020-01-08T00:00:00.000Z","temp":-20.69329365079365,"pm25":231.70478534100684},{"date":"2020-01-08T00:00:00.000Z","temp":-20.363432539682538,"pm25":231.89889856196842},{"date":"2020-01-08T00:00:00.000Z","temp":-20.033571428571427,"pm25":232.09301178293},{"date":"2020-01-08T00:00:00.000Z","temp":-20.24702876984127,"pm25":230.11321865137427},{"date":"2020-01-08T00:00:00.000Z","temp":-20.46048611111111,"pm25":228.1334255198185},{"date":"2020-01-08T00:00:00.000Z","temp":-20.673943452380954,"pm25":226.15363238826276},{"date":"2020-01-08T00:00:00.000Z","temp":-20.887400793650794,"pm25":224.173839256707},{"date":"2020-01-08T00:00:00.000Z","temp":-21.100858134920635,"pm25":222.19404612515126},{"date":"2020-01-12T00:00:00.000Z","temp":-21.314315476190476,"pm25":220.2142529935955},{"date":"2020-01-12T00:00:00.000Z","temp":-21.527772817460317,"pm25":218.23445986203976},{"date":"2020-01-12T00:00:00.000Z","temp":-21.741230158730158,"pm25":216.25466673048402},{"date":"2020-01-12T00:00:00.000Z","temp":-21.9546875,"pm25":214.27487359892825},{"date":"2020-01-12T00:00:00.000Z","temp":-22.168144841269843,"pm25":212.29508046737251},{"date":"2020-01-12T00:00:00.000Z","temp":-22.381602182539684,"pm25":210.31528733581678},{"date":"2020-01-12T00:00:00.000Z","temp":-22.595059523809525,"pm25":208.335494204261},{"date":"2020-01-12T00:00:00.000Z","temp":-22.660431547619048,"pm25":212.0375314082371},{"date":"2020-01-12T00:00:00.000Z","temp":-22.72580357142857,"pm25":215.7395686122132},{"date":"2020-01-12T00:00:00.000Z","temp":-22.791175595238094,"pm25":219.44160581618925},{"date":"2020-01-12T00:00:00.000Z","temp":-22.85654761904762,"pm25":223.14364302016534},{"date":"2020-01-12T00:00:00.000Z","temp":-22.921919642857144,"pm25":226.84568022414143},{"date":"2020-01-16T00:00:00.000Z","temp":-22.987291666666668,"pm25":230.5477174281175},{"date":"2020-01-16T00:00:00.000Z","temp":-23.05266369047619,"pm25":234.24975463209358},{"date":"2020-01-16T00:00:00.000Z","temp":-23.118035714285714,"pm25":237.95179183606967},{"date":"2020-01-16T00:00:00.000Z","temp":-23.18340773809524,"pm25":241.65382904004576},{"date":"2020-01-16T00:00:00.000Z","temp":-23.248779761904764,"pm25":245.35586624402185},{"date":"2020-01-16T00:00:00.000Z","temp":-23.314151785714287,"pm25":249.05790344799792},{"date":"2020-01-16T00:00:00.000Z","temp":-23.37952380952381,"pm25":252.759940651974},{"date":"2020-01-16T00:00:00.000Z","temp":-23.233129960317463,"pm25":252.9826525360316},{"date":"2020-01-16T00:00:00.000Z","temp":-23.08673611111111,"pm25":253.20536442008918},{"date":"2020-01-16T00:00:00.000Z","temp":-22.940342261904764,"pm25":253.42807630414677},{"date":"2020-01-16T00:00:00.000Z","temp":-22.793948412698413,"pm25":253.65078818820433},{"date":"2020-01-16T00:00:00.000Z","temp":-22.647554563492065,"pm25":253.87350007226192},{"date":"2020-01-20T00:00:00.000Z","temp":-22.501160714285717,"pm25":254.0962119563195},{"date":"2020-01-20T00:00:00.000Z","temp":-22.354766865079366,"pm25":254.3189238403771},{"date":"2020-01-20T00:00:00.000Z","temp":-22.20837301587302,"pm25":254.54163572443468},{"date":"2020-01-20T00:00:00.000Z","temp":-22.061979166666667,"pm25":254.76434760849224},{"date":"2020-01-20T00:00:00.000Z","temp":-21.91558531746032,"pm25":254.98705949254983},{"date":"2020-01-20T00:00:00.000Z","temp":-21.76919146825397,"pm25":255.20977137660742},{"date":"2020-01-20T00:00:00.000Z","temp":-21.62279761904762,"pm25":255.432483260665},{"date":"2020-01-20T00:00:00.000Z","temp":-21.58811011904762,"pm25":252.06209308491884},{"date":"2020-01-20T00:00:00.000Z","temp":-21.55342261904762,"pm25":248.69170290917268},{"date":"2020-01-20T00:00:00.000Z","temp":-21.51873511904762,"pm25":245.3213127334265},{"date":"2020-01-20T00:00:00.000Z","temp":-21.48404761904762,"pm25":241.95092255768034},{"date":"2020-01-20T00:00:00.000Z","temp":-21.44936011904762,"pm25":238.58053238193418},{"date":"2020-01-24T00:00:00.000Z","temp":-21.41467261904762,"pm25":235.210142206188},{"date":"2020-01-24T00:00:00.000Z","temp":-21.37998511904762,"pm25":231.83975203044184},{"date":"2020-01-24T00:00:00.000Z","temp":-21.34529761904762,"pm25":228.46936185469568},{"date":"2020-01-24T00:00:00.000Z","temp":-21.31061011904762,"pm25":225.0989716789495},{"date":"2020-01-24T00:00:00.000Z","temp":-21.27592261904762,"pm25":221.72858150320334},{"date":"2020-01-24T00:00:00.000Z","temp":-21.24123511904762,"pm25":218.35819132745718},{"date":"2020-01-24T00:00:00.000Z","temp":-21.20654761904762,"pm25":214.987801151711},{"date":"2020-01-24T00:00:00.000Z","temp":-21.043640873015875,"pm25":214.39205309048467},{"date":"2020-01-24T00:00:00.000Z","temp":-20.880734126984127,"pm25":213.79630502925835},{"date":"2020-01-24T00:00:00.000Z","temp":-20.717827380952382,"pm25":213.200556968032},{"date":"2020-01-24T00:00:00.000Z","temp":-20.554920634920634,"pm25":212.6048089068057},{"date":"2020-01-24T00:00:00.000Z","temp":-20.39201388888889,"pm25":212.00906084557934},{"date":"2020-01-28T00:00:00.000Z","temp":-20.229107142857146,"pm25":211.41331278435302},{"date":"2020-01-28T00:00:00.000Z","temp":-20.066200396825398,"pm25":210.81756472312668},{"date":"2020-01-28T00:00:00.000Z","temp":-19.903293650793653,"pm25":210.22181666190033},{"date":"2020-01-28T00:00:00.000Z","temp":-19.740386904761905,"pm25":209.62606860067402},{"date":"2020-01-28T00:00:00.000Z","temp":-19.57748015873016,"pm25":209.03032053944767},{"date":"2020-01-28T00:00:00.000Z","temp":-19.414573412698413,"pm25":208.43457247822136},{"date":"2020-01-28T00:00:00.000Z","temp":-19.25166666666667,"pm25":207.838824416995},{"date":"2020-01-28T00:00:00.000Z","temp":-19.200019841269842,"pm25":203.26589672787892},{"date":"2020-01-28T00:00:00.000Z","temp":-19.14837301587302,"pm25":198.69296903876284},{"date":"2020-01-28T00:00:00.000Z","temp":-19.096726190476193,"pm25":194.12004134964675},{"date":"2020-01-28T00:00:00.000Z","temp":-19.045079365079367,"pm25":189.54711366053067},{"date":"2020-01-28T00:00:00.000Z","temp":-18.99343253968254,"pm25":184.97418597141458},{"date":"2020-02-01T00:00:00.000Z","temp":-18.941785714285714,"pm25":180.4012582822985},{"date":"2020-02-01T00:00:00.000Z","temp":-18.89013888888889,"pm25":175.82833059318241},{"date":"2020-02-01T00:00:00.000Z","temp":-18.838492063492065,"pm25":171.25540290406633},{"date":"2020-02-01T00:00:00.000Z","temp":-18.78684523809524,"pm25":166.68247521495024},{"date":"2020-02-01T00:00:00.000Z","temp":-18.735198412698416,"pm25":162.10954752583416},{"date":"2020-02-01T00:00:00.000Z","temp":-18.68355158730159,"pm25":157.53661983671807},{"date":"2020-02-01T00:00:00.000Z","temp":-18.631904761904764,"pm25":152.963692147602},{"date":"2020-02-01T00:00:00.000Z","temp":-18.955560515873017,"pm25":151.03153257483223},{"date":"2020-02-01T00:00:00.000Z","temp":-19.27921626984127,"pm25":149.0993730020625},{"date":"2020-02-01T00:00:00.000Z","temp":-19.602872023809525,"pm25":147.16721342929276},{"date":"2020-02-01T00:00:00.000Z","temp":-19.92652777777778,"pm25":145.235053856523},{"date":"2020-02-01T00:00:00.000Z","temp":-20.250183531746032,"pm25":143.30289428375323},{"date":"2020-02-05T00:00:00.000Z","temp":-20.573839285714286,"pm25":141.3707347109835},{"date":"2020-02-05T00:00:00.000Z","temp":-20.89749503968254,"pm25":139.43857513821376},{"date":"2020-02-05T00:00:00.000Z","temp":-21.221150793650796,"pm25":137.506415565444},{"date":"2020-02-05T00:00:00.000Z","temp":-21.54480654761905,"pm25":135.57425599267424},{"date":"2020-02-05T00:00:00.000Z","temp":-21.868462301587304,"pm25":133.6420964199045},{"date":"2020-02-05T00:00:00.000Z","temp":-22.192118055555557,"pm25":131.70993684713477},{"date":"2020-02-05T00:00:00.000Z","temp":-22.51577380952381,"pm25":129.777777274365},{"date":"2020-02-05T00:00:00.000Z","temp":-22.24511904761905,"pm25":133.32307982937076},{"date":"2020-02-05T00:00:00.000Z","temp":-21.974464285714287,"pm25":136.8683823843765},{"date":"2020-02-05T00:00:00.000Z","temp":-21.703809523809525,"pm25":140.41368493938225},{"date":"2020-02-05T00:00:00.000Z","temp":-21.433154761904763,"pm25":143.958987494388},{"date":"2020-02-05T00:00:00.000Z","temp":-21.1625,"pm25":147.50429004939375},{"date":"2020-02-09T00:00:00.000Z","temp":-20.891845238095236,"pm25":151.0495926043995},{"date":"2020-02-09T00:00:00.000Z","temp":-20.621190476190474,"pm25":154.59489515940527},{"date":"2020-02-09T00:00:00.000Z","temp":-20.350535714285712,"pm25":158.14019771441102},{"date":"2020-02-09T00:00:00.000Z","temp":-20.07988095238095,"pm25":161.68550026941676},{"date":"2020-02-09T00:00:00.000Z","temp":-19.80922619047619,"pm25":165.2308028244225},{"date":"2020-02-09T00:00:00.000Z","temp":-19.538571428571426,"pm25":168.77610537942826},{"date":"2020-02-09T00:00:00.000Z","temp":-19.267916666666665,"pm25":172.321407934434},{"date":"2020-02-09T00:00:00.000Z","temp":-18.716031746031746,"pm25":170.31271995101642},{"date":"2020-02-09T00:00:00.000Z","temp":-18.164146825396823,"pm25":168.30403196759883},{"date":"2020-02-09T00:00:00.000Z","temp":-17.6122619047619,"pm25":166.29534398418127},{"date":"2020-02-09T00:00:00.000Z","temp":-17.060376984126982,"pm25":164.28665600076368},{"date":"2020-02-09T00:00:00.000Z","temp":-16.508492063492064,"pm25":162.2779680173461},{"date":"2020-02-13T00:00:00.000Z","temp":-15.956607142857141,"pm25":160.2692800339285},{"date":"2020-02-13T00:00:00.000Z","temp":-15.40472222222222,"pm25":158.26059205051092},{"date":"2020-02-13T00:00:00.000Z","temp":-14.8528373015873,"pm25":156.25190406709334},{"date":"2020-02-13T00:00:00.000Z","temp":-14.30095238095238,"pm25":154.24321608367575},{"date":"2020-02-13T00:00:00.000Z","temp":-13.749067460317459,"pm25":152.2345281002582},{"date":"2020-02-13T00:00:00.000Z","temp":-13.197182539682538,"pm25":150.2258401168406},{"date":"2020-02-13T00:00:00.000Z","temp":-12.645297619047618,"pm25":148.217152133423},{"date":"2020-02-13T00:00:00.000Z","temp":-12.874211309523808,"pm25":147.43712414754694},{"date":"2020-02-13T00:00:00.000Z","temp":-13.103124999999999,"pm25":146.65709616167084},{"date":"2020-02-13T00:00:00.000Z","temp":-13.332038690476189,"pm25":145.87706817579476},{"date":"2020-02-13T00:00:00.000Z","temp":-13.56095238095238,"pm25":145.0970401899187},{"date":"2020-02-13T00:00:00.000Z","temp":-13.78986607142857,"pm25":144.31701220404258},{"date":"2020-02-17T00:00:00.000Z","temp":-14.01877976190476,"pm25":143.5369842181665},{"date":"2020-02-17T00:00:00.000Z","temp":-14.24769345238095,"pm25":142.75695623229043},{"date":"2020-02-17T00:00:00.000Z","temp":-14.476607142857143,"pm25":141.97692824641433},{"date":"2020-02-17T00:00:00.000Z","temp":-14.705520833333333,"pm25":141.19690026053826},{"date":"2020-02-17T00:00:00.000Z","temp":-14.934434523809523,"pm25":140.41687227466218},{"date":"2020-02-17T00:00:00.000Z","temp":-15.163348214285714,"pm25":139.63684428878608},{"date":"2020-02-17T00:00:00.000Z","temp":-15.392261904761904,"pm25":138.85681630291},{"date":"2020-02-17T00:00:00.000Z","temp":-15.438660714285714,"pm25":139.83901414095726},{"date":"2020-02-17T00:00:00.000Z","temp":-15.485059523809523,"pm25":140.8212119790045},{"date":"2020-02-17T00:00:00.000Z","temp":-15.531458333333333,"pm25":141.80340981705174},{"date":"2020-02-17T00:00:00.000Z","temp":-15.577857142857143,"pm25":142.785607655099},{"date":"2020-02-17T00:00:00.000Z","temp":-15.624255952380953,"pm25":143.76780549314626},{"date":"2020-02-21T00:00:00.000Z","temp":-15.67065476190476,"pm25":144.7500033311935},{"date":"2020-02-21T00:00:00.000Z","temp":-15.71705357142857,"pm25":145.73220116924074},{"date":"2020-02-21T00:00:00.000Z","temp":-15.76345238095238,"pm25":146.714399007288},{"date":"2020-02-21T00:00:00.000Z","temp":-15.80985119047619,"pm25":147.69659684533525},{"date":"2020-02-21T00:00:00.000Z","temp":-15.85625,"pm25":148.67879468338248},{"date":"2020-02-21T00:00:00.000Z","temp":-15.902648809523809,"pm25":149.66099252142973},{"date":"2020-02-21T00:00:00.000Z","temp":-15.949047619047619,"pm25":150.643190359477},{"date":"2020-02-21T00:00:00.000Z","temp":-15.732445436507936,"pm25":146.22765679960452},{"date":"2020-02-21T00:00:00.000Z","temp":-15.515843253968253,"pm25":141.81212323973207},{"date":"2020-02-21T00:00:00.000Z","temp":-15.299241071428572,"pm25":137.39658967985963},{"date":"2020-02-21T00:00:00.000Z","temp":-15.082638888888889,"pm25":132.98105611998716},{"date":"2020-02-21T00:00:00.000Z","temp":-14.866036706349206,"pm25":128.5655225601147},{"date":"2020-02-25T00:00:00.000Z","temp":-14.649434523809525,"pm25":124.14998900024224},{"date":"2020-02-25T00:00:00.000Z","temp":-14.432832341269842,"pm25":119.73445544036979},{"date":"2020-02-25T00:00:00.000Z","temp":-14.21623015873016,"pm25":115.31892188049733},{"date":"2020-02-25T00:00:00.000Z","temp":-13.999627976190476,"pm25":110.90338832062487},{"date":"2020-02-25T00:00:00.000Z","temp":-13.783025793650793,"pm25":106.48785476075241},{"date":"2020-02-25T00:00:00.000Z","temp":-13.566423611111112,"pm25":102.07232120087995},{"date":"2020-02-25T00:00:00.000Z","temp":-13.34982142857143,"pm25":97.6567876410075},{"date":"2020-02-25T00:00:00.000Z","temp":-13.280446428571429,"pm25":95.97969587895545},{"date":"2020-02-25T00:00:00.000Z","temp":-13.21107142857143,"pm25":94.30260411690341},{"date":"2020-02-25T00:00:00.000Z","temp":-13.141696428571429,"pm25":92.62551235485137},{"date":"2020-02-25T00:00:00.000Z","temp":-13.07232142857143,"pm25":90.94842059279934},{"date":"2020-02-25T00:00:00.000Z","temp":-13.002946428571429,"pm25":89.2713288307473},{"date":"2020-02-29T00:00:00.000Z","temp":-12.93357142857143,"pm25":87.59423706869525},{"date":"2020-02-29T00:00:00.000Z","temp":-12.864196428571429,"pm25":85.9171453066432},{"date":"2020-02-29T00:00:00.000Z","temp":-12.794821428571428,"pm25":84.24005354459116},{"date":"2020-02-29T00:00:00.000Z","temp":-12.725446428571429,"pm25":82.56296178253913},{"date":"2020-02-29T00:00:00.000Z","temp":-12.656071428571428,"pm25":80.88587002048709},{"date":"2020-02-29T00:00:00.000Z","temp":-12.586696428571429,"pm25":79.20877825843505},{"date":"2020-02-29T00:00:00.000Z","temp":-12.517321428571428,"pm25":77.531686496383},{"date":"2020-02-29T00:00:00.000Z","temp":-12.764464285714284,"pm25":77.25403670811247},{"date":"2020-02-29T00:00:00.000Z","temp":-13.011607142857143,"pm25":76.97638691984193},{"date":"2020-02-29T00:00:00.000Z","temp":-13.25875,"pm25":76.6987371315714},{"date":"2020-02-29T00:00:00.000Z","temp":-13.505892857142857,"pm25":76.42108734330087},{"date":"2020-02-29T00:00:00.000Z","temp":-13.753035714285714,"pm25":76.14343755503033},{"date":"2020-03-04T00:00:00.000Z","temp":-14.00017857142857,"pm25":75.86578776675981},{"date":"2020-03-04T00:00:00.000Z","temp":-14.247321428571428,"pm25":75.58813797848927},{"date":"2020-03-04T00:00:00.000Z","temp":-14.494464285714285,"pm25":75.31048819021873},{"date":"2020-03-04T00:00:00.000Z","temp":-14.741607142857143,"pm25":75.0328384019482},{"date":"2020-03-04T00:00:00.000Z","temp":-14.98875,"pm25":74.75518861367766},{"date":"2020-03-04T00:00:00.000Z","temp":-15.235892857142858,"pm25":74.47753882540714},{"date":"2020-03-04T00:00:00.000Z","temp":-15.483035714285714,"pm25":74.1998890371366},{"date":"2020-03-04T00:00:00.000Z","temp":-15.33140376984127,"pm25":73.76656677594045},{"date":"2020-03-04T00:00:00.000Z","temp":-15.179771825396825,"pm25":73.33324451474431},{"date":"2020-03-04T00:00:00.000Z","temp":-15.02813988095238,"pm25":72.89992225354816},{"date":"2020-03-04T00:00:00.000Z","temp":-14.876507936507936,"pm25":72.466599992352},{"date":"2020-03-04T00:00:00.000Z","temp":-14.724875992063492,"pm25":72.03327773115585},{"date":"2020-03-08T00:00:00.000Z","temp":-14.573244047619047,"pm25":71.5999554699597},{"date":"2020-03-08T00:00:00.000Z","temp":-14.421612103174603,"pm25":71.16663320876356},{"date":"2020-03-08T00:00:00.000Z","temp":-14.269980158730158,"pm25":70.7333109475674},{"date":"2020-03-08T00:00:00.000Z","temp":-14.118348214285714,"pm25":70.29998868637125},{"date":"2020-03-08T00:00:00.000Z","temp":-13.96671626984127,"pm25":69.86666642517511},{"date":"2020-03-08T00:00:00.000Z","temp":-13.815084325396825,"pm25":69.43334416397896},{"date":"2020-03-08T00:00:00.000Z","temp":-13.66345238095238,"pm25":69.0000219027828},{"date":"2020-03-08T00:00:00.000Z","temp":-13.666304563492062,"pm25":69.8720941439868},{"date":"2020-03-08T00:00:00.000Z","temp":-13.669156746031746,"pm25":70.74416638519081},{"date":"2020-03-08T00:00:00.000Z","temp":-13.672008928571428,"pm25":71.6162386263948},{"date":"2020-03-08T00:00:00.000Z","temp":-13.674861111111111,"pm25":72.4883108675988},{"date":"2020-03-08T00:00:00.000Z","temp":-13.677713293650793,"pm25":73.36038310880281},{"date":"2020-03-12T00:00:00.000Z","temp":-13.680565476190477,"pm25":74.2324553500068},{"date":"2020-03-12T00:00:00.000Z","temp":-13.683417658730159,"pm25":75.1045275912108},{"date":"2020-03-12T00:00:00.000Z","temp":-13.68626984126984,"pm25":75.9765998324148},{"date":"2020-03-12T00:00:00.000Z","temp":-13.689122023809524,"pm25":76.8486720736188},{"date":"2020-03-12T00:00:00.000Z","temp":-13.691974206349206,"pm25":77.7207443148228},{"date":"2020-03-12T00:00:00.000Z","temp":-13.69482638888889,"pm25":78.5928165560268},{"date":"2020-03-12T00:00:00.000Z","temp":-13.697678571428572,"pm25":79.4648887972308},{"date":"2020-03-12T00:00:00.000Z","temp":-13.406587301587303,"pm25":78.69325748707047},{"date":"2020-03-12T00:00:00.000Z","temp":-13.115496031746032,"pm25":77.92162617691014},{"date":"2020-03-12T00:00:00.000Z","temp":-12.824404761904763,"pm25":77.14999486674981},{"date":"2020-03-12T00:00:00.000Z","temp":-12.533313492063492,"pm25":76.37836355658946},{"date":"2020-03-12T00:00:00.000Z","temp":-12.242222222222223,"pm25":75.60673224642913},{"date":"2020-03-16T00:00:00.000Z","temp":-11.951130952380954,"pm25":74.8351009362688},{"date":"2020-03-16T00:00:00.000Z","temp":-11.660039682539683,"pm25":74.06346962610847},{"date":"2020-03-16T00:00:00.000Z","temp":-11.368948412698414,"pm25":73.29183831594814},{"date":"2020-03-16T00:00:00.000Z","temp":-11.077857142857143,"pm25":72.5202070057878},{"date":"2020-03-16T00:00:00.000Z","temp":-10.786765873015874,"pm25":71.74857569562747},{"date":"2020-03-16T00:00:00.000Z","temp":-10.495674603174603,"pm25":70.97694438546714},{"date":"2020-03-16T00:00:00.000Z","temp":-10.204583333333334,"pm25":70.2053130753068},{"date":"2020-03-16T00:00:00.000Z","temp":-9.73294146825397,"pm25":68.25052283658692},{"date":"2020-03-16T00:00:00.000Z","temp":-9.261299603174603,"pm25":66.29573259786706},{"date":"2020-03-16T00:00:00.000Z","temp":-8.789657738095238,"pm25":64.34094235914718},{"date":"2020-03-16T00:00:00.000Z","temp":-8.318015873015874,"pm25":62.386152120427305},{"date":"2020-03-16T00:00:00.000Z","temp":-7.846374007936508,"pm25":60.431361881707424},{"date":"2020-03-20T00:00:00.000Z","temp":-7.374732142857143,"pm25":58.47657164298755},{"date":"2020-03-20T00:00:00.000Z","temp":-6.903090277777778,"pm25":56.52178140426767},{"date":"2020-03-20T00:00:00.000Z","temp":-6.431448412698414,"pm25":54.5669911655478},{"date":"2020-03-20T00:00:00.000Z","temp":-5.959806547619048,"pm25":52.612200926827924},{"date":"2020-03-20T00:00:00.000Z","temp":-5.488164682539683,"pm25":50.657410688108044},{"date":"2020-03-20T00:00:00.000Z","temp":-5.016522817460318,"pm25":48.70262044938817},{"date":"2020-03-20T00:00:00.000Z","temp":-4.544880952380953,"pm25":46.7478302106683},{"date":"2020-03-20T00:00:00.000Z","temp":-4.386269841269842,"pm25":46.47704890848648},{"date":"2020-03-20T00:00:00.000Z","temp":-4.227658730158731,"pm25":46.206267606304664},{"date":"2020-03-20T00:00:00.000Z","temp":-4.06904761904762,"pm25":45.93548630412285},{"date":"2020-03-20T00:00:00.000Z","temp":-3.910436507936508,"pm25":45.66470500194103},{"date":"2020-03-20T00:00:00.000Z","temp":-3.751825396825397,"pm25":45.39392369975921},{"date":"2020-03-24T00:00:00.000Z","temp":-3.5932142857142857,"pm25":45.123142397577396},{"date":"2020-03-24T00:00:00.000Z","temp":-3.4346031746031747,"pm25":44.85236109539559},{"date":"2020-03-24T00:00:00.000Z","temp":-3.2759920634920636,"pm25":44.58157979321377},{"date":"2020-03-24T00:00:00.000Z","temp":-3.1173809523809526,"pm25":44.31079849103195},{"date":"2020-03-24T00:00:00.000Z","temp":-2.9587698412698415,"pm25":44.040017188850136},{"date":"2020-03-24T00:00:00.000Z","temp":-2.80015873015873,"pm25":43.76923588666832},{"date":"2020-03-24T00:00:00.000Z","temp":-2.641547619047619,"pm25":43.4984545844865},{"date":"2020-03-24T00:00:00.000Z","temp":-2.79953373015873,"pm25":43.49112290445784},{"date":"2020-03-24T00:00:00.000Z","temp":-2.9575198412698414,"pm25":43.48379122442917},{"date":"2020-03-24T00:00:00.000Z","temp":-3.1155059523809525,"pm25":43.4764595444005},{"date":"2020-03-24T00:00:00.000Z","temp":-3.2734920634920637,"pm25":43.469127864371835},{"date":"2020-03-24T00:00:00.000Z","temp":-3.431478174603175,"pm25":43.46179618434317},{"date":"2020-03-28T00:00:00.000Z","temp":-3.5894642857142856,"pm25":43.4544645043145},{"date":"2020-03-28T00:00:00.000Z","temp":-3.747450396825397,"pm25":43.44713282428583},{"date":"2020-03-28T00:00:00.000Z","temp":-3.905436507936508,"pm25":43.43980114425717},{"date":"2020-03-28T00:00:00.000Z","temp":-4.0634226190476195,"pm25":43.432469464228504},{"date":"2020-03-28T00:00:00.000Z","temp":-4.22140873015873,"pm25":43.42513778419983},{"date":"2020-03-28T00:00:00.000Z","temp":-4.379394841269842,"pm25":43.41780610417116},{"date":"2020-03-28T00:00:00.000Z","temp":-4.5373809523809525,"pm25":43.4104744241425},{"date":"2020-03-28T00:00:00.000Z","temp":-4.579657738095238,"pm25":43.46343370000889},{"date":"2020-03-28T00:00:00.000Z","temp":-4.621934523809524,"pm25":43.516392975875284},{"date":"2020-03-28T00:00:00.000Z","temp":-4.664211309523809,"pm25":43.56935225174168},{"date":"2020-03-28T00:00:00.000Z","temp":-4.706488095238095,"pm25":43.62231152760807},{"date":"2020-03-28T00:00:00.000Z","temp":-4.748764880952381,"pm25":43.67527080347446},{"date":"2020-04-01T00:00:00.000Z","temp":-4.791041666666667,"pm25":43.72823007934085},{"date":"2020-04-01T00:00:00.000Z","temp":-4.8333184523809525,"pm25":43.78118935520724},{"date":"2020-04-01T00:00:00.000Z","temp":-4.875595238095238,"pm25":43.83414863107363},{"date":"2020-04-01T00:00:00.000Z","temp":-4.917872023809524,"pm25":43.887107906940024},{"date":"2020-04-01T00:00:00.000Z","temp":-4.960148809523809,"pm25":43.940067182806416},{"date":"2020-04-01T00:00:00.000Z","temp":-5.002425595238095,"pm25":43.99302645867281},{"date":"2020-04-01T00:00:00.000Z","temp":-5.044702380952381,"pm25":44.0459857345392},{"date":"2020-04-01T00:00:00.000Z","temp":-4.590252976190476,"pm25":43.89826318821777},{"date":"2020-04-01T00:00:00.000Z","temp":-4.135803571428571,"pm25":43.750540641896336},{"date":"2020-04-01T00:00:00.000Z","temp":-3.6813541666666665,"pm25":43.602818095574904},{"date":"2020-04-01T00:00:00.000Z","temp":-3.2269047619047617,"pm25":43.455095549253464},{"date":"2020-04-01T00:00:00.000Z","temp":-2.772455357142857,"pm25":43.30737300293203},{"date":"2020-04-05T00:00:00.000Z","temp":-2.318005952380952,"pm25":43.1596504566106},{"date":"2020-04-05T00:00:00.000Z","temp":-1.8635565476190474,"pm25":43.01192791028917},{"date":"2020-04-05T00:00:00.000Z","temp":-1.4091071428571427,"pm25":42.864205363967734},{"date":"2020-04-05T00:00:00.000Z","temp":-0.9546577380952384,"pm25":42.716482817646295},{"date":"2020-04-05T00:00:00.000Z","temp":-0.5002083333333331,"pm25":42.56876027132486},{"date":"2020-04-05T00:00:00.000Z","temp":-0.04575892857142794,"pm25":42.42103772500343},{"date":"2020-04-05T00:00:00.000Z","temp":0.40869047619047605,"pm25":42.273315178682},{"date":"2020-04-05T00:00:00.000Z","temp":0.6640972222222221,"pm25":41.15946647206431},{"date":"2020-04-05T00:00:00.000Z","temp":0.9195039682539681,"pm25":40.045617765446615},{"date":"2020-04-05T00:00:00.000Z","temp":1.1749107142857143,"pm25":38.93176905882892},{"date":"2020-04-05T00:00:00.000Z","temp":1.4303174603174602,"pm25":37.81792035221123},{"date":"2020-04-05T00:00:00.000Z","temp":1.6857242063492062,"pm25":36.704071645593544},{"date":"2020-04-09T00:00:00.000Z","temp":1.9411309523809521,"pm25":35.59022293897585},{"date":"2020-04-09T00:00:00.000Z","temp":2.196537698412698,"pm25":34.476374232358154},{"date":"2020-04-09T00:00:00.000Z","temp":2.451944444444444,"pm25":33.362525525740466},{"date":"2020-04-09T00:00:00.000Z","temp":2.70735119047619,"pm25":32.24867681912278},{"date":"2020-04-09T00:00:00.000Z","temp":2.962757936507936,"pm25":31.134828112505083},{"date":"2020-04-09T00:00:00.000Z","temp":3.218164682539682,"pm25":30.020979405887392},{"date":"2020-04-09T00:00:00.000Z","temp":3.4735714285714283,"pm25":28.9071306992697},{"date":"2020-04-09T00:00:00.000Z","temp":3.5536855158730156,"pm25":28.446627153973843},{"date":"2020-04-09T00:00:00.000Z","temp":3.633799603174603,"pm25":27.986123608677985},{"date":"2020-04-09T00:00:00.000Z","temp":3.7139136904761902,"pm25":27.525620063382124},{"date":"2020-04-09T00:00:00.000Z","temp":3.7940277777777776,"pm25":27.065116518086267},{"date":"2020-04-09T00:00:00.000Z","temp":3.8741418650793653,"pm25":26.60461297279041},{"date":"2020-04-13T00:00:00.000Z","temp":3.9542559523809526,"pm25":26.14410942749455},{"date":"2020-04-13T00:00:00.000Z","temp":4.03437003968254,"pm25":25.68360588219869},{"date":"2020-04-13T00:00:00.000Z","temp":4.114484126984127,"pm25":25.223102336902834},{"date":"2020-04-13T00:00:00.000Z","temp":4.1945982142857146,"pm25":24.762598791606976},{"date":"2020-04-13T00:00:00.000Z","temp":4.274712301587302,"pm25":24.30209524631112},{"date":"2020-04-13T00:00:00.000Z","temp":4.354826388888889,"pm25":23.841591701015258},{"date":"2020-04-13T00:00:00.000Z","temp":4.4349404761904765,"pm25":23.3810881557194},{"date":"2020-04-13T00:00:00.000Z","temp":4.401696428571428,"pm25":23.359450511728785},{"date":"2020-04-13T00:00:00.000Z","temp":4.368452380952381,"pm25":23.337812867738165},{"date":"2020-04-13T00:00:00.000Z","temp":4.335208333333334,"pm25":23.31617522374755},{"date":"2020-04-13T00:00:00.000Z","temp":4.301964285714286,"pm25":23.294537579756934},{"date":"2020-04-13T00:00:00.000Z","temp":4.268720238095238,"pm25":23.272899935766315},{"date":"2020-04-17T00:00:00.000Z","temp":4.235476190476191,"pm25":23.2512622917757},{"date":"2020-04-17T00:00:00.000Z","temp":4.202232142857143,"pm25":23.229624647785084},{"date":"2020-04-17T00:00:00.000Z","temp":4.168988095238095,"pm25":23.207987003794464},{"date":"2020-04-17T00:00:00.000Z","temp":4.135744047619047,"pm25":23.18634935980385},{"date":"2020-04-17T00:00:00.000Z","temp":4.1025,"pm25":23.164711715813233},{"date":"2020-04-17T00:00:00.000Z","temp":4.069255952380953,"pm25":23.143074071822614},{"date":"2020-04-17T00:00:00.000Z","temp":4.036011904761905,"pm25":23.121436427832},{"date":"2020-04-17T00:00:00.000Z","temp":3.6756299603174605,"pm25":23.047645003392766},{"date":"2020-04-17T00:00:00.000Z","temp":3.3152480158730158,"pm25":22.97385357895353},{"date":"2020-04-17T00:00:00.000Z","temp":2.9548660714285715,"pm25":22.9000621545143},{"date":"2020-04-17T00:00:00.000Z","temp":2.594484126984127,"pm25":22.826270730075066},{"date":"2020-04-17T00:00:00.000Z","temp":2.2341021825396825,"pm25":22.75247930563583},{"date":"2020-04-21T00:00:00.000Z","temp":1.8737202380952382,"pm25":22.6786878811966},{"date":"2020-04-21T00:00:00.000Z","temp":1.5133382936507935,"pm25":22.604896456757366},{"date":"2020-04-21T00:00:00.000Z","temp":1.1529563492063493,"pm25":22.53110503231813},{"date":"2020-04-21T00:00:00.000Z","temp":0.792574404761905,"pm25":22.4573136078789},{"date":"2020-04-21T00:00:00.000Z","temp":0.4321924603174603,"pm25":22.383522183439666},{"date":"2020-04-21T00:00:00.000Z","temp":0.07181051587301601,"pm25":22.30973075900043},{"date":"2020-04-21T00:00:00.000Z","temp":-0.2885714285714285,"pm25":22.2359393345612},{"date":"2020-04-21T00:00:00.000Z","temp":-0.28592757936507923,"pm25":23.045667764092624},{"date":"2020-04-21T00:00:00.000Z","temp":-0.28328373015873004,"pm25":23.85539619362405},{"date":"2020-04-21T00:00:00.000Z","temp":-0.2806398809523808,"pm25":24.665124623155474},{"date":"2020-04-21T00:00:00.000Z","temp":-0.2779960317460316,"pm25":25.4748530526869},{"date":"2020-04-21T00:00:00.000Z","temp":-0.27535218253968236,"pm25":26.28458148221832},{"date":"2020-04-25T00:00:00.000Z","temp":-0.2727083333333331,"pm25":27.094309911749747},{"date":"2020-04-25T00:00:00.000Z","temp":-0.2700644841269839,"pm25":27.904038341281172},{"date":"2020-04-25T00:00:00.000Z","temp":-0.26742063492063467,"pm25":28.713766770812597},{"date":"2020-04-25T00:00:00.000Z","temp":-0.2647767857142855,"pm25":29.523495200344023},{"date":"2020-04-25T00:00:00.000Z","temp":-0.26213293650793623,"pm25":30.333223629875448},{"date":"2020-04-25T00:00:00.000Z","temp":-0.25948908730158704,"pm25":31.142952059406873},{"date":"2020-04-25T00:00:00.000Z","temp":-0.2568452380952378,"pm25":31.9526804889383},{"date":"2020-04-25T00:00:00.000Z","temp":0.6157837301587306,"pm25":32.05588553226942},{"date":"2020-04-25T00:00:00.000Z","temp":1.4884126984126989,"pm25":32.15909057560055},{"date":"2020-04-25T00:00:00.000Z","temp":2.361041666666667,"pm25":32.262295618931674},{"date":"2020-04-25T00:00:00.000Z","temp":3.2336706349206352,"pm25":32.3655006622628},{"date":"2020-04-25T00:00:00.000Z","temp":4.1062996031746035,"pm25":32.468705705593926},{"date":"2020-04-29T00:00:00.000Z","temp":4.978928571428572,"pm25":32.57191074892505},{"date":"2020-04-29T00:00:00.000Z","temp":5.85155753968254,"pm25":32.67511579225617},{"date":"2020-04-29T00:00:00.000Z","temp":6.724186507936508,"pm25":32.7783208355873},{"date":"2020-04-29T00:00:00.000Z","temp":7.596815476190477,"pm25":32.881525878918424},{"date":"2020-04-29T00:00:00.000Z","temp":8.469444444444445,"pm25":32.98473092224955},{"date":"2020-04-29T00:00:00.000Z","temp":9.342073412698413,"pm25":33.08793596558068}];
 
     /* App.svelte generated by Svelte v3.20.1 */
+
+    const { console: console_1 } = globals;
     const file$6 = "App.svelte";
 
     function create_fragment$6(ctx) {
@@ -13499,7 +13628,8 @@ var app = (function () {
     				pauseAnimation: /*pauseAnimation*/ ctx[4],
     				startAnimation: /*startAnimation*/ ctx[5],
     				updateCurrentTime: /*updateCurrentTime*/ ctx[6],
-    				frameData
+    				frameData,
+    				changePlaybackRate: /*changePlaybackRate*/ ctx[7]
     			},
     			$$inline: true
     		});
@@ -13543,28 +13673,28 @@ var app = (function () {
     			attr_dev(link1, "href", "https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
     			attr_dev(link1, "rel", "stylesheet");
     			add_location(link1, file$6, 1, 0, 90);
-    			add_location(h1, file$6, 189, 6, 5724);
+    			add_location(h1, file$6, 193, 6, 5879);
     			attr_dev(div0, "class", "title svelte-1q4dn73");
-    			add_location(div0, file$6, 188, 4, 5698);
+    			add_location(div0, file$6, 192, 4, 5853);
     			attr_dev(div1, "class", "header svelte-1q4dn73");
-    			add_location(div1, file$6, 187, 2, 5673);
+    			add_location(div1, file$6, 191, 2, 5828);
     			attr_dev(div2, "class", "map-animation-date-container svelte-1q4dn73");
-    			add_location(div2, file$6, 197, 8, 5909);
+    			add_location(div2, file$6, 201, 8, 6064);
     			attr_dev(div3, "class", "map svelte-1q4dn73");
     			attr_dev(div3, "id", "map");
-    			add_location(div3, file$6, 196, 6, 5874);
+    			add_location(div3, file$6, 200, 6, 6029);
     			attr_dev(div4, "class", "map-scrubber-container svelte-1q4dn73");
-    			add_location(div4, file$6, 205, 6, 6119);
+    			add_location(div4, file$6, 209, 6, 6274);
     			attr_dev(div5, "class", "map-container svelte-1q4dn73");
-    			add_location(div5, file$6, 195, 4, 5840);
+    			add_location(div5, file$6, 199, 4, 5995);
     			attr_dev(div6, "class", "map-aqi-legend svelte-1q4dn73");
-    			add_location(div6, file$6, 220, 4, 6528);
+    			add_location(div6, file$6, 225, 4, 6737);
     			attr_dev(div7, "class", "visualization svelte-1q4dn73");
-    			add_location(div7, file$6, 193, 2, 5807);
+    			add_location(div7, file$6, 197, 2, 5962);
     			attr_dev(div8, "class", "ub-ap-viz svelte-1q4dn73");
-    			add_location(div8, file$6, 185, 0, 5646);
+    			add_location(div8, file$6, 189, 0, 5801);
     			attr_dev(div9, "class", "station-marker");
-    			add_location(div9, file$6, 229, 0, 6681);
+    			add_location(div9, file$6, 234, 0, 6890);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -13695,6 +13825,11 @@ var app = (function () {
     		}
     	};
 
+    	const changePlaybackRate = playRate => {
+    		console.log("changing playback rate to: " + playRate);
+    		map.getSource("ap_video").video.playbackRate = playRate;
+    	};
+
     	let green_color = "#87e32b"; //green
     	let red_color = "#f0004c"; //red
     	let yellow_color = "#ebc505";
@@ -13762,8 +13897,7 @@ var app = (function () {
     		});
 
     		map.on("click", function () {
-    			map.getSource("ap_video").seek(3);
-    			map.update;
+    			console.log(map.getSource("ap_video"));
     		});
     	};
 
@@ -13811,7 +13945,7 @@ var app = (function () {
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<App> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
     	let { $$slots = {}, $$scope } = $$props;
@@ -13841,6 +13975,7 @@ var app = (function () {
     		startAnimation,
     		reportCurrentTime,
     		updateCurrentTime,
+    		changePlaybackRate,
     		green_color,
     		red_color,
     		yellow_color,
@@ -13861,8 +13996,8 @@ var app = (function () {
     		if ("currentTime" in $$props) $$invalidate(0, currentTime = $$props.currentTime);
     		if ("currentFrame" in $$props) $$invalidate(1, currentFrame = $$props.currentFrame);
     		if ("maxTime" in $$props) $$invalidate(2, maxTime = $$props.maxTime);
-    		if ("maxFrame" in $$props) $$invalidate(11, maxFrame = $$props.maxFrame);
-    		if ("timeToFrameMultiplier" in $$props) $$invalidate(8, timeToFrameMultiplier = $$props.timeToFrameMultiplier);
+    		if ("maxFrame" in $$props) $$invalidate(12, maxFrame = $$props.maxFrame);
+    		if ("timeToFrameMultiplier" in $$props) $$invalidate(9, timeToFrameMultiplier = $$props.timeToFrameMultiplier);
     		if ("animationPaused" in $$props) animationPaused = $$props.animationPaused;
     		if ("isAnimationEnded" in $$props) $$invalidate(3, isAnimationEnded = $$props.isAnimationEnded);
     		if ("green_color" in $$props) green_color = $$props.green_color;
@@ -13882,10 +14017,10 @@ var app = (function () {
 
     	$$self.$$.update = () => {
     		if ($$self.$$.dirty & /*maxTime*/ 4) {
-    			 $$invalidate(8, timeToFrameMultiplier = maxTime > 0 ? maxFrame / maxTime : 0);
+    			 $$invalidate(9, timeToFrameMultiplier = maxTime > 0 ? maxFrame / maxTime : 0);
     		}
 
-    		if ($$self.$$.dirty & /*timeToFrameMultiplier, currentTime*/ 257) {
+    		if ($$self.$$.dirty & /*timeToFrameMultiplier, currentTime*/ 513) {
     			 $$invalidate(1, currentFrame = Math.round(timeToFrameMultiplier * currentTime));
     		}
     	};
@@ -13897,7 +14032,8 @@ var app = (function () {
     		isAnimationEnded,
     		pauseAnimation,
     		startAnimation,
-    		updateCurrentTime
+    		updateCurrentTime,
+    		changePlaybackRate
     	];
     }
 

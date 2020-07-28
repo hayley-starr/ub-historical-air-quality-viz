@@ -3,6 +3,7 @@
     import { styler, value, pointer, listen, transform, easing, keyframes } from 'popmotion';
     import PolicyEvent from './PolicyEvent.svelte';
     import moment from 'moment';
+    import { classnames } from './classnames.js';
     import { select } from 'd3-selection';
     import { scaleLinear } from 'd3-scale';
     import { axisBottom, axisRight } from 'd3-axis';
@@ -17,6 +18,7 @@
     export let startAnimation;
     export let updateCurrentTime;
     export let isAnimationEnded;
+    export let changePlaybackRate;
 
     const EVENT_BUFFER_TIME = 0.5; // how much time in seconds before and after to start showing an event
 
@@ -26,6 +28,7 @@
     let chartHeight = 0;
     let maxScrubberWidth = 1000;// width of scrubber in px
     let handleStyler;
+    let currPlayRate = 1;
 
     $: {
         maxScrubberWidth = sliderWidth;
@@ -98,6 +101,11 @@
     const handleStartAnimation = () => {
         isUserRunning = true;
         startAnimation();
+    }
+
+    const handleChangePlaybackRate = (playRate) => {
+        currPlayRate = playRate;
+        changePlaybackRate(playRate);
     }
 
     let startDate = moment(frameData[0].date);
@@ -184,6 +192,12 @@
                 .y(function(frame) { return yAxisScale(frame.pm25) })
             );
     }
+
+    const displayTime = (timeNow, timeTotal) => {
+        const duration = moment.duration(timeNow, 'seconds');
+        const formatted = moment.utc(duration.asMilliseconds()).format("m:ss");
+        return formatted;
+    }
 </script> 
 
 
@@ -254,13 +268,13 @@
             </button>
             {/if}
             <div class='speed-buttons-container'>
-                <button class='speed-button'>{'0.5x'}</button>
-                <button class='speed-button'>{'1x'}</button>
-                <button class='speed-button'>{'1.5x'}</button>
+                <button class={classnames('speed-button', currPlayRate == 0.5 ? 'speed-button-selected' : '')} on:click={() => handleChangePlaybackRate(0.5)}>{'0.5x'}</button>
+                <button class={classnames('speed-button', currPlayRate == 1 ? 'speed-button-selected' : '')} on:click={() => handleChangePlaybackRate(1)}>{'1x'}</button>
+                <button class={classnames('speed-button', currPlayRate == 2 ? 'speed-button-selected' : '')} on:click={() => handleChangePlaybackRate(2)}>{'2x'}</button>
             </div>
          </div>
          <div class='current-time-display'>
-            {'0:55'}
+            {`${displayTime(currentTime)} / ${displayTime(maxTime)}`}
          </div>
     </div>
 </div>
@@ -308,6 +322,25 @@
 
         border: none;
         height: 20px;
+
+        cursor: pointer;
+    }
+
+    .speed-button-selected {
+        background-color: #e3a005;
+    }
+
+    .speed-button:focus {
+        outline: none;
+    }
+
+    .speed-button:active {
+        outline: none;
+        transform: scale(1.1);
+    }
+
+    .speed-button:hover {
+        transform: scale(1.1);
     }
 
     .current-time-display {

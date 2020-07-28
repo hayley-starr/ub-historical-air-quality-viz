@@ -63,6 +63,11 @@
     }
   }
 
+  const changePlaybackRate = (playRate) => {
+    console.log('changing playback rate to: ' + playRate);
+    map.getSource('ap_video').video.playbackRate = playRate;
+  }
+
 
   let green_color = '#87e32b'; //green
   let red_color = '#f0004c'; //red
@@ -133,8 +138,7 @@
     });
 
     map.on("click", function() {
-      map.getSource("ap_video").seek(3.0);
-      map.update;
+      console.log(map.getSource("ap_video"));
     });
   }
 
@@ -212,6 +216,7 @@
               startAnimation={startAnimation} 
               updateCurrentTime={updateCurrentTime}
               frameData={frameData}
+              changePlaybackRate={changePlaybackRate}
           />
       </div>
 
