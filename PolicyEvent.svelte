@@ -9,6 +9,10 @@
     export let eventPosition;
     export let eventDetails;
     export let id;
+    export let pauseAnimation;
+    export let startAnimation;
+
+    const PAUSE_ON_EVENT_MS = 3000; 
 
 
 //---- Position the policy dot and container according to their calculated position -----------
@@ -36,7 +40,7 @@
 
     $: {
         if (eventPosition > 0) {
-            bufferEndPosition = eventPosition + 2*bufferRadius;
+            bufferEndPosition = eventPosition + bufferRadius;
             bufferStartPosition = eventPosition - bufferRadius;
         }
     }
@@ -118,7 +122,11 @@
         });
         policyInfoExpandKeyFrames.start(style => {
           policyInfoContainerStyler.set(style);
-        });   
+        });
+        
+        // pause the animation for a little to let the user read
+        pauseAnimation();
+        setTimeout(function() { startAnimation() }, PAUSE_ON_EVENT_MS);
     }
 
     // To diminish the whole event, contract the dot and hide the policy info box

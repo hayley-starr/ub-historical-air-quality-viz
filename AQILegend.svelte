@@ -9,19 +9,20 @@
     export let currentFrame;
     export let frameData;
 
-    let green_color = '#93c947'; //green
-    let red_color = '#f0004c'; //red
-    let orange_red_color = '#fc6203';
-    let yellow_color = '#ebc505';
-    let green_yellow_color = '#d7e01d'
-    let orange_color = '#fc9d03';
-    let red_purple_color = '#d921d0';
-    let purple_color = '#5e03fc';
-    let dark_purple_color = '#4b1f7a';
-    let black_color = '#050505';
+    // DO NOT CHANGE -- used in the png-izer as well
+    const green_color = '#93c947';
+    const red_color = '#f0004c';
+    const orange_red_color = '#fc6203';
+    const yellow_color = '#ebc505';
+    const green_yellow_color = '#d7e01d'
+    const orange_color = '#fc9d03';
+    const red_purple_color = '#d921d0';
+    const purple_color = '#5e03fc';
+    const dark_purple_color = '#4b1f7a';
+    const black_color = '#050505';
 
     const airQualityScale = [0, 12, 35, 55, 150, 250, 450, 500]; // this is up for changing!
-    let airQualityScaleTicks = [12, 35, 55, 150, 250, 500]; // this is up for changing!
+    const airQualityScaleTicks = [12, 35, 55, 150, 250, 500]; // this is up for changing!
     const colorScale = [green_color, // <12
             yellow_color, // <35
             orange_color, // <55
@@ -103,7 +104,7 @@
             <div>{'Air Quality Sensor Location'}</div>
         </div>
 
-         <button class='button-switch-basemap'>Switch to Satellite View</button>
+         <!-- <button class='button-switch-basemap'>Switch to Satellite View</button> -->
     </div>
      <div class='legend-tile thermometer-container'>
         <Thermometer 

@@ -8800,17 +8800,17 @@ var app = (function () {
     			div4 = element("div");
     			create_component(eventinfobox.$$.fragment);
     			attr_dev(div0, "class", div0_class_value = "" + (null_to_empty("policy-event-date policy-event-date" + /*id*/ ctx[1]) + " svelte-syxd9r"));
-    			add_location(div0, file$1, 157, 4, 4912);
+    			add_location(div0, file$1, 165, 4, 5179);
     			attr_dev(div1, "class", div1_class_value = "" + (null_to_empty("policy-dot policy-dot" + /*id*/ ctx[1]) + " svelte-syxd9r"));
-    			add_location(div1, file$1, 162, 12, 5187);
+    			add_location(div1, file$1, 170, 12, 5454);
     			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty("policy-dot-hit-area policy-dot-hit-area" + /*id*/ ctx[1]) + " svelte-syxd9r"));
-    			add_location(div2, file$1, 161, 8, 5116);
+    			add_location(div2, file$1, 169, 8, 5383);
     			attr_dev(div3, "class", div3_class_value = "" + (null_to_empty("policy-dot-container policy-dot-container" + /*id*/ ctx[1]) + " svelte-syxd9r"));
-    			add_location(div3, file$1, 160, 4, 5047);
+    			add_location(div3, file$1, 168, 4, 5314);
     			attr_dev(div4, "class", div4_class_value = "" + (null_to_empty("policy-info-container policy-info-container" + /*id*/ ctx[1]) + " svelte-syxd9r"));
-    			add_location(div4, file$1, 165, 4, 5264);
+    			add_location(div4, file$1, 173, 4, 5531);
     			attr_dev(div5, "class", "policy-event");
-    			add_location(div5, file$1, 156, 0, 4881);
+    			add_location(div5, file$1, 164, 0, 5148);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -8878,6 +8878,7 @@ var app = (function () {
     	return block;
     }
 
+    const PAUSE_ON_EVENT_MS = 3000;
     const expandDuration = 400;
     const contractDuration = 600;
 
@@ -8887,6 +8888,8 @@ var app = (function () {
     	let { eventPosition } = $$props;
     	let { eventDetails } = $$props;
     	let { id } = $$props;
+    	let { pauseAnimation } = $$props;
+    	let { startAnimation } = $$props;
 
     	//---- Position the policy dot and container according to their calculated position -----------
     	let policyDotStyler;
@@ -8951,7 +8954,7 @@ var app = (function () {
 
     	// To highlight the whole event, expand the dot and show the policy info box
     	const highlightEvent = () => {
-    		$$invalidate(11, isEventHighlighted = true);
+    		$$invalidate(13, isEventHighlighted = true);
 
     		policyDotExpandKeyFrames.start(style => {
     			policyDotStyler.set(style);
@@ -8960,11 +8963,21 @@ var app = (function () {
     		policyInfoExpandKeyFrames.start(style => {
     			policyInfoContainerStyler.set(style);
     		});
+
+    		// pause the animation for a little to let the user read
+    		pauseAnimation();
+
+    		setTimeout(
+    			function () {
+    				startAnimation();
+    			},
+    			PAUSE_ON_EVENT_MS
+    		);
     	};
 
     	// To diminish the whole event, contract the dot and hide the policy info box
     	const diminishEvent = () => {
-    		$$invalidate(11, isEventHighlighted = false);
+    		$$invalidate(13, isEventHighlighted = false);
 
     		policyDotContractKeyFrames.start(style => {
     			policyDotStyler.set(style);
@@ -8984,11 +8997,11 @@ var app = (function () {
     		// Create a styler to style the dot container - to position the policy dot on the timeline
     		const policyDotContainer = document.querySelector(".policy-dot-container" + id);
 
-    		$$invalidate(6, policyDotContainerStyler = index(policyDotContainer));
+    		$$invalidate(8, policyDotContainerStyler = index(policyDotContainer));
     		const policyInfoContainer = document.querySelector(".policy-info-container" + id);
-    		$$invalidate(7, policyInfoContainerStyler = index(policyInfoContainer));
+    		$$invalidate(9, policyInfoContainerStyler = index(policyInfoContainer));
     		const policyDate = document.querySelector(".policy-event-date" + id);
-    		$$invalidate(8, policyDateStyler = index(policyDate));
+    		$$invalidate(10, policyDateStyler = index(policyDate));
     	});
 
     	const writable_props = [
@@ -8996,7 +9009,9 @@ var app = (function () {
     		"bufferRadius",
     		"eventPosition",
     		"eventDetails",
-    		"id"
+    		"id",
+    		"pauseAnimation",
+    		"startAnimation"
     	];
 
     	Object.keys($$props).forEach(key => {
@@ -9012,6 +9027,8 @@ var app = (function () {
     		if ("eventPosition" in $$props) $$invalidate(2, eventPosition = $$props.eventPosition);
     		if ("eventDetails" in $$props) $$invalidate(0, eventDetails = $$props.eventDetails);
     		if ("id" in $$props) $$invalidate(1, id = $$props.id);
+    		if ("pauseAnimation" in $$props) $$invalidate(5, pauseAnimation = $$props.pauseAnimation);
+    		if ("startAnimation" in $$props) $$invalidate(6, startAnimation = $$props.startAnimation);
     	};
 
     	$$self.$capture_state = () => ({
@@ -9030,6 +9047,9 @@ var app = (function () {
     		eventPosition,
     		eventDetails,
     		id,
+    		pauseAnimation,
+    		startAnimation,
+    		PAUSE_ON_EVENT_MS,
     		policyDotStyler,
     		policyDotContainerStyler,
     		policyInfoContainerStyler,
@@ -9056,13 +9076,15 @@ var app = (function () {
     		if ("eventPosition" in $$props) $$invalidate(2, eventPosition = $$props.eventPosition);
     		if ("eventDetails" in $$props) $$invalidate(0, eventDetails = $$props.eventDetails);
     		if ("id" in $$props) $$invalidate(1, id = $$props.id);
+    		if ("pauseAnimation" in $$props) $$invalidate(5, pauseAnimation = $$props.pauseAnimation);
+    		if ("startAnimation" in $$props) $$invalidate(6, startAnimation = $$props.startAnimation);
     		if ("policyDotStyler" in $$props) policyDotStyler = $$props.policyDotStyler;
-    		if ("policyDotContainerStyler" in $$props) $$invalidate(6, policyDotContainerStyler = $$props.policyDotContainerStyler);
-    		if ("policyInfoContainerStyler" in $$props) $$invalidate(7, policyInfoContainerStyler = $$props.policyInfoContainerStyler);
-    		if ("policyDateStyler" in $$props) $$invalidate(8, policyDateStyler = $$props.policyDateStyler);
+    		if ("policyDotContainerStyler" in $$props) $$invalidate(8, policyDotContainerStyler = $$props.policyDotContainerStyler);
+    		if ("policyInfoContainerStyler" in $$props) $$invalidate(9, policyInfoContainerStyler = $$props.policyInfoContainerStyler);
+    		if ("policyDateStyler" in $$props) $$invalidate(10, policyDateStyler = $$props.policyDateStyler);
     		if ("bufferStartPosition" in $$props) bufferStartPosition = $$props.bufferStartPosition;
     		if ("bufferEndPosition" in $$props) bufferEndPosition = $$props.bufferEndPosition;
-    		if ("isEventHighlighted" in $$props) $$invalidate(11, isEventHighlighted = $$props.isEventHighlighted);
+    		if ("isEventHighlighted" in $$props) $$invalidate(13, isEventHighlighted = $$props.isEventHighlighted);
     		if ("policyDotExpandKeyFrames" in $$props) policyDotExpandKeyFrames = $$props.policyDotExpandKeyFrames;
     		if ("policyInfoExpandKeyFrames" in $$props) policyInfoExpandKeyFrames = $$props.policyInfoExpandKeyFrames;
     		if ("policyDotContractKeyFrames" in $$props) policyDotContractKeyFrames = $$props.policyDotContractKeyFrames;
@@ -9074,7 +9096,7 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*policyDateStyler, eventPosition, policyDotContainerStyler, policyInfoContainerStyler*/ 452) {
+    		if ($$self.$$.dirty & /*policyDateStyler, eventPosition, policyDotContainerStyler, policyInfoContainerStyler*/ 1796) {
     			 {
     				if (policyDateStyler && eventPosition > 0) {
     					policyDotContainerStyler.set("left", eventPosition);
@@ -9087,13 +9109,13 @@ var app = (function () {
     		if ($$self.$$.dirty & /*eventPosition, bufferRadius*/ 20) {
     			 {
     				if (eventPosition > 0) {
-    					bufferEndPosition = eventPosition + 2 * bufferRadius;
+    					bufferEndPosition = eventPosition + bufferRadius;
     					bufferStartPosition = eventPosition - bufferRadius;
     				}
     			}
     		}
 
-    		if ($$self.$$.dirty & /*currentScrubberPosition, isEventHighlighted*/ 2056) {
+    		if ($$self.$$.dirty & /*currentScrubberPosition, isEventHighlighted*/ 8200) {
     			 {
     				// When the scrubber enters the buffer zone, highlight
     				if (isScrubberWithinEventBuffer(currentScrubberPosition)) {
@@ -9109,7 +9131,15 @@ var app = (function () {
     		}
     	};
 
-    	return [eventDetails, id, eventPosition, currentScrubberPosition, bufferRadius];
+    	return [
+    		eventDetails,
+    		id,
+    		eventPosition,
+    		currentScrubberPosition,
+    		bufferRadius,
+    		pauseAnimation,
+    		startAnimation
+    	];
     }
 
     class PolicyEvent extends SvelteComponentDev {
@@ -9121,7 +9151,9 @@ var app = (function () {
     			bufferRadius: 4,
     			eventPosition: 2,
     			eventDetails: 0,
-    			id: 1
+    			id: 1,
+    			pauseAnimation: 5,
+    			startAnimation: 6
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -9152,6 +9184,14 @@ var app = (function () {
 
     		if (/*id*/ ctx[1] === undefined && !("id" in props)) {
     			console.warn("<PolicyEvent> was created without expected prop 'id'");
+    		}
+
+    		if (/*pauseAnimation*/ ctx[5] === undefined && !("pauseAnimation" in props)) {
+    			console.warn("<PolicyEvent> was created without expected prop 'pauseAnimation'");
+    		}
+
+    		if (/*startAnimation*/ ctx[6] === undefined && !("startAnimation" in props)) {
+    			console.warn("<PolicyEvent> was created without expected prop 'startAnimation'");
     		}
     	}
 
@@ -9192,6 +9232,22 @@ var app = (function () {
     	}
 
     	set id(value) {
+    		throw new Error("<PolicyEvent>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get pauseAnimation() {
+    		throw new Error("<PolicyEvent>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set pauseAnimation(value) {
+    		throw new Error("<PolicyEvent>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get startAnimation() {
+    		throw new Error("<PolicyEvent>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set startAnimation(value) {
     		throw new Error("<PolicyEvent>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -11771,22 +11827,24 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[30] = list[i];
-    	child_ctx[32] = i;
+    	child_ctx[32] = list[i];
+    	child_ctx[34] = i;
     	return child_ctx;
     }
 
-    // (217:8) {#each policyEvents as policyEvent, i}
+    // (222:8) {#each policyEvents as policyEvent, i}
     function create_each_block(ctx) {
     	let current;
 
     	const policyevent = new PolicyEvent({
     			props: {
     				currentScrubberPosition: /*convertTimeToXPosition*/ ctx[6](/*currentTime*/ ctx[0]),
-    				eventPosition: Math.round(/*sliderWidth*/ ctx[3] * /*getPolicyEventPosition*/ ctx[10](/*policyEvent*/ ctx[30].date)),
-    				eventDetails: /*policyEvent*/ ctx[30],
+    				eventPosition: Math.round(/*sliderWidth*/ ctx[3] * /*getPolicyEventPosition*/ ctx[12](/*policyEvent*/ ctx[32].date)),
+    				eventDetails: /*policyEvent*/ ctx[32],
     				bufferRadius: EVENT_BUFFER_TIME * /*maxScrubberWidth*/ ctx[4] / /*maxTime*/ ctx[1],
-    				id: /*i*/ ctx[32]
+    				id: /*i*/ ctx[34],
+    				pauseAnimation: /*handlePolicyPause*/ ctx[9],
+    				startAnimation: /*handlePolicyStart*/ ctx[10]
     			},
     			$$inline: true
     		});
@@ -11802,7 +11860,7 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const policyevent_changes = {};
     			if (dirty[0] & /*currentTime*/ 1) policyevent_changes.currentScrubberPosition = /*convertTimeToXPosition*/ ctx[6](/*currentTime*/ ctx[0]);
-    			if (dirty[0] & /*sliderWidth*/ 8) policyevent_changes.eventPosition = Math.round(/*sliderWidth*/ ctx[3] * /*getPolicyEventPosition*/ ctx[10](/*policyEvent*/ ctx[30].date));
+    			if (dirty[0] & /*sliderWidth*/ 8) policyevent_changes.eventPosition = Math.round(/*sliderWidth*/ ctx[3] * /*getPolicyEventPosition*/ ctx[12](/*policyEvent*/ ctx[32].date));
     			if (dirty[0] & /*maxScrubberWidth, maxTime*/ 18) policyevent_changes.bufferRadius = EVENT_BUFFER_TIME * /*maxScrubberWidth*/ ctx[4] / /*maxTime*/ ctx[1];
     			policyevent.$set(policyevent_changes);
     		},
@@ -11824,14 +11882,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(217:8) {#each policyEvents as policyEvent, i}",
+    		source: "(222:8) {#each policyEvents as policyEvent, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (250:12) {:else}
+    // (257:12) {:else}
     function create_else_block(ctx) {
     	let button;
     	let svg;
@@ -11853,26 +11911,26 @@ var app = (function () {
     			g1 = svg_element("g");
     			g0 = svg_element("g");
     			path = svg_element("path");
-    			add_location(style, file$2, 253, 24, 9148);
-    			add_location(defs, file$2, 252, 20, 9117);
+    			add_location(style, file$2, 260, 24, 9409);
+    			add_location(defs, file$2, 259, 20, 9378);
     			attr_dev(path, "class", "cls-play-1");
     			attr_dev(path, "d", "M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z");
     			attr_dev(path, "transform", "translate(0 -0.01)");
-    			add_location(path, file$2, 263, 24, 9560);
+    			add_location(path, file$2, 270, 24, 9821);
     			attr_dev(g0, "id", "Layer_1-2");
     			attr_dev(g0, "data-name", "Layer 1-2");
-    			add_location(g0, file$2, 262, 24, 9495);
+    			add_location(g0, file$2, 269, 24, 9756);
     			attr_dev(g1, "id", "Layer_2");
     			attr_dev(g1, "data-name", "Layer 2");
-    			add_location(g1, file$2, 261, 20, 9434);
+    			add_location(g1, file$2, 268, 20, 9695);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 113.57 127.1");
     			attr_dev(svg, "class", "svelte-y1ruhw");
-    			add_location(svg, file$2, 251, 16, 8996);
+    			add_location(svg, file$2, 258, 16, 9257);
     			attr_dev(button, "class", "start-button play-button svelte-y1ruhw");
-    			add_location(button, file$2, 250, 12, 8906);
+    			add_location(button, file$2, 257, 12, 9167);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, button, anchor);
@@ -11897,14 +11955,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(250:12) {:else}",
+    		source: "(257:12) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (231:12) {#if isUserRunning}
+    // (238:12) {#if isUserRunning}
     function create_if_block(ctx) {
     	let button;
     	let svg;
@@ -11928,28 +11986,28 @@ var app = (function () {
     			g0 = svg_element("g");
     			path0 = svg_element("path");
     			path1 = svg_element("path");
-    			add_location(style, file$2, 234, 24, 8124);
-    			add_location(defs, file$2, 233, 20, 8093);
+    			add_location(style, file$2, 241, 24, 8385);
+    			add_location(defs, file$2, 240, 20, 8354);
     			attr_dev(path0, "class", "cls-pause-1");
     			attr_dev(path0, "d", "M10.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,10.5.5Z");
-    			add_location(path0, file$2, 243, 24, 8497);
+    			add_location(path0, file$2, 250, 24, 8758);
     			attr_dev(path1, "class", "cls-pause-1");
     			attr_dev(path1, "d", "M60.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,60.5.5Z");
-    			add_location(path1, file$2, 244, 24, 8648);
+    			add_location(path1, file$2, 251, 24, 8909);
     			attr_dev(g0, "id", "Layer_1-2");
     			attr_dev(g0, "data-name", "Layer 1-2");
-    			add_location(g0, file$2, 242, 24, 8432);
+    			add_location(g0, file$2, 249, 24, 8693);
     			attr_dev(g1, "id", "Layer_2");
     			attr_dev(g1, "data-name", "Layer 2");
-    			add_location(g1, file$2, 241, 20, 8371);
+    			add_location(g1, file$2, 248, 20, 8632);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 71 135");
     			attr_dev(svg, "class", "svelte-y1ruhw");
-    			add_location(svg, file$2, 232, 16, 7978);
+    			add_location(svg, file$2, 239, 16, 8239);
     			attr_dev(button, "class", "pause-button play-button svelte-y1ruhw");
-    			add_location(button, file$2, 231, 12, 7888);
+    			add_location(button, file$2, 238, 12, 8149);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, button, anchor);
@@ -11975,7 +12033,7 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(231:12) {#if isUserRunning}",
+    		source: "(238:12) {#if isUserRunning}",
     		ctx
     	});
 
@@ -12014,11 +12072,11 @@ var app = (function () {
     	let button2_class_value;
     	let t10;
     	let div8;
-    	let t11_value = `${/*displayTime*/ ctx[12](/*currentTime*/ ctx[0])} / ${/*displayTime*/ ctx[12](/*maxTime*/ ctx[1])}` + "";
+    	let t11_value = `${/*displayTime*/ ctx[14](/*currentTime*/ ctx[0])} / ${/*displayTime*/ ctx[14](/*maxTime*/ ctx[1])}` + "";
     	let t11;
     	let current;
     	let dispose;
-    	let each_value = /*policyEvents*/ ctx[11];
+    	let each_value = /*policyEvents*/ ctx[13];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -12074,46 +12132,46 @@ var app = (function () {
     			t11 = text(t11_value);
     			attr_dev(div0, "class", "pm25-chart svelte-y1ruhw");
     			attr_dev(div0, "id", "pm25-timeseries");
-    			add_location(div0, file$2, 204, 4, 7020);
+    			add_location(div0, file$2, 209, 4, 7177);
     			attr_dev(div1, "class", "range svelte-y1ruhw");
-    			add_location(div1, file$2, 208, 8, 7123);
+    			add_location(div1, file$2, 213, 8, 7280);
     			attr_dev(div2, "class", "handle svelte-y1ruhw");
-    			add_location(div2, file$2, 212, 16, 7247);
+    			add_location(div2, file$2, 217, 16, 7404);
     			attr_dev(div3, "class", "handle-hit-area svelte-y1ruhw");
-    			add_location(div3, file$2, 211, 12, 7201);
+    			add_location(div3, file$2, 216, 12, 7358);
     			attr_dev(div4, "class", "handle-container svelte-y1ruhw");
-    			add_location(div4, file$2, 210, 8, 7158);
+    			add_location(div4, file$2, 215, 8, 7315);
     			attr_dev(div5, "class", "slider svelte-y1ruhw");
     			attr_dev(div5, "id", "slider");
-    			add_location(div5, file$2, 207, 4, 7082);
+    			add_location(div5, file$2, 212, 4, 7239);
 
     			attr_dev(button0, "class", button0_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[5] == 0.5
     			? "speed-button-selected"
     			: "")) + " svelte-y1ruhw"));
 
-    			add_location(button0, file$2, 270, 16, 9930);
+    			add_location(button0, file$2, 277, 16, 10191);
 
     			attr_dev(button1, "class", button1_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[5] == 1
     			? "speed-button-selected"
     			: "")) + " svelte-y1ruhw"));
 
-    			add_location(button1, file$2, 271, 16, 10106);
+    			add_location(button1, file$2, 278, 16, 10367);
 
     			attr_dev(button2, "class", button2_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[5] == 2
     			? "speed-button-selected"
     			: "")) + " svelte-y1ruhw"));
 
-    			add_location(button2, file$2, 272, 16, 10276);
+    			add_location(button2, file$2, 279, 16, 10537);
     			attr_dev(div6, "class", "speed-buttons-container svelte-y1ruhw");
-    			add_location(div6, file$2, 269, 12, 9876);
+    			add_location(div6, file$2, 276, 12, 10137);
     			attr_dev(div7, "class", "control-button-container svelte-y1ruhw");
-    			add_location(div7, file$2, 229, 8, 7804);
+    			add_location(div7, file$2, 236, 8, 8065);
     			attr_dev(div8, "class", "current-time-display svelte-y1ruhw");
-    			add_location(div8, file$2, 275, 9, 10474);
+    			add_location(div8, file$2, 282, 9, 10735);
     			attr_dev(div9, "class", "scrubber-controls svelte-y1ruhw");
-    			add_location(div9, file$2, 228, 4, 7764);
+    			add_location(div9, file$2, 235, 4, 8025);
     			attr_dev(div10, "class", "scrubber svelte-y1ruhw");
-    			add_location(div10, file$2, 203, 0, 6993);
+    			add_location(div10, file$2, 208, 0, 7150);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -12155,14 +12213,14 @@ var app = (function () {
     			if (remount) run_all(dispose);
 
     			dispose = [
-    				listen_dev(button0, "click", /*click_handler*/ ctx[27], false, false, false),
-    				listen_dev(button1, "click", /*click_handler_1*/ ctx[28], false, false, false),
-    				listen_dev(button2, "click", /*click_handler_2*/ ctx[29], false, false, false)
+    				listen_dev(button0, "click", /*click_handler*/ ctx[29], false, false, false),
+    				listen_dev(button1, "click", /*click_handler_1*/ ctx[30], false, false, false),
+    				listen_dev(button2, "click", /*click_handler_2*/ ctx[31], false, false, false)
     			];
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*convertTimeToXPosition, currentTime, sliderWidth, getPolicyEventPosition, policyEvents, maxScrubberWidth, maxTime*/ 3163) {
-    				each_value = /*policyEvents*/ ctx[11];
+    			if (dirty[0] & /*convertTimeToXPosition, currentTime, sliderWidth, getPolicyEventPosition, policyEvents, maxScrubberWidth, maxTime, handlePolicyPause, handlePolicyStart*/ 13915) {
+    				each_value = /*policyEvents*/ ctx[13];
     				validate_each_argument(each_value);
     				let i;
 
@@ -12219,7 +12277,7 @@ var app = (function () {
     				attr_dev(button2, "class", button2_class_value);
     			}
 
-    			if ((!current || dirty[0] & /*currentTime, maxTime*/ 3) && t11_value !== (t11_value = `${/*displayTime*/ ctx[12](/*currentTime*/ ctx[0])} / ${/*displayTime*/ ctx[12](/*maxTime*/ ctx[1])}` + "")) set_data_dev(t11, t11_value);
+    			if ((!current || dirty[0] & /*currentTime, maxTime*/ 3) && t11_value !== (t11_value = `${/*displayTime*/ ctx[14](/*currentTime*/ ctx[0])} / ${/*displayTime*/ ctx[14](/*maxTime*/ ctx[1])}` + "")) set_data_dev(t11, t11_value);
     		},
     		i: function intro(local) {
     			if (current) return;
@@ -12258,7 +12316,7 @@ var app = (function () {
     	return block;
     }
 
-    const EVENT_BUFFER_TIME = 0.5; // how much time in seconds before and after to start showing an event
+    const EVENT_BUFFER_TIME = 0.1; // how much time in seconds before and after to start showing an event
 
     function instance$2($$self, $$props, $$invalidate) {
     	let { frameData } = $$props;
@@ -12292,13 +12350,12 @@ var app = (function () {
     		$$invalidate(3, sliderWidth = slider.getBoundingClientRect().width);
     		chartHeight = document.getElementById("pm25-timeseries").getBoundingClientRect().height;
     		const handle = document.querySelector(".handle-hit-area");
-    		$$invalidate(21, handleStyler = index(handle));
+    		$$invalidate(23, handleStyler = index(handle));
 
     		const handleX = value(0, newX => {
     			updateCurrentTime(convertXPositionToTime(newX));
     		});
 
-    		// const range = document.querySelector('.range');
     		const pointerX = x => index$1({ x }).pipe(xy => xy.x, transformers.clamp(0, maxScrubberWidth));
 
     		const startDrag = () => {
@@ -12338,6 +12395,14 @@ var app = (function () {
     	const handleStartAnimation = () => {
     		$$invalidate(2, isUserRunning = true);
     		startAnimation();
+    	};
+
+    	const handlePolicyPause = () => {
+    		if (isUserRunning) pauseAnimation();
+    	};
+
+    	const handlePolicyStart = () => {
+    		if (isUserRunning) startAnimation();
     	};
 
     	const handleChangePlaybackRate = playRate => {
@@ -12442,14 +12507,14 @@ var app = (function () {
     	const click_handler_2 = () => handleChangePlaybackRate(2);
 
     	$$self.$set = $$props => {
-    		if ("frameData" in $$props) $$invalidate(13, frameData = $$props.frameData);
+    		if ("frameData" in $$props) $$invalidate(15, frameData = $$props.frameData);
     		if ("currentTime" in $$props) $$invalidate(0, currentTime = $$props.currentTime);
     		if ("maxTime" in $$props) $$invalidate(1, maxTime = $$props.maxTime);
-    		if ("pauseAnimation" in $$props) $$invalidate(14, pauseAnimation = $$props.pauseAnimation);
-    		if ("startAnimation" in $$props) $$invalidate(15, startAnimation = $$props.startAnimation);
-    		if ("updateCurrentTime" in $$props) $$invalidate(16, updateCurrentTime = $$props.updateCurrentTime);
-    		if ("isAnimationEnded" in $$props) $$invalidate(17, isAnimationEnded = $$props.isAnimationEnded);
-    		if ("changePlaybackRate" in $$props) $$invalidate(18, changePlaybackRate = $$props.changePlaybackRate);
+    		if ("pauseAnimation" in $$props) $$invalidate(16, pauseAnimation = $$props.pauseAnimation);
+    		if ("startAnimation" in $$props) $$invalidate(17, startAnimation = $$props.startAnimation);
+    		if ("updateCurrentTime" in $$props) $$invalidate(18, updateCurrentTime = $$props.updateCurrentTime);
+    		if ("isAnimationEnded" in $$props) $$invalidate(19, isAnimationEnded = $$props.isAnimationEnded);
+    		if ("changePlaybackRate" in $$props) $$invalidate(20, changePlaybackRate = $$props.changePlaybackRate);
     	};
 
     	$$self.$capture_state = () => ({
@@ -12490,6 +12555,8 @@ var app = (function () {
     		convertXPositionToTime,
     		handlePauseAnimation,
     		handleStartAnimation,
+    		handlePolicyPause,
+    		handlePolicyStart,
     		handleChangePlaybackRate,
     		startDate,
     		endDate,
@@ -12501,20 +12568,20 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("frameData" in $$props) $$invalidate(13, frameData = $$props.frameData);
+    		if ("frameData" in $$props) $$invalidate(15, frameData = $$props.frameData);
     		if ("currentTime" in $$props) $$invalidate(0, currentTime = $$props.currentTime);
     		if ("maxTime" in $$props) $$invalidate(1, maxTime = $$props.maxTime);
-    		if ("pauseAnimation" in $$props) $$invalidate(14, pauseAnimation = $$props.pauseAnimation);
-    		if ("startAnimation" in $$props) $$invalidate(15, startAnimation = $$props.startAnimation);
-    		if ("updateCurrentTime" in $$props) $$invalidate(16, updateCurrentTime = $$props.updateCurrentTime);
-    		if ("isAnimationEnded" in $$props) $$invalidate(17, isAnimationEnded = $$props.isAnimationEnded);
-    		if ("changePlaybackRate" in $$props) $$invalidate(18, changePlaybackRate = $$props.changePlaybackRate);
+    		if ("pauseAnimation" in $$props) $$invalidate(16, pauseAnimation = $$props.pauseAnimation);
+    		if ("startAnimation" in $$props) $$invalidate(17, startAnimation = $$props.startAnimation);
+    		if ("updateCurrentTime" in $$props) $$invalidate(18, updateCurrentTime = $$props.updateCurrentTime);
+    		if ("isAnimationEnded" in $$props) $$invalidate(19, isAnimationEnded = $$props.isAnimationEnded);
+    		if ("changePlaybackRate" in $$props) $$invalidate(20, changePlaybackRate = $$props.changePlaybackRate);
     		if ("isUserRunning" in $$props) $$invalidate(2, isUserRunning = $$props.isUserRunning);
     		if ("isDragging" in $$props) isDragging = $$props.isDragging;
     		if ("sliderWidth" in $$props) $$invalidate(3, sliderWidth = $$props.sliderWidth);
     		if ("chartHeight" in $$props) chartHeight = $$props.chartHeight;
     		if ("maxScrubberWidth" in $$props) $$invalidate(4, maxScrubberWidth = $$props.maxScrubberWidth);
-    		if ("handleStyler" in $$props) $$invalidate(21, handleStyler = $$props.handleStyler);
+    		if ("handleStyler" in $$props) $$invalidate(23, handleStyler = $$props.handleStyler);
     		if ("currPlayRate" in $$props) $$invalidate(5, currPlayRate = $$props.currPlayRate);
     		if ("startDate" in $$props) startDate = $$props.startDate;
     		if ("endDate" in $$props) endDate = $$props.endDate;
@@ -12529,18 +12596,18 @@ var app = (function () {
     		if ($$self.$$.dirty[0] & /*sliderWidth*/ 8) {
     			 {
     				$$invalidate(4, maxScrubberWidth = sliderWidth);
-    				addPm25TimeseriesChart();
+    				addPm25TimeseriesChart(); // when the sliderwidth has been updated
     			}
     		}
 
-    		if ($$self.$$.dirty[0] & /*handleStyler, currentTime*/ 2097153) {
+    		if ($$self.$$.dirty[0] & /*handleStyler, currentTime*/ 8388609) {
     			 {
     				// continuoslu check currentTime for where to place the scrubber handle
     				handleStyler && handleStyler.set("x", convertTimeToXPosition(currentTime));
     			}
     		}
 
-    		if ($$self.$$.dirty[0] & /*isAnimationEnded*/ 131072) {
+    		if ($$self.$$.dirty[0] & /*isAnimationEnded*/ 524288) {
     			 {
     				if (isAnimationEnded) {
     					$$invalidate(2, isUserRunning = false);
@@ -12559,6 +12626,8 @@ var app = (function () {
     		convertTimeToXPosition,
     		handlePauseAnimation,
     		handleStartAnimation,
+    		handlePolicyPause,
+    		handlePolicyStart,
     		handleChangePlaybackRate,
     		getPolicyEventPosition,
     		policyEvents,
@@ -12594,14 +12663,14 @@ var app = (function () {
     			create_fragment$2,
     			safe_not_equal,
     			{
-    				frameData: 13,
+    				frameData: 15,
     				currentTime: 0,
     				maxTime: 1,
-    				pauseAnimation: 14,
-    				startAnimation: 15,
-    				updateCurrentTime: 16,
-    				isAnimationEnded: 17,
-    				changePlaybackRate: 18
+    				pauseAnimation: 16,
+    				startAnimation: 17,
+    				updateCurrentTime: 18,
+    				isAnimationEnded: 19,
+    				changePlaybackRate: 20
     			},
     			[-1, -1]
     		);
@@ -12616,7 +12685,7 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*frameData*/ ctx[13] === undefined && !("frameData" in props)) {
+    		if (/*frameData*/ ctx[15] === undefined && !("frameData" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'frameData'");
     		}
 
@@ -12628,23 +12697,23 @@ var app = (function () {
     			console.warn("<Scrubber> was created without expected prop 'maxTime'");
     		}
 
-    		if (/*pauseAnimation*/ ctx[14] === undefined && !("pauseAnimation" in props)) {
+    		if (/*pauseAnimation*/ ctx[16] === undefined && !("pauseAnimation" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'pauseAnimation'");
     		}
 
-    		if (/*startAnimation*/ ctx[15] === undefined && !("startAnimation" in props)) {
+    		if (/*startAnimation*/ ctx[17] === undefined && !("startAnimation" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'startAnimation'");
     		}
 
-    		if (/*updateCurrentTime*/ ctx[16] === undefined && !("updateCurrentTime" in props)) {
+    		if (/*updateCurrentTime*/ ctx[18] === undefined && !("updateCurrentTime" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'updateCurrentTime'");
     		}
 
-    		if (/*isAnimationEnded*/ ctx[17] === undefined && !("isAnimationEnded" in props)) {
+    		if (/*isAnimationEnded*/ ctx[19] === undefined && !("isAnimationEnded" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'isAnimationEnded'");
     		}
 
-    		if (/*changePlaybackRate*/ ctx[18] === undefined && !("changePlaybackRate" in props)) {
+    		if (/*changePlaybackRate*/ ctx[20] === undefined && !("changePlaybackRate" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'changePlaybackRate'");
     		}
     	}
@@ -13007,14 +13076,14 @@ var app = (function () {
 
     function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[26] = list[i];
+    	child_ctx[16] = list[i];
     	return child_ctx;
     }
 
-    // (89:12) {#each airQualityScaleTicks as tick}
+    // (90:12) {#each airQualityScaleTicks as tick}
     function create_each_block$1(ctx) {
     	let div;
-    	let t0_value = "-" + /*tick*/ ctx[26] + " μg/m3" + "";
+    	let t0_value = "-" + /*tick*/ ctx[16] + " μg/m3" + "";
     	let t0;
     	let t1;
 
@@ -13023,7 +13092,7 @@ var app = (function () {
     			div = element("div");
     			t0 = text(t0_value);
     			t1 = space();
-    			add_location(div, file$4, 89, 16, 2952);
+    			add_location(div, file$4, 90, 16, 3013);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -13040,7 +13109,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(89:12) {#each airQualityScaleTicks as tick}",
+    		source: "(90:12) {#each airQualityScaleTicks as tick}",
     		ctx
     	});
 
@@ -13061,8 +13130,6 @@ var app = (function () {
     	let t2;
     	let div4;
     	let t4;
-    	let button;
-    	let t6;
     	let div7;
     	let current;
     	let each_value = /*airQualityScaleTicks*/ ctx[2];
@@ -13102,33 +13169,28 @@ var app = (function () {
     			div4 = element("div");
     			div4.textContent = `${"Air Quality Sensor Location"}`;
     			t4 = space();
-    			button = element("button");
-    			button.textContent = "Switch to Satellite View";
-    			t6 = space();
     			div7 = element("div");
     			create_component(thermometer.$$.fragment);
     			attr_dev(canvas, "class", "pm25-scale");
     			attr_dev(canvas, "id", "pm25-scale");
-    			add_location(canvas, file$4, 86, 8, 2795);
+    			add_location(canvas, file$4, 87, 8, 2856);
     			attr_dev(div0, "class", "pm25-scale-ticks svelte-m6fpcf");
-    			add_location(div0, file$4, 87, 8, 2856);
+    			add_location(div0, file$4, 88, 8, 2917);
     			attr_dev(div1, "class", "legend-tile ap-legend-pm25-scale-container svelte-m6fpcf");
-    			add_location(div1, file$4, 85, 4, 2730);
+    			add_location(div1, file$4, 86, 4, 2791);
     			attr_dev(div2, "class", "ap-station-marker svelte-m6fpcf");
-    			add_location(div2, file$4, 100, 16, 3193);
+    			add_location(div2, file$4, 101, 16, 3254);
     			attr_dev(div3, "class", "ap-station-container svelte-m6fpcf");
-    			add_location(div3, file$4, 99, 12, 3142);
-    			add_location(div4, file$4, 102, 12, 3262);
+    			add_location(div3, file$4, 100, 12, 3203);
+    			add_location(div4, file$4, 103, 12, 3323);
     			attr_dev(div5, "class", "ap-legend-stations svelte-m6fpcf");
-    			add_location(div5, file$4, 98, 8, 3097);
-    			attr_dev(button, "class", "button-switch-basemap svelte-m6fpcf");
-    			add_location(button, file$4, 105, 9, 3330);
+    			add_location(div5, file$4, 99, 8, 3158);
     			attr_dev(div6, "class", "legend-tile basemap-options svelte-m6fpcf");
-    			add_location(div6, file$4, 97, 5, 3047);
+    			add_location(div6, file$4, 98, 5, 3108);
     			attr_dev(div7, "class", "legend-tile thermometer-container svelte-m6fpcf");
-    			add_location(div7, file$4, 107, 5, 3418);
+    			add_location(div7, file$4, 108, 5, 3488);
     			attr_dev(div8, "class", "ap-legend svelte-m6fpcf");
-    			add_location(div8, file$4, 84, 0, 2702);
+    			add_location(div8, file$4, 85, 0, 2763);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -13151,9 +13213,7 @@ var app = (function () {
     			append_dev(div3, div2);
     			append_dev(div5, t2);
     			append_dev(div5, div4);
-    			append_dev(div6, t4);
-    			append_dev(div6, button);
-    			append_dev(div8, t6);
+    			append_dev(div8, t4);
     			append_dev(div8, div7);
     			mount_component(thermometer, div7, null);
     			current = true;
@@ -13215,21 +13275,22 @@ var app = (function () {
     	return block;
     }
 
+    const green_color = "#93c947";
+    const red_color = "#f0004c";
+    const orange_red_color = "#fc6203";
+    const yellow_color = "#ebc505";
+    const green_yellow_color = "#d7e01d";
+    const orange_color = "#fc9d03";
+    const red_purple_color = "#d921d0";
+    const purple_color = "#5e03fc";
+    const dark_purple_color = "#4b1f7a";
+    const black_color = "#050505";
+
     function instance$4($$self, $$props, $$invalidate) {
     	let { currentFrame } = $$props;
     	let { frameData } = $$props;
-    	let green_color = "#93c947"; //green
-    	let red_color = "#f0004c"; //red
-    	let orange_red_color = "#fc6203";
-    	let yellow_color = "#ebc505";
-    	let green_yellow_color = "#d7e01d";
-    	let orange_color = "#fc9d03";
-    	let red_purple_color = "#d921d0";
-    	let purple_color = "#5e03fc";
-    	let dark_purple_color = "#4b1f7a";
-    	let black_color = "#050505";
     	const airQualityScale = [0, 12, 35, 55, 150, 250, 450, 500]; // this is up for changing!
-    	let airQualityScaleTicks = [12, 35, 55, 150, 250, 500]; // this is up for changing!
+    	const airQualityScaleTicks = [12, 35, 55, 150, 250, 500]; // this is up for changing!
 
     	const colorScale = [
     		green_color,
@@ -13340,17 +13401,6 @@ var app = (function () {
     	$$self.$inject_state = $$props => {
     		if ("currentFrame" in $$props) $$invalidate(0, currentFrame = $$props.currentFrame);
     		if ("frameData" in $$props) $$invalidate(1, frameData = $$props.frameData);
-    		if ("green_color" in $$props) green_color = $$props.green_color;
-    		if ("red_color" in $$props) red_color = $$props.red_color;
-    		if ("orange_red_color" in $$props) orange_red_color = $$props.orange_red_color;
-    		if ("yellow_color" in $$props) yellow_color = $$props.yellow_color;
-    		if ("green_yellow_color" in $$props) green_yellow_color = $$props.green_yellow_color;
-    		if ("orange_color" in $$props) orange_color = $$props.orange_color;
-    		if ("red_purple_color" in $$props) red_purple_color = $$props.red_purple_color;
-    		if ("purple_color" in $$props) purple_color = $$props.purple_color;
-    		if ("dark_purple_color" in $$props) dark_purple_color = $$props.dark_purple_color;
-    		if ("black_color" in $$props) black_color = $$props.black_color;
-    		if ("airQualityScaleTicks" in $$props) $$invalidate(2, airQualityScaleTicks = $$props.airQualityScaleTicks);
     		if ("color" in $$props) color = $$props.color;
     		if ("width" in $$props) width = $$props.width;
     		if ("height" in $$props) height = $$props.height;
@@ -13673,28 +13723,28 @@ var app = (function () {
     			attr_dev(link1, "href", "https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
     			attr_dev(link1, "rel", "stylesheet");
     			add_location(link1, file$6, 1, 0, 90);
-    			add_location(h1, file$6, 193, 6, 5879);
+    			add_location(h1, file$6, 192, 6, 5820);
     			attr_dev(div0, "class", "title svelte-1q4dn73");
-    			add_location(div0, file$6, 192, 4, 5853);
+    			add_location(div0, file$6, 191, 4, 5794);
     			attr_dev(div1, "class", "header svelte-1q4dn73");
-    			add_location(div1, file$6, 191, 2, 5828);
+    			add_location(div1, file$6, 190, 2, 5769);
     			attr_dev(div2, "class", "map-animation-date-container svelte-1q4dn73");
-    			add_location(div2, file$6, 201, 8, 6064);
+    			add_location(div2, file$6, 200, 8, 6005);
     			attr_dev(div3, "class", "map svelte-1q4dn73");
     			attr_dev(div3, "id", "map");
-    			add_location(div3, file$6, 200, 6, 6029);
+    			add_location(div3, file$6, 199, 6, 5970);
     			attr_dev(div4, "class", "map-scrubber-container svelte-1q4dn73");
-    			add_location(div4, file$6, 209, 6, 6274);
+    			add_location(div4, file$6, 208, 6, 6215);
     			attr_dev(div5, "class", "map-container svelte-1q4dn73");
-    			add_location(div5, file$6, 199, 4, 5995);
+    			add_location(div5, file$6, 198, 4, 5936);
     			attr_dev(div6, "class", "map-aqi-legend svelte-1q4dn73");
-    			add_location(div6, file$6, 225, 4, 6737);
+    			add_location(div6, file$6, 224, 4, 6678);
     			attr_dev(div7, "class", "visualization svelte-1q4dn73");
-    			add_location(div7, file$6, 197, 2, 5962);
+    			add_location(div7, file$6, 196, 2, 5903);
     			attr_dev(div8, "class", "ub-ap-viz svelte-1q4dn73");
-    			add_location(div8, file$6, 189, 0, 5801);
+    			add_location(div8, file$6, 188, 0, 5742);
     			attr_dev(div9, "class", "station-marker");
-    			add_location(div9, file$6, 234, 0, 6890);
+    			add_location(div9, file$6, 233, 0, 6831);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -13826,7 +13876,6 @@ var app = (function () {
     	};
 
     	const changePlaybackRate = playRate => {
-    		console.log("changing playback rate to: " + playRate);
     		map.getSource("ap_video").video.playbackRate = playRate;
     	};
 

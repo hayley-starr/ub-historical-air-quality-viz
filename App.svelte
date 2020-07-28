@@ -64,7 +64,6 @@
   }
 
   const changePlaybackRate = (playRate) => {
-    console.log('changing playback rate to: ' + playRate);
     map.getSource('ap_video').video.playbackRate = playRate;
   }
 

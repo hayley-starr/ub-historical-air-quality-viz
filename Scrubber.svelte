@@ -20,7 +20,7 @@
     export let isAnimationEnded;
     export let changePlaybackRate;
 
-    const EVENT_BUFFER_TIME = 0.5; // how much time in seconds before and after to start showing an event
+    const EVENT_BUFFER_TIME = 0.1; // how much time in seconds before and after to start showing an event
 
     var isUserRunning = false; // Whether or not the USER has paused the animation
     let isDragging = false; // is the user dragging the scrubber
@@ -32,9 +32,8 @@
 
     $: {
         maxScrubberWidth = sliderWidth;
-        addPm25TimeseriesChart();
+        addPm25TimeseriesChart(); // when the sliderwidth has been updated
     }
-    
 
 
     $: { // continuoslu check currentTime for where to place the scrubber handle
@@ -65,8 +64,6 @@
             updateCurrentTime(convertXPositionToTime(newX));
         });
     
-        // const range = document.querySelector('.range');
-
         const pointerX = (x) => pointer({ x }).pipe(xy => xy.x, transform.clamp(0, maxScrubberWidth));
 
         const startDrag = () => {
@@ -101,6 +98,14 @@
     const handleStartAnimation = () => {
         isUserRunning = true;
         startAnimation();
+    }
+
+    const handlePolicyPause = () => {
+        if (isUserRunning) pauseAnimation();
+    }
+
+    const handlePolicyStart = () => {
+         if (isUserRunning) startAnimation();
     }
 
     const handleChangePlaybackRate = (playRate) => {
@@ -221,6 +226,8 @@
                 eventDetails={policyEvent}
                 bufferRadius={EVENT_BUFFER_TIME * maxScrubberWidth / maxTime}
                 id={i}
+                pauseAnimation={handlePolicyPause} 
+                startAnimation={handlePolicyStart} 
             />
     
         {/each}
