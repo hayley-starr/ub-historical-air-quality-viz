@@ -5,7 +5,7 @@
     import moment from 'moment';
     import { select } from 'd3-selection';
     import { scaleLinear } from 'd3-scale';
-    import { axisBottom, axisLeft } from 'd3-axis';
+    import { axisBottom, axisRight } from 'd3-axis';
     import { line } from 'd3-shape';
     import { max } from 'd3-array';
 
@@ -135,7 +135,7 @@
 
     const addPm25TimeseriesChart = () => {
 
-        let margin = {top: 10, right: 10, bottom: 30, left: 10},
+        let margin = {top: 10, right: 0, bottom: 10, left: 0},
             width = maxScrubberWidth - margin.left - margin.right, // CHANGE WIDTH TO WIDTH OF SCRUBBER
             height = chartHeight - margin.top - margin.bottom;
 
@@ -143,44 +143,45 @@
             .append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
+                .style("overflow-x", "overlay")
             .append("g")
                 .attr("transform",
                     "translate(" + margin.left + "," + margin.top + ")");
 
-
-         var xAxis = scaleLinear()
+        //---- Add X axis ----------------
+        var xAxisScale = scaleLinear()
             .domain([0, frameData.length-1]) // length of the timeseries
             .range([ 0, width ]);
 
-            console.log('x-axis at 0, 200', xAxis(0), xAxis(200));
+        let xAxis = axisBottom(xAxisScale).tickFormat(x => moment(frameData[x].date).format("MMMM"));    
 
         svg.append("g")
             .attr("transform", "translate(0," + height + ")")
-            .call(axisBottom(xAxis));
+            .call(xAxis);
 
-                // Add Y axis
-        let yAxis = scaleLinear()
+
+        //---- Add Y axis ----------------
+        // 1. create scale
+        let yAxisScale = scaleLinear()
             .domain(
                 [0, max(frameData.map(function(frame) {return frame.pm25}))]
             )
-            .range([ height, 0 ]);
-
-
-        console.log('yaxis 0, 250: ', yAxis(0), yAxis(250));
-
-        svg.append("g")
-        .call(axisLeft(yAxis));    
+            .range([ height, 0]);
+        // 2. format
+        let yAxis = axisRight(yAxisScale).ticks(5)
+        // 3. add to graph
+        svg.append("g").call(yAxis);    
     
 
-        // Add the line
+        //----- Add the line -----------
         svg.append("path")
             .datum(frameData)
             .attr("fill", "none")
             .attr("stroke", "steelblue")
             .attr("stroke-width", 1.5)
             .attr("d", line()
-                .x(function(frame) { return frameData.indexOf(frame) })
-                .y(function(frame) { return yAxis(frame.pm25) })
+                .x(function(frame) { return xAxisScale(frameData.indexOf(frame)) })
+                .y(function(frame) { return yAxisScale(frame.pm25) })
             );
     }
 </script> 

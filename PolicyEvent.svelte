@@ -156,7 +156,7 @@
 
 <div class='policy-event'>
     <div class={'policy-event-date policy-event-date'+id}>
-        {moment(eventDetails.date).format("MMMM YYYY")}
+        <!-- {moment(eventDetails.date).format("MMMM YYYY")} -->
     </div>
     <div class={"policy-dot-container policy-dot-container"+id}>
         <div class={"policy-dot-hit-area policy-dot-hit-area"+id}>
