@@ -12,11 +12,8 @@
     // DO NOT CHANGE -- used in the png-izer as well
     const green_color = '#93c947';
     const red_color = '#f0004c';
-    const orange_red_color = '#fc6203';
     const yellow_color = '#ebc505';
-    const green_yellow_color = '#d7e01d'
     const orange_color = '#fc9d03';
-    const red_purple_color = '#d921d0';
     const purple_color = '#5e03fc';
     const dark_purple_color = '#4b1f7a';
     const black_color = '#050505';

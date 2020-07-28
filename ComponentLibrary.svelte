@@ -3,6 +3,7 @@
   import EventInfoBox from './EventInfoBox.svelte';
   import Thermometer from './Thermometer.svelte';
   import AQILegend from './AQILegend.svelte';
+  import { frameData } from './frameData';
 
 
   const FRAME_CHECKING_RATE = 33; // check every x ms what the current time is in the video
@@ -13,6 +14,7 @@
   let animationPaused = true;
   let isAnimationEnded = false;
   let temp = -40;
+  let currentFrame = 0;
 
   const pauseAnimation = () => {
     animationPaused = true;
@@ -60,15 +62,18 @@
          <!-- AQI Legend -->
          <div class='component'>
             <h2>AQI Legend</h2>
-            <AQILegend />
+            <AQILegend frameData={frameData} currentFrame={currentFrame} />
          </div>
 
 
-          <!-- Thermometer MIGHT REPLACE WITH CHART -->
-         <!-- <div class='component thermometer'>
+          <!-- Thermometer -->
+         <div class='component thermometer'>
             <h2>Thermometer</h2>
-            <Thermometer currentFrame={currentFrame} />
-         </div> -->
+            <Thermometer 
+              currentFrame={currentFrame}  
+              frameData={frameData}
+            />
+         </div>
         
 
 
@@ -82,6 +87,7 @@
               pauseAnimation={pauseAnimation} 
               startAnimation={startAnimation} 
               updateCurrentTime={updateCurrentTime}
+              frameData={frameData}
           />
         </div>
 

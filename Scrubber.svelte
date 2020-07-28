@@ -330,7 +330,6 @@
         border: none;
         height: 20px;
 
-        cursor: pointer;
     }
 
     .speed-button-selected {

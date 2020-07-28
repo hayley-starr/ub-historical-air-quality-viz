@@ -3,7 +3,7 @@
 
 <script>
   import { onMount } from 'svelte';
-  import mapboxgl from 'mapbox-gl';
+  import mapboxgl from './mapbox-gl/mapbox-gl'; // USING LOCAL PATCHED COPY
   import { stations } from './stations_geojson.js';
   import Scrubber from './Scrubber.svelte' 
   import AQILegend from './AQILegend.svelte';
@@ -66,7 +66,6 @@
   const changePlaybackRate = (playRate) => {
     map.getSource('ap_video').video.playbackRate = playRate;
   }
-
 
   let green_color = '#87e32b'; //green
   let red_color = '#f0004c'; //red
@@ -135,10 +134,6 @@
           'raster-opacity': 0.3
        }
     });
-
-    map.on("click", function() {
-      console.log(map.getSource("ap_video"));
-    });
   }
 
   const addUncertaintyMaskLayer = () => {
@@ -191,6 +186,7 @@
   <div class='header'>
     <div class='title'>
       <h1>Visualzing Air Pollution and Policy in Ulaanbaatar</h1>
+        <!-- <button class='btn translate-button'>{'MNG'}</button> -->
     </div>
   </div>
 
@@ -239,6 +235,24 @@
   font-family: 'Open Sans', sans-serif;
 }
 
+.btn {
+    cursor: pointer
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn:hover {
+    outline: none;
+    transform: scale(1.1);
+}
+
+.btn:active {
+    outline: none;
+    transform: scale(1.1);
+}
+
 /* HEADER STYLES */
 
 .header {
@@ -248,7 +262,18 @@
 }
 
 .header .title {
-  /* border: 1px solid pink; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.translate-button {
+  width: 50px;
+  height: 40px;
+  background: #2B2D42;
+  color: white;
+  border: none;
+  border-radius: 15px;
 }
 
 

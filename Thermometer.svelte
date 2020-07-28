@@ -1,9 +1,9 @@
 <script>
     import { scaleLinear} from 'd3-scale'
-    import { interpolateRdYlBu } from 'd3-scale-chromatic';
 
     export let currentFrame;
     export let frameData;
+    export let aloha;
 
     const MAX_HEIGHT = 534; // total height of mercury rect - DO NOT CHANGE
     const MIN_HEIGHT = 105; // how far the mercury rect dips below the mercury circle -DO NOT CHANGE
@@ -12,24 +12,15 @@
     const TOPMOST_Y = 17; // DO NOT CHANGE - mercury of thermometer starts at y=17px and moves down
     const BOTTOMMOST_Y = TOPMOST_Y + HEIGHT_CHANGE;
 
-    const darkRed = '#cc2f10';
-    const lightRed = '#eb7963';
-    const yellow = '#ebc263';
-    const white = '#ffffff';
-    const darkBlue = '#1065cc';
-    const lightBlue = '#539ffc';
-
     const tempScale = [-40, -20, 5, 15, 30, 40];
-    const colorScale = [darkBlue, lightBlue, white, yellow, lightRed, darkRed];
- 
-    var scaleTempToColor = scaleLinear().domain(tempScale).range(colorScale);
+
     var scaleTempToPixels = scaleLinear().domain([-40, 40]).range([0, HEIGHT_CHANGE]);
     scaleTempToPixels.clamp(true);
 
     let pixelChangeFromBaseline = 0; // -40 C to start 
     let height = MIN_HEIGHT;
     let starting_y = BOTTOMMOST_Y;
-    let tempColor = '#c1272d';
+    let tempColor = '#a81e1e';
     let currentTemp = 0;
 
     $: {
@@ -37,7 +28,6 @@
         pixelChangeFromBaseline = scaleTempToPixels(currentTemp);
         height = MIN_HEIGHT + pixelChangeFromBaseline;
         starting_y = BOTTOMMOST_Y - pixelChangeFromBaseline;
-        tempColor = scaleTempToColor(currentTemp);
     }
 
 </script>
@@ -52,19 +42,18 @@
 
       .cls-2 {
         fill: none;
-        stroke: #333;
+        stroke: #2B2D42;
         stroke-miterlimit: 10;
-        stroke-width: 2px;
+        stroke-width: 3px;
         
       }
 
       .cls-4 {
-        font-size: 35px;
-        font-family: 'Gill Sans';
+        font-size: 45px;
         font-weight: bold;
         letter-spacing: 0em;
         stroke-width: 1px;
-        stroke: #333;
+        stroke: #8a2121;
       }
     </style>
   </defs>
@@ -76,7 +65,7 @@
   <!-- Full Thermometer DO NOT CHANGE -->
   <!-- <rect class="cls-3" x="49" y="17" width="86" height="534" rx="43"/> -->
   <circle class="cls-3" fill={tempColor} cx="92" cy="521" r="75"/>
-  <text class="cls-4"  fill={'#fff'} transform="translate(53.42 532)">{currentTemp}°C</text>
+  <text class="cls-4"  fill={'#fff'} transform="translate(0 532)" x="50%" text-anchor="middle">{currentTemp}°C</text>
 </svg>
 </div>
 
