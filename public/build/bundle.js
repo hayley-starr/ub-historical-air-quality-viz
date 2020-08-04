@@ -12975,45 +12975,59 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (97:12) {#each airQualityScaleTicks as tick}
+    // (98:16) {#each airQualityScaleTicks as tick}
     function create_each_block$1(ctx) {
     	let div2;
     	let div0;
-    	let t0_value = " < " + /*tick*/ ctx[18].label + " μg/m3" + "";
+    	let span0;
+    	let t0_value = /*tick*/ ctx[18].label + "";
     	let t0;
     	let t1;
-    	let div1;
-    	let t2_value = /*translator*/ ctx[2].translate(/*tick*/ ctx[18].text, /*currLang*/ ctx[3]) + "";
-    	let t2;
+    	let span1;
     	let t3;
+    	let div1;
+    	let t4_value = /*translator*/ ctx[2].translate(/*tick*/ ctx[18].text, /*currLang*/ ctx[3]) + "";
+    	let t4;
+    	let t5;
     	let div2_class_value;
 
     	const block = {
     		c: function create() {
     			div2 = element("div");
     			div0 = element("div");
+    			span0 = element("span");
     			t0 = text(t0_value);
     			t1 = space();
-    			div1 = element("div");
-    			t2 = text(t2_value);
+    			span1 = element("span");
+    			span1.textContent = `${" μg/m3"}`;
     			t3 = space();
-    			add_location(div0, file$4, 98, 20, 3383);
-    			attr_dev(div1, "class", "aqi-scale-labels svelte-ojip3g");
-    			add_location(div1, file$4, 99, 20, 3447);
-    			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty(classnames("pm25-scale-tick-row", "pm25-scale-tick-row-" + /*tick*/ ctx[18].heightpx)) + " svelte-ojip3g"));
-    			add_location(div2, file$4, 97, 16, 3277);
+    			div1 = element("div");
+    			t4 = text(t4_value);
+    			t5 = space();
+    			attr_dev(span0, "class", "pm25-scale-number svelte-179o7cd");
+    			add_location(span0, file$4, 100, 24, 3584);
+    			add_location(span1, file$4, 103, 24, 3715);
+    			attr_dev(div0, "class", "pm25-scale-label svelte-179o7cd");
+    			add_location(div0, file$4, 99, 24, 3529);
+    			attr_dev(div1, "class", "aqi-scale-labels svelte-179o7cd");
+    			add_location(div1, file$4, 105, 24, 3794);
+    			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty(classnames("pm25-scale-tick-row", "pm25-scale-tick-row-" + /*tick*/ ctx[18].heightpx)) + " svelte-179o7cd"));
+    			add_location(div2, file$4, 98, 20, 3419);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
     			append_dev(div2, div0);
-    			append_dev(div0, t0);
-    			append_dev(div2, t1);
-    			append_dev(div2, div1);
-    			append_dev(div1, t2);
+    			append_dev(div0, span0);
+    			append_dev(span0, t0);
+    			append_dev(div0, t1);
+    			append_dev(div0, span1);
     			append_dev(div2, t3);
+    			append_dev(div2, div1);
+    			append_dev(div1, t4);
+    			append_dev(div2, t5);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*translator, currLang*/ 12 && t2_value !== (t2_value = /*translator*/ ctx[2].translate(/*tick*/ ctx[18].text, /*currLang*/ ctx[3]) + "")) set_data_dev(t2, t2_value);
+    			if (dirty & /*translator, currLang*/ 12 && t4_value !== (t4_value = /*translator*/ ctx[2].translate(/*tick*/ ctx[18].text, /*currLang*/ ctx[3]) + "")) set_data_dev(t4, t4_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div2);
@@ -13024,7 +13038,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(97:12) {#each airQualityScaleTicks as tick}",
+    		source: "(98:16) {#each airQualityScaleTicks as tick}",
     		ctx
     	});
 
@@ -13032,20 +13046,25 @@ var app = (function () {
     }
 
     function create_fragment$4(ctx) {
-    	let div8;
-    	let div1;
-    	let canvas;
-    	let t0;
-    	let div0;
-    	let t1;
-    	let div6;
-    	let div5;
+    	let div10;
     	let div3;
+    	let div0;
+    	let t0_value = /*translator*/ ctx[2].translate("pm25_scale_title", /*currLang*/ ctx[3]) + "";
+    	let t0;
+    	let t1;
     	let div2;
+    	let canvas;
     	let t2;
+    	let div1;
+    	let t3;
+    	let div8;
+    	let div7;
+    	let div5;
     	let div4;
     	let t4;
-    	let div7;
+    	let div6;
+    	let t6;
+    	let div9;
     	let current;
     	let each_value = /*airQualityScaleTicks*/ ctx[4];
     	validate_each_argument(each_value);
@@ -13065,75 +13084,89 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div8 = element("div");
-    			div1 = element("div");
-    			canvas = element("canvas");
-    			t0 = space();
+    			div10 = element("div");
+    			div3 = element("div");
     			div0 = element("div");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			div2 = element("div");
+    			canvas = element("canvas");
+    			t2 = space();
+    			div1 = element("div");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			t1 = space();
-    			div6 = element("div");
-    			div5 = element("div");
-    			div3 = element("div");
-    			div2 = element("div");
-    			t2 = space();
-    			div4 = element("div");
-    			div4.textContent = `${"Air Quality Sensor Location"}`;
-    			t4 = space();
+    			t3 = space();
+    			div8 = element("div");
     			div7 = element("div");
+    			div5 = element("div");
+    			div4 = element("div");
+    			t4 = space();
+    			div6 = element("div");
+    			div6.textContent = `${"Air Quality Sensor Location"}`;
+    			t6 = space();
+    			div9 = element("div");
     			create_component(thermometer.$$.fragment);
-    			attr_dev(canvas, "class", "pm25-scale");
+    			attr_dev(div0, "class", "ap-legend-pm25-scale-title svelte-179o7cd");
+    			add_location(div0, file$4, 93, 8, 3086);
+    			attr_dev(canvas, "class", "pm25-scale svelte-179o7cd");
     			attr_dev(canvas, "id", "pm25-scale");
-    			add_location(canvas, file$4, 94, 8, 3120);
-    			attr_dev(div0, "class", "pm25-scale-ticks svelte-ojip3g");
-    			add_location(div0, file$4, 95, 8, 3181);
-    			attr_dev(div1, "class", "legend-tile ap-legend-pm25-scale-container svelte-ojip3g");
-    			add_location(div1, file$4, 93, 4, 3055);
-    			attr_dev(div2, "class", "ap-station-marker svelte-ojip3g");
-    			add_location(div2, file$4, 112, 16, 3772);
-    			attr_dev(div3, "class", "ap-station-container svelte-ojip3g");
-    			add_location(div3, file$4, 111, 12, 3721);
-    			add_location(div4, file$4, 114, 12, 3841);
-    			attr_dev(div5, "class", "ap-legend-stations svelte-ojip3g");
-    			add_location(div5, file$4, 110, 8, 3676);
-    			attr_dev(div6, "class", "legend-tile basemap-options svelte-ojip3g");
-    			add_location(div6, file$4, 109, 5, 3626);
-    			attr_dev(div7, "class", "legend-tile thermometer-container svelte-ojip3g");
-    			add_location(div7, file$4, 119, 5, 4006);
-    			attr_dev(div8, "class", "ap-legend svelte-ojip3g");
-    			add_location(div8, file$4, 92, 0, 3027);
+    			add_location(canvas, file$4, 95, 12, 3250);
+    			attr_dev(div1, "class", "pm25-scale-ticks svelte-179o7cd");
+    			add_location(div1, file$4, 96, 12, 3315);
+    			attr_dev(div2, "class", "ap-legend-pm25-scale-container svelte-179o7cd");
+    			add_location(div2, file$4, 94, 8, 3193);
+    			attr_dev(div3, "class", "legend-tile svelte-179o7cd");
+    			add_location(div3, file$4, 92, 4, 3052);
+    			attr_dev(div4, "class", "ap-station-marker svelte-179o7cd");
+    			add_location(div4, file$4, 117, 16, 4136);
+    			attr_dev(div5, "class", "ap-station-container svelte-179o7cd");
+    			add_location(div5, file$4, 116, 12, 4085);
+    			add_location(div6, file$4, 119, 12, 4205);
+    			attr_dev(div7, "class", "ap-legend-stations svelte-179o7cd");
+    			add_location(div7, file$4, 115, 8, 4040);
+    			attr_dev(div8, "class", "legend-tile basemap-options svelte-179o7cd");
+    			add_location(div8, file$4, 114, 5, 3990);
+    			attr_dev(div9, "class", "legend-tile thermometer-container svelte-179o7cd");
+    			add_location(div9, file$4, 124, 5, 4370);
+    			attr_dev(div10, "class", "ap-legend svelte-179o7cd");
+    			add_location(div10, file$4, 91, 0, 3024);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div8, anchor);
-    			append_dev(div8, div1);
-    			append_dev(div1, canvas);
-    			append_dev(div1, t0);
-    			append_dev(div1, div0);
+    			insert_dev(target, div10, anchor);
+    			append_dev(div10, div3);
+    			append_dev(div3, div0);
+    			append_dev(div0, t0);
+    			append_dev(div3, t1);
+    			append_dev(div3, div2);
+    			append_dev(div2, canvas);
+    			append_dev(div2, t2);
+    			append_dev(div2, div1);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(div0, null);
+    				each_blocks[i].m(div1, null);
     			}
 
-    			append_dev(div8, t1);
-    			append_dev(div8, div6);
-    			append_dev(div6, div5);
-    			append_dev(div5, div3);
-    			append_dev(div3, div2);
-    			append_dev(div5, t2);
-    			append_dev(div5, div4);
-    			append_dev(div8, t4);
+    			append_dev(div10, t3);
+    			append_dev(div10, div8);
     			append_dev(div8, div7);
-    			mount_component(thermometer, div7, null);
+    			append_dev(div7, div5);
+    			append_dev(div5, div4);
+    			append_dev(div7, t4);
+    			append_dev(div7, div6);
+    			append_dev(div10, t6);
+    			append_dev(div10, div9);
+    			mount_component(thermometer, div9, null);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
+    			if ((!current || dirty & /*translator, currLang*/ 12) && t0_value !== (t0_value = /*translator*/ ctx[2].translate("pm25_scale_title", /*currLang*/ ctx[3]) + "")) set_data_dev(t0, t0_value);
+
     			if (dirty & /*classnames, airQualityScaleTicks, translator, currLang*/ 28) {
     				each_value = /*airQualityScaleTicks*/ ctx[4];
     				validate_each_argument(each_value);
@@ -13147,7 +13180,7 @@ var app = (function () {
     					} else {
     						each_blocks[i] = create_each_block$1(child_ctx);
     						each_blocks[i].c();
-    						each_blocks[i].m(div0, null);
+    						each_blocks[i].m(div1, null);
     					}
     				}
 
@@ -13173,7 +13206,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div8);
+    			if (detaching) detach_dev(div10);
     			destroy_each(each_blocks, detaching);
     			destroy_component(thermometer);
     		}
@@ -13206,30 +13239,30 @@ var app = (function () {
     	const airQualityScale = [0, 12, 35, 55, 150, 250, 450, 500]; // this is up for changing!
 
     	const airQualityScaleTicks = [
-    		{ label: 12, heightpx: 20, text: "good" },
+    		{ label: 12, heightpx: 40, text: "good" },
     		{
     			label: 35,
-    			heightpx: 20,
+    			heightpx: 40,
     			text: "moderate"
     		},
     		{
     			label: 55,
-    			heightpx: 20,
+    			heightpx: 40,
     			text: "unhealthy_sensitive"
     		},
     		{
     			label: 150,
-    			heightpx: 20,
+    			heightpx: 40,
     			text: "unhealthy"
     		},
     		{
     			label: 250,
-    			heightpx: 15,
+    			heightpx: 50,
     			text: "very_unhealthy"
     		},
     		{
     			label: 500,
-    			heightpx: 15,
+    			heightpx: 50,
     			text: "hazardous"
     		}
     	];
@@ -13241,8 +13274,7 @@ var app = (function () {
     		red_color,
     		purple_color,
     		dark_purple_color,
-    		dark_purple_color,
-    		black_color
+    		dark_purple_color
     	]; // <12
     	// <35
     	// <55
@@ -13250,14 +13282,13 @@ var app = (function () {
     	// < 250
     	// < 500
     	// < 550
-    	//> 550
 
     	//---- Create Color Scale ----------------------
     	var color = linear$2().domain(airQualityScale).range(colorScale);
 
     	color.clamp(true);
-    	let width = 30;
-    	let height = 200;
+    	let width = 30; // must match pm25-scale-ticks
+    	let height = 300;
     	let marginTop = 0;
     	let marginRight = 0;
     	let marginBottom = 0;
@@ -13697,41 +13728,45 @@ var app = (function () {
                     MN: 
                         'Хортой агаарыг цэвэрлэх нь сүүлийн жилүүдэд Улаанбаатар хотын хувьд тулгамдсан асуудлын нэг болоод байна. 2012 онд Засгийн газрын? хямралыг үл тоомсорлож буй шалтгааныг шийдвэрлэх ажлыг эхлүүлэхээр төлөвлөсөн Агаарын тухай хуулийг батлав. Олон тооны хүчин чармайлт гаргасны дараа нийслэл 2019 онд түүхий нүүрс шатаахыг хориглох тухай зарласан 62 тогтоолыг гаргалаа. 2019 оны 2-р сараас 2020 оны 4-р сар хүртэл pm2.5 түвшин хот даяар өөрчлөгдөж, шувуудын нүдээр харах боломжтой. агаарыг цэвэрлэх гэсэн оролдлогоор төрийн бодлого.'
                 },
+                pm25_scale_title: {
+                    US: 'Estimated PM2.5 Concentration',
+                    MN: 'Тооцоолсон PM2.5 концентраци'
+                },
                 good: {
                     US: 
                         'Good',
                     MN: 
-                        'Монгол хэл энд'
+                        'Сайн'
                 },
                 moderate: {
                     US: 
                         'Moderate',
                     MN: 
-                        'Монгол хэл энд'
+                        'Бага Бохирдол'
                 },
                 unhealthy_sensitive: {
                     US: 
                         'Unhealthy for Sensitive Groups',
                     MN: 
-                        'Монгол хэл энд'
+                        'Mэдрэг Хүмүүс Болгоомжил'
                 },
                 unhealthy: {
                     US: 
                         'Unhealthy',
                     MN: 
-                        'Монгол хэл энд'
+                        'Их Бохирдол'
                 },
                 very_unhealthy: {
                     US: 
                         'Very Unhealthy',
                     MN: 
-                        'Монгол хэл энд'
+                        'Эрүүл Мэндэд Аюултай'
                 },
                 hazardous: {
                     US: 
                         'Hazardous',
                     MN: 
-                        'Монгол хэл энд'
+                        'Маш Их Хортой'
                 }
             };
         }

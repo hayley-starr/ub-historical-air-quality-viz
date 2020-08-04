@@ -23,12 +23,12 @@
 
     const airQualityScale = [0, 12, 35, 55, 150, 250, 450, 500]; // this is up for changing!
     const airQualityScaleTicks = [
-        {label: 12, heightpx: 20, text: 'good'},
-        {label: 35, heightpx: 20, text: 'moderate'},
-        {label: 55, heightpx: 20, text: 'unhealthy_sensitive'},
-        {label: 150, heightpx: 20, text: 'unhealthy'},
-        {label: 250, heightpx: 15, text: 'very_unhealthy'},
-        {label: 500, heightpx: 15, text: 'hazardous'}
+        {label: 12, heightpx: 40, text: 'good'},
+        {label: 35, heightpx: 40, text: 'moderate'},
+        {label: 55, heightpx: 40, text: 'unhealthy_sensitive'},
+        {label: 150, heightpx: 40, text: 'unhealthy'},
+        {label: 250, heightpx: 50, text: 'very_unhealthy'},
+        {label: 500, heightpx: 50, text: 'hazardous'}
     ]
     const colorScale = [green_color, // <12
             yellow_color, // <35
@@ -36,16 +36,15 @@
             red_color, // <150
             purple_color, // < 250
             dark_purple_color, // < 500
-            dark_purple_color, // < 550
-            black_color]; //> 550
+            dark_purple_color] // < 550
 
 //---- Create Color Scale ----------------------
 
     var color = scaleLinear().domain(airQualityScale).range(colorScale);
     color.clamp(true);
 
-    let width = 30;
-    let height = 200;
+    let width = 30; // must match pm25-scale-ticks
+    let height = 300;
     let marginTop = 0;
     let marginRight = 0;
     let marginBottom = 0;
@@ -91,19 +90,25 @@
 </script>
 
 <div class='ap-legend'>
-    <div class='legend-tile ap-legend-pm25-scale-container'>
-        <canvas class='pm25-scale' id='pm25-scale'></canvas>
-        <div class='pm25-scale-ticks'>
-            {#each airQualityScaleTicks as tick}
-                <div class={classnames('pm25-scale-tick-row', 'pm25-scale-tick-row-'+tick.heightpx)}>
-                    <div>{' < ' + tick.label + ' μg/m3'} </div>
-                    <div class='aqi-scale-labels'>{translator.translate(tick.text, currLang)}</div>
-                </div>
-                
-            {/each}
-
-
+    <div class='legend-tile'>
+        <div class='ap-legend-pm25-scale-title'>{translator.translate('pm25_scale_title', currLang)}</div>
+        <div class='ap-legend-pm25-scale-container'>
+            <canvas class='pm25-scale' id='pm25-scale'></canvas>
+            <div class='pm25-scale-ticks'>
+                {#each airQualityScaleTicks as tick}
+                    <div class={classnames('pm25-scale-tick-row', 'pm25-scale-tick-row-'+tick.heightpx)}>
+                        <div class='pm25-scale-label'>
+                        <span class='pm25-scale-number'>
+                            {tick.label} 
+                        </span>
+                        <span>{' μg/m3'}</span>
+                        </div>
+                        <div class='aqi-scale-labels'>{translator.translate(tick.text, currLang)}</div>
+                    </div>
+                {/each}
+            </div>
         </div>
+        
     </div>
 
     
@@ -145,32 +150,59 @@
 
 .ap-legend-pm25-scale-container {
     display: flex;
+    position: relative;
+}
+
+.ap-legend-pm25-scale-title {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.pm25-scale {
+    opacity: 0.7;
 }
 
 .pm25-scale-ticks {
-    height: 200px;
+    height: 300px;
+    width: 100%;
     font-size: 10px;
     padding-left: 5px;
     display: flex;
     flex-direction: column-reverse;
+    justify-content: space-between;
+    z-index: 100;
 }
 
 .pm25-scale-tick-row {
     display: flex;
-    width: 100%;
-    height: 15px;
-    justify-content: space-between;
+    height: 20px;
+    align-items: baseline;
+    padding-top: 10px;
 }
 
-.pm25-scale-tick-row-20 {
-    display: flex;
-    width: 100%;
-    height: 20px;
-    justify-content: space-between;
+.pm25-scale-tick-row-30 {
+    height: 30px;
+}
+
+.pm25-scale-tick-row-40 {
+    height: 40px;
+}
+
+.pm25-scale-tick-row-50 {
+    height: 50px;
+}
+
+.pm25-scale-label {
+    width: 50%;
+}
+
+.pm25-scale-number {
+    font-size: 12px;
+    font-weight: bold;
 }
 
 .aqi-scale-labels {
-    text-align: end;
+  width: 100px;
 }
 
 .ap-legend-stations {
