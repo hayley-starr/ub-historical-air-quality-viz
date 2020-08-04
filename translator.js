@@ -60,6 +60,12 @@ export class Translator {
                     'Not enough data for estimate',
                 MN: 
                     'Тооцоолоход хангалттай мэдээлэл байхгүй байна'
+            },
+            legend_station_marker: {
+                US: 
+                    'Air Quality Station',
+                MN: 
+                    'Агаарын чанарын станц'
             }
         }
     }

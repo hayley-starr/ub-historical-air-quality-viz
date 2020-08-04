@@ -109,27 +109,25 @@
             </div>
         </div>
 
-        <div class='uncertainty-mask-key-container'>
-            <img class='uncertainty-mask-hatching' src="./imgs/uncertainty_mask_legend.png" alt="">
-            <div class='uncertainty-mask-key-description'>
+        <div class='key-container'>
+            <img class='key-img' src="./imgs/uncertainty_mask_legend.png" alt="">
+            <div class='key-description'>
                 <span>{translator.translate('legend_not_enough_data', currLang)}</span>
             </div>
         </div>
-        
-        
-    </div>
 
-    
-     <div class='legend-tile basemap-options'>
-        <div class='ap-legend-stations'>
-            <div class='ap-station-container'>
-                <div class='ap-station-marker'></div>
+
+        <div class='key-container'>
+            <img class='key-img' src="./imgs/station_marker_legend.png" alt="">
+            <div class='key-description'>
+                <span>{translator.translate('legend_station_marker', currLang)}</span>
             </div>
-            <div>{'Air Quality Sensor Location'}</div>
         </div>
 
          <!-- <button class='button-switch-basemap'>Switch to Satellite View</button> -->
+  
     </div>
+
      <div class='legend-tile thermometer-container'>
         <Thermometer 
             currentFrame={currentFrame} 
@@ -147,6 +145,7 @@
     height: 100%;
     min-width: 75px;
     padding-left: 10px;
+    font-size: 12px;
 }
 
 .legend-tile {
@@ -163,8 +162,7 @@
 }
 
 .ap-legend-pm25-scale-title {
-    font-size: 14px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .pm25-scale {
@@ -212,45 +210,27 @@
 
 .aqi-scale-labels {
   width: 100px;
+  font-weight: bold;
 }
 
-/*--------- Uncertainty Mask Key ---------------*/
-.uncertainty-mask-key-container {
-     margin-top: 10px;
-     display: flex;
-     height: 30px;
-}
-
-.uncertainty-mask-hatching {
-    height: 30px;
-    width: 30px;
-}
-
-.uncertainty-mask-key-description {
+.key-description {
     padding-left: 5px;
-    font-size: 12px;
     display: flex;
     align-items: center;
 }
 
-/*--------- AP Stations Key ---------------*/
-.ap-legend-stations {
+.key-img {
+    height: 30px;
+    width: 30px;
+}
+
+.key-container {
     display: flex;
-    font-size: 14px;
-    flex-direction: row;
-    justify-content: space-around;
-}
+    height: 30px;
+    margin-top: 10px;
+} 
 
-.ap-station-container {
-    padding: 4px;
-}
-
-.ap-station-marker {
-    height: 7px;
-    width: 7px;
-    background-color: black;
-    border-radius: 3.5px;
-}
+/*--------- Other Controls ---------------*/
 
 .button-switch-basemap {
     margin: 5px 0;
