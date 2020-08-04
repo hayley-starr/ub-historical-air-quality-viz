@@ -10120,6 +10120,12 @@ var app = (function () {
       return select(creator(name).call(document.documentElement));
     }
 
+    function selectAll(selector) {
+      return typeof selector === "string"
+          ? new Selection([document.querySelectorAll(selector)], [document.documentElement])
+          : new Selection([selector == null ? [] : selector], root);
+    }
+
     function ascending$1(a, b) {
       return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
     }
@@ -11777,24 +11783,24 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[32] = list[i];
-    	child_ctx[34] = i;
+    	child_ctx[34] = list[i];
+    	child_ctx[36] = i;
     	return child_ctx;
     }
 
-    // (199:8) {#each policyEvents as policyEvent, i}
+    // (228:8) {#each policyEvents as policyEvent, i}
     function create_each_block(ctx) {
     	let current;
 
     	const policyevent = new PolicyEvent({
     			props: {
-    				currentScrubberPosition: /*convertTimeToXPosition*/ ctx[7](/*currentTime*/ ctx[1]),
-    				eventPosition: Math.round(/*sliderWidth*/ ctx[4] * /*getPolicyEventPosition*/ ctx[13](/*policyEvent*/ ctx[32].date)),
-    				eventDetails: /*policyEvent*/ ctx[32],
-    				bufferRadius: EVENT_BUFFER_TIME * /*maxScrubberWidth*/ ctx[5] / /*maxTime*/ ctx[2],
-    				id: /*i*/ ctx[34],
-    				pauseAnimation: /*handlePolicyPause*/ ctx[10],
-    				startAnimation: /*handlePolicyStart*/ ctx[11]
+    				currentScrubberPosition: /*convertTimeToXPosition*/ ctx[9](/*currentTime*/ ctx[1]),
+    				eventPosition: Math.round(/*sliderWidth*/ ctx[6] * /*getPolicyEventPosition*/ ctx[15](/*policyEvent*/ ctx[34].date)),
+    				eventDetails: /*policyEvent*/ ctx[34],
+    				bufferRadius: EVENT_BUFFER_TIME * /*maxScrubberWidth*/ ctx[7] / /*maxTime*/ ctx[2],
+    				id: /*i*/ ctx[36],
+    				pauseAnimation: /*handlePolicyPause*/ ctx[12],
+    				startAnimation: /*handlePolicyStart*/ ctx[13]
     			},
     			$$inline: true
     		});
@@ -11809,10 +11815,10 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const policyevent_changes = {};
-    			if (dirty[0] & /*currentTime*/ 2) policyevent_changes.currentScrubberPosition = /*convertTimeToXPosition*/ ctx[7](/*currentTime*/ ctx[1]);
-    			if (dirty[0] & /*sliderWidth, policyEvents*/ 17) policyevent_changes.eventPosition = Math.round(/*sliderWidth*/ ctx[4] * /*getPolicyEventPosition*/ ctx[13](/*policyEvent*/ ctx[32].date));
-    			if (dirty[0] & /*policyEvents*/ 1) policyevent_changes.eventDetails = /*policyEvent*/ ctx[32];
-    			if (dirty[0] & /*maxScrubberWidth, maxTime*/ 36) policyevent_changes.bufferRadius = EVENT_BUFFER_TIME * /*maxScrubberWidth*/ ctx[5] / /*maxTime*/ ctx[2];
+    			if (dirty[0] & /*currentTime*/ 2) policyevent_changes.currentScrubberPosition = /*convertTimeToXPosition*/ ctx[9](/*currentTime*/ ctx[1]);
+    			if (dirty[0] & /*sliderWidth, policyEvents*/ 65) policyevent_changes.eventPosition = Math.round(/*sliderWidth*/ ctx[6] * /*getPolicyEventPosition*/ ctx[15](/*policyEvent*/ ctx[34].date));
+    			if (dirty[0] & /*policyEvents*/ 1) policyevent_changes.eventDetails = /*policyEvent*/ ctx[34];
+    			if (dirty[0] & /*maxScrubberWidth, maxTime*/ 132) policyevent_changes.bufferRadius = EVENT_BUFFER_TIME * /*maxScrubberWidth*/ ctx[7] / /*maxTime*/ ctx[2];
     			policyevent.$set(policyevent_changes);
     		},
     		i: function intro(local) {
@@ -11833,14 +11839,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(199:8) {#each policyEvents as policyEvent, i}",
+    		source: "(228:8) {#each policyEvents as policyEvent, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (234:12) {:else}
+    // (263:12) {:else}
     function create_else_block(ctx) {
     	let button;
     	let svg;
@@ -11862,26 +11868,26 @@ var app = (function () {
     			g1 = svg_element("g");
     			g0 = svg_element("g");
     			path = svg_element("path");
-    			add_location(style, file$2, 237, 24, 8436);
-    			add_location(defs, file$2, 236, 20, 8405);
+    			add_location(style, file$2, 266, 24, 9376);
+    			add_location(defs, file$2, 265, 20, 9345);
     			attr_dev(path, "class", "cls-play-1");
     			attr_dev(path, "d", "M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z");
     			attr_dev(path, "transform", "translate(0 -0.01)");
-    			add_location(path, file$2, 247, 24, 8848);
+    			add_location(path, file$2, 276, 24, 9788);
     			attr_dev(g0, "id", "Layer_1-2");
     			attr_dev(g0, "data-name", "Layer 1-2");
-    			add_location(g0, file$2, 246, 24, 8783);
+    			add_location(g0, file$2, 275, 24, 9723);
     			attr_dev(g1, "id", "Layer_2");
     			attr_dev(g1, "data-name", "Layer 2");
-    			add_location(g1, file$2, 245, 20, 8722);
+    			add_location(g1, file$2, 274, 20, 9662);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 113.57 127.1");
-    			attr_dev(svg, "class", "svelte-4garh3");
-    			add_location(svg, file$2, 235, 16, 8284);
-    			attr_dev(button, "class", "start-button play-button svelte-4garh3");
-    			add_location(button, file$2, 234, 12, 8194);
+    			attr_dev(svg, "class", "svelte-12sk8sq");
+    			add_location(svg, file$2, 264, 16, 9224);
+    			attr_dev(button, "class", "start-button play-button svelte-12sk8sq");
+    			add_location(button, file$2, 263, 12, 9134);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, button, anchor);
@@ -11893,7 +11899,7 @@ var app = (function () {
     			append_dev(g1, g0);
     			append_dev(g0, path);
     			if (remount) dispose();
-    			dispose = listen_dev(button, "click", /*handleStartAnimation*/ ctx[9], false, false, false);
+    			dispose = listen_dev(button, "click", /*handleStartAnimation*/ ctx[11], false, false, false);
     		},
     		p: noop,
     		d: function destroy(detaching) {
@@ -11906,14 +11912,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(234:12) {:else}",
+    		source: "(263:12) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (215:12) {#if isUserRunning}
+    // (244:12) {#if isUserRunning}
     function create_if_block(ctx) {
     	let button;
     	let svg;
@@ -11937,28 +11943,28 @@ var app = (function () {
     			g0 = svg_element("g");
     			path0 = svg_element("path");
     			path1 = svg_element("path");
-    			add_location(style, file$2, 218, 24, 7412);
-    			add_location(defs, file$2, 217, 20, 7381);
+    			add_location(style, file$2, 247, 24, 8352);
+    			add_location(defs, file$2, 246, 20, 8321);
     			attr_dev(path0, "class", "cls-pause-1");
     			attr_dev(path0, "d", "M10.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,10.5.5Z");
-    			add_location(path0, file$2, 227, 24, 7785);
+    			add_location(path0, file$2, 256, 24, 8725);
     			attr_dev(path1, "class", "cls-pause-1");
     			attr_dev(path1, "d", "M60.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,60.5.5Z");
-    			add_location(path1, file$2, 228, 24, 7936);
+    			add_location(path1, file$2, 257, 24, 8876);
     			attr_dev(g0, "id", "Layer_1-2");
     			attr_dev(g0, "data-name", "Layer 1-2");
-    			add_location(g0, file$2, 226, 24, 7720);
+    			add_location(g0, file$2, 255, 24, 8660);
     			attr_dev(g1, "id", "Layer_2");
     			attr_dev(g1, "data-name", "Layer 2");
-    			add_location(g1, file$2, 225, 20, 7659);
+    			add_location(g1, file$2, 254, 20, 8599);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 71 135");
-    			attr_dev(svg, "class", "svelte-4garh3");
-    			add_location(svg, file$2, 216, 16, 7266);
-    			attr_dev(button, "class", "pause-button play-button svelte-4garh3");
-    			add_location(button, file$2, 215, 12, 7176);
+    			attr_dev(svg, "class", "svelte-12sk8sq");
+    			add_location(svg, file$2, 245, 16, 8206);
+    			attr_dev(button, "class", "pause-button play-button svelte-12sk8sq");
+    			add_location(button, file$2, 244, 12, 8116);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, button, anchor);
@@ -11971,7 +11977,7 @@ var app = (function () {
     			append_dev(g0, path0);
     			append_dev(g0, path1);
     			if (remount) dispose();
-    			dispose = listen_dev(button, "click", /*handlePauseAnimation*/ ctx[8], false, false, false);
+    			dispose = listen_dev(button, "click", /*handlePauseAnimation*/ ctx[10], false, false, false);
     		},
     		p: noop,
     		d: function destroy(detaching) {
@@ -11984,7 +11990,7 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(215:12) {#if isUserRunning}",
+    		source: "(244:12) {#if isUserRunning}",
     		ctx
     	});
 
@@ -11992,39 +11998,43 @@ var app = (function () {
     }
 
     function create_fragment$2(ctx) {
-    	let div10;
+    	let div11;
     	let div0;
+    	let t0_value = /*translator*/ ctx[3].translate("pm25_mov_avg_title", /*currLang*/ ctx[4]) + "";
     	let t0;
-    	let div5;
-    	let div1;
     	let t1;
+    	let div1;
+    	let t2;
+    	let div6;
+    	let div2;
+    	let t3;
+    	let div5;
     	let div4;
     	let div3;
-    	let div2;
-    	let t2;
-    	let t3;
-    	let div9;
-    	let div7;
     	let t4;
-    	let div6;
-    	let button0;
-    	let t5_value = "0.5x" + "";
     	let t5;
-    	let button0_class_value;
-    	let t6;
-    	let button1;
-    	let t7_value = "1x" + "";
-    	let t7;
-    	let button1_class_value;
-    	let t8;
-    	let button2;
-    	let t9_value = "2x" + "";
-    	let t9;
-    	let button2_class_value;
-    	let t10;
+    	let div10;
     	let div8;
-    	let t11_value = `${/*displayTime*/ ctx[14](/*currentTime*/ ctx[1])} / ${/*displayTime*/ ctx[14](/*maxTime*/ ctx[2])}` + "";
+    	let t6;
+    	let div7;
+    	let button0;
+    	let t7_value = "0.5x" + "";
+    	let t7;
+    	let button0_class_value;
+    	let t8;
+    	let button1;
+    	let t9_value = "1x" + "";
+    	let t9;
+    	let button1_class_value;
+    	let t10;
+    	let button2;
+    	let t11_value = "2x" + "";
     	let t11;
+    	let button2_class_value;
+    	let t12;
+    	let div9;
+    	let t13_value = `${/*displayTime*/ ctx[16](/*currentTime*/ ctx[1])} / ${/*displayTime*/ ctx[16](/*maxTime*/ ctx[2])}` + "";
+    	let t13;
     	let current;
     	let dispose;
     	let each_value = /*policyEvents*/ ctx[0];
@@ -12040,7 +12050,7 @@ var app = (function () {
     	});
 
     	function select_block_type(ctx, dirty) {
-    		if (/*isUserRunning*/ ctx[3]) return create_if_block;
+    		if (/*isUserRunning*/ ctx[5]) return create_if_block;
     		return create_else_block;
     	}
 
@@ -12049,128 +12059,138 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div10 = element("div");
+    			div11 = element("div");
     			div0 = element("div");
-    			t0 = space();
-    			div5 = element("div");
-    			div1 = element("div");
+    			t0 = text(t0_value);
     			t1 = space();
+    			div1 = element("div");
+    			t2 = space();
+    			div6 = element("div");
+    			div2 = element("div");
+    			t3 = space();
+    			div5 = element("div");
     			div4 = element("div");
     			div3 = element("div");
-    			div2 = element("div");
-    			t2 = space();
+    			t4 = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			t3 = space();
-    			div9 = element("div");
-    			div7 = element("div");
+    			t5 = space();
+    			div10 = element("div");
+    			div8 = element("div");
     			if_block.c();
-    			t4 = space();
-    			div6 = element("div");
-    			button0 = element("button");
-    			t5 = text(t5_value);
     			t6 = space();
-    			button1 = element("button");
+    			div7 = element("div");
+    			button0 = element("button");
     			t7 = text(t7_value);
     			t8 = space();
-    			button2 = element("button");
+    			button1 = element("button");
     			t9 = text(t9_value);
     			t10 = space();
-    			div8 = element("div");
+    			button2 = element("button");
     			t11 = text(t11_value);
-    			attr_dev(div0, "class", "pm25-chart svelte-4garh3");
-    			attr_dev(div0, "id", "pm25-timeseries");
-    			add_location(div0, file$2, 186, 4, 6204);
-    			attr_dev(div1, "class", "range svelte-4garh3");
-    			add_location(div1, file$2, 190, 8, 6307);
-    			attr_dev(div2, "class", "handle svelte-4garh3");
-    			add_location(div2, file$2, 194, 16, 6431);
-    			attr_dev(div3, "class", "handle-hit-area svelte-4garh3");
-    			add_location(div3, file$2, 193, 12, 6385);
-    			attr_dev(div4, "class", "handle-container svelte-4garh3");
-    			add_location(div4, file$2, 192, 8, 6342);
-    			attr_dev(div5, "class", "slider svelte-4garh3");
-    			attr_dev(div5, "id", "slider");
-    			add_location(div5, file$2, 189, 4, 6266);
+    			t12 = space();
+    			div9 = element("div");
+    			t13 = text(t13_value);
+    			attr_dev(div0, "class", "pm25-chart-title svelte-12sk8sq");
+    			add_location(div0, file$2, 214, 4, 7049);
+    			attr_dev(div1, "class", "pm25-chart svelte-12sk8sq");
+    			attr_dev(div1, "id", "pm25-timeseries");
+    			add_location(div1, file$2, 215, 4, 7144);
+    			attr_dev(div2, "class", "range svelte-12sk8sq");
+    			add_location(div2, file$2, 219, 8, 7247);
+    			attr_dev(div3, "class", "handle svelte-12sk8sq");
+    			add_location(div3, file$2, 223, 16, 7371);
+    			attr_dev(div4, "class", "handle-hit-area svelte-12sk8sq");
+    			add_location(div4, file$2, 222, 12, 7325);
+    			attr_dev(div5, "class", "handle-container svelte-12sk8sq");
+    			add_location(div5, file$2, 221, 8, 7282);
+    			attr_dev(div6, "class", "slider svelte-12sk8sq");
+    			attr_dev(div6, "id", "slider");
+    			add_location(div6, file$2, 218, 4, 7206);
 
-    			attr_dev(button0, "class", button0_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[6] == 0.5
+    			attr_dev(button0, "class", button0_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[8] == 0.5
     			? "speed-button-selected"
-    			: "")) + " svelte-4garh3"));
+    			: "")) + " svelte-12sk8sq"));
 
-    			add_location(button0, file$2, 254, 16, 9218);
+    			add_location(button0, file$2, 283, 16, 10158);
 
-    			attr_dev(button1, "class", button1_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[6] == 1
+    			attr_dev(button1, "class", button1_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[8] == 1
     			? "speed-button-selected"
-    			: "")) + " svelte-4garh3"));
+    			: "")) + " svelte-12sk8sq"));
 
-    			add_location(button1, file$2, 255, 16, 9394);
+    			add_location(button1, file$2, 284, 16, 10334);
 
-    			attr_dev(button2, "class", button2_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[6] == 2
+    			attr_dev(button2, "class", button2_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[8] == 2
     			? "speed-button-selected"
-    			: "")) + " svelte-4garh3"));
+    			: "")) + " svelte-12sk8sq"));
 
-    			add_location(button2, file$2, 256, 16, 9564);
-    			attr_dev(div6, "class", "speed-buttons-container svelte-4garh3");
-    			add_location(div6, file$2, 253, 12, 9164);
-    			attr_dev(div7, "class", "control-button-container svelte-4garh3");
-    			add_location(div7, file$2, 213, 8, 7092);
-    			attr_dev(div8, "class", "current-time-display svelte-4garh3");
-    			add_location(div8, file$2, 259, 9, 9762);
-    			attr_dev(div9, "class", "scrubber-controls svelte-4garh3");
-    			add_location(div9, file$2, 212, 4, 7052);
-    			attr_dev(div10, "class", "scrubber svelte-4garh3");
-    			add_location(div10, file$2, 185, 0, 6177);
+    			add_location(button2, file$2, 285, 16, 10504);
+    			attr_dev(div7, "class", "speed-buttons-container svelte-12sk8sq");
+    			add_location(div7, file$2, 282, 12, 10104);
+    			attr_dev(div8, "class", "control-button-container svelte-12sk8sq");
+    			add_location(div8, file$2, 242, 8, 8032);
+    			attr_dev(div9, "class", "current-time-display svelte-12sk8sq");
+    			add_location(div9, file$2, 288, 9, 10702);
+    			attr_dev(div10, "class", "scrubber-controls svelte-12sk8sq");
+    			add_location(div10, file$2, 241, 4, 7992);
+    			attr_dev(div11, "class", "scrubber svelte-12sk8sq");
+    			add_location(div11, file$2, 213, 0, 7022);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor, remount) {
-    			insert_dev(target, div10, anchor);
-    			append_dev(div10, div0);
-    			append_dev(div10, t0);
-    			append_dev(div10, div5);
-    			append_dev(div5, div1);
-    			append_dev(div5, t1);
+    			insert_dev(target, div11, anchor);
+    			append_dev(div11, div0);
+    			append_dev(div0, t0);
+    			append_dev(div11, t1);
+    			append_dev(div11, div1);
+    			append_dev(div11, t2);
+    			append_dev(div11, div6);
+    			append_dev(div6, div2);
+    			append_dev(div6, t3);
+    			append_dev(div6, div5);
     			append_dev(div5, div4);
     			append_dev(div4, div3);
-    			append_dev(div3, div2);
-    			append_dev(div5, t2);
+    			append_dev(div6, t4);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(div5, null);
+    				each_blocks[i].m(div6, null);
     			}
 
-    			append_dev(div10, t3);
+    			append_dev(div11, t5);
+    			append_dev(div11, div10);
+    			append_dev(div10, div8);
+    			if_block.m(div8, null);
+    			append_dev(div8, t6);
+    			append_dev(div8, div7);
+    			append_dev(div7, button0);
+    			append_dev(button0, t7);
+    			append_dev(div7, t8);
+    			append_dev(div7, button1);
+    			append_dev(button1, t9);
+    			append_dev(div7, t10);
+    			append_dev(div7, button2);
+    			append_dev(button2, t11);
+    			append_dev(div10, t12);
     			append_dev(div10, div9);
-    			append_dev(div9, div7);
-    			if_block.m(div7, null);
-    			append_dev(div7, t4);
-    			append_dev(div7, div6);
-    			append_dev(div6, button0);
-    			append_dev(button0, t5);
-    			append_dev(div6, t6);
-    			append_dev(div6, button1);
-    			append_dev(button1, t7);
-    			append_dev(div6, t8);
-    			append_dev(div6, button2);
-    			append_dev(button2, t9);
-    			append_dev(div9, t10);
-    			append_dev(div9, div8);
-    			append_dev(div8, t11);
+    			append_dev(div9, t13);
     			current = true;
     			if (remount) run_all(dispose);
 
     			dispose = [
-    				listen_dev(button0, "click", /*click_handler*/ ctx[29], false, false, false),
-    				listen_dev(button1, "click", /*click_handler_1*/ ctx[30], false, false, false),
-    				listen_dev(button2, "click", /*click_handler_2*/ ctx[31], false, false, false)
+    				listen_dev(button0, "click", /*click_handler*/ ctx[31], false, false, false),
+    				listen_dev(button1, "click", /*click_handler_1*/ ctx[32], false, false, false),
+    				listen_dev(button2, "click", /*click_handler_2*/ ctx[33], false, false, false)
     			];
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*convertTimeToXPosition, currentTime, sliderWidth, getPolicyEventPosition, policyEvents, maxScrubberWidth, maxTime, handlePolicyPause, handlePolicyStart*/ 11447) {
+    			if ((!current || dirty[0] & /*translator, currLang*/ 24) && t0_value !== (t0_value = /*translator*/ ctx[3].translate("pm25_mov_avg_title", /*currLang*/ ctx[4]) + "")) set_data_dev(t0, t0_value);
+
+    			if (dirty[0] & /*convertTimeToXPosition, currentTime, sliderWidth, getPolicyEventPosition, policyEvents, maxScrubberWidth, maxTime, handlePolicyPause, handlePolicyStart*/ 45767) {
     				each_value = /*policyEvents*/ ctx[0];
     				validate_each_argument(each_value);
     				let i;
@@ -12185,7 +12205,7 @@ var app = (function () {
     						each_blocks[i] = create_each_block(child_ctx);
     						each_blocks[i].c();
     						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(div5, null);
+    						each_blocks[i].m(div6, null);
     					}
     				}
 
@@ -12206,29 +12226,29 @@ var app = (function () {
 
     				if (if_block) {
     					if_block.c();
-    					if_block.m(div7, t4);
+    					if_block.m(div8, t6);
     				}
     			}
 
-    			if (!current || dirty[0] & /*currPlayRate*/ 64 && button0_class_value !== (button0_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[6] == 0.5
+    			if (!current || dirty[0] & /*currPlayRate*/ 256 && button0_class_value !== (button0_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[8] == 0.5
     			? "speed-button-selected"
-    			: "")) + " svelte-4garh3"))) {
+    			: "")) + " svelte-12sk8sq"))) {
     				attr_dev(button0, "class", button0_class_value);
     			}
 
-    			if (!current || dirty[0] & /*currPlayRate*/ 64 && button1_class_value !== (button1_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[6] == 1
+    			if (!current || dirty[0] & /*currPlayRate*/ 256 && button1_class_value !== (button1_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[8] == 1
     			? "speed-button-selected"
-    			: "")) + " svelte-4garh3"))) {
+    			: "")) + " svelte-12sk8sq"))) {
     				attr_dev(button1, "class", button1_class_value);
     			}
 
-    			if (!current || dirty[0] & /*currPlayRate*/ 64 && button2_class_value !== (button2_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[6] == 2
+    			if (!current || dirty[0] & /*currPlayRate*/ 256 && button2_class_value !== (button2_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[8] == 2
     			? "speed-button-selected"
-    			: "")) + " svelte-4garh3"))) {
+    			: "")) + " svelte-12sk8sq"))) {
     				attr_dev(button2, "class", button2_class_value);
     			}
 
-    			if ((!current || dirty[0] & /*currentTime, maxTime*/ 6) && t11_value !== (t11_value = `${/*displayTime*/ ctx[14](/*currentTime*/ ctx[1])} / ${/*displayTime*/ ctx[14](/*maxTime*/ ctx[2])}` + "")) set_data_dev(t11, t11_value);
+    			if ((!current || dirty[0] & /*currentTime, maxTime*/ 6) && t13_value !== (t13_value = `${/*displayTime*/ ctx[16](/*currentTime*/ ctx[1])} / ${/*displayTime*/ ctx[16](/*maxTime*/ ctx[2])}` + "")) set_data_dev(t13, t13_value);
     		},
     		i: function intro(local) {
     			if (current) return;
@@ -12249,7 +12269,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div10);
+    			if (detaching) detach_dev(div11);
     			destroy_each(each_blocks, detaching);
     			if_block.d();
     			run_all(dispose);
@@ -12279,6 +12299,8 @@ var app = (function () {
     	let { updateCurrentTime } = $$props;
     	let { isAnimationEnded } = $$props;
     	let { changePlaybackRate } = $$props;
+    	let { translator } = $$props;
+    	let { currLang } = $$props;
     	var isUserRunning = false; // Whether or not the USER has paused the animation
     	let isDragging = false; // is the user dragging the scrubber
     	let sliderWidth = 0;
@@ -12299,10 +12321,10 @@ var app = (function () {
 
     	onMount(async () => {
     		const slider = document.getElementById("slider");
-    		$$invalidate(4, sliderWidth = slider.getBoundingClientRect().width);
+    		$$invalidate(6, sliderWidth = slider.getBoundingClientRect().width);
     		chartHeight = document.getElementById("pm25-timeseries").getBoundingClientRect().height;
     		const handle = document.querySelector(".handle-hit-area");
-    		$$invalidate(23, handleStyler = index(handle));
+    		$$invalidate(25, handleStyler = index(handle));
 
     		const handleX = value(0, newX => {
     			updateCurrentTime(convertXPositionToTime(newX));
@@ -12340,12 +12362,12 @@ var app = (function () {
     	});
 
     	const handlePauseAnimation = () => {
-    		$$invalidate(3, isUserRunning = false);
+    		$$invalidate(5, isUserRunning = false);
     		pauseAnimation();
     	};
 
     	const handleStartAnimation = () => {
-    		$$invalidate(3, isUserRunning = true);
+    		$$invalidate(5, isUserRunning = true);
     		startAnimation();
     	};
 
@@ -12358,7 +12380,7 @@ var app = (function () {
     	};
 
     	const handleChangePlaybackRate = playRate => {
-    		$$invalidate(6, currPlayRate = playRate);
+    		$$invalidate(8, currPlayRate = playRate);
     		changePlaybackRate(playRate);
     	};
 
@@ -12371,17 +12393,23 @@ var app = (function () {
     		return policyDays / totalDays;
     	};
 
-    	const addPm25TimeseriesChart = () => {
+    	const addPm25TimeseriesChart = currLang => {
+    		// clean slate for rerender
+    		let svg_old = select("#pm25-timeseries");
+
+    		svg_old.selectAll("*").remove();
+
     		let margin = { top: 10, right: 0, bottom: 10, left: 0 },
     			width = maxScrubberWidth - margin.left - margin.right,
     			height = chartHeight - margin.top - margin.bottom; // CHANGE WIDTH TO WIDTH OF SCRUBBER
 
+    		let inner_width = width - margin.left - margin.right;
     		let svg = select("#pm25-timeseries").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).style("overflow-x", "overlay").append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     		//---- Add X axis ----------------
     		var xAxisScale = linear$2().domain([0, frameData.length - 1]).range([0, width]); // length of the timeseries
 
-    		let xAxis = axisBottom(xAxisScale).tickFormat(x => moment(frameData[x].date).format("MMMM"));
+    		let xAxis = axisBottom(xAxisScale).tickFormat(x => translator.translate(moment(frameData[x].date).format("MMMM"), currLang)).tickSizeOuter(0);
     		svg.append("g").attr("transform", "translate(0," + height + ")").call(xAxis);
 
     		//---- Add Y axis ----------------
@@ -12394,10 +12422,12 @@ var app = (function () {
     		]).range([height, 0]);
 
     		// 2. format
-    		let yAxis = axisRight(yAxisScale).ticks(5);
+    		let yAxis = axisRight(yAxisScale).ticks(3).tickValues([55, 150, 250]).tickSizeOuter(0);
 
-    		// 3. add to graph
-    		svg.append("g").call(yAxis);
+    		//---- Add Y axis gridlines
+    		let yAxisGrid = axisRight(yAxisScale).tickSize(inner_width).tickFormat("").ticks(3).tickValues([55, 150, 250]).tickSizeOuter(0);
+
+    		svg.append("g").attr("class", "y-axis-grid").style("stroke-dasharray", "3 3").style("opacity", "0.15").call(yAxisGrid);
 
     		//----- Add the line -----------
     		svg.append("path").datum(frameData).attr("fill", "none").attr("stroke", "steelblue").attr("stroke-width", 1.5).attr("d", line().x(function (frame) {
@@ -12405,6 +12435,9 @@ var app = (function () {
     		}).y(function (frame) {
     			return yAxisScale(frame.pm25);
     		}));
+
+    		//---- Add ticks on top of the line ----
+    		svg.append("g").call(yAxis);
     	};
 
     	const displayTime = (timeNow, timeTotal) => {
@@ -12422,7 +12455,9 @@ var app = (function () {
     		"startAnimation",
     		"updateCurrentTime",
     		"isAnimationEnded",
-    		"changePlaybackRate"
+    		"changePlaybackRate",
+    		"translator",
+    		"currLang"
     	];
 
     	Object.keys($$props).forEach(key => {
@@ -12436,15 +12471,17 @@ var app = (function () {
     	const click_handler_2 = () => handleChangePlaybackRate(2);
 
     	$$self.$set = $$props => {
-    		if ("frameData" in $$props) $$invalidate(15, frameData = $$props.frameData);
+    		if ("frameData" in $$props) $$invalidate(17, frameData = $$props.frameData);
     		if ("policyEvents" in $$props) $$invalidate(0, policyEvents = $$props.policyEvents);
     		if ("currentTime" in $$props) $$invalidate(1, currentTime = $$props.currentTime);
     		if ("maxTime" in $$props) $$invalidate(2, maxTime = $$props.maxTime);
-    		if ("pauseAnimation" in $$props) $$invalidate(16, pauseAnimation = $$props.pauseAnimation);
-    		if ("startAnimation" in $$props) $$invalidate(17, startAnimation = $$props.startAnimation);
-    		if ("updateCurrentTime" in $$props) $$invalidate(18, updateCurrentTime = $$props.updateCurrentTime);
-    		if ("isAnimationEnded" in $$props) $$invalidate(19, isAnimationEnded = $$props.isAnimationEnded);
-    		if ("changePlaybackRate" in $$props) $$invalidate(20, changePlaybackRate = $$props.changePlaybackRate);
+    		if ("pauseAnimation" in $$props) $$invalidate(18, pauseAnimation = $$props.pauseAnimation);
+    		if ("startAnimation" in $$props) $$invalidate(19, startAnimation = $$props.startAnimation);
+    		if ("updateCurrentTime" in $$props) $$invalidate(20, updateCurrentTime = $$props.updateCurrentTime);
+    		if ("isAnimationEnded" in $$props) $$invalidate(21, isAnimationEnded = $$props.isAnimationEnded);
+    		if ("changePlaybackRate" in $$props) $$invalidate(22, changePlaybackRate = $$props.changePlaybackRate);
+    		if ("translator" in $$props) $$invalidate(3, translator = $$props.translator);
+    		if ("currLang" in $$props) $$invalidate(4, currLang = $$props.currLang);
     	};
 
     	$$self.$capture_state = () => ({
@@ -12460,6 +12497,7 @@ var app = (function () {
     		moment,
     		classnames,
     		select,
+    		selectAll,
     		scaleLinear: linear$2,
     		axisBottom,
     		axisRight,
@@ -12474,6 +12512,8 @@ var app = (function () {
     		updateCurrentTime,
     		isAnimationEnded,
     		changePlaybackRate,
+    		translator,
+    		currLang,
     		EVENT_BUFFER_TIME,
     		isUserRunning,
     		isDragging,
@@ -12498,22 +12538,24 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("frameData" in $$props) $$invalidate(15, frameData = $$props.frameData);
+    		if ("frameData" in $$props) $$invalidate(17, frameData = $$props.frameData);
     		if ("policyEvents" in $$props) $$invalidate(0, policyEvents = $$props.policyEvents);
     		if ("currentTime" in $$props) $$invalidate(1, currentTime = $$props.currentTime);
     		if ("maxTime" in $$props) $$invalidate(2, maxTime = $$props.maxTime);
-    		if ("pauseAnimation" in $$props) $$invalidate(16, pauseAnimation = $$props.pauseAnimation);
-    		if ("startAnimation" in $$props) $$invalidate(17, startAnimation = $$props.startAnimation);
-    		if ("updateCurrentTime" in $$props) $$invalidate(18, updateCurrentTime = $$props.updateCurrentTime);
-    		if ("isAnimationEnded" in $$props) $$invalidate(19, isAnimationEnded = $$props.isAnimationEnded);
-    		if ("changePlaybackRate" in $$props) $$invalidate(20, changePlaybackRate = $$props.changePlaybackRate);
-    		if ("isUserRunning" in $$props) $$invalidate(3, isUserRunning = $$props.isUserRunning);
+    		if ("pauseAnimation" in $$props) $$invalidate(18, pauseAnimation = $$props.pauseAnimation);
+    		if ("startAnimation" in $$props) $$invalidate(19, startAnimation = $$props.startAnimation);
+    		if ("updateCurrentTime" in $$props) $$invalidate(20, updateCurrentTime = $$props.updateCurrentTime);
+    		if ("isAnimationEnded" in $$props) $$invalidate(21, isAnimationEnded = $$props.isAnimationEnded);
+    		if ("changePlaybackRate" in $$props) $$invalidate(22, changePlaybackRate = $$props.changePlaybackRate);
+    		if ("translator" in $$props) $$invalidate(3, translator = $$props.translator);
+    		if ("currLang" in $$props) $$invalidate(4, currLang = $$props.currLang);
+    		if ("isUserRunning" in $$props) $$invalidate(5, isUserRunning = $$props.isUserRunning);
     		if ("isDragging" in $$props) isDragging = $$props.isDragging;
-    		if ("sliderWidth" in $$props) $$invalidate(4, sliderWidth = $$props.sliderWidth);
+    		if ("sliderWidth" in $$props) $$invalidate(6, sliderWidth = $$props.sliderWidth);
     		if ("chartHeight" in $$props) chartHeight = $$props.chartHeight;
-    		if ("maxScrubberWidth" in $$props) $$invalidate(5, maxScrubberWidth = $$props.maxScrubberWidth);
-    		if ("handleStyler" in $$props) $$invalidate(23, handleStyler = $$props.handleStyler);
-    		if ("currPlayRate" in $$props) $$invalidate(6, currPlayRate = $$props.currPlayRate);
+    		if ("maxScrubberWidth" in $$props) $$invalidate(7, maxScrubberWidth = $$props.maxScrubberWidth);
+    		if ("handleStyler" in $$props) $$invalidate(25, handleStyler = $$props.handleStyler);
+    		if ("currPlayRate" in $$props) $$invalidate(8, currPlayRate = $$props.currPlayRate);
     		if ("startDate" in $$props) startDate = $$props.startDate;
     		if ("endDate" in $$props) endDate = $$props.endDate;
     		if ("totalDays" in $$props) totalDays = $$props.totalDays;
@@ -12524,24 +12566,24 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty[0] & /*sliderWidth*/ 16) {
+    		if ($$self.$$.dirty[0] & /*sliderWidth, currLang*/ 80) {
     			 {
-    				$$invalidate(5, maxScrubberWidth = sliderWidth);
-    				addPm25TimeseriesChart(); // when the sliderwidth has been updated
+    				$$invalidate(7, maxScrubberWidth = sliderWidth);
+    				addPm25TimeseriesChart(currLang); // when the sliderwidth has been updated
     			}
     		}
 
-    		if ($$self.$$.dirty[0] & /*handleStyler, currentTime*/ 8388610) {
+    		if ($$self.$$.dirty[0] & /*handleStyler, currentTime*/ 33554434) {
     			 {
     				// continuoslu check currentTime for where to place the scrubber handle
     				handleStyler && handleStyler.set("x", convertTimeToXPosition(currentTime));
     			}
     		}
 
-    		if ($$self.$$.dirty[0] & /*isAnimationEnded*/ 524288) {
+    		if ($$self.$$.dirty[0] & /*isAnimationEnded*/ 2097152) {
     			 {
     				if (isAnimationEnded) {
-    					$$invalidate(3, isUserRunning = false);
+    					$$invalidate(5, isUserRunning = false);
     				}
     			}
     		}
@@ -12551,6 +12593,8 @@ var app = (function () {
     		policyEvents,
     		currentTime,
     		maxTime,
+    		translator,
+    		currLang,
     		isUserRunning,
     		sliderWidth,
     		maxScrubberWidth,
@@ -12594,15 +12638,17 @@ var app = (function () {
     			create_fragment$2,
     			safe_not_equal,
     			{
-    				frameData: 15,
+    				frameData: 17,
     				policyEvents: 0,
     				currentTime: 1,
     				maxTime: 2,
-    				pauseAnimation: 16,
-    				startAnimation: 17,
-    				updateCurrentTime: 18,
-    				isAnimationEnded: 19,
-    				changePlaybackRate: 20
+    				pauseAnimation: 18,
+    				startAnimation: 19,
+    				updateCurrentTime: 20,
+    				isAnimationEnded: 21,
+    				changePlaybackRate: 22,
+    				translator: 3,
+    				currLang: 4
     			},
     			[-1, -1]
     		);
@@ -12617,7 +12663,7 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*frameData*/ ctx[15] === undefined && !("frameData" in props)) {
+    		if (/*frameData*/ ctx[17] === undefined && !("frameData" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'frameData'");
     		}
 
@@ -12633,24 +12679,32 @@ var app = (function () {
     			console.warn("<Scrubber> was created without expected prop 'maxTime'");
     		}
 
-    		if (/*pauseAnimation*/ ctx[16] === undefined && !("pauseAnimation" in props)) {
+    		if (/*pauseAnimation*/ ctx[18] === undefined && !("pauseAnimation" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'pauseAnimation'");
     		}
 
-    		if (/*startAnimation*/ ctx[17] === undefined && !("startAnimation" in props)) {
+    		if (/*startAnimation*/ ctx[19] === undefined && !("startAnimation" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'startAnimation'");
     		}
 
-    		if (/*updateCurrentTime*/ ctx[18] === undefined && !("updateCurrentTime" in props)) {
+    		if (/*updateCurrentTime*/ ctx[20] === undefined && !("updateCurrentTime" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'updateCurrentTime'");
     		}
 
-    		if (/*isAnimationEnded*/ ctx[19] === undefined && !("isAnimationEnded" in props)) {
+    		if (/*isAnimationEnded*/ ctx[21] === undefined && !("isAnimationEnded" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'isAnimationEnded'");
     		}
 
-    		if (/*changePlaybackRate*/ ctx[20] === undefined && !("changePlaybackRate" in props)) {
+    		if (/*changePlaybackRate*/ ctx[22] === undefined && !("changePlaybackRate" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'changePlaybackRate'");
+    		}
+
+    		if (/*translator*/ ctx[3] === undefined && !("translator" in props)) {
+    			console.warn("<Scrubber> was created without expected prop 'translator'");
+    		}
+
+    		if (/*currLang*/ ctx[4] === undefined && !("currLang" in props)) {
+    			console.warn("<Scrubber> was created without expected prop 'currLang'");
     		}
     	}
 
@@ -12723,6 +12777,22 @@ var app = (function () {
     	}
 
     	set changePlaybackRate(value) {
+    		throw new Error("<Scrubber>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get translator() {
+    		throw new Error("<Scrubber>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set translator(value) {
+    		throw new Error("<Scrubber>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get currLang() {
+    		throw new Error("<Scrubber>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set currLang(value) {
     		throw new Error("<Scrubber>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -13862,7 +13932,85 @@ var app = (function () {
                         'PM2.5 and Temperature',
                     MN: 
                         'PM2.5 ба Температур'
-                }
+                },
+                pm25_mov_avg_title: {
+                    US: 
+                        'Observed citywide PM2.5 average concentration: 7 day average',
+                    MN: 
+                        'Хотын хэмжээнд ажиглагдсан PM2.5 дундаж концентраци: 7 хоногийн дундаж'
+                },
+                January: {
+                    US: 
+                        'Jan',
+                    MN: 
+                        '1-cap'
+                },
+                February: {
+                    US: 
+                        'Feb',
+                    MN: 
+                        '2-cap'
+                },
+                March: {
+                    US: 
+                        'Mar',
+                    MN: 
+                        '3-cap'
+                },
+                April: {
+                    US: 
+                        'Apr',
+                    MN: 
+                        '4-cap'
+                },
+                May: {
+                    US: 
+                        'May',
+                    MN: 
+                        '5-cap'
+                },
+                June: {
+                    US: 
+                        'Jun',
+                    MN: 
+                        '6-cap'
+                },
+                July: {
+                    US: 
+                        'Jul',
+                    MN: 
+                        '7-cap'
+                },
+                August: {
+                    US: 
+                        'Aug',
+                    MN: 
+                        '8-cap'
+                },
+                September: {
+                    US: 
+                        'Sep',
+                    MN: 
+                        '9-cap'
+                },
+                October: {
+                    US: 
+                        'Oct',
+                    MN: 
+                        '10-cap'
+                },
+                November: {
+                    US: 
+                        'Nov',
+                    MN: 
+                        '11-cap'
+                },
+                December: {
+                    US: 
+                        'Dec',
+                    MN: 
+                        '12-cap'
+                },
             };
         }
 
@@ -13926,7 +14074,9 @@ var app = (function () {
     				updateCurrentTime: /*updateCurrentTime*/ ctx[10],
     				frameData,
     				changePlaybackRate: /*changePlaybackRate*/ ctx[11],
-    				policyEvents
+    				policyEvents,
+    				translator: /*translator*/ ctx[6],
+    				currLang: /*currLang*/ ctx[0]
     			},
     			$$inline: true
     		});
@@ -13978,33 +14128,33 @@ var app = (function () {
     			attr_dev(link1, "href", "https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
     			attr_dev(link1, "rel", "stylesheet");
     			add_location(link1, file$6, 1, 0, 90);
-    			attr_dev(div0, "class", "title svelte-vrzcqc");
+    			attr_dev(div0, "class", "title svelte-cxw7ga");
     			add_location(div0, file$6, 192, 6, 6000);
-    			attr_dev(button, "class", "btn translate-button svelte-vrzcqc");
+    			attr_dev(button, "class", "btn translate-button svelte-cxw7ga");
     			add_location(button, file$6, 193, 8, 6075);
-    			attr_dev(div1, "class", "title-container svelte-vrzcqc");
+    			attr_dev(div1, "class", "title-container svelte-cxw7ga");
     			add_location(div1, file$6, 191, 4, 5964);
-    			attr_dev(div2, "class", "introduction svelte-vrzcqc");
+    			attr_dev(div2, "class", "introduction svelte-cxw7ga");
     			add_location(div2, file$6, 197, 4, 6218);
-    			attr_dev(div3, "class", "header svelte-vrzcqc");
+    			attr_dev(div3, "class", "header svelte-cxw7ga");
     			add_location(div3, file$6, 190, 2, 5939);
-    			attr_dev(div4, "class", "map-animation-date-container svelte-vrzcqc");
+    			attr_dev(div4, "class", "map-animation-date-container svelte-cxw7ga");
     			add_location(div4, file$6, 204, 8, 6413);
-    			attr_dev(div5, "class", "map svelte-vrzcqc");
+    			attr_dev(div5, "class", "map svelte-cxw7ga");
     			attr_dev(div5, "id", "map");
     			add_location(div5, file$6, 203, 6, 6378);
-    			attr_dev(div6, "class", "map-scrubber-container svelte-vrzcqc");
+    			attr_dev(div6, "class", "map-scrubber-container svelte-cxw7ga");
     			add_location(div6, file$6, 212, 6, 6623);
-    			attr_dev(div7, "class", "map-container svelte-vrzcqc");
+    			attr_dev(div7, "class", "map-container svelte-cxw7ga");
     			add_location(div7, file$6, 202, 4, 6344);
-    			attr_dev(div8, "class", "map-aqi-legend svelte-vrzcqc");
-    			add_location(div8, file$6, 229, 4, 7128);
-    			attr_dev(div9, "class", "visualization svelte-vrzcqc");
+    			attr_dev(div8, "class", "map-aqi-legend svelte-cxw7ga");
+    			add_location(div8, file$6, 231, 4, 7200);
+    			attr_dev(div9, "class", "visualization svelte-cxw7ga");
     			add_location(div9, file$6, 200, 2, 6311);
-    			attr_dev(div10, "class", "ub-ap-viz svelte-vrzcqc");
+    			attr_dev(div10, "class", "ub-ap-viz svelte-cxw7ga");
     			add_location(div10, file$6, 188, 0, 5912);
     			attr_dev(div11, "class", "station-marker");
-    			add_location(div11, file$6, 240, 0, 7341);
+    			add_location(div11, file$6, 242, 0, 7413);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -14054,6 +14204,7 @@ var app = (function () {
     			if (dirty & /*currentTime*/ 4) scrubber_changes.currentTime = /*currentTime*/ ctx[2];
     			if (dirty & /*maxTime*/ 16) scrubber_changes.maxTime = /*maxTime*/ ctx[4];
     			if (dirty & /*isAnimationEnded*/ 32) scrubber_changes.isAnimationEnded = /*isAnimationEnded*/ ctx[5];
+    			if (dirty & /*currLang*/ 1) scrubber_changes.currLang = /*currLang*/ ctx[0];
     			scrubber.$set(scrubber_changes);
     			const aqilegend_changes = {};
     			if (dirty & /*currentFrame*/ 8) aqilegend_changes.currentFrame = /*currentFrame*/ ctx[3];

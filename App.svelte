@@ -221,6 +221,8 @@
               frameData={frameData}
               changePlaybackRate={changePlaybackRate}
               policyEvents={policyEvents}
+              translator={translator}
+              currLang={currLang}
           />
       </div>
 
@@ -317,14 +319,13 @@
 
 .visualization .map-container {
   width: 80%; /* in desktop */
-  height: 605px;
+  height: 100%;
   /* border: 1px solid orangered; */
   display: flex;
   flex-direction: column;
 }
 
 .map-container .map {
-  /* border: 2px solid red; */
   height: 490px; /*desktop*/
 }
 

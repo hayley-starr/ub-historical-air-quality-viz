@@ -78,7 +78,85 @@ export class Translator {
                     'PM2.5 and Temperature',
                 MN: 
                     'PM2.5 ба Температур'
-            }
+            },
+            pm25_mov_avg_title: {
+                US: 
+                    'Observed citywide PM2.5 average concentration: 7 day average',
+                MN: 
+                    'Хотын хэмжээнд ажиглагдсан PM2.5 дундаж концентраци: 7 хоногийн дундаж'
+            },
+            January: {
+                US: 
+                    'Jan',
+                MN: 
+                    '1-cap'
+            },
+            February: {
+                US: 
+                    'Feb',
+                MN: 
+                    '2-cap'
+            },
+            March: {
+                US: 
+                    'Mar',
+                MN: 
+                    '3-cap'
+            },
+            April: {
+                US: 
+                    'Apr',
+                MN: 
+                    '4-cap'
+            },
+            May: {
+                US: 
+                    'May',
+                MN: 
+                    '5-cap'
+            },
+            June: {
+                US: 
+                    'Jun',
+                MN: 
+                    '6-cap'
+            },
+            July: {
+                US: 
+                    'Jul',
+                MN: 
+                    '7-cap'
+            },
+            August: {
+                US: 
+                    'Aug',
+                MN: 
+                    '8-cap'
+            },
+            September: {
+                US: 
+                    'Sep',
+                MN: 
+                    '9-cap'
+            },
+            October: {
+                US: 
+                    'Oct',
+                MN: 
+                    '10-cap'
+            },
+            November: {
+                US: 
+                    'Nov',
+                MN: 
+                    '11-cap'
+            },
+            December: {
+                US: 
+                    'Dec',
+                MN: 
+                    '12-cap'
+            },
         }
     }
 

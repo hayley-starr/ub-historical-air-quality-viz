@@ -4,7 +4,7 @@
     import PolicyEvent from './PolicyEvent.svelte';
     import moment from 'moment';
     import { classnames } from './classnames.js';
-    import { select } from 'd3-selection';
+    import { select, selectAll } from 'd3-selection';
     import { scaleLinear } from 'd3-scale';
     import { axisBottom, axisRight } from 'd3-axis';
     import { line } from 'd3-shape';
@@ -20,6 +20,8 @@
     export let updateCurrentTime;
     export let isAnimationEnded;
     export let changePlaybackRate;
+    export let translator;
+    export let currLang;
 
     const EVENT_BUFFER_TIME = 0.1; // how much time in seconds before and after to start showing an event
 
@@ -33,7 +35,7 @@
 
     $: {
         maxScrubberWidth = sliderWidth;
-        addPm25TimeseriesChart(); // when the sliderwidth has been updated
+        addPm25TimeseriesChart(currLang); // when the sliderwidth has been updated
     }
 
 
@@ -123,14 +125,21 @@
         return policyDays/totalDays;
     }
 
-    const addPm25TimeseriesChart = () => {
+    const addPm25TimeseriesChart = (currLang) => {
+
+        // clean slate for rerender
+        let svg_old = select("#pm25-timeseries");
+        svg_old.selectAll('*').remove();
 
         let margin = {top: 10, right: 0, bottom: 10, left: 0},
             width = maxScrubberWidth - margin.left - margin.right, // CHANGE WIDTH TO WIDTH OF SCRUBBER
             height = chartHeight - margin.top - margin.bottom;
+        
+        let inner_width  = width - margin.left - margin.right;
 
+        
         let svg = select("#pm25-timeseries")
-            .append("svg")
+                .append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .style("overflow-x", "overlay")
@@ -143,7 +152,9 @@
             .domain([0, frameData.length-1]) // length of the timeseries
             .range([ 0, width ]);
 
-        let xAxis = axisBottom(xAxisScale).tickFormat(x => moment(frameData[x].date).format("MMMM"));    
+        let xAxis = axisBottom(xAxisScale)
+            .tickFormat(x => translator.translate(moment(frameData[x].date).format("MMMM"), currLang))
+            .tickSizeOuter(0);    
 
         svg.append("g")
             .attr("transform", "translate(0," + height + ")")
@@ -158,9 +169,22 @@
             )
             .range([ height, 0]);
         // 2. format
-        let yAxis = axisRight(yAxisScale).ticks(5)
-        // 3. add to graph
-        svg.append("g").call(yAxis);    
+        let yAxis = axisRight(yAxisScale).ticks(3).tickValues([55,150,250]).tickSizeOuter(0);  
+
+        //---- Add Y axis gridlines
+        let yAxisGrid = axisRight(yAxisScale)
+            .tickSize(inner_width)
+            .tickFormat('')
+            .ticks(3)
+            .tickValues([55,150,250])
+            .tickSizeOuter(0);
+
+
+        svg.append("g")
+        .attr('class', 'y-axis-grid')
+        .style("stroke-dasharray", "3 3")
+        .style('opacity', '0.15')
+        .call(yAxisGrid); 
     
 
         //----- Add the line -----------
@@ -173,6 +197,10 @@
                 .x(function(frame) { return xAxisScale(frameData.indexOf(frame)) })
                 .y(function(frame) { return yAxisScale(frame.pm25) })
             );
+
+        //---- Add ticks on top of the line ----
+        svg.append("g")
+         .call(yAxis);
     }
 
     const displayTime = (timeNow, timeTotal) => {
@@ -184,6 +212,7 @@
 
 
 <div class="scrubber">
+    <div class='pm25-chart-title'>{translator.translate('pm25_mov_avg_title', currLang)}</div>
     <div class='pm25-chart' id='pm25-timeseries'>
 
     </div>
@@ -268,10 +297,23 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        position: relative;
+    }
+
+    .pm25-chart-title {
+        position: absolute;
+        top: 10px;
+        left: 10%;
+        font-size: 10px;
+        font-weight: 100;
     }
 
     .pm25-chart {
         height: 100px;
+    }
+
+    .y-axis-grid line {
+        stroke: dashed;
     }
 
     /* CONTROLS SECTION */
@@ -279,8 +321,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        height: 50px;
-        /* border: 2px solid blue; */
+        height: 30px;
     }
 
     .control-button-container {
