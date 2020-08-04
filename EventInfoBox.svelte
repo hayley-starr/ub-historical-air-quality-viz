@@ -29,12 +29,13 @@ export let eventDetails;
 
 <style>
     .policy-info-box {
-        border: 1px solid #47B3F2;
+        border: 1px solid #2B2D42;
+        color: #2B2D42;
         max-height: 400px;
         width: 300px;
         background: white;
         border-radius: 4px;
-        font-family: 'Trebuchet MS';
+        /* font-family: 'Trebuchet MS'; */
         display: flex;
         flex-direction: column;
         align-content: space-between;
@@ -52,7 +53,6 @@ export let eventDetails;
 
     .policy-event-title {
         font-size: 16px;
-        font-weight: bold;
         margin-bottom: 5px;
     }
 
@@ -73,7 +73,7 @@ export let eventDetails;
     }
 
     .policy-info-bottom {
-        background: #47B3F2;
+        background: #2B2D42;
         color: white;
         padding: 5px;
     }

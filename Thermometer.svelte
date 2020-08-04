@@ -3,7 +3,6 @@
 
     export let currentFrame;
     export let frameData;
-    export let aloha;
 
     const MAX_HEIGHT = 534; // total height of mercury rect - DO NOT CHANGE
     const MIN_HEIGHT = 105; // how far the mercury rect dips below the mercury circle -DO NOT CHANGE

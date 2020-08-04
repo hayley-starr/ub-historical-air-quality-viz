@@ -12,6 +12,7 @@
 
 
     export let frameData;
+    export let policyEvents;
     export let currentTime;
     export let maxTime;
     export let pauseAnimation;
@@ -121,30 +122,6 @@
         let policyDays = moment(policyDate)-startDate;
         return policyDays/totalDays;
     }
-
-    const policyEvents = [
-        {
-            date: '2019-03-21',
-            title: 'Government Bans Raw Coal',
-            text: 'The government bans the burning of raw coal within the city limits. The ban does not apply to power plants.',
-            source: 'https://breathemongolia.org/',
-            imgSource: './banRawCoal.jpg'
-        },
-        {
-            date: '2019-06-29',
-            title: 'Government Bans Raw Coal',
-            text: 'The government bans the burning of raw coal within the city limits. The ban does not apply to power plants.',
-            source: 'https://breathemongolia.org/',
-            imgSource: './banRawCoal.jpg'
-        },
-        {
-            date: '2019-11-30',
-            title: 'Government Bans Raw Coal',
-            text: 'The government bans the burning of raw coal within the city limits. The ban does not apply to power plants.',
-            source: 'https://breathemongolia.org/',
-            imgSource: './banRawCoal.jpg'
-        }
-    ]
 
     const addPm25TimeseriesChart = () => {
 
@@ -389,9 +366,9 @@
     }
 
     .range {
-        border-radius: 3px;
-        height: 6px;
-        background: lightgray;
+        border-radius: 2px;
+        height: 4px;
+        background: black;
         position: absolute;
         top: 50%;
         left: 0;

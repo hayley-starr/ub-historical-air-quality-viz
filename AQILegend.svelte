@@ -5,9 +5,12 @@
     import { quantize, interpolate } from 'd3-interpolate'
     import { create } from 'd3-selection';
     import { axisRight } from 'd3-axis';
+    import { classnames } from './classnames';
 
     export let currentFrame;
     export let frameData;
+    export let translator;
+    export let currLang;
 
     // DO NOT CHANGE -- used in the png-izer as well
     const green_color = '#93c947';
@@ -19,7 +22,14 @@
     const black_color = '#050505';
 
     const airQualityScale = [0, 12, 35, 55, 150, 250, 450, 500]; // this is up for changing!
-    const airQualityScaleTicks = [12, 35, 55, 150, 250, 500]; // this is up for changing!
+    const airQualityScaleTicks = [
+        {label: 12, heightpx: 20, text: 'good'},
+        {label: 35, heightpx: 20, text: 'moderate'},
+        {label: 55, heightpx: 20, text: 'unhealthy_sensitive'},
+        {label: 150, heightpx: 20, text: 'unhealthy'},
+        {label: 250, heightpx: 15, text: 'very_unhealthy'},
+        {label: 500, heightpx: 15, text: 'hazardous'}
+    ]
     const colorScale = [green_color, // <12
             yellow_color, // <35
             orange_color, // <55
@@ -85,7 +95,11 @@
         <canvas class='pm25-scale' id='pm25-scale'></canvas>
         <div class='pm25-scale-ticks'>
             {#each airQualityScaleTicks as tick}
-                <div>{'-' + tick + ' μg/m3'} </div>
+                <div class={classnames('pm25-scale-tick-row', 'pm25-scale-tick-row-'+tick.heightpx)}>
+                    <div>{' < ' + tick.label + ' μg/m3'} </div>
+                    <div class='aqi-scale-labels'>{translator.translate(tick.text, currLang)}</div>
+                </div>
+                
             {/each}
 
 
@@ -139,7 +153,24 @@
     padding-left: 5px;
     display: flex;
     flex-direction: column-reverse;
-    justify-content: space-evenly;
+}
+
+.pm25-scale-tick-row {
+    display: flex;
+    width: 100%;
+    height: 15px;
+    justify-content: space-between;
+}
+
+.pm25-scale-tick-row-20 {
+    display: flex;
+    width: 100%;
+    height: 20px;
+    justify-content: space-between;
+}
+
+.aqi-scale-labels {
+    text-align: end;
 }
 
 .ap-legend-stations {

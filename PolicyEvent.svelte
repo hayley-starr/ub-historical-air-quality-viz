@@ -202,9 +202,10 @@
     }
 
     .policy-dot {
-        background: darkslategrey;
-        width: 10px;
-        height: 10px;
+        background:  #e3a005;
+        width: 8px;
+        height: 8px;
+        border: 2px solid black;
         border-radius: 5px;
         cursor: pointer;
     }

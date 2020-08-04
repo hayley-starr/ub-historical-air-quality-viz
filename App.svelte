@@ -10,8 +10,23 @@
   import AnimationDate from './AnimationDate.svelte';
   import moment from 'moment';
   import { frameData } from './frameData.js';
+  import { policyEvents } from './policyEvents.js';
+  import getUnicodeFlagIcon from 'country-flag-icons/unicode';
+  import { Translator } from './translator';
 
+//---------- Control langauge of the page ----------------------
+  let translator = new Translator();
+  let currLang = 'US'; // 'MN'
+  let oppLang = 'MN'; // 'MN'
 
+  const handleUpdateLanguage = () => {
+    oppLang = currLang;
+    currLang = currLang === 'US' ? 'MN' : 'US';
+  }
+
+//---------------------------------------------------------------
+
+  
   const UB_COORDINATES = [106.900354, 47.917802];
   const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGF5bGV5c3RhcnIiLCJhIjoiY2s5MmhvYTU3MDBkaTNwcGI3cWJtMjdkcCJ9.tOfFfs9wWWcOfQ1sDMiwvQ';
   mapboxgl.accessToken = MAPBOX_TOKEN;
@@ -66,16 +81,6 @@
   const changePlaybackRate = (playRate) => {
     map.getSource('ap_video').video.playbackRate = playRate;
   }
-
-  let green_color = '#87e32b'; //green
-  let red_color = '#f0004c'; //red
-  let yellow_color = '#ebc505'; 
-  let blue_color = '#027ef2';
-  let white_color = '#ffffff';
-  let orange_color = '#fc9d03';
-  let purple_color = '#5e03fc';
-  let dark_purple_color = '#4b1f7a';
-  let black_color = '#050505';
 
 //------ Setting up Mapbox layers ---------------------------------
 
@@ -180,14 +185,17 @@
 
 </script>
 
-
+<!--HTML-->
 <div class='ub-ap-viz'>
 
   <div class='header'>
-    <div class='title'>
-      <h1>Visualzing Air Pollution and Policy in Ulaanbaatar</h1>
-        <!-- <button class='btn translate-button'>{'MNG'}</button> -->
+    <div class='title-container'>
+      <div class='title'>{translator.translate('title', currLang)}</div>
+        <button class='btn translate-button' on:click={handleUpdateLanguage}>
+          {getUnicodeFlagIcon(oppLang)}
+        </button>
     </div>
+    <div class='introduction'>{translator.translate('introduction', currLang)}</div>
   </div>
 
   <div class='visualization'>
@@ -212,6 +220,7 @@
               updateCurrentTime={updateCurrentTime}
               frameData={frameData}
               changePlaybackRate={changePlaybackRate}
+              policyEvents={policyEvents}
           />
       </div>
 
@@ -222,6 +231,8 @@
       <AQILegend  
         currentFrame={currentFrame} 
         frameData={frameData} 
+        translator={translator}
+        currLang={currLang}
       />
     </div>
   </div>
@@ -233,6 +244,7 @@
 
 .ub-ap-viz {
   font-family: 'Open Sans', sans-serif;
+  color: #2B2D42;
 }
 
 .btn {
@@ -261,19 +273,33 @@
   /* border: 2px solid red; */
 }
 
-.header .title {
+.title-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: #2B2D42;
+  color: white;
+  height: 100px;
+  padding: 0 10px;
+  border-radius: 10px;
+}
+
+.title {
+  font-size: 20px;
 }
 
 .translate-button {
   width: 50px;
   height: 40px;
-  background: #2B2D42;
+  font-size: 30px;
   color: white;
   border: none;
   border-radius: 15px;
+}
+
+.introduction {
+  padding: 5px;
+  font-size: 12px;
 }
 
 
