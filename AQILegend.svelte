@@ -108,6 +108,14 @@
                 {/each}
             </div>
         </div>
+
+        <div class='uncertainty-mask-key-container'>
+            <img class='uncertainty-mask-hatching' src="./imgs/uncertainty_mask_legend.png" alt="">
+            <div class='uncertainty-mask-key-description'>
+                <span>{translator.translate('legend_not_enough_data', currLang)}</span>
+            </div>
+        </div>
+        
         
     </div>
 
@@ -129,6 +137,7 @@
         />
     </div>
     
+
 </div>
 
 <style>
@@ -205,6 +214,26 @@
   width: 100px;
 }
 
+/*--------- Uncertainty Mask Key ---------------*/
+.uncertainty-mask-key-container {
+     margin-top: 10px;
+     display: flex;
+     height: 30px;
+}
+
+.uncertainty-mask-hatching {
+    height: 30px;
+    width: 30px;
+}
+
+.uncertainty-mask-key-description {
+    padding-left: 5px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+
+/*--------- AP Stations Key ---------------*/
 .ap-legend-stations {
     display: flex;
     font-size: 14px;

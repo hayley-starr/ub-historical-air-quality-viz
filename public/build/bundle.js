@@ -13004,14 +13004,14 @@ var app = (function () {
     			div1 = element("div");
     			t4 = text(t4_value);
     			t5 = space();
-    			attr_dev(span0, "class", "pm25-scale-number svelte-179o7cd");
+    			attr_dev(span0, "class", "pm25-scale-number svelte-1ynkmqq");
     			add_location(span0, file$4, 100, 24, 3584);
     			add_location(span1, file$4, 103, 24, 3715);
-    			attr_dev(div0, "class", "pm25-scale-label svelte-179o7cd");
+    			attr_dev(div0, "class", "pm25-scale-label svelte-1ynkmqq");
     			add_location(div0, file$4, 99, 24, 3529);
-    			attr_dev(div1, "class", "aqi-scale-labels svelte-179o7cd");
+    			attr_dev(div1, "class", "aqi-scale-labels svelte-1ynkmqq");
     			add_location(div1, file$4, 105, 24, 3794);
-    			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty(classnames("pm25-scale-tick-row", "pm25-scale-tick-row-" + /*tick*/ ctx[18].heightpx)) + " svelte-179o7cd"));
+    			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty(classnames("pm25-scale-tick-row", "pm25-scale-tick-row-" + /*tick*/ ctx[18].heightpx)) + " svelte-1ynkmqq"));
     			add_location(div2, file$4, 98, 20, 3419);
     		},
     		m: function mount(target, anchor) {
@@ -13046,8 +13046,8 @@ var app = (function () {
     }
 
     function create_fragment$4(ctx) {
-    	let div10;
-    	let div3;
+    	let div12;
+    	let div5;
     	let div0;
     	let t0_value = /*translator*/ ctx[2].translate("pm25_scale_title", /*currLang*/ ctx[3]) + "";
     	let t0;
@@ -13057,14 +13057,23 @@ var app = (function () {
     	let t2;
     	let div1;
     	let t3;
-    	let div8;
-    	let div7;
-    	let div5;
     	let div4;
+    	let img;
+    	let img_src_value;
     	let t4;
-    	let div6;
+    	let div3;
+    	let span;
+    	let t5_value = /*translator*/ ctx[2].translate("legend_not_enough_data", /*currLang*/ ctx[3]) + "";
+    	let t5;
     	let t6;
+    	let div10;
     	let div9;
+    	let div7;
+    	let div6;
+    	let t7;
+    	let div8;
+    	let t9;
+    	let div11;
     	let current;
     	let each_value = /*airQualityScaleTicks*/ ctx[4];
     	validate_each_argument(each_value);
@@ -13084,8 +13093,8 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div10 = element("div");
-    			div3 = element("div");
+    			div12 = element("div");
+    			div5 = element("div");
     			div0 = element("div");
     			t0 = text(t0_value);
     			t1 = space();
@@ -13099,51 +13108,67 @@ var app = (function () {
     			}
 
     			t3 = space();
-    			div8 = element("div");
-    			div7 = element("div");
-    			div5 = element("div");
     			div4 = element("div");
+    			img = element("img");
     			t4 = space();
-    			div6 = element("div");
-    			div6.textContent = `${"Air Quality Sensor Location"}`;
+    			div3 = element("div");
+    			span = element("span");
+    			t5 = text(t5_value);
     			t6 = space();
+    			div10 = element("div");
     			div9 = element("div");
+    			div7 = element("div");
+    			div6 = element("div");
+    			t7 = space();
+    			div8 = element("div");
+    			div8.textContent = `${"Air Quality Sensor Location"}`;
+    			t9 = space();
+    			div11 = element("div");
     			create_component(thermometer.$$.fragment);
-    			attr_dev(div0, "class", "ap-legend-pm25-scale-title svelte-179o7cd");
+    			attr_dev(div0, "class", "ap-legend-pm25-scale-title svelte-1ynkmqq");
     			add_location(div0, file$4, 93, 8, 3086);
-    			attr_dev(canvas, "class", "pm25-scale svelte-179o7cd");
+    			attr_dev(canvas, "class", "pm25-scale svelte-1ynkmqq");
     			attr_dev(canvas, "id", "pm25-scale");
     			add_location(canvas, file$4, 95, 12, 3250);
-    			attr_dev(div1, "class", "pm25-scale-ticks svelte-179o7cd");
+    			attr_dev(div1, "class", "pm25-scale-ticks svelte-1ynkmqq");
     			add_location(div1, file$4, 96, 12, 3315);
-    			attr_dev(div2, "class", "ap-legend-pm25-scale-container svelte-179o7cd");
+    			attr_dev(div2, "class", "ap-legend-pm25-scale-container svelte-1ynkmqq");
     			add_location(div2, file$4, 94, 8, 3193);
-    			attr_dev(div3, "class", "legend-tile svelte-179o7cd");
-    			add_location(div3, file$4, 92, 4, 3052);
-    			attr_dev(div4, "class", "ap-station-marker svelte-179o7cd");
-    			add_location(div4, file$4, 117, 16, 4136);
-    			attr_dev(div5, "class", "ap-station-container svelte-179o7cd");
-    			add_location(div5, file$4, 116, 12, 4085);
-    			add_location(div6, file$4, 119, 12, 4205);
-    			attr_dev(div7, "class", "ap-legend-stations svelte-179o7cd");
-    			add_location(div7, file$4, 115, 8, 4040);
-    			attr_dev(div8, "class", "legend-tile basemap-options svelte-179o7cd");
-    			add_location(div8, file$4, 114, 5, 3990);
-    			attr_dev(div9, "class", "legend-tile thermometer-container svelte-179o7cd");
-    			add_location(div9, file$4, 124, 5, 4370);
-    			attr_dev(div10, "class", "ap-legend svelte-179o7cd");
-    			add_location(div10, file$4, 91, 0, 3024);
+    			attr_dev(img, "class", "uncertainty-mask-hatching svelte-1ynkmqq");
+    			if (img.src !== (img_src_value = "./imgs/uncertainty_mask_legend.png")) attr_dev(img, "src", img_src_value);
+    			attr_dev(img, "alt", "");
+    			add_location(img, file$4, 112, 12, 4025);
+    			add_location(span, file$4, 114, 16, 4188);
+    			attr_dev(div3, "class", "uncertainty-mask-key-description svelte-1ynkmqq");
+    			add_location(div3, file$4, 113, 12, 4125);
+    			attr_dev(div4, "class", "uncertainty-mask-key-container svelte-1ynkmqq");
+    			add_location(div4, file$4, 111, 8, 3968);
+    			attr_dev(div5, "class", "legend-tile svelte-1ynkmqq");
+    			add_location(div5, file$4, 92, 4, 3052);
+    			attr_dev(div6, "class", "ap-station-marker svelte-1ynkmqq");
+    			add_location(div6, file$4, 125, 16, 4480);
+    			attr_dev(div7, "class", "ap-station-container svelte-1ynkmqq");
+    			add_location(div7, file$4, 124, 12, 4429);
+    			add_location(div8, file$4, 127, 12, 4549);
+    			attr_dev(div9, "class", "ap-legend-stations svelte-1ynkmqq");
+    			add_location(div9, file$4, 123, 8, 4384);
+    			attr_dev(div10, "class", "legend-tile basemap-options svelte-1ynkmqq");
+    			add_location(div10, file$4, 122, 5, 4334);
+    			attr_dev(div11, "class", "legend-tile thermometer-container svelte-1ynkmqq");
+    			add_location(div11, file$4, 132, 5, 4714);
+    			attr_dev(div12, "class", "ap-legend svelte-1ynkmqq");
+    			add_location(div12, file$4, 91, 0, 3024);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div10, anchor);
-    			append_dev(div10, div3);
-    			append_dev(div3, div0);
+    			insert_dev(target, div12, anchor);
+    			append_dev(div12, div5);
+    			append_dev(div5, div0);
     			append_dev(div0, t0);
-    			append_dev(div3, t1);
-    			append_dev(div3, div2);
+    			append_dev(div5, t1);
+    			append_dev(div5, div2);
     			append_dev(div2, canvas);
     			append_dev(div2, t2);
     			append_dev(div2, div1);
@@ -13152,16 +13177,23 @@ var app = (function () {
     				each_blocks[i].m(div1, null);
     			}
 
-    			append_dev(div10, t3);
-    			append_dev(div10, div8);
-    			append_dev(div8, div7);
-    			append_dev(div7, div5);
+    			append_dev(div5, t3);
     			append_dev(div5, div4);
-    			append_dev(div7, t4);
-    			append_dev(div7, div6);
-    			append_dev(div10, t6);
+    			append_dev(div4, img);
+    			append_dev(div4, t4);
+    			append_dev(div4, div3);
+    			append_dev(div3, span);
+    			append_dev(span, t5);
+    			append_dev(div12, t6);
+    			append_dev(div12, div10);
     			append_dev(div10, div9);
-    			mount_component(thermometer, div9, null);
+    			append_dev(div9, div7);
+    			append_dev(div7, div6);
+    			append_dev(div9, t7);
+    			append_dev(div9, div8);
+    			append_dev(div12, t9);
+    			append_dev(div12, div11);
+    			mount_component(thermometer, div11, null);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
@@ -13191,6 +13223,7 @@ var app = (function () {
     				each_blocks.length = each_value.length;
     			}
 
+    			if ((!current || dirty & /*translator, currLang*/ 12) && t5_value !== (t5_value = /*translator*/ ctx[2].translate("legend_not_enough_data", /*currLang*/ ctx[3]) + "")) set_data_dev(t5, t5_value);
     			const thermometer_changes = {};
     			if (dirty & /*currentFrame*/ 1) thermometer_changes.currentFrame = /*currentFrame*/ ctx[0];
     			if (dirty & /*frameData*/ 2) thermometer_changes.frameData = /*frameData*/ ctx[1];
@@ -13206,7 +13239,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div10);
+    			if (detaching) detach_dev(div12);
     			destroy_each(each_blocks, detaching);
     			destroy_component(thermometer);
     		}
@@ -13767,6 +13800,12 @@ var app = (function () {
                         'Hazardous',
                     MN: 
                         'Маш Их Хортой'
+                },
+                legend_not_enough_data: {
+                    US: 
+                        'Not enough data for estimate',
+                    MN: 
+                        'Тооцоолоход хангалттай мэдээлэл байхгүй байна'
                 }
             };
         }

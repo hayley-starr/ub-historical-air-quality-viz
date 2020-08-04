@@ -54,6 +54,12 @@ export class Translator {
                     'Hazardous',
                 MN: 
                     'Маш Их Хортой'
+            },
+            legend_not_enough_data: {
+                US: 
+                    'Not enough data for estimate',
+                MN: 
+                    'Тооцоолоход хангалттай мэдээлэл байхгүй байна'
             }
         }
     }
