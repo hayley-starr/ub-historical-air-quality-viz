@@ -13074,14 +13074,14 @@ var app = (function () {
     			div1 = element("div");
     			t4 = text(t4_value);
     			t5 = space();
-    			attr_dev(span0, "class", "pm25-scale-number svelte-mk690k");
+    			attr_dev(span0, "class", "pm25-scale-number svelte-1smq01e");
     			add_location(span0, file$4, 100, 24, 3584);
     			add_location(span1, file$4, 103, 24, 3715);
-    			attr_dev(div0, "class", "pm25-scale-label svelte-mk690k");
+    			attr_dev(div0, "class", "pm25-scale-label svelte-1smq01e");
     			add_location(div0, file$4, 99, 24, 3529);
-    			attr_dev(div1, "class", "aqi-scale-labels svelte-mk690k");
+    			attr_dev(div1, "class", "aqi-scale-labels svelte-1smq01e");
     			add_location(div1, file$4, 105, 24, 3794);
-    			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty(classnames("pm25-scale-tick-row", "pm25-scale-tick-row-" + /*tick*/ ctx[18].heightpx)) + " svelte-mk690k"));
+    			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty(classnames("pm25-scale-tick-row", "pm25-scale-tick-row-" + /*tick*/ ctx[18].heightpx)) + " svelte-1smq01e"));
     			add_location(div2, file$4, 98, 20, 3419);
     		},
     		m: function mount(target, anchor) {
@@ -13214,46 +13214,46 @@ var app = (function () {
     			t12 = space();
     			span2 = element("span");
     			t13 = text(t13_value);
-    			attr_dev(div0, "class", "ap-legend-pm25-scale-title svelte-mk690k");
+    			attr_dev(div0, "class", "ap-legend-pm25-scale-title svelte-1smq01e");
     			add_location(div0, file$4, 93, 8, 3086);
-    			attr_dev(canvas, "class", "pm25-scale svelte-mk690k");
+    			attr_dev(canvas, "class", "pm25-scale svelte-1smq01e");
     			attr_dev(canvas, "id", "pm25-scale");
     			add_location(canvas, file$4, 95, 12, 3250);
-    			attr_dev(div1, "class", "pm25-scale-ticks svelte-mk690k");
+    			attr_dev(div1, "class", "pm25-scale-ticks svelte-1smq01e");
     			add_location(div1, file$4, 96, 12, 3315);
-    			attr_dev(div2, "class", "ap-legend-pm25-scale-container svelte-mk690k");
+    			attr_dev(div2, "class", "ap-legend-pm25-scale-container svelte-1smq01e");
     			add_location(div2, file$4, 94, 8, 3193);
-    			attr_dev(img0, "class", "key-img svelte-mk690k");
+    			attr_dev(img0, "class", "key-img svelte-1smq01e");
     			if (img0.src !== (img0_src_value = "./imgs/uncertainty_mask_legend.png")) attr_dev(img0, "src", img0_src_value);
     			attr_dev(img0, "alt", "");
     			add_location(img0, file$4, 112, 12, 4008);
     			add_location(span0, file$4, 114, 16, 4136);
-    			attr_dev(div3, "class", "key-description svelte-mk690k");
+    			attr_dev(div3, "class", "key-description svelte-1smq01e");
     			add_location(div3, file$4, 113, 12, 4090);
-    			attr_dev(div4, "class", "key-container svelte-mk690k");
+    			attr_dev(div4, "class", "key-container svelte-1smq01e");
     			add_location(div4, file$4, 111, 8, 3968);
-    			attr_dev(img1, "class", "key-img svelte-mk690k");
+    			attr_dev(img1, "class", "key-img svelte-1smq01e");
     			if (img1.src !== (img1_src_value = "./imgs/station_marker_legend.png")) attr_dev(img1, "src", img1_src_value);
     			attr_dev(img1, "alt", "");
     			add_location(img1, file$4, 120, 12, 4292);
     			add_location(span1, file$4, 122, 16, 4418);
-    			attr_dev(div5, "class", "key-description svelte-mk690k");
+    			attr_dev(div5, "class", "key-description svelte-1smq01e");
     			add_location(div5, file$4, 121, 12, 4372);
-    			attr_dev(div6, "class", "key-container svelte-mk690k");
+    			attr_dev(div6, "class", "key-container svelte-1smq01e");
     			add_location(div6, file$4, 119, 8, 4252);
-    			attr_dev(div7, "class", "legend-tile svelte-mk690k");
+    			attr_dev(div7, "class", "legend-tile svelte-1smq01e");
     			add_location(div7, file$4, 92, 4, 3052);
-    			attr_dev(div8, "class", "thermometer-container svelte-mk690k");
+    			attr_dev(div8, "class", "thermometer-container svelte-1smq01e");
     			add_location(div8, file$4, 131, 8, 4694);
-    			attr_dev(div9, "class", "temperature-description-title svelte-mk690k");
+    			attr_dev(div9, "class", "temperature-description-title svelte-1smq01e");
     			add_location(div9, file$4, 138, 12, 4927);
-    			attr_dev(span2, "class", "temperature-description-body svelte-mk690k");
+    			attr_dev(span2, "class", "temperature-description-body svelte-1smq01e");
     			add_location(span2, file$4, 139, 11, 5050);
     			attr_dev(div10, "class", "temperature-description");
     			add_location(div10, file$4, 137, 8, 4877);
-    			attr_dev(div11, "class", "legend-tile temperature-key-container svelte-mk690k");
+    			attr_dev(div11, "class", "legend-tile temperature-key-container svelte-1smq01e");
     			add_location(div11, file$4, 130, 5, 4634);
-    			attr_dev(div12, "class", "ap-legend svelte-mk690k");
+    			attr_dev(div12, "class", "ap-legend svelte-1smq01e");
     			add_location(div12, file$4, 91, 0, 3024);
     		},
     		l: function claim(nodes) {
@@ -14023,6 +14023,83 @@ var app = (function () {
     /* App.svelte generated by Svelte v3.20.1 */
     const file$6 = "App.svelte";
 
+    // (212:7) {#if !visualizationStarted}
+    function create_if_block$2(ctx) {
+    	let div;
+    	let button;
+    	let svg;
+    	let defs;
+    	let style;
+    	let t;
+    	let g1;
+    	let g0;
+    	let path;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			button = element("button");
+    			svg = svg_element("svg");
+    			defs = svg_element("defs");
+    			style = svg_element("style");
+    			t = text(".cls-play-1 {\n                              stroke: #000;\n                              fill: #000;\n                              stroke-miterlimit: 10;\n                          }\n                          ");
+    			g1 = svg_element("g");
+    			g0 = svg_element("g");
+    			path = svg_element("path");
+    			add_location(style, file$6, 216, 26, 6890);
+    			add_location(defs, file$6, 215, 22, 6857);
+    			attr_dev(path, "class", "cls-play-1");
+    			attr_dev(path, "d", "M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z");
+    			attr_dev(path, "transform", "translate(0 -0.01)");
+    			add_location(path, file$6, 226, 26, 7322);
+    			attr_dev(g0, "id", "Layer_1-2");
+    			attr_dev(g0, "data-name", "Layer 1-2");
+    			add_location(g0, file$6, 225, 26, 7255);
+    			attr_dev(g1, "id", "Layer_2");
+    			attr_dev(g1, "data-name", "Layer 2");
+    			add_location(g1, file$6, 224, 22, 7192);
+    			attr_dev(svg, "id", "Layer_1");
+    			attr_dev(svg, "data-name", "Layer 1");
+    			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
+    			attr_dev(svg, "viewBox", "0 0 113.57 127.1");
+    			add_location(svg, file$6, 214, 18, 6734);
+    			attr_dev(button, "class", "btn map-play-button svelte-lol6iu");
+    			add_location(button, file$6, 213, 10, 6649);
+    			attr_dev(div, "class", "map-play-button-overlay svelte-lol6iu");
+    			add_location(div, file$6, 212, 8, 6601);
+    		},
+    		m: function mount(target, anchor, remount) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, button);
+    			append_dev(button, svg);
+    			append_dev(svg, defs);
+    			append_dev(defs, style);
+    			append_dev(style, t);
+    			append_dev(svg, g1);
+    			append_dev(g1, g0);
+    			append_dev(g0, path);
+    			if (remount) dispose();
+    			dispose = listen_dev(button, "click", /*startVisualization*/ ctx[11], false, false, false);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$2.name,
+    		type: "if",
+    		source: "(212:7) {#if !visualizationStarted}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
     function create_fragment$6(ctx) {
     	let link0;
     	let t0;
@@ -14032,7 +14109,7 @@ var app = (function () {
     	let div3;
     	let div1;
     	let div0;
-    	let t2_value = /*translator*/ ctx[6].translate("title", /*currLang*/ ctx[0]) + "";
+    	let t2_value = /*translator*/ ctx[7].translate("title", /*currLang*/ ctx[0]) + "";
     	let t2;
     	let t3;
     	let button;
@@ -14040,21 +14117,23 @@ var app = (function () {
     	let t4;
     	let t5;
     	let div2;
-    	let t6_value = /*translator*/ ctx[6].translate("introduction", /*currLang*/ ctx[0]) + "";
+    	let t6_value = /*translator*/ ctx[7].translate("introduction", /*currLang*/ ctx[0]) + "";
     	let t6;
     	let t7;
     	let div9;
     	let div7;
     	let div5;
-    	let div4;
     	let t8;
-    	let div6;
+    	let div4;
     	let t9;
-    	let div8;
+    	let div6;
     	let t10;
+    	let div8;
+    	let t11;
     	let div11;
     	let current;
     	let dispose;
+    	let if_block = !/*visualizationStarted*/ ctx[6] && create_if_block$2(ctx);
 
     	const animationdate = new AnimationDate({
     			props: {
@@ -14069,13 +14148,13 @@ var app = (function () {
     				currentTime: /*currentTime*/ ctx[2],
     				maxTime: /*maxTime*/ ctx[4],
     				isAnimationEnded: /*isAnimationEnded*/ ctx[5],
-    				pauseAnimation: /*pauseAnimation*/ ctx[8],
-    				startAnimation: /*startAnimation*/ ctx[9],
-    				updateCurrentTime: /*updateCurrentTime*/ ctx[10],
+    				pauseAnimation: /*pauseAnimation*/ ctx[9],
+    				startAnimation: /*startAnimation*/ ctx[10],
+    				updateCurrentTime: /*updateCurrentTime*/ ctx[12],
     				frameData,
-    				changePlaybackRate: /*changePlaybackRate*/ ctx[11],
+    				changePlaybackRate: /*changePlaybackRate*/ ctx[13],
     				policyEvents,
-    				translator: /*translator*/ ctx[6],
+    				translator: /*translator*/ ctx[7],
     				currLang: /*currLang*/ ctx[0]
     			},
     			$$inline: true
@@ -14085,7 +14164,7 @@ var app = (function () {
     			props: {
     				currentFrame: /*currentFrame*/ ctx[3],
     				frameData,
-    				translator: /*translator*/ ctx[6],
+    				translator: /*translator*/ ctx[7],
     				currLang: /*currLang*/ ctx[0]
     			},
     			$$inline: true
@@ -14112,15 +14191,17 @@ var app = (function () {
     			div9 = element("div");
     			div7 = element("div");
     			div5 = element("div");
+    			if (if_block) if_block.c();
+    			t8 = space();
     			div4 = element("div");
     			create_component(animationdate.$$.fragment);
-    			t8 = space();
+    			t9 = space();
     			div6 = element("div");
     			create_component(scrubber.$$.fragment);
-    			t9 = space();
+    			t10 = space();
     			div8 = element("div");
     			create_component(aqilegend.$$.fragment);
-    			t10 = space();
+    			t11 = space();
     			div11 = element("div");
     			attr_dev(link0, "href", "https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css");
     			attr_dev(link0, "rel", "stylesheet");
@@ -14128,33 +14209,33 @@ var app = (function () {
     			attr_dev(link1, "href", "https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
     			attr_dev(link1, "rel", "stylesheet");
     			add_location(link1, file$6, 1, 0, 90);
-    			attr_dev(div0, "class", "title svelte-cxw7ga");
-    			add_location(div0, file$6, 192, 6, 6000);
-    			attr_dev(button, "class", "btn translate-button svelte-cxw7ga");
-    			add_location(button, file$6, 193, 8, 6075);
-    			attr_dev(div1, "class", "title-container svelte-cxw7ga");
-    			add_location(div1, file$6, 191, 4, 5964);
-    			attr_dev(div2, "class", "introduction svelte-cxw7ga");
-    			add_location(div2, file$6, 197, 4, 6218);
-    			attr_dev(div3, "class", "header svelte-cxw7ga");
-    			add_location(div3, file$6, 190, 2, 5939);
-    			attr_dev(div4, "class", "map-animation-date-container svelte-cxw7ga");
-    			add_location(div4, file$6, 204, 8, 6413);
-    			attr_dev(div5, "class", "map svelte-cxw7ga");
+    			attr_dev(div0, "class", "title svelte-lol6iu");
+    			add_location(div0, file$6, 198, 6, 6152);
+    			attr_dev(button, "class", "btn translate-button svelte-lol6iu");
+    			add_location(button, file$6, 199, 8, 6227);
+    			attr_dev(div1, "class", "title-container svelte-lol6iu");
+    			add_location(div1, file$6, 197, 4, 6116);
+    			attr_dev(div2, "class", "introduction svelte-lol6iu");
+    			add_location(div2, file$6, 203, 4, 6370);
+    			attr_dev(div3, "class", "header svelte-lol6iu");
+    			add_location(div3, file$6, 196, 2, 6091);
+    			attr_dev(div4, "class", "map-animation-date-container svelte-lol6iu");
+    			add_location(div4, file$6, 233, 8, 7653);
+    			attr_dev(div5, "class", "map svelte-lol6iu");
     			attr_dev(div5, "id", "map");
-    			add_location(div5, file$6, 203, 6, 6378);
-    			attr_dev(div6, "class", "map-scrubber-container svelte-cxw7ga");
-    			add_location(div6, file$6, 212, 6, 6623);
-    			attr_dev(div7, "class", "map-container svelte-cxw7ga");
-    			add_location(div7, file$6, 202, 4, 6344);
-    			attr_dev(div8, "class", "map-aqi-legend svelte-cxw7ga");
-    			add_location(div8, file$6, 231, 4, 7200);
-    			attr_dev(div9, "class", "visualization svelte-cxw7ga");
-    			add_location(div9, file$6, 200, 2, 6311);
-    			attr_dev(div10, "class", "ub-ap-viz svelte-cxw7ga");
-    			add_location(div10, file$6, 188, 0, 5912);
+    			add_location(div5, file$6, 210, 6, 6531);
+    			attr_dev(div6, "class", "map-scrubber-container svelte-lol6iu");
+    			add_location(div6, file$6, 241, 6, 7863);
+    			attr_dev(div7, "class", "map-container svelte-lol6iu");
+    			add_location(div7, file$6, 208, 4, 6496);
+    			attr_dev(div8, "class", "map-aqi-legend svelte-lol6iu");
+    			add_location(div8, file$6, 260, 4, 8440);
+    			attr_dev(div9, "class", "visualization svelte-lol6iu");
+    			add_location(div9, file$6, 206, 2, 6463);
+    			attr_dev(div10, "class", "ub-ap-viz svelte-lol6iu");
+    			add_location(div10, file$6, 194, 0, 6064);
     			attr_dev(div11, "class", "station-marker");
-    			add_location(div11, file$6, 242, 0, 7413);
+    			add_location(div11, file$6, 271, 0, 8653);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -14179,24 +14260,40 @@ var app = (function () {
     			append_dev(div10, div9);
     			append_dev(div9, div7);
     			append_dev(div7, div5);
+    			if (if_block) if_block.m(div5, null);
+    			append_dev(div5, t8);
     			append_dev(div5, div4);
     			mount_component(animationdate, div4, null);
-    			append_dev(div7, t8);
+    			append_dev(div7, t9);
     			append_dev(div7, div6);
     			mount_component(scrubber, div6, null);
-    			append_dev(div9, t9);
+    			append_dev(div9, t10);
     			append_dev(div9, div8);
     			mount_component(aqilegend, div8, null);
-    			insert_dev(target, t10, anchor);
+    			insert_dev(target, t11, anchor);
     			insert_dev(target, div11, anchor);
     			current = true;
     			if (remount) dispose();
-    			dispose = listen_dev(button, "click", /*handleUpdateLanguage*/ ctx[7], false, false, false);
+    			dispose = listen_dev(button, "click", /*handleUpdateLanguage*/ ctx[8], false, false, false);
     		},
     		p: function update(ctx, [dirty]) {
-    			if ((!current || dirty & /*currLang*/ 1) && t2_value !== (t2_value = /*translator*/ ctx[6].translate("title", /*currLang*/ ctx[0]) + "")) set_data_dev(t2, t2_value);
+    			if ((!current || dirty & /*currLang*/ 1) && t2_value !== (t2_value = /*translator*/ ctx[7].translate("title", /*currLang*/ ctx[0]) + "")) set_data_dev(t2, t2_value);
     			if ((!current || dirty & /*oppLang*/ 2) && t4_value !== (t4_value = getCountryFlag(/*oppLang*/ ctx[1]) + "")) set_data_dev(t4, t4_value);
-    			if ((!current || dirty & /*currLang*/ 1) && t6_value !== (t6_value = /*translator*/ ctx[6].translate("introduction", /*currLang*/ ctx[0]) + "")) set_data_dev(t6, t6_value);
+    			if ((!current || dirty & /*currLang*/ 1) && t6_value !== (t6_value = /*translator*/ ctx[7].translate("introduction", /*currLang*/ ctx[0]) + "")) set_data_dev(t6, t6_value);
+
+    			if (!/*visualizationStarted*/ ctx[6]) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$2(ctx);
+    					if_block.c();
+    					if_block.m(div5, t8);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
     			const animationdate_changes = {};
     			if (dirty & /*currentFrame*/ 8) animationdate_changes.currentFrame = /*currentFrame*/ ctx[3];
     			animationdate.$set(animationdate_changes);
@@ -14230,10 +14327,11 @@ var app = (function () {
     			if (detaching) detach_dev(link1);
     			if (detaching) detach_dev(t1);
     			if (detaching) detach_dev(div10);
+    			if (if_block) if_block.d();
     			destroy_component(animationdate);
     			destroy_component(scrubber);
     			destroy_component(aqilegend);
-    			if (detaching) detach_dev(t10);
+    			if (detaching) detach_dev(t11);
     			if (detaching) detach_dev(div11);
     			dispose();
     		}
@@ -14281,6 +14379,7 @@ var app = (function () {
     	let animationPaused = true;
 
     	let isAnimationEnded = false;
+    	let visualizationStarted = false; // first time only
 
     	const pauseAnimation = () => {
     		animationPaused = true;
@@ -14291,6 +14390,11 @@ var app = (function () {
     		animationPaused = false;
     		$$invalidate(5, isAnimationEnded = false);
     		map.getSource("ap_video").play();
+    	};
+
+    	const startVisualization = () => {
+    		startAnimation();
+    		$$invalidate(6, visualizationStarted = true);
     	};
 
     	// set the currentTime to what the video is showing so that the dependent components stay up to date
@@ -14449,8 +14553,10 @@ var app = (function () {
     		timeToFrameMultiplier,
     		animationPaused,
     		isAnimationEnded,
+    		visualizationStarted,
     		pauseAnimation,
     		startAnimation,
+    		startVisualization,
     		reportCurrentTime,
     		updateCurrentTime,
     		changePlaybackRate,
@@ -14461,17 +14567,18 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("translator" in $$props) $$invalidate(6, translator = $$props.translator);
+    		if ("translator" in $$props) $$invalidate(7, translator = $$props.translator);
     		if ("currLang" in $$props) $$invalidate(0, currLang = $$props.currLang);
     		if ("oppLang" in $$props) $$invalidate(1, oppLang = $$props.oppLang);
     		if ("map" in $$props) map = $$props.map;
     		if ("currentTime" in $$props) $$invalidate(2, currentTime = $$props.currentTime);
     		if ("currentFrame" in $$props) $$invalidate(3, currentFrame = $$props.currentFrame);
     		if ("maxTime" in $$props) $$invalidate(4, maxTime = $$props.maxTime);
-    		if ("maxFrame" in $$props) $$invalidate(16, maxFrame = $$props.maxFrame);
-    		if ("timeToFrameMultiplier" in $$props) $$invalidate(13, timeToFrameMultiplier = $$props.timeToFrameMultiplier);
+    		if ("maxFrame" in $$props) $$invalidate(18, maxFrame = $$props.maxFrame);
+    		if ("timeToFrameMultiplier" in $$props) $$invalidate(15, timeToFrameMultiplier = $$props.timeToFrameMultiplier);
     		if ("animationPaused" in $$props) animationPaused = $$props.animationPaused;
     		if ("isAnimationEnded" in $$props) $$invalidate(5, isAnimationEnded = $$props.isAnimationEnded);
+    		if ("visualizationStarted" in $$props) $$invalidate(6, visualizationStarted = $$props.visualizationStarted);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -14480,10 +14587,10 @@ var app = (function () {
 
     	$$self.$$.update = () => {
     		if ($$self.$$.dirty & /*maxTime*/ 16) {
-    			 $$invalidate(13, timeToFrameMultiplier = maxTime > 0 ? maxFrame / maxTime : 0);
+    			 $$invalidate(15, timeToFrameMultiplier = maxTime > 0 ? maxFrame / maxTime : 0);
     		}
 
-    		if ($$self.$$.dirty & /*timeToFrameMultiplier, currentTime*/ 8196) {
+    		if ($$self.$$.dirty & /*timeToFrameMultiplier, currentTime*/ 32772) {
     			 $$invalidate(3, currentFrame = Math.round(timeToFrameMultiplier * currentTime));
     		}
     	};
@@ -14495,10 +14602,12 @@ var app = (function () {
     		currentFrame,
     		maxTime,
     		isAnimationEnded,
+    		visualizationStarted,
     		translator,
     		handleUpdateLanguage,
     		pauseAnimation,
     		startAnimation,
+    		startVisualization,
     		updateCurrentTime,
     		changePlaybackRate
     	];

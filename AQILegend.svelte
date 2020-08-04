@@ -170,6 +170,7 @@
 
 .ap-legend-pm25-scale-title {
     margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .pm25-scale {
@@ -258,7 +259,7 @@
 
 .temperature-description-title {
     font-weight: bold;
-    transform: translateX(-10px);
+    transform: translateX(-5px);
     padding-bottom: 5px;
 }
 

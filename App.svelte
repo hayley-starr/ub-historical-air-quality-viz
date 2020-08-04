@@ -49,6 +49,7 @@
 //----------- Logic for playing and pausing the animation -------------------------
   let animationPaused = true;
   let isAnimationEnded = false;
+  let visualizationStarted = false; // first time only
 
   const pauseAnimation = () => {
     animationPaused = true;
@@ -59,6 +60,11 @@
     animationPaused = false;
     isAnimationEnded = false;
     map.getSource('ap_video').play();
+  }
+
+  const startVisualization = () => {
+    startAnimation();
+    visualizationStarted = true;
   }
 
   // set the currentTime to what the video is showing so that the dependent components stay up to date
@@ -201,7 +207,30 @@
   <div class='visualization'>
 
     <div class='map-container'>
+
       <div class='map' id='map'>
+       {#if !visualizationStarted}
+        <div class='map-play-button-overlay'>
+          <button class='btn map-play-button' on:click={startVisualization}>
+                  <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 113.57 127.1">
+                      <defs>
+                          <style>
+                          .cls-play-1 {
+                              stroke: #000;
+                              fill: #000;
+                              stroke-miterlimit: 10;
+                          }
+                          </style>
+                      </defs>
+                      <g id="Layer_2" data-name="Layer 2">
+                          <g id="Layer_1-2" data-name="Layer 1-2">
+                          <path class="cls-play-1" d="M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z" transform="translate(0 -0.01)"/>
+                          </g>
+                      </g>
+                  </svg>
+              </button>
+        </div>
+        {/if}
         <div class='map-animation-date-container'>
             <AnimationDate
               currentFrame={currentFrame} 
@@ -323,10 +352,30 @@
   /* border: 1px solid orangered; */
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .map-container .map {
   height: 490px; /*desktop*/
+}
+
+.map-play-button-overlay {
+  position: absolute;
+  background-color: white;
+  opacity: 0.2;
+  height: 400px;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.map-play-button {
+    height: 100px;
+    width: 100px;
+    border: none;
+    cursor: pointer;
 }
 
 .map-scrubber-container {
