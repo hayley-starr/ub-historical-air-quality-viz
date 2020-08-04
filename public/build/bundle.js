@@ -12797,7 +12797,7 @@ var app = (function () {
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 184 613");
     			add_location(svg, file$3, 34, 0, 1144);
-    			attr_dev(div, "class", "thermometer svelte-k3y7vs");
+    			attr_dev(div, "class", "thermometer svelte-1y12re4");
     			add_location(div, file$3, 33, 0, 1118);
     		},
     		l: function claim(nodes) {
@@ -13004,14 +13004,14 @@ var app = (function () {
     			div1 = element("div");
     			t4 = text(t4_value);
     			t5 = space();
-    			attr_dev(span0, "class", "pm25-scale-number svelte-1dnvfc1");
+    			attr_dev(span0, "class", "pm25-scale-number svelte-mk690k");
     			add_location(span0, file$4, 100, 24, 3584);
     			add_location(span1, file$4, 103, 24, 3715);
-    			attr_dev(div0, "class", "pm25-scale-label svelte-1dnvfc1");
+    			attr_dev(div0, "class", "pm25-scale-label svelte-mk690k");
     			add_location(div0, file$4, 99, 24, 3529);
-    			attr_dev(div1, "class", "aqi-scale-labels svelte-1dnvfc1");
+    			attr_dev(div1, "class", "aqi-scale-labels svelte-mk690k");
     			add_location(div1, file$4, 105, 24, 3794);
-    			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty(classnames("pm25-scale-tick-row", "pm25-scale-tick-row-" + /*tick*/ ctx[18].heightpx)) + " svelte-1dnvfc1"));
+    			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty(classnames("pm25-scale-tick-row", "pm25-scale-tick-row-" + /*tick*/ ctx[18].heightpx)) + " svelte-mk690k"));
     			add_location(div2, file$4, 98, 20, 3419);
     		},
     		m: function mount(target, anchor) {
@@ -13046,7 +13046,7 @@ var app = (function () {
     }
 
     function create_fragment$4(ctx) {
-    	let div9;
+    	let div12;
     	let div7;
     	let div0;
     	let t0_value = /*translator*/ ctx[2].translate("pm25_scale_title", /*currLang*/ ctx[3]) + "";
@@ -13075,7 +13075,17 @@ var app = (function () {
     	let t8_value = /*translator*/ ctx[2].translate("legend_station_marker", /*currLang*/ ctx[3]) + "";
     	let t8;
     	let t9;
+    	let div11;
     	let div8;
+    	let t10;
+    	let div10;
+    	let div9;
+    	let t11_value = /*translator*/ ctx[2].translate("legend_temperature_title", /*currLang*/ ctx[3]) + "";
+    	let t11;
+    	let t12;
+    	let span2;
+    	let t13_value = /*translator*/ ctx[2].translate("legend_temperature_description", /*currLang*/ ctx[3]) + "";
+    	let t13;
     	let current;
     	let each_value = /*airQualityScaleTicks*/ ctx[4];
     	validate_each_argument(each_value);
@@ -13095,7 +13105,7 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div9 = element("div");
+    			div12 = element("div");
     			div7 = element("div");
     			div0 = element("div");
     			t0 = text(t0_value);
@@ -13124,48 +13134,64 @@ var app = (function () {
     			span1 = element("span");
     			t8 = text(t8_value);
     			t9 = space();
+    			div11 = element("div");
     			div8 = element("div");
     			create_component(thermometer.$$.fragment);
-    			attr_dev(div0, "class", "ap-legend-pm25-scale-title svelte-1dnvfc1");
+    			t10 = space();
+    			div10 = element("div");
+    			div9 = element("div");
+    			t11 = text(t11_value);
+    			t12 = space();
+    			span2 = element("span");
+    			t13 = text(t13_value);
+    			attr_dev(div0, "class", "ap-legend-pm25-scale-title svelte-mk690k");
     			add_location(div0, file$4, 93, 8, 3086);
-    			attr_dev(canvas, "class", "pm25-scale svelte-1dnvfc1");
+    			attr_dev(canvas, "class", "pm25-scale svelte-mk690k");
     			attr_dev(canvas, "id", "pm25-scale");
     			add_location(canvas, file$4, 95, 12, 3250);
-    			attr_dev(div1, "class", "pm25-scale-ticks svelte-1dnvfc1");
+    			attr_dev(div1, "class", "pm25-scale-ticks svelte-mk690k");
     			add_location(div1, file$4, 96, 12, 3315);
-    			attr_dev(div2, "class", "ap-legend-pm25-scale-container svelte-1dnvfc1");
+    			attr_dev(div2, "class", "ap-legend-pm25-scale-container svelte-mk690k");
     			add_location(div2, file$4, 94, 8, 3193);
-    			attr_dev(img0, "class", "key-img svelte-1dnvfc1");
+    			attr_dev(img0, "class", "key-img svelte-mk690k");
     			if (img0.src !== (img0_src_value = "./imgs/uncertainty_mask_legend.png")) attr_dev(img0, "src", img0_src_value);
     			attr_dev(img0, "alt", "");
     			add_location(img0, file$4, 112, 12, 4008);
     			add_location(span0, file$4, 114, 16, 4136);
-    			attr_dev(div3, "class", "key-description svelte-1dnvfc1");
+    			attr_dev(div3, "class", "key-description svelte-mk690k");
     			add_location(div3, file$4, 113, 12, 4090);
-    			attr_dev(div4, "class", "key-container svelte-1dnvfc1");
+    			attr_dev(div4, "class", "key-container svelte-mk690k");
     			add_location(div4, file$4, 111, 8, 3968);
-    			attr_dev(img1, "class", "key-img svelte-1dnvfc1");
+    			attr_dev(img1, "class", "key-img svelte-mk690k");
     			if (img1.src !== (img1_src_value = "./imgs/station_marker_legend.png")) attr_dev(img1, "src", img1_src_value);
     			attr_dev(img1, "alt", "");
     			add_location(img1, file$4, 120, 12, 4292);
     			add_location(span1, file$4, 122, 16, 4418);
-    			attr_dev(div5, "class", "key-description svelte-1dnvfc1");
+    			attr_dev(div5, "class", "key-description svelte-mk690k");
     			add_location(div5, file$4, 121, 12, 4372);
-    			attr_dev(div6, "class", "key-container svelte-1dnvfc1");
+    			attr_dev(div6, "class", "key-container svelte-mk690k");
     			add_location(div6, file$4, 119, 8, 4252);
-    			attr_dev(div7, "class", "legend-tile svelte-1dnvfc1");
+    			attr_dev(div7, "class", "legend-tile svelte-mk690k");
     			add_location(div7, file$4, 92, 4, 3052);
-    			attr_dev(div8, "class", "legend-tile thermometer-container svelte-1dnvfc1");
-    			add_location(div8, file$4, 130, 5, 4634);
-    			attr_dev(div9, "class", "ap-legend svelte-1dnvfc1");
-    			add_location(div9, file$4, 91, 0, 3024);
+    			attr_dev(div8, "class", "thermometer-container svelte-mk690k");
+    			add_location(div8, file$4, 131, 8, 4694);
+    			attr_dev(div9, "class", "temperature-description-title svelte-mk690k");
+    			add_location(div9, file$4, 138, 12, 4927);
+    			attr_dev(span2, "class", "temperature-description-body svelte-mk690k");
+    			add_location(span2, file$4, 139, 11, 5050);
+    			attr_dev(div10, "class", "temperature-description");
+    			add_location(div10, file$4, 137, 8, 4877);
+    			attr_dev(div11, "class", "legend-tile temperature-key-container svelte-mk690k");
+    			add_location(div11, file$4, 130, 5, 4634);
+    			attr_dev(div12, "class", "ap-legend svelte-mk690k");
+    			add_location(div12, file$4, 91, 0, 3024);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div9, anchor);
-    			append_dev(div9, div7);
+    			insert_dev(target, div12, anchor);
+    			append_dev(div12, div7);
     			append_dev(div7, div0);
     			append_dev(div0, t0);
     			append_dev(div7, t1);
@@ -13192,9 +13218,17 @@ var app = (function () {
     			append_dev(div6, div5);
     			append_dev(div5, span1);
     			append_dev(span1, t8);
-    			append_dev(div9, t9);
-    			append_dev(div9, div8);
+    			append_dev(div12, t9);
+    			append_dev(div12, div11);
+    			append_dev(div11, div8);
     			mount_component(thermometer, div8, null);
+    			append_dev(div11, t10);
+    			append_dev(div11, div10);
+    			append_dev(div10, div9);
+    			append_dev(div9, t11);
+    			append_dev(div10, t12);
+    			append_dev(div10, span2);
+    			append_dev(span2, t13);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
@@ -13230,6 +13264,8 @@ var app = (function () {
     			if (dirty & /*currentFrame*/ 1) thermometer_changes.currentFrame = /*currentFrame*/ ctx[0];
     			if (dirty & /*frameData*/ 2) thermometer_changes.frameData = /*frameData*/ ctx[1];
     			thermometer.$set(thermometer_changes);
+    			if ((!current || dirty & /*translator, currLang*/ 12) && t11_value !== (t11_value = /*translator*/ ctx[2].translate("legend_temperature_title", /*currLang*/ ctx[3]) + "")) set_data_dev(t11, t11_value);
+    			if ((!current || dirty & /*translator, currLang*/ 12) && t13_value !== (t13_value = /*translator*/ ctx[2].translate("legend_temperature_description", /*currLang*/ ctx[3]) + "")) set_data_dev(t13, t13_value);
     		},
     		i: function intro(local) {
     			if (current) return;
@@ -13241,7 +13277,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div9);
+    			if (detaching) detach_dev(div12);
     			destroy_each(each_blocks, detaching);
     			destroy_component(thermometer);
     		}
@@ -13814,6 +13850,18 @@ var app = (function () {
                         'Air Quality Station',
                     MN: 
                         'Агаарын чанарын станц'
+                },
+                legend_temperature_description: {
+                    US: 
+                        'PM2.5 is a major pollutant from burning coal, and people burn coal more frequently during cold weather. However, coal power plants and other PM2.5 sources, like vehicles, stil operate in the summertime.',
+                    MN: 
+                        'PM2.5 нь нүүрс шатаахад хүргэдэг томоохон бохирдуулагч бөгөөд хүмүүс хүйтний улиралд нүүрс түлдэг. Гэсэн хэдий ч нүүрсний цахилгаан станцууд болон бусад PM2.5 эх үүсвэрүүд, тухайлбал тээврийн хэрэгсэл, зуны улиралд ажилладаг.'
+                },
+                legend_temperature_title: {
+                    US: 
+                        'PM2.5 and Temperature',
+                    MN: 
+                        'PM2.5 ба Температур'
                 }
             };
         }

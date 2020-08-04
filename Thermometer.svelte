@@ -71,8 +71,9 @@
 <style>
 
 .thermometer {
-    max-width: 50px;
-    max-height: 100px;
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 </style>

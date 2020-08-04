@@ -66,6 +66,18 @@ export class Translator {
                     'Air Quality Station',
                 MN: 
                     'Агаарын чанарын станц'
+            },
+            legend_temperature_description: {
+                US: 
+                    'PM2.5 is a major pollutant from burning coal, and people burn coal more frequently during cold weather. However, coal power plants and other PM2.5 sources, like vehicles, stil operate in the summertime.',
+                MN: 
+                    'PM2.5 нь нүүрс шатаахад хүргэдэг томоохон бохирдуулагч бөгөөд хүмүүс хүйтний улиралд нүүрс түлдэг. Гэсэн хэдий ч нүүрсний цахилгаан станцууд болон бусад PM2.5 эх үүсвэрүүд, тухайлбал тээврийн хэрэгсэл, зуны улиралд ажилладаг.'
+            },
+            legend_temperature_title: {
+                US: 
+                    'PM2.5 and Temperature',
+                MN: 
+                    'PM2.5 ба Температур'
             }
         }
     }
