@@ -159,7 +159,6 @@
     }
 
     .policy-dot-hit-area {
-        padding: 30px;
         width: 10px;
         height: 10px;
     }

@@ -427,9 +427,10 @@
     }
 
     .handle-hit-area {
-        padding: 30px;
+        padding: 5px 20px;
         width: 5px;
         height: 40px;
+        cursor: pointer;
     }
 
     .handle {
