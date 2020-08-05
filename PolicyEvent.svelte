@@ -7,7 +7,7 @@
     export let currentScrubberPosition;
     export let bufferRadius;
     export let eventPosition;
-    // export let eventDetails;
+    export let eventDetails;
     export let id;
     export let pauseAnimation;
     export let startAnimation;
@@ -20,14 +20,10 @@
 
     let policyDotStyler;
     let policyDotContainerStyler
-    // let policyInfoContainerStyler;
-    // var policyDateStyler;
 
     $: {
         if (eventPosition > 0) {
             policyDotContainerStyler.set('left', eventPosition);
-            // policyInfoContainerStyler.set('left', eventPosition);
-            // policyDateStyler.set('left', eventPosition);
         }
     }
 
@@ -43,6 +39,7 @@
         if (eventPosition > 0) {
             bufferEndPosition = eventPosition + bufferRadius;
             bufferStartPosition = eventPosition - bufferRadius;
+            if (eventDetails.type == 'ap season') bufferEndPosition += 15*bufferRadius;
         }
     }
 
@@ -67,9 +64,6 @@
 
 //----- Animation specification for expanding and contractng the event -------------
 
-    const policyInfoContractedState = { scale: 0 , translateX: '-50%', translateY: '-25%'};
-    const policyInfoExpandedState = { scale: 1 , translateX: '-25%', translateY: '-102%'};
-
     const expandDuration = 400;
     const contractDuration = 600;
 
@@ -77,16 +71,6 @@
         values: [ 
             { scale: 1 },
             { scale: 2 }
-        ],
-        times: [0, 1],
-        duration: expandDuration,
-        easings: [easing.easeOut]
-    });
-
-    let policyInfoExpandKeyFrames =  keyframes({
-        values: [ 
-            policyInfoContractedState,
-            policyInfoExpandedState
         ],
         times: [0, 1],
         duration: expandDuration,
@@ -103,16 +87,6 @@
         easings: [easing.easeIn]
     });
 
-    let policyInfoContractKeyFrames =  keyframes({
-        values: [ 
-            policyInfoExpandedState,
-            policyInfoContractedState
-        ],
-        times: [0, 1],
-        duration: contractDuration,
-        easings: [easing.easeIn]
-    });
-
 
     // To highlight the whole event, expand the dot and show the policy info box
     const highlightEvent = () => {
@@ -122,13 +96,13 @@
         policyDotExpandKeyFrames.start(style => {
             policyDotStyler.set(style);
         });
-        // policyInfoExpandKeyFrames.start(style => {
-        //   policyInfoContainerStyler.set(style);
-        // });
         
-        // pause the animation for a little to let the user read
-        pauseAnimation();
-        setTimeout(function() { startAnimation() }, PAUSE_ON_EVENT_MS);
+        
+        if (eventDetails.type != 'ap season') {
+            // pause the animation for a little to let the user read
+            pauseAnimation();
+            setTimeout(function() { startAnimation() }, PAUSE_ON_EVENT_MS);
+        } 
     }
 
     // To diminish the whole event, contract the dot and hide the policy info box
@@ -138,9 +112,6 @@
         policyDotContractKeyFrames.start(style => {
             policyDotStyler.set(style);
         });
-        // policyInfoContractKeyFrames.start(style => {
-        //   policyInfoContainerStyler.set(style);
-        // });
         updateAppState({currEventId: undefined});
     }
 
@@ -152,14 +123,6 @@
         // Create a styler to style the dot container - to position the policy dot on the timeline
         const policyDotContainer = document.querySelector(".policy-dot-container"+id);
         policyDotContainerStyler = styler(policyDotContainer);
-       
-
-        // const policyInfoContainer = document.querySelector(".policy-info-container"+id);
-        // policyInfoContainerStyler = styler(policyInfoContainer);
-        
-
-        // const policyDate = document.querySelector(".policy-event-date"+id);
-        // policyDateStyler = styler(policyDate);
         
     });
 
@@ -174,9 +137,6 @@
             <div class={"policy-dot policy-dot"+id}></div>
         </div>
     </div>
-    <!-- <div class={"policy-info-container policy-info-container"+id}>
-        <EventInfoBox eventDetails={eventDetails} />
-    </div> -->
   
 </div>
 
@@ -212,14 +172,5 @@
         border-radius: 5px;
         cursor: pointer;
     }
-
-    /* .policy-info-container {
-        height: 10;
-        width: 10;
-        position: absolute;
-        transform: translateY(-25%) translateX(-50%) scale(0);
-    } */
-
-
 
 </style>

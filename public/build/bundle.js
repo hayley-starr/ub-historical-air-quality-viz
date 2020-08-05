@@ -2905,130 +2905,214 @@ var app = (function () {
 
     const file = "EventInfoBox.svelte";
 
+    // (16:8) {#if eventDetails.type != 'ap season'}
+    function create_if_block_1(ctx) {
+    	let div;
+    	let img;
+    	let img_src_value;
+    	let img_alt_value;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			img = element("img");
+    			if (img.src !== (img_src_value = /*eventDetails*/ ctx[0].imgSource)) attr_dev(img, "src", img_src_value);
+    			attr_dev(img, "alt", img_alt_value = "");
+    			attr_dev(img, "class", "svelte-10vqrwj");
+    			add_location(img, file, 17, 12, 411);
+    			attr_dev(div, "class", "policy-event-photo svelte-10vqrwj");
+    			add_location(div, file, 16, 8, 366);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, img);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*eventDetails*/ 1 && img.src !== (img_src_value = /*eventDetails*/ ctx[0].imgSource)) {
+    				attr_dev(img, "src", img_src_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1.name,
+    		type: "if",
+    		source: "(16:8) {#if eventDetails.type != 'ap season'}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (22:4) {#if eventDetails.type != 'ap season'}
+    function create_if_block(ctx) {
+    	let div2;
+    	let div0;
+    	let span;
+    	let t0_value = /*eventDetails*/ ctx[0].text + "";
+    	let t0;
+    	let t1;
+    	let div1;
+    	let a;
+    	let t2;
+    	let a_href_value;
+
+    	const block = {
+    		c: function create() {
+    			div2 = element("div");
+    			div0 = element("div");
+    			span = element("span");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			div1 = element("div");
+    			a = element("a");
+    			t2 = text("Source");
+    			add_location(span, file, 24, 12, 627);
+    			attr_dev(div0, "class", "policy-event-text svelte-10vqrwj");
+    			add_location(div0, file, 23, 8, 583);
+    			attr_dev(a, "href", a_href_value = /*eventDetails*/ ctx[0].source);
+    			attr_dev(a, "target", "_blank");
+    			attr_dev(a, "class", "svelte-10vqrwj");
+    			add_location(a, file, 27, 12, 729);
+    			attr_dev(div1, "class", "policy-event-source svelte-10vqrwj");
+    			add_location(div1, file, 26, 8, 683);
+    			attr_dev(div2, "class", "policy-info-bottom svelte-10vqrwj");
+    			add_location(div2, file, 22, 4, 542);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div2, anchor);
+    			append_dev(div2, div0);
+    			append_dev(div0, span);
+    			append_dev(span, t0);
+    			append_dev(div2, t1);
+    			append_dev(div2, div1);
+    			append_dev(div1, a);
+    			append_dev(a, t2);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*eventDetails*/ 1 && t0_value !== (t0_value = /*eventDetails*/ ctx[0].text + "")) set_data_dev(t0, t0_value);
+
+    			if (dirty & /*eventDetails*/ 1 && a_href_value !== (a_href_value = /*eventDetails*/ ctx[0].source)) {
+    				attr_dev(a, "href", a_href_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div2);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block.name,
+    		type: "if",
+    		source: "(22:4) {#if eventDetails.type != 'ap season'}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
     function create_fragment(ctx) {
-    	let div7;
     	let div3;
     	let div0;
     	let span0;
     	let t0_value = /*eventDetails*/ ctx[0].date + "";
     	let t0;
     	let t1;
+    	let div2;
     	let div1;
     	let span1;
     	let t2_value = /*eventDetails*/ ctx[0].title + "";
     	let t2;
     	let t3;
-    	let div2;
-    	let img;
-    	let img_src_value;
-    	let img_alt_value;
     	let t4;
-    	let div6;
-    	let div4;
-    	let span2;
-    	let t5_value = /*eventDetails*/ ctx[0].text + "";
-    	let t5;
-    	let t6;
-    	let div5;
-    	let a;
-    	let t7;
-    	let a_href_value;
+    	let if_block0 = /*eventDetails*/ ctx[0].type != "ap season" && create_if_block_1(ctx);
+    	let if_block1 = /*eventDetails*/ ctx[0].type != "ap season" && create_if_block(ctx);
 
     	const block = {
     		c: function create() {
-    			div7 = element("div");
     			div3 = element("div");
     			div0 = element("div");
     			span0 = element("span");
     			t0 = text(t0_value);
     			t1 = space();
+    			div2 = element("div");
     			div1 = element("div");
     			span1 = element("span");
     			t2 = text(t2_value);
     			t3 = space();
-    			div2 = element("div");
-    			img = element("img");
+    			if (if_block0) if_block0.c();
     			t4 = space();
-    			div6 = element("div");
-    			div4 = element("div");
-    			span2 = element("span");
-    			t5 = text(t5_value);
-    			t6 = space();
-    			div5 = element("div");
-    			a = element("a");
-    			t7 = text("Source");
-    			add_location(span0, file, 9, 12, 163);
-    			attr_dev(div0, "class", "policy-event-date svelte-1me4ogg");
-    			add_location(div0, file, 8, 8, 119);
-    			add_location(span1, file, 12, 12, 265);
-    			attr_dev(div1, "class", "policy-event-title svelte-1me4ogg");
-    			add_location(div1, file, 11, 9, 220);
-    			if (img.src !== (img_src_value = /*eventDetails*/ ctx[0].imgSource)) attr_dev(img, "src", img_src_value);
-    			attr_dev(img, "alt", img_alt_value = "Ban on Raw Coal");
-    			attr_dev(img, "class", "svelte-1me4ogg");
-    			add_location(img, file, 15, 12, 367);
-    			attr_dev(div2, "class", "policy-event-photo svelte-1me4ogg");
-    			add_location(div2, file, 14, 8, 322);
-    			attr_dev(div3, "class", "policy-info-top svelte-1me4ogg");
-    			add_location(div3, file, 7, 4, 81);
-    			add_location(span2, file, 20, 12, 541);
-    			attr_dev(div4, "class", "policy-event-text svelte-1me4ogg");
-    			add_location(div4, file, 19, 8, 497);
-    			attr_dev(a, "href", a_href_value = /*eventDetails*/ ctx[0].source);
-    			attr_dev(a, "target", "_blank");
-    			attr_dev(a, "class", "svelte-1me4ogg");
-    			add_location(a, file, 23, 12, 643);
-    			attr_dev(div5, "class", "policy-event-source svelte-1me4ogg");
-    			add_location(div5, file, 22, 8, 597);
-    			attr_dev(div6, "class", "policy-info-bottom svelte-1me4ogg");
-    			add_location(div6, file, 18, 4, 456);
-    			attr_dev(div7, "class", "policy-info-box svelte-1me4ogg");
-    			add_location(div7, file, 6, 0, 47);
+    			if (if_block1) if_block1.c();
+    			add_location(span0, file, 8, 8, 121);
+    			attr_dev(div0, "class", "policy-event-date svelte-10vqrwj");
+    			add_location(div0, file, 7, 4, 81);
+    			add_location(span1, file, 13, 12, 262);
+    			attr_dev(div1, "class", "policy-event-title svelte-10vqrwj");
+    			add_location(div1, file, 12, 9, 217);
+    			attr_dev(div2, "class", "policy-info-top svelte-10vqrwj");
+    			add_location(div2, file, 10, 4, 169);
+    			attr_dev(div3, "class", "policy-info-box svelte-10vqrwj");
+    			add_location(div3, file, 6, 0, 47);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div7, anchor);
-    			append_dev(div7, div3);
+    			insert_dev(target, div3, anchor);
     			append_dev(div3, div0);
     			append_dev(div0, span0);
     			append_dev(span0, t0);
     			append_dev(div3, t1);
-    			append_dev(div3, div1);
+    			append_dev(div3, div2);
+    			append_dev(div2, div1);
     			append_dev(div1, span1);
     			append_dev(span1, t2);
-    			append_dev(div3, t3);
-    			append_dev(div3, div2);
-    			append_dev(div2, img);
-    			append_dev(div7, t4);
-    			append_dev(div7, div6);
-    			append_dev(div6, div4);
-    			append_dev(div4, span2);
-    			append_dev(span2, t5);
-    			append_dev(div6, t6);
-    			append_dev(div6, div5);
-    			append_dev(div5, a);
-    			append_dev(a, t7);
+    			append_dev(div2, t3);
+    			if (if_block0) if_block0.m(div2, null);
+    			append_dev(div3, t4);
+    			if (if_block1) if_block1.m(div3, null);
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*eventDetails*/ 1 && t0_value !== (t0_value = /*eventDetails*/ ctx[0].date + "")) set_data_dev(t0, t0_value);
     			if (dirty & /*eventDetails*/ 1 && t2_value !== (t2_value = /*eventDetails*/ ctx[0].title + "")) set_data_dev(t2, t2_value);
 
-    			if (dirty & /*eventDetails*/ 1 && img.src !== (img_src_value = /*eventDetails*/ ctx[0].imgSource)) {
-    				attr_dev(img, "src", img_src_value);
+    			if (/*eventDetails*/ ctx[0].type != "ap season") {
+    				if (if_block0) {
+    					if_block0.p(ctx, dirty);
+    				} else {
+    					if_block0 = create_if_block_1(ctx);
+    					if_block0.c();
+    					if_block0.m(div2, null);
+    				}
+    			} else if (if_block0) {
+    				if_block0.d(1);
+    				if_block0 = null;
     			}
 
-    			if (dirty & /*eventDetails*/ 1 && t5_value !== (t5_value = /*eventDetails*/ ctx[0].text + "")) set_data_dev(t5, t5_value);
-
-    			if (dirty & /*eventDetails*/ 1 && a_href_value !== (a_href_value = /*eventDetails*/ ctx[0].source)) {
-    				attr_dev(a, "href", a_href_value);
+    			if (/*eventDetails*/ ctx[0].type != "ap season") {
+    				if (if_block1) {
+    					if_block1.p(ctx, dirty);
+    				} else {
+    					if_block1 = create_if_block(ctx);
+    					if_block1.c();
+    					if_block1.m(div3, null);
+    				}
+    			} else if (if_block1) {
+    				if_block1.d(1);
+    				if_block1 = null;
     			}
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div7);
+    			if (detaching) detach_dev(div3);
+    			if (if_block0) if_block0.d();
+    			if (if_block1) if_block1.d();
     		}
     	};
 
@@ -8785,16 +8869,16 @@ var app = (function () {
     			div3 = element("div");
     			div2 = element("div");
     			div1 = element("div");
-    			attr_dev(div0, "class", div0_class_value = "" + (null_to_empty("policy-event-date policy-event-date" + /*id*/ ctx[0]) + " svelte-1k8i3b7"));
-    			add_location(div0, file$1, 168, 4, 5328);
-    			attr_dev(div1, "class", div1_class_value = "" + (null_to_empty("policy-dot policy-dot" + /*id*/ ctx[0]) + " svelte-1k8i3b7"));
-    			add_location(div1, file$1, 173, 12, 5603);
-    			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty("policy-dot-hit-area policy-dot-hit-area" + /*id*/ ctx[0]) + " svelte-1k8i3b7"));
-    			add_location(div2, file$1, 172, 8, 5532);
-    			attr_dev(div3, "class", div3_class_value = "" + (null_to_empty("policy-dot-container policy-dot-container" + /*id*/ ctx[0]) + " svelte-1k8i3b7"));
-    			add_location(div3, file$1, 171, 4, 5463);
+    			attr_dev(div0, "class", div0_class_value = "" + (null_to_empty("policy-event-date policy-event-date" + /*id*/ ctx[0]) + " svelte-1e7vdo7"));
+    			add_location(div0, file$1, 131, 4, 4052);
+    			attr_dev(div1, "class", div1_class_value = "" + (null_to_empty("policy-dot policy-dot" + /*id*/ ctx[0]) + " svelte-1e7vdo7"));
+    			add_location(div1, file$1, 136, 12, 4327);
+    			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty("policy-dot-hit-area policy-dot-hit-area" + /*id*/ ctx[0]) + " svelte-1e7vdo7"));
+    			add_location(div2, file$1, 135, 8, 4256);
+    			attr_dev(div3, "class", div3_class_value = "" + (null_to_empty("policy-dot-container policy-dot-container" + /*id*/ ctx[0]) + " svelte-1e7vdo7"));
+    			add_location(div3, file$1, 134, 4, 4187);
     			attr_dev(div4, "class", "policy-event");
-    			add_location(div4, file$1, 167, 0, 5297);
+    			add_location(div4, file$1, 130, 0, 4021);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -8808,19 +8892,19 @@ var app = (function () {
     			append_dev(div2, div1);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*id*/ 1 && div0_class_value !== (div0_class_value = "" + (null_to_empty("policy-event-date policy-event-date" + /*id*/ ctx[0]) + " svelte-1k8i3b7"))) {
+    			if (dirty & /*id*/ 1 && div0_class_value !== (div0_class_value = "" + (null_to_empty("policy-event-date policy-event-date" + /*id*/ ctx[0]) + " svelte-1e7vdo7"))) {
     				attr_dev(div0, "class", div0_class_value);
     			}
 
-    			if (dirty & /*id*/ 1 && div1_class_value !== (div1_class_value = "" + (null_to_empty("policy-dot policy-dot" + /*id*/ ctx[0]) + " svelte-1k8i3b7"))) {
+    			if (dirty & /*id*/ 1 && div1_class_value !== (div1_class_value = "" + (null_to_empty("policy-dot policy-dot" + /*id*/ ctx[0]) + " svelte-1e7vdo7"))) {
     				attr_dev(div1, "class", div1_class_value);
     			}
 
-    			if (dirty & /*id*/ 1 && div2_class_value !== (div2_class_value = "" + (null_to_empty("policy-dot-hit-area policy-dot-hit-area" + /*id*/ ctx[0]) + " svelte-1k8i3b7"))) {
+    			if (dirty & /*id*/ 1 && div2_class_value !== (div2_class_value = "" + (null_to_empty("policy-dot-hit-area policy-dot-hit-area" + /*id*/ ctx[0]) + " svelte-1e7vdo7"))) {
     				attr_dev(div2, "class", div2_class_value);
     			}
 
-    			if (dirty & /*id*/ 1 && div3_class_value !== (div3_class_value = "" + (null_to_empty("policy-dot-container policy-dot-container" + /*id*/ ctx[0]) + " svelte-1k8i3b7"))) {
+    			if (dirty & /*id*/ 1 && div3_class_value !== (div3_class_value = "" + (null_to_empty("policy-dot-container policy-dot-container" + /*id*/ ctx[0]) + " svelte-1e7vdo7"))) {
     				attr_dev(div3, "class", div3_class_value);
     			}
     		},
@@ -8843,13 +8927,17 @@ var app = (function () {
     }
 
     const PAUSE_ON_EVENT_MS = 3000;
+
+    //----- Animation specification for expanding and contractng the event -------------
     const expandDuration = 400;
+
     const contractDuration = 600;
 
     function instance$1($$self, $$props, $$invalidate) {
     	let { currentScrubberPosition } = $$props;
     	let { bufferRadius } = $$props;
     	let { eventPosition } = $$props;
+    	let { eventDetails } = $$props;
     	let { id } = $$props;
     	let { pauseAnimation } = $$props;
     	let { startAnimation } = $$props;
@@ -8873,28 +8961,8 @@ var app = (function () {
     		return currentScrubberPosition >= bufferStartPosition & currentScrubberPosition <= bufferEndPosition;
     	};
 
-    	//----- Animation specification for expanding and contractng the event -------------
-    	const policyInfoContractedState = {
-    		scale: 0,
-    		translateX: "-50%",
-    		translateY: "-25%"
-    	};
-
-    	const policyInfoExpandedState = {
-    		scale: 1,
-    		translateX: "-25%",
-    		translateY: "-102%"
-    	};
-
     	let policyDotExpandKeyFrames = keyframes({
     		values: [{ scale: 1 }, { scale: 2 }],
-    		times: [0, 1],
-    		duration: expandDuration,
-    		easings: [easeOut]
-    	});
-
-    	let policyInfoExpandKeyFrames = keyframes({
-    		values: [policyInfoContractedState, policyInfoExpandedState],
     		times: [0, 1],
     		duration: expandDuration,
     		easings: [easeOut]
@@ -8907,47 +8975,36 @@ var app = (function () {
     		easings: [easeIn]
     	});
 
-    	let policyInfoContractKeyFrames = keyframes({
-    		values: [policyInfoExpandedState, policyInfoContractedState],
-    		times: [0, 1],
-    		duration: contractDuration,
-    		easings: [easeIn]
-    	});
-
     	// To highlight the whole event, expand the dot and show the policy info box
     	const highlightEvent = () => {
-    		$$invalidate(11, isEventHighlighted = true);
+    		$$invalidate(12, isEventHighlighted = true);
     		updateAppState({ currEventId: id });
 
     		policyDotExpandKeyFrames.start(style => {
     			policyDotStyler.set(style);
     		});
 
-    		// policyInfoExpandKeyFrames.start(style => {
-    		//   policyInfoContainerStyler.set(style);
-    		// });
-    		// pause the animation for a little to let the user read
-    		pauseAnimation();
+    		if (eventDetails.type != "ap season") {
+    			// pause the animation for a little to let the user read
+    			pauseAnimation();
 
-    		setTimeout(
-    			function () {
-    				startAnimation();
-    			},
-    			PAUSE_ON_EVENT_MS
-    		);
+    			setTimeout(
+    				function () {
+    					startAnimation();
+    				},
+    				PAUSE_ON_EVENT_MS
+    			);
+    		}
     	};
 
     	// To diminish the whole event, contract the dot and hide the policy info box
     	const diminishEvent = () => {
-    		$$invalidate(11, isEventHighlighted = false);
+    		$$invalidate(12, isEventHighlighted = false);
 
     		policyDotContractKeyFrames.start(style => {
     			policyDotStyler.set(style);
     		});
 
-    		// policyInfoContractKeyFrames.start(style => {
-    		//   policyInfoContainerStyler.set(style);
-    		// });
     		updateAppState({ currEventId: undefined });
     	};
 
@@ -8960,16 +9017,14 @@ var app = (function () {
     		// Create a styler to style the dot container - to position the policy dot on the timeline
     		const policyDotContainer = document.querySelector(".policy-dot-container" + id);
 
-    		$$invalidate(8, policyDotContainerStyler = index(policyDotContainer));
-    	}); // const policyInfoContainer = document.querySelector(".policy-info-container"+id);
-    	// policyInfoContainerStyler = styler(policyInfoContainer);
-    	// const policyDate = document.querySelector(".policy-event-date"+id);
-    	// policyDateStyler = styler(policyDate);
+    		$$invalidate(9, policyDotContainerStyler = index(policyDotContainer));
+    	});
 
     	const writable_props = [
     		"currentScrubberPosition",
     		"bufferRadius",
     		"eventPosition",
+    		"eventDetails",
     		"id",
     		"pauseAnimation",
     		"startAnimation",
@@ -8987,10 +9042,11 @@ var app = (function () {
     		if ("currentScrubberPosition" in $$props) $$invalidate(2, currentScrubberPosition = $$props.currentScrubberPosition);
     		if ("bufferRadius" in $$props) $$invalidate(3, bufferRadius = $$props.bufferRadius);
     		if ("eventPosition" in $$props) $$invalidate(1, eventPosition = $$props.eventPosition);
+    		if ("eventDetails" in $$props) $$invalidate(4, eventDetails = $$props.eventDetails);
     		if ("id" in $$props) $$invalidate(0, id = $$props.id);
-    		if ("pauseAnimation" in $$props) $$invalidate(4, pauseAnimation = $$props.pauseAnimation);
-    		if ("startAnimation" in $$props) $$invalidate(5, startAnimation = $$props.startAnimation);
-    		if ("updateAppState" in $$props) $$invalidate(6, updateAppState = $$props.updateAppState);
+    		if ("pauseAnimation" in $$props) $$invalidate(5, pauseAnimation = $$props.pauseAnimation);
+    		if ("startAnimation" in $$props) $$invalidate(6, startAnimation = $$props.startAnimation);
+    		if ("updateAppState" in $$props) $$invalidate(7, updateAppState = $$props.updateAppState);
     	};
 
     	$$self.$capture_state = () => ({
@@ -9007,6 +9063,7 @@ var app = (function () {
     		currentScrubberPosition,
     		bufferRadius,
     		eventPosition,
+    		eventDetails,
     		id,
     		pauseAnimation,
     		startAnimation,
@@ -9018,14 +9075,10 @@ var app = (function () {
     		bufferEndPosition,
     		isEventHighlighted,
     		isScrubberWithinEventBuffer,
-    		policyInfoContractedState,
-    		policyInfoExpandedState,
     		expandDuration,
     		contractDuration,
     		policyDotExpandKeyFrames,
-    		policyInfoExpandKeyFrames,
     		policyDotContractKeyFrames,
-    		policyInfoContractKeyFrames,
     		highlightEvent,
     		diminishEvent
     	});
@@ -9034,19 +9087,18 @@ var app = (function () {
     		if ("currentScrubberPosition" in $$props) $$invalidate(2, currentScrubberPosition = $$props.currentScrubberPosition);
     		if ("bufferRadius" in $$props) $$invalidate(3, bufferRadius = $$props.bufferRadius);
     		if ("eventPosition" in $$props) $$invalidate(1, eventPosition = $$props.eventPosition);
+    		if ("eventDetails" in $$props) $$invalidate(4, eventDetails = $$props.eventDetails);
     		if ("id" in $$props) $$invalidate(0, id = $$props.id);
-    		if ("pauseAnimation" in $$props) $$invalidate(4, pauseAnimation = $$props.pauseAnimation);
-    		if ("startAnimation" in $$props) $$invalidate(5, startAnimation = $$props.startAnimation);
-    		if ("updateAppState" in $$props) $$invalidate(6, updateAppState = $$props.updateAppState);
+    		if ("pauseAnimation" in $$props) $$invalidate(5, pauseAnimation = $$props.pauseAnimation);
+    		if ("startAnimation" in $$props) $$invalidate(6, startAnimation = $$props.startAnimation);
+    		if ("updateAppState" in $$props) $$invalidate(7, updateAppState = $$props.updateAppState);
     		if ("policyDotStyler" in $$props) policyDotStyler = $$props.policyDotStyler;
-    		if ("policyDotContainerStyler" in $$props) $$invalidate(8, policyDotContainerStyler = $$props.policyDotContainerStyler);
+    		if ("policyDotContainerStyler" in $$props) $$invalidate(9, policyDotContainerStyler = $$props.policyDotContainerStyler);
     		if ("bufferStartPosition" in $$props) bufferStartPosition = $$props.bufferStartPosition;
     		if ("bufferEndPosition" in $$props) bufferEndPosition = $$props.bufferEndPosition;
-    		if ("isEventHighlighted" in $$props) $$invalidate(11, isEventHighlighted = $$props.isEventHighlighted);
+    		if ("isEventHighlighted" in $$props) $$invalidate(12, isEventHighlighted = $$props.isEventHighlighted);
     		if ("policyDotExpandKeyFrames" in $$props) policyDotExpandKeyFrames = $$props.policyDotExpandKeyFrames;
-    		if ("policyInfoExpandKeyFrames" in $$props) policyInfoExpandKeyFrames = $$props.policyInfoExpandKeyFrames;
     		if ("policyDotContractKeyFrames" in $$props) policyDotContractKeyFrames = $$props.policyDotContractKeyFrames;
-    		if ("policyInfoContractKeyFrames" in $$props) policyInfoContractKeyFrames = $$props.policyInfoContractKeyFrames;
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -9054,27 +9106,25 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*eventPosition, policyDotContainerStyler*/ 258) {
-    			// let policyInfoContainerStyler;
-    			// var policyDateStyler;
+    		if ($$self.$$.dirty & /*eventPosition, policyDotContainerStyler*/ 514) {
     			 {
     				if (eventPosition > 0) {
     					policyDotContainerStyler.set("left", eventPosition);
-    				} // policyInfoContainerStyler.set('left', eventPosition);
-    				// policyDateStyler.set('left', eventPosition);
-    			}
-    		}
-
-    		if ($$self.$$.dirty & /*eventPosition, bufferRadius*/ 10) {
-    			 {
-    				if (eventPosition > 0) {
-    					bufferEndPosition = eventPosition + bufferRadius;
-    					bufferStartPosition = eventPosition - bufferRadius;
     				}
     			}
     		}
 
-    		if ($$self.$$.dirty & /*currentScrubberPosition, isEventHighlighted*/ 2052) {
+    		if ($$self.$$.dirty & /*eventPosition, bufferRadius, eventDetails, bufferEndPosition*/ 2074) {
+    			 {
+    				if (eventPosition > 0) {
+    					bufferEndPosition = eventPosition + bufferRadius;
+    					bufferStartPosition = eventPosition - bufferRadius;
+    					if (eventDetails.type == "ap season") bufferEndPosition += 15 * bufferRadius;
+    				}
+    			}
+    		}
+
+    		if ($$self.$$.dirty & /*currentScrubberPosition, isEventHighlighted*/ 4100) {
     			 {
     				// When the scrubber enters the buffer zone, highlight
     				if (isScrubberWithinEventBuffer(currentScrubberPosition)) {
@@ -9095,6 +9145,7 @@ var app = (function () {
     		eventPosition,
     		currentScrubberPosition,
     		bufferRadius,
+    		eventDetails,
     		pauseAnimation,
     		startAnimation,
     		updateAppState
@@ -9109,10 +9160,11 @@ var app = (function () {
     			currentScrubberPosition: 2,
     			bufferRadius: 3,
     			eventPosition: 1,
+    			eventDetails: 4,
     			id: 0,
-    			pauseAnimation: 4,
-    			startAnimation: 5,
-    			updateAppState: 6
+    			pauseAnimation: 5,
+    			startAnimation: 6,
+    			updateAppState: 7
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -9137,19 +9189,23 @@ var app = (function () {
     			console.warn("<PolicyEvent> was created without expected prop 'eventPosition'");
     		}
 
+    		if (/*eventDetails*/ ctx[4] === undefined && !("eventDetails" in props)) {
+    			console.warn("<PolicyEvent> was created without expected prop 'eventDetails'");
+    		}
+
     		if (/*id*/ ctx[0] === undefined && !("id" in props)) {
     			console.warn("<PolicyEvent> was created without expected prop 'id'");
     		}
 
-    		if (/*pauseAnimation*/ ctx[4] === undefined && !("pauseAnimation" in props)) {
+    		if (/*pauseAnimation*/ ctx[5] === undefined && !("pauseAnimation" in props)) {
     			console.warn("<PolicyEvent> was created without expected prop 'pauseAnimation'");
     		}
 
-    		if (/*startAnimation*/ ctx[5] === undefined && !("startAnimation" in props)) {
+    		if (/*startAnimation*/ ctx[6] === undefined && !("startAnimation" in props)) {
     			console.warn("<PolicyEvent> was created without expected prop 'startAnimation'");
     		}
 
-    		if (/*updateAppState*/ ctx[6] === undefined && !("updateAppState" in props)) {
+    		if (/*updateAppState*/ ctx[7] === undefined && !("updateAppState" in props)) {
     			console.warn("<PolicyEvent> was created without expected prop 'updateAppState'");
     		}
     	}
@@ -9175,6 +9231,14 @@ var app = (function () {
     	}
 
     	set eventPosition(value) {
+    		throw new Error("<PolicyEvent>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get eventDetails() {
+    		throw new Error("<PolicyEvent>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set eventDetails(value) {
     		throw new Error("<PolicyEvent>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -11883,7 +11947,7 @@ var app = (function () {
     }
 
     // (246:12) {#if appState.isUserRunning}
-    function create_if_block(ctx) {
+    function create_if_block$1(ctx) {
     	let button;
     	let svg;
     	let defs;
@@ -11951,7 +12015,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block.name,
+    		id: create_if_block$1.name,
     		type: "if",
     		source: "(246:12) {#if appState.isUserRunning}",
     		ctx
@@ -12013,7 +12077,7 @@ var app = (function () {
     	});
 
     	function select_block_type(ctx, dirty) {
-    		if (/*appState*/ ctx[6].isUserRunning) return create_if_block;
+    		if (/*appState*/ ctx[6].isUserRunning) return create_if_block$1;
     		return create_else_block;
     	}
 
@@ -13608,7 +13672,7 @@ var app = (function () {
     const file$5 = "AnimationDate.svelte";
 
     // (16:4) {#if currentDate}
-    function create_if_block$1(ctx) {
+    function create_if_block$2(ctx) {
     	let t_value = /*currentDate*/ ctx[0].format("YYYY-MM-DD") + "";
     	let t;
 
@@ -13629,7 +13693,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$1.name,
+    		id: create_if_block$2.name,
     		type: "if",
     		source: "(16:4) {#if currentDate}",
     		ctx
@@ -13640,7 +13704,7 @@ var app = (function () {
 
     function create_fragment$5(ctx) {
     	let span;
-    	let if_block = /*currentDate*/ ctx[0] && create_if_block$1(ctx);
+    	let if_block = /*currentDate*/ ctx[0] && create_if_block$2(ctx);
 
     	const block = {
     		c: function create() {
@@ -13661,7 +13725,7 @@ var app = (function () {
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
-    					if_block = create_if_block$1(ctx);
+    					if_block = create_if_block$2(ctx);
     					if_block.c();
     					if_block.m(span, null);
     				}
@@ -13780,7 +13844,7 @@ var app = (function () {
     const file$6 = "EventInfoContainer.svelte";
 
     // (13:4) {#if appState.currEventId != undefined}
-    function create_if_block$2(ctx) {
+    function create_if_block$3(ctx) {
     	let current;
 
     	const eventinfobox = new EventInfoBox({
@@ -13819,7 +13883,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$2.name,
+    		id: create_if_block$3.name,
     		type: "if",
     		source: "(13:4) {#if appState.currEventId != undefined}",
     		ctx
@@ -13831,13 +13895,13 @@ var app = (function () {
     function create_fragment$6(ctx) {
     	let div;
     	let current;
-    	let if_block = /*appState*/ ctx[1].currEventId != undefined && create_if_block$2(ctx);
+    	let if_block = /*appState*/ ctx[1].currEventId != undefined && create_if_block$3(ctx);
 
     	const block = {
     		c: function create() {
     			div = element("div");
     			if (if_block) if_block.c();
-    			attr_dev(div, "class", "event-info-container svelte-exwfzg");
+    			attr_dev(div, "class", "event-info-container svelte-1sw6p7d");
     			add_location(div, file$6, 11, 0, 170);
     		},
     		l: function claim(nodes) {
@@ -13854,7 +13918,7 @@ var app = (function () {
     					if_block.p(ctx, dirty);
     					transition_in(if_block, 1);
     				} else {
-    					if_block = create_if_block$2(ctx);
+    					if_block = create_if_block$3(ctx);
     					if_block.c();
     					transition_in(if_block, 1);
     					if_block.m(div, null);
@@ -13983,7 +14047,7 @@ var app = (function () {
             type: 'ap season',
             text: '',
             source: 'https://breathemongolia.org/',
-            imgSource: './banRawCoal.jpg'
+            imgSource: ''
         },
         {
             date: '2019-05-15',
@@ -31359,7 +31423,7 @@ var app = (function () {
     const file$7 = "App.svelte";
 
     // (226:7) {#if !visualizationStarted}
-    function create_if_block$3(ctx) {
+    function create_if_block$4(ctx) {
     	let div;
     	let button;
     	let svg;
@@ -31426,7 +31490,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$3.name,
+    		id: create_if_block$4.name,
     		type: "if",
     		source: "(226:7) {#if !visualizationStarted}",
     		ctx
@@ -31470,7 +31534,7 @@ var app = (function () {
     	let div12;
     	let current;
     	let dispose;
-    	let if_block = !/*visualizationStarted*/ ctx[7] && create_if_block$3(ctx);
+    	let if_block = !/*visualizationStarted*/ ctx[7] && create_if_block$4(ctx);
 
     	const animationdate = new AnimationDate({
     			props: {
@@ -31640,7 +31704,7 @@ var app = (function () {
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
-    					if_block = create_if_block$3(ctx);
+    					if_block = create_if_block$4(ctx);
     					if_block.c();
     					if_block.m(div6, t8);
     				}

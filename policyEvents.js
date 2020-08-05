@@ -5,7 +5,7 @@ export let policyEvents = [
         type: 'ap season',
         text: '',
         source: 'https://breathemongolia.org/',
-        imgSource: './banRawCoal.jpg'
+        imgSource: ''
     },
     {
         date: '2019-05-15',

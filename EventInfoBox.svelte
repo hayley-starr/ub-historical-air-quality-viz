@@ -5,17 +5,21 @@ export let eventDetails;
 </script>
 
 <div class='policy-info-box'>
+    <div class='policy-event-date'>
+        <span>{eventDetails.date}</span>
+    </div>
     <div class='policy-info-top'>
-        <div class='policy-event-date'>
-            <span>{eventDetails.date}</span>
-        </div>
+        
          <div class='policy-event-title'>
             <span>{eventDetails.title}</span>
         </div>
+        {#if eventDetails.type != 'ap season'}
         <div class='policy-event-photo'>
-            <img src={eventDetails.imgSource} alt={'Ban on Raw Coal'}>
+            <img src={eventDetails.imgSource} alt={''}>
         </div>
+        {/if}
     </div>
+    {#if eventDetails.type != 'ap season'}
     <div class='policy-info-bottom'>
         <div class='policy-event-text'>
             <span>{eventDetails.text}</span>
@@ -24,15 +28,18 @@ export let eventDetails;
             <a href={eventDetails.source} target="_blank">Source</a>
         </div>
     </div>
+    {/if}
+   
      
 </div>
 
 <style>
     .policy-info-box {
         border: 1px solid #2B2D42;
+        font-family: 'Open Sans', sans-serif;
         color: #2B2D42;
         max-height: 400px;
-        width: 300px;
+        width: 200px;
         background: white;
         border-radius: 4px;
         /* font-family: 'Trebuchet MS'; */
@@ -42,17 +49,20 @@ export let eventDetails;
     }
 
     .policy-info-top {
-        padding: 5px;
+        padding: 5px 10px;
     }
 
     .policy-event-date {
         font-size: 12px;
         font-weight: bold;
-        margin-bottom: 3px;
+        background-color: #2B2D42;
+        color: white;
+        padding: 5px 10px
     }
 
     .policy-event-title {
         font-size: 16px;
+        font-weight: lighter;
         margin-bottom: 5px;
     }
 
@@ -67,14 +77,13 @@ export let eventDetails;
     }
 
     .policy-event-photo img {
-        max-width: 250px;
-        max-height: 150px;
+        max-width: 100%;
+        max-height: 100%;
         padding: 5px;
     }
 
     .policy-info-bottom {
-        background: #2B2D42;
-        color: white;
+        border-color: #2B2D42;
         padding: 5px;
     }
 

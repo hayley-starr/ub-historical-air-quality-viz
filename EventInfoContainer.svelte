@@ -19,6 +19,7 @@
 
 .event-info-container {
     transition: all 2s;
+    opacity: 0.85;
 }
 
 </style>
