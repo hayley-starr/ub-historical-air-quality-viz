@@ -8,11 +8,22 @@
   import Scrubber from './Scrubber.svelte' 
   import AQILegend from './AQILegend.svelte';
   import AnimationDate from './AnimationDate.svelte';
+  import EventInfoContainer from './EventInfoContainer.svelte';
   import moment from 'moment';
   import { frameData } from './frameData.js';
   import { policyEvents } from './policyEvents.js';
   import getUnicodeFlagIcon from 'country-flag-icons/unicode';
   import { Translator } from './translator';
+  import _ from 'lodash';
+
+
+  let appState = {
+    currEventId: undefined
+  };
+
+  const updateAppState = (updatedState) => {
+    appState = _.merge({}, appState, updatedState);
+  }
 
 //---------- Control langauge of the page ----------------------
   let translator = new Translator();
@@ -237,10 +248,17 @@
               frameData={frameData} 
             />          
         </div>
+        <div class='map-event-container'>
+            <EventInfoContainer 
+                policyEvents={policyEvents}
+                appState={appState}
+            />         
+        </div>
       </div>
 
       <div class='map-scrubber-container'>
           <Scrubber 
+              updateAppState={updateAppState}
               currentTime={currentTime}
               maxTime={maxTime}
               isAnimationEnded={isAnimationEnded}
@@ -398,6 +416,13 @@
     margin-bottom: 20px;
 
 
+}
+
+.map-event-container {
+  position: absolute; 
+  left: 5px; 
+  top: 5px;
+  z-index: 100;
 }
 
 .visualization .map-aqi-legend {

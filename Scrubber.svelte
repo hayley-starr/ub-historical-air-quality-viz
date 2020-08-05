@@ -22,6 +22,7 @@
     export let changePlaybackRate;
     export let translator;
     export let currLang;
+    export let updateAppState;
 
     const EVENT_BUFFER_TIME = 0.1; // how much time in seconds before and after to start showing an event
 
@@ -234,6 +235,7 @@
                 id={i}
                 pauseAnimation={handlePolicyPause} 
                 startAnimation={handlePolicyStart} 
+                updateAppState={updateAppState}
             />
     
         {/each}

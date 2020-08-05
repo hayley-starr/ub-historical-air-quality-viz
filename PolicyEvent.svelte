@@ -7,10 +7,11 @@
     export let currentScrubberPosition;
     export let bufferRadius;
     export let eventPosition;
-    export let eventDetails;
+    // export let eventDetails;
     export let id;
     export let pauseAnimation;
     export let startAnimation;
+    export let updateAppState;
 
     const PAUSE_ON_EVENT_MS = 3000; 
 
@@ -19,14 +20,14 @@
 
     let policyDotStyler;
     let policyDotContainerStyler
-    let policyInfoContainerStyler;
-    var policyDateStyler;
+    // let policyInfoContainerStyler;
+    // var policyDateStyler;
 
     $: {
-        if (policyDateStyler && eventPosition > 0) {
+        if (eventPosition > 0) {
             policyDotContainerStyler.set('left', eventPosition);
-            policyInfoContainerStyler.set('left', eventPosition);
-            policyDateStyler.set('left', eventPosition);
+            // policyInfoContainerStyler.set('left', eventPosition);
+            // policyDateStyler.set('left', eventPosition);
         }
     }
 
@@ -116,13 +117,15 @@
     // To highlight the whole event, expand the dot and show the policy info box
     const highlightEvent = () => {
         isEventHighlighted = true;
+        console.log('updating curr event', id);
+        updateAppState({currEventId: id});
 
         policyDotExpandKeyFrames.start(style => {
             policyDotStyler.set(style);
         });
-        policyInfoExpandKeyFrames.start(style => {
-          policyInfoContainerStyler.set(style);
-        });
+        // policyInfoExpandKeyFrames.start(style => {
+        //   policyInfoContainerStyler.set(style);
+        // });
         
         // pause the animation for a little to let the user read
         pauseAnimation();
@@ -136,9 +139,9 @@
         policyDotContractKeyFrames.start(style => {
             policyDotStyler.set(style);
         });
-        policyInfoContractKeyFrames.start(style => {
-          policyInfoContainerStyler.set(style);
-        });
+        // policyInfoContractKeyFrames.start(style => {
+        //   policyInfoContainerStyler.set(style);
+        // });
     }
 
     onMount(async () => {
@@ -151,12 +154,12 @@
         policyDotContainerStyler = styler(policyDotContainer);
        
 
-        const policyInfoContainer = document.querySelector(".policy-info-container"+id);
-        policyInfoContainerStyler = styler(policyInfoContainer);
+        // const policyInfoContainer = document.querySelector(".policy-info-container"+id);
+        // policyInfoContainerStyler = styler(policyInfoContainer);
         
 
-        const policyDate = document.querySelector(".policy-event-date"+id);
-        policyDateStyler = styler(policyDate);
+        // const policyDate = document.querySelector(".policy-event-date"+id);
+        // policyDateStyler = styler(policyDate);
         
     });
 
@@ -171,9 +174,9 @@
             <div class={"policy-dot policy-dot"+id}></div>
         </div>
     </div>
-    <div class={"policy-info-container policy-info-container"+id}>
+    <!-- <div class={"policy-info-container policy-info-container"+id}>
         <EventInfoBox eventDetails={eventDetails} />
-    </div>
+    </div> -->
   
 </div>
 
@@ -210,12 +213,12 @@
         cursor: pointer;
     }
 
-    .policy-info-container {
+    /* .policy-info-container {
         height: 10;
         width: 10;
         position: absolute;
         transform: translateY(-25%) translateX(-50%) scale(0);
-    }
+    } */
 
 
 
