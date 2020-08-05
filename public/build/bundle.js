@@ -13074,14 +13074,14 @@ var app = (function () {
     			div1 = element("div");
     			t4 = text(t4_value);
     			t5 = space();
-    			attr_dev(span0, "class", "pm25-scale-number svelte-1smq01e");
+    			attr_dev(span0, "class", "pm25-scale-number svelte-f5h408");
     			add_location(span0, file$4, 100, 24, 3584);
     			add_location(span1, file$4, 103, 24, 3715);
-    			attr_dev(div0, "class", "pm25-scale-label svelte-1smq01e");
+    			attr_dev(div0, "class", "pm25-scale-label svelte-f5h408");
     			add_location(div0, file$4, 99, 24, 3529);
-    			attr_dev(div1, "class", "aqi-scale-labels svelte-1smq01e");
+    			attr_dev(div1, "class", "aqi-scale-labels svelte-f5h408");
     			add_location(div1, file$4, 105, 24, 3794);
-    			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty(classnames("pm25-scale-tick-row", "pm25-scale-tick-row-" + /*tick*/ ctx[18].heightpx)) + " svelte-1smq01e"));
+    			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty(classnames("pm25-scale-tick-row", "pm25-scale-tick-row-" + /*tick*/ ctx[18].heightpx)) + " svelte-f5h408"));
     			add_location(div2, file$4, 98, 20, 3419);
     		},
     		m: function mount(target, anchor) {
@@ -13214,46 +13214,46 @@ var app = (function () {
     			t12 = space();
     			span2 = element("span");
     			t13 = text(t13_value);
-    			attr_dev(div0, "class", "ap-legend-pm25-scale-title svelte-1smq01e");
+    			attr_dev(div0, "class", "ap-legend-pm25-scale-title svelte-f5h408");
     			add_location(div0, file$4, 93, 8, 3086);
-    			attr_dev(canvas, "class", "pm25-scale svelte-1smq01e");
+    			attr_dev(canvas, "class", "pm25-scale svelte-f5h408");
     			attr_dev(canvas, "id", "pm25-scale");
     			add_location(canvas, file$4, 95, 12, 3250);
-    			attr_dev(div1, "class", "pm25-scale-ticks svelte-1smq01e");
+    			attr_dev(div1, "class", "pm25-scale-ticks svelte-f5h408");
     			add_location(div1, file$4, 96, 12, 3315);
-    			attr_dev(div2, "class", "ap-legend-pm25-scale-container svelte-1smq01e");
+    			attr_dev(div2, "class", "ap-legend-pm25-scale-container svelte-f5h408");
     			add_location(div2, file$4, 94, 8, 3193);
-    			attr_dev(img0, "class", "key-img svelte-1smq01e");
+    			attr_dev(img0, "class", "key-img svelte-f5h408");
     			if (img0.src !== (img0_src_value = "./imgs/uncertainty_mask_legend.png")) attr_dev(img0, "src", img0_src_value);
     			attr_dev(img0, "alt", "");
     			add_location(img0, file$4, 112, 12, 4008);
     			add_location(span0, file$4, 114, 16, 4136);
-    			attr_dev(div3, "class", "key-description svelte-1smq01e");
+    			attr_dev(div3, "class", "key-description svelte-f5h408");
     			add_location(div3, file$4, 113, 12, 4090);
-    			attr_dev(div4, "class", "key-container svelte-1smq01e");
+    			attr_dev(div4, "class", "key-container svelte-f5h408");
     			add_location(div4, file$4, 111, 8, 3968);
-    			attr_dev(img1, "class", "key-img svelte-1smq01e");
+    			attr_dev(img1, "class", "key-img svelte-f5h408");
     			if (img1.src !== (img1_src_value = "./imgs/station_marker_legend.png")) attr_dev(img1, "src", img1_src_value);
     			attr_dev(img1, "alt", "");
     			add_location(img1, file$4, 120, 12, 4292);
     			add_location(span1, file$4, 122, 16, 4418);
-    			attr_dev(div5, "class", "key-description svelte-1smq01e");
+    			attr_dev(div5, "class", "key-description svelte-f5h408");
     			add_location(div5, file$4, 121, 12, 4372);
-    			attr_dev(div6, "class", "key-container svelte-1smq01e");
+    			attr_dev(div6, "class", "key-container svelte-f5h408");
     			add_location(div6, file$4, 119, 8, 4252);
-    			attr_dev(div7, "class", "legend-tile svelte-1smq01e");
+    			attr_dev(div7, "class", "legend-tile svelte-f5h408");
     			add_location(div7, file$4, 92, 4, 3052);
-    			attr_dev(div8, "class", "thermometer-container svelte-1smq01e");
+    			attr_dev(div8, "class", "thermometer-container svelte-f5h408");
     			add_location(div8, file$4, 131, 8, 4694);
-    			attr_dev(div9, "class", "temperature-description-title svelte-1smq01e");
+    			attr_dev(div9, "class", "temperature-description-title svelte-f5h408");
     			add_location(div9, file$4, 138, 12, 4927);
-    			attr_dev(span2, "class", "temperature-description-body svelte-1smq01e");
+    			attr_dev(span2, "class", "temperature-description-body svelte-f5h408");
     			add_location(span2, file$4, 139, 11, 5050);
     			attr_dev(div10, "class", "temperature-description");
     			add_location(div10, file$4, 137, 8, 4877);
-    			attr_dev(div11, "class", "legend-tile temperature-key-container svelte-1smq01e");
+    			attr_dev(div11, "class", "legend-tile temperature-key-container svelte-f5h408");
     			add_location(div11, file$4, 130, 5, 4634);
-    			attr_dev(div12, "class", "ap-legend svelte-1smq01e");
+    			attr_dev(div12, "class", "ap-legend svelte-f5h408");
     			add_location(div12, file$4, 91, 0, 3024);
     		},
     		l: function claim(nodes) {
@@ -13380,15 +13380,15 @@ var app = (function () {
     	const airQualityScale = [0, 12, 35, 55, 150, 250, 450, 500]; // this is up for changing!
 
     	const airQualityScaleTicks = [
-    		{ label: 12, heightpx: 40, text: "good" },
+    		{ label: 12, heightpx: 30, text: "good" },
     		{
     			label: 35,
-    			heightpx: 40,
+    			heightpx: 30,
     			text: "moderate"
     		},
     		{
     			label: 55,
-    			heightpx: 40,
+    			heightpx: 30,
     			text: "unhealthy_sensitive"
     		},
     		{
@@ -13429,7 +13429,7 @@ var app = (function () {
 
     	color.clamp(true);
     	let width = 30; // must match pm25-scale-ticks
-    	let height = 300;
+    	let height = 250;
     	let marginTop = 0;
     	let marginRight = 0;
     	let marginBottom = 0;

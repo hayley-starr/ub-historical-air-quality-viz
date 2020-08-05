@@ -23,9 +23,9 @@
 
     const airQualityScale = [0, 12, 35, 55, 150, 250, 450, 500]; // this is up for changing!
     const airQualityScaleTicks = [
-        {label: 12, heightpx: 40, text: 'good'},
-        {label: 35, heightpx: 40, text: 'moderate'},
-        {label: 55, heightpx: 40, text: 'unhealthy_sensitive'},
+        {label: 12, heightpx: 30, text: 'good'},
+        {label: 35, heightpx: 30, text: 'moderate'},
+        {label: 55, heightpx: 30, text: 'unhealthy_sensitive'},
         {label: 150, heightpx: 40, text: 'unhealthy'},
         {label: 250, heightpx: 50, text: 'very_unhealthy'},
         {label: 500, heightpx: 50, text: 'hazardous'}
@@ -44,7 +44,7 @@
     color.clamp(true);
 
     let width = 30; // must match pm25-scale-ticks
-    let height = 300;
+    let height = 250;
     let marginTop = 0;
     let marginRight = 0;
     let marginBottom = 0;
@@ -178,7 +178,7 @@
 }
 
 .pm25-scale-ticks {
-    height: 300px;
+    height: 250px;
     width: 100%;
     font-size: 10px;
     padding-left: 5px;
@@ -197,6 +197,7 @@
 
 .pm25-scale-tick-row-30 {
     height: 30px;
+    padding-top: 5px;
 }
 
 .pm25-scale-tick-row-40 {
@@ -208,7 +209,7 @@
 }
 
 .pm25-scale-label {
-    width: 50%;
+    width: 40%;
 }
 
 .pm25-scale-number {
