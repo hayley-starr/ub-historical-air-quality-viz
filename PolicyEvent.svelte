@@ -117,7 +117,6 @@
     // To highlight the whole event, expand the dot and show the policy info box
     const highlightEvent = () => {
         isEventHighlighted = true;
-        console.log('updating curr event', id);
         updateAppState({currEventId: id});
 
         policyDotExpandKeyFrames.start(style => {
@@ -142,6 +141,7 @@
         // policyInfoContractKeyFrames.start(style => {
         //   policyInfoContainerStyler.set(style);
         // });
+        updateAppState({currEventId: undefined});
     }
 
     onMount(async () => {

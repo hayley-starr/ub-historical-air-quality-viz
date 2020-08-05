@@ -23,10 +23,10 @@
     export let translator;
     export let currLang;
     export let updateAppState;
+    export let appState;
 
     const EVENT_BUFFER_TIME = 0.1; // how much time in seconds before and after to start showing an event
 
-    var isUserRunning = false; // Whether or not the USER has paused the animation
     let isDragging = false; // is the user dragging the scrubber
     let sliderWidth = 0;
     let chartHeight = 0;
@@ -46,7 +46,7 @@
 
     $: {
         if (isAnimationEnded) {
-            isUserRunning = false;
+            updateAppState({isUserRunning: false});
         }
     }
 
@@ -81,7 +81,7 @@
             handleX.stop();
             // convert from poistion to time
             updateCurrentTime(convertXPositionToTime(handleStyler.get('x')));
-            isUserRunning && startAnimation();
+            appState.isUserRunning && startAnimation();
             isDragging = false;
         };
 
@@ -89,27 +89,27 @@
         listen(document, 'mouseup touchend').start(stopDrag);
         document.addEventListener('keyup', event => {
             if (event.code === 'Space') {
-                isUserRunning ? handlePauseAnimation() : handleStartAnimation();
+                appState.isUserRunning ? handlePauseAnimation() : handleStartAnimation();
             }
         });
     });
 
     const handlePauseAnimation = () => {
-        isUserRunning = false;
+        updateAppState({isUserRunning: false});
         pauseAnimation();
     }
 
     const handleStartAnimation = () => {
-        isUserRunning = true;
+        updateAppState({isUserRunning: true});
         startAnimation();
     }
 
     const handlePolicyPause = () => {
-        if (isUserRunning) pauseAnimation();
+        if (appState.isUserRunning) pauseAnimation();
     }
 
     const handlePolicyStart = () => {
-         if (isUserRunning) startAnimation();
+         if (appState.isUserRunning) startAnimation();
     }
 
     const handleChangePlaybackRate = (playRate) => {
@@ -243,7 +243,7 @@
     </div>
     <div class='scrubber-controls'>
         <div class='control-button-container'>
-            {#if isUserRunning} 
+            {#if appState.isUserRunning} 
             <button class='pause-button play-button' on:click={handlePauseAnimation}>
                 <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71 135">
                     <defs>

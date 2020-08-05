@@ -18,10 +18,7 @@
 <style>
 
 .event-info-container {
-    background: white;
-    color: black;
-    width: 200px;
-    height: 200px;
+    transition: all 2s;
 }
 
 </style>

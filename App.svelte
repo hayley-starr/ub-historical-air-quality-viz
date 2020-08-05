@@ -18,11 +18,12 @@
 
 
   let appState = {
-    currEventId: undefined
+    currEventId: undefined,
+    isUserRunning: false
   };
 
   const updateAppState = (updatedState) => {
-    appState = _.merge({}, appState, updatedState);
+    appState = _.extend({}, appState, updatedState);
   }
 
 //---------- Control langauge of the page ----------------------
@@ -70,11 +71,13 @@
   const startAnimation = () => {
     animationPaused = false;
     isAnimationEnded = false;
+    visualizationStarted = true;
     map.getSource('ap_video').play();
   }
 
   const startVisualization = () => {
     startAnimation();
+    updateAppState({isUserRunning: true});
     visualizationStarted = true;
   }
 
@@ -259,6 +262,7 @@
       <div class='map-scrubber-container'>
           <Scrubber 
               updateAppState={updateAppState}
+              appState={appState}
               currentTime={currentTime}
               maxTime={maxTime}
               isAnimationEnded={isAnimationEnded}
