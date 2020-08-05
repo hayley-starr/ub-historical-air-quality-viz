@@ -2918,9 +2918,9 @@ var app = (function () {
     			img = element("img");
     			if (img.src !== (img_src_value = /*eventDetails*/ ctx[0].imgSource)) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", img_alt_value = "");
-    			attr_dev(img, "class", "svelte-10vqrwj");
+    			attr_dev(img, "class", "svelte-c02a9w");
     			add_location(img, file, 17, 12, 411);
-    			attr_dev(div, "class", "policy-event-photo svelte-10vqrwj");
+    			attr_dev(div, "class", "policy-event-photo svelte-c02a9w");
     			add_location(div, file, 16, 8, 366);
     		},
     		m: function mount(target, anchor) {
@@ -2972,15 +2972,15 @@ var app = (function () {
     			a = element("a");
     			t2 = text("Source");
     			add_location(span, file, 24, 12, 627);
-    			attr_dev(div0, "class", "policy-event-text svelte-10vqrwj");
+    			attr_dev(div0, "class", "policy-event-text svelte-c02a9w");
     			add_location(div0, file, 23, 8, 583);
     			attr_dev(a, "href", a_href_value = /*eventDetails*/ ctx[0].source);
     			attr_dev(a, "target", "_blank");
-    			attr_dev(a, "class", "svelte-10vqrwj");
+    			attr_dev(a, "class", "svelte-c02a9w");
     			add_location(a, file, 27, 12, 729);
-    			attr_dev(div1, "class", "policy-event-source svelte-10vqrwj");
+    			attr_dev(div1, "class", "policy-event-source svelte-c02a9w");
     			add_location(div1, file, 26, 8, 683);
-    			attr_dev(div2, "class", "policy-info-bottom svelte-10vqrwj");
+    			attr_dev(div2, "class", "policy-info-bottom svelte-c02a9w");
     			add_location(div2, file, 22, 4, 542);
     		},
     		m: function mount(target, anchor) {
@@ -3049,14 +3049,14 @@ var app = (function () {
     			t4 = space();
     			if (if_block1) if_block1.c();
     			add_location(span0, file, 8, 8, 121);
-    			attr_dev(div0, "class", "policy-event-date svelte-10vqrwj");
+    			attr_dev(div0, "class", "policy-event-date svelte-c02a9w");
     			add_location(div0, file, 7, 4, 81);
     			add_location(span1, file, 13, 12, 262);
-    			attr_dev(div1, "class", "policy-event-title svelte-10vqrwj");
+    			attr_dev(div1, "class", "policy-event-title svelte-c02a9w");
     			add_location(div1, file, 12, 9, 217);
-    			attr_dev(div2, "class", "policy-info-top svelte-10vqrwj");
+    			attr_dev(div2, "class", "policy-info-top svelte-c02a9w");
     			add_location(div2, file, 10, 4, 169);
-    			attr_dev(div3, "class", "policy-info-box svelte-10vqrwj");
+    			attr_dev(div3, "class", "policy-info-box svelte-c02a9w");
     			add_location(div3, file, 6, 0, 47);
     		},
     		l: function claim(nodes) {
@@ -13901,7 +13901,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			if (if_block) if_block.c();
-    			attr_dev(div, "class", "event-info-container svelte-1sw6p7d");
+    			attr_dev(div, "class", "event-info-container svelte-xzrcgz");
     			add_location(div, file$6, 11, 0, 170);
     		},
     		l: function claim(nodes) {
@@ -31463,9 +31463,9 @@ var app = (function () {
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 113.57 127.1");
     			add_location(svg, file$7, 228, 18, 7082);
-    			attr_dev(button, "class", "btn map-play-button svelte-13aap53");
+    			attr_dev(button, "class", "btn map-play-button svelte-1nk7w7v");
     			add_location(button, file$7, 227, 10, 6997);
-    			attr_dev(div, "class", "map-play-button-overlay svelte-13aap53");
+    			attr_dev(div, "class", "map-play-button-overlay svelte-1nk7w7v");
     			add_location(div, file$7, 226, 8, 6949);
     		},
     		m: function mount(target, anchor, remount) {
@@ -31623,32 +31623,32 @@ var app = (function () {
     			attr_dev(link1, "href", "https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
     			attr_dev(link1, "rel", "stylesheet");
     			add_location(link1, file$7, 1, 0, 90);
-    			attr_dev(div0, "class", "title svelte-13aap53");
+    			attr_dev(div0, "class", "title svelte-1nk7w7v");
     			add_location(div0, file$7, 212, 6, 6500);
-    			attr_dev(button, "class", "btn translate-button svelte-13aap53");
+    			attr_dev(button, "class", "btn translate-button svelte-1nk7w7v");
     			add_location(button, file$7, 213, 8, 6575);
-    			attr_dev(div1, "class", "title-container svelte-13aap53");
+    			attr_dev(div1, "class", "title-container svelte-1nk7w7v");
     			add_location(div1, file$7, 211, 4, 6464);
-    			attr_dev(div2, "class", "introduction svelte-13aap53");
+    			attr_dev(div2, "class", "introduction svelte-1nk7w7v");
     			add_location(div2, file$7, 217, 4, 6718);
-    			attr_dev(div3, "class", "header svelte-13aap53");
+    			attr_dev(div3, "class", "header svelte-1nk7w7v");
     			add_location(div3, file$7, 210, 2, 6439);
-    			attr_dev(div4, "class", "map-animation-date-container svelte-13aap53");
+    			attr_dev(div4, "class", "map-animation-date-container svelte-1nk7w7v");
     			add_location(div4, file$7, 247, 8, 8001);
-    			attr_dev(div5, "class", "map-event-container svelte-13aap53");
+    			attr_dev(div5, "class", "map-event-container svelte-1nk7w7v");
     			add_location(div5, file$7, 253, 8, 8199);
-    			attr_dev(div6, "class", "map svelte-13aap53");
+    			attr_dev(div6, "class", "map svelte-1nk7w7v");
     			attr_dev(div6, "id", "map");
     			add_location(div6, file$7, 224, 6, 6879);
-    			attr_dev(div7, "class", "map-scrubber-container svelte-13aap53");
+    			attr_dev(div7, "class", "map-scrubber-container svelte-1nk7w7v");
     			add_location(div7, file$7, 261, 6, 8405);
-    			attr_dev(div8, "class", "map-container svelte-13aap53");
+    			attr_dev(div8, "class", "map-container svelte-1nk7w7v");
     			add_location(div8, file$7, 222, 4, 6844);
-    			attr_dev(div9, "class", "map-aqi-legend svelte-13aap53");
+    			attr_dev(div9, "class", "map-aqi-legend svelte-1nk7w7v");
     			add_location(div9, file$7, 282, 4, 9062);
-    			attr_dev(div10, "class", "visualization svelte-13aap53");
+    			attr_dev(div10, "class", "visualization svelte-1nk7w7v");
     			add_location(div10, file$7, 220, 2, 6811);
-    			attr_dev(div11, "class", "ub-ap-viz svelte-13aap53");
+    			attr_dev(div11, "class", "ub-ap-viz svelte-1nk7w7v");
     			add_location(div11, file$7, 208, 0, 6412);
     			attr_dev(div12, "class", "station-marker");
     			add_location(div12, file$7, 293, 0, 9275);

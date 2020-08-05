@@ -42,7 +42,6 @@ export let eventDetails;
         width: 200px;
         background: white;
         border-radius: 4px;
-        /* font-family: 'Trebuchet MS'; */
         display: flex;
         flex-direction: column;
         align-content: space-between;

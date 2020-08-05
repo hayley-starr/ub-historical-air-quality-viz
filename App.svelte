@@ -330,8 +330,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #2B2D42;
-  color: white;
+  /* background: #2B2D42;
+  color: white; */
   height: 100px;
   padding: 0 10px;
   border-radius: 10px;
