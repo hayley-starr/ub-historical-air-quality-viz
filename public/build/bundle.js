@@ -3249,9 +3249,9 @@ var app = (function () {
     			img = element("img");
     			if (img.src !== (img_src_value = /*eventDetails*/ ctx[0].imgSource)) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", img_alt_value = "");
-    			attr_dev(img, "class", "svelte-yx4cwe");
+    			attr_dev(img, "class", "svelte-7wtn3y");
     			add_location(img, file$1, 55, 12, 1655);
-    			attr_dev(div, "class", "event-photo svelte-yx4cwe");
+    			attr_dev(div, "class", "event-photo svelte-7wtn3y");
     			add_location(div, file$1, 54, 8, 1617);
     		},
     		m: function mount(target, anchor) {
@@ -3303,15 +3303,15 @@ var app = (function () {
     			a = element("a");
     			t2 = text("Source");
     			add_location(span, file$1, 62, 12, 1873);
-    			attr_dev(div0, "class", "event-text svelte-yx4cwe");
+    			attr_dev(div0, "class", "event-text svelte-7wtn3y");
     			add_location(div0, file$1, 61, 8, 1836);
     			attr_dev(a, "href", a_href_value = /*eventDetails*/ ctx[0].source);
     			attr_dev(a, "target", "_blank");
-    			attr_dev(a, "class", "svelte-yx4cwe");
+    			attr_dev(a, "class", "svelte-7wtn3y");
     			add_location(a, file$1, 65, 12, 1968);
-    			attr_dev(div1, "class", "event-source svelte-yx4cwe");
+    			attr_dev(div1, "class", "event-source svelte-7wtn3y");
     			add_location(div1, file$1, 64, 8, 1929);
-    			attr_dev(div2, "class", "event-info-bottom svelte-yx4cwe");
+    			attr_dev(div2, "class", "event-info-bottom svelte-7wtn3y");
     			add_location(div2, file$1, 60, 4, 1796);
     		},
     		m: function mount(target, anchor) {
@@ -3392,16 +3392,16 @@ var app = (function () {
     			if (if_block0) if_block0.c();
     			t5 = space();
     			if (if_block1) if_block1.c();
-    			attr_dev(span0, "class", "event-date-text svelte-yx4cwe");
+    			attr_dev(span0, "class", "event-date-text svelte-7wtn3y");
     			add_location(span0, file$1, 46, 8, 1278);
-    			attr_dev(div0, "class", div0_class_value = "" + (null_to_empty(classnames("event-date", /*iconClass*/ ctx[4])) + " svelte-yx4cwe"));
+    			attr_dev(div0, "class", div0_class_value = "" + (null_to_empty(classnames("event-date", /*iconClass*/ ctx[4])) + " svelte-7wtn3y"));
     			add_location(div0, file$1, 44, 4, 1181);
     			add_location(span1, file$1, 51, 12, 1471);
-    			attr_dev(div1, "class", "event-title svelte-yx4cwe");
+    			attr_dev(div1, "class", "event-title svelte-7wtn3y");
     			add_location(div1, file$1, 50, 9, 1433);
-    			attr_dev(div2, "class", "event-info-top svelte-yx4cwe");
+    			attr_dev(div2, "class", "event-info-top svelte-7wtn3y");
     			add_location(div2, file$1, 48, 4, 1386);
-    			attr_dev(div3, "class", "event-info-box svelte-yx4cwe");
+    			attr_dev(div3, "class", "event-info-box svelte-7wtn3y");
     			add_location(div3, file$1, 43, 0, 1148);
     		},
     		l: function claim(nodes) {
@@ -3431,7 +3431,7 @@ var app = (function () {
     			icon.$set(icon_changes);
     			if ((!current || dirty & /*translator, eventDetails, currLang*/ 7) && t1_value !== (t1_value = /*translator*/ ctx[1].translateDate(/*eventDetails*/ ctx[0].date, /*currLang*/ ctx[2]) + "")) set_data_dev(t1, t1_value);
 
-    			if (!current || dirty & /*iconClass*/ 16 && div0_class_value !== (div0_class_value = "" + (null_to_empty(classnames("event-date", /*iconClass*/ ctx[4])) + " svelte-yx4cwe"))) {
+    			if (!current || dirty & /*iconClass*/ 16 && div0_class_value !== (div0_class_value = "" + (null_to_empty(classnames("event-date", /*iconClass*/ ctx[4])) + " svelte-7wtn3y"))) {
     				attr_dev(div0, "class", div0_class_value);
     			}
 
@@ -14426,24 +14426,25 @@ var app = (function () {
             title: 'event_title_2018_2019_season_ends',
             type: 'ap_season_end',
             text: '',
-            source: 'https://breathemongolia.org/',
+            source: '',
             imgSource: ''
         },
         {
             date: '2019-05-15',
             title: 'event_title_raw_coal_ban_starts',
             type: 'policy',
-            text: 'The government bans the burning of raw coal within the city limits. The ban does not apply to power plants.',
-            source: 'https://breathemongolia.org/',
-            imgSource: './banRawCoal.jpg'
+            text: 'The government announced the ban on February 28th 2018. The resolution bans the burning of raw coal within the city limits, but does not apply to power plants. The government expects that residents will replace raw coal with an improved coal that will burn longer and cleaner. The improved coal is manufactured by Taval Tolgoi Tulsh LLC.',
+            source: 'https://montsame.mn/en/read/189538',
+            imgSource: './imgs/banRawCoal.jpg'
         },
         {
             date: '2019-07-30',
             title: 'event_title_russian_wildfires',
             type: 'news',
-            text: 'The government bans the burning of raw coal within the city limits. The ban does not apply to power plants.',
+            text: 'Smoke from record-setting wildfires in Siberia blows south to Mongolia. July 2019 was Earth\'s hottest month ever recorded, resulting in dangerously dry conditions around the world.',
             source: 'https://ikon.mn/n/1mvu',
-            imgSource: './banRawCoal.jpg'
+            imgSource: './imgs/russia_wildfire.jpg',
+            imgCredit: ''
         },
         {
             date: '2019-10-01',
@@ -14458,8 +14459,8 @@ var app = (function () {
             title: 'event_title_govt_announce_ap_reduction',
             type: 'news',
             text: 'In a panel the government cites research and says that pollution has been significantly reduced. Pollution season is peaking, but govt won\'t know that until later',
-            source: 'https://breathemongolia.org/',
-            imgSource: './banRawCoal.jpg'
+            source: 'https://ikon.mn/n/1rgq',
+            imgSource: './imgs/govt_announces_reduction.jpg'
         },
         {
             date: '2020-01-24',
@@ -14468,6 +14469,14 @@ var app = (function () {
             text: 'In a panel the government cites research and says that pollution has been significantly reduced. Pollution season is peaking, but govt won\'t know that until later',
             source: 'https://breathemongolia.org/',
             imgSource: './banRawCoal.jpg'
+        },
+        {
+            date: '2020-01-29',
+            title: 'event_title_govt_announce_new_refined_coal_plant',
+            type: 'news',
+            text: 'The Energy Minister says that a new factory to produce refined coal will be built by August and will begin producing refined coal on Septermber 15th, 2020.',
+            source: 'https://montsame.mn/en/read/214396',
+            imgSource: './imgs/govt_announces_new_plant.jpg'
         },
         {
             date: '2020-03-31',
@@ -14688,7 +14697,7 @@ var app = (function () {
                 },
                 event_title_russian_wildfires: {
                     US: 
-                        'Russian Wildfire Smoke Reaches Ulaanbaatar',
+                        'Wildfire Smoke from Russia Reaches Ulaanbaatar',
                     MN: 
                         'Оросын түймрийн утаа Улаанбаатарт хүрч байна'
                 },
@@ -14696,13 +14705,19 @@ var app = (function () {
                     US: 
                         'Government Announces 46% Reduction in Pollution from Fall 2019',
                     MN: 
-                        'Засгийн газар 2019 оны намраас эхлэн бохирдлыг 46% бууруулна гэж зарлалаа'
+                        'Засгийн газар 2019 оны намраас эхлэн бохирдлыг 49.6% бууруулна гэж зарлалаа'
                 },
                 event_title_govt_announce_ap_plan: {
                     US: 
                         'Air Pollution Plan Announced',
                     MN: 
                         'Засгийн газар 2019 оны намраас эхлэн бохирдлыг 46% бууруулна гэж зарлалаа'
+                },
+                event_title_govt_announce_new_refined_coal_plant: {
+                    US: 
+                        'A Second Refined Coal Factory is Announced',
+                    MN: 
+                        'Цэвэршүүлсэн нүүрсний хоёр дахь үйлдвэр зарлагдлаа'
                 },
             };
         }

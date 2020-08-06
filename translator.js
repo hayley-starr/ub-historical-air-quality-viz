@@ -189,7 +189,7 @@ export class Translator {
             },
             event_title_russian_wildfires: {
                 US: 
-                    'Russian Wildfire Smoke Reaches Ulaanbaatar',
+                    'Wildfire Smoke from Russia Reaches Ulaanbaatar',
                 MN: 
                     'Оросын түймрийн утаа Улаанбаатарт хүрч байна'
             },
@@ -197,13 +197,19 @@ export class Translator {
                 US: 
                     'Government Announces 46% Reduction in Pollution from Fall 2019',
                 MN: 
-                    'Засгийн газар 2019 оны намраас эхлэн бохирдлыг 46% бууруулна гэж зарлалаа'
+                    'Засгийн газар 2019 оны намраас эхлэн бохирдлыг 49.6% бууруулна гэж зарлалаа'
             },
             event_title_govt_announce_ap_plan: {
                 US: 
                     'Air Pollution Plan Announced',
                 MN: 
                     'Засгийн газар 2019 оны намраас эхлэн бохирдлыг 46% бууруулна гэж зарлалаа'
+            },
+            event_title_govt_announce_new_refined_coal_plant: {
+                US: 
+                    'A Second Refined Coal Factory is Announced',
+                MN: 
+                    'Цэвэршүүлсэн нүүрсний хоёр дахь үйлдвэр зарлагдлаа'
             },
         }
     }

@@ -104,7 +104,7 @@ $: {
     }
 
     .icon-book {
-        color: grey;
+        color: #c9c9c9;
     }
 
     .icon-sun {
@@ -116,7 +116,7 @@ $: {
     }
 
     .icon-newspaper {
-        color: grey;
+        color: #c9c9c9;
     }
 
     .event-title {
