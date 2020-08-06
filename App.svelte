@@ -22,6 +22,7 @@
   };
 
   const updateAppState = (updatedState) => {
+    console.log(updatedState);
     appState = _.extend({}, appState, updatedState);
   }
 

@@ -54,7 +54,7 @@
         return time * maxScrubberWidth / maxTime;
     }
 
-    const convertXPositionToTime = (xPos) => {      
+    const convertXPositionToTime = (xPos) => {     
         return !maxScrubberWidth ? 0 : xPos * maxTime / maxScrubberWidth;
     }
 
@@ -110,6 +110,10 @@
 
     const handlePolicyStart = () => {
          if (appState.isUserRunning) startAnimation();
+    }
+
+    const handleUpdateAnimationPosition = (policyEventPosition, eventId) => {
+        updateCurrentTime(convertXPositionToTime(policyEventPosition));
     }
 
     const handleChangePlaybackRate = (playRate) => {
@@ -236,6 +240,8 @@
                 pauseAnimation={handlePolicyPause} 
                 startAnimation={handlePolicyStart} 
                 updateAppState={updateAppState}
+                appState={appState}
+                updateAnimationPosition={handleUpdateAnimationPosition}
             />
     
         {/each}

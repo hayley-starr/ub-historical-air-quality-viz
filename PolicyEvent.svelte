@@ -1,6 +1,6 @@
 <script>
     import { styler, value, pointer, listen, transform, easing, keyframes } from 'popmotion';
-    import { onMount } from 'svelte';
+    import { onMount, tick } from 'svelte';
     import EventInfoBox from './EventInfoBox.svelte';
     import moment from 'moment';
 
@@ -12,6 +12,8 @@
     export let pauseAnimation;
     export let startAnimation;
     export let updateAppState;
+    export let appState;
+    export let updateAnimationPosition;
 
     const PAUSE_ON_EVENT_MS = 3000; 
 
@@ -91,6 +93,8 @@
     // To highlight the whole event, expand the dot and show the policy info box
     const highlightEvent = () => {
         isEventHighlighted = true;
+        console.log('HIGHLIGT', appState, id);
+        console.log();
         updateAppState({currEventId: id});
 
         policyDotExpandKeyFrames.start(style => {
@@ -106,13 +110,23 @@
     }
 
     // To diminish the whole event, contract the dot and hide the policy info box
-    const diminishEvent = () => {
+    const diminishEvent = async () => {
         isEventHighlighted = false;
 
         policyDotContractKeyFrames.start(style => {
             policyDotStyler.set(style);
         });
-        updateAppState({currEventId: undefined});
+        await tick();
+        console.log('DIMINISH', appState, id);
+        console.log();
+        if (appState.currEventId == id) { //so that it only unsets itself and not another event
+            updateAppState({currEventId: undefined});
+        }
+       
+    }
+
+    const handleClickPolicyDot = () => {
+        updateAnimationPosition(eventPosition, id);
     }
 
     onMount(async () => {
@@ -134,7 +148,7 @@
     </div>
     <div class={"policy-dot-container policy-dot-container"+id}>
         <div class={"policy-dot-hit-area policy-dot-hit-area"+id}>
-            <div class={"policy-dot policy-dot"+id}></div>
+            <div class={"policy-dot policy-dot"+id} on:click={handleClickPolicyDot}></div>
         </div>
     </div>
   
