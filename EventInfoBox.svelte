@@ -1,30 +1,68 @@
 <script>
 
+  import Icon from 'fa-svelte'
+  import { faSnowflake } from '@fortawesome/free-solid-svg-icons/faSnowflake';
+  import { faBook } from '@fortawesome/free-solid-svg-icons/faBook';
+  import { faSun } from '@fortawesome/free-solid-svg-icons/faSun';
+  import { faNewspaper } from '@fortawesome/free-solid-svg-icons/faNewspaper';
+  import { classnames } from './classnames';
+
 export let eventDetails;
+export let translator;
+export let currLang;
+
+let eventIcon = faBook;
+let iconClass = 'icon-book';
+let eventDateText = '';
+
+$: {
+    switch (eventDetails.type) {
+        case 'policy':
+            eventIcon = faBook
+            iconClass = 'icon-book';
+            break;
+        case 'ap_season_end':
+            eventIcon = faSun;
+            iconClass = 'icon-sun';
+            break;
+        case 'ap_season_start':
+            eventIcon = faSnowflake;
+            iconClass = 'icon-snowflake';
+            break;
+        case 'news':
+            eventIcon = faNewspaper;
+            iconClass = 'icon-newspaper';
+            break;
+        default:
+            eventIcon = faBook;
+            iconClass = 'icon-book';
+    }
+}
 
 </script>
 
-<div class='policy-info-box'>
-    <div class='policy-event-date'>
-        <span>{eventDetails.date}</span>
+<div class='event-info-box'>
+    <div class={classnames('event-date', iconClass)}>
+        <Icon icon={eventIcon}></Icon>
+        <span class='event-date-text'>{translator.translateDate(eventDetails.date, currLang)}</span>
     </div>
-    <div class='policy-info-top'>
+    <div class='event-info-top'>
         
-         <div class='policy-event-title'>
-            <span>{eventDetails.title}</span>
+         <div class='event-title'>
+            <span>{translator.translate(eventDetails.title, currLang)}</span>
         </div>
-        {#if eventDetails.type != 'ap season'}
-        <div class='policy-event-photo'>
+        {#if !eventDetails.type.startsWith('ap_season')}
+        <div class='event-photo'>
             <img src={eventDetails.imgSource} alt={''}>
         </div>
         {/if}
     </div>
-    {#if eventDetails.type != 'ap season'}
-    <div class='policy-info-bottom'>
-        <div class='policy-event-text'>
+    {#if !eventDetails.type.startsWith('ap_season')}
+    <div class='event-info-bottom'>
+        <div class='event-text'>
             <span>{eventDetails.text}</span>
         </div>
-        <div class='policy-event-source'>
+        <div class='event-source'>
             <a href={eventDetails.source} target="_blank">Source</a>
         </div>
     </div>
@@ -34,7 +72,7 @@ export let eventDetails;
 </div>
 
 <style>
-    .policy-info-box {
+    .event-info-box {
         border: 1px solid #2B2D42;
         font-family: 'Open Sans', sans-serif;
         color: #2B2D42;
@@ -47,46 +85,68 @@ export let eventDetails;
         align-content: space-between;
     }
 
-    .policy-info-top {
+    .event-info-top {
         padding: 5px 10px;
     }
 
-    .policy-event-date {
+    .event-date {
+        display: flex;
+        align-items: center;
         font-size: 12px;
         font-weight: bold;
         background-color: #2B2D42;
-        color: white;
-        padding: 5px 10px
+        padding: 5px 10px;
     }
 
-    .policy-event-title {
+    .event-date-text {
+        padding-left: 5px;
+        color: white;
+    }
+
+    .icon-book {
+        color: grey;
+    }
+
+    .icon-sun {
+        color: #e3a005;
+    }
+
+    .icon-snowflake {
+        color: steelblue;
+    }
+
+    .icon-newspaper {
+        color: grey;
+    }
+
+    .event-title {
         font-size: 16px;
         font-weight: lighter;
         margin-bottom: 5px;
     }
 
-    .policy-event-text {
+    .event-text {
         font-size: 11px;
     }
 
-    .policy-event-photo {
+    .event-photo {
         display: flex;
         justify-content: center;
         margin: 5px 0;
     }
 
-    .policy-event-photo img {
+    .event-photo img {
         max-width: 100%;
         max-height: 100%;
         padding: 5px;
     }
 
-    .policy-info-bottom {
+    .event-info-bottom {
         border-color: #2B2D42;
         padding: 5px;
     }
 
-    .policy-event-source {
+    .event-source {
         font-size: 11px;
         font-style: italic;
         cursor: pointer;
@@ -96,7 +156,7 @@ export let eventDetails;
         justify-content: flex-end;
     }
 
-    .policy-event-source a {
+    .event-source a {
         text-align: end;
     }
 

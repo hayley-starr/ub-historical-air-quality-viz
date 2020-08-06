@@ -249,7 +249,8 @@
                     <defs>
                         <style>
                         .cls-pause-1 {
-                            stroke: #000;
+                            stroke: steelblue;
+                            fill: steelblue;
                             stroke-miterlimit: 10;
                         }
                         </style>
@@ -269,7 +270,7 @@
                         <style>
                         .cls-play-1 {
                             stroke: #000;
-                            fill: #000;
+                            fill: steelblue;
                             stroke-miterlimit: 10;
                         }
                         </style>
@@ -314,23 +315,20 @@
         height: 100px;
     }
 
-    .y-axis-grid line {
-        stroke: dashed;
-    }
 
     /* CONTROLS SECTION */
     .scrubber-controls {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        height: 30px;
+        height: 40px;
     }
 
     .control-button-container {
         display: flex;
         height: 100%;
         align-items: center;
-        /* border: 1px solid green; */
+        color: steelblue;
     }
 
     .speed-buttons-container {
@@ -343,17 +341,19 @@
         width: 45px;
         margin-right: 5px;
         
-        background-color: #47B3F2;
+        background: none;
         color: white;
-        border-radius: 15px;
+        border-radius: 4px;
 
-        border: none;
+        border: 1px solid steelblue; /*#47B3F2;*/
         height: 20px;
+        cursor: pointer;
 
     }
 
     .speed-button-selected {
-        background-color: #e3a005;
+        background-color: steelblue;
+        border: 1px solid steelblue;
     }
 
     .speed-button:focus {
@@ -370,25 +370,31 @@
     }
 
     .current-time-display {
-
+        font-size: 15px;
+        font-weight: lighter;
     }
 
     .play-button svg {
-        height: 20px;
+        height: 25px;
     }
 
     /* CONTROL BUTTON STYLING */
     .play-button {
-        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         background: none;
+        border: none;
         cursor: pointer;
-        height: 100%;
-        width: 30px;
+        height: 30px;
+        width: 45px;
         margin-right: 10px;
     }
 
     .play-button:hover {
         transform: scale(1.1);
+        /* border: 1px solid steelblue;
+        border-radius: 4px; */
     }
 
     .play-button:focus {
@@ -403,9 +409,10 @@
     
      /* SLIDER SECTION */
     .slider {
-        height: 80px;
+        height: 40px;
+        margin-top: 25px;
+        margin-bottom: 5px;
         position: relative;
-        /* border: 1px solid orange; */
     }
 
     .range {

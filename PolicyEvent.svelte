@@ -39,7 +39,7 @@
         if (eventPosition > 0) {
             bufferEndPosition = eventPosition + bufferRadius;
             bufferStartPosition = eventPosition - bufferRadius;
-            if (eventDetails.type == 'ap season') bufferEndPosition += 15*bufferRadius;
+            if (eventDetails.type.startsWith('ap season')) bufferEndPosition += 15*bufferRadius;
         }
     }
 

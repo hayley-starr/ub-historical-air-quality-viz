@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export class Translator {
     
     constructor() {
@@ -14,6 +16,10 @@ export class Translator {
                     "Cleaning up the toxic air has been one of the biggest challenges for the city of Ulaanbaatar in recent years. In 2012 the government of ? passed the Law on Air, which was supposed to start addressing the causes undelying the crisis. After many unsuccessful efforts, the city of UB released resolutiion 62 which announced a ban on the burning of raw coal starting in 2019. Watch as pm2.5 levels change across the city from February 2019 to April 2020 and get a bird's eye view of Ulaanbaatar's public policy as it attempts to clean the air.",
                 MN: 
                     'Хортой агаарыг цэвэрлэх нь сүүлийн жилүүдэд Улаанбаатар хотын хувьд тулгамдсан асуудлын нэг болоод байна. 2012 онд Засгийн газрын? хямралыг үл тоомсорлож буй шалтгааныг шийдвэрлэх ажлыг эхлүүлэхээр төлөвлөсөн Агаарын тухай хуулийг батлав. Олон тооны хүчин чармайлт гаргасны дараа нийслэл 2019 онд түүхий нүүрс шатаахыг хориглох тухай зарласан 62 тогтоолыг гаргалаа. 2019 оны 2-р сараас 2020 оны 4-р сар хүртэл pm2.5 түвшин хот даяар өөрчлөгдөж, шувуудын нүдээр харах боломжтой. агаарыг цэвэрлэх гэсэн оролдлогоор төрийн бодлого.'
+            },
+            seven_day_avg_on: {
+                US: '7 day avg',
+                MN: '7 хоногийн дундаж'
             },
             pm25_scale_title: {
                 US: 'Estimated PM2.5 Concentration',
@@ -157,11 +163,62 @@ export class Translator {
                 MN: 
                     '12-cap'
             },
+            event_title_2018_2019_season_ends: {
+                US: 
+                    '2018-2019 Air Pollution Season Ends',
+                MN: 
+                    '2018-2019 Агаарын бохирдлын улирал дуусна'
+            },
+            event_title_2019_2020_season_starts: {
+                US: 
+                    '2019-2020 Air Pollution Season Starts',
+                MN: 
+                    '2019-2020 Агаарын бохирдлын улирал эхэллээ'
+            },
+            event_title_2019_2020_season_ends: {
+                US: 
+                    '2019-2020 Air Pollution Season Ends',
+                MN: 
+                    '2019-2020 Агаарын бохирдлын улирал дуусна'
+            },
+            event_title_raw_coal_ban_starts: {
+                US: 
+                    'Ban on Raw Coal Comes Into Effect',
+                MN: 
+                    'Түүхий нүүрс дээр хориг тавигдаж эхэллээ'
+            },
+            event_title_russian_wildfires: {
+                US: 
+                    'Russian Wildfire Smoke Reaches Ulaanbaatar',
+                MN: 
+                    'Оросын түймрийн утаа Улаанбаатарт хүрч байна'
+            },
+            event_title_govt_announce_ap_reduction: {
+                US: 
+                    'Government Announces 46% Reduction in Pollution from Fall 2019',
+                MN: 
+                    'Засгийн газар 2019 оны намраас эхлэн бохирдлыг 46% бууруулна гэж зарлалаа'
+            },
+            event_title_govt_announce_ap_plan: {
+                US: 
+                    'Air Pollution Plan Announced',
+                MN: 
+                    'Засгийн газар 2019 оны намраас эхлэн бохирдлыг 46% бууруулна гэж зарлалаа'
+            },
         }
     }
 
     translate(phrase, lang) {
         return this.translations[phrase][lang];
-    } 
+    }
+    
+    translateDate(dateString, lang) {
+        let date = moment(dateString);
+        if (lang == 'MN') {
+            return date.format('YYYY [ОНЫ] M [САРЫН] D');
+        } else {
+            return date.format('MMMM Do YYYY');
+        }
+    }
 
 }

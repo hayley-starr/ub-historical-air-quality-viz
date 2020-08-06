@@ -7,7 +7,6 @@
   import { stations } from './stations_geojson.js';
   import Scrubber from './Scrubber.svelte' 
   import AQILegend from './AQILegend.svelte';
-  import AnimationDate from './AnimationDate.svelte';
   import EventInfoContainer from './EventInfoContainer.svelte';
   import moment from 'moment';
   import { frameData } from './frameData.js';
@@ -246,15 +245,16 @@
         </div>
         {/if}
         <div class='map-animation-date-container'>
-            <AnimationDate
-              currentFrame={currentFrame} 
-              frameData={frameData} 
-            />          
+             <span class='animation-date'>
+                {translator.translate('seven_day_avg_on', currLang) + ': ' + translator.translateDate(frameData[currentFrame].date, currLang)}
+            </span>        
         </div>
         <div class='map-event-container'>
             <EventInfoContainer 
                 policyEvents={policyEvents}
                 appState={appState}
+                translator={translator}
+                currLang={currLang}
             />         
         </div>
       </div>
@@ -365,7 +365,7 @@
   background-color: #2B2D42;
   color: white;
   border-radius: 10px;
-  padding: 20px;
+  padding: 20px 20px 10px 20px;
 } 
 
 .visualization .map-container {
@@ -411,15 +411,18 @@
     bottom: 0;
     margin-left: auto; 
     margin-right: auto; 
-    width: 200px;
+    max-width: 300px;
     z-index: 100;
     
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 15px;
     padding: 4px;
     margin-bottom: 20px;
-
-
+    background: white;
+    opacity: .85;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: 300;
+    color: #2B2D42;
 }
 
 .map-event-container {
