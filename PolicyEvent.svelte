@@ -93,8 +93,6 @@
     // To highlight the whole event, expand the dot and show the policy info box
     const highlightEvent = () => {
         isEventHighlighted = true;
-        console.log('HIGHLIGT', appState, id);
-        console.log();
         updateAppState({currEventId: id});
 
         policyDotExpandKeyFrames.start(style => {
@@ -117,8 +115,7 @@
             policyDotStyler.set(style);
         });
         await tick();
-        console.log('DIMINISH', appState, id);
-        console.log();
+
         if (appState.currEventId == id) { //so that it only unsets itself and not another event
             updateAppState({currEventId: undefined});
         }

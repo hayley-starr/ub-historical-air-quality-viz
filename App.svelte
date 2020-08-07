@@ -22,7 +22,6 @@
   };
 
   const updateAppState = (updatedState) => {
-    console.log(updatedState);
     appState = _.extend({}, appState, updatedState);
   }
 
@@ -254,6 +253,8 @@
             <EventInfoContainer 
                 policyEvents={policyEvents}
                 appState={appState}
+                updateAppState={updateAppState}
+                startAnimation={startAnimation}
                 translator={translator}
                 currLang={currLang}
             />         

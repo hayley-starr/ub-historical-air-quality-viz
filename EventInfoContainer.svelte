@@ -5,8 +5,17 @@
 
     export let policyEvents;
     export let appState;
+    export let updateAppState;
     export let translator;
     export let currLang;
+    export let startAnimation;
+
+    const handleCloseEvent = () => {
+         updateAppState({currEventId: undefined});
+         if (appState.isUserRunning) {
+             startAnimation();
+         }
+    }
 
 
 </script>
@@ -17,6 +26,7 @@
         eventDetails={policyEvents[appState.currEventId]}
         translator={translator}
         currLang={currLang} 
+        handleCloseEvent={handleCloseEvent}
     />
     {/if}
 </div>
@@ -26,7 +36,6 @@
 .event-info-container {
     transition: all 2s;
     opacity: 0.85;
-    box-shadow: 2px 2px 2px grey;
 }
 
 </style>
