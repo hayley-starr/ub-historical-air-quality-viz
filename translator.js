@@ -163,6 +163,18 @@ export class Translator {
                 MN: 
                     '12-cap'
             },
+            photo_credit: {
+                US: 
+                    'Image source',
+                MN: 
+                    'Эх сурвалж'
+            },
+            info_source: {
+                US: 
+                    'Source',
+                MN: 
+                    'Эх сурвалж'
+            },
             event_title_2018_2019_season_ends: {
                 US: 
                     '2018-2019 Air Pollution Season Ends',
@@ -187,29 +199,65 @@ export class Translator {
                 MN: 
                     'Түүхий нүүрс дээр хориг тавигдаж эхэллээ'
             },
+            event_text_raw_coal_ban_starts: {
+                US: 
+                    'The government announced the ban in a resolution on February 28th 2018. It is now forbidden for residents to burn raw coal within the city limits, though the rule does not apply to power plants. The government is working with state-run company Taval Tolgoi Tulsh LLC to manufacture a type of refined coal that will burn longer and cleaner and that can replace raw coal.',
+                MN: 
+                    'Засгийн газар хоригоо 2018 оны 2-р сарын 28-ны өдөр тогтоолоор зарлав. Одоо оршин суугчдад хотын хэмжээнд түүхий нүүрс түлэхийг хориглоно. Засгийн газар төрийн өмчит Тавал Толгой Түлш ХХК-тай хамтарч урт, илүү цэвэр, түүхий нүүрсийг орлуулж чадах цэвэршүүлсэн нүүрс үйлдвэрлэхээр ажиллаж байна.'
+            },
             event_title_russian_wildfires: {
                 US: 
                     'Wildfire Smoke from Russia Reaches Ulaanbaatar',
                 MN: 
                     'Оросын түймрийн утаа Улаанбаатарт хүрч байна'
             },
+            event_text_russian_wildfires: {
+                US: 
+                    'Smoke from record-setting wildfires in Siberia blows south to Mongolia. July 2019 was Earth\'s hottest month ever recorded, resulting in dangerously dry conditions around the world.',
+                MN: 
+                    'Сибирьт тогтоосон түймрийн утаа Монгол орны өмнөд хэсэгт үлдэв. 2019 оны 7-р сар бол дэлхийн хамгийн халуун сараар тэмдэглэгдсэн бөгөөд дэлхийн хуурай нөхцөлд аюултай нөхцөл байдал үүссэн юм.'
+            },
             event_title_govt_announce_ap_reduction: {
                 US: 
-                    'Government Announces 46% Reduction in Pollution from Fall 2019',
+                    'Government Announces 49.6% Reduction in Pollution from Previous Years',
                 MN: 
-                    'Засгийн газар 2019 оны намраас эхлэн бохирдлыг 49.6% бууруулна гэж зарлалаа'
+                    'Засгийн газар өмнөх жилүүдийн бохирдлыг 49.6% бууруулж байгааг зарлав'
+            },
+            event_text_govt_announce_ap_reduction: {
+                US: 
+                    'Government officials cite research and say that pollution has been significantly reduced. One official notes that in previous years the air pollution levels had been above the standard, implying that this season is different. However, air pollution still remains above acceptable levels in many parts of the city.',
+                MN: 
+                    'Засгийн газрын ажилтнууд судалгааг иш татан, бохирдол ихээхэн буурсан гэж мэдэгдэв. Өмнөх жилүүдэд агаарын бохирдлын түвшин стандарт хэмжээнээс дээгүүр байсан нь энэ улирал өөр байгааг тэмдэглэжээ. Гэсэн хэдий ч агаарын бохирдол хотын олон хэсэгт хүлээн зөвшөөрөгдсөн хэмжээнээс дээгүүр хэвээр байна.'
             },
             event_title_govt_announce_ap_plan: {
                 US: 
-                    'Air Pollution Plan Announced',
+                    '2020 Action Plan to Reduce Environmental Pollution',
                 MN: 
-                    'Засгийн газар 2019 оны намраас эхлэн бохирдлыг 46% бууруулна гэж зарлалаа'
+                    'Орчны бохирдлыг бууруулахад 2020 хэрэгжүүлэх үйл ажиллагааны төлөвлөгөө'
+            },
+            event_text_govt_announce_ap_plan: {
+                US: 
+                    'Among several clauses on reducing pollution nationwide, the plan announces an intention to support production of refined coal and construct new plants that will serve Ulaanbaatar. Additionally, the plan says that the government will monitor use of the improved coal and continue to enforce the ban on raw coal. The plan also mentions that low-pressure boilers in schools and kindergardens should be replaced with efficient electric and gas stoves.',
+                MN: 
+                    'Улсын хэмжээнд бохирдлыг бууруулах тухай хэд хэдэн заалтын дотор энэ төлөвлөгөө нь цэвэршүүлсэн нүүрсний үйлдвэрлэлийг дэмжих, Улаанбаатар хотод үйлчилэх шинэ үйлдвэр барих бодолтой байгаагаа зарласан. Нэмж дурдахад уг төлөвлөгөөнд засгийн газар сайжруулсан нүүрсний ашиглалтыг хянаж, түүхий нүүрсний хоригийг үргэлжлүүлэн хэрэгжүүлнэ гэж заасан. Мөн төлөвлөгөөнд сургууль, цэцэрлэгийн бага даралттай бойлеруудыг үр ашигтай цахилгаан, хийн зуухаар ​​сольж байх ёстой гэж заасан.'
             },
             event_title_govt_announce_new_refined_coal_plant: {
                 US: 
                     'A Second Refined Coal Factory is Announced',
                 MN: 
                     'Цэвэршүүлсэн нүүрсний хоёр дахь үйлдвэр зарлагдлаа'
+            },
+            event_text_govt_announce_new_refined_coal_plant: {
+                US: 
+                    'The Energy Minister says that a new factory to produce refined coal will be built in eastern Ulaanbaatar by August and will begin producing refined coal on Septermber 15th, 2020.',
+                MN: 
+                    'Эрчим хүчний сайд 8-р сар гэхэд Улаанбаатар хотын зүүн хэсэгт цэвэршүүлсэн нүүрс үйлдвэрлэх шинэ үйлдвэр барьж, 2020 оны 9-р сарын 15-наас цэвэршүүлсэн нүүрс үйлдвэрлэж эхэлнэ гэж мэдэгдэв.'
+            },
+            none: {
+                US: 
+                    '?',
+                MN: 
+                    '?'
             },
         }
     }
@@ -221,7 +269,7 @@ export class Translator {
     translateDate(dateString, lang) {
         let date = moment(dateString);
         if (lang == 'MN') {
-            return date.format('YYYY [ОНЫ] M [САРЫН] D');
+            return date.format('YYYY [оны] M [сарын] D');
         } else {
             return date.format('MMMM Do YYYY');
         }

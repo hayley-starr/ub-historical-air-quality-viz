@@ -54,26 +54,25 @@ $: {
         </div>
     </div>
     <div class='event-info-scrollable'>
-        <div class='event-info-top'>
-            <div class='event-title'>
-                <span>{translator.translate(eventDetails.title, currLang)}</span>
-            </div>
-            {#if !eventDetails.type.startsWith('ap_season')}
-            <div class='event-photo'>
-                <img src={eventDetails.imgSource} alt={''}>
-            </div>
-            {/if}
+        <div class='event-title'>
+            <span>{translator.translate(eventDetails.title, currLang)}</span>
         </div>
         {#if !eventDetails.type.startsWith('ap_season')}
-        <div class='event-info-bottom'>
-            <div class='event-text'>
-                <span>{eventDetails.text}</span>
-            </div>
-            <div class='event-source'>
-                <a href={eventDetails.source} target="_blank">Source</a>
-            </div>
+        <div class='event-photo'>
+            <img src={eventDetails.imgSource} alt={''}>
+            {#if eventDetails.type != 'policy_document'}
+            <div>{translator.translate('photo_credit', currLang) + ': ' + eventDetails.imgCredit}</div>
+            {/if}
+        </div>
+        <div class='event-text'>
+            <span>{translator.translate(eventDetails.text, currLang)}</span>
+        </div>
+        {#if eventDetails.type != 'policy_document'}
+        <div class='event-source'>
+            <a href={eventDetails.source} target="_blank">{translator.translate('info_source', currLang)}</a>
         </div>
         {/if}
+    {/if}
     </div>
 </div>
 
@@ -94,13 +93,13 @@ $: {
     .event-info-scrollable {
         overflow-y: scroll;
         max-height: 350px;
-        width: 100%;
         border-bottom-left-radius: 4px;
         border-bottom-right-radius: 4px;
         background: white;
         display: flex;
         flex-direction: column;
         align-content: space-between;
+        padding: 5px 10px;
     }
 
     .event-info-scrollable::-webkit-scrollbar {
@@ -111,10 +110,6 @@ $: {
     .event-info-scrollable {
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
-    }
-
-    .event-info-top {
-        padding: 5px 10px;
     }
 
     .event-date {
@@ -160,29 +155,26 @@ $: {
 
     .event-title {
         font-size: 16px;
-        font-weight: lighter;
         margin-bottom: 5px;
     }
 
     .event-text {
-        font-size: 11px;
+        font-size: 12px;
+        text-indent: 10px;
     }
 
     .event-photo {
         display: flex;
+        flex-direction: column;
         justify-content: center;
-        margin: 5px 0;
+        font-size: 10px;
+        margin-bottom: 5px;
     }
 
     .event-photo img {
         max-width: 100%;
         max-height: 100%;
-        padding: 5px;
-    }
-
-    .event-info-bottom {
-        border-color: #2B2D42;
-        padding: 5px;
+        border: 1px solid #c9c9c9
     }
 
     .event-source {
