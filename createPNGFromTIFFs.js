@@ -6,6 +6,8 @@ import convert from 'color-convert';
 import { scaleLinear} from 'd3-scale'
 import { temps } from './ub_7_day_avg_temp'; // every 4 days
 import { movAvgPm25 } from './ub_mov_avg_pm25'; // every 4 days
+import {frameData} from './frameData';
+import moment from 'moment';
 
 
 const NUM_INTERMEDIARY_FRAMES = 11;
@@ -265,7 +267,35 @@ const createSingleFrame = () => {
 }
 
 //createSingleFrame();
-main();
+//main();
+
+const getDatesFromFrameData = () => { 
+    let frameDataMonthIndices = [];
+    let currMonth = moment(frameData[0].date).month();
+    frameDataMonthIndices.push(0);
+    for (let i = 1; i < frameData.length; i++) {
+        const month = moment(frameData[i].date).month();
+        if (month != currMonth) {
+            frameDataMonthIndices.push(i);
+            currMonth = month;
+        }
+    }
+    console.log(frameDataMonthIndices);
+
+    let monthIndicesJSON = JSON.stringify(frameDataMonthIndices);
+
+    // write JSON string to a file
+     fs.writeFile('frameDataMonthIndices.json', monthIndicesJSON, (err) => {
+         if (err) {
+             throw err;
+         }
+         console.log("frame indices month JSON data is saved.");
+     });
+}
+
+getDatesFromFrameData();
+
+
 
 
 

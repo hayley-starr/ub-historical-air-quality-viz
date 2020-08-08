@@ -9,7 +9,7 @@
   import AQILegend from './AQILegend.svelte';
   import EventInfoContainer from './EventInfoContainer.svelte';
   import moment from 'moment';
-  import { frameData } from './frameData.js';
+  import { frameData, frameDataMonthIndices } from './frameData.js';
   import { policyEvents } from './policyEvents.js';
   import getUnicodeFlagIcon from 'country-flag-icons/unicode';
   import { Translator } from './translator';
@@ -272,6 +272,7 @@
               startAnimation={startAnimation} 
               updateCurrentTime={updateCurrentTime}
               frameData={frameData}
+              frameDataMonthIndices={frameDataMonthIndices}
               changePlaybackRate={changePlaybackRate}
               policyEvents={policyEvents}
               translator={translator}

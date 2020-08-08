@@ -12,6 +12,7 @@
 
 
     export let frameData;
+    export let frameDataMonthIndices;
     export let policyEvents;
     export let currentTime;
     export let maxTime;
@@ -158,6 +159,7 @@
             .range([ 0, width ]);
 
         let xAxis = axisBottom(xAxisScale)
+            .tickValues(frameDataMonthIndices.slice(1))
             .tickFormat(x => {
                 return translator.translate(moment(frameData[x].date).format("MMMM"), currLang) + moment(frameData[x].date).format(" 'YY");
             })
