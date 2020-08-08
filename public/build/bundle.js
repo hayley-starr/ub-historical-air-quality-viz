@@ -12460,7 +12460,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (233:8) {#each policyEvents as policyEvent, i}
+    // (235:8) {#each policyEvents as policyEvent, i}
     function create_each_block(ctx) {
     	let current;
 
@@ -12516,14 +12516,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(233:8) {#each policyEvents as policyEvent, i}",
+    		source: "(235:8) {#each policyEvents as policyEvent, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (272:12) {:else}
+    // (274:12) {:else}
     function create_else_block(ctx) {
     	let button;
     	let svg;
@@ -12545,26 +12545,26 @@ var app = (function () {
     			g1 = svg_element("g");
     			g0 = svg_element("g");
     			path = svg_element("path");
-    			add_location(style, file$3, 275, 24, 9807);
-    			add_location(defs, file$3, 274, 20, 9776);
+    			add_location(style, file$3, 277, 24, 9890);
+    			add_location(defs, file$3, 276, 20, 9859);
     			attr_dev(path, "class", "cls-play-1");
     			attr_dev(path, "d", "M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z");
     			attr_dev(path, "transform", "translate(0 -0.01)");
-    			add_location(path, file$3, 285, 24, 10224);
+    			add_location(path, file$3, 287, 24, 10307);
     			attr_dev(g0, "id", "Layer_1-2");
     			attr_dev(g0, "data-name", "Layer 1-2");
-    			add_location(g0, file$3, 284, 24, 10159);
+    			add_location(g0, file$3, 286, 24, 10242);
     			attr_dev(g1, "id", "Layer_2");
     			attr_dev(g1, "data-name", "Layer 2");
-    			add_location(g1, file$3, 283, 20, 10098);
+    			add_location(g1, file$3, 285, 20, 10181);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 113.57 127.1");
     			attr_dev(svg, "class", "svelte-i7o83x");
-    			add_location(svg, file$3, 273, 16, 9655);
+    			add_location(svg, file$3, 275, 16, 9738);
     			attr_dev(button, "class", "start-button play-button svelte-i7o83x");
-    			add_location(button, file$3, 272, 12, 9565);
+    			add_location(button, file$3, 274, 12, 9648);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, button, anchor);
@@ -12589,14 +12589,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(272:12) {:else}",
+    		source: "(274:12) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (252:12) {#if appState.isUserRunning}
+    // (254:12) {#if appState.isUserRunning}
     function create_if_block$1(ctx) {
     	let button;
     	let svg;
@@ -12620,28 +12620,28 @@ var app = (function () {
     			g0 = svg_element("g");
     			path0 = svg_element("path");
     			path1 = svg_element("path");
-    			add_location(style, file$3, 255, 24, 8733);
-    			add_location(defs, file$3, 254, 20, 8702);
+    			add_location(style, file$3, 257, 24, 8816);
+    			add_location(defs, file$3, 256, 20, 8785);
     			attr_dev(path0, "class", "cls-pause-1");
     			attr_dev(path0, "d", "M10.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,10.5.5Z");
-    			add_location(path0, file$3, 265, 24, 9156);
+    			add_location(path0, file$3, 267, 24, 9239);
     			attr_dev(path1, "class", "cls-pause-1");
     			attr_dev(path1, "d", "M60.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,60.5.5Z");
-    			add_location(path1, file$3, 266, 24, 9307);
+    			add_location(path1, file$3, 268, 24, 9390);
     			attr_dev(g0, "id", "Layer_1-2");
     			attr_dev(g0, "data-name", "Layer 1-2");
-    			add_location(g0, file$3, 264, 24, 9091);
+    			add_location(g0, file$3, 266, 24, 9174);
     			attr_dev(g1, "id", "Layer_2");
     			attr_dev(g1, "data-name", "Layer 2");
-    			add_location(g1, file$3, 263, 20, 9030);
+    			add_location(g1, file$3, 265, 20, 9113);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 71 135");
     			attr_dev(svg, "class", "svelte-i7o83x");
-    			add_location(svg, file$3, 253, 16, 8587);
+    			add_location(svg, file$3, 255, 16, 8670);
     			attr_dev(button, "class", "pause-button play-button svelte-i7o83x");
-    			add_location(button, file$3, 252, 12, 8497);
+    			add_location(button, file$3, 254, 12, 8580);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, button, anchor);
@@ -12667,7 +12667,7 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(252:12) {#if appState.isUserRunning}",
+    		source: "(254:12) {#if appState.isUserRunning}",
     		ctx
     	});
 
@@ -12772,49 +12772,49 @@ var app = (function () {
     			div9 = element("div");
     			t13 = text(t13_value);
     			attr_dev(div0, "class", "pm25-chart-title svelte-i7o83x");
-    			add_location(div0, file$3, 219, 4, 7265);
+    			add_location(div0, file$3, 221, 4, 7348);
     			attr_dev(div1, "class", "pm25-chart svelte-i7o83x");
     			attr_dev(div1, "id", "pm25-timeseries");
-    			add_location(div1, file$3, 220, 4, 7360);
+    			add_location(div1, file$3, 222, 4, 7443);
     			attr_dev(div2, "class", "range svelte-i7o83x");
-    			add_location(div2, file$3, 224, 8, 7463);
+    			add_location(div2, file$3, 226, 8, 7546);
     			attr_dev(div3, "class", "handle svelte-i7o83x");
-    			add_location(div3, file$3, 228, 16, 7587);
+    			add_location(div3, file$3, 230, 16, 7670);
     			attr_dev(div4, "class", "handle-hit-area svelte-i7o83x");
-    			add_location(div4, file$3, 227, 12, 7541);
+    			add_location(div4, file$3, 229, 12, 7624);
     			attr_dev(div5, "class", "handle-container svelte-i7o83x");
-    			add_location(div5, file$3, 226, 8, 7498);
+    			add_location(div5, file$3, 228, 8, 7581);
     			attr_dev(div6, "class", "slider svelte-i7o83x");
     			attr_dev(div6, "id", "slider");
-    			add_location(div6, file$3, 223, 4, 7422);
+    			add_location(div6, file$3, 225, 4, 7505);
 
     			attr_dev(button0, "class", button0_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 0.5
     			? "speed-button-selected"
     			: "")) + " svelte-i7o83x"));
 
-    			add_location(button0, file$3, 292, 16, 10594);
+    			add_location(button0, file$3, 294, 16, 10677);
 
     			attr_dev(button1, "class", button1_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 1
     			? "speed-button-selected"
     			: "")) + " svelte-i7o83x"));
 
-    			add_location(button1, file$3, 293, 16, 10770);
+    			add_location(button1, file$3, 295, 16, 10853);
 
     			attr_dev(button2, "class", button2_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 2
     			? "speed-button-selected"
     			: "")) + " svelte-i7o83x"));
 
-    			add_location(button2, file$3, 294, 16, 10940);
+    			add_location(button2, file$3, 296, 16, 11023);
     			attr_dev(div7, "class", "speed-buttons-container svelte-i7o83x");
-    			add_location(div7, file$3, 291, 12, 10540);
+    			add_location(div7, file$3, 293, 12, 10623);
     			attr_dev(div8, "class", "control-button-container svelte-i7o83x");
-    			add_location(div8, file$3, 250, 8, 8404);
+    			add_location(div8, file$3, 252, 8, 8487);
     			attr_dev(div9, "class", "current-time-display svelte-i7o83x");
-    			add_location(div9, file$3, 297, 9, 11138);
+    			add_location(div9, file$3, 299, 9, 11221);
     			attr_dev(div10, "class", "scrubber-controls svelte-i7o83x");
-    			add_location(div10, file$3, 249, 4, 8364);
+    			add_location(div10, file$3, 251, 4, 8447);
     			attr_dev(div11, "class", "scrubber svelte-i7o83x");
-    			add_location(div11, file$3, 218, 0, 7238);
+    			add_location(div11, file$3, 220, 0, 7321);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -13091,7 +13091,10 @@ var app = (function () {
     		//---- Add X axis ----------------
     		var xAxisScale = linear$2().domain([0, frameData.length - 1]).range([0, width]); // length of the timeseries
 
-    		let xAxis = axisBottom(xAxisScale).tickFormat(x => translator.translate(moment(frameData[x].date).format("MMMM"), currLang)).tickSizeOuter(0);
+    		let xAxis = axisBottom(xAxisScale).tickFormat(x => {
+    			return translator.translate(moment(frameData[x].date).format("MMMM"), currLang) + moment(frameData[x].date).format(" 'YY");
+    		}).tickSizeOuter(0);
+
     		svg.append("g").attr("transform", "translate(0," + height + ")").call(xAxis);
 
     		//---- Add Y axis ----------------
@@ -32131,12 +32134,53 @@ var app = (function () {
     }.call(commonjsGlobal));
     });
 
+    var faCompass = createCommonjsModule(function (module, exports) {
+    Object.defineProperty(exports, '__esModule', { value: true });
+    var prefix = 'fas';
+    var iconName = 'compass';
+    var width = 496;
+    var height = 512;
+    var ligatures = [];
+    var unicode = 'f14e';
+    var svgPathData = 'M225.38 233.37c-12.5 12.5-12.5 32.76 0 45.25 12.49 12.5 32.76 12.5 45.25 0 12.5-12.5 12.5-32.76 0-45.25-12.5-12.49-32.76-12.49-45.25 0zM248 8C111.03 8 0 119.03 0 256s111.03 248 248 248 248-111.03 248-248S384.97 8 248 8zm126.14 148.05L308.17 300.4a31.938 31.938 0 0 1-15.77 15.77l-144.34 65.97c-16.65 7.61-33.81-9.55-26.2-26.2l65.98-144.35a31.938 31.938 0 0 1 15.77-15.77l144.34-65.97c16.65-7.6 33.8 9.55 26.19 26.2z';
+
+    exports.definition = {
+      prefix: prefix,
+      iconName: iconName,
+      icon: [
+        width,
+        height,
+        ligatures,
+        unicode,
+        svgPathData
+      ]};
+
+    exports.faCompass = exports.definition;
+    exports.prefix = prefix;
+    exports.iconName = iconName;
+    exports.width = width;
+    exports.height = height;
+    exports.ligatures = ligatures;
+    exports.unicode = unicode;
+    exports.svgPathData = svgPathData;
+    });
+
+    unwrapExports(faCompass);
+    var faCompass_1 = faCompass.definition;
+    var faCompass_2 = faCompass.faCompass;
+    var faCompass_3 = faCompass.prefix;
+    var faCompass_4 = faCompass.iconName;
+    var faCompass_5 = faCompass.width;
+    var faCompass_6 = faCompass.height;
+    var faCompass_7 = faCompass.ligatures;
+    var faCompass_8 = faCompass.unicode;
+    var faCompass_9 = faCompass.svgPathData;
+
     /* App.svelte generated by Svelte v3.20.1 */
     const file$7 = "App.svelte";
 
-    // (225:7) {#if !visualizationStarted}
-    function create_if_block$3(ctx) {
-    	let div;
+    // (230:10) {#if !visualizationStarted}
+    function create_if_block_1$1(ctx) {
     	let button;
     	let svg;
     	let defs;
@@ -32149,40 +32193,36 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div = element("div");
     			button = element("button");
     			svg = svg_element("svg");
     			defs = svg_element("defs");
     			style = svg_element("style");
-    			t = text(".cls-play-1 {\n                              stroke: #000;\n                              fill: #000;\n                              stroke-miterlimit: 10;\n                          }\n                          ");
+    			t = text(".cls-play-1 {\n                            stroke: #000;\n                            fill: #000;\n                            stroke-miterlimit: 10;\n                        }\n                        ");
     			g1 = svg_element("g");
     			g0 = svg_element("g");
     			path = svg_element("path");
-    			add_location(style, file$7, 229, 26, 7184);
-    			add_location(defs, file$7, 228, 22, 7151);
+    			add_location(style, file$7, 233, 24, 7382);
+    			add_location(defs, file$7, 232, 20, 7351);
     			attr_dev(path, "class", "cls-play-1");
     			attr_dev(path, "d", "M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z");
     			attr_dev(path, "transform", "translate(0 -0.01)");
-    			add_location(path, file$7, 239, 26, 7616);
+    			add_location(path, file$7, 243, 24, 7794);
     			attr_dev(g0, "id", "Layer_1-2");
     			attr_dev(g0, "data-name", "Layer 1-2");
-    			add_location(g0, file$7, 238, 26, 7549);
+    			add_location(g0, file$7, 242, 24, 7729);
     			attr_dev(g1, "id", "Layer_2");
     			attr_dev(g1, "data-name", "Layer 2");
-    			add_location(g1, file$7, 237, 22, 7486);
+    			add_location(g1, file$7, 241, 20, 7668);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 113.57 127.1");
-    			add_location(svg, file$7, 227, 18, 7028);
-    			attr_dev(button, "class", "btn map-play-button svelte-17kkkgl");
-    			add_location(button, file$7, 226, 10, 6943);
-    			attr_dev(div, "class", "map-play-button-overlay svelte-17kkkgl");
-    			add_location(div, file$7, 225, 8, 6895);
+    			add_location(svg, file$7, 231, 16, 7230);
+    			attr_dev(button, "class", "btn map-play-button svelte-1xzgqei");
+    			add_location(button, file$7, 230, 10, 7147);
     		},
     		m: function mount(target, anchor, remount) {
-    			insert_dev(target, div, anchor);
-    			append_dev(div, button);
+    			insert_dev(target, button, anchor);
     			append_dev(button, svg);
     			append_dev(svg, defs);
     			append_dev(defs, style);
@@ -32191,12 +32231,137 @@ var app = (function () {
     			append_dev(g1, g0);
     			append_dev(g0, path);
     			if (remount) dispose();
-    			dispose = listen_dev(button, "click", /*startVisualization*/ ctx[13], false, false, false);
+    			dispose = listen_dev(button, "click", /*startVisualization*/ ctx[14], false, false, false);
     		},
     		p: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div);
+    			if (detaching) detach_dev(button);
     			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1$1.name,
+    		type: "if",
+    		source: "(230:10) {#if !visualizationStarted}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (273:6) {:else}
+    function create_else_block$1(ctx) {
+    	let div;
+    	let current;
+
+    	const scrubber = new Scrubber({
+    			props: {
+    				updateAppState: /*updateAppState*/ ctx[9],
+    				appState: /*appState*/ ctx[0],
+    				currentTime: /*currentTime*/ ctx[3],
+    				maxTime: /*maxTime*/ ctx[5],
+    				isAnimationEnded: /*isAnimationEnded*/ ctx[6],
+    				pauseAnimation: /*pauseAnimation*/ ctx[12],
+    				startAnimation: /*startAnimation*/ ctx[13],
+    				updateCurrentTime: /*updateCurrentTime*/ ctx[15],
+    				frameData,
+    				changePlaybackRate: /*changePlaybackRate*/ ctx[16],
+    				policyEvents,
+    				translator: /*translator*/ ctx[10],
+    				currLang: /*currLang*/ ctx[1]
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			create_component(scrubber.$$.fragment);
+    			attr_dev(div, "class", "map-scrubber-container svelte-1xzgqei");
+    			add_location(div, file$7, 273, 6, 8973);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			mount_component(scrubber, div, null);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const scrubber_changes = {};
+    			if (dirty & /*appState*/ 1) scrubber_changes.appState = /*appState*/ ctx[0];
+    			if (dirty & /*currentTime*/ 8) scrubber_changes.currentTime = /*currentTime*/ ctx[3];
+    			if (dirty & /*maxTime*/ 32) scrubber_changes.maxTime = /*maxTime*/ ctx[5];
+    			if (dirty & /*isAnimationEnded*/ 64) scrubber_changes.isAnimationEnded = /*isAnimationEnded*/ ctx[6];
+    			if (dirty & /*currLang*/ 2) scrubber_changes.currLang = /*currLang*/ ctx[1];
+    			scrubber.$set(scrubber_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(scrubber.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(scrubber.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			destroy_component(scrubber);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block$1.name,
+    		type: "else",
+    		source: "(273:6) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (267:6) {#if !visualizationLoading}
+    function create_if_block$3(ctx) {
+    	let div1;
+    	let div0;
+    	let current;
+
+    	const icon = new Icon({
+    			props: { icon: faCompass_2 },
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			div1 = element("div");
+    			div0 = element("div");
+    			create_component(icon.$$.fragment);
+    			attr_dev(div0, "class", "loading-icon svelte-1xzgqei");
+    			add_location(div0, file$7, 268, 8, 8854);
+    			attr_dev(div1, "class", "map-loading-overlay svelte-1xzgqei");
+    			add_location(div1, file$7, 267, 6, 8812);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, div0);
+    			mount_component(icon, div0, null);
+    			current = true;
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(icon.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(icon.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div1);
+    			destroy_component(icon);
     		}
     	};
 
@@ -32204,7 +32369,7 @@ var app = (function () {
     		block,
     		id: create_if_block$3.name,
     		type: "if",
-    		source: "(225:7) {#if !visualizationStarted}",
+    		source: "(267:6) {#if !visualizationLoading}",
     		ctx
     	});
 
@@ -32220,7 +32385,7 @@ var app = (function () {
     	let div3;
     	let div1;
     	let div0;
-    	let t2_value = /*translator*/ ctx[9].translate("title", /*currLang*/ ctx[1]) + "";
+    	let t2_value = /*translator*/ ctx[10].translate("title", /*currLang*/ ctx[1]) + "";
     	let t2;
     	let t3;
     	let button;
@@ -32228,65 +32393,59 @@ var app = (function () {
     	let t4;
     	let t5;
     	let div2;
-    	let t6_value = /*translator*/ ctx[9].translate("introduction", /*currLang*/ ctx[1]) + "";
+    	let t6_value = /*translator*/ ctx[10].translate("introduction", /*currLang*/ ctx[1]) + "";
     	let t6;
     	let t7;
     	let div10;
     	let div8;
-    	let div6;
-    	let t8;
+    	let div7;
     	let div4;
+    	let t8;
+    	let div5;
     	let span;
-    	let t9_value = /*translator*/ ctx[9].translate("seven_day_avg_on", /*currLang*/ ctx[1]) + ": " + /*translator*/ ctx[9].translateDate(frameData[/*currentFrame*/ ctx[4]].date, /*currLang*/ ctx[1]) + "";
+    	let t9_value = /*translator*/ ctx[10].translate("seven_day_avg_on", /*currLang*/ ctx[1]) + ": " + /*translator*/ ctx[10].translateDate(frameData[/*currentFrame*/ ctx[4]].date, /*currLang*/ ctx[1]) + "";
     	let t9;
     	let t10;
-    	let div5;
+    	let div6;
     	let t11;
-    	let div7;
+    	let current_block_type_index;
+    	let if_block1;
     	let t12;
     	let div9;
     	let t13;
     	let div12;
     	let current;
     	let dispose;
-    	let if_block = !/*visualizationStarted*/ ctx[7] && create_if_block$3(ctx);
+    	let if_block0 = !/*visualizationStarted*/ ctx[7] && create_if_block_1$1(ctx);
 
     	const eventinfocontainer = new EventInfoContainer({
     			props: {
     				policyEvents,
     				appState: /*appState*/ ctx[0],
-    				updateAppState: /*updateAppState*/ ctx[8],
-    				startAnimation: /*startAnimation*/ ctx[12],
-    				translator: /*translator*/ ctx[9],
+    				updateAppState: /*updateAppState*/ ctx[9],
+    				startAnimation: /*startAnimation*/ ctx[13],
+    				translator: /*translator*/ ctx[10],
     				currLang: /*currLang*/ ctx[1]
     			},
     			$$inline: true
     		});
 
-    	const scrubber = new Scrubber({
-    			props: {
-    				updateAppState: /*updateAppState*/ ctx[8],
-    				appState: /*appState*/ ctx[0],
-    				currentTime: /*currentTime*/ ctx[3],
-    				maxTime: /*maxTime*/ ctx[5],
-    				isAnimationEnded: /*isAnimationEnded*/ ctx[6],
-    				pauseAnimation: /*pauseAnimation*/ ctx[11],
-    				startAnimation: /*startAnimation*/ ctx[12],
-    				updateCurrentTime: /*updateCurrentTime*/ ctx[14],
-    				frameData,
-    				changePlaybackRate: /*changePlaybackRate*/ ctx[15],
-    				policyEvents,
-    				translator: /*translator*/ ctx[9],
-    				currLang: /*currLang*/ ctx[1]
-    			},
-    			$$inline: true
-    		});
+    	const if_block_creators = [create_if_block$3, create_else_block$1];
+    	const if_blocks = [];
+
+    	function select_block_type(ctx, dirty) {
+    		if (!/*visualizationLoading*/ ctx[8]) return 0;
+    		return 1;
+    	}
+
+    	current_block_type_index = select_block_type(ctx);
+    	if_block1 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
 
     	const aqilegend = new AQILegend({
     			props: {
     				currentFrame: /*currentFrame*/ ctx[4],
     				frameData,
-    				translator: /*translator*/ ctx[9],
+    				translator: /*translator*/ ctx[10],
     				currLang: /*currLang*/ ctx[1]
     			},
     			$$inline: true
@@ -32312,18 +32471,18 @@ var app = (function () {
     			t7 = space();
     			div10 = element("div");
     			div8 = element("div");
-    			div6 = element("div");
-    			if (if_block) if_block.c();
-    			t8 = space();
+    			div7 = element("div");
     			div4 = element("div");
+    			if (if_block0) if_block0.c();
+    			t8 = space();
+    			div5 = element("div");
     			span = element("span");
     			t9 = text(t9_value);
     			t10 = space();
-    			div5 = element("div");
+    			div6 = element("div");
     			create_component(eventinfocontainer.$$.fragment);
     			t11 = space();
-    			div7 = element("div");
-    			create_component(scrubber.$$.fragment);
+    			if_block1.c();
     			t12 = space();
     			div9 = element("div");
     			create_component(aqilegend.$$.fragment);
@@ -32335,37 +32494,37 @@ var app = (function () {
     			attr_dev(link1, "href", "https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
     			attr_dev(link1, "rel", "stylesheet");
     			add_location(link1, file$7, 1, 0, 90);
-    			attr_dev(div0, "class", "title svelte-17kkkgl");
-    			add_location(div0, file$7, 211, 6, 6446);
-    			attr_dev(button, "class", "btn translate-button svelte-17kkkgl");
-    			add_location(button, file$7, 212, 8, 6521);
-    			attr_dev(div1, "class", "title-container svelte-17kkkgl");
-    			add_location(div1, file$7, 210, 4, 6410);
-    			attr_dev(div2, "class", "introduction svelte-17kkkgl");
-    			add_location(div2, file$7, 216, 4, 6664);
-    			attr_dev(div3, "class", "header svelte-17kkkgl");
-    			add_location(div3, file$7, 209, 2, 6385);
+    			attr_dev(div0, "class", "title svelte-1xzgqei");
+    			add_location(div0, file$7, 215, 6, 6645);
+    			attr_dev(button, "class", "btn translate-button svelte-1xzgqei");
+    			add_location(button, file$7, 216, 8, 6720);
+    			attr_dev(div1, "class", "title-container svelte-1xzgqei");
+    			add_location(div1, file$7, 214, 4, 6609);
+    			attr_dev(div2, "class", "introduction svelte-1xzgqei");
+    			add_location(div2, file$7, 220, 4, 6863);
+    			attr_dev(div3, "class", "header svelte-1xzgqei");
+    			add_location(div3, file$7, 213, 2, 6584);
+    			attr_dev(div4, "class", "map-play-button-overlay svelte-1xzgqei");
+    			add_location(div4, file$7, 228, 8, 7061);
     			attr_dev(span, "class", "animation-date");
-    			add_location(span, file$7, 247, 13, 8003);
-    			attr_dev(div4, "class", "map-animation-date-container svelte-17kkkgl");
-    			add_location(div4, file$7, 246, 8, 7947);
-    			attr_dev(div5, "class", "map-event-container svelte-17kkkgl");
-    			add_location(div5, file$7, 251, 8, 8227);
-    			attr_dev(div6, "class", "map svelte-17kkkgl");
-    			attr_dev(div6, "id", "map");
-    			add_location(div6, file$7, 223, 6, 6825);
-    			attr_dev(div7, "class", "map-scrubber-container svelte-17kkkgl");
-    			add_location(div7, file$7, 263, 6, 8605);
-    			attr_dev(div8, "class", "map-container svelte-17kkkgl");
-    			add_location(div8, file$7, 221, 4, 6790);
-    			attr_dev(div9, "class", "map-aqi-legend svelte-17kkkgl");
-    			add_location(div9, file$7, 284, 4, 9262);
-    			attr_dev(div10, "class", "visualization svelte-17kkkgl");
-    			add_location(div10, file$7, 219, 2, 6757);
-    			attr_dev(div11, "class", "ub-ap-viz svelte-17kkkgl");
-    			add_location(div11, file$7, 207, 0, 6358);
+    			add_location(span, file$7, 251, 13, 8177);
+    			attr_dev(div5, "class", "map-animation-date-container svelte-1xzgqei");
+    			add_location(div5, file$7, 250, 8, 8121);
+    			attr_dev(div6, "class", "map-event-container svelte-1xzgqei");
+    			add_location(div6, file$7, 255, 8, 8401);
+    			attr_dev(div7, "class", "map svelte-1xzgqei");
+    			attr_dev(div7, "id", "map");
+    			add_location(div7, file$7, 226, 6, 7023);
+    			attr_dev(div8, "class", "map-container svelte-1xzgqei");
+    			add_location(div8, file$7, 225, 4, 6989);
+    			attr_dev(div9, "class", "map-aqi-legend svelte-1xzgqei");
+    			add_location(div9, file$7, 295, 4, 9646);
+    			attr_dev(div10, "class", "visualization svelte-1xzgqei");
+    			add_location(div10, file$7, 223, 2, 6956);
+    			attr_dev(div11, "class", "ub-ap-viz svelte-1xzgqei");
+    			add_location(div11, file$7, 211, 0, 6557);
     			attr_dev(div12, "class", "station-marker");
-    			add_location(div12, file$7, 295, 0, 9475);
+    			add_location(div12, file$7, 306, 0, 9859);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -32389,18 +32548,18 @@ var app = (function () {
     			append_dev(div11, t7);
     			append_dev(div11, div10);
     			append_dev(div10, div8);
-    			append_dev(div8, div6);
-    			if (if_block) if_block.m(div6, null);
-    			append_dev(div6, t8);
-    			append_dev(div6, div4);
-    			append_dev(div4, span);
-    			append_dev(span, t9);
-    			append_dev(div6, t10);
-    			append_dev(div6, div5);
-    			mount_component(eventinfocontainer, div5, null);
-    			append_dev(div8, t11);
     			append_dev(div8, div7);
-    			mount_component(scrubber, div7, null);
+    			append_dev(div7, div4);
+    			if (if_block0) if_block0.m(div4, null);
+    			append_dev(div7, t8);
+    			append_dev(div7, div5);
+    			append_dev(div5, span);
+    			append_dev(span, t9);
+    			append_dev(div7, t10);
+    			append_dev(div7, div6);
+    			mount_component(eventinfocontainer, div6, null);
+    			append_dev(div8, t11);
+    			if_blocks[current_block_type_index].m(div8, null);
     			append_dev(div10, t12);
     			append_dev(div10, div9);
     			mount_component(aqilegend, div9, null);
@@ -32408,38 +32567,55 @@ var app = (function () {
     			insert_dev(target, div12, anchor);
     			current = true;
     			if (remount) dispose();
-    			dispose = listen_dev(button, "click", /*handleUpdateLanguage*/ ctx[10], false, false, false);
+    			dispose = listen_dev(button, "click", /*handleUpdateLanguage*/ ctx[11], false, false, false);
     		},
     		p: function update(ctx, [dirty]) {
-    			if ((!current || dirty & /*currLang*/ 2) && t2_value !== (t2_value = /*translator*/ ctx[9].translate("title", /*currLang*/ ctx[1]) + "")) set_data_dev(t2, t2_value);
+    			if ((!current || dirty & /*currLang*/ 2) && t2_value !== (t2_value = /*translator*/ ctx[10].translate("title", /*currLang*/ ctx[1]) + "")) set_data_dev(t2, t2_value);
     			if ((!current || dirty & /*oppLang*/ 4) && t4_value !== (t4_value = getCountryFlag(/*oppLang*/ ctx[2]) + "")) set_data_dev(t4, t4_value);
-    			if ((!current || dirty & /*currLang*/ 2) && t6_value !== (t6_value = /*translator*/ ctx[9].translate("introduction", /*currLang*/ ctx[1]) + "")) set_data_dev(t6, t6_value);
+    			if ((!current || dirty & /*currLang*/ 2) && t6_value !== (t6_value = /*translator*/ ctx[10].translate("introduction", /*currLang*/ ctx[1]) + "")) set_data_dev(t6, t6_value);
 
     			if (!/*visualizationStarted*/ ctx[7]) {
-    				if (if_block) {
-    					if_block.p(ctx, dirty);
+    				if (if_block0) {
+    					if_block0.p(ctx, dirty);
     				} else {
-    					if_block = create_if_block$3(ctx);
-    					if_block.c();
-    					if_block.m(div6, t8);
+    					if_block0 = create_if_block_1$1(ctx);
+    					if_block0.c();
+    					if_block0.m(div4, null);
     				}
-    			} else if (if_block) {
-    				if_block.d(1);
-    				if_block = null;
+    			} else if (if_block0) {
+    				if_block0.d(1);
+    				if_block0 = null;
     			}
 
-    			if ((!current || dirty & /*currLang, currentFrame*/ 18) && t9_value !== (t9_value = /*translator*/ ctx[9].translate("seven_day_avg_on", /*currLang*/ ctx[1]) + ": " + /*translator*/ ctx[9].translateDate(frameData[/*currentFrame*/ ctx[4]].date, /*currLang*/ ctx[1]) + "")) set_data_dev(t9, t9_value);
+    			if ((!current || dirty & /*currLang, currentFrame*/ 18) && t9_value !== (t9_value = /*translator*/ ctx[10].translate("seven_day_avg_on", /*currLang*/ ctx[1]) + ": " + /*translator*/ ctx[10].translateDate(frameData[/*currentFrame*/ ctx[4]].date, /*currLang*/ ctx[1]) + "")) set_data_dev(t9, t9_value);
     			const eventinfocontainer_changes = {};
     			if (dirty & /*appState*/ 1) eventinfocontainer_changes.appState = /*appState*/ ctx[0];
     			if (dirty & /*currLang*/ 2) eventinfocontainer_changes.currLang = /*currLang*/ ctx[1];
     			eventinfocontainer.$set(eventinfocontainer_changes);
-    			const scrubber_changes = {};
-    			if (dirty & /*appState*/ 1) scrubber_changes.appState = /*appState*/ ctx[0];
-    			if (dirty & /*currentTime*/ 8) scrubber_changes.currentTime = /*currentTime*/ ctx[3];
-    			if (dirty & /*maxTime*/ 32) scrubber_changes.maxTime = /*maxTime*/ ctx[5];
-    			if (dirty & /*isAnimationEnded*/ 64) scrubber_changes.isAnimationEnded = /*isAnimationEnded*/ ctx[6];
-    			if (dirty & /*currLang*/ 2) scrubber_changes.currLang = /*currLang*/ ctx[1];
-    			scrubber.$set(scrubber_changes);
+    			let previous_block_index = current_block_type_index;
+    			current_block_type_index = select_block_type(ctx);
+
+    			if (current_block_type_index === previous_block_index) {
+    				if_blocks[current_block_type_index].p(ctx, dirty);
+    			} else {
+    				group_outros();
+
+    				transition_out(if_blocks[previous_block_index], 1, 1, () => {
+    					if_blocks[previous_block_index] = null;
+    				});
+
+    				check_outros();
+    				if_block1 = if_blocks[current_block_type_index];
+
+    				if (!if_block1) {
+    					if_block1 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    					if_block1.c();
+    				}
+
+    				transition_in(if_block1, 1);
+    				if_block1.m(div8, null);
+    			}
+
     			const aqilegend_changes = {};
     			if (dirty & /*currentFrame*/ 16) aqilegend_changes.currentFrame = /*currentFrame*/ ctx[4];
     			if (dirty & /*currLang*/ 2) aqilegend_changes.currLang = /*currLang*/ ctx[1];
@@ -32448,13 +32624,13 @@ var app = (function () {
     		i: function intro(local) {
     			if (current) return;
     			transition_in(eventinfocontainer.$$.fragment, local);
-    			transition_in(scrubber.$$.fragment, local);
+    			transition_in(if_block1);
     			transition_in(aqilegend.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(eventinfocontainer.$$.fragment, local);
-    			transition_out(scrubber.$$.fragment, local);
+    			transition_out(if_block1);
     			transition_out(aqilegend.$$.fragment, local);
     			current = false;
     		},
@@ -32464,9 +32640,9 @@ var app = (function () {
     			if (detaching) detach_dev(link1);
     			if (detaching) detach_dev(t1);
     			if (detaching) detach_dev(div11);
-    			if (if_block) if_block.d();
+    			if (if_block0) if_block0.d();
     			destroy_component(eventinfocontainer);
-    			destroy_component(scrubber);
+    			if_blocks[current_block_type_index].d();
     			destroy_component(aqilegend);
     			if (detaching) detach_dev(t13);
     			if (detaching) detach_dev(div12);
@@ -32528,6 +32704,7 @@ var app = (function () {
 
     	let isAnimationEnded = false;
     	let visualizationStarted = false; // first time only
+    	let visualizationLoading = true; // page load only
 
     	const pauseAnimation = () => {
     		animationPaused = true;
@@ -32598,6 +32775,7 @@ var app = (function () {
     					videoSource.video.loop = false;
     					$$invalidate(5, maxTime = videoSource.video.duration);
     					var intervalTimer = setInterval(reportCurrentTime, FRAME_CHECKING_RATE);
+    					$$invalidate(8, visualizationLoading = false);
     				}
     			};
 
@@ -32689,6 +32867,8 @@ var app = (function () {
     		getUnicodeFlagIcon: getCountryFlag,
     		Translator,
     		_: lodash,
+    		Icon,
+    		faCompass: faCompass_2,
     		appState,
     		updateAppState,
     		translator,
@@ -32707,6 +32887,7 @@ var app = (function () {
     		animationPaused,
     		isAnimationEnded,
     		visualizationStarted,
+    		visualizationLoading,
     		pauseAnimation,
     		startAnimation,
     		startVisualization,
@@ -32721,18 +32902,19 @@ var app = (function () {
 
     	$$self.$inject_state = $$props => {
     		if ("appState" in $$props) $$invalidate(0, appState = $$props.appState);
-    		if ("translator" in $$props) $$invalidate(9, translator = $$props.translator);
+    		if ("translator" in $$props) $$invalidate(10, translator = $$props.translator);
     		if ("currLang" in $$props) $$invalidate(1, currLang = $$props.currLang);
     		if ("oppLang" in $$props) $$invalidate(2, oppLang = $$props.oppLang);
     		if ("map" in $$props) map = $$props.map;
     		if ("currentTime" in $$props) $$invalidate(3, currentTime = $$props.currentTime);
     		if ("currentFrame" in $$props) $$invalidate(4, currentFrame = $$props.currentFrame);
     		if ("maxTime" in $$props) $$invalidate(5, maxTime = $$props.maxTime);
-    		if ("maxFrame" in $$props) $$invalidate(20, maxFrame = $$props.maxFrame);
-    		if ("timeToFrameMultiplier" in $$props) $$invalidate(17, timeToFrameMultiplier = $$props.timeToFrameMultiplier);
+    		if ("maxFrame" in $$props) $$invalidate(21, maxFrame = $$props.maxFrame);
+    		if ("timeToFrameMultiplier" in $$props) $$invalidate(18, timeToFrameMultiplier = $$props.timeToFrameMultiplier);
     		if ("animationPaused" in $$props) animationPaused = $$props.animationPaused;
     		if ("isAnimationEnded" in $$props) $$invalidate(6, isAnimationEnded = $$props.isAnimationEnded);
     		if ("visualizationStarted" in $$props) $$invalidate(7, visualizationStarted = $$props.visualizationStarted);
+    		if ("visualizationLoading" in $$props) $$invalidate(8, visualizationLoading = $$props.visualizationLoading);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -32741,10 +32923,10 @@ var app = (function () {
 
     	$$self.$$.update = () => {
     		if ($$self.$$.dirty & /*maxTime*/ 32) {
-    			 $$invalidate(17, timeToFrameMultiplier = maxTime > 0 ? maxFrame / maxTime : 0);
+    			 $$invalidate(18, timeToFrameMultiplier = maxTime > 0 ? maxFrame / maxTime : 0);
     		}
 
-    		if ($$self.$$.dirty & /*timeToFrameMultiplier, currentTime*/ 131080) {
+    		if ($$self.$$.dirty & /*timeToFrameMultiplier, currentTime*/ 262152) {
     			 $$invalidate(4, currentFrame = Math.round(timeToFrameMultiplier * currentTime));
     		}
     	};
@@ -32758,6 +32940,7 @@ var app = (function () {
     		maxTime,
     		isAnimationEnded,
     		visualizationStarted,
+    		visualizationLoading,
     		updateAppState,
     		translator,
     		handleUpdateLanguage,

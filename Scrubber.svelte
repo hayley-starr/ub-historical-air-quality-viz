@@ -158,7 +158,9 @@
             .range([ 0, width ]);
 
         let xAxis = axisBottom(xAxisScale)
-            .tickFormat(x => translator.translate(moment(frameData[x].date).format("MMMM"), currLang))
+            .tickFormat(x => {
+                return translator.translate(moment(frameData[x].date).format("MMMM"), currLang) + moment(frameData[x].date).format(" 'YY");
+            })
             .tickSizeOuter(0);    
 
         svg.append("g")
