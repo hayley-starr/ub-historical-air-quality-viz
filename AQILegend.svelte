@@ -129,15 +129,15 @@
     </div>
 
      <div class='legend-tile temperature-key-container'>
-        <div class='thermometer-container'>
-            <Thermometer 
-                currentFrame={currentFrame} 
-                frameData={frameData}
-            />
-        </div>
-        <div class='temperature-description'>
-            <div class='temperature-description-title'> {translator.translate('legend_temperature_title', currLang)} </div>
-           <div class='temperature-description-body' >
+        <div class='temperature-key-title'> {translator.translate('legend_temperature_title', currLang)} </div>
+        <div class='temperature-key-body'>
+            <div class='thermometer-container'>
+                <Thermometer 
+                    currentFrame={currentFrame} 
+                    frameData={frameData}
+                />
+            </div>
+           <div class='temperature-description' >
                 <span> {translator.translate('legend_temperature_description', currLang)} </span>
            </div>
         </div>
@@ -250,6 +250,11 @@
 .temperature-key-container {
     min-height: 175px;
     display: flex;
+    flex-direction: column;
+}
+
+.temperature-key-body {
+    display: flex;
 }
 
 .thermometer-container {
@@ -259,6 +264,7 @@
 .temperature-description {
     display: flex;
     flex-direction: column;
+    padding-left: 5px;
 }
 
 .temperature-description-body {
@@ -268,9 +274,8 @@
     align-items: center;
 }
 
-.temperature-description-title {
+.temperature-key-title {
     font-weight: bold;
-    transform: translateX(-5px);
     padding-bottom: 5px;
 }
 
