@@ -27,7 +27,7 @@
         {#each howVizWasMadeInfo as bullet}
             <div class='info-section-non-bullet'>
                 <div class='info-non-bullet'>
-                    <div class='bullet-title'>
+                    <div class='bullet-title-non-bullet'>
                           {translator.translate(bullet.title, currLang)}
                     </div>
                      <div class='bullet-body'>
@@ -117,6 +117,12 @@
         font-size: 12px;
         font-weight: bold;
         margin-left: 5px;
+    }
+
+    .bullet-title-non-bullet {
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: bold;
     }
 
     .bullet-body {

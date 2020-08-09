@@ -104,6 +104,14 @@
     map.getSource('ap_video').video.playbackRate = playRate;
   }
 
+//------ Open pm25 description box --------------------------------
+
+let pm25InfoOpen = false;
+
+const handleOpenPM25 = () => {
+  pm25InfoOpen = !pm25InfoOpen;
+}  
+
 //------ Setting up Mapbox layers ---------------------------------
 
   // After the DOM has been rendered set up the mapbox. (Won't work before map html is available.)
@@ -233,6 +241,13 @@
     </div>
 
     <div class='introduction'>{translator.translate('introduction', currLang)}</div>
+    <div class='what-is-pm25' on:click={handleOpenPM25}>
+        {#if pm25InfoOpen}
+          <span class='pm-25-is'>{translator.translate('pm_25_is', currLang)}</span>
+        {:else}
+          {'[ ' + translator.translate('what_is_pm25', currLang) + ' ]'}
+        {/if}
+      </div>
   </div>
 
   <div class='section visualization'>
@@ -336,7 +351,6 @@
 
 .section {
   width: 90%;
-  margin-bottom: 20px;
 }
 
 .btn {
@@ -424,6 +438,19 @@
 .introduction {
     font-size: 14px;
     line-height: 22px;
+}
+
+.what-is-pm25 {
+  font-size: 12px;
+  cursor: pointer;
+  color: steelblue;
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+
+.pm-25-is {
+  text-transform: none;
+  color: #2B2D42;
 }
 
 
