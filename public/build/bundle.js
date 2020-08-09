@@ -17001,15 +17001,15 @@ var app = (function () {
                 },
                 what_is_pm25: {
                     US: 
-                        "What is PM 2.5?",
+                        "What is PM2.5?",
                     MN: 
-                        'PM 2.5 гэж юу вэ?'
+                        'PM2.5 гэж юу вэ?'
                 },
                 pm_25_is: {
                     US: 
-                        'PM2.5 is atmospheric particular matter less than 2.5 microns in diameter, too small to be seen without a microscope.',
+                        'PM2.5 is a type of air pollutant. It refers to atmospheric particulate matter that is less than 2.5 microns in diameter.',
                     MN: 
-                        'PM2.5 нь 2.5 мкм-ээс бага диаметртэй атмосферийн тусгай бодис бөгөөд микроскопгүйгээр үзэгдэхүйц жижиг юм.'
+                        'PM2.5 бол агаарын бохирдуулагчийн нэг төрөл юм. Энэ нь 2.5 микрон диаметрээс бага хэмжээтэй агаар мандлын тоосонцорыг хэлдэг.'
                 },
                 seven_day_avg_on: {
                     US: '7 day avg',
