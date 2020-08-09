@@ -175,6 +175,7 @@ export class Translator {
                 MN: 
                     'Эх сурвалж'
             },
+            //-------- TIMELINE EVENTS -----------------------//
             event_title_2018_2019_season_ends: {
                 US: 
                     '2018-2019 Air Pollution Season Ends',
@@ -253,6 +254,110 @@ export class Translator {
                 MN: 
                     'Эрчим хүчний сайд 8-р сар гэхэд Улаанбаатар хотын зүүн хэсэгт цэвэршүүлсэн нүүрс үйлдвэрлэх шинэ үйлдвэр барьж, 2020 оны 9-р сарын 15-наас цэвэршүүлсэн нүүрс үйлдвэрлэж эхэлнэ гэж мэдэгдэв.'
             },
+
+
+
+
+            //--------- MORE INFO TEXT -----------------//
+            info_title_low_cost_sensor_data: {
+                US: 
+                    'Low-Cost Sensor Data',
+                MN: 
+                    'Мэдрэмж багатай'
+            },
+            info_body_low_cost_sensor_data: {
+                US: 
+                    'This visualization was made with data collected from 20 low-cost sensors installed around the city by People In Need Mongolia. The air quality stations on the map show their locations.',
+                MN: 
+                    'Энэхүү дүрслэлийг хотын эргэн тойронд People In Need Монголд суурилуулсан хямд өртөгтэй 20 мэдрэгчээс цуглуулсан өгөгдөл ашиглан хийсэн болно. Газрын зураг дээрх агаарын чанарын станцууд нь байршлыг харуулав.'
+            },
+
+
+            info_title_aq_modeling: {
+                US: 
+                    'Air Quality Modeling',
+                MN: 
+                    'Агаарын чанарын загварчлал'
+            },
+            info_body_aq_modeling: {
+                US: 
+                    'Creating the visualzation was a two-step process. First the sensor data was combined with data about the city, such as density of population, density of coal-stoves (surveyed in 2013) and density of residential roads, to create a prediction map for each month. Then the prediction maps were corrected with the 7 day moving average of the observed readings. The final visualization reflects a fusion of the monthly trends with the smaller, daily variations in air quality.',
+                MN: 
+                    'Дүрслэлийг бий болгох нь хоёр үе шаттай үйл явц байв. Эхлээд мэдрэгчийн өгөгдлийг хотын хүн амын нягтрал, нүүрсний зуухны нягтрал (2013 онд судалсан), орон сууцны замын нягтрал гэх мэт өгөгдлүүдтэй нэгтгэн сар бүр урьдчилан таамаглах газрын зургийг бүтээсэн. Дараа нь таамаглалын газрын зургийг ажиглагдсан уншилтын дунджаар 7 хоногийн хөдөлгөөнтэйгээр засав. Эцсийн төсөөлөл нь агаарын чанарт өдөр бүр бага, өөрчлөлттэйгээр сарын хандлагын нийлбэрийг тусгасан болно.'
+            },
+
+            
+            //-----MORE INFO TITLES---------------//
+            info_how_was_viz_made: {
+                US: 
+                    'How was this visualization made?',
+                MN: 
+                    'Энэ дүрслэлийг хэрхэн хийсэн бэ?'
+            },
+            info_what_viz_doesnt_show: {
+                US: 
+                    'What does the visualization NOT show?',
+                MN: 
+                    'Дүрслэх НЭГ юу харуулж байна вэ?'
+            },
+
+
+
+
+            info_title_info_prior_2019: {
+                US: 
+                    'Information Prior to 2019',
+                MN: 
+                    '2019 оноос өмнө мэдээлэл'
+            },
+            info_body_info_prior_2019: {
+                US: 
+                    'The low-cost sensors have enough data starting around February 2019. While there is data going back further for some individual sensors, this type of visualization requires a network of sensors with consistent data.',
+                MN: 
+                    'Хямд өртөгтэй мэдрэгчид 2019 оны 2-р сараас эхлэн хангалттай мэдээлэлтэй байдаг. Зарим нэг мэдрэгчийн хувьд өгөгдөл эргэж ирэхэд энэ төрлийн дүрслэл нь тогтмол өгөгдөлтэй мэдрэгч бүхий сүлжээг шаарддаг.'
+            },
+
+            info_title_other_pollutants: {
+                US: 
+                    'Air Pollutants other than PM2.5',
+                MN: 
+                    'PM2.5-ээс бусад агаар бохирдуулагч'
+            },
+            info_body_other_pollutants: {
+                US: 
+                    'PM2.5, while harmful to human health, is not the only pollutant to worry about. When the visualization is green doesn\'t mean that there is no air pollution, just that PM2.5 levels are low.',
+                MN: 
+                    'PM2.5 нь хүний ​​эрүүл мэндэд хортой ч гэсэн санаа зовох цорын ганц бохирдуулагч биш юм. Дүрслэл нь ногоон байвал агаарын бохирдол байхгүй гэсэн үг, PM2.5 түвшин доогуур байна.'
+            },
+
+            info_title_accurate_spatial_estimates: {
+                US: 
+                    'Highly Accurate Spatial Estimates',
+                MN: 
+                    'Өндөр нарийвчлалтай орон зайн тооцоолол'
+            },
+            info_body_accurate_spatial_estimates: {
+                US: 
+                    'This visualization shows estimated trends over the city over time, and should not be used to make health exposure assessments or anything requiring numerical precision. In the future, more and better sensors around the city will help produce even more accurate maps.',
+                MN: 
+                    'Энэхүү дүр төрх нь хотын хугацааны туршид чиг хандлагыг харуулдаг бөгөөд эрүүл мэндийн үнэлгээ, нарийвчлал шаардагдах зүйлсийг ашиглахгүй байх шаардлагатай. Ирээдүйд хотын эргэн тойрон дахь илүү сайн мэдрэгч нь илүү нарийвчлалтай газрын зураг гаргахад тусална.'
+            },
+
+            info_title_full_govt_actions: {
+                US: 
+                    'A Full List of Government Actions',
+                MN: 
+                    'Засгийн газрын үйл ажиллагааны бүрэн жагсаалт'
+            },
+            info_body_full_govt_actions: {
+                US: 
+                    'The events selected for the timeline are some of the most notable events related to air pollution in Ulaanbaatar, but are not a comprehensive list.',
+                MN: 
+                    'Он цагийн хуваарьт шалгарсан арга хэмжээнүүд нь Улаанбаатар хотын агаарын бохирдолтой холбоотой онцлох үйл явдлууд боловч дэлгэрэнгүй жагсаалт биш юм.'
+            },
+            
+            
+            
             none: {
                 US: 
                     '?',

@@ -16363,11 +16363,11 @@ var app = (function () {
     	let div3;
     	let div2;
     	let div0;
-    	let t0_value = /*bullet*/ ctx[4].title + "";
+    	let t0_value = /*translator*/ ctx[1].translate(/*bullet*/ ctx[4].title, /*currLang*/ ctx[0]) + "";
     	let t0;
     	let t1;
     	let div1;
-    	let t2_value = /*bullet*/ ctx[4].body + "";
+    	let t2_value = /*translator*/ ctx[1].translate(/*bullet*/ ctx[4].body, /*currLang*/ ctx[0]) + "";
     	let t2;
     	let t3;
 
@@ -16381,14 +16381,14 @@ var app = (function () {
     			div1 = element("div");
     			t2 = text(t2_value);
     			t3 = space();
-    			attr_dev(div0, "class", "bullet-title svelte-1cs9csn");
-    			add_location(div0, file$7, 29, 20, 2354);
-    			attr_dev(div1, "class", "bullet-body svelte-1cs9csn");
-    			add_location(div1, file$7, 32, 21, 2468);
-    			attr_dev(div2, "class", "bullet-info svelte-1cs9csn");
-    			add_location(div2, file$7, 28, 16, 2308);
-    			attr_dev(div3, "class", "info-section-bullet svelte-1cs9csn");
-    			add_location(div3, file$7, 27, 12, 2258);
+    			attr_dev(div0, "class", "bullet-title svelte-11e6wsb");
+    			add_location(div0, file$7, 29, 20, 1091);
+    			attr_dev(div1, "class", "bullet-body svelte-11e6wsb");
+    			add_location(div1, file$7, 32, 21, 1239);
+    			attr_dev(div2, "class", "info-non-bullet svelte-11e6wsb");
+    			add_location(div2, file$7, 28, 16, 1041);
+    			attr_dev(div3, "class", "info-section-non-bullet svelte-11e6wsb");
+    			add_location(div3, file$7, 27, 12, 987);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div3, anchor);
@@ -16400,7 +16400,10 @@ var app = (function () {
     			append_dev(div1, t2);
     			append_dev(div3, t3);
     		},
-    		p: noop,
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*translator, currLang*/ 3 && t0_value !== (t0_value = /*translator*/ ctx[1].translate(/*bullet*/ ctx[4].title, /*currLang*/ ctx[0]) + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*translator, currLang*/ 3 && t2_value !== (t2_value = /*translator*/ ctx[1].translate(/*bullet*/ ctx[4].body, /*currLang*/ ctx[0]) + "")) set_data_dev(t2, t2_value);
+    		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div3);
     		}
@@ -16420,15 +16423,15 @@ var app = (function () {
     // (45:8) {#each whatVizDoesntShowInfo as bullet}
     function create_each_block$2(ctx) {
     	let div4;
+    	let div2;
     	let div0;
     	let t0;
-    	let div3;
     	let div1;
-    	let t1_value = /*bullet*/ ctx[4].title + "";
+    	let t1_value = /*translator*/ ctx[1].translate(/*bullet*/ ctx[4].title, /*currLang*/ ctx[0]) + "";
     	let t1;
     	let t2;
-    	let div2;
-    	let t3_value = /*bullet*/ ctx[4].body + "";
+    	let div3;
+    	let t3_value = /*translator*/ ctx[1].translate(/*bullet*/ ctx[4].body, /*currLang*/ ctx[0]) + "";
     	let t3;
     	let t4;
     	let current;
@@ -16437,42 +16440,45 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			div4 = element("div");
+    			div2 = element("div");
     			div0 = element("div");
     			create_component(icon.$$.fragment);
     			t0 = space();
-    			div3 = element("div");
     			div1 = element("div");
     			t1 = text(t1_value);
     			t2 = space();
-    			div2 = element("div");
+    			div3 = element("div");
     			t3 = text(t3_value);
     			t4 = space();
-    			attr_dev(div0, "class", "bullet-icon svelte-1cs9csn");
-    			add_location(div0, file$7, 46, 17, 2900);
-    			attr_dev(div1, "class", "bullet-title svelte-1cs9csn");
-    			add_location(div1, file$7, 50, 20, 3060);
-    			attr_dev(div2, "class", "bullet-body svelte-1cs9csn");
-    			add_location(div2, file$7, 53, 21, 3174);
-    			attr_dev(div3, "class", "bullet-info svelte-1cs9csn");
-    			add_location(div3, file$7, 49, 16, 3014);
-    			attr_dev(div4, "class", "info-section-bullet svelte-1cs9csn");
-    			add_location(div4, file$7, 45, 12, 2849);
+    			attr_dev(div0, "class", "bullet-icon svelte-11e6wsb");
+    			add_location(div0, file$7, 47, 20, 1767);
+    			attr_dev(div1, "class", "bullet-title svelte-11e6wsb");
+    			add_location(div1, file$7, 50, 20, 1893);
+    			attr_dev(div2, "class", "bullet-info svelte-11e6wsb");
+    			add_location(div2, file$7, 46, 16, 1721);
+    			attr_dev(div3, "class", "bullet-body svelte-11e6wsb");
+    			add_location(div3, file$7, 56, 16, 2080);
+    			attr_dev(div4, "class", "info-section-bullet svelte-11e6wsb");
+    			add_location(div4, file$7, 45, 12, 1671);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div4, anchor);
-    			append_dev(div4, div0);
+    			append_dev(div4, div2);
+    			append_dev(div2, div0);
     			mount_component(icon, div0, null);
-    			append_dev(div4, t0);
-    			append_dev(div4, div3);
-    			append_dev(div3, div1);
+    			append_dev(div2, t0);
+    			append_dev(div2, div1);
     			append_dev(div1, t1);
-    			append_dev(div3, t2);
-    			append_dev(div3, div2);
-    			append_dev(div2, t3);
+    			append_dev(div4, t2);
+    			append_dev(div4, div3);
+    			append_dev(div3, t3);
     			append_dev(div4, t4);
     			current = true;
     		},
-    		p: noop,
+    		p: function update(ctx, dirty) {
+    			if ((!current || dirty & /*translator, currLang*/ 3) && t1_value !== (t1_value = /*translator*/ ctx[1].translate(/*bullet*/ ctx[4].title, /*currLang*/ ctx[0]) + "")) set_data_dev(t1, t1_value);
+    			if ((!current || dirty & /*translator, currLang*/ 3) && t3_value !== (t3_value = /*translator*/ ctx[1].translate(/*bullet*/ ctx[4].body, /*currLang*/ ctx[0]) + "")) set_data_dev(t3, t3_value);
+    		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(icon.$$.fragment, local);
@@ -16503,13 +16509,17 @@ var app = (function () {
     	let div4;
     	let div1;
     	let div0;
+    	let t0_value = /*translator*/ ctx[1].translate("info_how_was_viz_made", /*currLang*/ ctx[0]) + "";
+    	let t0;
     	let t1;
     	let t2;
     	let div3;
     	let div2;
+    	let t3_value = /*translator*/ ctx[1].translate("info_what_viz_doesnt_show", /*currLang*/ ctx[0]) + "";
+    	let t3;
     	let t4;
     	let current;
-    	let each_value_1 = /*howVizWasMadeInfo*/ ctx[0];
+    	let each_value_1 = /*howVizWasMadeInfo*/ ctx[2];
     	validate_each_argument(each_value_1);
     	let each_blocks_1 = [];
 
@@ -16517,7 +16527,7 @@ var app = (function () {
     		each_blocks_1[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
     	}
 
-    	let each_value = /*whatVizDoesntShowInfo*/ ctx[1];
+    	let each_value = /*whatVizDoesntShowInfo*/ ctx[3];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -16534,7 +16544,7 @@ var app = (function () {
     			div4 = element("div");
     			div1 = element("div");
     			div0 = element("div");
-    			div0.textContent = `${"How was this visualization made?"}`;
+    			t0 = text(t0_value);
     			t1 = space();
 
     			for (let i = 0; i < each_blocks_1.length; i += 1) {
@@ -16544,22 +16554,22 @@ var app = (function () {
     			t2 = space();
     			div3 = element("div");
     			div2 = element("div");
-    			div2.textContent = `${"What does the visualizaton NOT show?"}`;
+    			t3 = text(t3_value);
     			t4 = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(div0, "class", "info-section-title svelte-1cs9csn");
-    			add_location(div0, file$7, 25, 8, 2126);
-    			attr_dev(div1, "class", "info-section svelte-1cs9csn");
-    			add_location(div1, file$7, 24, 4, 2091);
-    			attr_dev(div2, "class", "info-section-title svelte-1cs9csn");
-    			add_location(div2, file$7, 43, 8, 2709);
-    			attr_dev(div3, "class", "info-section svelte-1cs9csn");
-    			add_location(div3, file$7, 42, 4, 2674);
-    			add_location(div4, file$7, 23, 0, 2081);
+    			attr_dev(div0, "class", "info-section-title svelte-11e6wsb");
+    			add_location(div0, file$7, 25, 8, 834);
+    			attr_dev(div1, "class", "info-section svelte-11e6wsb");
+    			add_location(div1, file$7, 24, 4, 799);
+    			attr_dev(div2, "class", "info-section-title svelte-11e6wsb");
+    			add_location(div2, file$7, 43, 6, 1510);
+    			attr_dev(div3, "class", "info-section svelte-11e6wsb");
+    			add_location(div3, file$7, 42, 4, 1477);
+    			add_location(div4, file$7, 23, 0, 789);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -16568,6 +16578,7 @@ var app = (function () {
     			insert_dev(target, div4, anchor);
     			append_dev(div4, div1);
     			append_dev(div1, div0);
+    			append_dev(div0, t0);
     			append_dev(div1, t1);
 
     			for (let i = 0; i < each_blocks_1.length; i += 1) {
@@ -16577,6 +16588,7 @@ var app = (function () {
     			append_dev(div4, t2);
     			append_dev(div4, div3);
     			append_dev(div3, div2);
+    			append_dev(div2, t3);
     			append_dev(div3, t4);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -16586,8 +16598,10 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*howVizWasMadeInfo*/ 1) {
-    				each_value_1 = /*howVizWasMadeInfo*/ ctx[0];
+    			if ((!current || dirty & /*translator, currLang*/ 3) && t0_value !== (t0_value = /*translator*/ ctx[1].translate("info_how_was_viz_made", /*currLang*/ ctx[0]) + "")) set_data_dev(t0, t0_value);
+
+    			if (dirty & /*translator, howVizWasMadeInfo, currLang*/ 7) {
+    				each_value_1 = /*howVizWasMadeInfo*/ ctx[2];
     				validate_each_argument(each_value_1);
     				let i;
 
@@ -16610,8 +16624,10 @@ var app = (function () {
     				each_blocks_1.length = each_value_1.length;
     			}
 
-    			if (dirty & /*whatVizDoesntShowInfo, faTimes*/ 2) {
-    				each_value = /*whatVizDoesntShowInfo*/ ctx[1];
+    			if ((!current || dirty & /*translator, currLang*/ 3) && t3_value !== (t3_value = /*translator*/ ctx[1].translate("info_what_viz_doesnt_show", /*currLang*/ ctx[0]) + "")) set_data_dev(t3, t3_value);
+
+    			if (dirty & /*translator, whatVizDoesntShowInfo, currLang, faTimes*/ 11) {
+    				each_value = /*whatVizDoesntShowInfo*/ ctx[3];
     				validate_each_argument(each_value);
     				let i;
 
@@ -16680,31 +16696,31 @@ var app = (function () {
 
     	const howVizWasMadeInfo = [
     		{
-    			title: "Low-Cost Sensor Data",
-    			body: "This visualization was made with data collected from 20 low-cost sensors installed around the city by People In Need Mongolia. The air quality stations on the map show their locations."
+    			title: "info_title_low_cost_sensor_data",
+    			body: "info_body_low_cost_sensor_data"
     		},
     		{
-    			title: "Air Quality Modeling",
-    			body: "Creating the visualzation was a two-step process. First the sensor data was combined with data about the city, such as density of population, density of coal-stoves (surveyed in 2013) and density of residential roads, to create a prediction map for each month. Then the prediction maps were corrected with the 7 day moving average of the observed readings. The final visualization reflects a fusion of the monthly trends with the smaller, daily variations in air quality."
+    			title: "info_title_aq_modeling",
+    			body: "info_body_aq_modeling"
     		}
     	];
 
     	const whatVizDoesntShowInfo = [
     		{
-    			title: "Information Prior to 2019",
-    			body: "The low-cost sensors have enough data starting around February 2019. While there is data going back further for individual sensors, this type of visualization requires a network of sensors with consistent data."
+    			title: "info_title_info_prior_2019",
+    			body: "info_body_info_prior_2019"
     		},
     		{
-    			title: "Air Pollutants other than PM2.5",
-    			body: "PM2.5, while harmful to human health, is not the only pollutant to worry about. When the visualization is green doesn't mean that there is no air pollution, just that PM2.5 levels are low."
+    			title: "info_title_other_pollutants",
+    			body: "info_body_other_pollutants"
     		},
     		{
-    			title: "Highly Accurate Spatial Estimates",
-    			body: "This visualizaton shows estimated trends over the city over time, and should not be used to make health exposure assessments or anything requiring numerical precision. In the future, more and better sensors around the city will help produce even more accurate maps."
+    			title: "info_title_accurate_spatial_estimates",
+    			body: "info_body_accurate_spatial_estimates"
     		},
     		{
-    			title: "A Full List of Government Actions",
-    			body: "The events selected for the timeline are some of the most notable events related to air pollution in Ulaanbaatar, but are not a comprehensive list."
+    			title: "info_title_full_govt_actions",
+    			body: "info_body_full_govt_actions"
     		}
     	];
 
@@ -16718,8 +16734,8 @@ var app = (function () {
     	validate_slots("ExtraInformationSection", $$slots, []);
 
     	$$self.$set = $$props => {
-    		if ("currLang" in $$props) $$invalidate(2, currLang = $$props.currLang);
-    		if ("translator" in $$props) $$invalidate(3, translator = $$props.translator);
+    		if ("currLang" in $$props) $$invalidate(0, currLang = $$props.currLang);
+    		if ("translator" in $$props) $$invalidate(1, translator = $$props.translator);
     	};
 
     	$$self.$capture_state = () => ({
@@ -16732,21 +16748,21 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("currLang" in $$props) $$invalidate(2, currLang = $$props.currLang);
-    		if ("translator" in $$props) $$invalidate(3, translator = $$props.translator);
+    		if ("currLang" in $$props) $$invalidate(0, currLang = $$props.currLang);
+    		if ("translator" in $$props) $$invalidate(1, translator = $$props.translator);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [howVizWasMadeInfo, whatVizDoesntShowInfo, currLang, translator];
+    	return [currLang, translator, howVizWasMadeInfo, whatVizDoesntShowInfo];
     }
 
     class ExtraInformationSection extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$7, create_fragment$7, safe_not_equal, { currLang: 2, translator: 3 });
+    		init(this, options, instance$7, create_fragment$7, safe_not_equal, { currLang: 0, translator: 1 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -16758,11 +16774,11 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*currLang*/ ctx[2] === undefined && !("currLang" in props)) {
+    		if (/*currLang*/ ctx[0] === undefined && !("currLang" in props)) {
     			console.warn("<ExtraInformationSection> was created without expected prop 'currLang'");
     		}
 
-    		if (/*translator*/ ctx[3] === undefined && !("translator" in props)) {
+    		if (/*translator*/ ctx[1] === undefined && !("translator" in props)) {
     			console.warn("<ExtraInformationSection> was created without expected prop 'translator'");
     		}
     	}
@@ -17051,6 +17067,7 @@ var app = (function () {
                     MN: 
                         'Эх сурвалж'
                 },
+                //-------- TIMELINE EVENTS -----------------------//
                 event_title_2018_2019_season_ends: {
                     US: 
                         '2018-2019 Air Pollution Season Ends',
@@ -17129,6 +17146,110 @@ var app = (function () {
                     MN: 
                         'Эрчим хүчний сайд 8-р сар гэхэд Улаанбаатар хотын зүүн хэсэгт цэвэршүүлсэн нүүрс үйлдвэрлэх шинэ үйлдвэр барьж, 2020 оны 9-р сарын 15-наас цэвэршүүлсэн нүүрс үйлдвэрлэж эхэлнэ гэж мэдэгдэв.'
                 },
+
+
+
+
+                //--------- MORE INFO TEXT -----------------//
+                info_title_low_cost_sensor_data: {
+                    US: 
+                        'Low-Cost Sensor Data',
+                    MN: 
+                        'Мэдрэмж багатай'
+                },
+                info_body_low_cost_sensor_data: {
+                    US: 
+                        'This visualization was made with data collected from 20 low-cost sensors installed around the city by People In Need Mongolia. The air quality stations on the map show their locations.',
+                    MN: 
+                        'Энэхүү дүрслэлийг хотын эргэн тойронд People In Need Монголд суурилуулсан хямд өртөгтэй 20 мэдрэгчээс цуглуулсан өгөгдөл ашиглан хийсэн болно. Газрын зураг дээрх агаарын чанарын станцууд нь байршлыг харуулав.'
+                },
+
+
+                info_title_aq_modeling: {
+                    US: 
+                        'Air Quality Modeling',
+                    MN: 
+                        'Агаарын чанарын загварчлал'
+                },
+                info_body_aq_modeling: {
+                    US: 
+                        'Creating the visualzation was a two-step process. First the sensor data was combined with data about the city, such as density of population, density of coal-stoves (surveyed in 2013) and density of residential roads, to create a prediction map for each month. Then the prediction maps were corrected with the 7 day moving average of the observed readings. The final visualization reflects a fusion of the monthly trends with the smaller, daily variations in air quality.',
+                    MN: 
+                        'Дүрслэлийг бий болгох нь хоёр үе шаттай үйл явц байв. Эхлээд мэдрэгчийн өгөгдлийг хотын хүн амын нягтрал, нүүрсний зуухны нягтрал (2013 онд судалсан), орон сууцны замын нягтрал гэх мэт өгөгдлүүдтэй нэгтгэн сар бүр урьдчилан таамаглах газрын зургийг бүтээсэн. Дараа нь таамаглалын газрын зургийг ажиглагдсан уншилтын дунджаар 7 хоногийн хөдөлгөөнтэйгээр засав. Эцсийн төсөөлөл нь агаарын чанарт өдөр бүр бага, өөрчлөлттэйгээр сарын хандлагын нийлбэрийг тусгасан болно.'
+                },
+
+                
+                //-----MORE INFO TITLES---------------//
+                info_how_was_viz_made: {
+                    US: 
+                        'How was this visualization made?',
+                    MN: 
+                        'Энэ дүрслэлийг хэрхэн хийсэн бэ?'
+                },
+                info_what_viz_doesnt_show: {
+                    US: 
+                        'What does the visualization NOT show?',
+                    MN: 
+                        'Дүрслэх НЭГ юу харуулж байна вэ?'
+                },
+
+
+
+
+                info_title_info_prior_2019: {
+                    US: 
+                        'Information Prior to 2019',
+                    MN: 
+                        '2019 оноос өмнө мэдээлэл'
+                },
+                info_body_info_prior_2019: {
+                    US: 
+                        'The low-cost sensors have enough data starting around February 2019. While there is data going back further for some individual sensors, this type of visualization requires a network of sensors with consistent data.',
+                    MN: 
+                        'Хямд өртөгтэй мэдрэгчид 2019 оны 2-р сараас эхлэн хангалттай мэдээлэлтэй байдаг. Зарим нэг мэдрэгчийн хувьд өгөгдөл эргэж ирэхэд энэ төрлийн дүрслэл нь тогтмол өгөгдөлтэй мэдрэгч бүхий сүлжээг шаарддаг.'
+                },
+
+                info_title_other_pollutants: {
+                    US: 
+                        'Air Pollutants other than PM2.5',
+                    MN: 
+                        'PM2.5-ээс бусад агаар бохирдуулагч'
+                },
+                info_body_other_pollutants: {
+                    US: 
+                        'PM2.5, while harmful to human health, is not the only pollutant to worry about. When the visualization is green doesn\'t mean that there is no air pollution, just that PM2.5 levels are low.',
+                    MN: 
+                        'PM2.5 нь хүний ​​эрүүл мэндэд хортой ч гэсэн санаа зовох цорын ганц бохирдуулагч биш юм. Дүрслэл нь ногоон байвал агаарын бохирдол байхгүй гэсэн үг, PM2.5 түвшин доогуур байна.'
+                },
+
+                info_title_accurate_spatial_estimates: {
+                    US: 
+                        'Highly Accurate Spatial Estimates',
+                    MN: 
+                        'Өндөр нарийвчлалтай орон зайн тооцоолол'
+                },
+                info_body_accurate_spatial_estimates: {
+                    US: 
+                        'This visualization shows estimated trends over the city over time, and should not be used to make health exposure assessments or anything requiring numerical precision. In the future, more and better sensors around the city will help produce even more accurate maps.',
+                    MN: 
+                        'Энэхүү дүр төрх нь хотын хугацааны туршид чиг хандлагыг харуулдаг бөгөөд эрүүл мэндийн үнэлгээ, нарийвчлал шаардагдах зүйлсийг ашиглахгүй байх шаардлагатай. Ирээдүйд хотын эргэн тойрон дахь илүү сайн мэдрэгч нь илүү нарийвчлалтай газрын зураг гаргахад тусална.'
+                },
+
+                info_title_full_govt_actions: {
+                    US: 
+                        'A Full List of Government Actions',
+                    MN: 
+                        'Засгийн газрын үйл ажиллагааны бүрэн жагсаалт'
+                },
+                info_body_full_govt_actions: {
+                    US: 
+                        'The events selected for the timeline are some of the most notable events related to air pollution in Ulaanbaatar, but are not a comprehensive list.',
+                    MN: 
+                        'Он цагийн хуваарьт шалгарсан арга хэмжээнүүд нь Улаанбаатар хотын агаарын бохирдолтой холбоотой онцлох үйл явдлууд боловч дэлгэрэнгүй жагсаалт биш юм.'
+                },
+                
+                
+                
                 none: {
                     US: 
                         '?',
