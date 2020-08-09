@@ -17,6 +17,8 @@
   import { Translator } from './translator';
   import _ from 'lodash';
   import { classnames } from './classnames';
+  import Icon from 'fa-svelte'
+  import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons/faQuestionCircle';
 
 
   let appState = {
@@ -83,6 +85,16 @@
     visualizationStarted = true;
   }
 
+  const handleClickMap = () => {
+    if (!animationPaused) {
+      pauseAnimation();
+      updateAppState({isUserRunning: false});
+    } else {
+      startAnimation();
+      updateAppState({isUserRunning: true});
+    }
+  }
+
   // set the currentTime to what the video is showing so that the dependent components stay up to date
   const reportCurrentTime = (updateWhilePaused) => {
     if (!animationPaused | updateWhilePaused) {
@@ -140,6 +152,10 @@ const handleOpenPM25 = () => {
           videoSource.video.loop = false;
           maxTime = videoSource.video.duration;
           var intervalTimer = setInterval(reportCurrentTime, FRAME_CHECKING_RATE);
+
+          map.on('click', function() {
+            handleClickMap();
+          });
         }
       };
       waiting();
@@ -245,7 +261,8 @@ const handleOpenPM25 = () => {
         {#if pm25InfoOpen}
           <span class='pm-25-is'>{translator.translate('pm_25_is', currLang)}</span>
         {:else}
-          {'[ ' + translator.translate('what_is_pm25', currLang) + ' ]'}
+          <Icon icon={faQuestionCircle}></Icon>
+          <span class='what-is-pm25-question'>{translator.translate('what_is_pm25', currLang)}</span>
         {/if}
       </div>
   </div>
@@ -446,11 +463,17 @@ const handleOpenPM25 = () => {
   color: steelblue;
   margin-top: 10px;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+}
+
+.what-is-pm25-question {
+  margin-left: 5px;
 }
 
 .pm-25-is {
   text-transform: none;
-  color: #2B2D42;
+  /* color: #2B2D42; */
 }
 
 

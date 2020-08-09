@@ -378,9 +378,10 @@ export class Translator {
             },
             who_am_i: {
                 US: 
-                    'The author of this visualization works for Breathe Mongolia, a non-profit dedicated to ending air pollution in Mongolia. If you\'d like more information about the process of creating this visualization, please email hayley.garment@gmail.com.',
+                    'The author of this visualization volunteers with Breathe Mongolia, a non-profit dedicated to ending air pollution in Mongolia. If you\'d like more information about the process of creating this visualization, please email hayley.garment@gmail.com.',
                 MN: 
-                    'Энэхүү дүрслэлийн зохиогч нь Монгол орны агаарын бохирдлыг зогсоох зорилготой ашгийн төлөө бус Breathe Mongolia компанид ажилладаг. Хэрэв танд энэ дүрслэлийг бий болгох процессын талаар илүү дэлгэрэнгүй мэдээлэл авахыг хүсвэл hayley.garment@gmail.com хаягаар мэдэгдэнэ үү.'
+                
+                    'Энэхүү дүрслэлийн зохиогч нь Монгол орны агаарын бохирдлыг зогсоох зорилготой ашгийн төлөө бус Breathe Mongolia компанитай сайн дурын ажилтан юм. Хэрэв танд энэ дүрслэлийг бий болгох процессын талаар илүү дэлгэрэнгүй мэдээлэл авахыг хүсвэл hayley.garment@gmail.com хаягаар мэдэгдэнэ үү.'
             },
             none: {
                 US: 
