@@ -265,6 +265,7 @@
     display: flex;
     flex-direction: column;
     padding-left: 5px;
+    max-width: 70%;
 }
 
 .temperature-description-body {

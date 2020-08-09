@@ -405,7 +405,6 @@ const handleOpenPM25 = () => {
   height: 100px;
   width: 100%;
   border-radius: 10px;
-  font-family: 'Merriweather', serif;
 }
 
 .title-date-container {
@@ -443,13 +442,7 @@ const handleOpenPM25 = () => {
 }
 
 .translate-selected {
-  border: 1px solid steelblue;
-}
-
-.translate-button-text {
-  font-size: 15px;
-  color: #2B2D42;
-  margin-right: 5px;
+  background-color: lightgrey;
 }
 
 .introduction {

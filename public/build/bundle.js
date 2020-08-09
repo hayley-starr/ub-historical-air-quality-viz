@@ -15508,14 +15508,14 @@ var app = (function () {
     			div1 = element("div");
     			t4 = text(t4_value);
     			t5 = space();
-    			attr_dev(span0, "class", "pm25-scale-number svelte-10ur5n2");
+    			attr_dev(span0, "class", "pm25-scale-number svelte-xvvd2i");
     			add_location(span0, file$5, 100, 24, 3584);
     			add_location(span1, file$5, 103, 24, 3715);
-    			attr_dev(div0, "class", "pm25-scale-label svelte-10ur5n2");
+    			attr_dev(div0, "class", "pm25-scale-label svelte-xvvd2i");
     			add_location(div0, file$5, 99, 24, 3529);
-    			attr_dev(div1, "class", "aqi-scale-labels svelte-10ur5n2");
+    			attr_dev(div1, "class", "aqi-scale-labels svelte-xvvd2i");
     			add_location(div1, file$5, 105, 24, 3794);
-    			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty(classnames("pm25-scale-tick-row", "pm25-scale-tick-row-" + /*tick*/ ctx[18].heightpx)) + " svelte-10ur5n2"));
+    			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty(classnames("pm25-scale-tick-row", "pm25-scale-tick-row-" + /*tick*/ ctx[18].heightpx)) + " svelte-xvvd2i"));
     			add_location(div2, file$5, 98, 20, 3419);
     		},
     		m: function mount(target, anchor) {
@@ -15650,47 +15650,47 @@ var app = (function () {
     			div10 = element("div");
     			span2 = element("span");
     			t13 = text(t13_value);
-    			attr_dev(div0, "class", "ap-legend-pm25-scale-title svelte-10ur5n2");
+    			attr_dev(div0, "class", "ap-legend-pm25-scale-title svelte-xvvd2i");
     			add_location(div0, file$5, 93, 8, 3086);
-    			attr_dev(canvas, "class", "pm25-scale svelte-10ur5n2");
+    			attr_dev(canvas, "class", "pm25-scale svelte-xvvd2i");
     			attr_dev(canvas, "id", "pm25-scale");
     			add_location(canvas, file$5, 95, 12, 3250);
-    			attr_dev(div1, "class", "pm25-scale-ticks svelte-10ur5n2");
+    			attr_dev(div1, "class", "pm25-scale-ticks svelte-xvvd2i");
     			add_location(div1, file$5, 96, 12, 3315);
-    			attr_dev(div2, "class", "ap-legend-pm25-scale-container svelte-10ur5n2");
+    			attr_dev(div2, "class", "ap-legend-pm25-scale-container svelte-xvvd2i");
     			add_location(div2, file$5, 94, 8, 3193);
-    			attr_dev(img0, "class", "key-img svelte-10ur5n2");
+    			attr_dev(img0, "class", "key-img svelte-xvvd2i");
     			if (img0.src !== (img0_src_value = "./imgs/uncertainty_mask_legend.png")) attr_dev(img0, "src", img0_src_value);
     			attr_dev(img0, "alt", "");
     			add_location(img0, file$5, 112, 12, 4008);
     			add_location(span0, file$5, 114, 16, 4136);
-    			attr_dev(div3, "class", "key-description svelte-10ur5n2");
+    			attr_dev(div3, "class", "key-description svelte-xvvd2i");
     			add_location(div3, file$5, 113, 12, 4090);
-    			attr_dev(div4, "class", "key-container svelte-10ur5n2");
+    			attr_dev(div4, "class", "key-container svelte-xvvd2i");
     			add_location(div4, file$5, 111, 8, 3968);
-    			attr_dev(img1, "class", "key-img svelte-10ur5n2");
+    			attr_dev(img1, "class", "key-img svelte-xvvd2i");
     			if (img1.src !== (img1_src_value = "./imgs/station_marker_legend.png")) attr_dev(img1, "src", img1_src_value);
     			attr_dev(img1, "alt", "");
     			add_location(img1, file$5, 120, 12, 4292);
     			add_location(span1, file$5, 122, 16, 4418);
-    			attr_dev(div5, "class", "key-description svelte-10ur5n2");
+    			attr_dev(div5, "class", "key-description svelte-xvvd2i");
     			add_location(div5, file$5, 121, 12, 4372);
-    			attr_dev(div6, "class", "key-container svelte-10ur5n2");
+    			attr_dev(div6, "class", "key-container svelte-xvvd2i");
     			add_location(div6, file$5, 119, 8, 4252);
-    			attr_dev(div7, "class", "legend-tile svelte-10ur5n2");
+    			attr_dev(div7, "class", "legend-tile svelte-xvvd2i");
     			add_location(div7, file$5, 92, 4, 3052);
-    			attr_dev(div8, "class", "temperature-key-title svelte-10ur5n2");
+    			attr_dev(div8, "class", "temperature-key-title svelte-xvvd2i");
     			add_location(div8, file$5, 131, 8, 4694);
-    			attr_dev(div9, "class", "thermometer-container svelte-10ur5n2");
+    			attr_dev(div9, "class", "thermometer-container svelte-xvvd2i");
     			add_location(div9, file$5, 133, 12, 4853);
     			add_location(span2, file$5, 140, 16, 5114);
-    			attr_dev(div10, "class", "temperature-description svelte-10ur5n2");
+    			attr_dev(div10, "class", "temperature-description svelte-xvvd2i");
     			add_location(div10, file$5, 139, 11, 5059);
-    			attr_dev(div11, "class", "temperature-key-body svelte-10ur5n2");
+    			attr_dev(div11, "class", "temperature-key-body svelte-xvvd2i");
     			add_location(div11, file$5, 132, 8, 4806);
-    			attr_dev(div12, "class", "legend-tile temperature-key-container svelte-10ur5n2");
+    			attr_dev(div12, "class", "legend-tile temperature-key-container svelte-xvvd2i");
     			add_location(div12, file$5, 130, 5, 4634);
-    			attr_dev(div13, "class", "ap-legend svelte-10ur5n2");
+    			attr_dev(div13, "class", "ap-legend svelte-xvvd2i");
     			add_location(div13, file$5, 91, 0, 3024);
     		},
     		l: function claim(nodes) {
@@ -16423,13 +16423,13 @@ var app = (function () {
     			div1 = element("div");
     			t2 = text(t2_value);
     			t3 = space();
-    			attr_dev(div0, "class", "bullet-title-non-bullet svelte-11vdt5m");
+    			attr_dev(div0, "class", "bullet-title-non-bullet svelte-1ptcg5q");
     			add_location(div0, file$7, 30, 20, 1164);
-    			attr_dev(div1, "class", "bullet-body svelte-11vdt5m");
+    			attr_dev(div1, "class", "bullet-body svelte-1ptcg5q");
     			add_location(div1, file$7, 33, 21, 1323);
-    			attr_dev(div2, "class", "info-non-bullet svelte-11vdt5m");
+    			attr_dev(div2, "class", "info-non-bullet svelte-1ptcg5q");
     			add_location(div2, file$7, 29, 16, 1114);
-    			attr_dev(div3, "class", "info-section-non-bullet svelte-11vdt5m");
+    			attr_dev(div3, "class", "info-section-non-bullet svelte-1ptcg5q");
     			add_location(div3, file$7, 28, 12, 1060);
     		},
     		m: function mount(target, anchor) {
@@ -16492,15 +16492,15 @@ var app = (function () {
     			div3 = element("div");
     			t3 = text(t3_value);
     			t4 = space();
-    			attr_dev(div0, "class", "bullet-icon svelte-11vdt5m");
+    			attr_dev(div0, "class", "bullet-icon svelte-1ptcg5q");
     			add_location(div0, file$7, 48, 20, 1851);
-    			attr_dev(div1, "class", "bullet-title svelte-11vdt5m");
+    			attr_dev(div1, "class", "bullet-title svelte-1ptcg5q");
     			add_location(div1, file$7, 51, 20, 1977);
-    			attr_dev(div2, "class", "bullet-info svelte-11vdt5m");
+    			attr_dev(div2, "class", "bullet-info svelte-1ptcg5q");
     			add_location(div2, file$7, 47, 16, 1805);
-    			attr_dev(div3, "class", "bullet-body svelte-11vdt5m");
+    			attr_dev(div3, "class", "bullet-body svelte-1ptcg5q");
     			add_location(div3, file$7, 57, 16, 2164);
-    			attr_dev(div4, "class", "info-section-bullet svelte-11vdt5m");
+    			attr_dev(div4, "class", "info-section-bullet svelte-1ptcg5q");
     			add_location(div4, file$7, 46, 12, 1755);
     		},
     		m: function mount(target, anchor) {
@@ -16626,21 +16626,21 @@ var app = (function () {
     			t8 = space();
     			div6 = element("div");
     			t9 = text(t9_value);
-    			attr_dev(div0, "class", "info-section-title svelte-11vdt5m");
+    			attr_dev(div0, "class", "info-section-title svelte-1ptcg5q");
     			add_location(div0, file$7, 26, 8, 907);
-    			attr_dev(div1, "class", "info-section svelte-11vdt5m");
+    			attr_dev(div1, "class", "info-section svelte-1ptcg5q");
     			add_location(div1, file$7, 25, 4, 872);
-    			attr_dev(div2, "class", "info-section-title svelte-11vdt5m");
+    			attr_dev(div2, "class", "info-section-title svelte-1ptcg5q");
     			add_location(div2, file$7, 44, 6, 1594);
-    			attr_dev(div3, "class", "info-section svelte-11vdt5m");
+    			attr_dev(div3, "class", "info-section svelte-1ptcg5q");
     			add_location(div3, file$7, 43, 4, 1561);
-    			attr_dev(div4, "class", "heart-icon svelte-11vdt5m");
+    			attr_dev(div4, "class", "heart-icon svelte-1ptcg5q");
     			add_location(div4, file$7, 69, 16, 2464);
-    			attr_dev(div5, "class", "info-end-text info-thanks svelte-11vdt5m");
+    			attr_dev(div5, "class", "info-end-text info-thanks svelte-1ptcg5q");
     			add_location(div5, file$7, 68, 8, 2408);
-    			attr_dev(div6, "class", "info-who-am-i svelte-11vdt5m");
+    			attr_dev(div6, "class", "info-who-am-i svelte-1ptcg5q");
     			add_location(div6, file$7, 75, 8, 2651);
-    			attr_dev(div7, "class", "info-end svelte-11vdt5m");
+    			attr_dev(div7, "class", "info-end svelte-1ptcg5q");
     			add_location(div7, file$7, 67, 5, 2377);
     			add_location(div8, file$7, 24, 0, 862);
     		},
@@ -16988,16 +16988,16 @@ var app = (function () {
             this.translations = {
                 title: {
                     US: 
-                        'Visualizing Air Quality in Ulaanbaatar',
+                        'Visualizing Air Quality in Ulaanbaatar from 2019 to 2020',
                     MN: 
-                        'Монгол хэл энд'
+                        '2019-2020 онд Улаанбаатар Хотын Агаарын Бохирдлын Дүрслэл'
                 },
 
                 introduction: {
                     US: 
-                        "Cleaning up the toxic air has been one of the biggest challenges for the city of Ulaanbaatar in recent years. In 2012 the government of ? passed the Law on Air, which was supposed to start addressing the causes undelying the crisis. After many unsuccessful efforts, the city of UB released resolutiion 62 which announced a ban on the burning of raw coal starting in 2019. Watch as pm2.5 levels change across the city from February 2019 to April 2020 and get a bird's eye view of Ulaanbaatar's public policy as it attempts to clean the air.",
+                        "Cleaning up the toxic air has been one of the biggest challenges for the city of Ulaanbaatar in recent years. In 2012 the government passed the Law on Air, which was supposed to start addressing the growing crisis. After several unsuccessful efforts, the government passed resolution 62 which announced a ban on burning raw coal starting in 2019. Watch as PM2.5 levels change across the city from February 2019 to April 2020 and get a bird's eye view of Ulaanbaatar as it works towards a future of clean air.",
                     MN: 
-                        'Хортой агаарыг цэвэрлэх нь сүүлийн жилүүдэд Улаанбаатар хотын хувьд тулгамдсан асуудлын нэг болоод байна. 2012 онд Засгийн газрын? хямралыг үл тоомсорлож буй шалтгааныг шийдвэрлэх ажлыг эхлүүлэхээр төлөвлөсөн Агаарын тухай хуулийг батлав. Олон тооны хүчин чармайлт гаргасны дараа нийслэл 2019 онд түүхий нүүрс шатаахыг хориглох тухай зарласан 62 тогтоолыг гаргалаа. 2019 оны 2-р сараас 2020 оны 4-р сар хүртэл pm2.5 түвшин хот даяар өөрчлөгдөж, шувуудын нүдээр харах боломжтой. агаарыг цэвэрлэх гэсэн оролдлогоор төрийн бодлого.'
+                        'Хортой агаарыг цэвэрлэх нь сүүлийн жилүүдэд Улаанбаатар хотын хувьд тулгамдсан асуудлын нэг болоод байна. 2012 онд засгийн газар өсөн нэмэгдэж буй хямралыг шийдвэрлэх ажлыг эхлүүлэх ёстой Агаарын тухай хуулийг батлав. Хэд хэдэн амжилтгүй оролдлогын дараа засгийн газар 2019 оноос эхлэн түүхий нүүрс шатаахыг хориглох тухай зарласан 62 дугаар тогтоолыг гаргалаа. 2019 оны 2-р сараас 2020 оны 4-р сар хүртэл PM2.5 түвшин хот даяар өөрчлөгдөж, Улаанбаатар хотын чиглэлд ажиллаж буй шувуудын харцыг харж болно. ирээдүйн цэвэр агаар.'
                 },
                 what_is_pm25: {
                     US: 
@@ -17069,7 +17069,7 @@ var app = (function () {
                 },
                 legend_temperature_description: {
                     US: 
-                        'PM2.5 is a major pollutant from burning coal, and people burn coal more frequently during cold weather. However, coal power plants and other PM2.5 sources, like vehicles, stil operate in the summertime.',
+                        'PM2.5 is a major pollutant from burning coal, and people burn coal more frequently during cold weather. However, coal power plants and other PM2.5 sources, like vehicles, still operate in the summertime.',
                     MN: 
                         'PM2.5 нь нүүрс шатаахад хүргэдэг томоохон бохирдуулагч бөгөөд хүмүүс хүйтний улиралд нүүрс түлдэг. Гэсэн хэдий ч нүүрсний цахилгаан станцууд болон бусад PM2.5 эх үүсвэрүүд, тухайлбал тээврийн хэрэгсэл, зуны улиралд ажилладаг.'
                 },
@@ -17275,9 +17275,9 @@ var app = (function () {
                 },
                 info_body_aq_modeling: {
                     US: 
-                        'Creating the visualzation was a two-step process. First the sensor data was combined with data about the city, such as density of population, density of coal-stoves (surveyed in 2013) and density of residential roads, to create a prediction map for each month. Then the prediction maps were corrected with the 7 day moving average of the observed readings. The final visualization reflects a fusion of the monthly trends with the smaller, daily variations in air quality.',
+                        'Creating the visualzation was a two-step process. First, the sensor data was combined with data from across the city, such as density of population per square km, density of coal-stoves (surveyed in 2013) and density of residential roads, to create a prediction map for each month. Then the monthly prediction maps were ajdusted for each day in the month using the 7 day moving average at each sensor. The final visualization reflects a fusion of the monthly trends with smaller, daily variations in air quality.',
                     MN: 
-                        'Дүрслэлийг бий болгох нь хоёр үе шаттай үйл явц байв. Эхлээд мэдрэгчийн өгөгдлийг хотын хүн амын нягтрал, нүүрсний зуухны нягтрал (2013 онд судалсан), орон сууцны замын нягтрал гэх мэт өгөгдлүүдтэй нэгтгэн сар бүр урьдчилан таамаглах газрын зургийг бүтээсэн. Дараа нь таамаглалын газрын зургийг ажиглагдсан уншилтын дунджаар 7 хоногийн хөдөлгөөнтэйгээр засав. Эцсийн төсөөлөл нь агаарын чанарт өдөр бүр бага, өөрчлөлттэйгээр сарын хандлагын нийлбэрийг тусгасан болно.'
+                        'Дүрслэлийг бий болгох нь хоёр үе шаттай үйл явц байв. Нэгдүгээрт, мэдрэгчийн өгөгдлийг нэг хавтгай дөрвөлжин км тутамд хүн амын нягтрал, нүүрсний зуухны нягтрал (2013 онд судалсан), орон сууцны замуудын нягтрал зэрэг мэдээллийг нэгтгэн сар бүрийн урьдчилсан газрын зургийг боловсруулсан болно. Дараа нь сарын урьдчилсан таамаглалын зургийг 7 хоногийн хөдөлгөөнтэй дунджаар тухайн сард өдөр бүр буулгасан. Эцсийн дүр төрх нь агаарын чанарт өдөр тутам өөрчлөгдөж буй сарын хандлагын нийлбэрийг тусгасан болно.'
                 },
 
                 
@@ -17306,9 +17306,9 @@ var app = (function () {
                 },
                 info_body_info_prior_2019: {
                     US: 
-                        'The low-cost sensors have enough data starting around February 2019. While there is data going back further for some individual sensors, this type of visualization requires a network of sensors with consistent data.',
+                        'The low-cost sensor data becomes consistent around February 2019. While there is data going back further for a small number of sensors, this type of visualization requires a larger network of sensors with consistent data.',
                     MN: 
-                        'Хямд өртөгтэй мэдрэгчид 2019 оны 2-р сараас эхлэн хангалттай мэдээлэлтэй байдаг. Зарим нэг мэдрэгчийн хувьд өгөгдөл эргэж ирэхэд энэ төрлийн дүрслэл нь тогтмол өгөгдөлтэй мэдрэгч бүхий сүлжээг шаарддаг.'
+                        'Хямд өртөгтэй мэдрэгчийн өгөгдөл нь 2019 оны 2-р сарын хооронд тогтмол байх болно. Цөөн тооны мэдрэгчийн хувьд өгөгдөл буцаж ирэхэд энэ төрлийн дүрслэл нь нийцтэй өгөгдөл бүхий илүү том сүлжээ мэдрэгчийг шаарддаг.'
                 },
 
                 info_title_other_pollutants: {
@@ -17319,9 +17319,9 @@ var app = (function () {
                 },
                 info_body_other_pollutants: {
                     US: 
-                        'PM2.5, while harmful to human health, is not the only pollutant to worry about. When the visualization is green doesn\'t mean that there is no air pollution, just that PM2.5 levels are low.',
+                        'PM2.5 is harmful to human health, but it is not the only pollutant to worry about. If the map is entirely green it doesn\'t mean that there is no air pollution, only that PM2.5 levels are low.',
                     MN: 
-                        'PM2.5 нь хүний ​​эрүүл мэндэд хортой ч гэсэн санаа зовох цорын ганц бохирдуулагч биш юм. Дүрслэл нь ногоон байвал агаарын бохирдол байхгүй гэсэн үг, PM2.5 түвшин доогуур байна.'
+                        'PM2.5 нь хүний ​​эрүүл мэндэд хортой боловч энэ нь санаа зовох цорын ганц бохирдуулагч биш юм. Хэрэв газрын зураг бүхэлдээ ногоон байвал энэ нь агаарын бохирдол байхгүй гэсэн үг биш, зөвхөн PM2.5 түвшин доогуур байна.'
                 },
 
                 info_title_accurate_spatial_estimates: {
@@ -17332,7 +17332,7 @@ var app = (function () {
                 },
                 info_body_accurate_spatial_estimates: {
                     US: 
-                        'This visualization shows estimated trends over the city over time, and should not be used to make health exposure assessments or anything requiring numerical precision. In the future, more and better sensors around the city will help produce even more accurate maps.',
+                        'This visualization shows estimated trends in different parts the city over time, and should not be used to make health exposure assessments or anything requiring numerical precision. In the future, more and better sensors around the city will help produce even more accurate maps.',
                     MN: 
                         'Энэхүү дүр төрх нь хотын хугацааны туршид чиг хандлагыг харуулдаг бөгөөд эрүүл мэндийн үнэлгээ, нарийвчлал шаардагдах зүйлсийг ашиглахгүй байх шаардлагатай. Ирээдүйд хотын эргэн тойрон дахь илүү сайн мэдрэгч нь илүү нарийвчлалтай газрын зураг гаргахад тусална.'
                 },
@@ -17345,25 +17345,25 @@ var app = (function () {
                 },
                 info_body_full_govt_actions: {
                     US: 
-                        'The events selected for the timeline are some of the most notable events related to air pollution in Ulaanbaatar, but are not a comprehensive list.',
+                        'The events selected for the timeline are some of the most notable events related to air pollution in Ulaanbaatar during this time period, but are not a comprehensive list.',
                     MN: 
-                        'Он цагийн хуваарьт шалгарсан арга хэмжээнүүд нь Улаанбаатар хотын агаарын бохирдолтой холбоотой онцлох үйл явдлууд боловч дэлгэрэнгүй жагсаалт биш юм.'
+                        'Он цагийн хуваарьт сонгосон арга хэмжээнүүд нь энэ хугацаанд Улаанбаатар хотын агаарын бохирдолтой холбоотой онцлох үйл явдлууд боловч дэлгэрэнгүй жагсаалт биш юм.'
                 },
                 
                 
                 
                 thanks_to: {
                     US: 
-                        'Thanks very much to Public Lab Mongolia for supplying the low-cost sensor data, and to People In Need for installing and maintaing the sensors.',
+                        'Thanks very much to Public Lab Mongolia for supplying the low-cost sensor data, and to People In Need for installing and maintaing the low-cost sensors.',
                     MN: 
                         'Мэдрэгчийг хямд өртөгтэйгээр хангаж, мэдрэгчийг суурилуулж, ажиллуулж байгаа хүмүүст зориулагдсан Public Lab Mongolia-д маш их баярлалаа.'
                 },
                 who_am_i: {
                     US: 
-                        'The author of this visualization volunteers with Breathe Mongolia, a non-profit dedicated to ending air pollution in Mongolia. If you\'d like more information about the process of creating this visualization, please email hayley.garment@gmail.com.',
+                        'The author of this visualization volunteers with Breathe Mongolia, a non-profit dedicated to ending air pollution in Mongolia. If you\'d like more information about the visualization or would like to get in touch, please email hayley.garment@gmail.com.',
                     MN: 
                     
-                        'Энэхүү дүрслэлийн зохиогч нь Монгол орны агаарын бохирдлыг зогсоох зорилготой ашгийн төлөө бус Breathe Mongolia компанитай сайн дурын ажилтан юм. Хэрэв танд энэ дүрслэлийг бий болгох процессын талаар илүү дэлгэрэнгүй мэдээлэл авахыг хүсвэл hayley.garment@gmail.com хаягаар мэдэгдэнэ үү.'
+                        'Энэхүү дүрслэлийн зохиогч нь Монгол орны агаарын бохирдлыг зогсоох зорилготой ашгийн төлөө бус Breathe Mongolia компанитай сайн дурын ажилтан юм. Хэрэв та дүрслэлийн талаар илүү мэдээлэл авахыг хүсч байвал эсвэл холбоо барихыг хүсэж байвал hayley.garment@gmail.com хаягаар мэдэгдэнэ үү.'
                 },
                 none: {
                     US: 
@@ -34596,7 +34596,7 @@ var app = (function () {
     			t0 = space();
     			span = element("span");
     			t1 = text(t1_value);
-    			attr_dev(span, "class", "what-is-pm25-question svelte-17p1b5i");
+    			attr_dev(span, "class", "what-is-pm25-question svelte-1urg1hw");
     			add_location(span, file$8, 264, 10, 8347);
     		},
     		m: function mount(target, anchor) {
@@ -34646,7 +34646,7 @@ var app = (function () {
     		c: function create() {
     			span = element("span");
     			t = text(t_value);
-    			attr_dev(span, "class", "pm-25-is svelte-17p1b5i");
+    			attr_dev(span, "class", "pm-25-is svelte-1urg1hw");
     			add_location(span, file$8, 261, 10, 8198);
     		},
     		m: function mount(target, anchor) {
@@ -34715,9 +34715,9 @@ var app = (function () {
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 113.57 127.1");
     			add_location(svg, file$8, 277, 18, 8757);
-    			attr_dev(button, "class", "btn map-play-button svelte-17p1b5i");
+    			attr_dev(button, "class", "btn map-play-button svelte-1urg1hw");
     			add_location(button, file$8, 276, 10, 8672);
-    			attr_dev(div, "class", "map-play-button-overlay svelte-17p1b5i");
+    			attr_dev(div, "class", "map-play-button-overlay svelte-1urg1hw");
     			add_location(div, file$8, 275, 8, 8624);
     		},
     		m: function mount(target, anchor, remount) {
@@ -34929,46 +34929,46 @@ var app = (function () {
     			attr_dev(link2, "href", "https://fonts.googleapis.com/css2?family=Antic+Slab&family=Merriweather:wght@300&display=swap");
     			attr_dev(link2, "rel", "stylesheet");
     			add_location(link2, file$8, 2, 0, 210);
-    			attr_dev(div0, "class", "title svelte-17p1b5i");
+    			attr_dev(div0, "class", "title svelte-1urg1hw");
     			add_location(div0, file$8, 239, 9, 7357);
-    			attr_dev(div1, "class", "title-date svelte-17p1b5i");
+    			attr_dev(div1, "class", "title-date svelte-1urg1hw");
     			add_location(div1, file$8, 242, 8, 7452);
-    			attr_dev(div2, "class", "title-date-container svelte-17p1b5i");
+    			attr_dev(div2, "class", "title-date-container svelte-1urg1hw");
     			add_location(div2, file$8, 238, 6, 7313);
-    			attr_dev(button0, "class", button0_class_value = "" + (null_to_empty(classnames("btn", "translate-button", /*currLang*/ ctx[1] == "MN" ? "translate-selected" : "")) + " svelte-17p1b5i"));
+    			attr_dev(button0, "class", button0_class_value = "" + (null_to_empty(classnames("btn", "translate-button", /*currLang*/ ctx[1] == "MN" ? "translate-selected" : "")) + " svelte-1urg1hw"));
     			add_location(button0, file$8, 248, 6, 7615);
-    			attr_dev(button1, "class", button1_class_value = "" + (null_to_empty(classnames("btn", "translate-button", /*currLang*/ ctx[1] == "US" ? "translate-selected" : "")) + " svelte-17p1b5i"));
+    			attr_dev(button1, "class", button1_class_value = "" + (null_to_empty(classnames("btn", "translate-button", /*currLang*/ ctx[1] == "US" ? "translate-selected" : "")) + " svelte-1urg1hw"));
     			add_location(button1, file$8, 251, 6, 7805);
-    			attr_dev(div3, "class", "translate-buttons svelte-17p1b5i");
+    			attr_dev(div3, "class", "translate-buttons svelte-1urg1hw");
     			add_location(div3, file$8, 247, 5, 7577);
-    			attr_dev(div4, "class", "title-container svelte-17p1b5i");
+    			attr_dev(div4, "class", "title-container svelte-1urg1hw");
     			add_location(div4, file$8, 237, 4, 7277);
-    			attr_dev(div5, "class", "introduction svelte-17p1b5i");
+    			attr_dev(div5, "class", "introduction svelte-1urg1hw");
     			add_location(div5, file$8, 258, 4, 8023);
-    			attr_dev(div6, "class", "what-is-pm25 svelte-17p1b5i");
+    			attr_dev(div6, "class", "what-is-pm25 svelte-1urg1hw");
     			add_location(div6, file$8, 259, 4, 8108);
-    			attr_dev(div7, "class", "section header svelte-17p1b5i");
+    			attr_dev(div7, "class", "section header svelte-1urg1hw");
     			add_location(div7, file$8, 236, 2, 7244);
     			attr_dev(span, "class", "animation-date");
     			add_location(span, file$8, 297, 13, 9732);
-    			attr_dev(div8, "class", "map-animation-date-container svelte-17p1b5i");
+    			attr_dev(div8, "class", "map-animation-date-container svelte-1urg1hw");
     			add_location(div8, file$8, 296, 8, 9676);
-    			attr_dev(div9, "class", "map-event-container svelte-17p1b5i");
+    			attr_dev(div9, "class", "map-event-container svelte-1urg1hw");
     			add_location(div9, file$8, 301, 8, 9956);
-    			attr_dev(div10, "class", "map svelte-17p1b5i");
+    			attr_dev(div10, "class", "map svelte-1urg1hw");
     			attr_dev(div10, "id", "map");
     			add_location(div10, file$8, 273, 6, 8554);
-    			attr_dev(div11, "class", "map-scrubber-container svelte-17p1b5i");
+    			attr_dev(div11, "class", "map-scrubber-container svelte-1urg1hw");
     			add_location(div11, file$8, 313, 6, 10334);
-    			attr_dev(div12, "class", "map-container svelte-17p1b5i");
+    			attr_dev(div12, "class", "map-container svelte-1urg1hw");
     			add_location(div12, file$8, 271, 4, 8519);
-    			attr_dev(div13, "class", "map-aqi-legend svelte-17p1b5i");
+    			attr_dev(div13, "class", "map-aqi-legend svelte-1urg1hw");
     			add_location(div13, file$8, 335, 4, 11051);
-    			attr_dev(div14, "class", "section visualization svelte-17p1b5i");
+    			attr_dev(div14, "class", "section visualization svelte-1urg1hw");
     			add_location(div14, file$8, 269, 2, 8478);
-    			attr_dev(div15, "class", "section footer svelte-17p1b5i");
+    			attr_dev(div15, "class", "section footer svelte-1urg1hw");
     			add_location(div15, file$8, 346, 2, 11260);
-    			attr_dev(div16, "class", "ub-ap-viz svelte-17p1b5i");
+    			attr_dev(div16, "class", "ub-ap-viz svelte-1urg1hw");
     			add_location(div16, file$8, 234, 0, 7217);
     		},
     		l: function claim(nodes) {
@@ -35037,11 +35037,11 @@ var app = (function () {
     			if ((!current || dirty & /*currLang*/ 2) && t3_value !== (t3_value = /*translator*/ ctx[9].translate("title", /*currLang*/ ctx[1]) + "")) set_data_dev(t3, t3_value);
     			if ((!current || dirty & /*currLang*/ 2) && t5_value !== (t5_value = /*translator*/ ctx[9].translateDate("2020-08-14", /*currLang*/ ctx[1]) + "")) set_data_dev(t5, t5_value);
 
-    			if (!current || dirty & /*currLang*/ 2 && button0_class_value !== (button0_class_value = "" + (null_to_empty(classnames("btn", "translate-button", /*currLang*/ ctx[1] == "MN" ? "translate-selected" : "")) + " svelte-17p1b5i"))) {
+    			if (!current || dirty & /*currLang*/ 2 && button0_class_value !== (button0_class_value = "" + (null_to_empty(classnames("btn", "translate-button", /*currLang*/ ctx[1] == "MN" ? "translate-selected" : "")) + " svelte-1urg1hw"))) {
     				attr_dev(button0, "class", button0_class_value);
     			}
 
-    			if (!current || dirty & /*currLang*/ 2 && button1_class_value !== (button1_class_value = "" + (null_to_empty(classnames("btn", "translate-button", /*currLang*/ ctx[1] == "US" ? "translate-selected" : "")) + " svelte-17p1b5i"))) {
+    			if (!current || dirty & /*currLang*/ 2 && button1_class_value !== (button1_class_value = "" + (null_to_empty(classnames("btn", "translate-button", /*currLang*/ ctx[1] == "US" ? "translate-selected" : "")) + " svelte-1urg1hw"))) {
     				attr_dev(button1, "class", button1_class_value);
     			}
 

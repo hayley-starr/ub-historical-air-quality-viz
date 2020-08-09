@@ -6,16 +6,16 @@ export class Translator {
         this.translations = {
             title: {
                 US: 
-                    'Visualizing Air Quality in Ulaanbaatar',
+                    'Visualizing Air Quality in Ulaanbaatar from 2019 to 2020',
                 MN: 
-                    'Монгол хэл энд'
+                    '2019-2020 онд Улаанбаатар Хотын Агаарын Бохирдлын Дүрслэл'
             },
 
             introduction: {
                 US: 
-                    "Cleaning up the toxic air has been one of the biggest challenges for the city of Ulaanbaatar in recent years. In 2012 the government of ? passed the Law on Air, which was supposed to start addressing the causes undelying the crisis. After many unsuccessful efforts, the city of UB released resolutiion 62 which announced a ban on the burning of raw coal starting in 2019. Watch as pm2.5 levels change across the city from February 2019 to April 2020 and get a bird's eye view of Ulaanbaatar's public policy as it attempts to clean the air.",
+                    "Cleaning up the toxic air has been one of the biggest challenges for the city of Ulaanbaatar in recent years. In 2012 the government passed the Law on Air, which was supposed to start addressing the growing crisis. After several unsuccessful efforts, the government passed resolution 62 which announced a ban on burning raw coal starting in 2019. Watch as PM2.5 levels change across the city from February 2019 to April 2020 and get a bird's eye view of Ulaanbaatar as it works towards a future of clean air.",
                 MN: 
-                    'Хортой агаарыг цэвэрлэх нь сүүлийн жилүүдэд Улаанбаатар хотын хувьд тулгамдсан асуудлын нэг болоод байна. 2012 онд Засгийн газрын? хямралыг үл тоомсорлож буй шалтгааныг шийдвэрлэх ажлыг эхлүүлэхээр төлөвлөсөн Агаарын тухай хуулийг батлав. Олон тооны хүчин чармайлт гаргасны дараа нийслэл 2019 онд түүхий нүүрс шатаахыг хориглох тухай зарласан 62 тогтоолыг гаргалаа. 2019 оны 2-р сараас 2020 оны 4-р сар хүртэл pm2.5 түвшин хот даяар өөрчлөгдөж, шувуудын нүдээр харах боломжтой. агаарыг цэвэрлэх гэсэн оролдлогоор төрийн бодлого.'
+                    'Хортой агаарыг цэвэрлэх нь сүүлийн жилүүдэд Улаанбаатар хотын хувьд тулгамдсан асуудлын нэг болоод байна. 2012 онд засгийн газар өсөн нэмэгдэж буй хямралыг шийдвэрлэх ажлыг эхлүүлэх ёстой Агаарын тухай хуулийг батлав. Хэд хэдэн амжилтгүй оролдлогын дараа засгийн газар 2019 оноос эхлэн түүхий нүүрс шатаахыг хориглох тухай зарласан 62 дугаар тогтоолыг гаргалаа. 2019 оны 2-р сараас 2020 оны 4-р сар хүртэл PM2.5 түвшин хот даяар өөрчлөгдөж, Улаанбаатар хотын чиглэлд ажиллаж буй шувуудын харцыг харж болно. ирээдүйн цэвэр агаар.'
             },
             what_is_pm25: {
                 US: 
@@ -87,7 +87,7 @@ export class Translator {
             },
             legend_temperature_description: {
                 US: 
-                    'PM2.5 is a major pollutant from burning coal, and people burn coal more frequently during cold weather. However, coal power plants and other PM2.5 sources, like vehicles, stil operate in the summertime.',
+                    'PM2.5 is a major pollutant from burning coal, and people burn coal more frequently during cold weather. However, coal power plants and other PM2.5 sources, like vehicles, still operate in the summertime.',
                 MN: 
                     'PM2.5 нь нүүрс шатаахад хүргэдэг томоохон бохирдуулагч бөгөөд хүмүүс хүйтний улиралд нүүрс түлдэг. Гэсэн хэдий ч нүүрсний цахилгаан станцууд болон бусад PM2.5 эх үүсвэрүүд, тухайлбал тээврийн хэрэгсэл, зуны улиралд ажилладаг.'
             },
@@ -293,9 +293,9 @@ export class Translator {
             },
             info_body_aq_modeling: {
                 US: 
-                    'Creating the visualzation was a two-step process. First the sensor data was combined with data about the city, such as density of population, density of coal-stoves (surveyed in 2013) and density of residential roads, to create a prediction map for each month. Then the prediction maps were corrected with the 7 day moving average of the observed readings. The final visualization reflects a fusion of the monthly trends with the smaller, daily variations in air quality.',
+                    'Creating the visualzation was a two-step process. First, the sensor data was combined with data from across the city, such as density of population per square km, density of coal-stoves (surveyed in 2013) and density of residential roads, to create a prediction map for each month. Then the monthly prediction maps were ajdusted for each day in the month using the 7 day moving average at each sensor. The final visualization reflects a fusion of the monthly trends with smaller, daily variations in air quality.',
                 MN: 
-                    'Дүрслэлийг бий болгох нь хоёр үе шаттай үйл явц байв. Эхлээд мэдрэгчийн өгөгдлийг хотын хүн амын нягтрал, нүүрсний зуухны нягтрал (2013 онд судалсан), орон сууцны замын нягтрал гэх мэт өгөгдлүүдтэй нэгтгэн сар бүр урьдчилан таамаглах газрын зургийг бүтээсэн. Дараа нь таамаглалын газрын зургийг ажиглагдсан уншилтын дунджаар 7 хоногийн хөдөлгөөнтэйгээр засав. Эцсийн төсөөлөл нь агаарын чанарт өдөр бүр бага, өөрчлөлттэйгээр сарын хандлагын нийлбэрийг тусгасан болно.'
+                    'Дүрслэлийг бий болгох нь хоёр үе шаттай үйл явц байв. Нэгдүгээрт, мэдрэгчийн өгөгдлийг нэг хавтгай дөрвөлжин км тутамд хүн амын нягтрал, нүүрсний зуухны нягтрал (2013 онд судалсан), орон сууцны замуудын нягтрал зэрэг мэдээллийг нэгтгэн сар бүрийн урьдчилсан газрын зургийг боловсруулсан болно. Дараа нь сарын урьдчилсан таамаглалын зургийг 7 хоногийн хөдөлгөөнтэй дунджаар тухайн сард өдөр бүр буулгасан. Эцсийн дүр төрх нь агаарын чанарт өдөр тутам өөрчлөгдөж буй сарын хандлагын нийлбэрийг тусгасан болно.'
             },
 
             
@@ -324,9 +324,9 @@ export class Translator {
             },
             info_body_info_prior_2019: {
                 US: 
-                    'The low-cost sensors have enough data starting around February 2019. While there is data going back further for some individual sensors, this type of visualization requires a network of sensors with consistent data.',
+                    'The low-cost sensor data becomes consistent around February 2019. While there is data going back further for a small number of sensors, this type of visualization requires a larger network of sensors with consistent data.',
                 MN: 
-                    'Хямд өртөгтэй мэдрэгчид 2019 оны 2-р сараас эхлэн хангалттай мэдээлэлтэй байдаг. Зарим нэг мэдрэгчийн хувьд өгөгдөл эргэж ирэхэд энэ төрлийн дүрслэл нь тогтмол өгөгдөлтэй мэдрэгч бүхий сүлжээг шаарддаг.'
+                    'Хямд өртөгтэй мэдрэгчийн өгөгдөл нь 2019 оны 2-р сарын хооронд тогтмол байх болно. Цөөн тооны мэдрэгчийн хувьд өгөгдөл буцаж ирэхэд энэ төрлийн дүрслэл нь нийцтэй өгөгдөл бүхий илүү том сүлжээ мэдрэгчийг шаарддаг.'
             },
 
             info_title_other_pollutants: {
@@ -337,9 +337,9 @@ export class Translator {
             },
             info_body_other_pollutants: {
                 US: 
-                    'PM2.5, while harmful to human health, is not the only pollutant to worry about. When the visualization is green doesn\'t mean that there is no air pollution, just that PM2.5 levels are low.',
+                    'PM2.5 is harmful to human health, but it is not the only pollutant to worry about. If the map is entirely green it doesn\'t mean that there is no air pollution, only that PM2.5 levels are low.',
                 MN: 
-                    'PM2.5 нь хүний ​​эрүүл мэндэд хортой ч гэсэн санаа зовох цорын ганц бохирдуулагч биш юм. Дүрслэл нь ногоон байвал агаарын бохирдол байхгүй гэсэн үг, PM2.5 түвшин доогуур байна.'
+                    'PM2.5 нь хүний ​​эрүүл мэндэд хортой боловч энэ нь санаа зовох цорын ганц бохирдуулагч биш юм. Хэрэв газрын зураг бүхэлдээ ногоон байвал энэ нь агаарын бохирдол байхгүй гэсэн үг биш, зөвхөн PM2.5 түвшин доогуур байна.'
             },
 
             info_title_accurate_spatial_estimates: {
@@ -350,7 +350,7 @@ export class Translator {
             },
             info_body_accurate_spatial_estimates: {
                 US: 
-                    'This visualization shows estimated trends over the city over time, and should not be used to make health exposure assessments or anything requiring numerical precision. In the future, more and better sensors around the city will help produce even more accurate maps.',
+                    'This visualization shows estimated trends in different parts the city over time, and should not be used to make health exposure assessments or anything requiring numerical precision. In the future, more and better sensors around the city will help produce even more accurate maps.',
                 MN: 
                     'Энэхүү дүр төрх нь хотын хугацааны туршид чиг хандлагыг харуулдаг бөгөөд эрүүл мэндийн үнэлгээ, нарийвчлал шаардагдах зүйлсийг ашиглахгүй байх шаардлагатай. Ирээдүйд хотын эргэн тойрон дахь илүү сайн мэдрэгч нь илүү нарийвчлалтай газрын зураг гаргахад тусална.'
             },
@@ -363,25 +363,25 @@ export class Translator {
             },
             info_body_full_govt_actions: {
                 US: 
-                    'The events selected for the timeline are some of the most notable events related to air pollution in Ulaanbaatar, but are not a comprehensive list.',
+                    'The events selected for the timeline are some of the most notable events related to air pollution in Ulaanbaatar during this time period, but are not a comprehensive list.',
                 MN: 
-                    'Он цагийн хуваарьт шалгарсан арга хэмжээнүүд нь Улаанбаатар хотын агаарын бохирдолтой холбоотой онцлох үйл явдлууд боловч дэлгэрэнгүй жагсаалт биш юм.'
+                    'Он цагийн хуваарьт сонгосон арга хэмжээнүүд нь энэ хугацаанд Улаанбаатар хотын агаарын бохирдолтой холбоотой онцлох үйл явдлууд боловч дэлгэрэнгүй жагсаалт биш юм.'
             },
             
             
             
             thanks_to: {
                 US: 
-                    'Thanks very much to Public Lab Mongolia for supplying the low-cost sensor data, and to People In Need for installing and maintaing the sensors.',
+                    'Thanks very much to Public Lab Mongolia for supplying the low-cost sensor data, and to People In Need for installing and maintaing the low-cost sensors.',
                 MN: 
                     'Мэдрэгчийг хямд өртөгтэйгээр хангаж, мэдрэгчийг суурилуулж, ажиллуулж байгаа хүмүүст зориулагдсан Public Lab Mongolia-д маш их баярлалаа.'
             },
             who_am_i: {
                 US: 
-                    'The author of this visualization volunteers with Breathe Mongolia, a non-profit dedicated to ending air pollution in Mongolia. If you\'d like more information about the process of creating this visualization, please email hayley.garment@gmail.com.',
+                    'The author of this visualization volunteers with Breathe Mongolia, a non-profit dedicated to ending air pollution in Mongolia. If you\'d like more information about the visualization or would like to get in touch, please email hayley.garment@gmail.com.',
                 MN: 
                 
-                    'Энэхүү дүрслэлийн зохиогч нь Монгол орны агаарын бохирдлыг зогсоох зорилготой ашгийн төлөө бус Breathe Mongolia компанитай сайн дурын ажилтан юм. Хэрэв танд энэ дүрслэлийг бий болгох процессын талаар илүү дэлгэрэнгүй мэдээлэл авахыг хүсвэл hayley.garment@gmail.com хаягаар мэдэгдэнэ үү.'
+                    'Энэхүү дүрслэлийн зохиогч нь Монгол орны агаарын бохирдлыг зогсоох зорилготой ашгийн төлөө бус Breathe Mongolia компанитай сайн дурын ажилтан юм. Хэрэв та дүрслэлийн талаар илүү мэдээлэл авахыг хүсч байвал эсвэл холбоо барихыг хүсэж байвал hayley.garment@gmail.com хаягаар мэдэгдэнэ үү.'
             },
             none: {
                 US: 

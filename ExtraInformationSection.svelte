@@ -141,7 +141,9 @@
     }
 
     .bullet-body {
-        font-weight: lighter;
+        /* font-weight: lighter; */
+        font-size: 14px;
+        line-height: 22px;
         margin-left: 20px;
     }
 
