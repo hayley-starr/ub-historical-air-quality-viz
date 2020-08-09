@@ -43,7 +43,8 @@
 
 
     $: { // continuoslu check currentTime for where to place the scrubber handle
-        handleStyler && handleStyler.set('x', convertTimeToXPosition(currentTime));
+        handleStyler && handleStyler.set({'x': convertTimeToXPosition(currentTime),
+        'y': -60});
     }
 
     $: {
@@ -455,22 +456,17 @@
     .handle-hit-area {
         padding: 5px 20px;
         width: 5px;
-        height: 40px;
+        height: 155px;
         cursor: pointer;
+        transform: translateY(-60px);
     }
 
     .handle {
-        /* background: red;
-        width: 5px; 
-        height: 40px;
-        cursor: pointer; */
-
         background: red;
         width: 5px;
         opacity: 0.6;
         bottom: 0;
         height: 155px;
-        transform: translateY(-120px);
         cursor: pointer;
     }
 

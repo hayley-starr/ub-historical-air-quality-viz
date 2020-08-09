@@ -14143,7 +14143,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (245:8) {#each policyEvents as policyEvent, i}
+    // (246:8) {#each policyEvents as policyEvent, i}
     function create_each_block(ctx) {
     	let current;
 
@@ -14199,14 +14199,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(245:8) {#each policyEvents as policyEvent, i}",
+    		source: "(246:8) {#each policyEvents as policyEvent, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (284:12) {:else}
+    // (285:12) {:else}
     function create_else_block(ctx) {
     	let button;
     	let svg;
@@ -14228,26 +14228,26 @@ var app = (function () {
     			g1 = svg_element("g");
     			g0 = svg_element("g");
     			path = svg_element("path");
-    			add_location(style, file$3, 287, 24, 10248);
-    			add_location(defs, file$3, 286, 20, 10217);
+    			add_location(style, file$3, 288, 24, 10268);
+    			add_location(defs, file$3, 287, 20, 10237);
     			attr_dev(path, "class", "cls-play-1");
     			attr_dev(path, "d", "M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z");
     			attr_dev(path, "transform", "translate(0 -0.01)");
-    			add_location(path, file$3, 297, 24, 10665);
+    			add_location(path, file$3, 298, 24, 10685);
     			attr_dev(g0, "id", "Layer_1-2");
     			attr_dev(g0, "data-name", "Layer 1-2");
-    			add_location(g0, file$3, 296, 24, 10600);
+    			add_location(g0, file$3, 297, 24, 10620);
     			attr_dev(g1, "id", "Layer_2");
     			attr_dev(g1, "data-name", "Layer 2");
-    			add_location(g1, file$3, 295, 20, 10539);
+    			add_location(g1, file$3, 296, 20, 10559);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 113.57 127.1");
-    			attr_dev(svg, "class", "svelte-1ynafpb");
-    			add_location(svg, file$3, 285, 16, 10096);
-    			attr_dev(button, "class", "start-button play-button svelte-1ynafpb");
-    			add_location(button, file$3, 284, 12, 10006);
+    			attr_dev(svg, "class", "svelte-1pi6b69");
+    			add_location(svg, file$3, 286, 16, 10116);
+    			attr_dev(button, "class", "start-button play-button svelte-1pi6b69");
+    			add_location(button, file$3, 285, 12, 10026);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, button, anchor);
@@ -14272,14 +14272,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(284:12) {:else}",
+    		source: "(285:12) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (264:12) {#if appState.isUserRunning}
+    // (265:12) {#if appState.isUserRunning}
     function create_if_block$1(ctx) {
     	let button;
     	let svg;
@@ -14303,28 +14303,28 @@ var app = (function () {
     			g0 = svg_element("g");
     			path0 = svg_element("path");
     			path1 = svg_element("path");
-    			add_location(style, file$3, 267, 24, 9174);
-    			add_location(defs, file$3, 266, 20, 9143);
+    			add_location(style, file$3, 268, 24, 9194);
+    			add_location(defs, file$3, 267, 20, 9163);
     			attr_dev(path0, "class", "cls-pause-1");
     			attr_dev(path0, "d", "M10.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,10.5.5Z");
-    			add_location(path0, file$3, 277, 24, 9597);
+    			add_location(path0, file$3, 278, 24, 9617);
     			attr_dev(path1, "class", "cls-pause-1");
     			attr_dev(path1, "d", "M60.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,60.5.5Z");
-    			add_location(path1, file$3, 278, 24, 9748);
+    			add_location(path1, file$3, 279, 24, 9768);
     			attr_dev(g0, "id", "Layer_1-2");
     			attr_dev(g0, "data-name", "Layer 1-2");
-    			add_location(g0, file$3, 276, 24, 9532);
+    			add_location(g0, file$3, 277, 24, 9552);
     			attr_dev(g1, "id", "Layer_2");
     			attr_dev(g1, "data-name", "Layer 2");
-    			add_location(g1, file$3, 275, 20, 9471);
+    			add_location(g1, file$3, 276, 20, 9491);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 71 135");
-    			attr_dev(svg, "class", "svelte-1ynafpb");
-    			add_location(svg, file$3, 265, 16, 9028);
-    			attr_dev(button, "class", "pause-button play-button svelte-1ynafpb");
-    			add_location(button, file$3, 264, 12, 8938);
+    			attr_dev(svg, "class", "svelte-1pi6b69");
+    			add_location(svg, file$3, 266, 16, 9048);
+    			attr_dev(button, "class", "pause-button play-button svelte-1pi6b69");
+    			add_location(button, file$3, 265, 12, 8958);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, button, anchor);
@@ -14350,7 +14350,7 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(264:12) {#if appState.isUserRunning}",
+    		source: "(265:12) {#if appState.isUserRunning}",
     		ctx
     	});
 
@@ -14455,50 +14455,50 @@ var app = (function () {
     			t12 = space();
     			div9 = element("div");
     			t13 = text(t13_value);
-    			attr_dev(div0, "class", "pm25-chart-title svelte-1ynafpb");
-    			add_location(div0, file$3, 232, 4, 7676);
-    			attr_dev(div1, "class", "pm25-chart svelte-1ynafpb");
+    			attr_dev(div0, "class", "pm25-chart-title svelte-1pi6b69");
+    			add_location(div0, file$3, 233, 4, 7696);
+    			attr_dev(div1, "class", "pm25-chart svelte-1pi6b69");
     			attr_dev(div1, "id", "pm25-timeseries");
-    			add_location(div1, file$3, 233, 4, 7771);
-    			attr_dev(div2, "class", "range svelte-1ynafpb");
-    			add_location(div2, file$3, 237, 8, 7905);
-    			attr_dev(div3, "class", "handle svelte-1ynafpb");
-    			add_location(div3, file$3, 240, 16, 8028);
-    			attr_dev(div4, "class", "handle-hit-area svelte-1ynafpb");
-    			add_location(div4, file$3, 239, 12, 7982);
-    			attr_dev(div5, "class", "handle-container svelte-1ynafpb");
-    			add_location(div5, file$3, 238, 8, 7939);
-    			attr_dev(div6, "class", "slider svelte-1ynafpb");
+    			add_location(div1, file$3, 234, 4, 7791);
+    			attr_dev(div2, "class", "range svelte-1pi6b69");
+    			add_location(div2, file$3, 238, 8, 7925);
+    			attr_dev(div3, "class", "handle svelte-1pi6b69");
+    			add_location(div3, file$3, 241, 16, 8048);
+    			attr_dev(div4, "class", "handle-hit-area svelte-1pi6b69");
+    			add_location(div4, file$3, 240, 12, 8002);
+    			attr_dev(div5, "class", "handle-container svelte-1pi6b69");
+    			add_location(div5, file$3, 239, 8, 7959);
+    			attr_dev(div6, "class", "slider svelte-1pi6b69");
     			attr_dev(div6, "id", "slider");
-    			add_location(div6, file$3, 236, 4, 7833);
+    			add_location(div6, file$3, 237, 4, 7853);
 
     			attr_dev(button0, "class", button0_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 0.5
     			? "speed-button-selected"
-    			: "")) + " svelte-1ynafpb"));
+    			: "")) + " svelte-1pi6b69"));
 
-    			add_location(button0, file$3, 304, 16, 11035);
+    			add_location(button0, file$3, 305, 16, 11055);
 
     			attr_dev(button1, "class", button1_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 1
     			? "speed-button-selected"
-    			: "")) + " svelte-1ynafpb"));
+    			: "")) + " svelte-1pi6b69"));
 
-    			add_location(button1, file$3, 305, 16, 11211);
+    			add_location(button1, file$3, 306, 16, 11231);
 
     			attr_dev(button2, "class", button2_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 2
     			? "speed-button-selected"
-    			: "")) + " svelte-1ynafpb"));
+    			: "")) + " svelte-1pi6b69"));
 
-    			add_location(button2, file$3, 306, 16, 11381);
-    			attr_dev(div7, "class", "speed-buttons-container svelte-1ynafpb");
-    			add_location(div7, file$3, 303, 12, 10981);
-    			attr_dev(div8, "class", "control-button-container svelte-1ynafpb");
-    			add_location(div8, file$3, 262, 8, 8845);
-    			attr_dev(div9, "class", "current-time-display svelte-1ynafpb");
-    			add_location(div9, file$3, 309, 9, 11579);
-    			attr_dev(div10, "class", "scrubber-controls svelte-1ynafpb");
-    			add_location(div10, file$3, 261, 4, 8805);
-    			attr_dev(div11, "class", "scrubber svelte-1ynafpb");
-    			add_location(div11, file$3, 231, 0, 7649);
+    			add_location(button2, file$3, 307, 16, 11401);
+    			attr_dev(div7, "class", "speed-buttons-container svelte-1pi6b69");
+    			add_location(div7, file$3, 304, 12, 11001);
+    			attr_dev(div8, "class", "control-button-container svelte-1pi6b69");
+    			add_location(div8, file$3, 263, 8, 8865);
+    			attr_dev(div9, "class", "current-time-display svelte-1pi6b69");
+    			add_location(div9, file$3, 310, 9, 11599);
+    			attr_dev(div10, "class", "scrubber-controls svelte-1pi6b69");
+    			add_location(div10, file$3, 262, 4, 8825);
+    			attr_dev(div11, "class", "scrubber svelte-1pi6b69");
+    			add_location(div11, file$3, 232, 0, 7669);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -14594,19 +14594,19 @@ var app = (function () {
 
     			if (!current || dirty[0] & /*currPlayRate*/ 512 && button0_class_value !== (button0_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 0.5
     			? "speed-button-selected"
-    			: "")) + " svelte-1ynafpb"))) {
+    			: "")) + " svelte-1pi6b69"))) {
     				attr_dev(button0, "class", button0_class_value);
     			}
 
     			if (!current || dirty[0] & /*currPlayRate*/ 512 && button1_class_value !== (button1_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 1
     			? "speed-button-selected"
-    			: "")) + " svelte-1ynafpb"))) {
+    			: "")) + " svelte-1pi6b69"))) {
     				attr_dev(button1, "class", button1_class_value);
     			}
 
     			if (!current || dirty[0] & /*currPlayRate*/ 512 && button2_class_value !== (button2_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 2
     			? "speed-button-selected"
-    			: "")) + " svelte-1ynafpb"))) {
+    			: "")) + " svelte-1pi6b69"))) {
     				attr_dev(button2, "class", button2_class_value);
     			}
 
@@ -14964,7 +14964,10 @@ var app = (function () {
     		if ($$self.$$.dirty[0] & /*handleStyler, currentTime*/ 536870914) {
     			 {
     				// continuoslu check currentTime for where to place the scrubber handle
-    				handleStyler && handleStyler.set("x", convertTimeToXPosition(currentTime));
+    				handleStyler && handleStyler.set({
+    					"x": convertTimeToXPosition(currentTime),
+    					"y": -60
+    				});
     			}
     		}
 
