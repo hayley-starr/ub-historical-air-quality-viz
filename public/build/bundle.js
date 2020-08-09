@@ -40,6 +40,9 @@ var app = (function () {
     function null_to_empty(value) {
         return value == null ? '' : value;
     }
+    function action_destroyer(action_result) {
+        return action_result && is_function(action_result.destroy) ? action_result.destroy : noop;
+    }
 
     function append(target, node) {
         target.appendChild(node);
@@ -12450,32 +12453,1712 @@ var app = (function () {
       return line;
     }
 
+    var collectionUtils = createCommonjsModule(function (module) {
+
+    var utils = module.exports = {};
+
+    /**
+     * Loops through the collection and calls the callback for each element. if the callback returns truthy, the loop is broken and returns the same value.
+     * @public
+     * @param {*} collection The collection to loop through. Needs to have a length property set and have indices set from 0 to length - 1.
+     * @param {function} callback The callback to be called for each element. The element will be given as a parameter to the callback. If this callback returns truthy, the loop is broken and the same value is returned.
+     * @returns {*} The value that a callback has returned (if truthy). Otherwise nothing.
+     */
+    utils.forEach = function(collection, callback) {
+        for(var i = 0; i < collection.length; i++) {
+            var result = callback(collection[i]);
+            if(result) {
+                return result;
+            }
+        }
+    };
+    });
+
+    var elementUtils = function(options) {
+        var getState = options.stateHandler.getState;
+
+        /**
+         * Tells if the element has been made detectable and ready to be listened for resize events.
+         * @public
+         * @param {element} The element to check.
+         * @returns {boolean} True or false depending on if the element is detectable or not.
+         */
+        function isDetectable(element) {
+            var state = getState(element);
+            return state && !!state.isDetectable;
+        }
+
+        /**
+         * Marks the element that it has been made detectable and ready to be listened for resize events.
+         * @public
+         * @param {element} The element to mark.
+         */
+        function markAsDetectable(element) {
+            getState(element).isDetectable = true;
+        }
+
+        /**
+         * Tells if the element is busy or not.
+         * @public
+         * @param {element} The element to check.
+         * @returns {boolean} True or false depending on if the element is busy or not.
+         */
+        function isBusy(element) {
+            return !!getState(element).busy;
+        }
+
+        /**
+         * Marks the object is busy and should not be made detectable.
+         * @public
+         * @param {element} element The element to mark.
+         * @param {boolean} busy If the element is busy or not.
+         */
+        function markBusy(element, busy) {
+            getState(element).busy = !!busy;
+        }
+
+        return {
+            isDetectable: isDetectable,
+            markAsDetectable: markAsDetectable,
+            isBusy: isBusy,
+            markBusy: markBusy
+        };
+    };
+
+    var listenerHandler = function(idHandler) {
+        var eventListeners = {};
+
+        /**
+         * Gets all listeners for the given element.
+         * @public
+         * @param {element} element The element to get all listeners for.
+         * @returns All listeners for the given element.
+         */
+        function getListeners(element) {
+            var id = idHandler.get(element);
+
+            if (id === undefined) {
+                return [];
+            }
+
+            return eventListeners[id] || [];
+        }
+
+        /**
+         * Stores the given listener for the given element. Will not actually add the listener to the element.
+         * @public
+         * @param {element} element The element that should have the listener added.
+         * @param {function} listener The callback that the element has added.
+         */
+        function addListener(element, listener) {
+            var id = idHandler.get(element);
+
+            if(!eventListeners[id]) {
+                eventListeners[id] = [];
+            }
+
+            eventListeners[id].push(listener);
+        }
+
+        function removeListener(element, listener) {
+            var listeners = getListeners(element);
+            for (var i = 0, len = listeners.length; i < len; ++i) {
+                if (listeners[i] === listener) {
+                  listeners.splice(i, 1);
+                  break;
+                }
+            }
+        }
+
+        function removeAllListeners(element) {
+          var listeners = getListeners(element);
+          if (!listeners) { return; }
+          listeners.length = 0;
+        }
+
+        return {
+            get: getListeners,
+            add: addListener,
+            removeListener: removeListener,
+            removeAllListeners: removeAllListeners
+        };
+    };
+
+    var idGenerator = function() {
+        var idCount = 1;
+
+        /**
+         * Generates a new unique id in the context.
+         * @public
+         * @returns {number} A unique id in the context.
+         */
+        function generate() {
+            return idCount++;
+        }
+
+        return {
+            generate: generate
+        };
+    };
+
+    var idHandler = function(options) {
+        var idGenerator     = options.idGenerator;
+        var getState        = options.stateHandler.getState;
+
+        /**
+         * Gets the resize detector id of the element.
+         * @public
+         * @param {element} element The target element to get the id of.
+         * @returns {string|number|null} The id of the element. Null if it has no id.
+         */
+        function getId(element) {
+            var state = getState(element);
+
+            if (state && state.id !== undefined) {
+                return state.id;
+            }
+
+            return null;
+        }
+
+        /**
+         * Sets the resize detector id of the element. Requires the element to have a resize detector state initialized.
+         * @public
+         * @param {element} element The target element to set the id of.
+         * @returns {string|number|null} The id of the element.
+         */
+        function setId(element) {
+            var state = getState(element);
+
+            if (!state) {
+                throw new Error("setId required the element to have a resize detection state.");
+            }
+
+            var id = idGenerator.generate();
+
+            state.id = id;
+
+            return id;
+        }
+
+        return {
+            get: getId,
+            set: setId
+        };
+    };
+
+    /* global console: false */
+
+    /**
+     * Reporter that handles the reporting of logs, warnings and errors.
+     * @public
+     * @param {boolean} quiet Tells if the reporter should be quiet or not.
+     */
+    var reporter = function(quiet) {
+        function noop() {
+            //Does nothing.
+        }
+
+        var reporter = {
+            log: noop,
+            warn: noop,
+            error: noop
+        };
+
+        if(!quiet && window.console) {
+            var attachFunction = function(reporter, name) {
+                //The proxy is needed to be able to call the method with the console context,
+                //since we cannot use bind.
+                reporter[name] = function reporterProxy() {
+                    var f = console[name];
+                    if (f.apply) { //IE9 does not support console.log.apply :)
+                        f.apply(console, arguments);
+                    } else {
+                        for (var i = 0; i < arguments.length; i++) {
+                            f(arguments[i]);
+                        }
+                    }
+                };
+            };
+
+            attachFunction(reporter, "log");
+            attachFunction(reporter, "warn");
+            attachFunction(reporter, "error");
+        }
+
+        return reporter;
+    };
+
+    var browserDetector = createCommonjsModule(function (module) {
+
+    var detector = module.exports = {};
+
+    detector.isIE = function(version) {
+        function isAnyIeVersion() {
+            var agent = navigator.userAgent.toLowerCase();
+            return agent.indexOf("msie") !== -1 || agent.indexOf("trident") !== -1 || agent.indexOf(" edge/") !== -1;
+        }
+
+        if(!isAnyIeVersion()) {
+            return false;
+        }
+
+        if(!version) {
+            return true;
+        }
+
+        //Shamelessly stolen from https://gist.github.com/padolsey/527683
+        var ieVersion = (function(){
+            var undef,
+                v = 3,
+                div = document.createElement("div"),
+                all = div.getElementsByTagName("i");
+
+            do {
+                div.innerHTML = "<!--[if gt IE " + (++v) + "]><i></i><![endif]-->";
+            }
+            while (all[0]);
+
+            return v > 4 ? v : undef;
+        }());
+
+        return version === ieVersion;
+    };
+
+    detector.isLegacyOpera = function() {
+        return !!window.opera;
+    };
+    });
+
+    var utils_1 = createCommonjsModule(function (module) {
+
+    var utils = module.exports = {};
+
+    utils.getOption = getOption;
+
+    function getOption(options, name, defaultValue) {
+        var value = options[name];
+
+        if((value === undefined || value === null) && defaultValue !== undefined) {
+            return defaultValue;
+        }
+
+        return value;
+    }
+    });
+
+    var batchProcessor = function batchProcessorMaker(options) {
+        options             = options || {};
+        var reporter        = options.reporter;
+        var asyncProcess    = utils_1.getOption(options, "async", true);
+        var autoProcess     = utils_1.getOption(options, "auto", true);
+
+        if(autoProcess && !asyncProcess) {
+            reporter && reporter.warn("Invalid options combination. auto=true and async=false is invalid. Setting async=true.");
+            asyncProcess = true;
+        }
+
+        var batch = Batch();
+        var asyncFrameHandler;
+        var isProcessing = false;
+
+        function addFunction(level, fn) {
+            if(!isProcessing && autoProcess && asyncProcess && batch.size() === 0) {
+                // Since this is async, it is guaranteed to be executed after that the fn is added to the batch.
+                // This needs to be done before, since we're checking the size of the batch to be 0.
+                processBatchAsync();
+            }
+
+            batch.add(level, fn);
+        }
+
+        function processBatch() {
+            // Save the current batch, and create a new batch so that incoming functions are not added into the currently processing batch.
+            // Continue processing until the top-level batch is empty (functions may be added to the new batch while processing, and so on).
+            isProcessing = true;
+            while (batch.size()) {
+                var processingBatch = batch;
+                batch = Batch();
+                processingBatch.process();
+            }
+            isProcessing = false;
+        }
+
+        function forceProcessBatch(localAsyncProcess) {
+            if (isProcessing) {
+                return;
+            }
+
+            if(localAsyncProcess === undefined) {
+                localAsyncProcess = asyncProcess;
+            }
+
+            if(asyncFrameHandler) {
+                cancelFrame(asyncFrameHandler);
+                asyncFrameHandler = null;
+            }
+
+            if(localAsyncProcess) {
+                processBatchAsync();
+            } else {
+                processBatch();
+            }
+        }
+
+        function processBatchAsync() {
+            asyncFrameHandler = requestFrame(processBatch);
+        }
+
+        function cancelFrame(listener) {
+            // var cancel = window.cancelAnimationFrame || window.mozCancelAnimationFrame || window.webkitCancelAnimationFrame || window.clearTimeout;
+            var cancel = clearTimeout;
+            return cancel(listener);
+        }
+
+        function requestFrame(callback) {
+            // var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || function(fn) { return window.setTimeout(fn, 20); };
+            var raf = function(fn) { return setTimeout(fn, 0); };
+            return raf(callback);
+        }
+
+        return {
+            add: addFunction,
+            force: forceProcessBatch
+        };
+    };
+
+    function Batch() {
+        var batch       = {};
+        var size        = 0;
+        var topLevel    = 0;
+        var bottomLevel = 0;
+
+        function add(level, fn) {
+            if(!fn) {
+                fn = level;
+                level = 0;
+            }
+
+            if(level > topLevel) {
+                topLevel = level;
+            } else if(level < bottomLevel) {
+                bottomLevel = level;
+            }
+
+            if(!batch[level]) {
+                batch[level] = [];
+            }
+
+            batch[level].push(fn);
+            size++;
+        }
+
+        function process() {
+            for(var level = bottomLevel; level <= topLevel; level++) {
+                var fns = batch[level];
+
+                for(var i = 0; i < fns.length; i++) {
+                    var fn = fns[i];
+                    fn();
+                }
+            }
+        }
+
+        function getSize() {
+            return size;
+        }
+
+        return {
+            add: add,
+            process: process,
+            size: getSize
+        };
+    }
+
+    var prop = "_erd";
+
+    function initState(element) {
+        element[prop] = {};
+        return getState(element);
+    }
+
+    function getState(element) {
+        return element[prop];
+    }
+
+    function cleanState(element) {
+        delete element[prop];
+    }
+
+    var stateHandler = {
+        initState: initState,
+        getState: getState,
+        cleanState: cleanState
+    };
+
+    var object$1 = function(options) {
+        options             = options || {};
+        var reporter        = options.reporter;
+        var batchProcessor  = options.batchProcessor;
+        var getState        = options.stateHandler.getState;
+
+        if(!reporter) {
+            throw new Error("Missing required dependency: reporter.");
+        }
+
+        /**
+         * Adds a resize event listener to the element.
+         * @public
+         * @param {element} element The element that should have the listener added.
+         * @param {function} listener The listener callback to be called for each resize event of the element. The element will be given as a parameter to the listener callback.
+         */
+        function addListener(element, listener) {
+            function listenerProxy() {
+                listener(element);
+            }
+
+            if(browserDetector.isIE(8)) {
+                //IE 8 does not support object, but supports the resize event directly on elements.
+                getState(element).object = {
+                    proxy: listenerProxy
+                };
+                element.attachEvent("onresize", listenerProxy);
+            } else {
+                var object = getObject(element);
+
+                if(!object) {
+                    throw new Error("Element is not detectable by this strategy.");
+                }
+
+                object.contentDocument.defaultView.addEventListener("resize", listenerProxy);
+            }
+        }
+
+        function buildCssTextString(rules) {
+            var seperator = options.important ? " !important; " : "; ";
+
+            return (rules.join(seperator) + seperator).trim();
+        }
+
+        /**
+         * Makes an element detectable and ready to be listened for resize events. Will call the callback when the element is ready to be listened for resize changes.
+         * @private
+         * @param {object} options Optional options object.
+         * @param {element} element The element to make detectable
+         * @param {function} callback The callback to be called when the element is ready to be listened for resize changes. Will be called with the element as first parameter.
+         */
+        function makeDetectable(options, element, callback) {
+            if (!callback) {
+                callback = element;
+                element = options;
+                options = null;
+            }
+
+            options = options || {};
+            var debug = options.debug;
+
+            function injectObject(element, callback) {
+                var OBJECT_STYLE = buildCssTextString(["display: block", "position: absolute", "top: 0", "left: 0", "width: 100%", "height: 100%", "border: none", "padding: 0", "margin: 0", "opacity: 0", "z-index: -1000", "pointer-events: none"]);
+
+                //The target element needs to be positioned (everything except static) so the absolute positioned object will be positioned relative to the target element.
+
+                // Position altering may be performed directly or on object load, depending on if style resolution is possible directly or not.
+                var positionCheckPerformed = false;
+
+                // The element may not yet be attached to the DOM, and therefore the style object may be empty in some browsers.
+                // Since the style object is a reference, it will be updated as soon as the element is attached to the DOM.
+                var style = window.getComputedStyle(element);
+                var width = element.offsetWidth;
+                var height = element.offsetHeight;
+
+                getState(element).startSize = {
+                    width: width,
+                    height: height
+                };
+
+                function mutateDom() {
+                    function alterPositionStyles() {
+                        if(style.position === "static") {
+                            element.style.setProperty("position", "relative", options.important ? "important" : "");
+
+                            var removeRelativeStyles = function(reporter, element, style, property) {
+                                function getNumericalValue(value) {
+                                    return value.replace(/[^-\d\.]/g, "");
+                                }
+
+                                var value = style[property];
+
+                                if(value !== "auto" && getNumericalValue(value) !== "0") {
+                                    reporter.warn("An element that is positioned static has style." + property + "=" + value + " which is ignored due to the static positioning. The element will need to be positioned relative, so the style." + property + " will be set to 0. Element: ", element);
+                                    element.style.setProperty(property, "0", options.important ? "important" : "");
+                                }
+                            };
+
+                            //Check so that there are no accidental styles that will make the element styled differently now that is is relative.
+                            //If there are any, set them to 0 (this should be okay with the user since the style properties did nothing before [since the element was positioned static] anyway).
+                            removeRelativeStyles(reporter, element, style, "top");
+                            removeRelativeStyles(reporter, element, style, "right");
+                            removeRelativeStyles(reporter, element, style, "bottom");
+                            removeRelativeStyles(reporter, element, style, "left");
+                        }
+                    }
+
+                    function onObjectLoad() {
+                        // The object has been loaded, which means that the element now is guaranteed to be attached to the DOM.
+                        if (!positionCheckPerformed) {
+                            alterPositionStyles();
+                        }
+
+                        /*jshint validthis: true */
+
+                        function getDocument(element, callback) {
+                            //Opera 12 seem to call the object.onload before the actual document has been created.
+                            //So if it is not present, poll it with an timeout until it is present.
+                            //TODO: Could maybe be handled better with object.onreadystatechange or similar.
+                            if(!element.contentDocument) {
+                                var state = getState(element);
+                                if (state.checkForObjectDocumentTimeoutId) {
+                                    window.clearTimeout(state.checkForObjectDocumentTimeoutId);
+                                }
+                                state.checkForObjectDocumentTimeoutId = setTimeout(function checkForObjectDocument() {
+                                    state.checkForObjectDocumentTimeoutId = 0;
+                                    getDocument(element, callback);
+                                }, 100);
+
+                                return;
+                            }
+
+                            callback(element.contentDocument);
+                        }
+
+                        //Mutating the object element here seems to fire another load event.
+                        //Mutating the inner document of the object element is fine though.
+                        var objectElement = this;
+
+                        //Create the style element to be added to the object.
+                        getDocument(objectElement, function onObjectDocumentReady(objectDocument) {
+                            //Notify that the element is ready to be listened to.
+                            callback(element);
+                        });
+                    }
+
+                    // The element may be detached from the DOM, and some browsers does not support style resolving of detached elements.
+                    // The alterPositionStyles needs to be delayed until we know the element has been attached to the DOM (which we are sure of when the onObjectLoad has been fired), if style resolution is not possible.
+                    if (style.position !== "") {
+                        alterPositionStyles();
+                        positionCheckPerformed = true;
+                    }
+
+                    //Add an object element as a child to the target element that will be listened to for resize events.
+                    var object = document.createElement("object");
+                    object.style.cssText = OBJECT_STYLE;
+                    object.tabIndex = -1;
+                    object.type = "text/html";
+                    object.setAttribute("aria-hidden", "true");
+                    object.onload = onObjectLoad;
+
+                    //Safari: This must occur before adding the object to the DOM.
+                    //IE: Does not like that this happens before, even if it is also added after.
+                    if(!browserDetector.isIE()) {
+                        object.data = "about:blank";
+                    }
+
+                    if (!getState(element)) {
+                        // The element has been uninstalled before the actual loading happened.
+                        return;
+                    }
+
+                    element.appendChild(object);
+                    getState(element).object = object;
+
+                    //IE: This must occur after adding the object to the DOM.
+                    if(browserDetector.isIE()) {
+                        object.data = "about:blank";
+                    }
+                }
+
+                if(batchProcessor) {
+                    batchProcessor.add(mutateDom);
+                } else {
+                    mutateDom();
+                }
+            }
+
+            if(browserDetector.isIE(8)) {
+                //IE 8 does not support objects properly. Luckily they do support the resize event.
+                //So do not inject the object and notify that the element is already ready to be listened to.
+                //The event handler for the resize event is attached in the utils.addListener instead.
+                callback(element);
+            } else {
+                injectObject(element, callback);
+            }
+        }
+
+        /**
+         * Returns the child object of the target element.
+         * @private
+         * @param {element} element The target element.
+         * @returns The object element of the target.
+         */
+        function getObject(element) {
+            return getState(element).object;
+        }
+
+        function uninstall(element) {
+            if (!getState(element)) {
+                return;
+            }
+
+            var object = getObject(element);
+
+            if (!object) {
+                return;
+            }
+
+            if (browserDetector.isIE(8)) {
+                element.detachEvent("onresize", object.proxy);
+            } else {
+                element.removeChild(object);
+            }
+
+            if (getState(element).checkForObjectDocumentTimeoutId) {
+                window.clearTimeout(getState(element).checkForObjectDocumentTimeoutId);
+            }
+
+            delete getState(element).object;
+        }
+
+        return {
+            makeDetectable: makeDetectable,
+            addListener: addListener,
+            uninstall: uninstall
+        };
+    };
+
+    var forEach = collectionUtils.forEach;
+
+    var scroll = function(options) {
+        options             = options || {};
+        var reporter        = options.reporter;
+        var batchProcessor  = options.batchProcessor;
+        var getState        = options.stateHandler.getState;
+        var hasState        = options.stateHandler.hasState;
+        var idHandler       = options.idHandler;
+
+        if (!batchProcessor) {
+            throw new Error("Missing required dependency: batchProcessor");
+        }
+
+        if (!reporter) {
+            throw new Error("Missing required dependency: reporter.");
+        }
+
+        //TODO: Could this perhaps be done at installation time?
+        var scrollbarSizes = getScrollbarSizes();
+
+        var styleId = "erd_scroll_detection_scrollbar_style";
+        var detectionContainerClass = "erd_scroll_detection_container";
+
+        function initDocument(targetDocument) {
+            // Inject the scrollbar styling that prevents them from appearing sometimes in Chrome.
+            // The injected container needs to have a class, so that it may be styled with CSS (pseudo elements).
+            injectScrollStyle(targetDocument, styleId, detectionContainerClass);
+        }
+
+        initDocument(window.document);
+
+        function buildCssTextString(rules) {
+            var seperator = options.important ? " !important; " : "; ";
+
+            return (rules.join(seperator) + seperator).trim();
+        }
+
+        function getScrollbarSizes() {
+            var width = 500;
+            var height = 500;
+
+            var child = document.createElement("div");
+            child.style.cssText = buildCssTextString(["position: absolute", "width: " + width*2 + "px", "height: " + height*2 + "px", "visibility: hidden", "margin: 0", "padding: 0"]);
+
+            var container = document.createElement("div");
+            container.style.cssText = buildCssTextString(["position: absolute", "width: " + width + "px", "height: " + height + "px", "overflow: scroll", "visibility: none", "top: " + -width*3 + "px", "left: " + -height*3 + "px", "visibility: hidden", "margin: 0", "padding: 0"]);
+
+            container.appendChild(child);
+
+            document.body.insertBefore(container, document.body.firstChild);
+
+            var widthSize = width - container.clientWidth;
+            var heightSize = height - container.clientHeight;
+
+            document.body.removeChild(container);
+
+            return {
+                width: widthSize,
+                height: heightSize
+            };
+        }
+
+        function injectScrollStyle(targetDocument, styleId, containerClass) {
+            function injectStyle(style, method) {
+                method = method || function (element) {
+                    targetDocument.head.appendChild(element);
+                };
+
+                var styleElement = targetDocument.createElement("style");
+                styleElement.innerHTML = style;
+                styleElement.id = styleId;
+                method(styleElement);
+                return styleElement;
+            }
+
+            if (!targetDocument.getElementById(styleId)) {
+                var containerAnimationClass = containerClass + "_animation";
+                var containerAnimationActiveClass = containerClass + "_animation_active";
+                var style = "/* Created by the element-resize-detector library. */\n";
+                style += "." + containerClass + " > div::-webkit-scrollbar { " + buildCssTextString(["display: none"]) + " }\n\n";
+                style += "." + containerAnimationActiveClass + " { " + buildCssTextString(["-webkit-animation-duration: 0.1s", "animation-duration: 0.1s", "-webkit-animation-name: " + containerAnimationClass, "animation-name: " + containerAnimationClass]) + " }\n";
+                style += "@-webkit-keyframes " + containerAnimationClass +  " { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }\n";
+                style += "@keyframes " + containerAnimationClass +          " { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }";
+                injectStyle(style);
+            }
+        }
+
+        function addAnimationClass(element) {
+            element.className += " " + detectionContainerClass + "_animation_active";
+        }
+
+        function addEvent(el, name, cb) {
+            if (el.addEventListener) {
+                el.addEventListener(name, cb);
+            } else if(el.attachEvent) {
+                el.attachEvent("on" + name, cb);
+            } else {
+                return reporter.error("[scroll] Don't know how to add event listeners.");
+            }
+        }
+
+        function removeEvent(el, name, cb) {
+            if (el.removeEventListener) {
+                el.removeEventListener(name, cb);
+            } else if(el.detachEvent) {
+                el.detachEvent("on" + name, cb);
+            } else {
+                return reporter.error("[scroll] Don't know how to remove event listeners.");
+            }
+        }
+
+        function getExpandElement(element) {
+            return getState(element).container.childNodes[0].childNodes[0].childNodes[0];
+        }
+
+        function getShrinkElement(element) {
+            return getState(element).container.childNodes[0].childNodes[0].childNodes[1];
+        }
+
+        /**
+         * Adds a resize event listener to the element.
+         * @public
+         * @param {element} element The element that should have the listener added.
+         * @param {function} listener The listener callback to be called for each resize event of the element. The element will be given as a parameter to the listener callback.
+         */
+        function addListener(element, listener) {
+            var listeners = getState(element).listeners;
+
+            if (!listeners.push) {
+                throw new Error("Cannot add listener to an element that is not detectable.");
+            }
+
+            getState(element).listeners.push(listener);
+        }
+
+        /**
+         * Makes an element detectable and ready to be listened for resize events. Will call the callback when the element is ready to be listened for resize changes.
+         * @private
+         * @param {object} options Optional options object.
+         * @param {element} element The element to make detectable
+         * @param {function} callback The callback to be called when the element is ready to be listened for resize changes. Will be called with the element as first parameter.
+         */
+        function makeDetectable(options, element, callback) {
+            if (!callback) {
+                callback = element;
+                element = options;
+                options = null;
+            }
+
+            options = options || {};
+
+            function debug() {
+                if (options.debug) {
+                    var args = Array.prototype.slice.call(arguments);
+                    args.unshift(idHandler.get(element), "Scroll: ");
+                    if (reporter.log.apply) {
+                        reporter.log.apply(null, args);
+                    } else {
+                        for (var i = 0; i < args.length; i++) {
+                            reporter.log(args[i]);
+                        }
+                    }
+                }
+            }
+
+            function isDetached(element) {
+                function isInDocument(element) {
+                    return element === element.ownerDocument.body || element.ownerDocument.body.contains(element);
+                }
+
+                if (!isInDocument(element)) {
+                    return true;
+                }
+
+                // FireFox returns null style in hidden iframes. See https://github.com/wnr/element-resize-detector/issues/68 and https://bugzilla.mozilla.org/show_bug.cgi?id=795520
+                if (window.getComputedStyle(element) === null) {
+                    return true;
+                }
+
+                return false;
+            }
+
+            function isUnrendered(element) {
+                // Check the absolute positioned container since the top level container is display: inline.
+                var container = getState(element).container.childNodes[0];
+                var style = window.getComputedStyle(container);
+                return !style.width || style.width.indexOf("px") === -1; //Can only compute pixel value when rendered.
+            }
+
+            function getStyle() {
+                // Some browsers only force layouts when actually reading the style properties of the style object, so make sure that they are all read here,
+                // so that the user of the function can be sure that it will perform the layout here, instead of later (important for batching).
+                var elementStyle            = window.getComputedStyle(element);
+                var style                   = {};
+                style.position              = elementStyle.position;
+                style.width                 = element.offsetWidth;
+                style.height                = element.offsetHeight;
+                style.top                   = elementStyle.top;
+                style.right                 = elementStyle.right;
+                style.bottom                = elementStyle.bottom;
+                style.left                  = elementStyle.left;
+                style.widthCSS              = elementStyle.width;
+                style.heightCSS             = elementStyle.height;
+                return style;
+            }
+
+            function storeStartSize() {
+                var style = getStyle();
+                getState(element).startSize = {
+                    width: style.width,
+                    height: style.height
+                };
+                debug("Element start size", getState(element).startSize);
+            }
+
+            function initListeners() {
+                getState(element).listeners = [];
+            }
+
+            function storeStyle() {
+                debug("storeStyle invoked.");
+                if (!getState(element)) {
+                    debug("Aborting because element has been uninstalled");
+                    return;
+                }
+
+                var style = getStyle();
+                getState(element).style = style;
+            }
+
+            function storeCurrentSize(element, width, height) {
+                getState(element).lastWidth = width;
+                getState(element).lastHeight  = height;
+            }
+
+            function getExpandChildElement(element) {
+                return getExpandElement(element).childNodes[0];
+            }
+
+            function getWidthOffset() {
+                return 2 * scrollbarSizes.width + 1;
+            }
+
+            function getHeightOffset() {
+                return 2 * scrollbarSizes.height + 1;
+            }
+
+            function getExpandWidth(width) {
+                return width + 10 + getWidthOffset();
+            }
+
+            function getExpandHeight(height) {
+                return height + 10 + getHeightOffset();
+            }
+
+            function getShrinkWidth(width) {
+                return width * 2 + getWidthOffset();
+            }
+
+            function getShrinkHeight(height) {
+                return height * 2 + getHeightOffset();
+            }
+
+            function positionScrollbars(element, width, height) {
+                var expand          = getExpandElement(element);
+                var shrink          = getShrinkElement(element);
+                var expandWidth     = getExpandWidth(width);
+                var expandHeight    = getExpandHeight(height);
+                var shrinkWidth     = getShrinkWidth(width);
+                var shrinkHeight    = getShrinkHeight(height);
+                expand.scrollLeft   = expandWidth;
+                expand.scrollTop    = expandHeight;
+                shrink.scrollLeft   = shrinkWidth;
+                shrink.scrollTop    = shrinkHeight;
+            }
+
+            function injectContainerElement() {
+                var container = getState(element).container;
+
+                if (!container) {
+                    container                   = document.createElement("div");
+                    container.className         = detectionContainerClass;
+                    container.style.cssText     = buildCssTextString(["visibility: hidden", "display: inline", "width: 0px", "height: 0px", "z-index: -1", "overflow: hidden", "margin: 0", "padding: 0"]);
+                    getState(element).container = container;
+                    addAnimationClass(container);
+                    element.appendChild(container);
+
+                    var onAnimationStart = function () {
+                        getState(element).onRendered && getState(element).onRendered();
+                    };
+
+                    addEvent(container, "animationstart", onAnimationStart);
+
+                    // Store the event handler here so that they may be removed when uninstall is called.
+                    // See uninstall function for an explanation why it is needed.
+                    getState(element).onAnimationStart = onAnimationStart;
+                }
+
+                return container;
+            }
+
+            function injectScrollElements() {
+                function alterPositionStyles() {
+                    var style = getState(element).style;
+
+                    if(style.position === "static") {
+                        element.style.setProperty("position", "relative",options.important ? "important" : "");
+
+                        var removeRelativeStyles = function(reporter, element, style, property) {
+                            function getNumericalValue(value) {
+                                return value.replace(/[^-\d\.]/g, "");
+                            }
+
+                            var value = style[property];
+
+                            if(value !== "auto" && getNumericalValue(value) !== "0") {
+                                reporter.warn("An element that is positioned static has style." + property + "=" + value + " which is ignored due to the static positioning. The element will need to be positioned relative, so the style." + property + " will be set to 0. Element: ", element);
+                                element.style[property] = 0;
+                            }
+                        };
+
+                        //Check so that there are no accidental styles that will make the element styled differently now that is is relative.
+                        //If there are any, set them to 0 (this should be okay with the user since the style properties did nothing before [since the element was positioned static] anyway).
+                        removeRelativeStyles(reporter, element, style, "top");
+                        removeRelativeStyles(reporter, element, style, "right");
+                        removeRelativeStyles(reporter, element, style, "bottom");
+                        removeRelativeStyles(reporter, element, style, "left");
+                    }
+                }
+
+                function getLeftTopBottomRightCssText(left, top, bottom, right) {
+                    left = (!left ? "0" : (left + "px"));
+                    top = (!top ? "0" : (top + "px"));
+                    bottom = (!bottom ? "0" : (bottom + "px"));
+                    right = (!right ? "0" : (right + "px"));
+
+                    return ["left: " + left, "top: " + top, "right: " + right, "bottom: " + bottom];
+                }
+
+                debug("Injecting elements");
+
+                if (!getState(element)) {
+                    debug("Aborting because element has been uninstalled");
+                    return;
+                }
+
+                alterPositionStyles();
+
+                var rootContainer = getState(element).container;
+
+                if (!rootContainer) {
+                    rootContainer = injectContainerElement();
+                }
+
+                // Due to this WebKit bug https://bugs.webkit.org/show_bug.cgi?id=80808 (currently fixed in Blink, but still present in WebKit browsers such as Safari),
+                // we need to inject two containers, one that is width/height 100% and another that is left/top -1px so that the final container always is 1x1 pixels bigger than
+                // the targeted element.
+                // When the bug is resolved, "containerContainer" may be removed.
+
+                // The outer container can occasionally be less wide than the targeted when inside inline elements element in WebKit (see https://bugs.webkit.org/show_bug.cgi?id=152980).
+                // This should be no problem since the inner container either way makes sure the injected scroll elements are at least 1x1 px.
+
+                var scrollbarWidth          = scrollbarSizes.width;
+                var scrollbarHeight         = scrollbarSizes.height;
+                var containerContainerStyle = buildCssTextString(["position: absolute", "flex: none", "overflow: hidden", "z-index: -1", "visibility: hidden", "width: 100%", "height: 100%", "left: 0px", "top: 0px"]);
+                var containerStyle          = buildCssTextString(["position: absolute", "flex: none", "overflow: hidden", "z-index: -1", "visibility: hidden"].concat(getLeftTopBottomRightCssText(-(1 + scrollbarWidth), -(1 + scrollbarHeight), -scrollbarHeight, -scrollbarWidth)));
+                var expandStyle             = buildCssTextString(["position: absolute", "flex: none", "overflow: scroll", "z-index: -1", "visibility: hidden", "width: 100%", "height: 100%"]);
+                var shrinkStyle             = buildCssTextString(["position: absolute", "flex: none", "overflow: scroll", "z-index: -1", "visibility: hidden", "width: 100%", "height: 100%"]);
+                var expandChildStyle        = buildCssTextString(["position: absolute", "left: 0", "top: 0"]);
+                var shrinkChildStyle        = buildCssTextString(["position: absolute", "width: 200%", "height: 200%"]);
+
+                var containerContainer      = document.createElement("div");
+                var container               = document.createElement("div");
+                var expand                  = document.createElement("div");
+                var expandChild             = document.createElement("div");
+                var shrink                  = document.createElement("div");
+                var shrinkChild             = document.createElement("div");
+
+                // Some browsers choke on the resize system being rtl, so force it to ltr. https://github.com/wnr/element-resize-detector/issues/56
+                // However, dir should not be set on the top level container as it alters the dimensions of the target element in some browsers.
+                containerContainer.dir              = "ltr";
+
+                containerContainer.style.cssText    = containerContainerStyle;
+                containerContainer.className        = detectionContainerClass;
+                container.className                 = detectionContainerClass;
+                container.style.cssText             = containerStyle;
+                expand.style.cssText                = expandStyle;
+                expandChild.style.cssText           = expandChildStyle;
+                shrink.style.cssText                = shrinkStyle;
+                shrinkChild.style.cssText           = shrinkChildStyle;
+
+                expand.appendChild(expandChild);
+                shrink.appendChild(shrinkChild);
+                container.appendChild(expand);
+                container.appendChild(shrink);
+                containerContainer.appendChild(container);
+                rootContainer.appendChild(containerContainer);
+
+                function onExpandScroll() {
+                    getState(element).onExpand && getState(element).onExpand();
+                }
+
+                function onShrinkScroll() {
+                    getState(element).onShrink && getState(element).onShrink();
+                }
+
+                addEvent(expand, "scroll", onExpandScroll);
+                addEvent(shrink, "scroll", onShrinkScroll);
+
+                // Store the event handlers here so that they may be removed when uninstall is called.
+                // See uninstall function for an explanation why it is needed.
+                getState(element).onExpandScroll = onExpandScroll;
+                getState(element).onShrinkScroll = onShrinkScroll;
+            }
+
+            function registerListenersAndPositionElements() {
+                function updateChildSizes(element, width, height) {
+                    var expandChild             = getExpandChildElement(element);
+                    var expandWidth             = getExpandWidth(width);
+                    var expandHeight            = getExpandHeight(height);
+                    expandChild.style.setProperty("width", expandWidth + "px", options.important ? "important" : "");
+                    expandChild.style.setProperty("height", expandHeight + "px", options.important ? "important" : "");
+                }
+
+                function updateDetectorElements(done) {
+                    var width           = element.offsetWidth;
+                    var height          = element.offsetHeight;
+
+                    // Check whether the size has actually changed since last time the algorithm ran. If not, some steps may be skipped.
+                    var sizeChanged = width !== getState(element).lastWidth || height !== getState(element).lastHeight;
+
+                    debug("Storing current size", width, height);
+
+                    // Store the size of the element sync here, so that multiple scroll events may be ignored in the event listeners.
+                    // Otherwise the if-check in handleScroll is useless.
+                    storeCurrentSize(element, width, height);
+
+                    // Since we delay the processing of the batch, there is a risk that uninstall has been called before the batch gets to execute.
+                    // Since there is no way to cancel the fn executions, we need to add an uninstall guard to all fns of the batch.
+
+                    batchProcessor.add(0, function performUpdateChildSizes() {
+                        if (!sizeChanged) {
+                            return;
+                        }
+
+                        if (!getState(element)) {
+                            debug("Aborting because element has been uninstalled");
+                            return;
+                        }
+
+                        if (!areElementsInjected()) {
+                            debug("Aborting because element container has not been initialized");
+                            return;
+                        }
+
+                        if (options.debug) {
+                            var w = element.offsetWidth;
+                            var h = element.offsetHeight;
+
+                            if (w !== width || h !== height) {
+                                reporter.warn(idHandler.get(element), "Scroll: Size changed before updating detector elements.");
+                            }
+                        }
+
+                        updateChildSizes(element, width, height);
+                    });
+
+                    batchProcessor.add(1, function updateScrollbars() {
+                        // This function needs to be invoked event though the size is unchanged. The element could have been resized very quickly and then
+                        // been restored to the original size, which will have changed the scrollbar positions.
+
+                        if (!getState(element)) {
+                            debug("Aborting because element has been uninstalled");
+                            return;
+                        }
+
+                        if (!areElementsInjected()) {
+                            debug("Aborting because element container has not been initialized");
+                            return;
+                        }
+
+                        positionScrollbars(element, width, height);
+                    });
+
+                    if (sizeChanged && done) {
+                        batchProcessor.add(2, function () {
+                            if (!getState(element)) {
+                                debug("Aborting because element has been uninstalled");
+                                return;
+                            }
+
+                            if (!areElementsInjected()) {
+                              debug("Aborting because element container has not been initialized");
+                              return;
+                            }
+
+                            done();
+                        });
+                    }
+                }
+
+                function areElementsInjected() {
+                    return !!getState(element).container;
+                }
+
+                function notifyListenersIfNeeded() {
+                    function isFirstNotify() {
+                        return getState(element).lastNotifiedWidth === undefined;
+                    }
+
+                    debug("notifyListenersIfNeeded invoked");
+
+                    var state = getState(element);
+
+                    // Don't notify if the current size is the start size, and this is the first notification.
+                    if (isFirstNotify() && state.lastWidth === state.startSize.width && state.lastHeight === state.startSize.height) {
+                        return debug("Not notifying: Size is the same as the start size, and there has been no notification yet.");
+                    }
+
+                    // Don't notify if the size already has been notified.
+                    if (state.lastWidth === state.lastNotifiedWidth && state.lastHeight === state.lastNotifiedHeight) {
+                        return debug("Not notifying: Size already notified");
+                    }
+
+
+                    debug("Current size not notified, notifying...");
+                    state.lastNotifiedWidth = state.lastWidth;
+                    state.lastNotifiedHeight = state.lastHeight;
+                    forEach(getState(element).listeners, function (listener) {
+                        listener(element);
+                    });
+                }
+
+                function handleRender() {
+                    debug("startanimation triggered.");
+
+                    if (isUnrendered(element)) {
+                        debug("Ignoring since element is still unrendered...");
+                        return;
+                    }
+
+                    debug("Element rendered.");
+                    var expand = getExpandElement(element);
+                    var shrink = getShrinkElement(element);
+                    if (expand.scrollLeft === 0 || expand.scrollTop === 0 || shrink.scrollLeft === 0 || shrink.scrollTop === 0) {
+                        debug("Scrollbars out of sync. Updating detector elements...");
+                        updateDetectorElements(notifyListenersIfNeeded);
+                    }
+                }
+
+                function handleScroll() {
+                    debug("Scroll detected.");
+
+                    if (isUnrendered(element)) {
+                        // Element is still unrendered. Skip this scroll event.
+                        debug("Scroll event fired while unrendered. Ignoring...");
+                        return;
+                    }
+
+                    updateDetectorElements(notifyListenersIfNeeded);
+                }
+
+                debug("registerListenersAndPositionElements invoked.");
+
+                if (!getState(element)) {
+                    debug("Aborting because element has been uninstalled");
+                    return;
+                }
+
+                getState(element).onRendered = handleRender;
+                getState(element).onExpand = handleScroll;
+                getState(element).onShrink = handleScroll;
+
+                var style = getState(element).style;
+                updateChildSizes(element, style.width, style.height);
+            }
+
+            function finalizeDomMutation() {
+                debug("finalizeDomMutation invoked.");
+
+                if (!getState(element)) {
+                    debug("Aborting because element has been uninstalled");
+                    return;
+                }
+
+                var style = getState(element).style;
+                storeCurrentSize(element, style.width, style.height);
+                positionScrollbars(element, style.width, style.height);
+            }
+
+            function ready() {
+                callback(element);
+            }
+
+            function install() {
+                debug("Installing...");
+                initListeners();
+                storeStartSize();
+
+                batchProcessor.add(0, storeStyle);
+                batchProcessor.add(1, injectScrollElements);
+                batchProcessor.add(2, registerListenersAndPositionElements);
+                batchProcessor.add(3, finalizeDomMutation);
+                batchProcessor.add(4, ready);
+            }
+
+            debug("Making detectable...");
+
+            if (isDetached(element)) {
+                debug("Element is detached");
+
+                injectContainerElement();
+
+                debug("Waiting until element is attached...");
+
+                getState(element).onRendered = function () {
+                    debug("Element is now attached");
+                    install();
+                };
+            } else {
+                install();
+            }
+        }
+
+        function uninstall(element) {
+            var state = getState(element);
+
+            if (!state) {
+                // Uninstall has been called on a non-erd element.
+                return;
+            }
+
+            // Uninstall may have been called in the following scenarios:
+            // (1) Right between the sync code and async batch (here state.busy = true, but nothing have been registered or injected).
+            // (2) In the ready callback of the last level of the batch by another element (here, state.busy = true, but all the stuff has been injected).
+            // (3) After the installation process (here, state.busy = false and all the stuff has been injected).
+            // So to be on the safe side, let's check for each thing before removing.
+
+            // We need to remove the event listeners, because otherwise the event might fire on an uninstall element which results in an error when trying to get the state of the element.
+            state.onExpandScroll && removeEvent(getExpandElement(element), "scroll", state.onExpandScroll);
+            state.onShrinkScroll && removeEvent(getShrinkElement(element), "scroll", state.onShrinkScroll);
+            state.onAnimationStart && removeEvent(state.container, "animationstart", state.onAnimationStart);
+
+            state.container && element.removeChild(state.container);
+        }
+
+        return {
+            makeDetectable: makeDetectable,
+            addListener: addListener,
+            uninstall: uninstall,
+            initDocument: initDocument
+        };
+    };
+
+    var forEach$1                 = collectionUtils.forEach;
+
+
+
+
+
+
+
+
+
+    //Detection strategies.
+
+
+
+    function isCollection(obj) {
+        return Array.isArray(obj) || obj.length !== undefined;
+    }
+
+    function toArray(collection) {
+        if (!Array.isArray(collection)) {
+            var array = [];
+            forEach$1(collection, function (obj) {
+                array.push(obj);
+            });
+            return array;
+        } else {
+            return collection;
+        }
+    }
+
+    function isElement(obj) {
+        return obj && obj.nodeType === 1;
+    }
+
+    /**
+     * @typedef idHandler
+     * @type {object}
+     * @property {function} get Gets the resize detector id of the element.
+     * @property {function} set Generate and sets the resize detector id of the element.
+     */
+
+    /**
+     * @typedef Options
+     * @type {object}
+     * @property {boolean} callOnAdd    Determines if listeners should be called when they are getting added.
+                                        Default is true. If true, the listener is guaranteed to be called when it has been added.
+                                        If false, the listener will not be guarenteed to be called when it has been added (does not prevent it from being called).
+     * @property {idHandler} idHandler  A custom id handler that is responsible for generating, setting and retrieving id's for elements.
+                                        If not provided, a default id handler will be used.
+     * @property {reporter} reporter    A custom reporter that handles reporting logs, warnings and errors.
+                                        If not provided, a default id handler will be used.
+                                        If set to false, then nothing will be reported.
+     * @property {boolean} debug        If set to true, the the system will report debug messages as default for the listenTo method.
+     */
+
+    /**
+     * Creates an element resize detector instance.
+     * @public
+     * @param {Options?} options Optional global options object that will decide how this instance will work.
+     */
+    var elementResizeDetector = function(options) {
+        options = options || {};
+
+        //idHandler is currently not an option to the listenTo function, so it should not be added to globalOptions.
+        var idHandler$1;
+
+        if (options.idHandler) {
+            // To maintain compatability with idHandler.get(element, readonly), make sure to wrap the given idHandler
+            // so that readonly flag always is true when it's used here. This may be removed next major version bump.
+            idHandler$1 = {
+                get: function (element) { return options.idHandler.get(element, true); },
+                set: options.idHandler.set
+            };
+        } else {
+            var idGenerator$1 = idGenerator();
+            var defaultIdHandler = idHandler({
+                idGenerator: idGenerator$1,
+                stateHandler: stateHandler
+            });
+            idHandler$1 = defaultIdHandler;
+        }
+
+        //reporter is currently not an option to the listenTo function, so it should not be added to globalOptions.
+        var reporter$1 = options.reporter;
+
+        if(!reporter$1) {
+            //If options.reporter is false, then the reporter should be quiet.
+            var quiet = reporter$1 === false;
+            reporter$1 = reporter(quiet);
+        }
+
+        //batchProcessor is currently not an option to the listenTo function, so it should not be added to globalOptions.
+        var batchProcessor$1 = getOption(options, "batchProcessor", batchProcessor({ reporter: reporter$1 }));
+
+        //Options to be used as default for the listenTo function.
+        var globalOptions = {};
+        globalOptions.callOnAdd     = !!getOption(options, "callOnAdd", true);
+        globalOptions.debug         = !!getOption(options, "debug", false);
+
+        var eventListenerHandler    = listenerHandler(idHandler$1);
+        var elementUtils$1            = elementUtils({
+            stateHandler: stateHandler
+        });
+
+        //The detection strategy to be used.
+        var detectionStrategy;
+        var desiredStrategy = getOption(options, "strategy", "object");
+        var importantCssRules = getOption(options, "important", false);
+        var strategyOptions = {
+            reporter: reporter$1,
+            batchProcessor: batchProcessor$1,
+            stateHandler: stateHandler,
+            idHandler: idHandler$1,
+            important: importantCssRules
+        };
+
+        if(desiredStrategy === "scroll") {
+            if (browserDetector.isLegacyOpera()) {
+                reporter$1.warn("Scroll strategy is not supported on legacy Opera. Changing to object strategy.");
+                desiredStrategy = "object";
+            } else if (browserDetector.isIE(9)) {
+                reporter$1.warn("Scroll strategy is not supported on IE9. Changing to object strategy.");
+                desiredStrategy = "object";
+            }
+        }
+
+        if(desiredStrategy === "scroll") {
+            detectionStrategy = scroll(strategyOptions);
+        } else if(desiredStrategy === "object") {
+            detectionStrategy = object$1(strategyOptions);
+        } else {
+            throw new Error("Invalid strategy name: " + desiredStrategy);
+        }
+
+        //Calls can be made to listenTo with elements that are still being installed.
+        //Also, same elements can occur in the elements list in the listenTo function.
+        //With this map, the ready callbacks can be synchronized between the calls
+        //so that the ready callback can always be called when an element is ready - even if
+        //it wasn't installed from the function itself.
+        var onReadyCallbacks = {};
+
+        /**
+         * Makes the given elements resize-detectable and starts listening to resize events on the elements. Calls the event callback for each event for each element.
+         * @public
+         * @param {Options?} options Optional options object. These options will override the global options. Some options may not be overriden, such as idHandler.
+         * @param {element[]|element} elements The given array of elements to detect resize events of. Single element is also valid.
+         * @param {function} listener The callback to be executed for each resize event for each element.
+         */
+        function listenTo(options, elements, listener) {
+            function onResizeCallback(element) {
+                var listeners = eventListenerHandler.get(element);
+                forEach$1(listeners, function callListenerProxy(listener) {
+                    listener(element);
+                });
+            }
+
+            function addListener(callOnAdd, element, listener) {
+                eventListenerHandler.add(element, listener);
+
+                if(callOnAdd) {
+                    listener(element);
+                }
+            }
+
+            //Options object may be omitted.
+            if(!listener) {
+                listener = elements;
+                elements = options;
+                options = {};
+            }
+
+            if(!elements) {
+                throw new Error("At least one element required.");
+            }
+
+            if(!listener) {
+                throw new Error("Listener required.");
+            }
+
+            if (isElement(elements)) {
+                // A single element has been passed in.
+                elements = [elements];
+            } else if (isCollection(elements)) {
+                // Convert collection to array for plugins.
+                // TODO: May want to check so that all the elements in the collection are valid elements.
+                elements = toArray(elements);
+            } else {
+                return reporter$1.error("Invalid arguments. Must be a DOM element or a collection of DOM elements.");
+            }
+
+            var elementsReady = 0;
+
+            var callOnAdd = getOption(options, "callOnAdd", globalOptions.callOnAdd);
+            var onReadyCallback = getOption(options, "onReady", function noop() {});
+            var debug = getOption(options, "debug", globalOptions.debug);
+
+            forEach$1(elements, function attachListenerToElement(element) {
+                if (!stateHandler.getState(element)) {
+                    stateHandler.initState(element);
+                    idHandler$1.set(element);
+                }
+
+                var id = idHandler$1.get(element);
+
+                debug && reporter$1.log("Attaching listener to element", id, element);
+
+                if(!elementUtils$1.isDetectable(element)) {
+                    debug && reporter$1.log(id, "Not detectable.");
+                    if(elementUtils$1.isBusy(element)) {
+                        debug && reporter$1.log(id, "System busy making it detectable");
+
+                        //The element is being prepared to be detectable. Do not make it detectable.
+                        //Just add the listener, because the element will soon be detectable.
+                        addListener(callOnAdd, element, listener);
+                        onReadyCallbacks[id] = onReadyCallbacks[id] || [];
+                        onReadyCallbacks[id].push(function onReady() {
+                            elementsReady++;
+
+                            if(elementsReady === elements.length) {
+                                onReadyCallback();
+                            }
+                        });
+                        return;
+                    }
+
+                    debug && reporter$1.log(id, "Making detectable...");
+                    //The element is not prepared to be detectable, so do prepare it and add a listener to it.
+                    elementUtils$1.markBusy(element, true);
+                    return detectionStrategy.makeDetectable({ debug: debug, important: importantCssRules }, element, function onElementDetectable(element) {
+                        debug && reporter$1.log(id, "onElementDetectable");
+
+                        if (stateHandler.getState(element)) {
+                            elementUtils$1.markAsDetectable(element);
+                            elementUtils$1.markBusy(element, false);
+                            detectionStrategy.addListener(element, onResizeCallback);
+                            addListener(callOnAdd, element, listener);
+
+                            // Since the element size might have changed since the call to "listenTo", we need to check for this change,
+                            // so that a resize event may be emitted.
+                            // Having the startSize object is optional (since it does not make sense in some cases such as unrendered elements), so check for its existance before.
+                            // Also, check the state existance before since the element may have been uninstalled in the installation process.
+                            var state = stateHandler.getState(element);
+                            if (state && state.startSize) {
+                                var width = element.offsetWidth;
+                                var height = element.offsetHeight;
+                                if (state.startSize.width !== width || state.startSize.height !== height) {
+                                    onResizeCallback(element);
+                                }
+                            }
+
+                            if(onReadyCallbacks[id]) {
+                                forEach$1(onReadyCallbacks[id], function(callback) {
+                                    callback();
+                                });
+                            }
+                        } else {
+                            // The element has been unisntalled before being detectable.
+                            debug && reporter$1.log(id, "Element uninstalled before being detectable.");
+                        }
+
+                        delete onReadyCallbacks[id];
+
+                        elementsReady++;
+                        if(elementsReady === elements.length) {
+                            onReadyCallback();
+                        }
+                    });
+                }
+
+                debug && reporter$1.log(id, "Already detecable, adding listener.");
+
+                //The element has been prepared to be detectable and is ready to be listened to.
+                addListener(callOnAdd, element, listener);
+                elementsReady++;
+            });
+
+            if(elementsReady === elements.length) {
+                onReadyCallback();
+            }
+        }
+
+        function uninstall(elements) {
+            if(!elements) {
+                return reporter$1.error("At least one element is required.");
+            }
+
+            if (isElement(elements)) {
+                // A single element has been passed in.
+                elements = [elements];
+            } else if (isCollection(elements)) {
+                // Convert collection to array for plugins.
+                // TODO: May want to check so that all the elements in the collection are valid elements.
+                elements = toArray(elements);
+            } else {
+                return reporter$1.error("Invalid arguments. Must be a DOM element or a collection of DOM elements.");
+            }
+
+            forEach$1(elements, function (element) {
+                eventListenerHandler.removeAllListeners(element);
+                detectionStrategy.uninstall(element);
+                stateHandler.cleanState(element);
+            });
+        }
+
+        function initDocument(targetDocument) {
+            detectionStrategy.initDocument && detectionStrategy.initDocument(targetDocument);
+        }
+
+        return {
+            listenTo: listenTo,
+            removeListener: eventListenerHandler.removeListener,
+            removeAllListeners: eventListenerHandler.removeAllListeners,
+            uninstall: uninstall,
+            initDocument: initDocument
+        };
+    };
+
+    function getOption(options, name, defaultValue) {
+        var value = options[name];
+
+        if((value === undefined || value === null) && defaultValue !== undefined) {
+            return defaultValue;
+        }
+
+        return value;
+    }
+
+    var erd = elementResizeDetector({ strategy: "scroll" });
+    function watchResize(element, handler) {
+        erd.listenTo(element, handler);
+        var currentHandler = handler;
+        return {
+            update: function (newHandler) {
+                erd.removeListener(element, currentHandler);
+                erd.listenTo(element, newHandler);
+                currentHandler = newHandler;
+            },
+            destroy: function () {
+                erd.removeListener(element, currentHandler);
+            },
+        };
+    }
+
     /* Scrubber.svelte generated by Svelte v3.20.1 */
     const file$3 = "Scrubber.svelte";
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[37] = list[i];
-    	child_ctx[39] = i;
+    	child_ctx[38] = list[i];
+    	child_ctx[40] = i;
     	return child_ctx;
     }
 
-    // (237:8) {#each policyEvents as policyEvent, i}
+    // (245:8) {#each policyEvents as policyEvent, i}
     function create_each_block(ctx) {
     	let current;
 
     	const policyevent = new PolicyEvent({
     			props: {
-    				currentScrubberPosition: /*convertTimeToXPosition*/ ctx[10](/*currentTime*/ ctx[1]),
-    				eventPosition: Math.round(/*sliderWidth*/ ctx[7] * /*getPolicyEventPosition*/ ctx[17](/*policyEvent*/ ctx[37].date)),
-    				eventDetails: /*policyEvent*/ ctx[37],
+    				currentScrubberPosition: /*convertTimeToXPosition*/ ctx[11](/*currentTime*/ ctx[1]),
+    				eventPosition: Math.round(/*sliderWidth*/ ctx[7] * /*getPolicyEventPosition*/ ctx[18](/*policyEvent*/ ctx[38].date)),
+    				eventDetails: /*policyEvent*/ ctx[38],
     				bufferRadius: EVENT_BUFFER_TIME * /*maxScrubberWidth*/ ctx[8] / /*maxTime*/ ctx[2],
-    				id: /*i*/ ctx[39],
-    				pauseAnimation: /*handlePolicyPause*/ ctx[13],
-    				startAnimation: /*handlePolicyStart*/ ctx[14],
+    				id: /*i*/ ctx[40],
+    				pauseAnimation: /*handlePolicyPause*/ ctx[14],
+    				startAnimation: /*handlePolicyStart*/ ctx[15],
     				updateAppState: /*updateAppState*/ ctx[5],
     				appState: /*appState*/ ctx[6],
-    				updateAnimationPosition: /*handleUpdateAnimationPosition*/ ctx[15]
+    				updateAnimationPosition: /*handleUpdateAnimationPosition*/ ctx[16]
     			},
     			$$inline: true
     		});
@@ -12490,9 +14173,9 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const policyevent_changes = {};
-    			if (dirty[0] & /*currentTime*/ 2) policyevent_changes.currentScrubberPosition = /*convertTimeToXPosition*/ ctx[10](/*currentTime*/ ctx[1]);
-    			if (dirty[0] & /*sliderWidth, policyEvents*/ 129) policyevent_changes.eventPosition = Math.round(/*sliderWidth*/ ctx[7] * /*getPolicyEventPosition*/ ctx[17](/*policyEvent*/ ctx[37].date));
-    			if (dirty[0] & /*policyEvents*/ 1) policyevent_changes.eventDetails = /*policyEvent*/ ctx[37];
+    			if (dirty[0] & /*currentTime*/ 2) policyevent_changes.currentScrubberPosition = /*convertTimeToXPosition*/ ctx[11](/*currentTime*/ ctx[1]);
+    			if (dirty[0] & /*sliderWidth, policyEvents*/ 129) policyevent_changes.eventPosition = Math.round(/*sliderWidth*/ ctx[7] * /*getPolicyEventPosition*/ ctx[18](/*policyEvent*/ ctx[38].date));
+    			if (dirty[0] & /*policyEvents*/ 1) policyevent_changes.eventDetails = /*policyEvent*/ ctx[38];
     			if (dirty[0] & /*maxScrubberWidth, maxTime*/ 260) policyevent_changes.bufferRadius = EVENT_BUFFER_TIME * /*maxScrubberWidth*/ ctx[8] / /*maxTime*/ ctx[2];
     			if (dirty[0] & /*updateAppState*/ 32) policyevent_changes.updateAppState = /*updateAppState*/ ctx[5];
     			if (dirty[0] & /*appState*/ 64) policyevent_changes.appState = /*appState*/ ctx[6];
@@ -12516,14 +14199,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(237:8) {#each policyEvents as policyEvent, i}",
+    		source: "(245:8) {#each policyEvents as policyEvent, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (276:12) {:else}
+    // (284:12) {:else}
     function create_else_block(ctx) {
     	let button;
     	let svg;
@@ -12545,26 +14228,26 @@ var app = (function () {
     			g1 = svg_element("g");
     			g0 = svg_element("g");
     			path = svg_element("path");
-    			add_location(style, file$3, 279, 24, 9984);
-    			add_location(defs, file$3, 278, 20, 9953);
+    			add_location(style, file$3, 287, 24, 10248);
+    			add_location(defs, file$3, 286, 20, 10217);
     			attr_dev(path, "class", "cls-play-1");
     			attr_dev(path, "d", "M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z");
     			attr_dev(path, "transform", "translate(0 -0.01)");
-    			add_location(path, file$3, 289, 24, 10401);
+    			add_location(path, file$3, 297, 24, 10665);
     			attr_dev(g0, "id", "Layer_1-2");
     			attr_dev(g0, "data-name", "Layer 1-2");
-    			add_location(g0, file$3, 288, 24, 10336);
+    			add_location(g0, file$3, 296, 24, 10600);
     			attr_dev(g1, "id", "Layer_2");
     			attr_dev(g1, "data-name", "Layer 2");
-    			add_location(g1, file$3, 287, 20, 10275);
+    			add_location(g1, file$3, 295, 20, 10539);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 113.57 127.1");
-    			attr_dev(svg, "class", "svelte-i7o83x");
-    			add_location(svg, file$3, 277, 16, 9832);
-    			attr_dev(button, "class", "start-button play-button svelte-i7o83x");
-    			add_location(button, file$3, 276, 12, 9742);
+    			attr_dev(svg, "class", "svelte-1ynafpb");
+    			add_location(svg, file$3, 285, 16, 10096);
+    			attr_dev(button, "class", "start-button play-button svelte-1ynafpb");
+    			add_location(button, file$3, 284, 12, 10006);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, button, anchor);
@@ -12576,7 +14259,7 @@ var app = (function () {
     			append_dev(g1, g0);
     			append_dev(g0, path);
     			if (remount) dispose();
-    			dispose = listen_dev(button, "click", /*handleStartAnimation*/ ctx[12], false, false, false);
+    			dispose = listen_dev(button, "click", /*handleStartAnimation*/ ctx[13], false, false, false);
     		},
     		p: noop,
     		d: function destroy(detaching) {
@@ -12589,14 +14272,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(276:12) {:else}",
+    		source: "(284:12) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (256:12) {#if appState.isUserRunning}
+    // (264:12) {#if appState.isUserRunning}
     function create_if_block$1(ctx) {
     	let button;
     	let svg;
@@ -12620,28 +14303,28 @@ var app = (function () {
     			g0 = svg_element("g");
     			path0 = svg_element("path");
     			path1 = svg_element("path");
-    			add_location(style, file$3, 259, 24, 8910);
-    			add_location(defs, file$3, 258, 20, 8879);
+    			add_location(style, file$3, 267, 24, 9174);
+    			add_location(defs, file$3, 266, 20, 9143);
     			attr_dev(path0, "class", "cls-pause-1");
     			attr_dev(path0, "d", "M10.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,10.5.5Z");
-    			add_location(path0, file$3, 269, 24, 9333);
+    			add_location(path0, file$3, 277, 24, 9597);
     			attr_dev(path1, "class", "cls-pause-1");
     			attr_dev(path1, "d", "M60.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,60.5.5Z");
-    			add_location(path1, file$3, 270, 24, 9484);
+    			add_location(path1, file$3, 278, 24, 9748);
     			attr_dev(g0, "id", "Layer_1-2");
     			attr_dev(g0, "data-name", "Layer 1-2");
-    			add_location(g0, file$3, 268, 24, 9268);
+    			add_location(g0, file$3, 276, 24, 9532);
     			attr_dev(g1, "id", "Layer_2");
     			attr_dev(g1, "data-name", "Layer 2");
-    			add_location(g1, file$3, 267, 20, 9207);
+    			add_location(g1, file$3, 275, 20, 9471);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 71 135");
-    			attr_dev(svg, "class", "svelte-i7o83x");
-    			add_location(svg, file$3, 257, 16, 8764);
-    			attr_dev(button, "class", "pause-button play-button svelte-i7o83x");
-    			add_location(button, file$3, 256, 12, 8674);
+    			attr_dev(svg, "class", "svelte-1ynafpb");
+    			add_location(svg, file$3, 265, 16, 9028);
+    			attr_dev(button, "class", "pause-button play-button svelte-1ynafpb");
+    			add_location(button, file$3, 264, 12, 8938);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, button, anchor);
@@ -12654,7 +14337,7 @@ var app = (function () {
     			append_dev(g0, path0);
     			append_dev(g0, path1);
     			if (remount) dispose();
-    			dispose = listen_dev(button, "click", /*handlePauseAnimation*/ ctx[11], false, false, false);
+    			dispose = listen_dev(button, "click", /*handlePauseAnimation*/ ctx[12], false, false, false);
     		},
     		p: noop,
     		d: function destroy(detaching) {
@@ -12667,7 +14350,7 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(256:12) {#if appState.isUserRunning}",
+    		source: "(264:12) {#if appState.isUserRunning}",
     		ctx
     	});
 
@@ -12689,6 +14372,7 @@ var app = (function () {
     	let div4;
     	let div3;
     	let t4;
+    	let watchResize_action;
     	let t5;
     	let div10;
     	let div8;
@@ -12710,7 +14394,7 @@ var app = (function () {
     	let button2_class_value;
     	let t12;
     	let div9;
-    	let t13_value = `${/*displayTime*/ ctx[18](/*currentTime*/ ctx[1])} / ${/*displayTime*/ ctx[18](/*maxTime*/ ctx[2])}` + "";
+    	let t13_value = `${/*displayTime*/ ctx[19](/*currentTime*/ ctx[1])} / ${/*displayTime*/ ctx[19](/*maxTime*/ ctx[2])}` + "";
     	let t13;
     	let current;
     	let dispose;
@@ -12771,50 +14455,50 @@ var app = (function () {
     			t12 = space();
     			div9 = element("div");
     			t13 = text(t13_value);
-    			attr_dev(div0, "class", "pm25-chart-title svelte-i7o83x");
-    			add_location(div0, file$3, 223, 4, 7442);
-    			attr_dev(div1, "class", "pm25-chart svelte-i7o83x");
+    			attr_dev(div0, "class", "pm25-chart-title svelte-1ynafpb");
+    			add_location(div0, file$3, 232, 4, 7676);
+    			attr_dev(div1, "class", "pm25-chart svelte-1ynafpb");
     			attr_dev(div1, "id", "pm25-timeseries");
-    			add_location(div1, file$3, 224, 4, 7537);
-    			attr_dev(div2, "class", "range svelte-i7o83x");
-    			add_location(div2, file$3, 228, 8, 7640);
-    			attr_dev(div3, "class", "handle svelte-i7o83x");
-    			add_location(div3, file$3, 232, 16, 7764);
-    			attr_dev(div4, "class", "handle-hit-area svelte-i7o83x");
-    			add_location(div4, file$3, 231, 12, 7718);
-    			attr_dev(div5, "class", "handle-container svelte-i7o83x");
-    			add_location(div5, file$3, 230, 8, 7675);
-    			attr_dev(div6, "class", "slider svelte-i7o83x");
+    			add_location(div1, file$3, 233, 4, 7771);
+    			attr_dev(div2, "class", "range svelte-1ynafpb");
+    			add_location(div2, file$3, 237, 8, 7905);
+    			attr_dev(div3, "class", "handle svelte-1ynafpb");
+    			add_location(div3, file$3, 240, 16, 8028);
+    			attr_dev(div4, "class", "handle-hit-area svelte-1ynafpb");
+    			add_location(div4, file$3, 239, 12, 7982);
+    			attr_dev(div5, "class", "handle-container svelte-1ynafpb");
+    			add_location(div5, file$3, 238, 8, 7939);
+    			attr_dev(div6, "class", "slider svelte-1ynafpb");
     			attr_dev(div6, "id", "slider");
-    			add_location(div6, file$3, 227, 4, 7599);
+    			add_location(div6, file$3, 236, 4, 7833);
 
     			attr_dev(button0, "class", button0_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 0.5
     			? "speed-button-selected"
-    			: "")) + " svelte-i7o83x"));
+    			: "")) + " svelte-1ynafpb"));
 
-    			add_location(button0, file$3, 296, 16, 10771);
+    			add_location(button0, file$3, 304, 16, 11035);
 
     			attr_dev(button1, "class", button1_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 1
     			? "speed-button-selected"
-    			: "")) + " svelte-i7o83x"));
+    			: "")) + " svelte-1ynafpb"));
 
-    			add_location(button1, file$3, 297, 16, 10947);
+    			add_location(button1, file$3, 305, 16, 11211);
 
     			attr_dev(button2, "class", button2_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 2
     			? "speed-button-selected"
-    			: "")) + " svelte-i7o83x"));
+    			: "")) + " svelte-1ynafpb"));
 
-    			add_location(button2, file$3, 298, 16, 11117);
-    			attr_dev(div7, "class", "speed-buttons-container svelte-i7o83x");
-    			add_location(div7, file$3, 295, 12, 10717);
-    			attr_dev(div8, "class", "control-button-container svelte-i7o83x");
-    			add_location(div8, file$3, 254, 8, 8581);
-    			attr_dev(div9, "class", "current-time-display svelte-i7o83x");
-    			add_location(div9, file$3, 301, 9, 11315);
-    			attr_dev(div10, "class", "scrubber-controls svelte-i7o83x");
-    			add_location(div10, file$3, 253, 4, 8541);
-    			attr_dev(div11, "class", "scrubber svelte-i7o83x");
-    			add_location(div11, file$3, 222, 0, 7415);
+    			add_location(button2, file$3, 306, 16, 11381);
+    			attr_dev(div7, "class", "speed-buttons-container svelte-1ynafpb");
+    			add_location(div7, file$3, 303, 12, 10981);
+    			attr_dev(div8, "class", "control-button-container svelte-1ynafpb");
+    			add_location(div8, file$3, 262, 8, 8845);
+    			attr_dev(div9, "class", "current-time-display svelte-1ynafpb");
+    			add_location(div9, file$3, 309, 9, 11579);
+    			attr_dev(div10, "class", "scrubber-controls svelte-1ynafpb");
+    			add_location(div10, file$3, 261, 4, 8805);
+    			attr_dev(div11, "class", "scrubber svelte-1ynafpb");
+    			add_location(div11, file$3, 231, 0, 7649);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -12859,15 +14543,16 @@ var app = (function () {
     			if (remount) run_all(dispose);
 
     			dispose = [
-    				listen_dev(button0, "click", /*click_handler*/ ctx[34], false, false, false),
-    				listen_dev(button1, "click", /*click_handler_1*/ ctx[35], false, false, false),
-    				listen_dev(button2, "click", /*click_handler_2*/ ctx[36], false, false, false)
+    				action_destroyer(watchResize_action = watchResize.call(null, div6, /*handleResize*/ ctx[10])),
+    				listen_dev(button0, "click", /*click_handler*/ ctx[35], false, false, false),
+    				listen_dev(button1, "click", /*click_handler_1*/ ctx[36], false, false, false),
+    				listen_dev(button2, "click", /*click_handler_2*/ ctx[37], false, false, false)
     			];
     		},
     		p: function update(ctx, dirty) {
     			if ((!current || dirty[0] & /*translator, currLang*/ 24) && t0_value !== (t0_value = /*translator*/ ctx[3].translate("pm25_mov_avg_title", /*currLang*/ ctx[4]) + "")) set_data_dev(t0, t0_value);
 
-    			if (dirty[0] & /*convertTimeToXPosition, currentTime, sliderWidth, getPolicyEventPosition, policyEvents, maxScrubberWidth, maxTime, handlePolicyPause, handlePolicyStart, updateAppState, appState, handleUpdateAnimationPosition*/ 189927) {
+    			if (dirty[0] & /*convertTimeToXPosition, currentTime, sliderWidth, getPolicyEventPosition, policyEvents, maxScrubberWidth, maxTime, handlePolicyPause, handlePolicyStart, updateAppState, appState, handleUpdateAnimationPosition*/ 379367) {
     				each_value = /*policyEvents*/ ctx[0];
     				validate_each_argument(each_value);
     				let i;
@@ -12909,23 +14594,23 @@ var app = (function () {
 
     			if (!current || dirty[0] & /*currPlayRate*/ 512 && button0_class_value !== (button0_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 0.5
     			? "speed-button-selected"
-    			: "")) + " svelte-i7o83x"))) {
+    			: "")) + " svelte-1ynafpb"))) {
     				attr_dev(button0, "class", button0_class_value);
     			}
 
     			if (!current || dirty[0] & /*currPlayRate*/ 512 && button1_class_value !== (button1_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 1
     			? "speed-button-selected"
-    			: "")) + " svelte-i7o83x"))) {
+    			: "")) + " svelte-1ynafpb"))) {
     				attr_dev(button1, "class", button1_class_value);
     			}
 
     			if (!current || dirty[0] & /*currPlayRate*/ 512 && button2_class_value !== (button2_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 2
     			? "speed-button-selected"
-    			: "")) + " svelte-i7o83x"))) {
+    			: "")) + " svelte-1ynafpb"))) {
     				attr_dev(button2, "class", button2_class_value);
     			}
 
-    			if ((!current || dirty[0] & /*currentTime, maxTime*/ 6) && t13_value !== (t13_value = `${/*displayTime*/ ctx[18](/*currentTime*/ ctx[1])} / ${/*displayTime*/ ctx[18](/*maxTime*/ ctx[2])}` + "")) set_data_dev(t13, t13_value);
+    			if ((!current || dirty[0] & /*currentTime, maxTime*/ 6) && t13_value !== (t13_value = `${/*displayTime*/ ctx[19](/*currentTime*/ ctx[1])} / ${/*displayTime*/ ctx[19](/*maxTime*/ ctx[2])}` + "")) set_data_dev(t13, t13_value);
     		},
     		i: function intro(local) {
     			if (current) return;
@@ -12988,6 +14673,10 @@ var app = (function () {
     	let handleStyler;
     	let currPlayRate = 1;
 
+    	function handleResize(node) {
+    		$$invalidate(7, sliderWidth = node.clientWidth);
+    	}
+
     	const convertTimeToXPosition = time => {
     		return time * maxScrubberWidth / maxTime;
     	};
@@ -13003,7 +14692,7 @@ var app = (function () {
     		$$invalidate(7, sliderWidth = slider.getBoundingClientRect().width);
     		chartHeight = document.getElementById("pm25-timeseries").getBoundingClientRect().height;
     		const handle = document.querySelector(".handle-hit-area");
-    		$$invalidate(28, handleStyler = index(handle));
+    		$$invalidate(29, handleStyler = index(handle));
 
     		const handleX = value(0, newX => {
     			updateCurrentTime(convertXPositionToTime(newX));
@@ -13090,7 +14779,7 @@ var app = (function () {
     		let svg = select("#pm25-timeseries").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).style("overflow-x", "overlay").append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     		//---- Add X axis ----------------
-    		var xAxisScale = linear$2().domain([0, frameData.length - 1]).range([0, width]); // length of the timeseries
+    		var xAxisScale = linear$2().domain([0, frameData.length - 1]).range([0, width]); // length of the timeseries, exclude first
 
     		let xAxis = axisBottom(xAxisScale).tickValues(frameDataMonthIndices.slice(1)).tickFormat(x => {
     			return translator.translate(moment(frameData[x].date).format("MMMM"), currLang) + moment(frameData[x].date).format(" 'YY");
@@ -13108,7 +14797,7 @@ var app = (function () {
     		]).range([height, 0]);
 
     		// 2. format
-    		let yAxis = axisRight(yAxisScale).ticks(3).tickValues([55, 150, 250]).tickSizeOuter(0);
+    		let yAxis = axisRight(yAxisScale).ticks(3).tickValues([55, 150, 250]).tickFormat(y => y + " μg/m3").tickSizeOuter(0);
 
     		//---- Add Y axis gridlines
     		let yAxisGrid = axisRight(yAxisScale).tickSize(inner_width).tickFormat("").ticks(3).tickValues([55, 150, 250]).tickSizeOuter(0);
@@ -13160,16 +14849,16 @@ var app = (function () {
     	const click_handler_2 = () => handleChangePlaybackRate(2);
 
     	$$self.$set = $$props => {
-    		if ("frameData" in $$props) $$invalidate(19, frameData = $$props.frameData);
-    		if ("frameDataMonthIndices" in $$props) $$invalidate(20, frameDataMonthIndices = $$props.frameDataMonthIndices);
+    		if ("frameData" in $$props) $$invalidate(20, frameData = $$props.frameData);
+    		if ("frameDataMonthIndices" in $$props) $$invalidate(21, frameDataMonthIndices = $$props.frameDataMonthIndices);
     		if ("policyEvents" in $$props) $$invalidate(0, policyEvents = $$props.policyEvents);
     		if ("currentTime" in $$props) $$invalidate(1, currentTime = $$props.currentTime);
     		if ("maxTime" in $$props) $$invalidate(2, maxTime = $$props.maxTime);
-    		if ("pauseAnimation" in $$props) $$invalidate(21, pauseAnimation = $$props.pauseAnimation);
-    		if ("startAnimation" in $$props) $$invalidate(22, startAnimation = $$props.startAnimation);
-    		if ("updateCurrentTime" in $$props) $$invalidate(23, updateCurrentTime = $$props.updateCurrentTime);
-    		if ("isAnimationEnded" in $$props) $$invalidate(24, isAnimationEnded = $$props.isAnimationEnded);
-    		if ("changePlaybackRate" in $$props) $$invalidate(25, changePlaybackRate = $$props.changePlaybackRate);
+    		if ("pauseAnimation" in $$props) $$invalidate(22, pauseAnimation = $$props.pauseAnimation);
+    		if ("startAnimation" in $$props) $$invalidate(23, startAnimation = $$props.startAnimation);
+    		if ("updateCurrentTime" in $$props) $$invalidate(24, updateCurrentTime = $$props.updateCurrentTime);
+    		if ("isAnimationEnded" in $$props) $$invalidate(25, isAnimationEnded = $$props.isAnimationEnded);
+    		if ("changePlaybackRate" in $$props) $$invalidate(26, changePlaybackRate = $$props.changePlaybackRate);
     		if ("translator" in $$props) $$invalidate(3, translator = $$props.translator);
     		if ("currLang" in $$props) $$invalidate(4, currLang = $$props.currLang);
     		if ("updateAppState" in $$props) $$invalidate(5, updateAppState = $$props.updateAppState);
@@ -13195,6 +14884,7 @@ var app = (function () {
     		axisRight,
     		line,
     		max,
+    		watchResize,
     		frameData,
     		frameDataMonthIndices,
     		policyEvents,
@@ -13216,6 +14906,7 @@ var app = (function () {
     		maxScrubberWidth,
     		handleStyler,
     		currPlayRate,
+    		handleResize,
     		convertTimeToXPosition,
     		convertXPositionToTime,
     		handlePauseAnimation,
@@ -13233,16 +14924,16 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("frameData" in $$props) $$invalidate(19, frameData = $$props.frameData);
-    		if ("frameDataMonthIndices" in $$props) $$invalidate(20, frameDataMonthIndices = $$props.frameDataMonthIndices);
+    		if ("frameData" in $$props) $$invalidate(20, frameData = $$props.frameData);
+    		if ("frameDataMonthIndices" in $$props) $$invalidate(21, frameDataMonthIndices = $$props.frameDataMonthIndices);
     		if ("policyEvents" in $$props) $$invalidate(0, policyEvents = $$props.policyEvents);
     		if ("currentTime" in $$props) $$invalidate(1, currentTime = $$props.currentTime);
     		if ("maxTime" in $$props) $$invalidate(2, maxTime = $$props.maxTime);
-    		if ("pauseAnimation" in $$props) $$invalidate(21, pauseAnimation = $$props.pauseAnimation);
-    		if ("startAnimation" in $$props) $$invalidate(22, startAnimation = $$props.startAnimation);
-    		if ("updateCurrentTime" in $$props) $$invalidate(23, updateCurrentTime = $$props.updateCurrentTime);
-    		if ("isAnimationEnded" in $$props) $$invalidate(24, isAnimationEnded = $$props.isAnimationEnded);
-    		if ("changePlaybackRate" in $$props) $$invalidate(25, changePlaybackRate = $$props.changePlaybackRate);
+    		if ("pauseAnimation" in $$props) $$invalidate(22, pauseAnimation = $$props.pauseAnimation);
+    		if ("startAnimation" in $$props) $$invalidate(23, startAnimation = $$props.startAnimation);
+    		if ("updateCurrentTime" in $$props) $$invalidate(24, updateCurrentTime = $$props.updateCurrentTime);
+    		if ("isAnimationEnded" in $$props) $$invalidate(25, isAnimationEnded = $$props.isAnimationEnded);
+    		if ("changePlaybackRate" in $$props) $$invalidate(26, changePlaybackRate = $$props.changePlaybackRate);
     		if ("translator" in $$props) $$invalidate(3, translator = $$props.translator);
     		if ("currLang" in $$props) $$invalidate(4, currLang = $$props.currLang);
     		if ("updateAppState" in $$props) $$invalidate(5, updateAppState = $$props.updateAppState);
@@ -13251,7 +14942,7 @@ var app = (function () {
     		if ("sliderWidth" in $$props) $$invalidate(7, sliderWidth = $$props.sliderWidth);
     		if ("chartHeight" in $$props) chartHeight = $$props.chartHeight;
     		if ("maxScrubberWidth" in $$props) $$invalidate(8, maxScrubberWidth = $$props.maxScrubberWidth);
-    		if ("handleStyler" in $$props) $$invalidate(28, handleStyler = $$props.handleStyler);
+    		if ("handleStyler" in $$props) $$invalidate(29, handleStyler = $$props.handleStyler);
     		if ("currPlayRate" in $$props) $$invalidate(9, currPlayRate = $$props.currPlayRate);
     		if ("startDate" in $$props) startDate = $$props.startDate;
     		if ("endDate" in $$props) endDate = $$props.endDate;
@@ -13270,14 +14961,14 @@ var app = (function () {
     			}
     		}
 
-    		if ($$self.$$.dirty[0] & /*handleStyler, currentTime*/ 268435458) {
+    		if ($$self.$$.dirty[0] & /*handleStyler, currentTime*/ 536870914) {
     			 {
     				// continuoslu check currentTime for where to place the scrubber handle
     				handleStyler && handleStyler.set("x", convertTimeToXPosition(currentTime));
     			}
     		}
 
-    		if ($$self.$$.dirty[0] & /*isAnimationEnded, updateAppState*/ 16777248) {
+    		if ($$self.$$.dirty[0] & /*isAnimationEnded, updateAppState*/ 33554464) {
     			 {
     				if (isAnimationEnded) {
     					updateAppState({ isUserRunning: false });
@@ -13297,6 +14988,7 @@ var app = (function () {
     		sliderWidth,
     		maxScrubberWidth,
     		currPlayRate,
+    		handleResize,
     		convertTimeToXPosition,
     		handlePauseAnimation,
     		handleStartAnimation,
@@ -13338,16 +15030,16 @@ var app = (function () {
     			create_fragment$3,
     			safe_not_equal,
     			{
-    				frameData: 19,
-    				frameDataMonthIndices: 20,
+    				frameData: 20,
+    				frameDataMonthIndices: 21,
     				policyEvents: 0,
     				currentTime: 1,
     				maxTime: 2,
-    				pauseAnimation: 21,
-    				startAnimation: 22,
-    				updateCurrentTime: 23,
-    				isAnimationEnded: 24,
-    				changePlaybackRate: 25,
+    				pauseAnimation: 22,
+    				startAnimation: 23,
+    				updateCurrentTime: 24,
+    				isAnimationEnded: 25,
+    				changePlaybackRate: 26,
     				translator: 3,
     				currLang: 4,
     				updateAppState: 5,
@@ -13366,11 +15058,11 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*frameData*/ ctx[19] === undefined && !("frameData" in props)) {
+    		if (/*frameData*/ ctx[20] === undefined && !("frameData" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'frameData'");
     		}
 
-    		if (/*frameDataMonthIndices*/ ctx[20] === undefined && !("frameDataMonthIndices" in props)) {
+    		if (/*frameDataMonthIndices*/ ctx[21] === undefined && !("frameDataMonthIndices" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'frameDataMonthIndices'");
     		}
 
@@ -13386,23 +15078,23 @@ var app = (function () {
     			console.warn("<Scrubber> was created without expected prop 'maxTime'");
     		}
 
-    		if (/*pauseAnimation*/ ctx[21] === undefined && !("pauseAnimation" in props)) {
+    		if (/*pauseAnimation*/ ctx[22] === undefined && !("pauseAnimation" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'pauseAnimation'");
     		}
 
-    		if (/*startAnimation*/ ctx[22] === undefined && !("startAnimation" in props)) {
+    		if (/*startAnimation*/ ctx[23] === undefined && !("startAnimation" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'startAnimation'");
     		}
 
-    		if (/*updateCurrentTime*/ ctx[23] === undefined && !("updateCurrentTime" in props)) {
+    		if (/*updateCurrentTime*/ ctx[24] === undefined && !("updateCurrentTime" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'updateCurrentTime'");
     		}
 
-    		if (/*isAnimationEnded*/ ctx[24] === undefined && !("isAnimationEnded" in props)) {
+    		if (/*isAnimationEnded*/ ctx[25] === undefined && !("isAnimationEnded" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'isAnimationEnded'");
     		}
 
-    		if (/*changePlaybackRate*/ ctx[25] === undefined && !("changePlaybackRate" in props)) {
+    		if (/*changePlaybackRate*/ ctx[26] === undefined && !("changePlaybackRate" in props)) {
     			console.warn("<Scrubber> was created without expected prop 'changePlaybackRate'");
     		}
 
@@ -13813,14 +15505,14 @@ var app = (function () {
     			div1 = element("div");
     			t4 = text(t4_value);
     			t5 = space();
-    			attr_dev(span0, "class", "pm25-scale-number svelte-f5h408");
+    			attr_dev(span0, "class", "pm25-scale-number svelte-1cjyfu7");
     			add_location(span0, file$5, 100, 24, 3584);
     			add_location(span1, file$5, 103, 24, 3715);
-    			attr_dev(div0, "class", "pm25-scale-label svelte-f5h408");
+    			attr_dev(div0, "class", "pm25-scale-label svelte-1cjyfu7");
     			add_location(div0, file$5, 99, 24, 3529);
-    			attr_dev(div1, "class", "aqi-scale-labels svelte-f5h408");
+    			attr_dev(div1, "class", "aqi-scale-labels svelte-1cjyfu7");
     			add_location(div1, file$5, 105, 24, 3794);
-    			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty(classnames("pm25-scale-tick-row", "pm25-scale-tick-row-" + /*tick*/ ctx[18].heightpx)) + " svelte-f5h408"));
+    			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty(classnames("pm25-scale-tick-row", "pm25-scale-tick-row-" + /*tick*/ ctx[18].heightpx)) + " svelte-1cjyfu7"));
     			add_location(div2, file$5, 98, 20, 3419);
     		},
     		m: function mount(target, anchor) {
@@ -13855,7 +15547,7 @@ var app = (function () {
     }
 
     function create_fragment$5(ctx) {
-    	let div12;
+    	let div13;
     	let div7;
     	let div0;
     	let t0_value = /*translator*/ ctx[2].translate("pm25_scale_title", /*currLang*/ ctx[3]) + "";
@@ -13884,14 +15576,15 @@ var app = (function () {
     	let t8_value = /*translator*/ ctx[2].translate("legend_station_marker", /*currLang*/ ctx[3]) + "";
     	let t8;
     	let t9;
-    	let div11;
+    	let div12;
     	let div8;
     	let t10;
-    	let div10;
+    	let div11;
     	let div9;
     	let t11_value = /*translator*/ ctx[2].translate("legend_temperature_title", /*currLang*/ ctx[3]) + "";
     	let t11;
     	let t12;
+    	let div10;
     	let span2;
     	let t13_value = /*translator*/ ctx[2].translate("legend_temperature_description", /*currLang*/ ctx[3]) + "";
     	let t13;
@@ -13914,7 +15607,7 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div12 = element("div");
+    			div13 = element("div");
     			div7 = element("div");
     			div0 = element("div");
     			t0 = text(t0_value);
@@ -13943,64 +15636,66 @@ var app = (function () {
     			span1 = element("span");
     			t8 = text(t8_value);
     			t9 = space();
-    			div11 = element("div");
+    			div12 = element("div");
     			div8 = element("div");
     			create_component(thermometer.$$.fragment);
     			t10 = space();
-    			div10 = element("div");
+    			div11 = element("div");
     			div9 = element("div");
     			t11 = text(t11_value);
     			t12 = space();
+    			div10 = element("div");
     			span2 = element("span");
     			t13 = text(t13_value);
-    			attr_dev(div0, "class", "ap-legend-pm25-scale-title svelte-f5h408");
+    			attr_dev(div0, "class", "ap-legend-pm25-scale-title svelte-1cjyfu7");
     			add_location(div0, file$5, 93, 8, 3086);
-    			attr_dev(canvas, "class", "pm25-scale svelte-f5h408");
+    			attr_dev(canvas, "class", "pm25-scale svelte-1cjyfu7");
     			attr_dev(canvas, "id", "pm25-scale");
     			add_location(canvas, file$5, 95, 12, 3250);
-    			attr_dev(div1, "class", "pm25-scale-ticks svelte-f5h408");
+    			attr_dev(div1, "class", "pm25-scale-ticks svelte-1cjyfu7");
     			add_location(div1, file$5, 96, 12, 3315);
-    			attr_dev(div2, "class", "ap-legend-pm25-scale-container svelte-f5h408");
+    			attr_dev(div2, "class", "ap-legend-pm25-scale-container svelte-1cjyfu7");
     			add_location(div2, file$5, 94, 8, 3193);
-    			attr_dev(img0, "class", "key-img svelte-f5h408");
+    			attr_dev(img0, "class", "key-img svelte-1cjyfu7");
     			if (img0.src !== (img0_src_value = "./imgs/uncertainty_mask_legend.png")) attr_dev(img0, "src", img0_src_value);
     			attr_dev(img0, "alt", "");
     			add_location(img0, file$5, 112, 12, 4008);
     			add_location(span0, file$5, 114, 16, 4136);
-    			attr_dev(div3, "class", "key-description svelte-f5h408");
+    			attr_dev(div3, "class", "key-description svelte-1cjyfu7");
     			add_location(div3, file$5, 113, 12, 4090);
-    			attr_dev(div4, "class", "key-container svelte-f5h408");
+    			attr_dev(div4, "class", "key-container svelte-1cjyfu7");
     			add_location(div4, file$5, 111, 8, 3968);
-    			attr_dev(img1, "class", "key-img svelte-f5h408");
+    			attr_dev(img1, "class", "key-img svelte-1cjyfu7");
     			if (img1.src !== (img1_src_value = "./imgs/station_marker_legend.png")) attr_dev(img1, "src", img1_src_value);
     			attr_dev(img1, "alt", "");
     			add_location(img1, file$5, 120, 12, 4292);
     			add_location(span1, file$5, 122, 16, 4418);
-    			attr_dev(div5, "class", "key-description svelte-f5h408");
+    			attr_dev(div5, "class", "key-description svelte-1cjyfu7");
     			add_location(div5, file$5, 121, 12, 4372);
-    			attr_dev(div6, "class", "key-container svelte-f5h408");
+    			attr_dev(div6, "class", "key-container svelte-1cjyfu7");
     			add_location(div6, file$5, 119, 8, 4252);
-    			attr_dev(div7, "class", "legend-tile svelte-f5h408");
+    			attr_dev(div7, "class", "legend-tile svelte-1cjyfu7");
     			add_location(div7, file$5, 92, 4, 3052);
-    			attr_dev(div8, "class", "thermometer-container svelte-f5h408");
+    			attr_dev(div8, "class", "thermometer-container svelte-1cjyfu7");
     			add_location(div8, file$5, 131, 8, 4694);
-    			attr_dev(div9, "class", "temperature-description-title svelte-f5h408");
+    			attr_dev(div9, "class", "temperature-description-title svelte-1cjyfu7");
     			add_location(div9, file$5, 138, 12, 4927);
-    			attr_dev(span2, "class", "temperature-description-body svelte-f5h408");
-    			add_location(span2, file$5, 139, 11, 5050);
-    			attr_dev(div10, "class", "temperature-description");
-    			add_location(div10, file$5, 137, 8, 4877);
-    			attr_dev(div11, "class", "legend-tile temperature-key-container svelte-f5h408");
-    			add_location(div11, file$5, 130, 5, 4634);
-    			attr_dev(div12, "class", "ap-legend svelte-f5h408");
-    			add_location(div12, file$5, 91, 0, 3024);
+    			add_location(span2, file$5, 140, 16, 5110);
+    			attr_dev(div10, "class", "temperature-description-body svelte-1cjyfu7");
+    			add_location(div10, file$5, 139, 11, 5050);
+    			attr_dev(div11, "class", "temperature-description svelte-1cjyfu7");
+    			add_location(div11, file$5, 137, 8, 4877);
+    			attr_dev(div12, "class", "legend-tile temperature-key-container svelte-1cjyfu7");
+    			add_location(div12, file$5, 130, 5, 4634);
+    			attr_dev(div13, "class", "ap-legend svelte-1cjyfu7");
+    			add_location(div13, file$5, 91, 0, 3024);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div12, anchor);
-    			append_dev(div12, div7);
+    			insert_dev(target, div13, anchor);
+    			append_dev(div13, div7);
     			append_dev(div7, div0);
     			append_dev(div0, t0);
     			append_dev(div7, t1);
@@ -14027,15 +15722,16 @@ var app = (function () {
     			append_dev(div6, div5);
     			append_dev(div5, span1);
     			append_dev(span1, t8);
-    			append_dev(div12, t9);
-    			append_dev(div12, div11);
-    			append_dev(div11, div8);
+    			append_dev(div13, t9);
+    			append_dev(div13, div12);
+    			append_dev(div12, div8);
     			mount_component(thermometer, div8, null);
-    			append_dev(div11, t10);
-    			append_dev(div11, div10);
-    			append_dev(div10, div9);
+    			append_dev(div12, t10);
+    			append_dev(div12, div11);
+    			append_dev(div11, div9);
     			append_dev(div9, t11);
-    			append_dev(div10, t12);
+    			append_dev(div11, t12);
+    			append_dev(div11, div10);
     			append_dev(div10, span2);
     			append_dev(span2, t13);
     			current = true;
@@ -14086,7 +15782,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div12);
+    			if (detaching) detach_dev(div13);
     			destroy_each(each_blocks, detaching);
     			destroy_component(thermometer);
     		}
@@ -14412,7 +16108,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			if (if_block) if_block.c();
-    			attr_dev(div, "class", "event-info-container svelte-1sw6p7d");
+    			attr_dev(div, "class", "event-info-container svelte-1jwq13e");
     			add_location(div, file$6, 22, 0, 460);
     		},
     		l: function claim(nodes) {
@@ -32199,9 +33895,9 @@ var app = (function () {
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 113.57 127.1");
     			add_location(svg, file$7, 227, 18, 7051);
-    			attr_dev(button, "class", "btn map-play-button svelte-17kkkgl");
+    			attr_dev(button, "class", "btn map-play-button svelte-8e2s6o");
     			add_location(button, file$7, 226, 10, 6966);
-    			attr_dev(div, "class", "map-play-button-overlay svelte-17kkkgl");
+    			attr_dev(div, "class", "map-play-button-overlay svelte-8e2s6o");
     			add_location(div, file$7, 225, 8, 6918);
     		},
     		m: function mount(target, anchor, remount) {
@@ -32360,34 +34056,34 @@ var app = (function () {
     			attr_dev(link1, "href", "https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
     			attr_dev(link1, "rel", "stylesheet");
     			add_location(link1, file$7, 1, 0, 90);
-    			attr_dev(div0, "class", "title svelte-17kkkgl");
+    			attr_dev(div0, "class", "title svelte-8e2s6o");
     			add_location(div0, file$7, 211, 6, 6469);
-    			attr_dev(button, "class", "btn translate-button svelte-17kkkgl");
+    			attr_dev(button, "class", "btn translate-button svelte-8e2s6o");
     			add_location(button, file$7, 212, 8, 6544);
-    			attr_dev(div1, "class", "title-container svelte-17kkkgl");
+    			attr_dev(div1, "class", "title-container svelte-8e2s6o");
     			add_location(div1, file$7, 210, 4, 6433);
-    			attr_dev(div2, "class", "introduction svelte-17kkkgl");
+    			attr_dev(div2, "class", "introduction svelte-8e2s6o");
     			add_location(div2, file$7, 216, 4, 6687);
-    			attr_dev(div3, "class", "header svelte-17kkkgl");
+    			attr_dev(div3, "class", "header svelte-8e2s6o");
     			add_location(div3, file$7, 209, 2, 6408);
     			attr_dev(span, "class", "animation-date");
     			add_location(span, file$7, 247, 13, 8026);
-    			attr_dev(div4, "class", "map-animation-date-container svelte-17kkkgl");
+    			attr_dev(div4, "class", "map-animation-date-container svelte-8e2s6o");
     			add_location(div4, file$7, 246, 8, 7970);
-    			attr_dev(div5, "class", "map-event-container svelte-17kkkgl");
+    			attr_dev(div5, "class", "map-event-container svelte-8e2s6o");
     			add_location(div5, file$7, 251, 8, 8250);
-    			attr_dev(div6, "class", "map svelte-17kkkgl");
+    			attr_dev(div6, "class", "map svelte-8e2s6o");
     			attr_dev(div6, "id", "map");
     			add_location(div6, file$7, 223, 6, 6848);
-    			attr_dev(div7, "class", "map-scrubber-container svelte-17kkkgl");
+    			attr_dev(div7, "class", "map-scrubber-container svelte-8e2s6o");
     			add_location(div7, file$7, 263, 6, 8628);
-    			attr_dev(div8, "class", "map-container svelte-17kkkgl");
+    			attr_dev(div8, "class", "map-container svelte-8e2s6o");
     			add_location(div8, file$7, 221, 4, 6813);
-    			attr_dev(div9, "class", "map-aqi-legend svelte-17kkkgl");
+    			attr_dev(div9, "class", "map-aqi-legend svelte-8e2s6o");
     			add_location(div9, file$7, 285, 4, 9345);
-    			attr_dev(div10, "class", "visualization svelte-17kkkgl");
+    			attr_dev(div10, "class", "visualization svelte-8e2s6o");
     			add_location(div10, file$7, 219, 2, 6780);
-    			attr_dev(div11, "class", "ub-ap-viz svelte-17kkkgl");
+    			attr_dev(div11, "class", "ub-ap-viz svelte-8e2s6o");
     			add_location(div11, file$7, 207, 0, 6381);
     			attr_dev(div12, "class", "station-marker");
     			add_location(div12, file$7, 296, 0, 9558);

@@ -137,7 +137,9 @@
         </div>
         <div class='temperature-description'>
             <div class='temperature-description-title'> {translator.translate('legend_temperature_title', currLang)} </div>
-           <span class='temperature-description-body' >{translator.translate('legend_temperature_description', currLang)}</span>
+           <div class='temperature-description-body' >
+                <span> {translator.translate('legend_temperature_description', currLang)} </span>
+           </div>
         </div>
     </div>
     
@@ -150,7 +152,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    min-width: 75px;
+    min-width: 190px;
     padding-left: 10px;
     font-size: 12px;
 }
@@ -254,8 +256,16 @@
     width: 180%; /* some strangeness */
 }
 
+.temperature-description {
+    display: flex;
+    flex-direction: column;
+}
+
 .temperature-description-body {
     font-size: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .temperature-description-title {

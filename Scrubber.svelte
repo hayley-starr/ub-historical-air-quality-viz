@@ -9,6 +9,7 @@
     import { axisBottom, axisRight } from 'd3-axis';
     import { line } from 'd3-shape';
     import { max } from 'd3-array';
+    import { watchResize } from "svelte-watch-resize";
 
 
     export let frameData;
@@ -49,6 +50,10 @@
         if (isAnimationEnded) {
             updateAppState({isUserRunning: false});
         }
+    }
+
+    function handleResize(node) {
+        sliderWidth = node.clientWidth;
     }
 
     const convertTimeToXPosition =  (time) => {
@@ -155,7 +160,7 @@
 
         //---- Add X axis ----------------
         var xAxisScale = scaleLinear()
-            .domain([0, frameData.length-1]) // length of the timeseries
+            .domain([0, frameData.length-1]) // length of the timeseries, exclude first
             .range([ 0, width ]);
 
         let xAxis = axisBottom(xAxisScale)
@@ -178,7 +183,11 @@
             )
             .range([ height, 0]);
         // 2. format
-        let yAxis = axisRight(yAxisScale).ticks(3).tickValues([55,150,250]).tickSizeOuter(0);  
+        let yAxis = axisRight(yAxisScale)
+            .ticks(3)
+            .tickValues([55,150,250])
+            .tickFormat( y => y + ' μg/m3')
+            .tickSizeOuter(0);  
 
         //---- Add Y axis gridlines
         let yAxisGrid = axisRight(yAxisScale)
@@ -225,9 +234,8 @@
     <div class='pm25-chart' id='pm25-timeseries'>
 
     </div>
-    <div class="slider" id="slider">
+    <div class="slider" id="slider" use:watchResize={handleResize}>
         <div class="range"></div>
-
         <div class="handle-container">
             <div class="handle-hit-area">
                 <div class="handle"></div>
@@ -311,6 +319,7 @@
         flex-direction: column;
         justify-content: center;
         position: relative;
+        margin-top: 5px;
     }
 
     .pm25-chart-title {
@@ -451,9 +460,17 @@
     }
 
     .handle {
-        background: red;
+        /* background: red;
         width: 5px; 
         height: 40px;
+        cursor: pointer; */
+
+        background: red;
+        width: 5px;
+        opacity: 0.6;
+        bottom: 0;
+        height: 155px;
+        transform: translateY(-120px);
         cursor: pointer;
     }
 

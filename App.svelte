@@ -301,6 +301,7 @@
 .ub-ap-viz {
   font-family: 'Open Sans', sans-serif;
   color: #2B2D42;
+  min-width: fit-content;
 }
 
 .btn {
