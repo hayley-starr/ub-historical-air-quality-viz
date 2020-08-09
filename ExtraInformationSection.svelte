@@ -1,6 +1,7 @@
 <script>
     import Icon from 'fa-svelte'
     import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
+    import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
     
     export let currLang;
     export let translator;
@@ -63,6 +64,20 @@
         {/each}
         
     </div>
+
+     <div class='info-end'>
+        <div class='info-end-text info-thanks'>
+                <div class='heart-icon'>
+                        <Icon icon={faHeart}></Icon>
+                </div>
+                {translator.translate('thanks_to', currLang)}
+        </div>
+
+        <div class='info-who-am-i'>
+                {translator.translate('who_am_i', currLang)}
+        </div>
+        
+     </div>
     
 </div>
 
@@ -128,5 +143,30 @@
     .bullet-body {
         font-weight: lighter;
         margin-left: 20px;
+    }
+
+    .info-end {
+        margin-top: 60px;
+        background-color: steelblue;
+        padding: 10px;
+        color: white;
+        border-radius: 4px;
+    }
+
+    .heart-icon {
+        color: palevioletred;
+        display: inline;
+        font-size: 14px;
+    }
+
+    .info-who-am-i {
+        font-weight: lighter;
+        font-size: 14px;
+        letter-spacing: -0.05px;
+    }
+
+    .info-thanks {
+        font-weight: bold;
+        margin-bottom: 20px;
     }
 </style>

@@ -370,6 +370,18 @@ export class Translator {
             
             
             
+            thanks_to: {
+                US: 
+                    'Thanks very much to Public Lab Mongolia for supplying the low-cost sensor data, and to People In Need for installing and maintaing the sensors.',
+                MN: 
+                    'Мэдрэгчийг хямд өртөгтэйгээр хангаж, мэдрэгчийг суурилуулж, ажиллуулж байгаа хүмүүст зориулагдсан Public Lab Mongolia-д маш их баярлалаа.'
+            },
+            who_am_i: {
+                US: 
+                    'The author of this visualization works for Breathe Mongolia, a non-profit dedicated to ending air pollution in Mongolia. If you\'d like more information about the process of creating this visualization, please email hayley.garment@gmail.com.',
+                MN: 
+                    'Энэхүү дүрслэлийн зохиогч нь Монгол орны агаарын бохирдлыг зогсоох зорилготой ашгийн төлөө бус Breathe Mongolia компанид ажилладаг. Хэрэв танд энэ дүрслэлийг бий болгох процессын талаар илүү дэлгэрэнгүй мэдээлэл авахыг хүсвэл hayley.garment@gmail.com хаягаар мэдэгдэнэ үү.'
+            },
             none: {
                 US: 
                     '?',
