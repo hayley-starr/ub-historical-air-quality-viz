@@ -9,6 +9,7 @@
   import Scrubber from './Scrubber.svelte' 
   import AQILegend from './AQILegend.svelte';
   import EventInfoContainer from './EventInfoContainer.svelte';
+  import ExtraInformationSection from './ExtraInformationSection.svelte';
   import moment from 'moment';
   import { frameData, frameDataMonthIndices } from './frameData.js';
   import { policyEvents } from './policyEvents.js';
@@ -312,7 +313,10 @@
 
 
   <div class='section footer'>
-    <div class='introduction'>{translator.translate('introduction', currLang)}</div>
+    <ExtraInformationSection  
+        translator={translator}
+        currLang={currLang}
+      />
   </div>
 
 </div>
@@ -327,6 +331,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 60px;
 }
 
 .section {
@@ -369,6 +374,7 @@
   height: 100px;
   width: 100%;
   border-radius: 10px;
+  font-family: 'Merriweather', serif;
 }
 
 .title-date-container {
