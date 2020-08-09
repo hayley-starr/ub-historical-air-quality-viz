@@ -1,5 +1,6 @@
 <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Antic+Slab&family=Merriweather:wght@300&display=swap" rel="stylesheet">
 
 <script>
   import { onMount } from 'svelte';
@@ -14,6 +15,7 @@
   import getUnicodeFlagIcon from 'country-flag-icons/unicode';
   import { Translator } from './translator';
   import _ from 'lodash';
+  import { classnames } from './classnames';
 
 
   let appState = {
@@ -207,17 +209,32 @@
 <!--HTML-->
 <div class='ub-ap-viz'>
 
-  <div class='header'>
+  <div class='section header'>
     <div class='title-container'>
-      <div class='title'>{translator.translate('title', currLang)}</div>
-        <button class='btn translate-button' on:click={handleUpdateLanguage}>
-          {getUnicodeFlagIcon(oppLang)}
-        </button>
+      <div class='title-date-container'>
+         <div class='title'>
+          {translator.translate('title', currLang)}
+        </div>
+        <div class='title-date'>
+          {translator.translateDate('2020-08-14', currLang)}
+        </div>
+      </div>
+     
+     <div class='translate-buttons'>
+      <button class={classnames('btn','translate-button',  currLang == 'MN' ? 'translate-selected' : '')} on:click={handleUpdateLanguage}>
+        {getUnicodeFlagIcon('MN')}
+      </button>
+      <button class={classnames('btn','translate-button', currLang == 'US' ? 'translate-selected' : '')} on:click={handleUpdateLanguage}>
+        {getUnicodeFlagIcon('US')}
+      </button>
+     </div>
+      
     </div>
+
     <div class='introduction'>{translator.translate('introduction', currLang)}</div>
   </div>
 
-  <div class='visualization'>
+  <div class='section visualization'>
 
     <div class='map-container'>
 
@@ -293,15 +310,28 @@
     </div>
   </div>
 
+
+  <div class='section footer'>
+    <div class='introduction'>{translator.translate('introduction', currLang)}</div>
+  </div>
+
 </div>
-<div class='station-marker'></div>
 
 <style>
 
 .ub-ap-viz {
   font-family: 'Open Sans', sans-serif;
+  letter-spacing: -0.05px;
   color: #2B2D42;
   min-width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section {
+  width: 90%;
+  margin-bottom: 20px;
 }
 
 .btn {
@@ -327,6 +357,8 @@
 .header {
   display: flex;
   flex-direction: column;
+  width: 90%;
+  padding-bottom: 20px;
   /* border: 2px solid red; */
 }
 
@@ -334,29 +366,58 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* background: #2B2D42;
-  color: white; */
   height: 100px;
-  padding: 0 10px;
+  width: 100%;
   border-radius: 10px;
 }
 
+.title-date-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.title-date {
+  font-size: 15px;
+  font-weight: lighter;
+}
+
 .title {
-  font-size: 20px;
+  font-size: 30px;
+}
+
+.translate-buttons {
+  display: flex;
+  opacity: 0.8;
+}
+
+.translate-button:first-child {
+  margin-right: 3px;
 }
 
 .translate-button {
-  width: 50px;
-  height: 40px;
+  height: 30px;
   font-size: 30px;
   color: white;
   border: none;
-  border-radius: 15px;
+  border-radius: 4px;
+  background-color: ghostwhite;
+  display: flex;
+  align-items: center;
+}
+
+.translate-selected {
+  border: 1px solid steelblue;
+}
+
+.translate-button-text {
+  font-size: 15px;
+  color: #2B2D42;
+  margin-right: 5px;
 }
 
 .introduction {
-  padding: 5px;
-  font-size: 12px;
+    font-size: 14px;
+    line-height: 22px;
 }
 
 
