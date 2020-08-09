@@ -16348,22 +16348,87 @@ var app = (function () {
 
     function get_each_context$2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[3] = list[i];
+    	child_ctx[4] = list[i];
     	return child_ctx;
     }
 
-    // (21:8) {#each whatVizDoesntShowInfo as bullet}
+    function get_each_context_1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[4] = list[i];
+    	return child_ctx;
+    }
+
+    // (27:8) {#each howVizWasMadeInfo as bullet}
+    function create_each_block_1(ctx) {
+    	let div3;
+    	let div2;
+    	let div0;
+    	let t0_value = /*bullet*/ ctx[4].title + "";
+    	let t0;
+    	let t1;
+    	let div1;
+    	let t2_value = /*bullet*/ ctx[4].body + "";
+    	let t2;
+    	let t3;
+
+    	const block = {
+    		c: function create() {
+    			div3 = element("div");
+    			div2 = element("div");
+    			div0 = element("div");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			div1 = element("div");
+    			t2 = text(t2_value);
+    			t3 = space();
+    			attr_dev(div0, "class", "bullet-title svelte-1cs9csn");
+    			add_location(div0, file$7, 29, 20, 2354);
+    			attr_dev(div1, "class", "bullet-body svelte-1cs9csn");
+    			add_location(div1, file$7, 32, 21, 2468);
+    			attr_dev(div2, "class", "bullet-info svelte-1cs9csn");
+    			add_location(div2, file$7, 28, 16, 2308);
+    			attr_dev(div3, "class", "info-section-bullet svelte-1cs9csn");
+    			add_location(div3, file$7, 27, 12, 2258);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div3, anchor);
+    			append_dev(div3, div2);
+    			append_dev(div2, div0);
+    			append_dev(div0, t0);
+    			append_dev(div2, t1);
+    			append_dev(div2, div1);
+    			append_dev(div1, t2);
+    			append_dev(div3, t3);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div3);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_1.name,
+    		type: "each",
+    		source: "(27:8) {#each howVizWasMadeInfo as bullet}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (45:8) {#each whatVizDoesntShowInfo as bullet}
     function create_each_block$2(ctx) {
     	let div4;
     	let div0;
     	let t0;
     	let div3;
     	let div1;
-    	let t1_value = /*bullet*/ ctx[3].title + "";
+    	let t1_value = /*bullet*/ ctx[4].title + "";
     	let t1;
     	let t2;
     	let div2;
-    	let t3_value = /*bullet*/ ctx[3].body + "";
+    	let t3_value = /*bullet*/ ctx[4].body + "";
     	let t3;
     	let t4;
     	let current;
@@ -16382,16 +16447,16 @@ var app = (function () {
     			div2 = element("div");
     			t3 = text(t3_value);
     			t4 = space();
-    			attr_dev(div0, "class", "bullet-icon svelte-ml51or");
-    			add_location(div0, file$7, 22, 17, 1450);
-    			attr_dev(div1, "class", "bullet-title svelte-ml51or");
-    			add_location(div1, file$7, 26, 20, 1610);
-    			attr_dev(div2, "class", "bullet-body svelte-ml51or");
-    			add_location(div2, file$7, 29, 21, 1724);
-    			attr_dev(div3, "class", "bullet-info svelte-ml51or");
-    			add_location(div3, file$7, 25, 16, 1564);
-    			attr_dev(div4, "class", "info-section-bullet svelte-ml51or");
-    			add_location(div4, file$7, 21, 12, 1399);
+    			attr_dev(div0, "class", "bullet-icon svelte-1cs9csn");
+    			add_location(div0, file$7, 46, 17, 2900);
+    			attr_dev(div1, "class", "bullet-title svelte-1cs9csn");
+    			add_location(div1, file$7, 50, 20, 3060);
+    			attr_dev(div2, "class", "bullet-body svelte-1cs9csn");
+    			add_location(div2, file$7, 53, 21, 3174);
+    			attr_dev(div3, "class", "bullet-info svelte-1cs9csn");
+    			add_location(div3, file$7, 49, 16, 3014);
+    			attr_dev(div4, "class", "info-section-bullet svelte-1cs9csn");
+    			add_location(div4, file$7, 45, 12, 2849);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div4, anchor);
@@ -16427,7 +16492,7 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(21:8) {#each whatVizDoesntShowInfo as bullet}",
+    		source: "(45:8) {#each whatVizDoesntShowInfo as bullet}",
     		ctx
     	});
 
@@ -16435,12 +16500,24 @@ var app = (function () {
     }
 
     function create_fragment$7(ctx) {
-    	let div2;
+    	let div4;
     	let div1;
     	let div0;
     	let t1;
+    	let t2;
+    	let div3;
+    	let div2;
+    	let t4;
     	let current;
-    	let each_value = /*whatVizDoesntShowInfo*/ ctx[0];
+    	let each_value_1 = /*howVizWasMadeInfo*/ ctx[0];
+    	validate_each_argument(each_value_1);
+    	let each_blocks_1 = [];
+
+    	for (let i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks_1[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
+    	}
+
+    	let each_value = /*whatVizDoesntShowInfo*/ ctx[1];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -16454,40 +16531,87 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div2 = element("div");
+    			div4 = element("div");
     			div1 = element("div");
     			div0 = element("div");
-    			div0.textContent = `${"What does the visualizaton NOT show?"}`;
+    			div0.textContent = `${"How was this visualization made?"}`;
     			t1 = space();
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].c();
+    			}
+
+    			t2 = space();
+    			div3 = element("div");
+    			div2 = element("div");
+    			div2.textContent = `${"What does the visualizaton NOT show?"}`;
+    			t4 = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(div0, "class", "info-section-title svelte-ml51or");
-    			add_location(div0, file$7, 19, 8, 1259);
-    			attr_dev(div1, "class", "info-section svelte-ml51or");
-    			add_location(div1, file$7, 18, 4, 1224);
-    			add_location(div2, file$7, 17, 0, 1214);
+    			attr_dev(div0, "class", "info-section-title svelte-1cs9csn");
+    			add_location(div0, file$7, 25, 8, 2126);
+    			attr_dev(div1, "class", "info-section svelte-1cs9csn");
+    			add_location(div1, file$7, 24, 4, 2091);
+    			attr_dev(div2, "class", "info-section-title svelte-1cs9csn");
+    			add_location(div2, file$7, 43, 8, 2709);
+    			attr_dev(div3, "class", "info-section svelte-1cs9csn");
+    			add_location(div3, file$7, 42, 4, 2674);
+    			add_location(div4, file$7, 23, 0, 2081);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div2, anchor);
-    			append_dev(div2, div1);
+    			insert_dev(target, div4, anchor);
+    			append_dev(div4, div1);
     			append_dev(div1, div0);
     			append_dev(div1, t1);
 
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].m(div1, null);
+    			}
+
+    			append_dev(div4, t2);
+    			append_dev(div4, div3);
+    			append_dev(div3, div2);
+    			append_dev(div3, t4);
+
     			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(div1, null);
+    				each_blocks[i].m(div3, null);
     			}
 
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*whatVizDoesntShowInfo, faTimes*/ 1) {
-    				each_value = /*whatVizDoesntShowInfo*/ ctx[0];
+    			if (dirty & /*howVizWasMadeInfo*/ 1) {
+    				each_value_1 = /*howVizWasMadeInfo*/ ctx[0];
+    				validate_each_argument(each_value_1);
+    				let i;
+
+    				for (i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1(ctx, each_value_1, i);
+
+    					if (each_blocks_1[i]) {
+    						each_blocks_1[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_1[i] = create_each_block_1(child_ctx);
+    						each_blocks_1[i].c();
+    						each_blocks_1[i].m(div1, null);
+    					}
+    				}
+
+    				for (; i < each_blocks_1.length; i += 1) {
+    					each_blocks_1[i].d(1);
+    				}
+
+    				each_blocks_1.length = each_value_1.length;
+    			}
+
+    			if (dirty & /*whatVizDoesntShowInfo, faTimes*/ 2) {
+    				each_value = /*whatVizDoesntShowInfo*/ ctx[1];
     				validate_each_argument(each_value);
     				let i;
 
@@ -16501,7 +16625,7 @@ var app = (function () {
     						each_blocks[i] = create_each_block$2(child_ctx);
     						each_blocks[i].c();
     						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(div1, null);
+    						each_blocks[i].m(div3, null);
     					}
     				}
 
@@ -16533,7 +16657,8 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div2);
+    			if (detaching) detach_dev(div4);
+    			destroy_each(each_blocks_1, detaching);
     			destroy_each(each_blocks, detaching);
     		}
     	};
@@ -16553,6 +16678,17 @@ var app = (function () {
     	let { currLang } = $$props;
     	let { translator } = $$props;
 
+    	const howVizWasMadeInfo = [
+    		{
+    			title: "Low-Cost Sensor Data",
+    			body: "This visualization was made with data collected from 20 low-cost sensors installed around the city by People In Need Mongolia. The air quality stations on the map show their locations."
+    		},
+    		{
+    			title: "Air Quality Modeling",
+    			body: "Creating the visualzation was a two-step process. First the sensor data was combined with data about the city, such as density of population, density of coal-stoves (surveyed in 2013) and density of residential roads, to create a prediction map for each month. Then the prediction maps were corrected with the 7 day moving average of the observed readings. The final visualization reflects a fusion of the monthly trends with the smaller, daily variations in air quality."
+    		}
+    	];
+
     	const whatVizDoesntShowInfo = [
     		{
     			title: "Information Prior to 2019",
@@ -16564,10 +16700,10 @@ var app = (function () {
     		},
     		{
     			title: "Highly Accurate Spatial Estimates",
-    			body: "This visualizaton shows estimated trends over the city over time, and should not be used to make health exposure assessments or anything requiring numerical precision."
+    			body: "This visualizaton shows estimated trends over the city over time, and should not be used to make health exposure assessments or anything requiring numerical precision. In the future, more and better sensors around the city will help produce even more accurate maps."
     		},
     		{
-    			title: "All actions taken by the government to address air pollution",
+    			title: "A Full List of Government Actions",
     			body: "The events selected for the timeline are some of the most notable events related to air pollution in Ulaanbaatar, but are not a comprehensive list."
     		}
     	];
@@ -16582,8 +16718,8 @@ var app = (function () {
     	validate_slots("ExtraInformationSection", $$slots, []);
 
     	$$self.$set = $$props => {
-    		if ("currLang" in $$props) $$invalidate(1, currLang = $$props.currLang);
-    		if ("translator" in $$props) $$invalidate(2, translator = $$props.translator);
+    		if ("currLang" in $$props) $$invalidate(2, currLang = $$props.currLang);
+    		if ("translator" in $$props) $$invalidate(3, translator = $$props.translator);
     	};
 
     	$$self.$capture_state = () => ({
@@ -16591,25 +16727,26 @@ var app = (function () {
     		faTimes: faTimes_2,
     		currLang,
     		translator,
+    		howVizWasMadeInfo,
     		whatVizDoesntShowInfo
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("currLang" in $$props) $$invalidate(1, currLang = $$props.currLang);
-    		if ("translator" in $$props) $$invalidate(2, translator = $$props.translator);
+    		if ("currLang" in $$props) $$invalidate(2, currLang = $$props.currLang);
+    		if ("translator" in $$props) $$invalidate(3, translator = $$props.translator);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [whatVizDoesntShowInfo, currLang, translator];
+    	return [howVizWasMadeInfo, whatVizDoesntShowInfo, currLang, translator];
     }
 
     class ExtraInformationSection extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$7, create_fragment$7, safe_not_equal, { currLang: 1, translator: 2 });
+    		init(this, options, instance$7, create_fragment$7, safe_not_equal, { currLang: 2, translator: 3 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -16621,11 +16758,11 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*currLang*/ ctx[1] === undefined && !("currLang" in props)) {
+    		if (/*currLang*/ ctx[2] === undefined && !("currLang" in props)) {
     			console.warn("<ExtraInformationSection> was created without expected prop 'currLang'");
     		}
 
-    		if (/*translator*/ ctx[2] === undefined && !("translator" in props)) {
+    		if (/*translator*/ ctx[3] === undefined && !("translator" in props)) {
     			console.warn("<ExtraInformationSection> was created without expected prop 'translator'");
     		}
     	}
