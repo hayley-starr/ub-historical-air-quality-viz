@@ -153,6 +153,7 @@
     flex-direction: column;
     height: 100%;
     min-width: 190px;
+    max-width: 220px;
     padding-left: 10px;
     font-size: 12px;
 }

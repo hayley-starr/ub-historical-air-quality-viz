@@ -394,17 +394,14 @@ const handleOpenPM25 = () => {
   display: flex;
   flex-direction: column;
   width: 90%;
-  padding-bottom: 20px;
-  /* border: 2px solid red; */
+  padding: 20px 0;
 }
 
 .title-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100px;
+  flex-direction: column;
   width: 100%;
-  border-radius: 10px;
+  margin-bottom: 20px
 }
 
 .title-date-container {
@@ -424,6 +421,7 @@ const handleOpenPM25 = () => {
 .translate-buttons {
   display: flex;
   opacity: 0.8;
+  margin-top: 20px;
 }
 
 .translate-button:first-child {
@@ -547,7 +545,6 @@ const handleOpenPM25 = () => {
 }
 
 .visualization .map-aqi-legend {
-  width: 20%; /* in desktop */
   height: 100%;
 }
 </style>
