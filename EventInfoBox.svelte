@@ -90,6 +90,12 @@ $: {
         align-content: space-between;
     }
 
+    @media screen and (max-width: 800px) {
+        .event-info-box {
+            max-height: 290px;
+        }
+    }
+
     .event-info-scrollable {
         overflow-y: scroll;
         max-height: 350px;

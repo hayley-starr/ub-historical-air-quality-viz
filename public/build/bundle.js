@@ -3314,12 +3314,12 @@ var app = (function () {
     			if_block1_anchor = empty();
     			if (img.src !== (img_src_value = /*eventDetails*/ ctx[0].imgSource)) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", img_alt_value = "");
-    			attr_dev(img, "class", "svelte-2tcfjz");
+    			attr_dev(img, "class", "svelte-4m7t6b");
     			add_location(img, file$1, 61, 12, 1932);
-    			attr_dev(div0, "class", "event-photo svelte-2tcfjz");
+    			attr_dev(div0, "class", "event-photo svelte-4m7t6b");
     			add_location(div0, file$1, 60, 8, 1894);
     			add_location(span, file$1, 67, 12, 2215);
-    			attr_dev(div1, "class", "event-text svelte-2tcfjz");
+    			attr_dev(div1, "class", "event-text svelte-4m7t6b");
     			add_location(div1, file$1, 66, 8, 2178);
     		},
     		m: function mount(target, anchor) {
@@ -3440,9 +3440,9 @@ var app = (function () {
     			t = text(t_value);
     			attr_dev(a, "href", a_href_value = /*eventDetails*/ ctx[0].source);
     			attr_dev(a, "target", "_blank");
-    			attr_dev(a, "class", "svelte-2tcfjz");
+    			attr_dev(a, "class", "svelte-4m7t6b");
     			add_location(a, file$1, 71, 12, 2395);
-    			attr_dev(div, "class", "event-source svelte-2tcfjz");
+    			attr_dev(div, "class", "event-source svelte-4m7t6b");
     			add_location(div, file$1, 70, 8, 2356);
     		},
     		m: function mount(target, anchor) {
@@ -3522,20 +3522,20 @@ var app = (function () {
     			t4 = text(t4_value);
     			t5 = space();
     			if (if_block) if_block.c();
-    			attr_dev(span0, "class", "event-date-text svelte-2tcfjz");
+    			attr_dev(span0, "class", "event-date-text svelte-4m7t6b");
     			add_location(span0, file$1, 49, 8, 1420);
-    			attr_dev(div0, "class", "event-date-left svelte-2tcfjz");
+    			attr_dev(div0, "class", "event-date-left svelte-4m7t6b");
     			add_location(div0, file$1, 47, 8, 1339);
-    			attr_dev(div1, "class", "event-date-right svelte-2tcfjz");
+    			attr_dev(div1, "class", "event-date-right svelte-4m7t6b");
     			add_location(div1, file$1, 51, 8, 1536);
-    			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty(classnames("event-date", /*iconClass*/ ctx[5])) + " svelte-2tcfjz"));
+    			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty(classnames("event-date", /*iconClass*/ ctx[5])) + " svelte-4m7t6b"));
     			add_location(div2, file$1, 46, 4, 1281);
     			add_location(span1, file$1, 57, 12, 1748);
-    			attr_dev(div3, "class", "event-title svelte-2tcfjz");
+    			attr_dev(div3, "class", "event-title svelte-4m7t6b");
     			add_location(div3, file$1, 56, 8, 1710);
-    			attr_dev(div4, "class", "event-info-scrollable svelte-2tcfjz");
+    			attr_dev(div4, "class", "event-info-scrollable svelte-4m7t6b");
     			add_location(div4, file$1, 55, 4, 1666);
-    			attr_dev(div5, "class", "event-info-box svelte-2tcfjz");
+    			attr_dev(div5, "class", "event-info-box svelte-4m7t6b");
     			add_location(div5, file$1, 45, 0, 1248);
     		},
     		l: function claim(nodes) {
@@ -3580,7 +3580,7 @@ var app = (function () {
     			icon0.$set(icon0_changes);
     			if ((!current || dirty & /*translator, eventDetails, currLang*/ 7) && t1_value !== (t1_value = /*translator*/ ctx[1].translateDate(/*eventDetails*/ ctx[0].date, /*currLang*/ ctx[2]) + "")) set_data_dev(t1, t1_value);
 
-    			if (!current || dirty & /*iconClass*/ 32 && div2_class_value !== (div2_class_value = "" + (null_to_empty(classnames("event-date", /*iconClass*/ ctx[5])) + " svelte-2tcfjz"))) {
+    			if (!current || dirty & /*iconClass*/ 32 && div2_class_value !== (div2_class_value = "" + (null_to_empty(classnames("event-date", /*iconClass*/ ctx[5])) + " svelte-4m7t6b"))) {
     				attr_dev(div2, "class", div2_class_value);
     			}
 
@@ -34594,7 +34594,7 @@ var app = (function () {
 
     const file$8 = "App.svelte";
 
-    // (263:8) {:else}
+    // (269:8) {:else}
     function create_else_block$1(ctx) {
     	let t0;
     	let span;
@@ -34614,7 +34614,7 @@ var app = (function () {
     			span = element("span");
     			t1 = text(t1_value);
     			attr_dev(span, "class", "what-is-pm25-question svelte-74is7l");
-    			add_location(span, file$8, 264, 10, 8347);
+    			add_location(span, file$8, 270, 10, 8587);
     		},
     		m: function mount(target, anchor) {
     			mount_component(icon, target, anchor);
@@ -34646,14 +34646,14 @@ var app = (function () {
     		block,
     		id: create_else_block$1.name,
     		type: "else",
-    		source: "(263:8) {:else}",
+    		source: "(269:8) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (261:8) {#if pm25InfoOpen}
+    // (267:8) {#if pm25InfoOpen}
     function create_if_block_1$1(ctx) {
     	let span;
     	let t_value = /*translator*/ ctx[9].translate("pm_25_is", /*currLang*/ ctx[1]) + "";
@@ -34664,7 +34664,7 @@ var app = (function () {
     			span = element("span");
     			t = text(t_value);
     			attr_dev(span, "class", "pm-25-is svelte-74is7l");
-    			add_location(span, file$8, 261, 10, 8198);
+    			add_location(span, file$8, 267, 10, 8438);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -34684,14 +34684,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$1.name,
     		type: "if",
-    		source: "(261:8) {#if pm25InfoOpen}",
+    		source: "(267:8) {#if pm25InfoOpen}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (275:7) {#if !visualizationStarted}
+    // (281:7) {#if !visualizationStarted}
     function create_if_block$3(ctx) {
     	let div;
     	let button;
@@ -34715,27 +34715,27 @@ var app = (function () {
     			g1 = svg_element("g");
     			g0 = svg_element("g");
     			path = svg_element("path");
-    			add_location(style, file$8, 279, 26, 8913);
-    			add_location(defs, file$8, 278, 22, 8880);
+    			add_location(style, file$8, 285, 26, 9153);
+    			add_location(defs, file$8, 284, 22, 9120);
     			attr_dev(path, "class", "cls-play-1");
     			attr_dev(path, "d", "M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z");
     			attr_dev(path, "transform", "translate(0 -0.01)");
-    			add_location(path, file$8, 289, 26, 9345);
+    			add_location(path, file$8, 295, 26, 9585);
     			attr_dev(g0, "id", "Layer_1-2");
     			attr_dev(g0, "data-name", "Layer 1-2");
-    			add_location(g0, file$8, 288, 26, 9278);
+    			add_location(g0, file$8, 294, 26, 9518);
     			attr_dev(g1, "id", "Layer_2");
     			attr_dev(g1, "data-name", "Layer 2");
-    			add_location(g1, file$8, 287, 22, 9215);
+    			add_location(g1, file$8, 293, 22, 9455);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 113.57 127.1");
-    			add_location(svg, file$8, 277, 18, 8757);
+    			add_location(svg, file$8, 283, 18, 8997);
     			attr_dev(button, "class", "btn map-play-button svelte-74is7l");
-    			add_location(button, file$8, 276, 10, 8672);
+    			add_location(button, file$8, 282, 10, 8912);
     			attr_dev(div, "class", "map-play-button-overlay svelte-74is7l");
-    			add_location(div, file$8, 275, 8, 8624);
+    			add_location(div, file$8, 281, 8, 8864);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, div, anchor);
@@ -34761,7 +34761,7 @@ var app = (function () {
     		block,
     		id: create_if_block$3.name,
     		type: "if",
-    		source: "(275:7) {#if !visualizationStarted}",
+    		source: "(281:7) {#if !visualizationStarted}",
     		ctx
     	});
 
@@ -34947,46 +34947,46 @@ var app = (function () {
     			attr_dev(link2, "rel", "stylesheet");
     			add_location(link2, file$8, 2, 0, 210);
     			attr_dev(div0, "class", "title svelte-74is7l");
-    			add_location(div0, file$8, 239, 9, 7357);
+    			add_location(div0, file$8, 245, 9, 7597);
     			attr_dev(div1, "class", "title-date svelte-74is7l");
-    			add_location(div1, file$8, 242, 8, 7452);
+    			add_location(div1, file$8, 248, 8, 7692);
     			attr_dev(div2, "class", "title-date-container svelte-74is7l");
-    			add_location(div2, file$8, 238, 6, 7313);
+    			add_location(div2, file$8, 244, 6, 7553);
     			attr_dev(button0, "class", button0_class_value = "" + (null_to_empty(classnames("btn", "translate-button", /*currLang*/ ctx[1] == "MN" ? "translate-selected" : "")) + " svelte-74is7l"));
-    			add_location(button0, file$8, 248, 6, 7615);
+    			add_location(button0, file$8, 254, 6, 7855);
     			attr_dev(button1, "class", button1_class_value = "" + (null_to_empty(classnames("btn", "translate-button", /*currLang*/ ctx[1] == "US" ? "translate-selected" : "")) + " svelte-74is7l"));
-    			add_location(button1, file$8, 251, 6, 7805);
+    			add_location(button1, file$8, 257, 6, 8045);
     			attr_dev(div3, "class", "translate-buttons svelte-74is7l");
-    			add_location(div3, file$8, 247, 5, 7577);
+    			add_location(div3, file$8, 253, 5, 7817);
     			attr_dev(div4, "class", "title-container svelte-74is7l");
-    			add_location(div4, file$8, 237, 4, 7277);
+    			add_location(div4, file$8, 243, 4, 7517);
     			attr_dev(div5, "class", "introduction svelte-74is7l");
-    			add_location(div5, file$8, 258, 4, 8023);
+    			add_location(div5, file$8, 264, 4, 8263);
     			attr_dev(div6, "class", "what-is-pm25 svelte-74is7l");
-    			add_location(div6, file$8, 259, 4, 8108);
+    			add_location(div6, file$8, 265, 4, 8348);
     			attr_dev(div7, "class", "section header svelte-74is7l");
-    			add_location(div7, file$8, 236, 2, 7244);
+    			add_location(div7, file$8, 242, 2, 7484);
     			attr_dev(span, "class", "animation-date");
-    			add_location(span, file$8, 297, 13, 9732);
+    			add_location(span, file$8, 303, 13, 9972);
     			attr_dev(div8, "class", "map-animation-date-container svelte-74is7l");
-    			add_location(div8, file$8, 296, 8, 9676);
+    			add_location(div8, file$8, 302, 8, 9916);
     			attr_dev(div9, "class", "map-event-container svelte-74is7l");
-    			add_location(div9, file$8, 301, 8, 9956);
+    			add_location(div9, file$8, 307, 8, 10196);
     			attr_dev(div10, "class", "map svelte-74is7l");
     			attr_dev(div10, "id", "map");
-    			add_location(div10, file$8, 273, 6, 8554);
+    			add_location(div10, file$8, 279, 6, 8794);
     			attr_dev(div11, "class", "map-scrubber-container svelte-74is7l");
-    			add_location(div11, file$8, 313, 6, 10334);
+    			add_location(div11, file$8, 319, 6, 10574);
     			attr_dev(div12, "class", "map-container svelte-74is7l");
-    			add_location(div12, file$8, 271, 4, 8519);
+    			add_location(div12, file$8, 277, 4, 8759);
     			attr_dev(div13, "class", "map-aqi-legend svelte-74is7l");
-    			add_location(div13, file$8, 335, 4, 11051);
+    			add_location(div13, file$8, 341, 4, 11291);
     			attr_dev(div14, "class", "section visualization svelte-74is7l");
-    			add_location(div14, file$8, 269, 2, 8478);
+    			add_location(div14, file$8, 275, 2, 8718);
     			attr_dev(div15, "class", "section footer svelte-74is7l");
-    			add_location(div15, file$8, 346, 2, 11260);
+    			add_location(div15, file$8, 352, 2, 11500);
     			attr_dev(div16, "class", "ub-ap-viz svelte-74is7l");
-    			add_location(div16, file$8, 234, 0, 7217);
+    			add_location(div16, file$8, 240, 0, 7457);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -35270,12 +35270,19 @@ var app = (function () {
     	//------ Setting up Mapbox layers ---------------------------------
     	// After the DOM has been rendered set up the mapbox. (Won't work before map html is available.)
     	onMount(async () => {
+    		let initialZoom = 10.3;
+
+    		if (document.body.offsetWidth < 800) {
+    			// use a different style for smaller screens
+    			initialZoom = 9.5;
+    		}
+
     		map = new mapboxGl.Map({
     				container: "map",
     				style: "mapbox://styles/mapbox/streets-v9",
     				// style: 'mapbox://styles/mapbox/satellite-v9',
     				center: UB_COORDINATES, // starting position
-    				zoom: 11, // starting zoom
+    				zoom: initialZoom, // starting zoom
     				
     			});
 
@@ -35294,6 +35301,7 @@ var app = (function () {
     					map.getSource("ap_video").pause();
     					let videoSource = map.getSource("ap_video");
     					videoSource.video.loop = false;
+    					videoSource.video.playsInline = true; // or will play fullscreen in iOS
     					$$invalidate(4, maxTime = videoSource.video.duration);
     					var intervalTimer = setInterval(reportCurrentTime, FRAME_CHECKING_RATE);
 

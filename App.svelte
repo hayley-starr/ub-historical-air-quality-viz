@@ -128,12 +128,17 @@ const handleOpenPM25 = () => {
 
   // After the DOM has been rendered set up the mapbox. (Won't work before map html is available.)
 	onMount(async () => {
+    let initialZoom = 10.3
+    if (document.body.offsetWidth < 800) { // use a different style for smaller screens
+        initialZoom = 9.5;
+    }
+
 		map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v9',
         // style: 'mapbox://styles/mapbox/satellite-v9',
         center: UB_COORDINATES, // starting position
-        zoom: 11 // starting zoom
+        zoom: initialZoom // starting zoom
       });
     
     
@@ -150,6 +155,7 @@ const handleOpenPM25 = () => {
           map.getSource('ap_video').pause();
           let videoSource = map.getSource('ap_video');
           videoSource.video.loop = false;
+          videoSource.video.playsInline = true; // or will play fullscreen in iOS
           maxTime = videoSource.video.duration;
           var intervalTimer = setInterval(reportCurrentTime, FRAME_CHECKING_RATE);
 
