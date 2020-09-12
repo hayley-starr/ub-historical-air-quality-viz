@@ -363,6 +363,7 @@ const handleOpenPM25 = () => {
   flex-direction: column;
   align-items: center;
   margin-bottom: 60px;
+  overflow: hidden;
 }
 
 .section {
@@ -477,7 +478,7 @@ const handleOpenPM25 = () => {
   padding: 20px 20px 10px 20px;
 } 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
   .visualization {
     flex-direction: column; /* in smaller screens */
     padding: 0;
@@ -499,7 +500,7 @@ const handleOpenPM25 = () => {
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
   .visualization .map-container {
     width: 100%;
   }
@@ -510,7 +511,7 @@ const handleOpenPM25 = () => {
   height: 400px; /*desktop*/
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width:800px) {
   .map-container .map {
     height: 300px; /* Needs to be shorter so the user can scroll past it*/
   }
@@ -571,7 +572,7 @@ const handleOpenPM25 = () => {
   height: 100%;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
   .visualization .map-aqi-legend {
     padding-top: 10px;
   }
