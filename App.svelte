@@ -570,4 +570,10 @@ const handleOpenPM25 = () => {
 .visualization .map-aqi-legend {
   height: 100%;
 }
+
+@media screen and (max-width: 500px) {
+  .visualization .map-aqi-legend {
+    padding-top: 10px;
+  }
+}
 </style>

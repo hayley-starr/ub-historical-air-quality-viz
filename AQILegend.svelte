@@ -149,9 +149,11 @@
                     frameData={frameData}
                 />
             </div>
-           <div class='temperature-description' >
-                <span> {translator.translate('legend_temperature_description', currLang)} </span>
-           </div>
+             <span>{translator.translate('legend_temperature_description', currLang)} </span>
+             
+           <!-- <div class='temperature-description' >
+               
+           </div> -->
         </div>
     </div>
     
@@ -172,9 +174,9 @@
 
 @media screen and (max-width: 500px) {
     .ap-legend {
-        flex-direction: row;
         min-width: 0;
         max-width: 100%;
+        padding-right: 10px;
     }
 }
 
@@ -275,17 +277,18 @@
 }
 
 .temperature-key-container {
-    min-height: 175px;
     display: flex;
     flex-direction: column;
 }
 
 .temperature-key-body {
-    display: flex;
+   padding: 0 5px 5px 5px
 }
 
 .thermometer-container {
-    width: 180%; /* some strangeness */
+    float: left;
+    width: 55px;
+    padding-right: 10px;
 }
 
 .temperature-description {
