@@ -359,7 +359,6 @@ const handleOpenPM25 = () => {
   font-family: 'Open Sans', sans-serif;
   letter-spacing: -0.05px;
   color: #2B2D42;
-  min-width: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -464,7 +463,6 @@ const handleOpenPM25 = () => {
 
 .pm-25-is {
   text-transform: none;
-  /* color: #2B2D42; */
 }
 
 
@@ -473,31 +471,56 @@ const handleOpenPM25 = () => {
 .visualization {
   display: flex;
   flex-direction: row; /* in desktop */
-  height: 600px;
   background-color: #2B2D42;
   color: white;
   border-radius: 10px;
   padding: 20px 20px 10px 20px;
 } 
 
+@media screen and (max-width: 500px) {
+  .visualization {
+    flex-direction: column; /* in smaller screens */
+    padding: 0;
+    width: 100%;
+  } 
+}
+
 .visualization .map-container {
-  width: 80%; /* in desktop */
+  width: 80%;
   height: 100%;
-  /* border: 1px solid orangered; */
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
+@media screen and (max-width: 1000px) {
+  .visualization .map-container {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .visualization .map-container {
+    width: 100%;
+  }
+}
+
+
 .map-container .map {
-  height: 490px; /*desktop*/
+  height: 400px; /*desktop*/
+}
+
+@media screen and (max-width: 500px) {
+  .map-container .map {
+    height: 300px; /* Needs to be shorter so the user can scroll past it*/
+  }
 }
 
 .map-play-button-overlay {
   position: absolute;
   background-color: white;
   opacity: 0.2;
-  height: 400px;
+  height: 100%;
   width: 100%;
   z-index: 100;
   display: flex;
