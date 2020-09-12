@@ -14143,7 +14143,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (246:8) {#each policyEvents as policyEvent, i}
+    // (246:12) {#each policyEvents as policyEvent, i}
     function create_each_block(ctx) {
     	let current;
 
@@ -14199,14 +14199,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(246:8) {#each policyEvents as policyEvent, i}",
+    		source: "(246:12) {#each policyEvents as policyEvent, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (285:12) {:else}
+    // (288:12) {:else}
     function create_else_block(ctx) {
     	let button;
     	let svg;
@@ -14228,26 +14228,26 @@ var app = (function () {
     			g1 = svg_element("g");
     			g0 = svg_element("g");
     			path = svg_element("path");
-    			add_location(style, file$3, 288, 24, 10268);
-    			add_location(defs, file$3, 287, 20, 10237);
+    			add_location(style, file$3, 291, 24, 10432);
+    			add_location(defs, file$3, 290, 20, 10401);
     			attr_dev(path, "class", "cls-play-1");
     			attr_dev(path, "d", "M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z");
     			attr_dev(path, "transform", "translate(0 -0.01)");
-    			add_location(path, file$3, 298, 24, 10685);
+    			add_location(path, file$3, 301, 24, 10849);
     			attr_dev(g0, "id", "Layer_1-2");
     			attr_dev(g0, "data-name", "Layer 1-2");
-    			add_location(g0, file$3, 297, 24, 10620);
+    			add_location(g0, file$3, 300, 24, 10784);
     			attr_dev(g1, "id", "Layer_2");
     			attr_dev(g1, "data-name", "Layer 2");
-    			add_location(g1, file$3, 296, 20, 10559);
+    			add_location(g1, file$3, 299, 20, 10723);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 113.57 127.1");
-    			attr_dev(svg, "class", "svelte-1pi6b69");
-    			add_location(svg, file$3, 286, 16, 10116);
-    			attr_dev(button, "class", "start-button play-button svelte-1pi6b69");
-    			add_location(button, file$3, 285, 12, 10026);
+    			attr_dev(svg, "class", "svelte-hada4n");
+    			add_location(svg, file$3, 289, 16, 10280);
+    			attr_dev(button, "class", "start-button play-button svelte-hada4n");
+    			add_location(button, file$3, 288, 12, 10190);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, button, anchor);
@@ -14272,14 +14272,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(285:12) {:else}",
+    		source: "(288:12) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (265:12) {#if appState.isUserRunning}
+    // (268:12) {#if appState.isUserRunning}
     function create_if_block$1(ctx) {
     	let button;
     	let svg;
@@ -14303,28 +14303,28 @@ var app = (function () {
     			g0 = svg_element("g");
     			path0 = svg_element("path");
     			path1 = svg_element("path");
-    			add_location(style, file$3, 268, 24, 9194);
-    			add_location(defs, file$3, 267, 20, 9163);
+    			add_location(style, file$3, 271, 24, 9358);
+    			add_location(defs, file$3, 270, 20, 9327);
     			attr_dev(path0, "class", "cls-pause-1");
     			attr_dev(path0, "d", "M10.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,10.5.5Z");
-    			add_location(path0, file$3, 278, 24, 9617);
+    			add_location(path0, file$3, 281, 24, 9781);
     			attr_dev(path1, "class", "cls-pause-1");
     			attr_dev(path1, "d", "M60.5.5h0a10,10,0,0,1,10,10v114a10,10,0,0,1-10,10h0a10,10,0,0,1-10-10V10.5A10,10,0,0,1,60.5.5Z");
-    			add_location(path1, file$3, 279, 24, 9768);
+    			add_location(path1, file$3, 282, 24, 9932);
     			attr_dev(g0, "id", "Layer_1-2");
     			attr_dev(g0, "data-name", "Layer 1-2");
-    			add_location(g0, file$3, 277, 24, 9552);
+    			add_location(g0, file$3, 280, 24, 9716);
     			attr_dev(g1, "id", "Layer_2");
     			attr_dev(g1, "data-name", "Layer 2");
-    			add_location(g1, file$3, 276, 20, 9491);
+    			add_location(g1, file$3, 279, 20, 9655);
     			attr_dev(svg, "id", "Layer_1");
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 71 135");
-    			attr_dev(svg, "class", "svelte-1pi6b69");
-    			add_location(svg, file$3, 266, 16, 9048);
-    			attr_dev(button, "class", "pause-button play-button svelte-1pi6b69");
-    			add_location(button, file$3, 265, 12, 8958);
+    			attr_dev(svg, "class", "svelte-hada4n");
+    			add_location(svg, file$3, 269, 16, 9212);
+    			attr_dev(button, "class", "pause-button play-button svelte-hada4n");
+    			add_location(button, file$3, 268, 12, 9122);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, button, anchor);
@@ -14350,7 +14350,7 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(265:12) {#if appState.isUserRunning}",
+    		source: "(268:12) {#if appState.isUserRunning}",
     		ctx
     	});
 
@@ -14358,11 +14358,12 @@ var app = (function () {
     }
 
     function create_fragment$3(ctx) {
-    	let div11;
+    	let div12;
     	let div0;
     	let t0_value = /*translator*/ ctx[3].translate("pm25_mov_avg_title", /*currLang*/ ctx[4]) + "";
     	let t0;
     	let t1;
+    	let div7;
     	let div1;
     	let t2;
     	let div6;
@@ -14374,10 +14375,10 @@ var app = (function () {
     	let t4;
     	let watchResize_action;
     	let t5;
-    	let div10;
-    	let div8;
+    	let div11;
+    	let div9;
     	let t6;
-    	let div7;
+    	let div8;
     	let button0;
     	let t7_value = "0.5x" + "";
     	let t7;
@@ -14393,7 +14394,7 @@ var app = (function () {
     	let t11;
     	let button2_class_value;
     	let t12;
-    	let div9;
+    	let div10;
     	let t13_value = `${/*displayTime*/ ctx[19](/*currentTime*/ ctx[1])} / ${/*displayTime*/ ctx[19](/*maxTime*/ ctx[2])}` + "";
     	let t13;
     	let current;
@@ -14420,10 +14421,11 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div11 = element("div");
+    			div12 = element("div");
     			div0 = element("div");
     			t0 = text(t0_value);
     			t1 = space();
+    			div7 = element("div");
     			div1 = element("div");
     			t2 = space();
     			div6 = element("div");
@@ -14439,11 +14441,11 @@ var app = (function () {
     			}
 
     			t5 = space();
-    			div10 = element("div");
-    			div8 = element("div");
+    			div11 = element("div");
+    			div9 = element("div");
     			if_block.c();
     			t6 = space();
-    			div7 = element("div");
+    			div8 = element("div");
     			button0 = element("button");
     			t7 = text(t7_value);
     			t8 = space();
@@ -14453,64 +14455,67 @@ var app = (function () {
     			button2 = element("button");
     			t11 = text(t11_value);
     			t12 = space();
-    			div9 = element("div");
+    			div10 = element("div");
     			t13 = text(t13_value);
-    			attr_dev(div0, "class", "pm25-chart-title svelte-1pi6b69");
+    			attr_dev(div0, "class", "pm25-chart-title svelte-hada4n");
     			add_location(div0, file$3, 233, 4, 7696);
-    			attr_dev(div1, "class", "pm25-chart svelte-1pi6b69");
+    			attr_dev(div1, "class", "pm25-chart svelte-hada4n");
     			attr_dev(div1, "id", "pm25-timeseries");
-    			add_location(div1, file$3, 234, 4, 7791);
-    			attr_dev(div2, "class", "range svelte-1pi6b69");
-    			add_location(div2, file$3, 238, 8, 7925);
-    			attr_dev(div3, "class", "handle svelte-1pi6b69");
-    			add_location(div3, file$3, 241, 16, 8048);
-    			attr_dev(div4, "class", "handle-hit-area svelte-1pi6b69");
-    			add_location(div4, file$3, 240, 12, 8002);
-    			attr_dev(div5, "class", "handle-container svelte-1pi6b69");
-    			add_location(div5, file$3, 239, 8, 7959);
-    			attr_dev(div6, "class", "slider svelte-1pi6b69");
+    			add_location(div1, file$3, 236, 8, 7846);
+    			attr_dev(div2, "class", "range svelte-hada4n");
+    			add_location(div2, file$3, 238, 12, 7982);
+    			attr_dev(div3, "class", "handle svelte-hada4n");
+    			add_location(div3, file$3, 241, 20, 8117);
+    			attr_dev(div4, "class", "handle-hit-area svelte-hada4n");
+    			add_location(div4, file$3, 240, 16, 8067);
+    			attr_dev(div5, "class", "handle-container svelte-hada4n");
+    			add_location(div5, file$3, 239, 12, 8020);
+    			attr_dev(div6, "class", "slider svelte-hada4n");
     			attr_dev(div6, "id", "slider");
-    			add_location(div6, file$3, 237, 4, 7853);
+    			add_location(div6, file$3, 237, 8, 7906);
+    			attr_dev(div7, "class", "scrollable-scrubber-container svelte-hada4n");
+    			add_location(div7, file$3, 235, 6, 7794);
 
     			attr_dev(button0, "class", button0_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 0.5
     			? "speed-button-selected"
-    			: "")) + " svelte-1pi6b69"));
+    			: "")) + " svelte-hada4n"));
 
-    			add_location(button0, file$3, 305, 16, 11055);
+    			add_location(button0, file$3, 308, 16, 11219);
 
     			attr_dev(button1, "class", button1_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 1
     			? "speed-button-selected"
-    			: "")) + " svelte-1pi6b69"));
+    			: "")) + " svelte-hada4n"));
 
-    			add_location(button1, file$3, 306, 16, 11231);
+    			add_location(button1, file$3, 309, 16, 11395);
 
     			attr_dev(button2, "class", button2_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 2
     			? "speed-button-selected"
-    			: "")) + " svelte-1pi6b69"));
+    			: "")) + " svelte-hada4n"));
 
-    			add_location(button2, file$3, 307, 16, 11401);
-    			attr_dev(div7, "class", "speed-buttons-container svelte-1pi6b69");
-    			add_location(div7, file$3, 304, 12, 11001);
-    			attr_dev(div8, "class", "control-button-container svelte-1pi6b69");
-    			add_location(div8, file$3, 263, 8, 8865);
-    			attr_dev(div9, "class", "current-time-display svelte-1pi6b69");
-    			add_location(div9, file$3, 310, 9, 11599);
-    			attr_dev(div10, "class", "scrubber-controls svelte-1pi6b69");
-    			add_location(div10, file$3, 262, 4, 8825);
-    			attr_dev(div11, "class", "scrubber svelte-1pi6b69");
-    			add_location(div11, file$3, 232, 0, 7669);
+    			add_location(button2, file$3, 310, 16, 11565);
+    			attr_dev(div8, "class", "speed-buttons-container svelte-hada4n");
+    			add_location(div8, file$3, 307, 12, 11165);
+    			attr_dev(div9, "class", "control-button-container svelte-hada4n");
+    			add_location(div9, file$3, 266, 8, 9029);
+    			attr_dev(div10, "class", "current-time-display svelte-hada4n");
+    			add_location(div10, file$3, 313, 9, 11763);
+    			attr_dev(div11, "class", "scrubber-controls svelte-hada4n");
+    			add_location(div11, file$3, 265, 4, 8989);
+    			attr_dev(div12, "class", "scrubber svelte-hada4n");
+    			add_location(div12, file$3, 232, 0, 7669);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor, remount) {
-    			insert_dev(target, div11, anchor);
-    			append_dev(div11, div0);
+    			insert_dev(target, div12, anchor);
+    			append_dev(div12, div0);
     			append_dev(div0, t0);
-    			append_dev(div11, t1);
-    			append_dev(div11, div1);
-    			append_dev(div11, t2);
-    			append_dev(div11, div6);
+    			append_dev(div12, t1);
+    			append_dev(div12, div7);
+    			append_dev(div7, div1);
+    			append_dev(div7, t2);
+    			append_dev(div7, div6);
     			append_dev(div6, div2);
     			append_dev(div6, t3);
     			append_dev(div6, div5);
@@ -14522,23 +14527,23 @@ var app = (function () {
     				each_blocks[i].m(div6, null);
     			}
 
-    			append_dev(div11, t5);
-    			append_dev(div11, div10);
-    			append_dev(div10, div8);
-    			if_block.m(div8, null);
-    			append_dev(div8, t6);
-    			append_dev(div8, div7);
-    			append_dev(div7, button0);
+    			append_dev(div12, t5);
+    			append_dev(div12, div11);
+    			append_dev(div11, div9);
+    			if_block.m(div9, null);
+    			append_dev(div9, t6);
+    			append_dev(div9, div8);
+    			append_dev(div8, button0);
     			append_dev(button0, t7);
-    			append_dev(div7, t8);
-    			append_dev(div7, button1);
+    			append_dev(div8, t8);
+    			append_dev(div8, button1);
     			append_dev(button1, t9);
-    			append_dev(div7, t10);
-    			append_dev(div7, button2);
+    			append_dev(div8, t10);
+    			append_dev(div8, button2);
     			append_dev(button2, t11);
-    			append_dev(div10, t12);
-    			append_dev(div10, div9);
-    			append_dev(div9, t13);
+    			append_dev(div11, t12);
+    			append_dev(div11, div10);
+    			append_dev(div10, t13);
     			current = true;
     			if (remount) run_all(dispose);
 
@@ -14588,25 +14593,25 @@ var app = (function () {
 
     				if (if_block) {
     					if_block.c();
-    					if_block.m(div8, t6);
+    					if_block.m(div9, t6);
     				}
     			}
 
     			if (!current || dirty[0] & /*currPlayRate*/ 512 && button0_class_value !== (button0_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 0.5
     			? "speed-button-selected"
-    			: "")) + " svelte-1pi6b69"))) {
+    			: "")) + " svelte-hada4n"))) {
     				attr_dev(button0, "class", button0_class_value);
     			}
 
     			if (!current || dirty[0] & /*currPlayRate*/ 512 && button1_class_value !== (button1_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 1
     			? "speed-button-selected"
-    			: "")) + " svelte-1pi6b69"))) {
+    			: "")) + " svelte-hada4n"))) {
     				attr_dev(button1, "class", button1_class_value);
     			}
 
     			if (!current || dirty[0] & /*currPlayRate*/ 512 && button2_class_value !== (button2_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 2
     			? "speed-button-selected"
-    			: "")) + " svelte-1pi6b69"))) {
+    			: "")) + " svelte-hada4n"))) {
     				attr_dev(button2, "class", button2_class_value);
     			}
 
@@ -14631,7 +14636,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div11);
+    			if (detaching) detach_dev(div12);
     			destroy_each(each_blocks, detaching);
     			if_block.d();
     			run_all(dispose);
@@ -34608,7 +34613,7 @@ var app = (function () {
     			t0 = space();
     			span = element("span");
     			t1 = text(t1_value);
-    			attr_dev(span, "class", "what-is-pm25-question svelte-1bgk2is");
+    			attr_dev(span, "class", "what-is-pm25-question svelte-74is7l");
     			add_location(span, file$8, 264, 10, 8347);
     		},
     		m: function mount(target, anchor) {
@@ -34658,7 +34663,7 @@ var app = (function () {
     		c: function create() {
     			span = element("span");
     			t = text(t_value);
-    			attr_dev(span, "class", "pm-25-is svelte-1bgk2is");
+    			attr_dev(span, "class", "pm-25-is svelte-74is7l");
     			add_location(span, file$8, 261, 10, 8198);
     		},
     		m: function mount(target, anchor) {
@@ -34727,9 +34732,9 @@ var app = (function () {
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 113.57 127.1");
     			add_location(svg, file$8, 277, 18, 8757);
-    			attr_dev(button, "class", "btn map-play-button svelte-1bgk2is");
+    			attr_dev(button, "class", "btn map-play-button svelte-74is7l");
     			add_location(button, file$8, 276, 10, 8672);
-    			attr_dev(div, "class", "map-play-button-overlay svelte-1bgk2is");
+    			attr_dev(div, "class", "map-play-button-overlay svelte-74is7l");
     			add_location(div, file$8, 275, 8, 8624);
     		},
     		m: function mount(target, anchor, remount) {
@@ -34941,46 +34946,46 @@ var app = (function () {
     			attr_dev(link2, "href", "https://fonts.googleapis.com/css2?family=Antic+Slab&family=Merriweather:wght@300&display=swap");
     			attr_dev(link2, "rel", "stylesheet");
     			add_location(link2, file$8, 2, 0, 210);
-    			attr_dev(div0, "class", "title svelte-1bgk2is");
+    			attr_dev(div0, "class", "title svelte-74is7l");
     			add_location(div0, file$8, 239, 9, 7357);
-    			attr_dev(div1, "class", "title-date svelte-1bgk2is");
+    			attr_dev(div1, "class", "title-date svelte-74is7l");
     			add_location(div1, file$8, 242, 8, 7452);
-    			attr_dev(div2, "class", "title-date-container svelte-1bgk2is");
+    			attr_dev(div2, "class", "title-date-container svelte-74is7l");
     			add_location(div2, file$8, 238, 6, 7313);
-    			attr_dev(button0, "class", button0_class_value = "" + (null_to_empty(classnames("btn", "translate-button", /*currLang*/ ctx[1] == "MN" ? "translate-selected" : "")) + " svelte-1bgk2is"));
+    			attr_dev(button0, "class", button0_class_value = "" + (null_to_empty(classnames("btn", "translate-button", /*currLang*/ ctx[1] == "MN" ? "translate-selected" : "")) + " svelte-74is7l"));
     			add_location(button0, file$8, 248, 6, 7615);
-    			attr_dev(button1, "class", button1_class_value = "" + (null_to_empty(classnames("btn", "translate-button", /*currLang*/ ctx[1] == "US" ? "translate-selected" : "")) + " svelte-1bgk2is"));
+    			attr_dev(button1, "class", button1_class_value = "" + (null_to_empty(classnames("btn", "translate-button", /*currLang*/ ctx[1] == "US" ? "translate-selected" : "")) + " svelte-74is7l"));
     			add_location(button1, file$8, 251, 6, 7805);
-    			attr_dev(div3, "class", "translate-buttons svelte-1bgk2is");
+    			attr_dev(div3, "class", "translate-buttons svelte-74is7l");
     			add_location(div3, file$8, 247, 5, 7577);
-    			attr_dev(div4, "class", "title-container svelte-1bgk2is");
+    			attr_dev(div4, "class", "title-container svelte-74is7l");
     			add_location(div4, file$8, 237, 4, 7277);
-    			attr_dev(div5, "class", "introduction svelte-1bgk2is");
+    			attr_dev(div5, "class", "introduction svelte-74is7l");
     			add_location(div5, file$8, 258, 4, 8023);
-    			attr_dev(div6, "class", "what-is-pm25 svelte-1bgk2is");
+    			attr_dev(div6, "class", "what-is-pm25 svelte-74is7l");
     			add_location(div6, file$8, 259, 4, 8108);
-    			attr_dev(div7, "class", "section header svelte-1bgk2is");
+    			attr_dev(div7, "class", "section header svelte-74is7l");
     			add_location(div7, file$8, 236, 2, 7244);
     			attr_dev(span, "class", "animation-date");
     			add_location(span, file$8, 297, 13, 9732);
-    			attr_dev(div8, "class", "map-animation-date-container svelte-1bgk2is");
+    			attr_dev(div8, "class", "map-animation-date-container svelte-74is7l");
     			add_location(div8, file$8, 296, 8, 9676);
-    			attr_dev(div9, "class", "map-event-container svelte-1bgk2is");
+    			attr_dev(div9, "class", "map-event-container svelte-74is7l");
     			add_location(div9, file$8, 301, 8, 9956);
-    			attr_dev(div10, "class", "map svelte-1bgk2is");
+    			attr_dev(div10, "class", "map svelte-74is7l");
     			attr_dev(div10, "id", "map");
     			add_location(div10, file$8, 273, 6, 8554);
-    			attr_dev(div11, "class", "map-scrubber-container svelte-1bgk2is");
+    			attr_dev(div11, "class", "map-scrubber-container svelte-74is7l");
     			add_location(div11, file$8, 313, 6, 10334);
-    			attr_dev(div12, "class", "map-container svelte-1bgk2is");
+    			attr_dev(div12, "class", "map-container svelte-74is7l");
     			add_location(div12, file$8, 271, 4, 8519);
-    			attr_dev(div13, "class", "map-aqi-legend svelte-1bgk2is");
+    			attr_dev(div13, "class", "map-aqi-legend svelte-74is7l");
     			add_location(div13, file$8, 335, 4, 11051);
-    			attr_dev(div14, "class", "section visualization svelte-1bgk2is");
+    			attr_dev(div14, "class", "section visualization svelte-74is7l");
     			add_location(div14, file$8, 269, 2, 8478);
-    			attr_dev(div15, "class", "section footer svelte-1bgk2is");
+    			attr_dev(div15, "class", "section footer svelte-74is7l");
     			add_location(div15, file$8, 346, 2, 11260);
-    			attr_dev(div16, "class", "ub-ap-viz svelte-1bgk2is");
+    			attr_dev(div16, "class", "ub-ap-viz svelte-74is7l");
     			add_location(div16, file$8, 234, 0, 7217);
     		},
     		l: function claim(nodes) {
@@ -35049,11 +35054,11 @@ var app = (function () {
     			if ((!current || dirty & /*currLang*/ 2) && t3_value !== (t3_value = /*translator*/ ctx[9].translate("title", /*currLang*/ ctx[1]) + "")) set_data_dev(t3, t3_value);
     			if ((!current || dirty & /*currLang*/ 2) && t5_value !== (t5_value = /*translator*/ ctx[9].translateDate("2020-08-14", /*currLang*/ ctx[1]) + "")) set_data_dev(t5, t5_value);
 
-    			if (!current || dirty & /*currLang*/ 2 && button0_class_value !== (button0_class_value = "" + (null_to_empty(classnames("btn", "translate-button", /*currLang*/ ctx[1] == "MN" ? "translate-selected" : "")) + " svelte-1bgk2is"))) {
+    			if (!current || dirty & /*currLang*/ 2 && button0_class_value !== (button0_class_value = "" + (null_to_empty(classnames("btn", "translate-button", /*currLang*/ ctx[1] == "MN" ? "translate-selected" : "")) + " svelte-74is7l"))) {
     				attr_dev(button0, "class", button0_class_value);
     			}
 
-    			if (!current || dirty & /*currLang*/ 2 && button1_class_value !== (button1_class_value = "" + (null_to_empty(classnames("btn", "translate-button", /*currLang*/ ctx[1] == "US" ? "translate-selected" : "")) + " svelte-1bgk2is"))) {
+    			if (!current || dirty & /*currLang*/ 2 && button1_class_value !== (button1_class_value = "" + (null_to_empty(classnames("btn", "translate-button", /*currLang*/ ctx[1] == "US" ? "translate-selected" : "")) + " svelte-74is7l"))) {
     				attr_dev(button1, "class", button1_class_value);
     			}
 

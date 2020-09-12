@@ -232,34 +232,37 @@
 
 <div class="scrubber">
     <div class='pm25-chart-title'>{translator.translate('pm25_mov_avg_title', currLang)}</div>
-    <div class='pm25-chart' id='pm25-timeseries'>
 
-    </div>
-    <div class="slider" id="slider" use:watchResize={handleResize}>
-        <div class="range"></div>
-        <div class="handle-container">
-            <div class="handle-hit-area">
-                <div class="handle"></div>
+      <div class='scrollable-scrubber-container'>
+        <div class='pm25-chart' id='pm25-timeseries'></div>
+        <div class="slider" id="slider" use:watchResize={handleResize}>
+            <div class="range"></div>
+            <div class="handle-container">
+                <div class="handle-hit-area">
+                    <div class="handle"></div>
+                </div>
             </div>
-        </div>
 
-        {#each policyEvents as policyEvent, i}
-            <PolicyEvent 
-                currentScrubberPosition={convertTimeToXPosition(currentTime)} 
-                eventPosition={Math.round(sliderWidth * getPolicyEventPosition(policyEvent.date))}
-                eventDetails={policyEvent}
-                bufferRadius={EVENT_BUFFER_TIME * maxScrubberWidth / maxTime}
-                id={i}
-                pauseAnimation={handlePolicyPause} 
-                startAnimation={handlePolicyStart} 
-                updateAppState={updateAppState}
-                appState={appState}
-                updateAnimationPosition={handleUpdateAnimationPosition}
-            />
-    
-        {/each}
+            {#each policyEvents as policyEvent, i}
+                <PolicyEvent 
+                    currentScrubberPosition={convertTimeToXPosition(currentTime)} 
+                    eventPosition={Math.round(sliderWidth * getPolicyEventPosition(policyEvent.date))}
+                    eventDetails={policyEvent}
+                    bufferRadius={EVENT_BUFFER_TIME * maxScrubberWidth / maxTime}
+                    id={i}
+                    pauseAnimation={handlePolicyPause} 
+                    startAnimation={handlePolicyStart} 
+                    updateAppState={updateAppState}
+                    appState={appState}
+                    updateAnimationPosition={handleUpdateAnimationPosition}
+                />
         
-    </div>
+            {/each}
+            
+        </div>
+      </div>
+    
+
     <div class='scrubber-controls'>
         <div class='control-button-container'>
             {#if appState.isUserRunning} 
@@ -326,9 +329,10 @@
     .pm25-chart-title {
         position: absolute;
         top: 10px;
-        left: 10%;
+        left: 20%;
         font-size: 10px;
         font-weight: 100;
+        text-align: -webkit-center;
     }
 
     .pm25-chart {
@@ -433,6 +437,19 @@
         margin-top: 25px;
         margin-bottom: 5px;
         position: relative;
+    }
+
+    @media screen and (max-width:800px) {
+        .slider {
+            width: 800px;
+        }
+
+        .scrollable-scrubber-container {
+            overflow-x: scroll;
+            overflow-y: hidden;
+             -webkit-overflow-scrolling: touch;
+            padding: 0 5px;
+        }
     }
 
     .range {
