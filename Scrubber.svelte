@@ -396,6 +396,7 @@
     .current-time-display {
         font-size: 15px;
         font-weight: lighter;
+        padding: 0 10px;
     }
 
     .play-button svg {

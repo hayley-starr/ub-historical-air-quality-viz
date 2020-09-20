@@ -14244,9 +14244,9 @@ var app = (function () {
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 113.57 127.1");
-    			attr_dev(svg, "class", "svelte-hada4n");
+    			attr_dev(svg, "class", "svelte-6eo4e2");
     			add_location(svg, file$3, 289, 16, 10280);
-    			attr_dev(button, "class", "start-button play-button svelte-hada4n");
+    			attr_dev(button, "class", "start-button play-button svelte-6eo4e2");
     			add_location(button, file$3, 288, 12, 10190);
     		},
     		m: function mount(target, anchor, remount) {
@@ -14321,9 +14321,9 @@ var app = (function () {
     			attr_dev(svg, "data-name", "Layer 1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 71 135");
-    			attr_dev(svg, "class", "svelte-hada4n");
+    			attr_dev(svg, "class", "svelte-6eo4e2");
     			add_location(svg, file$3, 269, 16, 9212);
-    			attr_dev(button, "class", "pause-button play-button svelte-hada4n");
+    			attr_dev(button, "class", "pause-button play-button svelte-6eo4e2");
     			add_location(button, file$3, 268, 12, 9122);
     		},
     		m: function mount(target, anchor, remount) {
@@ -14457,51 +14457,51 @@ var app = (function () {
     			t12 = space();
     			div10 = element("div");
     			t13 = text(t13_value);
-    			attr_dev(div0, "class", "pm25-chart-title svelte-hada4n");
+    			attr_dev(div0, "class", "pm25-chart-title svelte-6eo4e2");
     			add_location(div0, file$3, 233, 4, 7696);
-    			attr_dev(div1, "class", "pm25-chart svelte-hada4n");
+    			attr_dev(div1, "class", "pm25-chart svelte-6eo4e2");
     			attr_dev(div1, "id", "pm25-timeseries");
     			add_location(div1, file$3, 236, 8, 7846);
-    			attr_dev(div2, "class", "range svelte-hada4n");
+    			attr_dev(div2, "class", "range svelte-6eo4e2");
     			add_location(div2, file$3, 238, 12, 7982);
-    			attr_dev(div3, "class", "handle svelte-hada4n");
+    			attr_dev(div3, "class", "handle svelte-6eo4e2");
     			add_location(div3, file$3, 241, 20, 8117);
-    			attr_dev(div4, "class", "handle-hit-area svelte-hada4n");
+    			attr_dev(div4, "class", "handle-hit-area svelte-6eo4e2");
     			add_location(div4, file$3, 240, 16, 8067);
-    			attr_dev(div5, "class", "handle-container svelte-hada4n");
+    			attr_dev(div5, "class", "handle-container svelte-6eo4e2");
     			add_location(div5, file$3, 239, 12, 8020);
-    			attr_dev(div6, "class", "slider svelte-hada4n");
+    			attr_dev(div6, "class", "slider svelte-6eo4e2");
     			attr_dev(div6, "id", "slider");
     			add_location(div6, file$3, 237, 8, 7906);
-    			attr_dev(div7, "class", "scrollable-scrubber-container svelte-hada4n");
+    			attr_dev(div7, "class", "scrollable-scrubber-container svelte-6eo4e2");
     			add_location(div7, file$3, 235, 6, 7794);
 
     			attr_dev(button0, "class", button0_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 0.5
     			? "speed-button-selected"
-    			: "")) + " svelte-hada4n"));
+    			: "")) + " svelte-6eo4e2"));
 
     			add_location(button0, file$3, 308, 16, 11219);
 
     			attr_dev(button1, "class", button1_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 1
     			? "speed-button-selected"
-    			: "")) + " svelte-hada4n"));
+    			: "")) + " svelte-6eo4e2"));
 
     			add_location(button1, file$3, 309, 16, 11395);
 
     			attr_dev(button2, "class", button2_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 2
     			? "speed-button-selected"
-    			: "")) + " svelte-hada4n"));
+    			: "")) + " svelte-6eo4e2"));
 
     			add_location(button2, file$3, 310, 16, 11565);
-    			attr_dev(div8, "class", "speed-buttons-container svelte-hada4n");
+    			attr_dev(div8, "class", "speed-buttons-container svelte-6eo4e2");
     			add_location(div8, file$3, 307, 12, 11165);
-    			attr_dev(div9, "class", "control-button-container svelte-hada4n");
+    			attr_dev(div9, "class", "control-button-container svelte-6eo4e2");
     			add_location(div9, file$3, 266, 8, 9029);
-    			attr_dev(div10, "class", "current-time-display svelte-hada4n");
+    			attr_dev(div10, "class", "current-time-display svelte-6eo4e2");
     			add_location(div10, file$3, 313, 9, 11763);
-    			attr_dev(div11, "class", "scrubber-controls svelte-hada4n");
+    			attr_dev(div11, "class", "scrubber-controls svelte-6eo4e2");
     			add_location(div11, file$3, 265, 4, 8989);
-    			attr_dev(div12, "class", "scrubber svelte-hada4n");
+    			attr_dev(div12, "class", "scrubber svelte-6eo4e2");
     			add_location(div12, file$3, 232, 0, 7669);
     		},
     		l: function claim(nodes) {
@@ -14599,19 +14599,19 @@ var app = (function () {
 
     			if (!current || dirty[0] & /*currPlayRate*/ 512 && button0_class_value !== (button0_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 0.5
     			? "speed-button-selected"
-    			: "")) + " svelte-hada4n"))) {
+    			: "")) + " svelte-6eo4e2"))) {
     				attr_dev(button0, "class", button0_class_value);
     			}
 
     			if (!current || dirty[0] & /*currPlayRate*/ 512 && button1_class_value !== (button1_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 1
     			? "speed-button-selected"
-    			: "")) + " svelte-hada4n"))) {
+    			: "")) + " svelte-6eo4e2"))) {
     				attr_dev(button1, "class", button1_class_value);
     			}
 
     			if (!current || dirty[0] & /*currPlayRate*/ 512 && button2_class_value !== (button2_class_value = "" + (null_to_empty(classnames("speed-button", /*currPlayRate*/ ctx[9] == 2
     			? "speed-button-selected"
-    			: "")) + " svelte-hada4n"))) {
+    			: "")) + " svelte-6eo4e2"))) {
     				attr_dev(button2, "class", button2_class_value);
     			}
 
