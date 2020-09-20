@@ -129,7 +129,7 @@ const handleOpenPM25 = () => {
   // After the DOM has been rendered set up the mapbox. (Won't work before map html is available.)
 	onMount(async () => {
     let initialZoom = 10.3
-    if (document.body.offsetWidth < 800) { // use a different style for smaller screens
+    if (document.body.offsetWidth < 500) { // use a different style for smaller screens
         initialZoom = 9.5;
     }
 
@@ -273,79 +273,81 @@ const handleOpenPM25 = () => {
       </div>
   </div>
 
-  <div class='section visualization'>
+  <div class='section scrollable'>
+    <div class='visualization'>
 
-    <div class='map-container'>
+      <div class='map-container'>
 
-      <div class='map' id='map'>
-       {#if !visualizationStarted}
-        <div class='map-play-button-overlay'>
-          <button class='btn map-play-button' on:click={startVisualization}>
-                  <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 113.57 127.1">
-                      <defs>
-                          <style>
-                          .cls-play-1 {
-                              stroke: #000;
-                              fill: #000;
-                              stroke-miterlimit: 10;
-                          }
-                          </style>
-                      </defs>
-                      <g id="Layer_2" data-name="Layer 2">
-                          <g id="Layer_1-2" data-name="Layer 1-2">
-                          <path class="cls-play-1" d="M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z" transform="translate(0 -0.01)"/>
-                          </g>
-                      </g>
-                  </svg>
-              </button>
+        <div class='map' id='map'>
+        {#if !visualizationStarted}
+          <div class='map-play-button-overlay'>
+            <button class='btn map-play-button' on:click={startVisualization}>
+                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 113.57 127.1">
+                        <defs>
+                            <style>
+                            .cls-play-1 {
+                                stroke: #000;
+                                fill: #000;
+                                stroke-miterlimit: 10;
+                            }
+                            </style>
+                        </defs>
+                        <g id="Layer_2" data-name="Layer 2">
+                            <g id="Layer_1-2" data-name="Layer 1-2">
+                            <path class="cls-play-1" d="M106.78,74.45,19.36,124.92A12.57,12.57,0,0,1,.5,114V13.09A12.57,12.57,0,0,1,19.36,2.2l87.42,50.48a12.57,12.57,0,0,1,0,21.77Z" transform="translate(0 -0.01)"/>
+                            </g>
+                        </g>
+                    </svg>
+                </button>
+          </div>
+          {/if}
+          <div class='map-animation-date-container'>
+              <span class='animation-date'>
+                  {translator.translate('seven_day_avg_on', currLang) + ': ' + translator.translateDate(frameData[currentFrame].date, currLang)}
+              </span>        
+          </div>
+          <div class='map-event-container'>
+              <EventInfoContainer 
+                  policyEvents={policyEvents}
+                  appState={appState}
+                  updateAppState={updateAppState}
+                  startAnimation={startAnimation}
+                  translator={translator}
+                  currLang={currLang}
+              />         
+          </div>
         </div>
-        {/if}
-        <div class='map-animation-date-container'>
-             <span class='animation-date'>
-                {translator.translate('seven_day_avg_on', currLang) + ': ' + translator.translateDate(frameData[currentFrame].date, currLang)}
-            </span>        
-        </div>
-        <div class='map-event-container'>
-            <EventInfoContainer 
-                policyEvents={policyEvents}
-                appState={appState}
+
+        <div class='map-scrubber-container'>
+            <Scrubber 
                 updateAppState={updateAppState}
-                startAnimation={startAnimation}
+                appState={appState}
+                currentTime={currentTime}
+                maxTime={maxTime}
+                isAnimationEnded={isAnimationEnded}
+                pauseAnimation={pauseAnimation} 
+                startAnimation={startAnimation} 
+                updateCurrentTime={updateCurrentTime}
+                frameData={frameData}
+                frameDataMonthIndices={frameDataMonthIndices}
+                changePlaybackRate={changePlaybackRate}
+                policyEvents={policyEvents}
                 translator={translator}
                 currLang={currLang}
-            />         
+            />
         </div>
+
       </div>
+    
 
-      <div class='map-scrubber-container'>
-          <Scrubber 
-              updateAppState={updateAppState}
-              appState={appState}
-              currentTime={currentTime}
-              maxTime={maxTime}
-              isAnimationEnded={isAnimationEnded}
-              pauseAnimation={pauseAnimation} 
-              startAnimation={startAnimation} 
-              updateCurrentTime={updateCurrentTime}
-              frameData={frameData}
-              frameDataMonthIndices={frameDataMonthIndices}
-              changePlaybackRate={changePlaybackRate}
-              policyEvents={policyEvents}
-              translator={translator}
-              currLang={currLang}
-          />
+      <div class='map-aqi-legend'>
+        <AQILegend  
+          currentFrame={currentFrame} 
+          frameData={frameData} 
+          translator={translator}
+          currLang={currLang}
+        />
       </div>
-
-    </div>
-   
-
-    <div class='map-aqi-legend'>
-      <AQILegend  
-        currentFrame={currentFrame} 
-        frameData={frameData} 
-        translator={translator}
-        currLang={currLang}
-      />
     </div>
   </div>
 
@@ -374,6 +376,14 @@ const handleOpenPM25 = () => {
 
 .section {
   width: 90%;
+}
+
+@media screen and (max-width: 1000px) {
+  .scrollable {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: 100%;
+  }
 }
 
 .btn {
@@ -484,7 +494,7 @@ const handleOpenPM25 = () => {
   padding: 20px 20px 10px 20px;
 } 
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 500px) {
   .visualization {
     flex-direction: column; /* in smaller screens */
     padding: 0;
@@ -500,13 +510,17 @@ const handleOpenPM25 = () => {
   position: relative;
 }
 
-@media screen and (max-width: 1000px) {
-  .visualization .map-container {
-    width: 70%;
+@media screen and (max-width: 1000px) and (min-width: 501px){
+  .visualization {
+    width: fit-content;
+  }
+
+  .map-container {
+    width: 300%;
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 500px) {
   .visualization .map-container {
     width: 100%;
   }
@@ -517,7 +531,7 @@ const handleOpenPM25 = () => {
   height: 400px; /*desktop*/
 }
 
-@media screen and (max-width:800px) {
+@media screen and (max-width:500px) {
   .map-container .map {
     height: 300px; /* Needs to be shorter so the user can scroll past it*/
   }
@@ -578,7 +592,7 @@ const handleOpenPM25 = () => {
   height: 100%;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 500px) {
   .visualization .map-aqi-legend {
     padding-top: 10px;
   }

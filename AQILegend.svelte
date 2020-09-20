@@ -177,7 +177,7 @@
     padding: 10px;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 500px) {
     .legend-tile {
         padding: 20px;
     }

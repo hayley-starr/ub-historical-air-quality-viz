@@ -440,7 +440,7 @@
         position: relative;
     }
 
-    @media screen and (max-width:800px) {
+    @media screen and (max-width:500px) {
         .slider {
             width: 800px;
         }
