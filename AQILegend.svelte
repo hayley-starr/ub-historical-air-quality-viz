@@ -6,8 +6,6 @@
     import { create } from 'd3-selection';
     import { axisRight } from 'd3-axis';
     import { classnames } from './classnames';
-    import { watchResize } from "svelte-watch-resize";
-
 
     export let currentFrame;
     export let frameData;
@@ -46,9 +44,6 @@
     color.clamp(true);
 
     let width = 30; // must match pm25-scale-ticks
-    if (document.body.offsetWidth < 500) { // use a different style for smaller screens
-        width = 180;
-    }
     let height = 250;
     let marginTop = 0;
     let marginRight = 0;
@@ -91,17 +86,10 @@
     });
 
 
-    function handleResize(node) {
-        if (node.clientWidth > 500) {
-            // do something and change the width of the legend scale
-        }
-    }
-
-
 
 </script>
 
-<div class='ap-legend'  use:watchResize={handleResize}>
+<div class='ap-legend'>
     <div class='legend-tile'>
         <div class='ap-legend-pm25-scale-title'>{translator.translate('pm25_scale_title', currLang)}</div>
         <div class='ap-legend-pm25-scale-container'>
@@ -186,7 +174,13 @@
     color: #2B2D42;
     border-radius: 4px;
     margin-bottom: 10px;
-    padding: 5px 5px;
+    padding: 10px;
+}
+
+@media screen and (max-width: 800px) {
+    .legend-tile {
+        padding: 20px;
+    }
 }
 
 .ap-legend-pm25-scale-container {
@@ -213,11 +207,6 @@
     justify-content: space-between;
     z-index: 100;
 }
-@media screen and (max-width: 500px) {
-    .pm25-scale-ticks {
-        position: absolute;
-    }
-}
 
 .pm25-scale-tick-row {
     display: flex;
@@ -240,7 +229,7 @@
 }
 
 .pm25-scale-label {
-    width: 40%;
+    width: 70px;
 }
 
 
