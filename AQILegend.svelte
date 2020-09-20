@@ -160,7 +160,15 @@
     font-size: 12px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 500px) and (max-height: 1000px) { /* phones */
+    .ap-legend {
+        min-width: 0;
+        max-width: 100%;
+        padding-right: 10px;
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 800px) and (max-height: 500px) { /* sideways phones */
     .ap-legend {
         min-width: 0;
         max-width: 100%;
@@ -177,7 +185,12 @@
     padding: 10px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 500px) and (max-height: 1000px) { /* phones */
+    .legend-tile {
+        padding: 20px;
+    }
+}
+@media screen and (max-width: 800px) and (max-height: 500px) { /* sideways phones */
     .legend-tile {
         padding: 20px;
     }

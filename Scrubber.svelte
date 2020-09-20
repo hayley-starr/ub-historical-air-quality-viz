@@ -440,7 +440,20 @@
         position: relative;
     }
 
-    @media screen and (max-width:500px) {
+    @media screen and (max-width: 500px) and (max-height: 1000px) { /* phones */
+        .slider {
+            width: 800px;
+        }
+
+        .scrollable-scrubber-container {
+            overflow-x: scroll;
+            overflow-y: hidden;
+             -webkit-overflow-scrolling: touch;
+            padding: 0 5px;
+        }
+    }
+    
+    @media screen and (max-width: 800px) and (max-height: 500px) { /* sideways phones */
         .slider {
             width: 800px;
         }

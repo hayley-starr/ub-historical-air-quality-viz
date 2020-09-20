@@ -494,7 +494,15 @@ const handleOpenPM25 = () => {
   padding: 20px 20px 10px 20px;
 } 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 500px) and (max-height: 1000px) { /* phones */
+  .visualization {
+    flex-direction: column; /* in smaller screens */
+    padding: 0;
+    width: 100%;
+  } 
+}
+
+@media screen and (max-width: 800px) and (max-height: 500px) { /* sideways phones */
   .visualization {
     flex-direction: column; /* in smaller screens */
     padding: 0;
@@ -510,7 +518,7 @@ const handleOpenPM25 = () => {
   position: relative;
 }
 
-@media screen and (max-width: 1000px) and (min-width: 501px){
+@media screen and (max-width: 1000px) and (min-width: 500px) and (min-height: 600px) {
   .visualization {
     width: fit-content;
   }
@@ -520,7 +528,14 @@ const handleOpenPM25 = () => {
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 500px) and (max-height: 1000px) { /* phones */
+  .visualization .map-container {
+    width: 100%;
+  }
+}
+
+
+@media screen and (max-width: 800px) and (max-height: 500px) { /* sideways phones */
   .visualization .map-container {
     width: 100%;
   }
@@ -531,9 +546,22 @@ const handleOpenPM25 = () => {
   height: 400px; /*desktop*/
 }
 
-@media screen and (max-width:500px) {
+@media screen and (max-width: 500px) and (max-height: 1000px) { /* phones */
   .map-container .map {
     height: 300px; /* Needs to be shorter so the user can scroll past it*/
+  }
+}
+
+@media screen and (max-width: 800px) and (max-height: 500px) { /* sideways phones */
+  .map-container .map {
+    height: 300px; /* Needs to be shorter so the user can scroll past it*/
+  }
+}
+
+
+@media screen and (max-height: 350px) and (max-width: 600px) { /* tinyyy phones */
+  .map-container .map {
+    height: 250px; /* Needs to be shorter so the user can scroll past it*/
   }
 }
 
@@ -592,7 +620,13 @@ const handleOpenPM25 = () => {
   height: 100%;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 500px) and (max-height: 1000px) { /* phones */
+  .visualization .map-aqi-legend {
+    padding-top: 10px;
+  }
+}
+
+@media screen and (max-width: 800px) and (max-height: 500px) { /* sideways phones */
   .visualization .map-aqi-legend {
     padding-top: 10px;
   }

@@ -90,9 +90,20 @@ $: {
         align-content: space-between;
     }
 
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: 500px) and (max-height: 1000px) { /* phones */
         .event-info-box {
             max-height: 290px;
+        }
+    }
+    @media screen and (max-width: 800px) and (max-height: 500px) { /* sideways phones */
+        .event-info-box {
+            max-height: 290px;
+        }
+    }
+
+    @media screen and (max-height: 350px) and (max-width: 600px) { /* tinyyy phones */
+        .event-info-box {
+            max-height: 220px;
         }
     }
 

@@ -81,13 +81,19 @@
     /* justify-content: center; */
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 500px) and (max-height: 1000px) { /* phones */
   .thermometer {
     height: 120px;
     display: flex;
     justify-content: center;
   }
-
+}
+@media screen and (max-width: 800px) and (max-height: 500px) { /* sideways phones */
+  .thermometer {
+    height: 120px;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 </style>
