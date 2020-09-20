@@ -32,7 +32,7 @@
 </script>
 
 <div class='thermometer'>
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 613">
+<svg id="Layer_1" class="thermometer-svg" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 613">
   <defs>
     <style>
       .cls-1 {
@@ -70,10 +70,24 @@
 
 <style>
 
+.thermometer-svg {
+  height: 100%;
+}
+
 .thermometer {
     padding: 5px;
-    width: 100%;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
+    /* display: flex; */
+    /* justify-content: center; */
+}
+
+@media screen and (max-width: 500px) {
+  .thermometer {
+    height: 120px;
+    display: flex;
+    justify-content: center;
+  }
+
 }
 
 </style>

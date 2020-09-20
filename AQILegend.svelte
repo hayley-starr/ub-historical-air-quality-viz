@@ -177,6 +177,7 @@
         min-width: 0;
         max-width: 100%;
         padding-right: 10px;
+        font-size: 14px;
     }
 }
 
