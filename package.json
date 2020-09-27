@@ -1,5 +1,5 @@
 {
-  "name": "week12-stage-1",
+  "name": "visualizing-air-quality-ub",
   "version": "1.0.0",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.0",
@@ -46,12 +46,10 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "dev": "rollup -c -w",
     "start": "sirv public"
   },
   "keywords": [
-    "svelte",
-    "starter"
+    "svelte"
   ],
   "prettier": {
     "trailingComma": "es5",

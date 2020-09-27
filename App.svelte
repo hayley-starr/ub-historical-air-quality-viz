@@ -247,7 +247,7 @@ const handleOpenPM25 = () => {
           {translator.translate('title', currLang)}
         </div>
         <div class='title-date'>
-          {translator.translateDate('2020-08-14', currLang)}
+          {'Hayley Garment | ' + translator.translateDate('2020-08-14', currLang)}
         </div>
       </div>
      
