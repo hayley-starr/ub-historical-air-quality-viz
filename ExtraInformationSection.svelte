@@ -74,7 +74,9 @@
         </div>
 
         <div class='info-who-am-i'>
-                {translator.translate('who_am_i', currLang)}
+                {translator.translate('who_am_i', currLang).split('Breathe Mongolia')[0]}
+                <a href='https://breathemongolia.org/mn' target="_blank">{'Breathe Mongolia'}</a>
+                {translator.translate('who_am_i', currLang).split('Breathe Mongolia')[1]}
         </div>
         
      </div>

@@ -454,7 +454,7 @@ var app = (function () {
     return mapboxgl;
 
     })));
-
+    //# sourceMappingURL=mapbox-gl.js.map
     });
 
     let stations = {
@@ -16570,8 +16570,13 @@ var app = (function () {
     	let t7;
     	let t8;
     	let div6;
-    	let t9_value = /*translator*/ ctx[1].translate("who_am_i", /*currLang*/ ctx[0]) + "";
+    	let t9_value = /*translator*/ ctx[1].translate("who_am_i", /*currLang*/ ctx[0]).split("Breathe Mongolia")[0] + "";
     	let t9;
+    	let t10;
+    	let a;
+    	let t12;
+    	let t13_value = /*translator*/ ctx[1].translate("who_am_i", /*currLang*/ ctx[0]).split("Breathe Mongolia")[1] + "";
+    	let t13;
     	let current;
     	let each_value_1 = /*howVizWasMadeInfo*/ ctx[2];
     	validate_each_argument(each_value_1);
@@ -16627,6 +16632,11 @@ var app = (function () {
     			t8 = space();
     			div6 = element("div");
     			t9 = text(t9_value);
+    			t10 = space();
+    			a = element("a");
+    			a.textContent = `${"Breathe Mongolia"}`;
+    			t12 = space();
+    			t13 = text(t13_value);
     			attr_dev(div0, "class", "info-section-title svelte-1ptcg5q");
     			add_location(div0, file$7, 26, 8, 907);
     			attr_dev(div1, "class", "info-section svelte-1ptcg5q");
@@ -16639,6 +16649,9 @@ var app = (function () {
     			add_location(div4, file$7, 69, 16, 2464);
     			attr_dev(div5, "class", "info-end-text info-thanks svelte-1ptcg5q");
     			add_location(div5, file$7, 68, 8, 2408);
+    			attr_dev(a, "href", "https://breathemongolia.org/mn");
+    			attr_dev(a, "target", "_blank");
+    			add_location(a, file$7, 77, 16, 2785);
     			attr_dev(div6, "class", "info-who-am-i svelte-1ptcg5q");
     			add_location(div6, file$7, 75, 8, 2651);
     			attr_dev(div7, "class", "info-end svelte-1ptcg5q");
@@ -16679,6 +16692,10 @@ var app = (function () {
     			append_dev(div7, t8);
     			append_dev(div7, div6);
     			append_dev(div6, t9);
+    			append_dev(div6, t10);
+    			append_dev(div6, a);
+    			append_dev(div6, t12);
+    			append_dev(div6, t13);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
@@ -16739,7 +16756,8 @@ var app = (function () {
     			}
 
     			if ((!current || dirty & /*translator, currLang*/ 3) && t7_value !== (t7_value = /*translator*/ ctx[1].translate("thanks_to", /*currLang*/ ctx[0]) + "")) set_data_dev(t7, t7_value);
-    			if ((!current || dirty & /*translator, currLang*/ 3) && t9_value !== (t9_value = /*translator*/ ctx[1].translate("who_am_i", /*currLang*/ ctx[0]) + "")) set_data_dev(t9, t9_value);
+    			if ((!current || dirty & /*translator, currLang*/ 3) && t9_value !== (t9_value = /*translator*/ ctx[1].translate("who_am_i", /*currLang*/ ctx[0]).split("Breathe Mongolia")[0] + "")) set_data_dev(t9, t9_value);
+    			if ((!current || dirty & /*translator, currLang*/ 3) && t13_value !== (t13_value = /*translator*/ ctx[1].translate("who_am_i", /*currLang*/ ctx[0]).split("Breathe Mongolia")[1] + "")) set_data_dev(t13, t13_value);
     		},
     		i: function intro(local) {
     			if (current) return;
@@ -16981,6 +16999,7 @@ var app = (function () {
     function getRegionalIndicatorSymbol(letter) {
       return String.fromCodePoint(0x1F1E6 - 65 + letter.toUpperCase().charCodeAt(0));
     }
+    //# sourceMappingURL=unicode.js.map
 
     class Translator {
         
