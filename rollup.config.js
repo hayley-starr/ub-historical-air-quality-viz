@@ -11,7 +11,7 @@ export default {
   input: 'index.js',
   // input: 'componentLibrary.js', // for testing components
   output: {
-    sourcemap: true,
+    sourcemap: !production,
     format: 'iife',
     name: 'app',
     file: 'public/build/bundle.js'
