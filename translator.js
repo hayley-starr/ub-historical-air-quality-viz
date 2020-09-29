@@ -293,9 +293,9 @@ export class Translator {
             },
             info_body_aq_modeling: {
                 US: 
-                    'Creating the visualzation was a two-step process. First, the sensor data was combined with data from across the city, such as density of population per square km, density of coal-stoves (surveyed in 2013) and density of residential roads, to create a prediction map for each month. Then the monthly prediction maps were ajdusted for each day in the month using the 7 day moving average at each sensor. The final visualization reflects a fusion of the monthly trends with smaller, daily variations in air quality.',
+                    'Creating the visualzation was a two-step process. First, the sensor data was combined with data from across the city, such as density of population per square km, density of coal-stoves (surveyed in 2013) and density of residential roads, to create a prediction map for each month. This process is called a Land Use Regression. Then the monthly prediction maps were ajdusted for each day in the month using the 7 day moving average at each sensor. The final visualization reflects a fusion of the monthly trends with smaller, daily variations in air quality.',
                 MN: 
-                    'Дүрслэлийг бий болгох нь хоёр үе шаттай үйл явц байв. Нэгдүгээрт, мэдрэгчийн өгөгдлийг нэг хавтгай дөрвөлжин км тутамд хүн амын нягтрал, нүүрсний зуухны нягтрал (2013 онд судалсан), орон сууцны замуудын нягтрал зэрэг мэдээллийг нэгтгэн сар бүрийн урьдчилсан газрын зургийг боловсруулсан болно. Дараа нь сарын урьдчилсан таамаглалын зургийг 7 хоногийн хөдөлгөөнтэй дунджаар тухайн сард өдөр бүр буулгасан. Эцсийн дүр төрх нь агаарын чанарт өдөр тутам өөрчлөгдөж буй сарын хандлагын нийлбэрийг тусгасан болно.'
+                    'Дүрслэлийг бий болгох нь хоёр үе шаттай үйл явц байв. Нэгдүгээрт, мэдрэгчийн өгөгдлийг нэг хавтгай дөрвөлжин км тутамд хүн амын нягтрал, нүүрсний зуухны нягтрал (2013 онд судалсан), орон сууцны замуудын нягтрал зэрэг мэдээллийг нэгтгэн сар бүрийн урьдчилсан газрын зургийг боловсруулсан болно. Энэ процессыг Land Use Regression гэж нэрлэдэг. Дараа нь сарын урьдчилсан таамаглалын зургийг 7 хоногийн хөдөлгөөнтэй дунджаар тухайн сард өдөр бүр буулгасан. Эцсийн дүр төрх нь агаарын чанарт өдөр тутам өөрчлөгдөж буй сарын хандлагын нийлбэрийг тусгасан болно.'
             },
 
             
@@ -378,10 +378,10 @@ export class Translator {
             },
             who_am_i: {
                 US: 
-                    'The author of this visualization volunteers with Breathe Mongolia, a non-profit dedicated to ending air pollution in Mongolia. If you\'d like more information about the visualization or would like to get in touch, please email hayley.garment@gmail.com.',
+                    'The author of this visualization volunteers with Breathe Mongolia, a non-profit dedicated to ending air pollution in Mongolia. This project was created in part to fulfill coursework for the Master\'s of Urban Science, Policy and Planning program at the Singapore University of Technology and Design. If you\'d like more information about the visualization or would like to get in touch, please email hayley.garment@gmail.com.',
                 MN: 
                 
-                    'Энэхүү дүрслэлийн зохиогч нь Монгол орны агаарын бохирдлыг зогсоох зорилготой ашгийн төлөө бус Breathe Mongolia компанитай сайн дурын ажилтан юм. Хэрэв та дүрслэлийн талаар илүү мэдээлэл авахыг хүсч байвал эсвэл холбоо барихыг хүсэж байвал hayley.garment@gmail.com хаягаар мэдэгдэнэ үү.'
+                    'Энэхүү дүрслэлийн зохиогч нь Монгол орны агаарын бохирдлыг зогсоох зорилготой ашгийн төлөө бус Breathe Mongolia компанитай сайн дурын ажилтан юм. Энэхүү төслийг Singapore University of Technology and Design дахь хот байгуулалт, бодлого, төлөвлөлтийн мастерын хөтөлбөрийн курсын ажлыг гүйцэтгэх зорилгоор бүтээсэн болно. Хэрэв та дүрслэлийн талаар илүү мэдээлэл авахыг хүсч байвал эсвэл холбоо барихыг хүсэж байвал hayley.garment@gmail.com хаягаар мэдэгдэнэ үү.'
             },
             none: {
                 US: 
