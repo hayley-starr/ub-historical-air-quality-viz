@@ -32,8 +32,8 @@
 
 //---------- Control langauge of the page ----------------------
   let translator = new Translator();
-  let currLang = 'US'; // 'MN'
-  let oppLang = 'MN'; // 'MN'
+  let currLang = 'MN'; // 'MN'
+  let oppLang = 'US'; // 'MN'
 
   const handleUpdateLanguage = () => {
     oppLang = currLang;
