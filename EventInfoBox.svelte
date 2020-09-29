@@ -161,7 +161,7 @@ $: {
     }
 
     .continue-button {
-        color: #66b2f2;
+        color: #fcb91c;
         font-weight: normal;
         font-size: 11px;
         display: flex;

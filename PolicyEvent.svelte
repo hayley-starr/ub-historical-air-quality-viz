@@ -121,6 +121,12 @@
 
     const handleClickPolicyDot = () => {
         updateAnimationPosition(eventPosition, id);
+
+        if (appState.currEventId == id) { //so that it only unsets itself and not another event
+            updateAppState({currEventId: undefined});
+        } else {
+             updateAppState({currEventId: id});
+        }
     }
 
     onMount(async () => {
