@@ -27,6 +27,7 @@
         translator={translator}
         currLang={currLang} 
         handleCloseEvent={handleCloseEvent}
+        isUserRunning={appState.isUserRunning}
     />
     {/if}
 </div>

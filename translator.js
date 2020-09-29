@@ -175,6 +175,10 @@ export class Translator {
                 MN: 
                     '12-cap'
             },
+            continue: {
+                US: 'Continue',
+                MN: 'Үргэлжлүүлэх'
+            },
             photo_credit: {
                 US: 
                     'Image source',

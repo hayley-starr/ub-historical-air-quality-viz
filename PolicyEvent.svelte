@@ -100,11 +100,8 @@
         });
         
         
-        if (eventDetails.type != 'ap season') {
-            // pause the animation for a little to let the user read
-            pauseAnimation();
-            setTimeout(function() { startAnimation() }, PAUSE_ON_EVENT_MS);
-        } 
+        // pause the animation for a little to let the user read
+        pauseAnimation();
     }
 
     // To diminish the whole event, contract the dot and hide the policy info box

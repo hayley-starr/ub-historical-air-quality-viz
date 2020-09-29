@@ -6,11 +6,13 @@
   import { faSun } from '@fortawesome/free-solid-svg-icons/faSun';
   import { faNewspaper } from '@fortawesome/free-solid-svg-icons/faNewspaper';
   import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
+  import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
   import { classnames } from './classnames';
 
 export let eventDetails;
 export let translator;
 export let currLang;
+export let isUserRunning;
 export let handleCloseEvent;
 
 let eventIcon = faBook;
@@ -50,7 +52,16 @@ $: {
         <span class='event-date-text'>{translator.translateDate(eventDetails.date, currLang)}</span>
         </div>
         <div class='event-date-right' on:click={handleCloseEvent}>
-            <Icon icon={faTimes}></Icon>
+            {#if isUserRunning }
+                <div class='continue-button'>
+                {translator.translate('continue', currLang) }
+                 <Icon icon={faCaretRight}></Icon>
+                </div>
+               
+            {:else}
+                <Icon icon={faTimes}></Icon>
+            {/if}
+           
         </div>
     </div>
     <div class='event-info-scrollable'>
@@ -147,6 +158,14 @@ $: {
     .event-date-right {
         color: white;
         cursor: pointer;
+    }
+
+    .continue-button {
+        color: #66b2f2;
+        font-weight: normal;
+        font-size: 11px;
+        display: flex;
+        align-items: center;
     }
 
     .event-date-text {
