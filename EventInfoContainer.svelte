@@ -34,13 +34,6 @@
 <style>
 
 .event-info-container {
-    opacity: 0.85;
-    /* animation: slideInScale .3s; */
 }
-
-/* @keyframes slideInScale {
-    from {left: -100px;}
-    to {left: 0px; }
-} */
 
 </style>
