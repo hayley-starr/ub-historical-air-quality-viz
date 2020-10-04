@@ -65,21 +65,21 @@ $: {
         </div>
     </div>
     <div class='event-info-scrollable'>
-        <div class='event-title'>
+        <div class='event-title event-section'>
             <span>{translator.translate(eventDetails.title, currLang)}</span>
         </div>
         {#if !eventDetails.type.startsWith('ap_season')}
-        <div class='event-photo'>
+        <div class='event-photo event-section'>
             <img src={eventDetails.imgSource} alt={''}>
             {#if eventDetails.type != 'policy_document'}
             <div>{translator.translate('photo_credit', currLang) + ': ' + eventDetails.imgCredit}</div>
             {/if}
         </div>
-        <div class='event-text'>
+        <div class='event-text event-section'>
             <span>{translator.translate(eventDetails.text, currLang)}</span>
         </div>
         {#if eventDetails.type != 'policy_document'}
-        <div class='event-source'>
+        <div class='event-source event-section'>
             <a href={eventDetails.source} target="_blank">{translator.translate('info_source', currLang)}</a>
         </div>
         {/if}
@@ -104,6 +104,7 @@ $: {
     @media screen and (max-width: 500px) and (max-height: 1000px) { /* phones */
         .event-info-box {
             max-height: 290px;
+            width: auto;
         }
     }
     @media screen and (max-width: 800px) and (max-height: 500px) { /* sideways phones */
@@ -115,6 +116,7 @@ $: {
     @media screen and (max-height: 350px) and (max-width: 600px) { /* tinyyy phones */
         .event-info-box {
             max-height: 220px;
+            width: auto;
         }
     }
 
@@ -138,6 +140,11 @@ $: {
     .event-info-scrollable {
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
+    }
+
+
+    .event-section {
+        flex-shrink: 0;
     }
 
     .event-date {

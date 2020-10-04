@@ -128,9 +128,9 @@ const handleOpenPM25 = () => {
 
   // After the DOM has been rendered set up the mapbox. (Won't work before map html is available.)
 	onMount(async () => {
-    let initialZoom = 10.3
+    let initialZoom = 11;
     if (document.body.offsetWidth < 500) { // use a different style for smaller screens
-        initialZoom = 9.5;
+        initialZoom = 9.7;
     }
 
 		map = new mapboxgl.Map({
@@ -156,6 +156,7 @@ const handleOpenPM25 = () => {
           let videoSource = map.getSource('ap_video');
           videoSource.video.loop = false;
           videoSource.video.playsInline = true; // or will play fullscreen in iOS
+          videoSource.video.setAttribute('webkit-playsinline', 'webkit-playsinline');
           maxTime = videoSource.video.duration;
           var intervalTimer = setInterval(reportCurrentTime, FRAME_CHECKING_RATE);
 
@@ -438,6 +439,10 @@ const handleOpenPM25 = () => {
   display: flex;
   opacity: 0.8;
   margin-top: 20px;
+  text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
 }
 
 .translate-button:first-child {
@@ -445,14 +450,18 @@ const handleOpenPM25 = () => {
 }
 
 .translate-button {
-  height: 30px;
+  height: 35px;
+  width: 40px;
   font-size: 30px;
   color: white;
   border: none;
   border-radius: 4px;
+  padding: 0;
   background-color: ghostwhite;
   display: flex;
   align-items: center;
+  justify-content: center;
+  -webkit-align-items:center;
 }
 
 .translate-selected {

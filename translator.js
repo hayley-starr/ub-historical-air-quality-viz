@@ -372,8 +372,6 @@ export class Translator {
                     'Он цагийн хуваарьт сонгосон арга хэмжээнүүд нь энэ хугацаанд Улаанбаатар хотын агаарын бохирдолтой холбоотой онцлох үйл явдлууд боловч дэлгэрэнгүй жагсаалт биш юм.'
             },
             
-            
-            
             thanks_to: {
                 US: 
                     'Thanks very much to Public Lab Mongolia for supplying the low-cost sensor data, and to People In Need for installing and maintaing the low-cost sensors.',
