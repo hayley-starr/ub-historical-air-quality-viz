@@ -256,19 +256,19 @@ export class Translator {
                 US: 
                     'Among several clauses on reducing pollution nationwide, the plan announces an intention to support production of refined coal and construct new plants that will serve Ulaanbaatar. Additionally, the plan says that the government will monitor use of the improved coal and continue to enforce the ban on raw coal. The plan also mentions that low-pressure boilers in schools and kindergardens should be replaced with efficient electric and gas stoves.',
                 MN: 
-                    'Улсын хэмжээнд бохирдлыг бууруулах тухай хэд хэдэн заалтын дотор энэ төлөвлөгөө нь цэвэршүүлсэн нүүрсний үйлдвэрлэлийг дэмжих, Улаанбаатар хотод үйлчилэх шинэ үйлдвэр барих бодолтой байгаагаа зарласан. Нэмж дурдахад уг төлөвлөгөөнд засгийн газар сайжруулсан нүүрсний ашиглалтыг хянаж, түүхий нүүрсний хоригийг үргэлжлүүлэн хэрэгжүүлнэ гэж заасан. Мөн төлөвлөгөөнд сургууль, цэцэрлэгийн бага даралттай бойлеруудыг үр ашигтай цахилгаан, хийн зуухаар ​​сольж байх ёстой гэж заасан.'
+                    'Агаарын бохирдлыг бууруулах тухай хэд хэдэн заалтын нэгт сайжруулсан нүүрсний үйлдвэрлэлийг дэмжих, шинэ үйлдвэр барих зэрэг тусгагдсан. Мөн уг төлөвлөгөөнд засгийн газар сайжруулсан нүүрсний ашиглалтыг хянаж, түүхий нүүрсний хоригийг үргэлжлүүлэн мөрдүүлнэ, мөн сургууль цэцэрлэгийн бага даралттай бойлеруудыг үр ашигтай цахилгаан, хийн зуухаар солих ёстой гэж тусгасан.'
             },
             event_title_govt_announce_new_refined_coal_plant: {
                 US: 
                     'A Second Refined Coal Factory is Announced',
                 MN: 
-                    'Цэвэршүүлсэн нүүрсний хоёр дахь үйлдвэр зарлагдлаа'
+                    'Сайжруулсан нүүрсний хоёр дахь үйлдвэр товлогдов'
             },
             event_text_govt_announce_new_refined_coal_plant: {
                 US: 
                     'The Energy Minister says that a new factory to produce refined coal will be built in eastern Ulaanbaatar by August and will begin producing refined coal on Septermber 15th, 2020.',
                 MN: 
-                    'Эрчим хүчний сайд 8-р сар гэхэд Улаанбаатар хотын зүүн хэсэгт цэвэршүүлсэн нүүрс үйлдвэрлэх шинэ үйлдвэр барьж, 2020 оны 9-р сарын 15-наас цэвэршүүлсэн нүүрс үйлдвэрлэж эхэлнэ гэж мэдэгдэв.'
+                    'Эрчим хүчний сайд 8-р сар гэхэд Улаанбаатар хотын зүүн хэсэгт сайжруулсан нүүрсний шинэ үйлдвэр барьж, 2020 оны 9-р сарын 15-наас сайжруулсан нүүрс үйлдвэрлэж эхэлнэ гэж мэдэгдэв.'
             },
 
 
