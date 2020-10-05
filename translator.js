@@ -8,14 +8,14 @@ export class Translator {
                 US: 
                     'Visualizing Air Quality in Ulaanbaatar from 2019 to 2020',
                 MN: 
-                    '2019-2020 онд Улаанбаатар Хотын Агаарын Бохирдлын Дүрслэл'
+                    '2019-2020 оны Улаанбаатар Хотын Агаарын Чанарын Дүрслэл'
             },
 
             introduction: {
                 US: 
                     "Cleaning up the toxic air has been one of the biggest challenges for the city of Ulaanbaatar in recent years. In 2012 the government passed the Law on Air, which was supposed to start addressing the growing crisis. After several unsuccessful efforts, the government passed resolution 62 which announced a ban on burning raw coal starting in 2019. Watch as PM2.5 levels change across the city from February 2019 to April 2020 and get a bird's eye view of Ulaanbaatar as it works towards a future of clean air.",
                 MN: 
-                    'Хортой агаарыг цэвэрлэх нь сүүлийн жилүүдэд Улаанбаатар хотын хувьд тулгамдсан асуудлын нэг болоод байна. 2012 онд засгийн газар өсөн нэмэгдэж буй хямралыг шийдвэрлэх ажлыг эхлүүлэх ёстой Агаарын тухай хуулийг батлав. Хэд хэдэн амжилтгүй оролдлогын дараа засгийн газар 2019 оноос эхлэн түүхий нүүрс шатаахыг хориглох тухай зарласан 62 дугаар тогтоолыг гаргалаа. 2019 оны 2-р сараас 2020 оны 4-р сар хүртэл PM2.5 түвшин хот даяар өөрчлөгдөж, Улаанбаатар хотын чиглэлд ажиллаж буй шувуудын харцыг харж болно. ирээдүйн цэвэр агаар.'
+                    'Хортой агаарыг цэвэрлэх нь сүүлийн жилүүдэд Улаанбаатар хотын хамгийн тулгамдсан асуудлын нэг болоод байна. 2012 онд засгийн газраас энэхүү хямралыг шийдвэрлэх зорилгоор Агаарын тухай хуулийг батласан. Үүнээс хойш хэд хэдэн амжилтгүй оролдлогын дараа засгийн газар 2019 оноос эхлэн түүхий нүүрс шатаахыг хориглох 62 дугаар тогтоолыг гаргасан билээ. Энэ тогтоолоос хойш агаарын бохирдол Улаанбаатарт ямар түвшинд байсныг 2019 оны 2-р сараас 2020 оны 4-р сар хүртэлх PM2.5 түвшингээс харцгаая'
             },
             what_is_pm25: {
                 US: 
@@ -27,7 +27,7 @@ export class Translator {
                 US: 
                     'PM2.5 is a type of air pollutant. It refers to atmospheric particulate matter that is less than 2.5 microns in diameter.',
                 MN: 
-                    'PM2.5 бол агаарын бохирдуулагчийн нэг төрөл юм. Энэ нь 2.5 микрон диаметрээс бага хэмжээтэй агаар мандлын тоосонцорыг хэлдэг.'
+                    'PM2.5 бол агаар дах 2.5 микрон диаметрээс бага хэмжээтэй тоосонцор юм.'
             },
             seven_day_avg_on: {
                 US: '7 day avg',
@@ -41,31 +41,31 @@ export class Translator {
                 US: 
                     'Good',
                 MN: 
-                    'Сайн'
+                    'Эрүүл'
             },
             moderate: {
                 US: 
                     'Moderate',
                 MN: 
-                    'Бага Бохирдол'
+                    'Бага Зэрэг Бохирдол'
             },
             unhealthy_sensitive: {
                 US: 
                     'Unhealthy for Sensitive Groups',
                 MN: 
-                    'Mэдрэг Хүмүүс Болгоомжил'
+                    'Эмзэг Бүлгийн Хүмүүст Аюултай'
             },
             unhealthy: {
                 US: 
                     'Unhealthy',
                 MN: 
-                    'Их Бохирдол'
+                    'Аюултай'
             },
             very_unhealthy: {
                 US: 
                     'Very Unhealthy',
                 MN: 
-                    'Эрүүл Мэндэд Аюултай'
+                    'Маш Аюултай'
             },
             hazardous: {
                 US: 
@@ -89,7 +89,7 @@ export class Translator {
                 US: 
                     'PM2.5 is a major pollutant from burning coal, and people burn coal more frequently during cold weather. However, coal power plants and other PM2.5 sources, like vehicles, still operate in the summertime.',
                 MN: 
-                    'PM2.5 нь нүүрс шатаахад хүргэдэг томоохон бохирдуулагч бөгөөд хүмүүс хүйтний улиралд нүүрс түлдэг. Гэсэн хэдий ч нүүрсний цахилгаан станцууд болон бусад PM2.5 эх үүсвэрүүд, тухайлбал тээврийн хэрэгсэл, зуны улиралд ажилладаг.'
+                    'PM2.5 нь нүүрс шатаахаас үүдэлтэй агаарын бохирдол юм. Өвлийн улиралд нүүрс түлэхээс гадна жилийн турш нүүрсний цахилгаан станцууд болон тээврийн хэрэгслээс PM2.5 ялгардаг.'
             },
             legend_temperature_title: {
                 US: 
@@ -196,61 +196,61 @@ export class Translator {
                 US: 
                     '2018-2019 Air Pollution Season Ends',
                 MN: 
-                    '2018-2019 Агаарын бохирдлын улирал дуусна'
+                    '2018-2019 Утааны улирал дуусав'
             },
             event_title_2019_2020_season_starts: {
                 US: 
                     '2019-2020 Air Pollution Season Starts',
                 MN: 
-                    '2019-2020 Агаарын бохирдлын улирал эхэллээ'
+                    '2019-2020 Утааны улирал эхлэв'
             },
             event_title_2019_2020_season_ends: {
                 US: 
                     '2019-2020 Air Pollution Season Ends',
                 MN: 
-                    '2019-2020 Агаарын бохирдлын улирал дуусна'
+                    '2019-2020 Агаарын бохирдлын улирал дуусав'
             },
             event_title_raw_coal_ban_starts: {
                 US: 
                     'Ban on Raw Coal Comes Into Effect',
                 MN: 
-                    'Түүхий нүүрс дээр хориг тавигдаж эхэллээ'
+                    'Түүхий нүүрсний хориг эхлэв'
             },
             event_text_raw_coal_ban_starts: {
                 US: 
                     'The government announced the ban in a resolution on February 28th 2018. It is now forbidden for residents to burn raw coal within the city limits, though the rule does not apply to power plants. The government is working with state-run company Taval Tolgoi Tulsh LLC to manufacture a type of refined coal that will burn longer and cleaner and that can replace raw coal.',
                 MN: 
-                    'Засгийн газар хоригоо 2018 оны 2-р сарын 28-ны өдөр тогтоолоор зарлав. Одоо оршин суугчдад хотын хэмжээнд түүхий нүүрс түлэхийг хориглоно. Засгийн газар төрийн өмчит Тавал Толгой Түлш ХХК-тай хамтарч урт, илүү цэвэр, түүхий нүүрсийг орлуулж чадах цэвэршүүлсэн нүүрс үйлдвэрлэхээр ажиллаж байна.'
+                    'Засгийн газар хоригоо 2018 оны 2-р сарын 28-ны өдрийн тогтоолоор зарлаж оршин суугчдад хотын хэмжээнд түүхий нүүрс түлэхийг хориглов. Засгийн газар төрийн өмчит Тавал Толгой Түлш ХХК-тай хамтарч урт, илүү цэвэр, түүхий нүүрсийг орлуулж чадах боловсруулсан нүүрс үйлдвэрлэхээр ажиллаж байна.'
             },
             event_title_russian_wildfires: {
                 US: 
                     'Wildfire Smoke from Russia Reaches Ulaanbaatar',
                 MN: 
-                    'Оросын түймрийн утаа Улаанбаатарт хүрч байна'
+                    'Сибирийн түймрийн утаа Улаанбаатарт хүрэв'
             },
             event_text_russian_wildfires: {
                 US: 
                     'Smoke from record-setting wildfires in Siberia blows south to Mongolia. July 2019 was Earth\'s hottest month ever recorded, resulting in dangerously dry conditions around the world.',
                 MN: 
-                    'Сибирьт тогтоосон түймрийн утаа Монгол орны өмнөд хэсэгт үлдэв. 2019 оны 7-р сар бол дэлхийн хамгийн халуун сараар тэмдэглэгдсэн бөгөөд дэлхийн хуурай нөхцөлд аюултай нөхцөл байдал үүссэн юм.'
+                    'Сибирийн түймрийн утаа Монгол орны өмнөд хэсэгт хүрэв. 2019 оны 7-р сар дэлхийн хамгийн халуун сараар тэмдэглэгдсэн бөгөөд дэлхий даяар аюултай хуурайшилттай байв.'
             },
             event_title_govt_announce_ap_reduction: {
                 US: 
                     'Government Announces 49.6% Reduction in Pollution from Previous Years',
                 MN: 
-                    'Засгийн газар өмнөх жилүүдийн бохирдлыг 49.6% бууруулж байгааг зарлав'
+                    'Засгийн газар бохирдлын хэмжээг өмнөх жилүүдтэй харьцуулахад 49.6% бууруулсан хэмээн зарлав'
             },
             event_text_govt_announce_ap_reduction: {
                 US: 
                     'Government officials cite research and say that pollution has been significantly reduced. One official notes that in previous years the air pollution levels had been above the standard, implying that this season is different. However, air pollution still remains above acceptable levels in many parts of the city.',
                 MN: 
-                    'Засгийн газрын ажилтнууд судалгааг иш татан, бохирдол ихээхэн буурсан гэж мэдэгдэв. Өмнөх жилүүдэд агаарын бохирдлын түвшин стандарт хэмжээнээс дээгүүр байсан нь энэ улирал өөр байгааг тэмдэглэжээ. Гэсэн хэдий ч агаарын бохирдол хотын олон хэсэгт хүлээн зөвшөөрөгдсөн хэмжээнээс дээгүүр хэвээр байна.'
+                    'Засгийн газрын ажилтнууд бохирдол ихээхэн буурсан гэсэн судалгааны талаар мэдэгдэхдээ өмнөх жилүүдэд агаарын бохирдлын түвшин стандарт хэмжээнээс дээгүүр байсан гэж зарласан нь энэ жилд утаа аюулт хэмжээнд байгаагүй мэтээр төөрөгдөл үүсгэв. Гэвч үнэн хэрэгтээ агаарын бохирдол хүлээн зөвшөөрөгдсөн хэмжээнээс давсан хэвээр байна.'
             },
             event_title_govt_announce_ap_plan: {
                 US: 
                     '2020 Action Plan to Reduce Environmental Pollution',
                 MN: 
-                    'Орчны бохирдлыг бууруулахад 2020 хэрэгжүүлэх үйл ажиллагааны төлөвлөгөө'
+                    'Орчны бохирдлыг бууруулах 2020 оны үйл ажиллагааны төлөвлөгөө'
             },
             event_text_govt_announce_ap_plan: {
                 US: 
