@@ -279,13 +279,13 @@ export class Translator {
                 US: 
                     'Low-Cost Sensor Data',
                 MN: 
-                    'Мэдрэмж багатай'
+                    'Хямд Өртөгт Мэдрэгчийн Өгөгдөл'
             },
             info_body_low_cost_sensor_data: {
                 US: 
                     'This visualization was made with data collected from 20 low-cost sensors installed around the city by People In Need Mongolia. The air quality stations on the map show their locations.',
                 MN: 
-                    'Энэхүү дүрслэлийг хотын эргэн тойронд People In Need Монголд суурилуулсан хямд өртөгтэй 20 мэдрэгчээс цуглуулсан өгөгдөл ашиглан хийсэн болно. Газрын зураг дээрх агаарын чанарын станцууд нь байршлыг харуулав.'
+                    'Энэхүү дүрслэлийг хотын эргэн тойронд People In Need Mongolia байгууллагаас суурилуулсан хямд өртөгтэй 20 мэдрэгчээс цуглуулсан өгөгдөл ашиглан хийсэн болно. Газрын зураг дээр эдгээр мэдрэнчүүдийн байршлыг харуулав.'
             },
 
 
@@ -293,13 +293,13 @@ export class Translator {
                 US: 
                     'Air Quality Modeling',
                 MN: 
-                    'Агаарын чанарын загварчлал'
+                    'Агаарын Чанарын Загварчлал'
             },
             info_body_aq_modeling: {
                 US: 
                     'Creating the visualzation was a two-step process. First, the sensor data was combined with data from across the city, such as density of population per square km, density of coal-stoves (surveyed in 2013) and density of residential roads, to create a prediction map for each month. This process is called a Land Use Regression. Then the monthly prediction maps were ajdusted for each day in the month using the 7 day moving average at each sensor. The final visualization reflects a fusion of the monthly trends with smaller, daily variations in air quality.',
                 MN: 
-                    'Дүрслэлийг бий болгох нь хоёр үе шаттай үйл явц байв. Нэгдүгээрт, мэдрэгчийн өгөгдлийг нэг хавтгай дөрвөлжин км тутамд хүн амын нягтрал, нүүрсний зуухны нягтрал (2013 онд судалсан), орон сууцны замуудын нягтрал зэрэг мэдээллийг нэгтгэн сар бүрийн урьдчилсан газрын зургийг боловсруулсан болно. Энэ процессыг Land Use Regression гэж нэрлэдэг. Дараа нь сарын урьдчилсан таамаглалын зургийг 7 хоногийн хөдөлгөөнтэй дунджаар тухайн сард өдөр бүр буулгасан. Эцсийн дүр төрх нь агаарын чанарт өдөр тутам өөрчлөгдөж буй сарын хандлагын нийлбэрийг тусгасан болно.'
+                    'Дүрслэлийг бүтээх нь хоёр үе шаттай үйл явц байв. Нэгдүгээрт, мэдрэгчүүдийн өгөгдлүүдийг нэг хавтгай дөрвөлжин км тутамд хүн амын нягтрал, нүүрсний зуухны нягтрал (2013 онд судалсан), орон сууцны замуудын нягтрал зэрэг өгөгдлүүдийш нэгтгэн сар бүрийн тооцоололт газрын зургийг боловсруулсан болно. Энэ арга барилыг Land Use Regression гэж нэрлэдэг. Дараа нь сарын тооцоололт зургийг мэдрэгч бүрийн 7 хоногийн хөдөлгөөнт дундажтай нэгтгэсэн. Эцсийн дүрс нь сар бүрийн агаарын чанарын хандлагыг өдөр бүрийн нарийвчлалаар тооцоолцсон болно.'
             },
 
             
