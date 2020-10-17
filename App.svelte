@@ -156,6 +156,7 @@ const handleOpenPM25 = () => {
           let videoSource = map.getSource('ap_video');
           videoSource.video.loop = false;
           videoSource.video.playsInline = true; // or will play fullscreen in iOS
+          videoSource.video.playsinline = true; // trying another style
           videoSource.video.setAttribute('webkit-playsinline', 'webkit-playsinline');
           maxTime = videoSource.video.duration;
           var intervalTimer = setInterval(reportCurrentTime, FRAME_CHECKING_RATE);
