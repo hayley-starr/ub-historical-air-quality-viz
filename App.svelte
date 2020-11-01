@@ -149,11 +149,11 @@ const handleOpenPM25 = () => {
 
       //cannot access the video right away due to some mapbox strangeness
       const waiting = () => {
-        if (!map.isStyleLoaded()) {
+        let videoSource = map.getSource('ap_video');    
+        if (!videoSource || !videoSource.video || videoSource.video.readyState == 0) {
           setTimeout(waiting, 200);
         } else {
-          map.getSource('ap_video').pause();
-          let videoSource = map.getSource('ap_video');
+          videoSource.pause();
           videoSource.video.loop = false;
           videoSource.video.playsInline = true; // or will play fullscreen in iOS
           videoSource.video.playsinline = true; // trying another style
