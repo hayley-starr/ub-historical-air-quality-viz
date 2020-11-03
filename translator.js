@@ -283,9 +283,9 @@ export class Translator {
             },
             info_body_low_cost_sensor_data: {
                 US: 
-                    'This visualization was made with data collected from 20 low-cost sensors installed around the city by People In Need Mongolia. The air quality stations on the map show their locations.',
+                    'This visualization was made with data collected from 21 low-cost sensors installed around the city by People In Need Mongolia. The air quality stations on the map show their locations.',
                 MN: 
-                    'Энэхүү дүрслэлийг хотын эргэн тойронд People In Need Mongolia байгууллагаас суурилуулсан хямд өртөгтэй 20 мэдрэгчээс цуглуулсан өгөгдөл ашиглан хийсэн болно. Газрын зураг дээр эдгээр мэдрэнчүүдийн байршлыг харуулав.'
+                    'Энэхүү дүрслэлийг хотын эргэн тойронд People In Need Mongolia байгууллагаас суурилуулсан хямд өртөгтэй 21 мэдрэгчээс цуглуулсан өгөгдөл ашиглан хийсэн болно. Газрын зураг дээр эдгээр мэдрэнчүүдийн байршлыг харуулав.'
             },
 
 
@@ -380,10 +380,10 @@ export class Translator {
             },
             who_am_i: {
                 US: 
-                    'The author of this visualization volunteers with Breathe Mongolia, a non-profit dedicated to ending air pollution in Mongolia. This project was created in part to fulfill coursework for the Master\'s of Urban Science, Policy and Planning program at the Singapore University of Technology and Design. If you\'d like more information about the visualization or would like to get in touch, please email hayley.garment<at>gmail.com.',
+                    'The author of this visualization works with Breathe Mongolia, a non-profit dedicated to ending air pollution in Mongolia. This project was created in part to fulfill coursework for the Master\'s of Urban Science, Policy and Planning program at the Singapore University of Technology and Design. If you\'d like more information about the visualization or would like to get in touch, please email hayley.garment<at>gmail.com.',
                 MN: 
                 
-                    'Энэхүү дүрслэлийн зохиогч нь Монгол орны агаарын бохирдлыг зогсоох зорилготой, ашгийн бус Breathe Mongolia байгууллагын сайн дурын ажилтан юм. Энэхүү төслийг Singapore University of Technology and Design дахь хот байгуулалт, бодлого, төлөвлөлтийн мастерын хөтөлбөрийн курсын ажлыг гүйцэтгэх зорилгоор бүтээсэн болно. Хэрэв та дүрслэлийн талаар илүү мэдээлэл авахыг хүсч байвал эсвэл холбоо барихыг хүсэж байвал hayley.garment<at>gmail.com хаягаар холбогдоно уу.'
+                    'Энэхүү дүрслэлийн зохиогч нь Монгол орны агаарын бохирдлыг зогсоох зорилготой, ашгийн бус Breathe Mongolia байгууллагын ажилтан юм. Энэхүү төслийг Singapore University of Technology and Design дахь хот байгуулалт, бодлого, төлөвлөлтийн мастерын хөтөлбөрийн курсын ажлыг гүйцэтгэх зорилгоор бүтээсэн болно. Хэрэв та дүрслэлийн талаар илүү мэдээлэл авахыг хүсч байвал эсвэл холбоо барихыг хүсэж байвал hayley.garment<at>gmail.com хаягаар холбогдоно уу.'
             },
             none: {
                 US: 
