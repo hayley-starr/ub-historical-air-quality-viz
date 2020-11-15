@@ -285,7 +285,7 @@ export class Translator {
                 US: 
                     'This visualization was made with data collected from 21 low-cost sensors installed around the city by People In Need Mongolia. The air quality stations on the map show their locations.',
                 MN: 
-                    'Энэхүү дүрслэлийг хотын эргэн тойронд People In Need Mongolia байгууллагаас суурилуулсан хямд өртөгтэй 21 мэдрэгчээс цуглуулсан өгөгдөл ашиглан хийсэн болно. Газрын зураг дээр эдгээр мэдрэнчүүдийн байршлыг харуулав.'
+                    'Энэхүү дүрслэлийг хотын эргэн тойронд People In Need Mongolia байгууллагаас суурилуулсан хямд өртөгтэй 21 мэдрэгчээс цуглуулсан өгөгдөл ашиглан хийсэн болно. Газрын зураг дээр эдгээр мэдрэгчүүдийн байршлыг харуулав.'
             },
 
 
